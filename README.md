@@ -698,12 +698,6 @@ cd gradient-svg-generator
 ```bash
 # Using npm
 npm install
-
-# Using yarn
-yarn install
-
-# Using pnpm
-pnpm install
 ```
 
 ### 3. Configure Environment
@@ -719,14 +713,6 @@ nano .env
 ```bash
 # Start with npm
 npm start
-or
-npm run dev
-
-# Start with yarn
-yarn dev
-
-# Start with pnpm
-pnpm dev
 ```
 
 ## Project Structure
@@ -752,55 +738,6 @@ gradient-svg-generator/
 ├── README.md
 ├── server.js
 └── vercel.json
-```
-
-## Development Guidelines
-
-### 1. Code Style
-- Follow ESLint configuration
-- Use Prettier for formatting
-- Follow TypeScript best practices
-- Comment complex logic
-
-```bash
-# Run linter
-npm run lint
-
-# Run formatter
-npm run format
-
-# Run type checking
-npm run type-check
-```
-
-### 2. Testing
-```bash
-# Run all tests
-npm run test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run tests with coverage
-npm run test:coverage
-```
-
-### 3. Building for Production
-```bash
-# Create production build
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-### 4. Deployment
-```bash
-# Deploy to Vercel
-vercel
-
-# Deploy to production
-vercel --prod
 ```
 
 ## Contributing Guidelines

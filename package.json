@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Chan Meng",
   "license": "ISC",
-  "description": "",
+  "description": "A service that generates animated gradient SVGs with customizable text overlays",
   "dependencies": {
     "@vercel/node": "^2.15.0"
   }
