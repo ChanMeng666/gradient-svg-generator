@@ -1,5 +1,5 @@
 <div align="center">
- <h1>🌈 Gradient SVG Generator</h1>
+ <h1><img src="public/gradient-svg-generator.svg" width="80px"><br/>Gradient SVG Generator</h1>
  <img src="https://img.shields.io/badge/node.js-%23339933.svg?style=for-the-badge&logo=node.js&logoColor=white"/>
  <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white"/>
  <img src="https://img.shields.io/badge/SVG-%23FFB13B.svg?style=for-the-badge&logo=svg&logoColor=black"/>
