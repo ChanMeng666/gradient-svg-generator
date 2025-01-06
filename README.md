@@ -1,10 +1,11 @@
-# 🌈 Gradient SVG Generator - Complete Documentation
-
 <div align="center">
+ <h1>🌈 Gradient SVG Generator</h1>
  <img src="https://img.shields.io/badge/node.js-%23339933.svg?style=for-the-badge&logo=node.js&logoColor=white"/>
  <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white"/>
  <img src="https://img.shields.io/badge/SVG-%23FFB13B.svg?style=for-the-badge&logo=svg&logoColor=black"/>
 </div>
+
+![Progress Pride](https://gradient-svg-generator.vercel.app/?text=Pride&height=200&template=progress-pride)
 
 ## Introduction
 
