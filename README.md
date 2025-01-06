@@ -20,11 +20,11 @@ The Gradient SVG Generator is a powerful tool that creates animated gradient SVG
 1. [Introduction and Setup](#introduction)
 2. [Quick Start Guide](#quick-start-guide)
 3. [Configuration Options](#configuration-options)
-4. [Basic Templates Collection](#basic-templates)
-5. [Pride Flag Templates](#pride-flag-templates)
-6. [Custom Examples and Advanced Usage](#custom-examples)
-7. [Installation and Development](#installation)
-8. [Contributing Guidelines](#contributing)
+4. [Basic Templates Collection](#basic-templates-collection)
+5. [Pride Flag Templates](#pride-flag-templates-collection)
+6. [Custom Examples and Advanced Usage](#custom-examples-and-advanced-usage)
+7. [Installation and Development](#installation-and-development-guide)
+8. [Contributing Guidelines](#contributing-guidelines)
 
 ## Quick Start Guide
 
@@ -35,6 +35,7 @@ The simplest way to create a gradient SVG is with a basic text parameter:
 ```markdown
 ![Basic Gradient](https://gradient-svg-generator.vercel.app/?text=Hello+World)
 ```
+![Basic Gradient](https://gradient-svg-generator.vercel.app/?text=Hello+World)
 
 ### Adding Custom Colors
 
@@ -43,6 +44,7 @@ Specify a custom color using hex codes (without the # symbol):
 ```markdown
 ![Custom Color](https://gradient-svg-generator.vercel.app/?text=Custom+Color&color=ff0000)
 ```
+![Custom Color](https://gradient-svg-generator.vercel.app/?text=Custom+Color&color=ff0000)
 
 ### Adjusting Height
 
@@ -51,6 +53,7 @@ Customize the height of your gradient (valid range: 30-300 pixels):
 ```markdown
 ![Custom Height](https://gradient-svg-generator.vercel.app/?text=Tall+Banner&height=200)
 ```
+![Custom Height](https://gradient-svg-generator.vercel.app/?text=Tall+Banner&height=200)
 
 ### Using Templates
 
@@ -59,6 +62,7 @@ Apply pre-designed gradient templates:
 ```markdown
 ![Template Example](https://gradient-svg-generator.vercel.app/?text=Sunset&template=sunset-gold)
 ```
+![Template Example](https://gradient-svg-generator.vercel.app/?text=Sunset&template=sunset-gold)
 
 ## Configuration Options
 
@@ -106,6 +110,8 @@ Perfect for warm, welcoming headers and luxury branding.
 ```markdown
 ![Sunset Gold](https://gradient-svg-generator.vercel.app/?text=Sunset&color=ffd700&height=150&template=sunset-gold)
 ```
+![Sunset Gold](https://gradient-svg-generator.vercel.app/?text=Sunset&color=ffd700&height=150&template=sunset-gold)
+
 Features:
 - Base color: Gold (#FFD700)
 - Gradient: Gold to warm orange
@@ -118,6 +124,8 @@ Ideal for cool, calming effects and water-themed content.
 ```markdown
 ![Ocean Heart](https://gradient-svg-generator.vercel.app/?text=Ocean&color=00ffff&height=150&template=ocean-heart)
 ```
+![Ocean Heart](https://gradient-svg-generator.vercel.app/?text=Ocean&color=00ffff&height=150&template=ocean-heart)
+
 Features:
 - Base color: Cyan (#00FFFF)
 - Gradient: Cyan to deep blue
@@ -130,6 +138,8 @@ Perfect for nature-themed content and environmental projects.
 ```markdown
 ![Emerald Forest](https://gradient-svg-generator.vercel.app/?text=Forest&color=50c878&height=150&template=emerald-forest)
 ```
+![Emerald Forest](https://gradient-svg-generator.vercel.app/?text=Forest&color=50c878&height=150&template=emerald-forest)
+
 Features:
 - Base color: Emerald (#50C878)
 - Gradient: Light to dark green
@@ -142,6 +152,8 @@ Suitable for luxury branding and creative projects.
 ```markdown
 ![Violet Dream](https://gradient-svg-generator.vercel.app/?text=Violet&color=9400d3&height=150&template=violet-dream)
 ```
+![Violet Dream](https://gradient-svg-generator.vercel.app/?text=Violet&color=9400d3&height=150&template=violet-dream)
+
 Features:
 - Base color: Dark Violet (#9400D3)
 - Gradient: Purple to indigo
@@ -154,6 +166,8 @@ Dramatic effect for bold statements and warnings.
 ```markdown
 ![Blood Dawn](https://gradient-svg-generator.vercel.app/?text=Dawn&color=dc143c&height=150&template=blood-dawn)
 ```
+![Blood Dawn](https://gradient-svg-generator.vercel.app/?text=Dawn&color=dc143c&height=150&template=blood-dawn)
+
 Features:
 - Base color: Crimson (#DC143C)
 - Gradient: Bright to dark red
@@ -166,6 +180,8 @@ Captures the ethereal quality of northern lights.
 ```markdown
 ![Aurora](https://gradient-svg-generator.vercel.app/?text=Aurora&color=00ff7f&height=150&template=aurora)
 ```
+![Aurora](https://gradient-svg-generator.vercel.app/?text=Aurora&color=00ff7f&height=150&template=aurora)
+
 Features:
 - Base color: Spring Green (#00FF7F)
 - Gradient: Green to blue with shimmer
@@ -178,6 +194,8 @@ Perfect for tech-themed content and futuristic designs.
 ```markdown
 ![Cyberpunk](https://gradient-svg-generator.vercel.app/?text=Cyber&color=ff00ff&height=150&template=cyberpunk)
 ```
+![Cyberpunk](https://gradient-svg-generator.vercel.app/?text=Cyber&color=ff00ff&height=150&template=cyberpunk)
+
 Features:
 - Base color: Magenta (#FF00FF)
 - Gradient: Magenta to cyan with rainbow
@@ -190,6 +208,8 @@ Ideal for vibrant, urban-themed content.
 ```markdown
 ![Neon City](https://gradient-svg-generator.vercel.app/?text=Neon&color=ff1493&height=150&template=neon-city)
 ```
+![Neon City](https://gradient-svg-generator.vercel.app/?text=Neon&color=ff1493&height=150&template=neon-city)
+
 Features:
 - Base color: Deep Pink (#FF1493)
 - Gradient: Pink to magenta with glow
@@ -202,6 +222,8 @@ Perfect for music and energy-themed content.
 ```markdown
 ![Electric Beat](https://gradient-svg-generator.vercel.app/?text=Electric&color=00ff00&height=150&template=electric-beat)
 ```
+![Electric Beat](https://gradient-svg-generator.vercel.app/?text=Electric&color=00ff00&height=150&template=electric-beat)
+
 Features:
 - Base color: Lime (#00FF00)
 - Gradient: Green to cyan with pulse
@@ -220,13 +242,20 @@ Features:
    ```markdown
    # Basic usage
    ![Template](https://gradient-svg-generator.vercel.app/?text=Your+Text&template=template-name)
-
+   ```
+   ![Template](https://gradient-svg-generator.vercel.app/?text=Your+Text&template=template-name)
+   
+   ```markdown
    # With custom height
    ![Template](https://gradient-svg-generator.vercel.app/?text=Your+Text&template=template-name&height=200)
-
+   ```
+   ![Template](https://gradient-svg-generator.vercel.app/?text=Your+Text&template=template-name&height=200)
+   
+   ```markdown
    # With custom color (except pride templates)
    ![Template](https://gradient-svg-generator.vercel.app/?text=Your+Text&template=template-name&color=ff0000)
    ```
+   ![Template](https://gradient-svg-generator.vercel.app/?text=Your+Text&template=template-name&color=ff0000)
 
 3. **Best Practices**
    - Use shorter text for better readability
@@ -253,6 +282,8 @@ The traditional six-color pride flag representing the LGBTQ+ community.
 ```markdown
 ![Pride Rainbow](https://gradient-svg-generator.vercel.app/?text=Pride&height=150&template=pride-rainbow)
 ```
+![Pride Rainbow](https://gradient-svg-generator.vercel.app/?text=Pride&height=150&template=pride-rainbow)
+
 Specifications:
 - Colors: Red, orange, yellow, green, blue, and violet
 - Animation: Horizontal rainbow wave
@@ -264,6 +295,8 @@ Representing the transgender community with its distinctive colors.
 ```markdown
 ![Trans Pride](https://gradient-svg-generator.vercel.app/?text=Trans&height=150&template=trans-pride)
 ```
+![Trans Pride](https://gradient-svg-generator.vercel.app/?text=Trans&height=150&template=trans-pride)
+
 Specifications:
 - Colors: Light blue, pink, and white
 - Animation: Gentle horizontal flow
@@ -275,6 +308,8 @@ Representing the bisexual community with its signature gradient.
 ```markdown
 ![Bi Pride](https://gradient-svg-generator.vercel.app/?text=Bi&height=150&template=bi-pride)
 ```
+![Bi Pride](https://gradient-svg-generator.vercel.app/?text=Bi&height=150&template=bi-pride)
+
 Specifications:
 - Colors: Pink, purple, and blue
 - Animation: Smooth tri-color transition
@@ -286,6 +321,8 @@ Representing the asexual community with its distinctive stripes.
 ```markdown
 ![Ace Pride](https://gradient-svg-generator.vercel.app/?text=Ace&height=150&template=ace-pride)
 ```
+![Ace Pride](https://gradient-svg-generator.vercel.app/?text=Ace&height=150&template=ace-pride)
+
 Specifications:
 - Colors: Black, gray, white, and purple
 - Animation: Vertical wave pattern
@@ -297,6 +334,8 @@ Representing the pansexual community with vibrant colors.
 ```markdown
 ![Pan Pride](https://gradient-svg-generator.vercel.app/?text=Pan&height=150&template=pan-pride)
 ```
+![Pan Pride](https://gradient-svg-generator.vercel.app/?text=Pan&height=150&template=pan-pride)
+
 Specifications:
 - Colors: Pink, yellow, and blue
 - Animation: Horizontal tri-color flow
@@ -308,6 +347,8 @@ Representing the nonbinary community with its unique color scheme.
 ```markdown
 ![Nonbinary Pride](https://gradient-svg-generator.vercel.app/?text=Nonbinary&height=150&template=nonbinary-pride)
 ```
+![Nonbinary Pride](https://gradient-svg-generator.vercel.app/?text=Nonbinary&height=150&template=nonbinary-pride)
+
 Specifications:
 - Colors: Yellow, white, purple, and black
 - Animation: Gentle quad-color transition
@@ -319,6 +360,8 @@ Representing the genderqueer community with distinctive colors.
 ```markdown
 ![Genderqueer Pride](https://gradient-svg-generator.vercel.app/?text=Genderqueer&height=150&template=genderqueer-pride)
 ```
+![Genderqueer Pride](https://gradient-svg-generator.vercel.app/?text=Genderqueer&height=150&template=genderqueer-pride)
+
 Specifications:
 - Colors: Lavender, white, and green
 - Animation: Tri-color wave pattern
@@ -330,6 +373,8 @@ Modern lesbian flag representation with its warm color palette.
 ```markdown
 ![Lesbian Pride](https://gradient-svg-generator.vercel.app/?text=Lesbian&height=150&template=lesbian-pride)
 ```
+![Lesbian Pride](https://gradient-svg-generator.vercel.app/?text=Lesbian&height=150&template=lesbian-pride)
+
 Specifications:
 - Colors: Shades of orange, white, and pink
 - Animation: Smooth gradient flow
@@ -341,6 +386,8 @@ Representing the intersex community with its unique design.
 ```markdown
 ![Intersex Pride](https://gradient-svg-generator.vercel.app/?text=Intersex&height=150&template=intersex-pride)
 ```
+![Intersex Pride](https://gradient-svg-generator.vercel.app/?text=Intersex&height=150&template=intersex-pride)
+
 Specifications:
 - Colors: Yellow and purple
 - Animation: Circular pulse effect
@@ -352,6 +399,8 @@ Representing gender fluidity with its multi-color design.
 ```markdown
 ![Genderfluid Pride](https://gradient-svg-generator.vercel.app/?text=Genderfluid&height=150&template=genderfluid-pride)
 ```
+![Genderfluid Pride](https://gradient-svg-generator.vercel.app/?text=Genderfluid&height=150&template=genderfluid-pride)
+
 Specifications:
 - Colors: Pink, white, purple, black, and blue
 - Animation: Flowing transition effect
@@ -363,6 +412,8 @@ Representing the agender community with its striped design.
 ```markdown
 ![Agender Pride](https://gradient-svg-generator.vercel.app/?text=Agender&height=150&template=agender-pride)
 ```
+![Agender Pride](https://gradient-svg-generator.vercel.app/?text=Agender&height=150&template=agender-pride)
+
 Specifications:
 - Colors: Black, gray, white, and green
 - Animation: Horizontal stripe flow
@@ -374,6 +425,8 @@ Representing the aromantic community with its green palette.
 ```markdown
 ![Aromantic Pride](https://gradient-svg-generator.vercel.app/?text=Aromantic&height=150&template=aromantic-pride)
 ```
+![Aromantic Pride](https://gradient-svg-generator.vercel.app/?text=Aromantic&height=150&template=aromantic-pride)
+
 Specifications:
 - Colors: Green, light green, white, gray, and black
 - Animation: Vertical wave pattern
@@ -385,6 +438,8 @@ Modern inclusive design incorporating additional representative stripes.
 ```markdown
 ![Progress Pride](https://gradient-svg-generator.vercel.app/?text=Progress&height=150&template=progress-pride)
 ```
+![Progress Pride](https://gradient-svg-generator.vercel.app/?text=Progress&height=150&template=progress-pride)
+
 Specifications:
 - Colors: Traditional rainbow plus black, brown, pink, light blue, and white
 - Animation: Dynamic chevron pattern
@@ -401,10 +456,14 @@ Specifications:
    ```markdown
    # Standard usage
    ![Pride](https://gradient-svg-generator.vercel.app/?text=Your+Text&template=pride-template-name)
-
+   ```
+   ![Pride](https://gradient-svg-generator.vercel.app/?text=Your+Text&template=pride-template-name)
+   
+   ```markdown
    # With custom height
    ![Pride](https://gradient-svg-generator.vercel.app/?text=Your+Text&template=pride-template-name&height=200)
    ```
+   ![Pride](https://gradient-svg-generator.vercel.app/?text=Your+Text&template=pride-template-name&height=200)
 
 3. **Best Practices**
    - Respect the significance of each flag
@@ -431,13 +490,20 @@ Create gradients with any hex color code:
 ```markdown
 # Vibrant Red
 ![Custom Red](https://gradient-svg-generator.vercel.app/?text=Custom%20Red&color=ff0000&height=150)
+```
+![Custom Red](https://gradient-svg-generator.vercel.app/?text=Custom%20Red&color=ff0000&height=150)
 
+```markdown
 # Deep Blue
 ![Custom Blue](https://gradient-svg-generator.vercel.app/?text=Custom%20Blue&color=0000ff&height=150)
+```
+![Custom Blue](https://gradient-svg-generator.vercel.app/?text=Custom%20Blue&color=0000ff&height=150)
 
+```markdown
 # Emerald Green
 ![Custom Green](https://gradient-svg-generator.vercel.app/?text=Custom%20Green&color=00ff00&height=150)
 ```
+![Custom Green](https://gradient-svg-generator.vercel.app/?text=Custom%20Green&color=00ff00&height=150)
 
 ### 2. Height Variations
 Adjust the height to create different banner sizes:
@@ -445,13 +511,20 @@ Adjust the height to create different banner sizes:
 ```markdown
 # Tall Banner (200px)
 ![Tall](https://gradient-svg-generator.vercel.app/?text=Tall%20Banner&color=800080&height=200)
+```
+![Tall](https://gradient-svg-generator.vercel.app/?text=Tall%20Banner&color=800080&height=200)
 
+```markdown
 # Standard Banner (150px)
 ![Standard](https://gradient-svg-generator.vercel.app/?text=Standard&color=4b0082&height=150)
+```
+![Standard](https://gradient-svg-generator.vercel.app/?text=Standard&color=4b0082&height=150)
 
+```markdown
 # Compact Badge (40px)
 ![Compact](https://gradient-svg-generator.vercel.app/?text=Badge&color=ffa500&height=40)
 ```
+![Compact](https://gradient-svg-generator.vercel.app/?text=Badge&color=ffa500&height=40)
 
 ### 3. Long Text Handling
 The generator automatically adjusts text size for longer phrases:
@@ -459,10 +532,14 @@ The generator automatically adjusts text size for longer phrases:
 ```markdown
 # Long Title
 ![Long Text](https://gradient-svg-generator.vercel.app/?text=This%20is%20a%20very%20long%20text%20example&color=4b0082&height=150)
+```
+![Long Text](https://gradient-svg-generator.vercel.app/?text=This%20is%20a%20very%20long%20text%20example&color=4b0082&height=150)
 
+```markdown
 # Multi-word Title
 ![Multi Word](https://gradient-svg-generator.vercel.app/?text=Welcome%20to%20My%20Amazing%20Project&color=ff1493&height=150)
 ```
+![Multi Word](https://gradient-svg-generator.vercel.app/?text=Welcome%20to%20My%20Amazing%20Project&color=ff1493&height=150)
 
 ## Advanced Implementation Examples
 
@@ -474,6 +551,7 @@ The generator automatically adjusts text size for longer phrases:
   ![Profile Header](https://gradient-svg-generator.vercel.app/?text=Welcome%20to%20My%20Profile&template=aurora&height=200)
 </div>
 ```
+![Profile Header](https://gradient-svg-generator.vercel.app/?text=Welcome%20to%20My%20Profile&template=aurora&height=200)
 
 #### Section Headers
 ```markdown
@@ -481,12 +559,20 @@ The generator automatically adjusts text size for longer phrases:
 ## ![Skills](https://gradient-svg-generator.vercel.app/?text=Skills&template=ocean-heart&height=60)
 ## ![Contact](https://gradient-svg-generator.vercel.app/?text=Contact&template=sunset-gold&height=60)
 ```
+## ![Projects](https://gradient-svg-generator.vercel.app/?text=Projects&template=neon-city&height=60)
+
+## ![Skills](https://gradient-svg-generator.vercel.app/?text=Skills&template=ocean-heart&height=60)
+
+## ![Contact](https://gradient-svg-generator.vercel.app/?text=Contact&template=sunset-gold&height=60)
 
 #### Interactive Badges
 ```markdown
 [![GitHub](https://gradient-svg-generator.vercel.app/?text=Follow%20on%20GitHub&template=cyberpunk&height=40)](https://github.com/yourusername)
 [![LinkedIn](https://gradient-svg-generator.vercel.app/?text=Connect%20on%20LinkedIn&template=ocean-heart&height=40)](https://linkedin.com/in/yourusername)
 ```
+[![GitHub](https://gradient-svg-generator.vercel.app/?text=Follow%20on%20GitHub&template=cyberpunk&height=40)](https://github.com/yourusername)
+
+[![LinkedIn](https://gradient-svg-generator.vercel.app/?text=Connect%20on%20LinkedIn&template=ocean-heart&height=40)](https://linkedin.com/in/yourusername)
 
 ### 2. Documentation Enhancement
 
@@ -496,12 +582,17 @@ The generator automatically adjusts text size for longer phrases:
 # ![Getting Started](https://gradient-svg-generator.vercel.app/?text=Getting%20Started&template=emerald-forest&height=100)
 # ![Advanced Topics](https://gradient-svg-generator.vercel.app/?text=Advanced%20Topics&template=violet-dream&height=100)
 ```
+# ![Introduction](https://gradient-svg-generator.vercel.app/?text=Introduction&template=sunset-gold&height=100)
+# ![Getting Started](https://gradient-svg-generator.vercel.app/?text=Getting%20Started&template=emerald-forest&height=100)
+# ![Advanced Topics](https://gradient-svg-generator.vercel.app/?text=Advanced%20Topics&template=violet-dream&height=100)
 
 #### Feature Highlights
 ```markdown
 ### ![New Feature](https://gradient-svg-generator.vercel.app/?text=New%20Feature&template=electric-beat&height=50)
 ### ![Important Note](https://gradient-svg-generator.vercel.app/?text=Important%20Note&template=blood-dawn&height=50)
 ```
+### ![New Feature](https://gradient-svg-generator.vercel.app/?text=New%20Feature&template=electric-beat&height=50)
+### ![Important Note](https://gradient-svg-generator.vercel.app/?text=Important%20Note&template=blood-dawn&height=50)
 
 ### 3. Web Content Integration
 
@@ -512,6 +603,10 @@ The generator automatically adjusts text size for longer phrases:
   <p>Your blog content here...</p>
 </article>
 ```
+<article>
+  <img src="https://gradient-svg-generator.vercel.app/?text=Blog%20Title&template=aurora&height=180" alt="Blog Title">
+  <p>Your blog content here...</p>
+</article>
 
 #### Section Dividers
 ```html
@@ -519,6 +614,9 @@ The generator automatically adjusts text size for longer phrases:
   <img src="https://gradient-svg-generator.vercel.app/?text=•••&template=ocean-heart&height=60" alt="Section Break">
 </div>
 ```
+<div class="section-break">
+  <img src="https://gradient-svg-generator.vercel.app/?text=•••&template=ocean-heart&height=60" alt="Section Break">
+</div>
 
 ## Creative Use Cases
 
@@ -528,11 +626,13 @@ The generator automatically adjusts text size for longer phrases:
 ```markdown
 ![Twitter Banner](https://gradient-svg-generator.vercel.app/?text=Your%20Tagline%20Here&template=aurora&height=300)
 ```
+![Twitter Banner](https://gradient-svg-generator.vercel.app/?text=Your%20Tagline%20Here&template=aurora&height=300)
 
 #### Instagram Story Highlights
 ```markdown
 ![Story Highlight](https://gradient-svg-generator.vercel.app/?text=Featured&template=neon-city&height=100)
 ```
+![Story Highlight](https://gradient-svg-generator.vercel.app/?text=Featured&template=neon-city&height=100)
 
 ### 2. Presentation Slides
 
@@ -540,11 +640,13 @@ The generator automatically adjusts text size for longer phrases:
 ```markdown
 ![Slide Title](https://gradient-svg-generator.vercel.app/?text=Your%20Presentation%20Title&template=sunset-gold&height=150)
 ```
+![Slide Title](https://gradient-svg-generator.vercel.app/?text=Your%20Presentation%20Title&template=sunset-gold&height=150)
 
 #### Section Breaks
 ```markdown
 ![Section Break](https://gradient-svg-generator.vercel.app/?text=Next%20Topic&template=violet-dream&height=100)
 ```
+![Section Break](https://gradient-svg-generator.vercel.app/?text=Next%20Topic&template=violet-dream&height=100)
 
 ## Usage Tips and Best Practices
 
@@ -615,6 +717,8 @@ nano .env
 ### 4. Start Development Server
 ```bash
 # Start with npm
+npm start
+or
 npm run dev
 
 # Start with yarn
