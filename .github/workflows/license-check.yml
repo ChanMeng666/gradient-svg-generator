@@ -1,0 +1,25 @@
+name: License Check
+
+on:
+  pull_request:
+    branches: [ main ]  # 你的主分支是 main
+  push:
+    branches: [ main ]
+
+jobs:
+  check-license:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Check License Header
+      uses: apache/skywalking-eyes/header@main
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        config: .licenserc.yaml
+
+    - name: Check Dependencies License
+      uses: apache/skywalking-eyes/dependency@main
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        config: .licenserc.yaml
