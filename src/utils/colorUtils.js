@@ -1,3 +1,7 @@
+/*
+ *
+ */
+
 function hexToRgb(hex) {
   const bigint = parseInt(hex, 16);
   const r = (bigint >> 16) & 255;

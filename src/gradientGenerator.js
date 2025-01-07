@@ -1,3 +1,7 @@
+/*
+ *
+ */
+
 // const { createGradientFromColors } = require('./utils/svgUtils');
 // const { getTemplateConfig } = require('./config/gradientConfig');
 

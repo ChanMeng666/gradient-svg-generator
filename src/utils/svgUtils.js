@@ -1,3 +1,7 @@
+/*
+ *
+ */
+
 // function createGradientFromColors(colors, gradientType = 'horizontal', animationDuration = '6s') {
 //   const colorList = [...colors, colors[0]];
 //   const stops = colorList.map((color, index) => {

@@ -1,3 +1,7 @@
+/*
+ *
+ */
+
 const generateGradientSVG = require('./gradientGenerator');
 
 module.exports = (req, res) => {

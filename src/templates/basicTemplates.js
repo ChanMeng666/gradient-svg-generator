@@ -1,3 +1,7 @@
+/*
+ *
+ */
+
 const basicTemplates = {
   'sunset-gold': {
     colors: ['ffd700', 'ff4500'],

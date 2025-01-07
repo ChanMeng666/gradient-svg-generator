@@ -1,3 +1,7 @@
+/*
+ *
+ */
+
 const basicTemplates = require('../templates/basicTemplates');
 const prideTemplates = require('../templates/prideTemplates');
 

@@ -1,3 +1,7 @@
+/*
+ *
+ */
+
 const prideTemplates = {
   'pride-rainbow': {
     colors: ['ff0000', 'ff8c00', 'ffef00', '008e45', '004dff', '760089'],
