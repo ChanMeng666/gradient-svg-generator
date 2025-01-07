@@ -1,0 +1,25 @@
+header:
+  license:
+    spdx-id: MIT  # 使用 MIT 许可证
+    copyright-owner: ChanMeng666  # 你的 GitHub 用户名
+    copyright-year: '2025'  # 当前年份
+    
+  paths-ignore:
+    - 'dist'
+    - 'licenses'
+    - '**/*.md'
+    - 'LICENSE'
+    - 'NOTICE'
+    - 'package.json'
+    - 'package-lock.json'
+    - '.gitignore'
+    - '.gitattributes'
+    - 'vercel.json'
+    - '**/node_modules/**'
+    
+  comment: on-failure
+
+# Node.js 项目的依赖检查配置
+dependency:
+  files:
+    - package.json
