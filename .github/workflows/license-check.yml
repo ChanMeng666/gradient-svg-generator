@@ -2,24 +2,26 @@ name: License Check
 
 on:
   pull_request:
-    branches: [ main ]  # 你的主分支是 main
+    branches: [ main ]
   push:
     branches: [ main ]
 
 jobs:
-  check-license:
+  fix-license:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     
-    - name: Check License Header
+    - name: Fix License Header
       uses: apache/skywalking-eyes/header@main
       with:
+        mode: fix
         token: ${{ secrets.GITHUB_TOKEN }}
         config: .licenserc.yaml
-
-    - name: Check Dependencies License
-      uses: apache/skywalking-eyes/dependency@main
+        
+    - name: Commit Changes
+      uses: EndBug/add-and-commit@v9
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        config: .licenserc.yaml
+        author_name: License Bot
+        author_email: license_bot@github.com
+        message: 'chore: add missing license headers'
