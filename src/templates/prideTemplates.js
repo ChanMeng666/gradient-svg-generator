@@ -127,4 +127,60 @@ module.exports = {
     animationDuration: '6s',
     description: 'Polyamory pride flag colors'
   },
+  'demiboy-pride': {
+    name: 'demiboy-pride',
+    label: 'Demiboy Pride',
+    colors: ['7f7f7f', 'c4c4c4', '9ad9eb', 'ffffff'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Demiboy pride flag colors'
+  },
+  'demigirl-pride': {
+    name: 'demigirl-pride',
+    label: 'Demigirl Pride',
+    colors: ['7f7f7f', 'c4c4c4', 'ffaec9', 'ffffff'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Demigirl pride flag colors'
+  },
+  'omnisexual-pride': {
+    name: 'omnisexual-pride',
+    label: 'Omnisexual Pride',
+    colors: ['ff9ccd', 'ff53bd', '2c2c2c', '6760ff', '9cb9ff'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Omnisexual pride flag colors'
+  },
+  'progress-pride': {
+    name: 'progress-pride',
+    label: 'Progress Pride',
+    colors: ['000000', '784F17', 'ff0000', 'ff8c00', 'ffff00', '008000', '0000ff', '4b0082'],
+    gradientType: 'diagonal',
+    animationDuration: '8s',
+    description: 'Progress pride flag with inclusive colors'
+  },
+  'demiromantic-pride': {
+    name: 'demiromantic-pride',
+    label: 'Demiromantic Pride',
+    colors: ['ffffff', '3da542', '000000', 'a9a9a9'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Demiromantic pride flag colors'
+  },
+  'demisexual-pride': {
+    name: 'demisexual-pride',
+    label: 'Demisexual Pride',
+    colors: ['ffffff', '6e0070', 'd2d2d2', '000000'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Demisexual pride flag colors'
+  },
+  'queer-pride': {
+    name: 'queer-pride',
+    label: 'Queer Pride',
+    colors: ['b57edc', 'ffffff', '4a8123', '000000'],
+    gradientType: 'vertical',
+    animationDuration: '7s',
+    description: 'Queer pride flag colors'
+  }
 };
