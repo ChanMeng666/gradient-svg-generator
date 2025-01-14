@@ -82,8 +82,9 @@ const { getTemplateConfig } = require('./config/gradientConfig');
 function generateGradientSVG({ text, color = '000000', height = 120, template = '' }) {
   const config = getTemplateConfig(template, color);
   
-  // 根据 gradientType 生成不同类型的渐变
+  let gradientDef;
   let gradientTransform = '';
+  
   switch (config.gradientType) {
     case 'vertical':
       gradientTransform = 'rotate(90)';
@@ -92,14 +93,14 @@ function generateGradientSVG({ text, color = '000000', height = 120, template = 
       gradientTransform = 'rotate(45)';
       break;
     case 'radial':
-      return generateRadialGradient({ text, colors: config.colors, height, duration: config.animationDuration });
+      return generateRadialGradient(text, config.colors, height, config.animationDuration);
     case 'conic':
-      return generateConicGradient({ text, colors: config.colors, height, duration: config.animationDuration });
+      return generateConicGradient(text, config.colors, height, config.animationDuration);
     default:
       gradientTransform = '';
   }
 
-  const gradientDef = createGradientFromColors(config.colors, gradientTransform, config.animationDuration);
+  gradientDef = createGradientFromColors(config.colors, gradientTransform, config.animationDuration);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -107,13 +108,11 @@ function generateGradientSVG({ text, color = '000000', height = 120, template = 
       <defs>
         ${gradientDef}
       </defs>
-      
       <rect 
         width="854" 
         height="${height}" 
         fill="url(#gradient)"
       />
-      
       <text 
         x="427" 
         y="${height/2}"
@@ -127,8 +126,7 @@ function generateGradientSVG({ text, color = '000000', height = 120, template = 
     </svg>`;
 }
 
-// 辅助函数：生成径向渐变
-function generateRadialGradient({ text, colors, height, duration }) {
+function generateRadialGradient(text, colors, height, duration) {
   const stops = colors.map((color, i) => 
     `<stop offset="${(i * 100) / (colors.length - 1)}%" stop-color="#${color}" />`
   ).join('');
@@ -137,14 +135,12 @@ function generateRadialGradient({ text, colors, height, duration }) {
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
       width="854" height="${height}" viewBox="0 0 854 ${height}">
       <defs>
-        <radialGradient id="gradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
           ${stops}
-          <animate attributeName="r" values="70%;100%;70%" dur="${duration}" repeatCount="indefinite" />
+          <animate attributeName="r" values="0.4;0.8;0.4" dur="${duration}" repeatCount="indefinite" />
         </radialGradient>
       </defs>
-      
       <rect width="854" height="${height}" fill="url(#gradient)" />
-      
       <text 
         x="427" 
         y="${height/2}"
@@ -158,8 +154,7 @@ function generateRadialGradient({ text, colors, height, duration }) {
     </svg>`;
 }
 
-// 辅助函数：生成圆锥渐变
-function generateConicGradient({ text, colors, height, duration }) {
+function generateConicGradient(text, colors, height, duration) {
   const stops = colors.map((color, i) => 
     `<stop offset="${(i * 100) / (colors.length - 1)}%" stop-color="#${color}" />`
   ).join('');
@@ -172,7 +167,6 @@ function generateConicGradient({ text, colors, height, duration }) {
           ${stops}
         </linearGradient>
       </defs>
-      
       <rect width="854" height="${height}" fill="url(#gradient)">
         <animateTransform
           attributeName="transform"
@@ -184,7 +178,6 @@ function generateConicGradient({ text, colors, height, duration }) {
           repeatCount="indefinite"
         />
       </rect>
-      
       <text 
         x="427" 
         y="${height/2}"

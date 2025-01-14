@@ -12,12 +12,26 @@ import {
   galaxyTemplates
 } from '../config/gradientConfig';
 
-// 更新模板分类
+// 修改模板分类定义
 const templateCategories = {
   basic: {
     label: 'Basic Templates',
     icon: <BiPalette />,
-    templates: Object.values(basicTemplates)
+    templates: [
+      {
+        name: 'sunset-gold',
+        label: 'Sunset Gold',
+        description: 'Warm golden sunset gradient',
+        gradientType: 'horizontal'
+      },
+      {
+        name: 'ocean-heart',
+        label: 'Ocean Heart',
+        description: 'Deep ocean blue gradient',
+        gradientType: 'vertical'
+      },
+      // ... 其他模板
+    ]
   },
   pride: {
     label: 'Pride Flags',
@@ -273,7 +287,7 @@ export default function Settings() {
                 >
                   <div className="template-preview">
                     <img 
-                      src={`/api/svg?text=${template.label}&template=${template.name}`} 
+                      src={`/api/svg?text=${encodeURIComponent(template.label)}&template=${template.name}`} 
                       alt={template.label}
                       loading="lazy"
                     />
