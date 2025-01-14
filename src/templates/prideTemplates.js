@@ -118,5 +118,13 @@ module.exports = {
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Agender pride flag colors'
-  }
+  },
+  'poly-pride': {
+    name: 'poly-pride',
+    label: 'Polyamory Pride',
+    colors: ['0000ff', 'ff0000', '000000'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Polyamory pride flag colors'
+  },
 };
