@@ -201,7 +201,16 @@ export default function Home() {
   const [markdownCode, setMarkdownCode] = useState('');
   
   useEffect(() => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/svg?text=${encodeURIComponent(config.text)}&height=${config.height}${config.template ? `&template=${config.template}` : ''}&gradientType=${config.gradientType}&duration=${config.animationDuration}`;
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || '';
+    const url = `${baseUrl}/api/svg?` + new URLSearchParams({
+      text: config.text,
+      height: config.height,
+      template: config.template,
+      gradientType: config.gradientType,
+      duration: config.animationDuration,
+      color: config.color
+    }).toString();
+    
     setPreviewUrl(url);
     setMarkdownCode(`![${config.text}](${url})`);
   }, [config]);
