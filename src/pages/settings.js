@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FiCopy, FiCheck, FiGithub, FiInfo, FiHeart, FiCloud, FiBolt, FiStar } from 'react-icons/fi';
+import { FiCopy, FiCheck, FiGithub, FiInfo, FiHeart, FiCloud, FiZap, FiStar } from 'react-icons/fi';
 import { BiPalette, BiText, BiRuler } from 'react-icons/bi';
 import { HiOutlineTemplate } from 'react-icons/hi';
 import { MdPreview } from 'react-icons/md';
@@ -208,7 +208,7 @@ const templateCategories = {
   },
   neon: {
     label: 'Neon',
-    icon: <FiBolt />,
+    icon: <FiZap />,
     templates: Object.values(neonTemplates)
   },
   galaxy: {
@@ -219,6 +219,7 @@ const templateCategories = {
 };
 
 export default function Settings() {
+  const [mounted, setMounted] = useState(false);
   const [config, setConfig] = useState({
     text: 'Hello World',
     color: '000000',
@@ -237,15 +238,23 @@ export default function Settings() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    // 检查系统主题偏好
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDarkMode(prefersDark);
+    setMounted(true);
   }, []);
 
+  // 检查系统主题偏好
   useEffect(() => {
-    // 应用主题
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
+    if (mounted) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setIsDarkMode(prefersDark);
+    }
+  }, [mounted]);
+
+  // 应用主题
+  useEffect(() => {
+    if (mounted) {
+      document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    }
+  }, [isDarkMode, mounted]);
 
   useEffect(() => {
     const previewUrl = `/api/svg?text=${encodeURIComponent(config.text)}&color=${config.color}&height=${config.height}${config.template ? `&template=${config.template}` : ''}`;
@@ -294,6 +303,15 @@ export default function Settings() {
       </div>
     );
   };
+
+  // 如果还没有挂载，返回一个加载状态
+  if (!mounted) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <div className={`container ${isDarkMode ? 'dark' : ''}`}>
