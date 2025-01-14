@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FiCopy, FiCheck, FiGithub, FiInfo } from 'react-icons/fi';
+import { FiCopy, FiCheck, FiGithub, FiInfo, FiHeart, FiCloud, FiBolt, FiStar } from 'react-icons/fi';
 import { BiPalette, BiText, BiRuler } from 'react-icons/bi';
 import { HiOutlineTemplate } from 'react-icons/hi';
 import { MdPreview } from 'react-icons/md';
@@ -46,6 +46,30 @@ const basicTemplates = {
     gradientType: 'horizontal',
     animationDuration: '5s',
     description: 'Vibrant neon gradient'
+  },
+  'midnight-ocean': {
+    name: 'midnight-ocean',
+    label: 'Midnight Ocean',
+    colors: ['000046', '1CB5E0', '000046'],
+    gradientType: 'vertical',
+    animationDuration: '8s',
+    description: 'Deep blue ocean at midnight'
+  },
+  'morning-light': {
+    name: 'morning-light',
+    label: 'Morning Light',
+    colors: ['FFF3B0', 'FFA9A9', 'DAE2FF'],
+    gradientType: 'diagonal',
+    animationDuration: '10s',
+    description: 'Soft morning sunrise colors'
+  },
+  'forest-mist': {
+    name: 'forest-mist',
+    label: 'Forest Mist',
+    colors: ['2AF598', '009EFD'],
+    gradientType: 'radial',
+    animationDuration: '12s',
+    description: 'Misty forest atmosphere'
   }
 };
 
@@ -84,6 +108,116 @@ const prideTemplates = {
   }
 };
 
+const natureTemplates = {
+  'spring-bloom': {
+    name: 'spring-bloom',
+    label: 'Spring Bloom',
+    colors: ['FF96F9', '96FFC1', 'FFFF96'],
+    gradientType: 'conic',
+    animationDuration: '8s',
+    description: 'Spring flowers blooming'
+  },
+  'autumn-leaves': {
+    name: 'autumn-leaves',
+    label: 'Autumn Leaves',
+    colors: ['FFB75E', 'ED8F03', 'B83603'],
+    gradientType: 'diagonal',
+    animationDuration: '10s',
+    description: 'Fall foliage colors'
+  },
+  'winter-frost': {
+    name: 'winter-frost',
+    label: 'Winter Frost',
+    colors: ['E3FDF5', 'FFE6FA', 'E3FDF5'],
+    gradientType: 'radial',
+    animationDuration: '15s',
+    description: 'Frosty winter morning'
+  }
+};
+
+const neonTemplates = {
+  'cyber-punk': {
+    name: 'cyber-punk',
+    label: 'Cyber Punk',
+    colors: ['FF00FF', '00FFFF', 'FF00FF'],
+    gradientType: 'diagonal',
+    animationDuration: '4s',
+    description: 'Vibrant cyberpunk aesthetic'
+  },
+  'retro-wave': {
+    name: 'retro-wave',
+    label: 'Retro Wave',
+    colors: ['FF0080', '7928CA', '4A148C'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: '80s synthwave style'
+  },
+  'neon-glow': {
+    name: 'neon-glow',
+    label: 'Neon Glow',
+    colors: ['00FF00', 'FFFF00', '00FF00'],
+    gradientType: 'radial',
+    animationDuration: '3s',
+    description: 'Electric neon lights'
+  }
+};
+
+const galaxyTemplates = {
+  'nebula': {
+    name: 'nebula',
+    label: 'Nebula',
+    colors: ['8E2DE2', '4A00E0', '8E2DE2'],
+    gradientType: 'conic',
+    animationDuration: '20s',
+    description: 'Cosmic nebula swirls'
+  },
+  'aurora': {
+    name: 'aurora',
+    label: 'Aurora',
+    colors: ['00FF9D', '00F0FF', '4A00E0'],
+    gradientType: 'vertical',
+    animationDuration: '15s',
+    description: 'Northern lights display'
+  },
+  'milky-way': {
+    name: 'milky-way',
+    label: 'Milky Way',
+    colors: ['000000', '434343', '000000'],
+    gradientType: 'radial',
+    animationDuration: '25s',
+    description: 'Deep space galaxy view'
+  }
+};
+
+// 更新模板分类
+const templateCategories = {
+  basic: {
+    label: 'Basic Templates',
+    icon: <BiPalette />,
+    templates: Object.values(basicTemplates)
+  },
+  pride: {
+    label: 'Pride Flags',
+    icon: <FiHeart />,
+    templates: Object.values(prideTemplates)
+  },
+  nature: {
+    label: 'Nature',
+    icon: <FiCloud />,
+    templates: Object.values(natureTemplates)
+  },
+  neon: {
+    label: 'Neon',
+    icon: <FiBolt />,
+    templates: Object.values(neonTemplates)
+  },
+  galaxy: {
+    label: 'Galaxy',
+    icon: <FiStar />,
+    templates: Object.values(galaxyTemplates)
+  }
+};
+
 export default function Settings() {
   const [config, setConfig] = useState({
     text: 'Hello World',
@@ -99,17 +233,6 @@ export default function Settings() {
   const [activeCategory, setActiveCategory] = useState('basic'); // 'basic', 'pride'
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   
-  const templateCategories = {
-    basic: {
-      label: 'Basic Templates',
-      templates: Object.values(basicTemplates)
-    },
-    pride: {
-      label: 'Pride Templates',
-      templates: Object.values(prideTemplates)
-    }
-  };
-
   // 添加主题切换功能
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -288,7 +411,8 @@ export default function Settings() {
                   className={`category-tab ${activeCategory === key ? 'active' : ''}`}
                   onClick={() => setActiveCategory(key)}
                 >
-                  {category.label}
+                  {category.icon}
+                  <span>{category.label}</span>
                 </button>
               ))}
             </div>
