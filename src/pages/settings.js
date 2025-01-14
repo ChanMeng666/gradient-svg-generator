@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Settings() {
   const [config, setConfig] = useState({
@@ -12,40 +13,62 @@ export default function Settings() {
   const [markdownCode, setMarkdownCode] = useState('');
   
   useEffect(() => {
-    // 生成预览URL
-    const previewUrl = `https://gradient-svg-generator.vercel.app/?text=${encodeURIComponent(config.text)}&color=${config.color}&height=${config.height}&template=${config.template}`;
+    // 使用相对路径生成预览URL
+    const previewUrl = `/api/svg?text=${encodeURIComponent(config.text)}&color=${config.color}&height=${config.height}${config.template ? `&template=${config.template}` : ''}`;
     setPreview(previewUrl);
     
-    // 生成Markdown代码
-    setMarkdownCode(`![${config.text}](${previewUrl})`);
+    // 生成完整URL的Markdown代码
+    const fullUrl = `https://gradient-svg-generator.vercel.app${previewUrl}`;
+    setMarkdownCode(`![${config.text}](${fullUrl})`);
   }, [config]);
 
   return (
     <div className="container">
-      <h1>Gradient SVG Generator</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+        <h1>Gradient SVG Generator</h1>
+        <Link href="/">
+          <button style={{ padding: '0.5rem 1rem' }}>Back to Home</button>
+        </Link>
+      </div>
       
-      {/* 配置表单 */}
       <div className="config-form">
-        <input 
-          value={config.text}
-          onChange={e => setConfig({...config, text: e.target.value})}
-          placeholder="Enter text"
-        />
-        <input 
-          value={config.color}
-          onChange={e => setConfig({...config, color: e.target.value})}
-          placeholder="Color (hex)"
-        />
-        {/* 其他配置项... */}
+        <div className="input-group">
+          <label>Text:</label>
+          <input 
+            value={config.text}
+            onChange={e => setConfig({...config, text: e.target.value})}
+            placeholder="Enter text"
+          />
+        </div>
+        
+        <div className="input-group">
+          <label>Color (hex):</label>
+          <input 
+            value={config.color}
+            onChange={e => setConfig({...config, color: e.target.value})}
+            placeholder="Color (hex without #)"
+          />
+        </div>
+        
+        <div className="input-group">
+          <label>Height:</label>
+          <input 
+            type="number"
+            value={config.height}
+            onChange={e => setConfig({...config, height: e.target.value})}
+            min="30"
+            max="300"
+          />
+        </div>
       </div>
 
-      {/* 实时预览 */}
       <div className="preview">
-        <img src={preview} alt="Preview" />
+        <h2>Preview:</h2>
+        <img src={preview} alt="Preview" style={{ maxWidth: '100%', height: 'auto' }} />
       </div>
 
-      {/* Markdown代码 */}
       <div className="markdown-code">
+        <h2>Markdown Code:</h2>
         <pre>{markdownCode}</pre>
         <button onClick={() => navigator.clipboard.writeText(markdownCode)}>
           Copy to Clipboard
