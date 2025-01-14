@@ -19,3 +19,4 @@ build/
 package-lock.json
 
 /.next
+.env.local
