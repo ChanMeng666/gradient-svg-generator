@@ -1024,7 +1024,7 @@ export default function Settings() {
               />
             </div>
             
-            <div className="input-group">
+            {/* <div className="input-group">
               <label>
                 <div className="label-content">
                   <BiPalette />
@@ -1046,6 +1046,31 @@ export default function Settings() {
                   className="hex-input"
                 />
               </div>
+            </div> */}
+
+
+            {/* 多色选择器 */}
+            <div className="input-group">
+                <label>
+                    <div className="label-content">
+                        <BiPalette />
+                        <span>Gradient Colors</span>
+                        <FiInfo className="tooltip-icon" title="Add multiple colors to create complex gradients" />
+                    </div>
+                </label>
+                <div className="multi-color-picker">
+                {config.colors.map((color, index) => (
+                    <ColorRow
+                    key={index}
+                    color={color}
+                    index={index}
+                    total={config.colors.length}
+                    onUpdate={handleColorUpdate}
+                    onAdd={handleAddColor}
+                    onRemove={handleRemoveColor}
+                    />
+                ))}
+                </div>
             </div>
             
             <div className="input-group">
@@ -1115,30 +1140,6 @@ export default function Settings() {
                 <div className="range-labels">
                 <span>1s</span>
                 <span>20s</span>
-                </div>
-            </div>
-
-            {/* 多色选择器 */}
-            <div className="input-group">
-                <label>
-                <div className="label-content">
-                    <BiPalette />
-                    <span>Gradient Colors</span>
-                    <FiInfo className="tooltip-icon" title="Add multiple colors to create complex gradients" />
-                </div>
-                </label>
-                <div className="multi-color-picker">
-                {config.colors.map((color, index) => (
-                    <ColorRow
-                    key={index}
-                    color={color}
-                    index={index}
-                    total={config.colors.length}
-                    onUpdate={handleColorUpdate}
-                    onAdd={handleAddColor}
-                    onRemove={handleRemoveColor}
-                    />
-                ))}
                 </div>
             </div>
 
