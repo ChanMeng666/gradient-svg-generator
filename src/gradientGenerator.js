@@ -81,43 +81,107 @@ const { getTemplateConfig } = require('./config/gradientConfig');
 
 function generateGradientSVG({ text, color = '000000', height = 120, template = '' }) {
   const config = getTemplateConfig(template, color);
-  const gradientDef = createGradientFromColors(config.colors, config.gradientType, config.animationDuration);
+  
+  // 根据 gradientType 生成不同类型的渐变
+  let gradientTransform = '';
+  switch (config.gradientType) {
+    case 'vertical':
+      gradientTransform = 'rotate(90)';
+      break;
+    case 'diagonal':
+      gradientTransform = 'rotate(45)';
+      break;
+    case 'radial':
+      return generateRadialGradient({ text, colors: config.colors, height, duration: config.animationDuration });
+    case 'conic':
+      return generateConicGradient({ text, colors: config.colors, height, duration: config.animationDuration });
+    default:
+      gradientTransform = '';
+  }
+
+  const gradientDef = createGradientFromColors(config.colors, gradientTransform, config.animationDuration);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
       width="854" height="${height}" viewBox="0 0 854 ${height}">
       <defs>
         ${gradientDef}
-        <filter id="softLight">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-          <feColorMatrix in="blur" type="saturate" values="1.2" result="saturated"/>
-          <feMerge>
-            <feMergeNode in="saturated"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-        
-        <filter id="smoothTransition">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-          <feColorMatrix type="saturate" values="1.5"/>
-          <feComposite operator="over" in2="SourceGraphic"/>
-        </filter>
       </defs>
       
       <rect 
         width="854" 
         height="${height}" 
         fill="url(#gradient)"
-        filter="url(#smoothTransition)"
-      >
-        <animate
-          attributeName="opacity"
-          values="0.95;1;0.95"
-          dur="3s"
+      />
+      
+      <text 
+        x="427" 
+        y="${height/2}"
+        font-size="40"
+        font-family="Arial, sans-serif"
+        font-weight="bold"
+        text-anchor="middle"
+        alignment-baseline="middle"
+        fill="#ffffff"
+      >${text}</text>
+    </svg>`;
+}
+
+// 辅助函数：生成径向渐变
+function generateRadialGradient({ text, colors, height, duration }) {
+  const stops = colors.map((color, i) => 
+    `<stop offset="${(i * 100) / (colors.length - 1)}%" stop-color="#${color}" />`
+  ).join('');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+      width="854" height="${height}" viewBox="0 0 854 ${height}">
+      <defs>
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+          ${stops}
+          <animate attributeName="r" values="70%;100%;70%" dur="${duration}" repeatCount="indefinite" />
+        </radialGradient>
+      </defs>
+      
+      <rect width="854" height="${height}" fill="url(#gradient)" />
+      
+      <text 
+        x="427" 
+        y="${height/2}"
+        font-size="40"
+        font-family="Arial, sans-serif"
+        font-weight="bold"
+        text-anchor="middle"
+        alignment-baseline="middle"
+        fill="#ffffff"
+      >${text}</text>
+    </svg>`;
+}
+
+// 辅助函数：生成圆锥渐变
+function generateConicGradient({ text, colors, height, duration }) {
+  const stops = colors.map((color, i) => 
+    `<stop offset="${(i * 100) / (colors.length - 1)}%" stop-color="#${color}" />`
+  ).join('');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+      width="854" height="${height}" viewBox="0 0 854 ${height}">
+      <defs>
+        <linearGradient id="gradient" gradientTransform="rotate(0)">
+          ${stops}
+        </linearGradient>
+      </defs>
+      
+      <rect width="854" height="${height}" fill="url(#gradient)">
+        <animateTransform
+          attributeName="transform"
+          attributeType="XML"
+          type="rotate"
+          from="0 427 ${height/2}"
+          to="360 427 ${height/2}"
+          dur="${duration}"
           repeatCount="indefinite"
-          calcMode="spline"
-          keyTimes="0;0.5;1"
-          keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
         />
       </rect>
       
@@ -130,7 +194,6 @@ function generateGradientSVG({ text, color = '000000', height = 120, template = 
         text-anchor="middle"
         alignment-baseline="middle"
         fill="#ffffff"
-        filter="url(#softLight)"
       >${text}</text>
     </svg>`;
 }
