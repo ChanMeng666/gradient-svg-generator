@@ -62,5 +62,53 @@ module.exports = {
     gradientType: 'horizontal',
     animationDuration: '5s',
     description: 'Vibrant neon gradient'
+  },
+  'cyber-punk': {
+    name: 'cyber-punk',
+    label: 'Cyber Punk',
+    colors: ['ff00ff', '00ffff', 'ff00cc'],
+    gradientType: 'diagonal',
+    animationDuration: '8s',
+    description: 'Vibrant cyberpunk-inspired gradient'
+  },
+  'northern-lights': {
+    name: 'northern-lights',
+    label: 'Northern Lights',
+    colors: ['9400d3', '4b0082', '00ff00', '00ffff'],
+    gradientType: 'vertical',
+    animationDuration: '10s',
+    description: 'Aurora borealis inspired colors'
+  },
+  'cotton-candy': {
+    name: 'cotton-candy',
+    label: 'Cotton Candy',
+    colors: ['ff99cc', 'ff99ff', '99ccff'],
+    gradientType: 'circular',
+    animationDuration: '7s',
+    description: 'Sweet pastel gradient blend'
+  },
+  'midnight-galaxy': {
+    name: 'midnight-galaxy',
+    label: 'Midnight Galaxy',
+    colors: ['000033', '4b0082', '800080', '000066'],
+    gradientType: 'radial',
+    animationDuration: '12s',
+    description: 'Deep space inspired colors'
+  },
+  'tropical-paradise': {
+    name: 'tropical-paradise',
+    label: 'Tropical Paradise',
+    colors: ['00ff99', '33ccff', '00ffcc'],
+    gradientType: 'diagonal',
+    animationDuration: '8s',
+    description: 'Fresh tropical ocean colors'
+  },
+  'desert-dusk': {
+    name: 'desert-dusk',
+    label: 'Desert Dusk',
+    colors: ['ff9966', 'ff6699', 'cc6699'],
+    gradientType: 'horizontal',
+    animationDuration: '9s',
+    description: 'Warm desert sunset colors'
   }
 };
