@@ -632,3 +632,81 @@ body {
     grid-template-columns: 1fr;
   }
 } 
+
+
+
+/* 渐变类型按钮样式 */
+.gradient-type-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .gradient-type-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .gradient-type-button:hover {
+    background: var(--background);
+  }
+  
+  .gradient-type-button.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+  }
+  
+  /* 多色选择器样式 */
+  .multi-color-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .color-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .color-input {
+    flex: 1;
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .color-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .color-action-button {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .color-action-button:hover {
+    background: var(--background);
+  }
+  
+  .color-action-button.remove {
+    color: #ff4444;
+  }
+  
+  .color-action-button.add {
+    color: var(--primary-color);
+  }

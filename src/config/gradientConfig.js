@@ -22,17 +22,83 @@
  *
  */
 
+// const basicTemplates = require('../templates/basicTemplates');
+// const prideTemplates = require('../templates/prideTemplates');
+
+// const templates = { ...basicTemplates, ...prideTemplates };
+
+// function getTemplateConfig(template, defaultColor) {
+//   return templates[template] || {
+//     colors: [defaultColor, `${defaultColor}88`],
+//     gradientType: 'horizontal',
+//     animationDuration: '6s'
+//   };
+// }
+
+// module.exports = { getTemplateConfig };
+
+
+
+
+
+// gradientConfig.js
 const basicTemplates = require('../templates/basicTemplates');
 const prideTemplates = require('../templates/prideTemplates');
 
 const templates = { ...basicTemplates, ...prideTemplates };
 
-function getTemplateConfig(template, defaultColor) {
-  return templates[template] || {
-    colors: [defaultColor, `${defaultColor}88`],
-    gradientType: 'horizontal',
-    animationDuration: '6s'
+function getTemplateConfig(template, defaultColor = '000000') {
+  if (!template || !templates[template]) {
+    return {
+      colors: [defaultColor, `${defaultColor}88`],
+      gradientType: 'horizontal',
+      animationDuration: '6s'
+    };
+  }
+
+  const selectedTemplate = templates[template];
+  
+  return {
+    colors: selectedTemplate.colors || [defaultColor, `${defaultColor}88`],
+    gradientType: selectedTemplate.gradientType || 'horizontal',
+    animationDuration: selectedTemplate.animationDuration || '6s',
+    name: selectedTemplate.name,
+    label: selectedTemplate.label,
+    description: selectedTemplate.description
   };
 }
 
-module.exports = { getTemplateConfig };
+// 添加一个辅助函数来验证和规范化配置
+function validateConfig(config) {
+  const defaultConfig = {
+    colors: ['000000'],
+    gradientType: 'horizontal',
+    animationDuration: '6s'
+  };
+
+  // 验证颜色
+  if (!Array.isArray(config.colors) || config.colors.length === 0) {
+    config.colors = defaultConfig.colors;
+  }
+
+  // 验证渐变类型
+  const validGradientTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'radial'];
+  if (!validGradientTypes.includes(config.gradientType)) {
+    config.gradientType = defaultConfig.gradientType;
+  }
+
+  // 验证动画持续时间
+  const duration = parseInt(config.animationDuration);
+  if (isNaN(duration) || duration < 1 || duration > 20) {
+    config.animationDuration = defaultConfig.animationDuration;
+  } else {
+    config.animationDuration = `${duration}s`;
+  }
+
+  return config;
+}
+
+module.exports = { 
+  getTemplateConfig,
+  validateConfig
+};
