@@ -5,6 +5,85 @@ import { BiPalette, BiText, BiRuler } from 'react-icons/bi';
 import { HiOutlineTemplate } from 'react-icons/hi';
 import { MdPreview } from 'react-icons/md';
 
+// 直接导入模板对象
+const basicTemplates = {
+  'sunset-gold': {
+    name: 'sunset-gold',
+    label: 'Sunset Gold',
+    colors: ['ffd700', 'ff8c00', 'ff4500'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Warm golden sunset gradient'
+  },
+  'ocean-heart': {
+    name: 'ocean-heart',
+    label: 'Ocean Heart',
+    colors: ['00ffff', '0080ff', '0000ff'],
+    gradientType: 'vertical',
+    animationDuration: '8s',
+    description: 'Deep ocean blue gradient'
+  },
+  'emerald-forest': {
+    name: 'emerald-forest',
+    label: 'Emerald Forest',
+    colors: ['50c878', '228b22', '006400'],
+    gradientType: 'diagonal',
+    animationDuration: '7s',
+    description: 'Rich emerald green gradient'
+  },
+  'violet-dream': {
+    name: 'violet-dream',
+    label: 'Violet Dream',
+    colors: ['9400d3', '8a2be2', '4b0082'],
+    gradientType: 'circular',
+    animationDuration: '10s',
+    description: 'Mystical violet gradient'
+  },
+  'neon-city': {
+    name: 'neon-city',
+    label: 'Neon City',
+    colors: ['ff1493', 'ff00ff', '00ffff'],
+    gradientType: 'horizontal',
+    animationDuration: '5s',
+    description: 'Vibrant neon gradient'
+  }
+};
+
+const prideTemplates = {
+  'pride-rainbow': {
+    name: 'pride-rainbow',
+    label: 'Pride Rainbow',
+    colors: ['ff0000', 'ff8c00', 'ffff00', '008000', '0000ff', '4b0082'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Traditional pride rainbow flag'
+  },
+  'trans-pride': {
+    name: 'trans-pride',
+    label: 'Trans Pride',
+    colors: ['55cdfc', 'f7a8b8', 'ffffff', 'f7a8b8', '55cdfc'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Trans pride flag colors'
+  },
+  'bi-pride': {
+    name: 'bi-pride',
+    label: 'Bi Pride',
+    colors: ['d60270', '9b4f96', '0038a8'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Bi pride flag colors'
+  },
+  'pan-pride': {
+    name: 'pan-pride',
+    label: 'Pan Pride',
+    colors: ['ff1b8d', 'ffd800', '00b5ff'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Pan pride flag colors'
+  }
+};
+
 export default function Settings() {
   const [config, setConfig] = useState({
     text: 'Hello World',
@@ -17,21 +96,18 @@ export default function Settings() {
   const [markdownCode, setMarkdownCode] = useState('');
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState('basic'); // 'basic' or 'pride'
+  const [activeCategory, setActiveCategory] = useState('basic'); // 'basic', 'pride'
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
   
-  // 预设模板列表
-  const templates = {
-    basic: [
-      { name: 'sunset-gold', label: 'Sunset Gold', preview: '/templates/sunset-gold.svg' },
-      { name: 'ocean-heart', label: 'Ocean Heart', preview: '/templates/ocean-heart.svg' },
-      { name: 'emerald-forest', label: 'Emerald Forest', preview: '/templates/emerald-forest.svg' },
-      { name: 'violet-dream', label: 'Violet Dream', preview: '/templates/violet-dream.svg' }
-    ],
-    pride: [
-      { name: 'pride-rainbow', label: 'Pride Rainbow', preview: '/templates/pride-rainbow.svg' },
-      { name: 'trans-pride', label: 'Trans Pride', preview: '/templates/trans-pride.svg' },
-      { name: 'bi-pride', label: 'Bi Pride', preview: '/templates/bi-pride.svg' },
-      { name: 'pan-pride', label: 'Pan Pride', preview: '/templates/pan-pride.svg' }
-    ]
+  const templateCategories = {
+    basic: {
+      label: 'Basic Templates',
+      templates: Object.values(basicTemplates)
+    },
+    pride: {
+      label: 'Pride Templates',
+      templates: Object.values(prideTemplates)
+    }
   };
 
   // 添加主题切换功能
@@ -59,6 +135,41 @@ export default function Settings() {
     await navigator.clipboard.writeText(markdownCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  // 添加模板预览部分
+  const TemplatePreview = ({ template }) => {
+    if (!template) return null;
+    
+    return (
+      <div className="template-preview-details">
+        <h3>{template.label}</h3>
+        <p>{template.description}</p>
+        <div className="template-specs">
+          <div className="spec-item">
+            <span>Type:</span>
+            <span>{template.gradientType}</span>
+          </div>
+          <div className="spec-item">
+            <span>Duration:</span>
+            <span>{template.animationDuration}</span>
+          </div>
+          <div className="spec-item">
+            <span>Colors:</span>
+            <div className="color-dots">
+              {template.colors.map((color, i) => (
+                <span 
+                  key={i} 
+                  className="color-dot" 
+                  style={{ backgroundColor: `#${color}` }}
+                  title={`#${color}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -169,35 +280,50 @@ export default function Settings() {
                 <h2>Templates</h2>
               </div>
             </div>
-            <div className="tabs">
-              <button 
-                className={`tab ${activeTab === 'basic' ? 'active' : ''}`}
-                onClick={() => setActiveTab('basic')}
-              >
-                Basic Templates
-              </button>
-              <button 
-                className={`tab ${activeTab === 'pride' ? 'active' : ''}`}
-                onClick={() => setActiveTab('pride')}
-              >
-                Pride Templates
-              </button>
-            </div>
-
-            <div className="template-grid">
-              {templates[activeTab].map(temp => (
+            
+            <div className="category-tabs">
+              {Object.entries(templateCategories).map(([key, category]) => (
                 <button
-                  key={temp.name}
-                  className={`template-btn ${config.template === temp.name ? 'active' : ''}`}
-                  onClick={() => setConfig({...config, template: temp.name})}
+                  key={key}
+                  className={`category-tab ${activeCategory === key ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(key)}
                 >
-                  <div className="template-preview">
-                    <img src={temp.preview} alt={temp.label} loading="lazy" />
-                  </div>
-                  <span>{temp.label}</span>
+                  {category.label}
                 </button>
               ))}
             </div>
+
+            <div className="templates-grid">
+              {templateCategories[activeCategory].templates.map(template => (
+                <button
+                  key={template.name}
+                  className={`template-card ${selectedTemplate?.name === template.name ? 'active' : ''}`}
+                  onClick={() => {
+                    setSelectedTemplate(template);
+                    setConfig(prev => ({
+                      ...prev,
+                      template: template.name
+                    }));
+                  }}
+                >
+                  <div className="template-preview">
+                    <img 
+                      src={`/api/svg?text=${template.label}&template=${template.name}`} 
+                      alt={template.label}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="template-info">
+                    <span className="template-name">{template.label}</span>
+                    <span className="template-type">{template.gradientType}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {selectedTemplate && (
+              <TemplatePreview template={selectedTemplate} />
+            )}
           </section>
         </div>
 
