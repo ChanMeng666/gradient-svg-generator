@@ -54,5 +54,69 @@ module.exports = {
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Pan pride flag colors'
+  },
+  'nonbinary-pride': {
+    name: 'nonbinary-pride',
+    label: 'Nonbinary Pride',
+    colors: ['fcf434', 'ffffff', '9c59d1', '2c2c2c'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Nonbinary pride flag colors'
+  },
+  'lesbian-pride': {
+    name: 'lesbian-pride',
+    label: 'Lesbian Pride',
+    colors: ['d62900', 'ff9b55', 'ffffff', 'd461a6', 'a50062'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Modern lesbian pride flag colors'
+  },
+  'genderqueer-pride': {
+    name: 'genderqueer-pride',
+    label: 'Genderqueer Pride',
+    colors: ['b57edc', 'ffffff', '4a8123'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Genderqueer pride flag colors'
+  },
+  'genderfluid-pride': {
+    name: 'genderfluid-pride',
+    label: 'Genderfluid Pride',
+    colors: ['ff75a2', 'ffffff', 'be18d6', '000000', '333ebd'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Genderfluid pride flag colors'
+  },
+  'ace-pride': {
+    name: 'ace-pride',
+    label: 'Ace Pride',
+    colors: ['000000', 'a3a3a3', 'ffffff', '800080'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Asexual pride flag colors'
+  },
+  'aro-pride': {
+    name: 'aro-pride',
+    label: 'Aromantic Pride',
+    colors: ['3da542', 'a7d379', 'ffffff', 'a9a9a9', '000000'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Aromantic pride flag colors'
+  },
+  'intersex-pride': {
+    name: 'intersex-pride',
+    label: 'Intersex Pride',
+    colors: ['ffd800', '7902aa'],
+    gradientType: 'circular',
+    animationDuration: '6s',
+    description: 'Intersex pride flag colors with unique circular gradient'
+  },
+  'agender-pride': {
+    name: 'agender-pride',
+    label: 'Agender Pride',
+    colors: ['000000', 'b9b9b9', 'ffffff', 'b8f483', 'ffffff', 'b9b9b9', '000000'],
+    gradientType: 'horizontal',
+    animationDuration: '6s',
+    description: 'Agender pride flag colors'
   }
 };

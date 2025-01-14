@@ -172,6 +172,20 @@ export default function Settings() {
     );
   };
 
+  // 添加一个新的分类标签组件
+  const CategoryLabel = ({ category }) => {
+    const labels = {
+      basic: '基础模板',
+      pride: 'Pride 旗帜'
+    };
+    
+    return (
+      <div className="category-label">
+        <span>{labels[category]}</span>
+      </div>
+    );
+  };
+
   return (
     <div className={`container ${isDarkMode ? 'dark' : ''}`}>
       <nav className="navbar">
