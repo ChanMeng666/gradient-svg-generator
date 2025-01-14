@@ -3,14 +3,21 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "keywords": [],
   "author": "Chan Meng",
   "license": "ISC",
   "description": "A service that generates animated gradient SVGs with customizable text overlays",
   "dependencies": {
-    "@vercel/node": "^2.15.0"
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.6",
+    "@vercel/node": "^2.15.0",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
