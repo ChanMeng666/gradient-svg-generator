@@ -4,6 +4,10 @@
     { "src": "package.json", "use": "@vercel/next" }
   ],
   "routes": [
+    {
+      "src": "/\\?.*",
+      "dest": "/api/svg"
+    },
     { 
       "src": "/api/(.*)", 
       "dest": "/api/$1" 

@@ -1,8 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 export default function Home() {
-  useEffect(() => {
-    window.location.href = '/settings';
-  }, []);
-  return null;
+  // 暂时保持根路径返回默认SVG
+  return (
+    <div style={{ width: '100%', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <img 
+        src="/api/svg?text=Welcome" 
+        alt="Welcome" 
+        style={{ maxWidth: '100%', height: 'auto' }}
+      />
+    </div>
+  );
 } 
