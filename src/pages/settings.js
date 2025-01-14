@@ -1,62 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FiCopy, FiCheck, FiGithub, FiInfo, FiHeart, FiCloud, FiZap, FiStar } from 'react-icons/fi';
+import { FiCopy, FiCheck, FiGithub, FiInfo } from 'react-icons/fi';
 import { BiPalette, BiText, BiRuler } from 'react-icons/bi';
 import { HiOutlineTemplate } from 'react-icons/hi';
 import { MdPreview } from 'react-icons/md';
-import {
-  basicTemplates,
-  prideTemplates,
-  natureTemplates,
-  neonTemplates,
-  galaxyTemplates
-} from '../config/gradientConfig';
-
-// 修改模板分类定义
-const templateCategories = {
-  basic: {
-    label: 'Basic Templates',
-    icon: <BiPalette />,
-    templates: [
-      {
-        name: 'sunset-gold',
-        label: 'Sunset Gold',
-        description: 'Warm golden sunset gradient',
-        gradientType: 'horizontal'
-      },
-      {
-        name: 'ocean-heart',
-        label: 'Ocean Heart',
-        description: 'Deep ocean blue gradient',
-        gradientType: 'vertical'
-      },
-      // ... 其他模板
-    ]
-  },
-  pride: {
-    label: 'Pride Flags',
-    icon: <FiHeart />,
-    templates: Object.values(prideTemplates)
-  },
-  nature: {
-    label: 'Nature',
-    icon: <FiCloud />,
-    templates: Object.values(natureTemplates)
-  },
-  neon: {
-    label: 'Neon',
-    icon: <FiZap />,
-    templates: Object.values(neonTemplates)
-  },
-  galaxy: {
-    label: 'Galaxy',
-    icon: <FiStar />,
-    templates: Object.values(galaxyTemplates)
-  }
-};
 
 export default function Settings() {
-  const [mounted, setMounted] = useState(false);
   const [config, setConfig] = useState({
     text: 'Hello World',
     color: '000000',
@@ -68,30 +17,36 @@ export default function Settings() {
   const [markdownCode, setMarkdownCode] = useState('');
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState('basic'); // 'basic' or 'pride'
-  const [activeCategory, setActiveCategory] = useState('basic'); // 'basic', 'pride'
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
   
+  // 预设模板列表
+  const templates = {
+    basic: [
+      { name: 'sunset-gold', label: 'Sunset Gold', preview: '/templates/sunset-gold.svg' },
+      { name: 'ocean-heart', label: 'Ocean Heart', preview: '/templates/ocean-heart.svg' },
+      { name: 'emerald-forest', label: 'Emerald Forest', preview: '/templates/emerald-forest.svg' },
+      { name: 'violet-dream', label: 'Violet Dream', preview: '/templates/violet-dream.svg' }
+    ],
+    pride: [
+      { name: 'pride-rainbow', label: 'Pride Rainbow', preview: '/templates/pride-rainbow.svg' },
+      { name: 'trans-pride', label: 'Trans Pride', preview: '/templates/trans-pride.svg' },
+      { name: 'bi-pride', label: 'Bi Pride', preview: '/templates/bi-pride.svg' },
+      { name: 'pan-pride', label: 'Pan Pride', preview: '/templates/pan-pride.svg' }
+    ]
+  };
+
   // 添加主题切换功能
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    // 检查系统主题偏好
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setIsDarkMode(prefersDark);
   }, []);
 
-  // 检查系统主题偏好
   useEffect(() => {
-    if (mounted) {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDarkMode(prefersDark);
-    }
-  }, [mounted]);
-
-  // 应用主题
-  useEffect(() => {
-    if (mounted) {
-      document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-    }
-  }, [isDarkMode, mounted]);
+    // 应用主题
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode]);
 
   useEffect(() => {
     const previewUrl = `/api/svg?text=${encodeURIComponent(config.text)}&color=${config.color}&height=${config.height}${config.template ? `&template=${config.template}` : ''}`;
@@ -105,50 +60,6 @@ export default function Settings() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  // 添加模板预览部分
-  const TemplatePreview = ({ template }) => {
-    if (!template) return null;
-    
-    return (
-      <div className="template-preview-details">
-        <h3>{template.label}</h3>
-        <p>{template.description}</p>
-        <div className="template-specs">
-          <div className="spec-item">
-            <span>Type:</span>
-            <span>{template.gradientType}</span>
-          </div>
-          <div className="spec-item">
-            <span>Duration:</span>
-            <span>{template.animationDuration}</span>
-          </div>
-          <div className="spec-item">
-            <span>Colors:</span>
-            <div className="color-dots">
-              {template.colors.map((color, i) => (
-                <span 
-                  key={i} 
-                  className="color-dot" 
-                  style={{ backgroundColor: `#${color}` }}
-                  title={`#${color}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  // 如果还没有挂载，返回一个加载状态
-  if (!mounted) {
-    return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
-      </div>
-    );
-  }
 
   return (
     <div className={`container ${isDarkMode ? 'dark' : ''}`}>
@@ -258,51 +169,35 @@ export default function Settings() {
                 <h2>Templates</h2>
               </div>
             </div>
-            
-            <div className="category-tabs">
-              {Object.entries(templateCategories).map(([key, category]) => (
-                <button
-                  key={key}
-                  className={`category-tab ${activeCategory === key ? 'active' : ''}`}
-                  onClick={() => setActiveCategory(key)}
-                >
-                  {category.icon}
-                  <span>{category.label}</span>
-                </button>
-              ))}
+            <div className="tabs">
+              <button 
+                className={`tab ${activeTab === 'basic' ? 'active' : ''}`}
+                onClick={() => setActiveTab('basic')}
+              >
+                Basic Templates
+              </button>
+              <button 
+                className={`tab ${activeTab === 'pride' ? 'active' : ''}`}
+                onClick={() => setActiveTab('pride')}
+              >
+                Pride Templates
+              </button>
             </div>
 
-            <div className="templates-grid">
-              {templateCategories[activeCategory].templates.map(template => (
+            <div className="template-grid">
+              {templates[activeTab].map(temp => (
                 <button
-                  key={template.name}
-                  className={`template-card ${selectedTemplate?.name === template.name ? 'active' : ''}`}
-                  onClick={() => {
-                    setSelectedTemplate(template);
-                    setConfig(prev => ({
-                      ...prev,
-                      template: template.name
-                    }));
-                  }}
+                  key={temp.name}
+                  className={`template-btn ${config.template === temp.name ? 'active' : ''}`}
+                  onClick={() => setConfig({...config, template: temp.name})}
                 >
                   <div className="template-preview">
-                    <img 
-                      src={`/api/svg?text=${encodeURIComponent(template.label)}&template=${template.name}`} 
-                      alt={template.label}
-                      loading="lazy"
-                    />
+                    <img src={temp.preview} alt={temp.label} loading="lazy" />
                   </div>
-                  <div className="template-info">
-                    <span className="template-name">{template.label}</span>
-                    <span className="template-type">{template.gradientType}</span>
-                  </div>
+                  <span>{temp.label}</span>
                 </button>
               ))}
             </div>
-
-            {selectedTemplate && (
-              <TemplatePreview template={selectedTemplate} />
-            )}
           </section>
         </div>
 

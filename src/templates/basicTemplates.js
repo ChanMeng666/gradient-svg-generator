@@ -22,45 +22,61 @@
  *
  */
 
-module.exports = {
+const basicTemplates = {
   'sunset-gold': {
-    name: 'sunset-gold',
-    label: 'Sunset Gold',
-    colors: ['ffd700', 'ff8c00', 'ff4500'],
+    colors: ['ffd700', 'ff4500'],
     gradientType: 'horizontal',
-    animationDuration: '6s',
-    description: 'Warm golden sunset gradient'
+    animationType: 'shine',
+    animationDuration: '6s'
   },
   'ocean-heart': {
-    name: 'ocean-heart',
-    label: 'Ocean Heart',
-    colors: ['00ffff', '0080ff', '0000ff'],
-    gradientType: 'vertical',
-    animationDuration: '8s',
-    description: 'Deep ocean blue gradient'
+    colors: ['00ffff', '0066ff'],
+    gradientType: 'horizontal',
+    animationType: 'shine',
+    animationDuration: '6s'
   },
   'emerald-forest': {
-    name: 'emerald-forest',
-    label: 'Emerald Forest',
-    colors: ['50c878', '228b22', '006400'],
-    gradientType: 'diagonal',
-    animationDuration: '7s',
-    description: 'Rich emerald green gradient'
+    colors: ['50c878', '006400'],
+    gradientType: 'horizontal',
+    animationType: 'shine',
+    animationDuration: '6s'
   },
   'violet-dream': {
-    name: 'violet-dream',
-    label: 'Violet Dream',
-    colors: ['9400d3', '8a2be2', '4b0082'],
-    gradientType: 'circular',
-    animationDuration: '10s',
-    description: 'Mystical violet gradient'
+    colors: ['9400d3', '4b0082'],
+    gradientType: 'horizontal',
+    animationType: 'shine',
+    animationDuration: '6s'
+  },
+  'blood-dawn': {
+    colors: ['dc143c', '800000'],
+    gradientType: 'horizontal',
+    animationType: 'shine',
+    animationDuration: '6s'
+  },
+  'aurora': {
+    colors: ['00ff7f', '4169e1'],
+    gradientType: 'horizontal',
+    animationType: 'shine',
+    animationDuration: '6s'
+  },
+  'cyberpunk': {
+    colors: ['ff00ff', '00ffff'],
+    gradientType: 'horizontal',
+    animationType: 'rainbow',
+    animationDuration: '6s'
   },
   'neon-city': {
-    name: 'neon-city',
-    label: 'Neon City',
-    colors: ['ff1493', 'ff00ff', '00ffff'],
+    colors: ['ff1493', 'ff00ff'],
     gradientType: 'horizontal',
-    animationDuration: '5s',
-    description: 'Vibrant neon gradient'
+    animationType: 'rainbow',
+    animationDuration: '6s'
+  },
+  'electric-beat': {
+    colors: ['00ff00', '00ffff'],
+    gradientType: 'horizontal',
+    animationType: 'rainbow',
+    animationDuration: '6s'
   }
 };
+
+module.exports = basicTemplates;
