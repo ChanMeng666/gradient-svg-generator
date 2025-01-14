@@ -21,3 +21,4 @@ package-lock.json
 /.next
 .env.local
 .env.production
+/修改前的项目文件夹gradient-svg-generator-main

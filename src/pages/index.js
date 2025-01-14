@@ -201,16 +201,7 @@ export default function Home() {
   const [markdownCode, setMarkdownCode] = useState('');
   
   useEffect(() => {
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || '';
-    const url = `${baseUrl}/api/svg?` + new URLSearchParams({
-      text: config.text,
-      height: config.height,
-      template: config.template,
-      gradientType: config.gradientType,
-      duration: config.animationDuration,
-      color: config.color
-    }).toString();
-    
+    const url = `https://gradient-svg-generator.vercel.app/?text=${encodeURIComponent(config.text)}&color=${config.color}&height=${config.height}${config.template ? `&template=${config.template}` : ''}&gradientType=${config.gradientType}&duration=${config.animationDuration}`;
     setPreviewUrl(url);
     setMarkdownCode(`![${config.text}](${url})`);
   }, [config]);
