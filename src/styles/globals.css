@@ -1,0 +1,25 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.config-form {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.preview {
+  border: 1px solid #eee;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.markdown-code {
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+/* 更多样式... */ 
