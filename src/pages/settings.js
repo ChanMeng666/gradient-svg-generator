@@ -1161,7 +1161,7 @@ export default function Settings() {
                     className={`gradient-type-button ${config.gradientType === type.value ? 'active' : ''}`}
                     onClick={() => setConfig(prev => ({ ...prev, gradientType: type.value }))}
                     >
-                    {type.label}
+                      {type.label}
                     </button>
                 ))}
                 </div>
