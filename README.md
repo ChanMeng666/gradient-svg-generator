@@ -7,6 +7,16 @@
 
 ![Welcome](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome&height=200&template=progress-pride)
 
+
+https://github.com/user-attachments/assets/4a71cdd1-8c48-4038-85fd-2bcb487f9085
+
+![screencapture-gradient-svg-generator-vercel-app-2025-01-15-17_23_24](https://github.com/user-attachments/assets/3a362fde-ed80-42c1-a3da-412b2fe4f435)
+
+![screencapture-gradient-svg-generator-vercel-app-settings-2025-01-15-17_23_50](https://github.com/user-attachments/assets/13baec12-4222-4302-9450-2c92dd771bce)
+
+![screencapture-gradient-svg-generator-vercel-app-settings-2025-01-15-17_24_44](https://github.com/user-attachments/assets/24bf2458-ec31-427b-869e-e216257490ad)
+
+
 ## Introduction
 
 The Gradient SVG Generator is a powerful tool that creates animated gradient SVGs with customizable text overlays. Perfect for:
