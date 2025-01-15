@@ -937,39 +937,39 @@ export default function Settings() {
   };
 
   // 模板预览组件
-  const TemplatePreview = ({ template }) => {
-    if (!template) return null;
+  // const TemplatePreview = ({ template }) => {
+  //   if (!template) return null;
     
-    return (
-      <div className="template-preview-details">
-        <h3>{template.label}</h3>
-        <p>{template.description}</p>
-        <div className="template-specs">
-          <div className="spec-item">
-            <span>Type:</span>
-            <span>{template.gradientType}</span>
-          </div>
-          <div className="spec-item">
-            <span>Duration:</span>
-            <span>{template.animationDuration}</span>
-          </div>
-          <div className="spec-item">
-            <span>Colors:</span>
-            <div className="color-dots">
-              {template.colors.map((color, i) => (
-                <span 
-                  key={i} 
-                  className="color-dot" 
-                  style={{ backgroundColor: `#${color}` }}
-                  title={`#${color}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
+  //   return (
+  //     <div className="template-preview-details">
+  //       <h3>{template.label}</h3>
+  //       <p>{template.description}</p>
+  //       <div className="template-specs">
+  //         <div className="spec-item">
+  //           <span>Type:</span>
+  //           <span>{template.gradientType}</span>
+  //         </div>
+  //         <div className="spec-item">
+  //           <span>Duration:</span>
+  //           <span>{template.animationDuration}</span>
+  //         </div>
+  //         <div className="spec-item">
+  //           <span>Colors:</span>
+  //           <div className="color-dots">
+  //             {template.colors.map((color, i) => (
+  //               <span 
+  //                 key={i} 
+  //                 className="color-dot" 
+  //                 style={{ backgroundColor: `#${color}` }}
+  //                 title={`#${color}`}
+  //               />
+  //             ))}
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className={`container ${isDarkMode ? 'dark' : ''}`}>
@@ -1233,17 +1233,46 @@ export default function Settings() {
                       loading="lazy"
                     />
                   </div>
-                  <div className="template-info">
+                  {/* <div className="template-info">
                     <span className="template-name">{template.label}</span>
                     <span className="template-type">{template.gradientType}</span>
+                  </div> */}
+
+
+                  <div className="template-info">
+                      <h3 className="template-name">{template.label}</h3>
+                      <p className="template-description">{template.description}</p>
+                      <div className="template-specs">
+                      <div className="spec-item">
+                        <span className="spec-label">Type:</span>
+                        <span className="spec-value">{template.gradientType}</span>
+                      </div>
+                      <div className="spec-item">
+                        <span className="spec-label">Duration:</span>
+                        <span className="spec-value">{template.animationDuration}</span>
+                      </div>
+                      <div className="spec-item">
+                        <span className="spec-label">Colors:</span>
+                        <div className="color-dots">
+                          {template.colors.map((color, i) => (
+                            <span 
+                              key={i} 
+                              className="color-dot" 
+                              style={{ backgroundColor: `#${color}` }}
+                              title={`#${color}`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </button>
               ))}
             </div>
 
-            {selectedTemplate && (
+            {/* {selectedTemplate && (
               <TemplatePreview template={selectedTemplate} />
-            )}
+            )} */}
           </section>
         </div>
 
