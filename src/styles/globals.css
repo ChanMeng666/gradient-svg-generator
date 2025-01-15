@@ -710,3 +710,147 @@ body {
   .color-action-button.add {
     color: var(--primary-color);
   }
+
+
+  /* 添加到globals.css */
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Logo样式 */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  text-decoration: none !important;
+  color: var(--text);
+  transition: opacity 0.2s;
+}
+
+.logo-link:hover {
+  opacity: 0.85;
+}
+
+.logo-icon {
+  color: var(--primary-color);
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* 右侧控件样式 */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Crafted by文本样式 */
+.crafted-text {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.heart {
+  font-size: 0.875rem;
+  color: #FFD700;
+  animation: pulse 2s infinite;
+  display: inline-flex;
+  align-items: center;
+}
+
+.author-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.author-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* 主题切换按钮样式 */
+.theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.375rem;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.theme-btn:hover {
+  background-color: var(--border);
+}
+
+.theme-btn span {
+  font-size: 1.125rem;
+}
+
+/* GitHub按钮样式 */
+.github-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  color: var(--text);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  background: var(--surface);
+}
+
+.github-btn:hover {
+  background: var(--background);
+  border-color: var(--primary-color);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0.75rem 1rem;
+  }
+  
+  .crafted-text {
+    display: none;
+  }
+  
+  .github-btn span {
+    display: none;
+  }
+  
+  .github-btn {
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .crafted-text {
+    font-size: 0.75rem;
+  }
+}
