@@ -1103,21 +1103,21 @@ export default function Settings() {
                     <div className="label-content">
                         <BiPalette />
                         <span>Gradient Colors</span>
-                        <FiInfo className="tooltip-icon" title="Add multiple colors to create complex gradients" />
                     </div>
+                    <FiInfo className="tooltip-icon" title="Add multiple colors to create complex gradients" />
                 </label>
                 <div className="multi-color-picker">
-                {config.colors.map((color, index) => (
-                    <ColorRow
-                    key={index}
-                    color={color}
-                    index={index}
-                    total={config.colors.length}
-                    onUpdate={handleColorUpdate}
-                    onAdd={handleAddColor}
-                    onRemove={handleRemoveColor}
-                    />
-                ))}
+                  {config.colors.map((color, index) => (
+                      <ColorRow
+                      key={index}
+                      color={color}
+                      index={index}
+                      total={config.colors.length}
+                      onUpdate={handleColorUpdate}
+                      onAdd={handleAddColor}
+                      onRemove={handleRemoveColor}
+                      />
+                  ))}
                 </div>
             </div>
             
@@ -1148,11 +1148,11 @@ export default function Settings() {
             {/* 添加渐变类型选择 */}
             <div className="input-group">
                 <label>
-                <div className="label-content">
-                    <MdGradient />
-                    <span>Gradient Type</span>
-                    <FiInfo className="tooltip-icon" title="Choose the direction of your gradient" />
-                </div>
+                  <div className="label-content">
+                      <MdGradient />
+                      <span>Gradient Type</span>
+                  </div>
+                  <FiInfo className="tooltip-icon" title="Choose the direction of your gradient" />
                 </label>
                 <div className="gradient-type-buttons">
                 {GRADIENT_TYPES.map(type => (
@@ -1170,11 +1170,11 @@ export default function Settings() {
             {/* 添加动画持续时间滑块 */}
             <div className="input-group">
                 <label>
-                <div className="label-content">
-                    <BiTimer />
-                    <span>Animation Duration</span>
-                    <span className="value">{config.animationDuration}s</span>
-                </div>
+                  <div className="label-content">
+                      <BiTimer />
+                      <span>Animation Duration</span>
+                  </div>
+                  <span className="value">{config.animationDuration}s</span>
                 </label>
                 <input
                 type="range"
@@ -1256,8 +1256,14 @@ export default function Settings() {
               </div>
               <p>Live preview of your gradient SVG</p>
             </div>
-            <div className="preview-container">
+            {/* <div className="preview-container">
               <img src={preview} alt="Preview" />
+            </div> */}
+
+            <div className="preview-container">
+              <div className="preview-image-wrapper">
+                <img src={preview} alt="Preview" className="preview-image" />
+              </div>
             </div>
           </section>
 
@@ -1266,7 +1272,7 @@ export default function Settings() {
               <h2>Markdown Code</h2>
               <p>Copy this code to use in your README</p>
             </div>
-            <div className="code-container">
+            {/* <div className="code-container">
               <pre>{markdownCode}</pre>
               <button 
                 className={`copy-button ${copied ? 'copied' : ''}`}
@@ -1279,6 +1285,26 @@ export default function Settings() {
                 ) : (
                   <>
                     <FiCopy /> Copy to Clipboard
+                  </>
+                )}
+              </button>
+            </div> */}
+
+            <div className="code-container">
+              <div className="code-scroll-wrapper">
+                <pre>{markdownCode}</pre>
+              </div>
+              <button 
+                className={`copy-button ${copied ? 'copied' : ''}`}
+                onClick={handleCopy}
+              >
+                {copied ? (
+                  <>
+                    <FiCheck /> <span className="button-text">Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <FiCopy /> <span className="button-text">Copy to Clipboard</span>
                   </>
                 )}
               </button>

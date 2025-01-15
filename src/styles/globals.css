@@ -854,3 +854,114 @@ body {
     font-size: 0.75rem;
   }
 }
+
+
+/* Preview Container Styles */
+.preview-container {
+  width: 100%;
+  padding: 1rem;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.preview-image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Code Container Styles */
+.code-container {
+  width: 100%;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.code-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.code-container pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+}
+
+.copy-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: none;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-button:hover {
+  background: var(--background);
+}
+
+.copy-button.copied {
+  background: var(--primary-color);
+  color: white;
+}
+
+.button-text {
+  display: inline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .preview-container {
+    padding: 0.5rem;
+  }
+  
+  .code-scroll-wrapper {
+    padding: 0.5rem;
+  }
+  
+  .code-container pre {
+    font-size: 0.75rem;
+  }
+  
+  .button-text {
+    display: none;
+  }
+  
+  .copy-button {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .preview-container,
+  .code-container {
+    border-radius: 4px;
+  }
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .code-scroll-wrapper {
+  background: var(--surface);
+}
