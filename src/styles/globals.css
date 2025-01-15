@@ -100,6 +100,22 @@ body {
   color: var(--text-secondary);
 }
 
+.author-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  &:hover {
+    color: var(--primary-color);
+  }
+  &:active {
+    color: var(--primary-color);
+  }
+  &:visited {
+    color: var(--text-secondary);
+  }
+}
+
 .heart {
   color: #FFD700;
   animation: pulse 2s infinite;
