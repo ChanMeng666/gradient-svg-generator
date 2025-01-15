@@ -210,5 +210,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 Made with ❤️ by Chan Meng
+<br/>
 ⭐ Star us on GitHub | 🎨 <a href="https://gradient-svg-generator.vercel.app/settings">Create Your Gradient</a> | 🐛 Report an Issue
 </div>
