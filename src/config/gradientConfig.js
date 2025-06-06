@@ -62,7 +62,7 @@ function getTemplateConfig(template, defaultColor = '000000') {
   };
 }
 
-// 添加一个辅助函数来验证和规范化配置
+// Add a helper function to validate and normalize configuration
 function validateConfig(config) {
   const defaultConfig = {
     colors: ['000000'],
@@ -70,18 +70,18 @@ function validateConfig(config) {
     animationDuration: '6s'
   };
 
-  // 验证颜色
+  // Validate colors
   if (!Array.isArray(config.colors) || config.colors.length === 0) {
     config.colors = defaultConfig.colors;
   }
 
-  // 验证渐变类型
+  // Validate gradient type
   const validGradientTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'radial', 'conic', 'wave', 'spiral', 'diamond', 'burst', 'reflection', 'pulse'];
   if (!validGradientTypes.includes(config.gradientType)) {
     config.gradientType = defaultConfig.gradientType;
   }
 
-  // 验证动画持续时间
+  // Validate animation duration
   const duration = parseInt(config.animationDuration);
   if (isNaN(duration) || duration < 1 || duration > 20) {
     config.animationDuration = defaultConfig.animationDuration;

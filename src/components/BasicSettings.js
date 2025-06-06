@@ -1,12 +1,9 @@
 import React from 'react';
-import { FiInfo } from 'react-icons/fi';
-import { BiText, BiPalette, BiRuler, BiTimer } from 'react-icons/bi';
-import { MdGradient } from 'react-icons/md';
 import ColorRow from './ColorRow';
 import { GRADIENT_TYPES } from '../constants/gradientTypes';
 
 const BasicSettings = ({ config, setConfig }) => {
-  // 颜色处理函数
+  // Color handling functions
   const handleColorUpdate = (index, newColor) => {
     setConfig(prev => {
       const newColors = [...prev.colors];
@@ -34,10 +31,10 @@ const BasicSettings = ({ config, setConfig }) => {
       <div className="input-group">
         <label>
           <div className="label-content">
-            <BiText />
+            <span>📝</span>
             <span>Display Text</span>
           </div>
-          <FiInfo className="tooltip-icon" title="The text that will appear on your gradient" />
+          <span className="tooltip-icon" title="The text that will appear on your gradient">ℹ️</span>
         </label>
         <input 
           value={config.text}
@@ -47,14 +44,14 @@ const BasicSettings = ({ config, setConfig }) => {
         />
       </div>
       
-      {/* 多色选择器 */}
+      {/* Multi-color picker */}
       <div className="input-group">
         <label>
           <div className="label-content">
-            <BiPalette />
+            <span>🎨</span>
             <span>Gradient Colors</span>
           </div>
-          <FiInfo className="tooltip-icon" title="Add multiple colors to create complex gradients" />
+          <span className="tooltip-icon" title="Add multiple colors to create complex gradients">ℹ️</span>
         </label>
         <div className="multi-color-picker">
           {config.colors.map((color, index) => (
@@ -74,7 +71,7 @@ const BasicSettings = ({ config, setConfig }) => {
       <div className="input-group">
         <label>
           <div className="label-content">
-            <BiRuler />
+            <span>📏</span>
             <span>Height</span>
           </div>
           <span className="value">{config.height}px</span>
@@ -94,14 +91,14 @@ const BasicSettings = ({ config, setConfig }) => {
         </div>
       </div>
 
-      {/* 渐变类型选择 */}
+      {/* Gradient type selection */}
       <div className="input-group">
         <label>
           <div className="label-content">
-            <MdGradient />
+            <span>🌈</span>
             <span>Gradient Type</span>
           </div>
-          <FiInfo className="tooltip-icon" title="Choose the direction of your gradient" />
+          <span className="tooltip-icon" title="Choose the direction of your gradient">ℹ️</span>
         </label>
         <div className="gradient-type-buttons">
           {GRADIENT_TYPES.map(type => (
@@ -110,17 +107,17 @@ const BasicSettings = ({ config, setConfig }) => {
               className={`gradient-type-button ${config.gradientType === type.value ? 'active' : ''}`}
               onClick={() => setConfig(prev => ({ ...prev, gradientType: type.value }))}
             >
-              {type.label}
+              <span>{type.label}</span>
             </button>
           ))}
         </div>
       </div>
 
-      {/* 动画持续时间滑块 */}
+      {/* Animation duration slider */}
       <div className="input-group">
         <label>
           <div className="label-content">
-            <BiTimer />
+            <span>⏱️</span>
             <span>Animation Duration</span>
           </div>
           <span className="value">{config.animationDuration}s</span>

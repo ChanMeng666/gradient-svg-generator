@@ -3,7 +3,7 @@ const generateGradientSVG = require('../../gradientGenerator');
 
 export default function handler(req, res) {
   try {
-    // 获取基本参数
+    // Get basic parameters
     const {
       text,
       height = 120,
@@ -12,7 +12,7 @@ export default function handler(req, res) {
       duration = '6s'
     } = req.query;
 
-    // 处理多个颜色参数
+    // Handle multiple color parameters
     const colors = [];
     for (let i = 0; ; i++) {
       const color = req.query[`color${i}`];
@@ -20,13 +20,13 @@ export default function handler(req, res) {
       colors.push(color);
     }
 
-    // 如果没有颜色参数，使用默认颜色
+    // If no color parameters, use default colors
     if (colors.length === 0) {
       colors.push('000000');
     }
 
     if (!text) {
-      // 如果没有文本参数，返回一个默认的SVG
+      // If no text parameter, return a default SVG
       const defaultSvg = generateGradientSVG({
         text: 'Gradient SVG',
         colors: ['000000'],

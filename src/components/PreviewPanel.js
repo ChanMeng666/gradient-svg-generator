@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { FiCopy, FiCheck } from 'react-icons/fi';
-import { MdPreview } from 'react-icons/md';
 
 const PreviewPanel = ({ preview, markdownCode }) => {
   const [copied, setCopied] = useState(false);
@@ -16,7 +14,7 @@ const PreviewPanel = ({ preview, markdownCode }) => {
       <section className="preview-section">
         <div className="section-header">
           <div className="header-content">
-            <MdPreview />
+            <span>👁️</span>
             <h2>Preview</h2>
           </div>
           <p>Live preview of your gradient SVG</p>
@@ -45,11 +43,11 @@ const PreviewPanel = ({ preview, markdownCode }) => {
           >
             {copied ? (
               <>
-                <FiCheck /> <span className="button-text">Copied!</span>
+                <span>✅</span> <span className="button-text">Copied!</span>
               </>
             ) : (
               <>
-                <FiCopy /> <span className="button-text">Copy to Clipboard</span>
+                <span>📋</span> <span className="button-text">Copy to Clipboard</span>
               </>
             )}
           </button>

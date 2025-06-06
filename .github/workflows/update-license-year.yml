@@ -2,34 +2,36 @@ name: Update License Year
 
 on:
   schedule:
-    - cron: '0 0 1 1 *'  # 每年1月1日运行
-  workflow_dispatch:      # 允许手动触发
+    - cron: '0 0 1 1 *'  # Run every January 1st
+  workflow_dispatch:      # Allow manual trigger
+
+permissions:
+  contents: write
 
 jobs:
-  update-license-year:
+  update-license:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          
-      - name: Update year in LICENSE
-        run: |
-          # 获取当前年份
-          CURRENT_YEAR=$(date +%Y)
-          # 更新 LICENSE 文件中的年份
-          sed -i "s/Copyright (c) [0-9]\{4\}/Copyright (c) ${CURRENT_YEAR}/" LICENSE
-          
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          commit-message: "chore: update license year to ${{ env.CURRENT_YEAR }}"
-          title: "chore: update license year"
-          body: |
-            Automated changes:
-            - Updated copyright year in LICENSE file to current year
-          branch: update-license-year
-          base: main
-          delete-branch: true
+    - uses: actions/checkout@v4
+    
+    - name: Get current year
+      # Get current year
+      id: date
+      run: echo "::set-output name=year::$(date +'%Y')"
+    
+    - name: Update LICENSE year
+      # Update year in LICENSE file
+      run: |
+        if [ -f LICENSE ]; then
+          # Replace year pattern in LICENSE file
+          sed -i "s/Copyright (c) [0-9]\{4\}/Copyright (c) ${{ steps.date.outputs.year }}/g" LICENSE
+        fi
+    
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add LICENSE
+        git diff --staged --quiet || git commit -m "Update LICENSE year to ${{ steps.date.outputs.year }}"
+        git push

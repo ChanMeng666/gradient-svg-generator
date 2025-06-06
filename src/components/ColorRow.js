@@ -1,5 +1,4 @@
 import React from 'react';
-import { FiPlus, FiMinus } from 'react-icons/fi';
 
 const ColorRow = ({ color, index, total, onUpdate, onAdd, onRemove }) => (
   <div className="color-row">
@@ -24,7 +23,7 @@ const ColorRow = ({ color, index, total, onUpdate, onAdd, onRemove }) => (
           onClick={() => onRemove(index)}
           title="Remove color"
         >
-          <FiMinus />
+          <span>−</span>
         </button>
       )}
       {index === total - 1 && (
@@ -33,7 +32,7 @@ const ColorRow = ({ color, index, total, onUpdate, onAdd, onRemove }) => (
           onClick={onAdd}
           title="Add color"
         >
-          <FiPlus />
+          <span>+</span>
         </button>
       )}
     </div>

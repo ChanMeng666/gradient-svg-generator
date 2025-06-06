@@ -1,5 +1,4 @@
 import React from 'react';
-import { HiOutlineTemplate } from 'react-icons/hi';
 import { templateCategories } from '../data/templateCategories';
 
 const TemplatesSection = ({ 
@@ -13,7 +12,7 @@ const TemplatesSection = ({
     <section className="templates-section">
       <div className="section-header">
         <div className="header-content">
-          <HiOutlineTemplate />
+          <span>📄</span>
           <h2>Templates</h2>
         </div>
       </div>
@@ -25,7 +24,7 @@ const TemplatesSection = ({
             className={`category-tab ${activeCategory === key ? 'active' : ''}`}
             onClick={() => setActiveCategory(key)}
           >
-            {category.label}
+            <span>{category.label}</span>
           </button>
         ))}
       </div>

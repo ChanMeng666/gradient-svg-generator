@@ -34,7 +34,7 @@ function generateGradientSVG({
   duration = '6s',
   template = '' 
 }) {
-  // 如果提供了模板，使用模板配置
+  // If template is provided, use template configuration
   let config;
   if (template) {
     config = getTemplateConfig(template);
@@ -45,7 +45,7 @@ function generateGradientSVG({
 
   const gradientDef = createGradientFromColors(colors, gradientType, duration);
 
-  // 根据渐变类型选择合适的滤镜效果
+  // Choose appropriate filter effects based on gradient type
   let filterEffect = 'url(#smoothTransition)';
   let additionalFilters = '';
 
