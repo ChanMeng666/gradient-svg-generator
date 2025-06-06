@@ -147,21 +147,25 @@ body {
 /* Main Content */
 .content {
   flex: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--content-padding);
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--content-padding);
+  display: flex;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   width: 100%;
+  height: calc(100vh - var(--navbar-height));
 }
 
 /* Settings Panel */
 .settings-panel {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  max-width: 100%;
+  max-width: none;
+  padding: var(--content-padding);
+  padding-right: 420px; /* 400px panel width + 20px gap */
+  overflow-y: auto;
+  height: 100%;
 }
 
 .panel-header {
@@ -296,9 +300,46 @@ body {
 
 /* Preview Panel */
 .preview-panel {
+  position: fixed;
+  top: var(--navbar-height);
+  right: 0;
+  width: 400px;
+  height: calc(100vh - var(--navbar-height));
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
+  padding: var(--content-padding);
+  background: var(--background);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.preview-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-header {
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.section-header p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
 .preview-container {
@@ -306,7 +347,8 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--border-radius);
   padding: 1.5rem;
-  aspect-ratio: 16/9;
+  min-height: 200px;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -332,11 +374,16 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--border-radius);
   overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
 }
 
 .code-scroll-wrapper {
   padding: 1rem;
   overflow-x: auto;
+  flex: 1;
 }
 
 .code-container pre {
@@ -369,20 +416,34 @@ body {
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .content {
-    padding: 1.5rem;
-    gap: 1.5rem;
+  .preview-panel {
+    width: 350px;
+  }
+  
+  .settings-panel {
+    padding-right: 370px; /* 350px panel width + 20px gap */
   }
 }
 
 @media (max-width: 1024px) {
   .content {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .settings-panel {
+    padding-right: var(--content-padding);
+    height: auto;
+    overflow-y: visible;
   }
   
   .preview-panel {
-    position: sticky;
-    top: calc(var(--navbar-height) + 1rem);
+    position: static;
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
   }
 }
 
@@ -413,6 +474,11 @@ body {
   
   .preview-container {
     padding: 1rem;
+    min-height: 150px;
+  }
+  
+  .code-container {
+    min-height: 150px;
   }
 }
 
@@ -435,6 +501,14 @@ body {
   
   .copy-button {
     padding: 0.5rem;
+  }
+  
+  .preview-panel {
+    padding: 1rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.1rem;
   }
 }
 
@@ -573,4 +647,47 @@ body {
   height: 0.75rem;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Color Management Styles */
+.color-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.color-action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.color-action-button:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.color-action-button.add {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.color-action-button.remove {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.color-action-button.remove:hover {
+  background: #c82333;
+  border-color: #c82333;
 }
