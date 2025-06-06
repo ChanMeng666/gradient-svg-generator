@@ -1,0 +1,62 @@
+/* Container */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  display: flex;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: calc(100vh - var(--navbar-height));
+}
+
+/* Settings Panel */
+.settings-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: none;
+  padding: var(--content-padding);
+  padding-right: 420px; /* 400px panel width + 20px gap */
+  overflow-y: auto;
+  height: 100%;
+}
+
+.panel-header {
+  margin-bottom: 1.5rem;
+}
+
+.panel-header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Section Headers */
+.section-header {
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.section-header p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+} 

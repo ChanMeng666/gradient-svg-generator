@@ -1,0 +1,97 @@
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .preview-panel {
+    width: 350px;
+  }
+  
+  .settings-panel {
+    padding-right: 370px; /* 350px panel width + 20px gap */
+  }
+}
+
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .settings-panel {
+    padding-right: var(--content-padding);
+    height: auto;
+    overflow-y: visible;
+  }
+  
+  .preview-panel {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --content-padding: 1rem;
+  }
+  
+  .nav-container {
+    padding: 0 1rem;
+  }
+  
+  .crafted-text {
+    display: none;
+  }
+  
+  .github-btn span {
+    display: none;
+  }
+  
+  .github-btn {
+    padding: 0.5rem;
+  }
+  
+  .templates-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .preview-container {
+    padding: 1rem;
+    min-height: 150px;
+  }
+  
+  .code-container {
+    min-height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    display: none;
+  }
+  
+  .gradient-type-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .templates-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .button-text {
+    display: none;
+  }
+  
+  .copy-button {
+    padding: 0.5rem;
+  }
+  
+  .preview-panel {
+    padding: 1rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.1rem;
+  }
+} 

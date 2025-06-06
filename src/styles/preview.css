@@ -1,0 +1,109 @@
+/* Preview Panel */
+.preview-panel {
+  position: fixed;
+  top: var(--navbar-height);
+  right: 0;
+  width: 400px;
+  height: calc(100vh - var(--navbar-height));
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: var(--content-padding);
+  background: var(--background);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.preview-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  min-height: 200px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-image-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Code Section */
+.code-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.code-scroll-wrapper {
+  padding: 1rem;
+  overflow-x: auto;
+  flex: 1;
+}
+
+.code-container pre {
+  margin: 0;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.copy-button {
+  width: 100%;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  border: none;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-button.copied {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Dark Mode Specific */
+[data-theme='dark'] .preview-container {
+  background: var(--background);
+}
+
+[data-theme='dark'] .code-scroll-wrapper {
+  background: var(--background);
+} 
