@@ -45,14 +45,43 @@ function generateGradientSVG({
 
   const gradientDef = createGradientFromColors(colors, gradientType, duration);
 
-  // 根据渐变类型调整滤镜效果
-  const filterEffect = gradientType === 'radial' ? 'url(#radialBlur)' : 'url(#smoothTransition)';
+  // 根据渐变类型选择合适的滤镜效果
+  let filterEffect = 'url(#smoothTransition)';
+  let additionalFilters = '';
+
+  switch (gradientType) {
+    case 'radial':
+    case 'circular':
+      filterEffect = 'url(#radialBlur)';
+      break;
+    case 'burst':
+    case 'pulse':
+      filterEffect = 'url(#energyEffect)';
+      break;
+    case 'spiral':
+    case 'conic':
+      filterEffect = 'url(#spiralEffect)';
+      break;
+    case 'wave':
+      filterEffect = 'url(#waveEffect)';
+      break;
+    case 'diamond':
+      filterEffect = 'url(#crystalEffect)';
+      break;
+    case 'reflection':
+      filterEffect = 'url(#reflectionEffect)';
+      break;
+    default:
+      filterEffect = 'url(#smoothTransition)';
+  }
 
   return `<?xml version="1.0" encoding="UTF-8"?>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
       width="854" height="${height}" viewBox="0 0 854 ${height}">
       <defs>
         ${gradientDef}
+        
+        <!-- Enhanced Filter Effects -->
         <filter id="softLight">
           <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
           <feColorMatrix in="blur" type="saturate" values="1.2" result="saturated"/>
@@ -72,6 +101,55 @@ function generateGradientSVG({
           <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
           <feColorMatrix type="saturate" values="1.3"/>
           <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="energyEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+          <feColorMatrix type="saturate" values="1.8"/>
+          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="spiralEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+          <feColorMatrix type="saturate" values="1.6"/>
+          <feTurbulence baseFrequency="0.01" numOctaves="2" result="spiral"/>
+          <feDisplacementMap in="SourceGraphic" in2="spiral" scale="3"/>
+        </filter>
+
+        <filter id="waveEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
+          <feColorMatrix type="saturate" values="1.4"/>
+          <feTurbulence baseFrequency="0.03 0.01" numOctaves="2" result="wave"/>
+          <feDisplacementMap in="SourceGraphic" in2="wave" scale="1.5"/>
+        </filter>
+
+        <filter id="crystalEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+          <feColorMatrix type="saturate" values="1.7"/>
+          <feSpecularLighting in="SourceGraphic" specularConstant="1.5" specularExponent="20" lighting-color="white">
+            <fePointLight x="427" y="${height/4}" z="100"/>
+          </feSpecularLighting>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="reflectionEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+          <feColorMatrix type="saturate" values="1.3"/>
+          <feOffset in="SourceGraphic" dx="0" dy="2" result="offset"/>
+          <feFlood flood-color="rgba(255,255,255,0.3)" result="white"/>
+          <feComposite in="white" in2="offset" operator="in" result="reflection"/>
+          <feMerge>
+            <feMergeNode in="SourceGraphic"/>
+            <feMergeNode in="reflection"/>
+          </feMerge>
+        </filter>
+
+        <!-- Text Shadow Effect -->
+        <filter id="textShadow">
+          <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
+          <feColorMatrix type="saturate" values="1.2"/>
         </filter>
       </defs>
       
@@ -96,13 +174,24 @@ function generateGradientSVG({
         x="427" 
         y="${height/2}"
         font-size="40"
-        font-family="Arial, sans-serif"
+        font-family="'Arial Black', Arial, sans-serif"
         font-weight="bold"
         text-anchor="middle"
         alignment-baseline="middle"
         fill="#ffffff"
-        filter="url(#softLight)"
-      >${text}</text>
+        filter="url(#textShadow)"
+      >
+        ${text}
+        <animate
+          attributeName="opacity"
+          values="0.9;1;0.9"
+          dur="4s"
+          repeatCount="indefinite"
+          calcMode="spline"
+          keyTimes="0;0.5;1"
+          keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
+        />
+      </text>
     </svg>`;
 }
 

@@ -25,8 +25,21 @@
 // gradientConfig.js
 const basicTemplates = require('../templates/basicTemplates');
 const prideTemplates = require('../templates/prideTemplates');
+const natureTemplates = require('../templates/natureTemplates');
+const techTemplates = require('../templates/techTemplates');
+const artTemplates = require('../templates/artTemplates');
+const emotionTemplates = require('../templates/emotionTemplates');
+const materialTemplates = require('../templates/materialTemplates');
 
-const templates = { ...basicTemplates, ...prideTemplates };
+const templates = { 
+  ...basicTemplates, 
+  ...prideTemplates,
+  ...natureTemplates,
+  ...techTemplates,
+  ...artTemplates,
+  ...emotionTemplates,
+  ...materialTemplates
+};
 
 function getTemplateConfig(template, defaultColor = '000000') {
   if (!template || !templates[template]) {
@@ -63,7 +76,7 @@ function validateConfig(config) {
   }
 
   // 验证渐变类型
-  const validGradientTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'radial'];
+  const validGradientTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'radial', 'conic', 'wave', 'spiral', 'diamond', 'burst', 'reflection', 'pulse'];
   if (!validGradientTypes.includes(config.gradientType)) {
     config.gradientType = defaultConfig.gradientType;
   }

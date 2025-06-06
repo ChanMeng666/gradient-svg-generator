@@ -56,7 +56,7 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
     </stop>`;
   }).join('');
 
-  let gradientAttributes, gradientAnimations;
+  let gradientAttributes, gradientAnimations, additionalDefs = '';
   const animationConfig = `dur="${animationDuration}" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"`;
 
   switch (gradientType) {
@@ -97,12 +97,78 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
         <animate attributeName="cy" values="45%;55%;45%" ${animationConfig} />`;
       break;
 
+    case 'conic':
+      // 使用多个径向渐变创建圆锥效果
+      additionalDefs = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+          ${stops}
+          <animateTransform attributeName="gradientTransform" type="rotate" 
+            values="0 50 50;360 50 50;0 50 50" ${animationConfig} />
+        </radialGradient>`;
+      return additionalDefs;
+
+    case 'wave':
+      // 创建波浪效果
+      gradientAttributes = 'x1="0%" y1="0%" x2="100%" y2="0%"';
+      gradientAnimations = `
+        <animate attributeName="x1" values="0%;50%;100%;50%;0%" ${animationConfig} />
+        <animate attributeName="y1" values="0%;30%;0%;-30%;0%" ${animationConfig} />
+        <animate attributeName="x2" values="100%;150%;200%;150%;100%" ${animationConfig} />
+        <animate attributeName="y2" values="0%;30%;0%;-30%;0%" ${animationConfig} />`;
+      break;
+
+    case 'spiral':
+      additionalDefs = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+          ${stops}
+          <animateTransform attributeName="gradientTransform" type="rotate" 
+            values="0 50 50;360 50 50;720 50 50" dur="${animationDuration}" repeatCount="indefinite" />
+          <animate attributeName="r" values="30%;70%;30%" ${animationConfig} />
+        </radialGradient>`;
+      return additionalDefs;
+
+    case 'diamond':
+      gradientAttributes = 'x1="50%" y1="0%" x2="50%" y2="100%"';
+      gradientAnimations = `
+        <animate attributeName="x1" values="20%;50%;80%;50%;20%" ${animationConfig} />
+        <animate attributeName="y1" values="20%;0%;20%;0%;20%" ${animationConfig} />
+        <animate attributeName="x2" values="80%;50%;20%;50%;80%" ${animationConfig} />
+        <animate attributeName="y2" values="80%;100%;80%;100%;80%" ${animationConfig} />`;
+      break;
+
+    case 'burst':
+      additionalDefs = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+          ${stops}
+          <animate attributeName="r" values="0%;80%;0%" ${animationConfig} />
+          <animate attributeName="cx" values="50%;40%;60%;50%" ${animationConfig} />
+          <animate attributeName="cy" values="50%;40%;60%;50%" ${animationConfig} />
+        </radialGradient>`;
+      return additionalDefs;
+
+    case 'reflection':
+      gradientAttributes = 'x1="0%" y1="0%" x2="0%" y2="100%"';
+      gradientAnimations = `
+        <animate attributeName="y1" values="0%;50%;100%;50%;0%" ${animationConfig} />
+        <animate attributeName="y2" values="100%;150%;200%;150%;100%" ${animationConfig} />`;
+      break;
+
+    case 'pulse':
+      additionalDefs = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+          ${stops}
+          <animate attributeName="r" values="20%;60%;20%" dur="2s" repeatCount="indefinite" />
+          <animate attributeName="fx" values="45%;55%;45%" ${animationConfig} />
+          <animate attributeName="fy" values="45%;55%;45%" ${animationConfig} />
+        </radialGradient>`;
+      return additionalDefs;
+
     default:
       gradientAttributes = 'x1="0%" y1="0%" x2="100%" y2="0%"';
       gradientAnimations = '';
   }
 
-  const isRadialGradient = gradientType === 'circular' || gradientType === 'radial';
+  const isRadialGradient = ['circular', 'radial', 'conic', 'spiral', 'burst', 'pulse'].includes(gradientType);
   const gradientElement = isRadialGradient ? 'radialGradient' : 'linearGradient';
 
   return `
