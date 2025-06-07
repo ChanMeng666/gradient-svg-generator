@@ -1,20 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import BasicSettings from '../components/BasicSettings';
 import TemplatesSection from '../components/TemplatesSection';
 import PreviewPanel from '../components/PreviewPanel';
 import { useTheme } from '../hooks/useTheme';
 import { useGradientConfig } from '../hooks/useGradientConfig';
+import { getUrlParams, applyUrlParamsToConfig, getTemplateConfig, getTemplateCategoryByName } from '../utils/templateUtils';
 
 export default function Settings() {
+  // Get URL parameters and create initial config
+  const urlParams = getUrlParams();
+  const initialConfig = applyUrlParamsToConfig(urlParams);
+  
   // Use custom hooks
   const { isDarkMode, setIsDarkMode } = useTheme();
-  const { config, setConfig, preview, markdownCode } = useGradientConfig();
+  const { config, setConfig, preview, markdownCode } = useGradientConfig(initialConfig);
   
   // Local state
   const [activeCategory, setActiveCategory] = useState('basic');
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [activeStep, setActiveStep] = useState(1);
+
+  // Handle URL parameters for template selection
+  useEffect(() => {
+    if (urlParams.template) {
+      const templateConfig = getTemplateConfig(urlParams.template);
+      if (templateConfig) {
+        setSelectedTemplate(templateConfig);
+        // Set the correct category for the template
+        const category = getTemplateCategoryByName(urlParams.template);
+        setActiveCategory(category);
+        // Update config with template settings
+        setConfig(prev => ({
+          ...prev,
+          template: templateConfig.name,
+          colors: templateConfig.colors || prev.colors,
+          gradientType: templateConfig.gradientType || prev.gradientType,
+          animationDuration: parseInt(templateConfig.animationDuration) || prev.animationDuration
+        }));
+        // If template is found, go directly to step 3 (Preview & Export)
+        setActiveStep(3);
+      }
+    }
+  }, [urlParams.template, setConfig]);
 
   const steps = [
     {

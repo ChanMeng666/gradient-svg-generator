@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const useGradientConfig = () => {
+export const useGradientConfig = (initialConfig = {}) => {
   const [config, setConfig] = useState({
     text: 'Hello World',
     color: '000000',
@@ -8,7 +8,8 @@ export const useGradientConfig = () => {
     template: '',
     gradientType: 'horizontal',
     animationDuration: 6,
-    colors: ['000000']
+    colors: ['000000'],
+    ...initialConfig
   });
 
   const [preview, setPreview] = useState('');

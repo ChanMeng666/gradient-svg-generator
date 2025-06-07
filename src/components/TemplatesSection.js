@@ -38,7 +38,10 @@ const TemplatesSection = ({
               setSelectedTemplate(template);
               setConfig(prev => ({
                 ...prev,
-                template: template.name
+                template: template.name,
+                colors: template.colors || prev.colors,
+                gradientType: template.gradientType || prev.gradientType,
+                animationDuration: parseInt(template.animationDuration) || prev.animationDuration
               }));
             }}
           >

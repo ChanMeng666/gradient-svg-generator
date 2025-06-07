@@ -26,10 +26,10 @@ export default function Home() {
   ];
 
   const examples = [
-    { text: "Welcome", template: "sunset" },
-    { text: "GitHub", template: "ocean" },
-    { text: "Design", template: "rainbow" },
-    { text: "Code", template: "galaxy" }
+    { text: "Welcome", template: "sunset-gold" },
+    { text: "GitHub", template: "ocean-heart" },
+    { text: "Design", template: "pride-rainbow" },
+    { text: "Code", template: "midnight-galaxy" }
   ];
 
   return (
@@ -74,16 +74,45 @@ export default function Home() {
           </div>
 
           <div className="hero-preview">
-            <div className="preview-gallery">
-              {examples.map((example, index) => (
-                <div key={index} className="preview-item" style={{ animationDelay: `${index * 0.2}s` }}>
-                  <img 
-                    src={`/api/svg?text=${example.text}&template=${example.template}`} 
-                    alt={example.text}
-                    className="preview-image"
-                  />
-                </div>
-              ))}
+            <div className="hero-showcase">
+              <div className="showcase-header">
+                <h3 className="showcase-title">Live Examples</h3>
+                <p className="showcase-subtitle">See the magic in action</p>
+              </div>
+              
+              <div className="preview-gallery-enhanced">
+                {examples.map((example, index) => (
+                  <Link 
+                    key={index} 
+                    href={`/settings?template=${example.template}&text=${example.text}`}
+                    className="preview-card" 
+                    style={{ animationDelay: `${index * 0.15}s` }}
+                  >
+                    <div className="preview-image-container">
+                      <img 
+                        src={`/api/svg?text=${example.text}&template=${example.template}`} 
+                        alt={example.text}
+                        className="preview-image-enhanced"
+                      />
+                      <div className="preview-overlay">
+                        <div className="preview-label">{example.text}</div>
+                        <div className="preview-action">Try This Style</div>
+                      </div>
+                    </div>
+                    <div className="template-badge">
+                      {example.template.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              
+              <div className="showcase-cta">
+                <p className="showcase-hint">Click any example to try it yourself</p>
+                <Link href="/settings" className="try-now-btn">
+                  <span>Create Your Own</span>
+                  <span className="btn-arrow">✨</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
