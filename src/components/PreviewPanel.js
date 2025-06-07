@@ -17,13 +17,11 @@ const PreviewPanel = ({ preview, markdownCode }) => {
             <span>👁️</span>
             <h2>Preview</h2>
           </div>
-          <p>Live preview of your gradient SVG</p>
+          <p>Live preview of your gradient SVG (as it appears in GitHub README)</p>
         </div>
 
-        <div className="preview-container">
-          <div className="preview-image-wrapper">
-            <img src={preview} alt="Preview" className="preview-image" />
-          </div>
+        <div className="preview-display">
+          <img src={preview} alt="Preview" className="preview-svg-clean" />
         </div>
       </section>
 
