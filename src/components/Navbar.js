@@ -77,18 +77,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
         </div>
       </div>
 
-      {/* Breadcrumb navigation (only show on settings page) */}
-      {isSettingsPage && (
-        <div className="breadcrumb-container">
-          <div className="breadcrumb">
-            <Link href="/" className="breadcrumb-link">
-              Home
-            </Link>
-            <span className="breadcrumb-separator">/</span>
-            <span className="breadcrumb-current">Gradient Generator</span>
-          </div>
-        </div>
-      )}
     </nav>
   );
 };
