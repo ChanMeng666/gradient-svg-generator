@@ -29,14 +29,41 @@ const TemplatesSection = ({
             key={template.name}
             className={`template-card ${selectedTemplate?.name === template.name ? 'active' : ''}`}
             onClick={() => {
+              console.log('🎨 TemplatesSection: Template selected', {
+                templateName: template.name,
+                templateData: {
+                  colors: template.colors,
+                  gradientType: template.gradientType,
+                  animationDuration: template.animationDuration
+                }
+              });
+
               setSelectedTemplate(template);
-              setConfig(prev => ({
-                ...prev,
+              
+              const newConfig = {
+                ...prev => prev,
                 template: template.name,
                 colors: template.colors || prev.colors,
                 gradientType: template.gradientType || prev.gradientType,
                 animationDuration: parseInt(template.animationDuration) || prev.animationDuration
-              }));
+              };
+
+              console.log('🎨 TemplatesSection: Setting new config', newConfig);
+              
+              setConfig(prev => {
+                const updatedConfig = {
+                  ...prev,
+                  template: template.name,
+                  colors: template.colors || prev.colors,
+                  gradientType: template.gradientType || prev.gradientType,
+                  animationDuration: parseInt(template.animationDuration) || prev.animationDuration
+                };
+                console.log('🎨 TemplatesSection: Config update function called', {
+                  prevConfig: prev,
+                  newConfig: updatedConfig
+                });
+                return updatedConfig;
+              });
             }}
           >
             <div className="template-preview">

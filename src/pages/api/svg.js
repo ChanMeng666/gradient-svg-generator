@@ -3,6 +3,12 @@ const generateGradientSVG = require('../../gradientGenerator');
 
 export default function handler(req, res) {
   try {
+    console.log('🚀 API: SVG generation request received', {
+      query: req.query,
+      url: req.url,
+      timestamp: new Date().toISOString()
+    });
+
     // Get basic parameters
     const {
       text,
@@ -24,6 +30,16 @@ export default function handler(req, res) {
     if (colors.length === 0) {
       colors.push('000000');
     }
+
+    console.log('🚀 API: Parsed parameters', {
+      text,
+      height,
+      template,
+      gradientType,
+      duration,
+      colors,
+      hasTemplate: !!template
+    });
 
     if (!text) {
       // If no text parameter, return a default SVG

@@ -16,7 +16,30 @@ export const useGradientConfig = (initialConfig = {}) => {
   const [markdownCode, setMarkdownCode] = useState('');
 
   useEffect(() => {
-    const previewUrl = `/api/svg?text=${encodeURIComponent(config.text)}&color=${config.color}&height=${config.height}&gradientType=${config.gradientType}&duration=${config.animationDuration}s${config.colors.map((c, i) => `&color${i}=${c}`).join('')}${config.template ? `&template=${config.template}` : ''}`;
+    console.log('🔄 useGradientConfig: Config updated', {
+      text: config.text,
+      height: config.height,
+      gradientType: config.gradientType,
+      animationDuration: config.animationDuration,
+      colors: config.colors,
+      template: config.template,
+      timestamp: new Date().toISOString()
+    });
+
+    const previewUrl = `/api/svg?text=${encodeURIComponent(config.text)}&height=${config.height}&gradientType=${config.gradientType}&duration=${config.animationDuration}s${config.colors.map((c, i) => `&color${i}=${c}`).join('')}${config.template ? `&template=${config.template}` : ''}`;
+    
+    console.log('📡 useGradientConfig: Generated preview URL', {
+      previewUrl,
+      parsedParams: {
+        text: config.text,
+        height: config.height,
+        gradientType: config.gradientType,
+        duration: `${config.animationDuration}s`,
+        colors: config.colors,
+        template: config.template || 'none'
+      }
+    });
+
     setPreview(previewUrl);
     const fullUrl = `https://gradient-svg-generator.vercel.app${previewUrl}`;
     setMarkdownCode(`![${config.text}](${fullUrl})`);

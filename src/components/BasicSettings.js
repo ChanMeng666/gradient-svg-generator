@@ -5,10 +5,14 @@ import { GRADIENT_TYPES } from '../constants/gradientTypes';
 const BasicSettings = ({ config, setConfig }) => {
   // Color handling functions
   const handleColorUpdate = (index, newColor) => {
+    console.log('🎨 BasicSettings: Color update requested', { index, newColor });
     setConfig(prev => {
+      console.log('🎨 BasicSettings: Current config before color update', prev);
       const newColors = [...prev.colors];
       newColors[index] = newColor;
-      return { ...prev, colors: newColors };
+      const newConfig = { ...prev, colors: newColors };
+      console.log('🎨 BasicSettings: New config after color update', newConfig);
+      return newConfig;
     });
   };
 
@@ -38,7 +42,15 @@ const BasicSettings = ({ config, setConfig }) => {
         </label>
         <input 
           value={config.text}
-          onChange={e => setConfig({...config, text: e.target.value})}
+          onChange={e => {
+            console.log('📝 BasicSettings: Text update requested', e.target.value);
+            setConfig(prev => {
+              console.log('📝 BasicSettings: Current config before text update', prev);
+              const newConfig = {...prev, text: e.target.value};
+              console.log('📝 BasicSettings: New config after text update', newConfig);
+              return newConfig;
+            });
+          }}
           placeholder="Enter your text here"
           className="text-input"
         />
@@ -82,7 +94,15 @@ const BasicSettings = ({ config, setConfig }) => {
         <input 
           type="range"
           value={config.height}
-          onChange={e => setConfig({...config, height: e.target.value})}
+          onChange={e => {
+            console.log('📏 BasicSettings: Height update requested', e.target.value);
+            setConfig(prev => {
+              console.log('📏 BasicSettings: Current config before height update', prev);
+              const newConfig = {...prev, height: e.target.value};
+              console.log('📏 BasicSettings: New config after height update', newConfig);
+              return newConfig;
+            });
+          }}
           min="30"
           max="300"
           step="10"
@@ -108,7 +128,15 @@ const BasicSettings = ({ config, setConfig }) => {
             <button
               key={type.value}
               className={`gradient-type-button ${config.gradientType === type.value ? 'active' : ''}`}
-              onClick={() => setConfig(prev => ({ ...prev, gradientType: type.value }))}
+              onClick={() => {
+                console.log('🌈 BasicSettings: Gradient type update requested', type.value);
+                setConfig(prev => {
+                  console.log('🌈 BasicSettings: Current config before gradient type update', prev);
+                  const newConfig = { ...prev, gradientType: type.value };
+                  console.log('🌈 BasicSettings: New config after gradient type update', newConfig);
+                  return newConfig;
+                });
+              }}
             >
               <span>{type.label}</span>
             </button>
@@ -128,7 +156,15 @@ const BasicSettings = ({ config, setConfig }) => {
         <input
           type="range"
           value={config.animationDuration}
-          onChange={e => setConfig(prev => ({ ...prev, animationDuration: parseInt(e.target.value) }))}
+          onChange={e => {
+            console.log('⏱️ BasicSettings: Animation duration update requested', e.target.value);
+            setConfig(prev => {
+              console.log('⏱️ BasicSettings: Current config before animation duration update', prev);
+              const newConfig = { ...prev, animationDuration: parseInt(e.target.value) };
+              console.log('⏱️ BasicSettings: New config after animation duration update', newConfig);
+              return newConfig;
+            });
+          }}
           min="1"
           max="20"
           step="1"

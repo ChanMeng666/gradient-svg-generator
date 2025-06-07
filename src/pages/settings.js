@@ -86,7 +86,33 @@ export default function Settings() {
                 <div 
                   key={approach.id}
                   className={`approach-card ${selectedApproach === approach.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedApproach(approach.id)}
+                  onClick={() => {
+                    if (approach.id === 'custom') {
+                      console.log('🔄 Settings: Switching to custom mode via card click');
+                      setSelectedApproach('custom');
+                      
+                      // Clear template when switching to custom mode to allow user customization
+                      setConfig(prev => {
+                        console.log('🔄 Settings: Current config before switch via card', prev);
+                        
+                        // Create a new config with template cleared and current values preserved
+                        const customConfig = {
+                          text: prev.text,
+                          height: prev.height,
+                          colors: [...prev.colors], // Create new array to ensure React detects the change
+                          gradientType: prev.gradientType,
+                          animationDuration: prev.animationDuration,
+                          template: '', // Clear template to disable template mode
+                          color: prev.color // Keep backward compatibility
+                        };
+                        
+                        console.log('🔄 Settings: New custom config via card', customConfig);
+                        return customConfig;
+                      });
+                    } else {
+                      setSelectedApproach(approach.id);
+                    }
+                  }}
                 >
                   <div className="approach-header">
                     <div className="approach-icon">{approach.icon}</div>
@@ -167,7 +193,29 @@ export default function Settings() {
             <div className="approach-actions">
               <button 
                 className="switch-approach-btn"
-                onClick={() => setSelectedApproach('custom')}
+                onClick={() => {
+                  console.log('🔄 Settings: Switching to custom mode');
+                  setSelectedApproach('custom');
+                  
+                  // Clear template and ensure config is properly reset for custom mode
+                  setConfig(prev => {
+                    console.log('🔄 Settings: Current config before switch', prev);
+                    
+                    // Create a new config with template cleared and current values preserved
+                    const customConfig = {
+                      text: prev.text,
+                      height: prev.height,
+                      colors: [...prev.colors], // Create new array to ensure React detects the change
+                      gradientType: prev.gradientType,
+                      animationDuration: prev.animationDuration,
+                      template: '', // Clear template to disable template mode
+                      color: prev.color // Keep backward compatibility
+                    };
+                    
+                    console.log('🔄 Settings: New custom config', customConfig);
+                    return customConfig;
+                  });
+                }}
               >
                 ← Switch to Custom Creation
               </button>
