@@ -128,30 +128,57 @@ export default function Home() {
           <div className="footer-content">
             <div className="footer-brand">
               <span className="footer-logo">🎨</span>
-              <span>Gradient SVG Generator</span>
+              <div className="footer-brand-content">
+                <span className="footer-brand-title">Gradient SVG Generator</span>
+                <span className="footer-brand-subtitle">Create Beautiful Gradients</span>
+              </div>
             </div>
             
-            <div className="footer-links">
-              <a href="https://github.com/ChanMeng666/gradient-svg-generator" target="_blank" rel="noopener noreferrer">
-                GitHub
-              </a>
-              <Link href="/settings">
-                Generator
-              </Link>
+            <div className="footer-sections">
+              <div className="footer-section">
+                <h4 className="footer-section-title">🚀 Get Started</h4>
+                <div className="footer-section-links">
+                  <Link href="/settings">
+                    Create Gradient
+                  </Link>
+                  <a href="https://github.com/ChanMeng666/gradient-svg-generator/blob/main/README.md" target="_blank" rel="noopener noreferrer">
+                    Documentation
+                  </a>
+                </div>
+              </div>
+              
+              <div className="footer-section">
+                <h4 className="footer-section-title">🔗 Connect</h4>
+                <div className="footer-section-links">
+                  <a href="https://github.com/ChanMeng666/gradient-svg-generator" target="_blank" rel="noopener noreferrer">
+                    ⭐ GitHub
+                  </a>
+                  <a href="https://github.com/ChanMeng666/gradient-svg-generator/issues" target="_blank" rel="noopener noreferrer">
+                    🐛 Report Issue
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
           
           <div className="footer-bottom">
-            <p>
-              Made with 💛 by{' '}
-              <a 
-                href="https://github.com/ChanMeng666" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                Chan Meng
-              </a>
-            </p>
+            <div className="footer-bottom-content">
+              <p className="footer-copyright">
+                Made with 💛 by{' '}
+                <a 
+                  href="https://github.com/ChanMeng666" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="footer-author"
+                >
+                  Chan Meng
+                </a>
+              </p>
+              <p className="footer-status">
+                <span className="footer-status-indicator">●</span>
+                <span>Open Source & Free Forever</span>
+              </p>
+            </div>
           </div>
         </div>
       </footer>
