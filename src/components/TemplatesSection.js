@@ -10,12 +10,12 @@ const TemplatesSection = ({
 }) => {
   return (
     <section className="templates-section">
-      <div className="section-header">
+      {/* <div className="section-header">
         <div className="header-content">
           <span>📄</span>
           <h2>Templates</h2>
         </div>
-      </div>
+      </div> */}
       
       <div className="category-tabs">
         {Object.entries(templateCategories).map(([key, category]) => (
