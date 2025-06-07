@@ -51,8 +51,11 @@ const BasicSettings = ({ config, setConfig }) => {
             <span>🎨</span>
             <span>Gradient Colors</span>
           </div>
-          <span className="tooltip-icon" title="Add multiple colors to create complex gradients">ℹ️</span>
+          <span className="tooltip-icon" title="Click the + button to add more colors, or the - button to remove colors. Create stunning multi-color gradients!">ℹ️</span>
         </label>
+        <div className="color-picker-description">
+          <p>Use the <strong>+ Add</strong> button to add more colors, or the <strong>- Remove</strong> button to delete colors from your gradient.</p>
+        </div>
         <div className="multi-color-picker">
           {config.colors.map((color, index) => (
             <ColorRow
