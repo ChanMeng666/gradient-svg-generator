@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Home() {
   const features = [
@@ -33,8 +34,12 @@ export default function Home() {
   ];
 
   return (
-    <div className="landing-page">
-      {/* Hero Section */}
+    <>
+      <Head>
+        <title>Gradient SVG Generator</title>
+      </Head>
+      <div className="landing-page">
+        {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-container">
           <div className="hero-content">
@@ -156,7 +161,13 @@ export default function Home() {
         <div className="footer-container">
           <div className="footer-content">
             <div className="footer-brand">
-              <span className="footer-logo">🎨</span>
+              <img 
+                src="/gradient-svg-generator.svg" 
+                alt="Gradient SVG Generator Logo" 
+                className="footer-logo"
+                width="32" 
+                height="32"
+              />
               <div className="footer-brand-content">
                 <span className="footer-brand-title">Gradient SVG Generator</span>
                 <span className="footer-brand-subtitle">Create Beautiful Gradients</span>
@@ -212,5 +223,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </>
   );
 } 

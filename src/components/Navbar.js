@@ -13,7 +13,13 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
         {/* Left side Logo and navigation */}
         <div className="nav-left">
           <Link href="/" className="logo-link">
-            <span className="logo-icon">🎨</span>
+            <img 
+              src="/gradient-svg-generator.svg" 
+              alt="Gradient SVG Generator Logo" 
+              className="logo-icon"
+              width="32" 
+              height="32"
+            />
             <span className="logo-text">Gradient SVG Generator</span>
           </Link>
 

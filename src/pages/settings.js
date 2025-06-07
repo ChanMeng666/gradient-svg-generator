@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import BasicSettings from '../components/BasicSettings';
 import TemplatesSection from '../components/TemplatesSection';
@@ -62,8 +63,12 @@ export default function Settings() {
   ];
 
   return (
-    <div className={`container ${isDarkMode ? 'dark' : ''}`}>
-      <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+    <>
+      <Head>
+        <title>Settings - Gradient SVG Generator</title>
+      </Head>
+      <div className={`container ${isDarkMode ? 'dark' : ''}`}>
+        <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
       
       {/* Hero section */}
       <div className="guide-section">
@@ -227,5 +232,6 @@ export default function Settings() {
         <PreviewPanel preview={preview} markdownCode={markdownCode} />
       </div>
     </div>
+    </>
   );
 } 
