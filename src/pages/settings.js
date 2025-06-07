@@ -174,42 +174,6 @@ export default function Settings() {
             </div>
           </div>
 
-          {/* Export instructions */}
-          {/* <div className="export-section">
-            <div className="section-header">
-              <div className="header-content">
-                <span className="section-icon">📋</span>
-                <div>
-                  <h2>Export Your Gradient</h2>
-                  <p>Your gradient is ready! Use the preview panel to copy the code</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="export-guide">
-              <div className="guide-item">
-                <span className="guide-item-icon">👁️</span>
-                <div>
-                  <h3>Live Preview</h3>
-                  <p>See your gradient in real-time as you make changes</p>
-                </div>
-              </div>
-              <div className="guide-item">
-                <span className="guide-item-icon">📝</span>
-                <div>
-                  <h3>Ready-to-Use Code</h3>
-                  <p>Copy the generated Markdown code to use in your projects</p>
-                </div>
-              </div>
-              <div className="guide-item">
-                <span className="guide-item-icon">🔄</span>
-                <div>
-                  <h3>Instant Updates</h3>
-                  <p>All modifications are automatically reflected in the output</p>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
 
         <PreviewPanel preview={preview} markdownCode={markdownCode} />
