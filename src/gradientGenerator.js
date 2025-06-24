@@ -51,16 +51,20 @@ function generateGradientSVG({
 
   switch (gradientType) {
     case 'radial':
-    case 'circular':
       filterEffect = 'url(#radialBlur)';
+      break;
+    case 'circular':
+      filterEffect = 'url(#energyEffect)';
       break;
     case 'burst':
     case 'pulse':
       filterEffect = 'url(#energyEffect)';
       break;
     case 'spiral':
-    case 'conic':
       filterEffect = 'url(#spiralEffect)';
+      break;
+    case 'conic':
+      filterEffect = 'url(#crystalEffect)';
       break;
     case 'wave':
       filterEffect = 'url(#waveEffect)';

@@ -76,13 +76,22 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
       break;
 
     case 'circular':
+      // Circular gradient with pulsing center point
+      additionalDefs = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
+          ${stops}
+          <animate attributeName="r" values="20%;70%;120%;70%;20%" ${animationConfig} />
+          <animate attributeName="cx" values="50%;30%;70%;50%;50%" ${animationConfig} />
+          <animate attributeName="cy" values="50%;30%;70%;50%;50%" ${animationConfig} />
+        </radialGradient>`;
+      return additionalDefs;
+
     case 'radial':
+      // Traditional radial gradient with smooth expansion
       additionalDefs = `
         <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
           ${stops}
           <animate attributeName="r" values="30%;70%;100%;70%;30%" ${animationConfig} />
-          <animate attributeName="cx" values="30%;50%;70%;50%;30%" ${animationConfig} />
-          <animate attributeName="cy" values="30%;50%;70%;50%;30%" ${animationConfig} />
         </radialGradient>`;
       return additionalDefs;
 
@@ -103,32 +112,45 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
       break;
 
     case 'conic':
-      // Use multiple radial gradients to create conic effect
+      // Conic gradient effect using sweeping linear gradient
+      const conicStops = colorsCopy.map((color, index) => {
+        const offset = (index / (colorsCopy.length - 1)) * 100;
+        return `<stop offset="${offset}%" stop-color="#${color}" />`;
+      }).join('');
+      
       additionalDefs = `
-        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
-          ${stops}
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox">
+          ${conicStops}
           <animateTransform attributeName="gradientTransform" type="rotate" 
-            values="0 50 50;360 50 50;0 50 50" ${animationConfig} />
-        </radialGradient>`;
+            values="0 50 50;45 50 50;90 50 50;135 50 50;180 50 50;225 50 50;270 50 50;315 50 50;360 50 50" ${animationConfig} />
+        </linearGradient>`;
       return additionalDefs;
 
     case 'wave':
-      // Create wave effect
-      gradientAttributes = 'x1="0%" y1="0%" x2="100%" y2="0%"';
+      // Enhanced wave effect with sinusoidal movement
+      gradientAttributes = 'x1="0%" y1="50%" x2="100%" y2="50%"';
       gradientAnimations = `
-        <animate attributeName="x1" values="0%;50%;100%;50%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="0%;30%;0%;-30%;0%" ${animationConfig} />
-        <animate attributeName="x2" values="100%;150%;200%;150%;100%" ${animationConfig} />
-        <animate attributeName="y2" values="0%;30%;0%;-30%;0%" ${animationConfig} />`;
+        <animate attributeName="x1" values="0%;25%;50%;75%;100%;75%;50%;25%;0%" ${animationConfig} />
+        <animate attributeName="y1" values="50%;20%;50%;80%;50%;20%;50%;80%;50%" ${animationConfig} />
+        <animate attributeName="x2" values="100%;125%;150%;175%;200%;175%;150%;125%;100%" ${animationConfig} />
+        <animate attributeName="y2" values="50%;80%;50%;20%;50%;80%;50%;20%;50%" ${animationConfig} />`;
       break;
 
     case 'spiral':
+      // Enhanced spiral effect with both rotation and radius change
+      const spiralStops = colorsCopy.map((color, index) => {
+        const offset = (index / (colorsCopy.length - 1)) * 100;
+        return `<stop offset="${offset}%" stop-color="#${color}" />`;
+      }).join('');
+      
       additionalDefs = `
         <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
-          ${stops}
+          ${spiralStops}
           <animateTransform attributeName="gradientTransform" type="rotate" 
-            values="0 50 50;360 50 50;720 50 50" dur="${animationDuration}" repeatCount="indefinite" />
-          <animate attributeName="r" values="30%;70%;30%" ${animationConfig} />
+            values="0 50 50;120 50 50;240 50 50;360 50 50" ${animationConfig} />
+          <animate attributeName="r" values="20%;80%;40%;100%;20%" ${animationConfig} />
+          <animate attributeName="cx" values="50%;40%;60%;45%;55%;50%" ${animationConfig} />
+          <animate attributeName="cy" values="50%;60%;40%;55%;45%;50%" ${animationConfig} />
         </radialGradient>`;
       return additionalDefs;
 
