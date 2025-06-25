@@ -83,14 +83,38 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
       break;
 
     case 'circular':
-      // Circular gradient with dynamic center movement and pulsing
+      // Multiple circles as clip-path mask
       gradientDef = `
         <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
           ${stops}
-          <animate attributeName="r" values="30%;90%;130%;70%;30%" ${animationConfig} />
-          <animate attributeName="cx" values="50%;20%;80%;35%;65%;50%" ${animationConfig} />
-          <animate attributeName="cy" values="50%;20%;80%;65%;35%;50%" ${animationConfig} />
-        </radialGradient>`;
+          <animate attributeName="r" values="50%;90%;70%;110%;50%" ${animationConfig} />
+          <animate attributeName="cx" values="50%;30%;70%;20%;80%;50%" ${animationConfig} />
+          <animate attributeName="cy" values="50%;70%;30%;80%;20%;50%" ${animationConfig} />
+        </radialGradient>
+        <clipPath id="circles-clip">
+          <circle cx="150" cy="60" r="45">
+            <animate attributeName="r" values="35;55;35" ${animationConfig} />
+            <animate attributeName="cy" values="60;40;80;60" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="300" cy="60" r="40">
+            <animate attributeName="r" values="30;50;30" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+            <animate attributeName="cy" values="60;80;40;60" dur="${parseFloat(animationDuration) * 1.4}s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="427" cy="60" r="50">
+            <animate attributeName="r" values="40;60;40" dur="${parseFloat(animationDuration) * 1.1}s" repeatCount="indefinite" />
+            <animate attributeName="cy" values="60;35;85;60" ${animationConfig} />
+          </circle>
+          <circle cx="554" cy="60" r="42">
+            <animate attributeName="r" values="32;52;32" dur="${parseFloat(animationDuration) * 0.9}s" repeatCount="indefinite" />
+            <animate attributeName="cy" values="60;75;45;60" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="704" cy="60" r="38">
+            <animate attributeName="r" values="28;48;28" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+            <animate attributeName="cy" values="60;50;70;60" dur="${parseFloat(animationDuration) * 0.7}s" repeatCount="indefinite" />
+          </circle>
+        </clipPath>`;
+      hasClipPath = true;
+      clipPathId = 'circles-clip';
       break;
 
     case 'radial':
@@ -199,7 +223,7 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
       break;
 
     case 'lightning':
-      // Improved lightning bolt shape with multiple bolts
+      // Lightning bolt shapes as clip-path mask
       gradientDef = `
         <linearGradient id="gradient" x1="20%" y1="0%" x2="80%" y2="100%">
           ${stops}
@@ -207,22 +231,26 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
           <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
           <animate attributeName="x2" values="80%;20%;80%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
           <animate attributeName="y2" values="100%;0%;100%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
-        </linearGradient>`;
-      additionalElements = `
-        <g fill="url(#gradient)" opacity="0.9">
-          <polygon points="150,15 165,15 135,50 150,50 120,95 140,65 155,65 185,30 170,30 200,15 185,45 170,45">
+        </linearGradient>
+        <clipPath id="lightning-clip">
+          <polygon points="130,15 145,15 115,50 130,50 100,95 120,65 135,65 165,30 150,30 180,15 165,45 150,45">
             <animate attributeName="opacity" values="1;0.3;1" dur="${parseFloat(animationDuration) / 3}s" repeatCount="indefinite" />
           </polygon>
-          <polygon points="350,20 365,20 335,55 350,55 320,100 340,70 355,70 385,35 370,35 400,20 385,50 370,50">
+          <polygon points="280,20 295,20 265,55 280,55 250,100 270,70 285,70 315,35 300,35 330,20 315,50 300,50">
             <animate attributeName="opacity" values="0.8;0.2;0.8" dur="${parseFloat(animationDuration) / 4}s" repeatCount="indefinite" begin="0.5s" />
           </polygon>
-          <polygon points="550,10 565,10 535,45 550,45 520,90 540,60 555,60 585,25 570,25 600,10 585,40 570,40">
+          <polygon points="450,10 465,10 435,45 450,45 420,90 440,60 455,60 485,25 470,25 500,10 485,40 470,40">
             <animate attributeName="opacity" values="1;0.4;1" dur="${parseFloat(animationDuration) / 2.5}s" repeatCount="indefinite" begin="1s" />
           </polygon>
-          <polygon points="750,25 765,25 735,60 750,60 720,105 740,75 755,75 785,40 770,40 800,25 785,55 770,55">
+          <polygon points="620,25 635,25 605,60 620,60 590,105 610,75 625,75 655,40 640,40 670,25 655,55 640,55">
             <animate attributeName="opacity" values="0.9;0.1;0.9" dur="${parseFloat(animationDuration) / 3.5}s" repeatCount="indefinite" begin="1.5s" />
           </polygon>
-        </g>`;
+          <polygon points="770,18 785,18 755,53 770,53 740,98 760,68 775,68 805,33 790,33 820,18 805,48 790,48">
+            <animate attributeName="opacity" values="1;0.2;1" dur="${parseFloat(animationDuration) / 4}s" repeatCount="indefinite" begin="2s" />
+          </polygon>
+        </clipPath>`;
+      hasClipPath = true;
+      clipPathId = 'lightning-clip';
       break;
 
     case 'galaxy':
@@ -322,7 +350,7 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
       break;
 
     case 'wave':
-      // Enhanced wave effect with multiple wave layers
+      // Wave pattern as clip-path mask
       gradientDef = `
         <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
           ${stops}
@@ -330,11 +358,23 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
           <animate attributeName="y1" values="50%;30%;70%;20%;80%;50%" ${animationConfig} />
           <animate attributeName="x2" values="100%;120%;80%;110%;60%;100%" ${animationConfig} />
           <animate attributeName="y2" values="50%;70%;30%;80%;20%;50%" ${animationConfig} />
-        </linearGradient>`;
+        </linearGradient>
+        <clipPath id="wave-clip">
+          <path d="M0,60 Q100,20 200,60 T400,60 T600,60 T854,60 L854,90 Q600,70 400,90 T200,90 T0,90 Z">
+            <animateTransform attributeName="transform" type="translate" 
+              values="0,0;-100,0;0,0" dur="${parseFloat(animationDuration) * 2}s" repeatCount="indefinite" />
+          </path>
+          <path d="M0,50 Q150,80 300,50 T600,50 T854,50 L854,80 Q600,60 300,80 T0,80 Z">
+            <animateTransform attributeName="transform" type="translate" 
+              values="0,0;100,0;0,0" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          </path>
+        </clipPath>`;
+      hasClipPath = true;
+      clipPathId = 'wave-clip';
       break;
 
     case 'zigzag':
-      // ZigZag pattern gradient
+      // ZigZag wave pattern as clip-path mask
       gradientDef = `
         <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
           ${stops}
@@ -342,25 +382,44 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
           <animate attributeName="y1" values="0%;100%;0%" ${animationConfig} />
           <animate attributeName="x2" values="100%;0%;100%" ${animationConfig} />
           <animate attributeName="y2" values="100%;0%;100%" ${animationConfig} />
-        </linearGradient>`;
+        </linearGradient>
+        <clipPath id="zigzag-clip">
+          <polygon points="0,60 50,20 100,80 150,30 200,70 250,25 300,75 350,35 400,65 450,25 500,75 550,30 600,70 650,25 700,75 750,35 800,65 854,30 854,90 800,90 750,90 700,90 650,90 600,90 550,90 500,90 450,90 400,90 350,90 300,90 250,90 200,90 150,90 100,90 50,90 0,90">
+            <animateTransform attributeName="transform" type="translate" 
+              values="0,0;-50,0;0,0" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+          </polygon>
+        </clipPath>`;
+      hasClipPath = true;
+      clipPathId = 'zigzag-clip';
       break;
 
     case 'ripple':
-      // Ripple effect with multiple concentric circles
+      // Ripple circles as clip-path mask
       gradientDef = `
-        <radialGradient id="gradient" cx="50%" cy="50%" r="30%">
+        <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
           ${stops}
-          <animate attributeName="r" values="10%;50%;80%;10%" ${animationConfig} />
-        </radialGradient>`;
-      additionalElements = `
-        <circle cx="427" cy="60" r="20" fill="none" stroke="url(#gradient)" stroke-width="2" opacity="0.3">
-          <animate attributeName="r" values="10;50;80;10" ${animationConfig} />
-          <animate attributeName="opacity" values="0.8;0.3;0;0.8" ${animationConfig} />
-        </circle>
-        <circle cx="427" cy="60" r="30" fill="none" stroke="url(#gradient)" stroke-width="1" opacity="0.2">
-          <animate attributeName="r" values="20;60;90;20" ${animationConfig} begin="1s" />
-          <animate attributeName="opacity" values="0.6;0.2;0;0.6" ${animationConfig} begin="1s" />
-        </circle>`;
+          <animate attributeName="r" values="30%;80%;30%" ${animationConfig} />
+        </radialGradient>
+        <clipPath id="ripple-clip">
+          <circle cx="427" cy="60" r="100">
+            <animate attributeName="r" values="80;120;80" ${animationConfig} />
+            <animate attributeName="opacity" values="0.8;0.3;0.8" ${animationConfig} />
+          </circle>
+          <circle cx="427" cy="60" r="70">
+            <animate attributeName="r" values="60;90;60" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" begin="0.5s" />
+            <animate attributeName="opacity" values="0.9;0.4;0.9" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" begin="0.5s" />
+          </circle>
+          <circle cx="427" cy="60" r="40">
+            <animate attributeName="r" values="30;60;30" dur="${parseFloat(animationDuration) * 0.6}s" repeatCount="indefinite" begin="1s" />
+            <animate attributeName="opacity" values="1;0.5;1" dur="${parseFloat(animationDuration) * 0.6}s" repeatCount="indefinite" begin="1s" />
+          </circle>
+          <circle cx="427" cy="60" r="20">
+            <animate attributeName="r" values="15;35;15" dur="${parseFloat(animationDuration) * 0.4}s" repeatCount="indefinite" begin="1.5s" />
+            <animate attributeName="opacity" values="1;0.6;1" dur="${parseFloat(animationDuration) * 0.4}s" repeatCount="indefinite" begin="1.5s" />
+          </circle>
+        </clipPath>`;
+      hasClipPath = true;
+      clipPathId = 'ripple-clip';
       break;
 
     default:
