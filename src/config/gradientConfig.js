@@ -103,9 +103,8 @@ function validateConfig(config) {
     config.colors = defaultConfig.colors;
   }
 
-  // Validate gradient type
-  const validGradientTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'radial', 'conic', 'wave', 'spiral', 'diamond', 'burst', 'reflection', 'pulse', 'star', 'heart', 'zigzag', 'ripple', 'galaxy', 'lightning', 'luminance', 'rainbow', 'textBox', 'glitch', 'typewriter'];
-  if (!validGradientTypes.includes(config.gradientType)) {
+  // Validate gradient type - use GRADIENT_TYPES array for consistency
+  if (!GRADIENT_TYPES.includes(config.gradientType)) {
     config.gradientType = defaultConfig.gradientType;
   }
 
@@ -121,13 +120,30 @@ function validateConfig(config) {
 }
 
 const GRADIENT_TYPES = [
-  'linear',
+  // Basic gradient types
+  'horizontal',
+  'vertical',
+  'diagonal',
+  'circular',
   'radial',
   'conic',
+  'wave',
+  'spiral',
   'diamond',
+  'burst',
+  'reflection',
+  'pulse',
+  'star',
+  'heart',
+  'zigzag',
+  'ripple',
+  'galaxy',
+  'lightning',
+  'linear',
   'reflected',
   'square',
   'ellipse',
+  // Text effect types
   'luminance',
   'rainbow',
   'textBox',
@@ -150,7 +166,6 @@ const GRADIENT_TYPES = [
   'vintage',
   // Luxury Series
   'goldFoil',
-  'diamond',
   'marble',
   'platinum',
   'roseGold',
@@ -163,7 +178,6 @@ const GRADIENT_TYPES = [
   'aurora',
   'oceanWaves',
   'forest',
-  'lightning',
   'mountainMist',
   // Gaming Series
   'pixelArt',
@@ -173,7 +187,94 @@ const GRADIENT_TYPES = [
   'bossBattle',
   'powerUp',
   'cyberpunk',
-  'retroWave'
+  'retroWave',
+  // Cinematic Series
+  'film-noir-shadows',
+  'spotlight-glamour',
+  'neon-rain',
+  'heat-waves',
+  'ice-crystals',
+  'blood-moon',
+  'soft-bokeh',
+  'explosion-smoke',
+  // Cosmic Series
+  'galaxy-spiral',
+  'nebula-swirl',
+  'gravitational-lens',
+  'stellar-explosion',
+  'cosmic-aurora',
+  'quantum-vacuum',
+  'binary-stars',
+  'cosmic-radiation',
+  'wormhole-distortion',
+  // Fashion Series
+  'runway-spotlight',
+  'couture-shimmer',
+  'street-neon',
+  'vintage-sepia',
+  'avant-garde-geometry',
+  'bohemian-waves',
+  'minimalist-gradient',
+  'gothic-shadows',
+  'cyberpunk-fashion',
+  // Architecture Series
+  'gothic-arches',
+  'bauhaus-geometry',
+  'art-deco-rays',
+  'brutalist-concrete',
+  'organic-flow',
+  'zen-minimalism',
+  'parametric-waves',
+  'classical-columns',
+  'deconstructed-chaos',
+  'islamic-patterns',
+  // Cultural Series
+  'ink-brush-strokes',
+  'wabi-sabi-texture',
+  'mandala-circles',
+  'tile-mosaic',
+  'textile-weave',
+  'aurora-dance',
+  'ceramic-glaze',
+  'lacquer-shine',
+  'carpet-weave',
+  'dreamtime-dots',
+  // Weather Series
+  'storm-lightning',
+  'rainbow-arc',
+  'blizzard-snow',
+  'hurricane-spiral',
+  'tornado-vortex',
+  'misty-fog',
+  'sandstorm-swirl',
+  'hail-impact',
+  'sunshower-rays',
+  'cloud-undulation',
+  // Music Series
+  'synthwave-grid',
+  'classical-elegance',
+  'jazz-smoke',
+  'electronic-pulse',
+  'rock-energy',
+  'opera-grandeur',
+  'ambient-flow',
+  'orchestral-crescendo',
+  'dubstep-bass',
+  'piano-keys',
+  'choir-harmony',
+  // Abstract Series
+  'kandinsky-chaos',
+  'mondrian-grid',
+  'pollock-splatter',
+  'rothko-blend',
+  'fractal-spiral',
+  'suprematist-geometry',
+  'minimalist-reduction',
+  'constructivist-angles',
+  'op-art-illusion',
+  'dadaist-disorder',
+  'conceptual-space',
+  'fluxus-flow'
 ];
 
 module.exports = { 

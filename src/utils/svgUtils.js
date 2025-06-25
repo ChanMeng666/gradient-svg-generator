@@ -1458,6 +1458,368 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
         </filter>`;
       break;
 
+    // Missing basic gradient types
+    case 'linear':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+        </linearGradient>`;
+      break;
+
+    case 'reflected':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
+        </linearGradient>`;
+      break;
+
+    case 'square':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+        </linearGradient>`;
+      break;
+
+    case 'ellipse':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
+          ${stops}
+        </radialGradient>`;
+      break;
+
+    // Missing cosmic series
+    case 'quantum-vacuum':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
+          ${stops}
+          <animate attributeName="r" values="40%;80%;40%" dur="${parseFloat(animationDuration) * 0.6}s" repeatCount="indefinite" />
+        </radialGradient>
+        <filter id="vacuumFluctuation">
+          <feTurbulence baseFrequency="2" numOctaves="4"/>
+          <feDisplacementMap scale="20">
+            <animate attributeName="scale" values="20;35;20" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'binary-stars':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="80%">
+          ${stops}
+          <animate attributeName="r" values="60%;100%;60%" ${animationConfig} />
+        </radialGradient>`;
+      additionalElements = `
+        <g opacity="0.8">
+          <circle cx="380" cy="60" r="25" fill="#${colorsCopy[1]}" opacity="0.9">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;360 427 60" dur="${parseFloat(animationDuration) * 2}s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="474" cy="60" r="20" fill="#${colorsCopy[3]}" opacity="0.8">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;-360 427 60" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          </circle>
+        </g>`;
+      break;
+
+    case 'cosmic-radiation':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 2.5}s" repeatCount="indefinite" />
+          <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 3}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="radiationWaves">
+          <feTurbulence baseFrequency="0.2" numOctaves="5"/>
+          <feDisplacementMap scale="8"/>
+        </filter>`;
+      break;
+
+    case 'wormhole-distortion':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
+          ${stops}
+          <animate attributeName="r" values="40%;100%;40%" ${animationConfig} />
+        </radialGradient>
+        <filter id="spacetimeDistortion">
+          <feTurbulence baseFrequency="0.6" numOctaves="4"/>
+          <feDisplacementMap scale="40">
+            <animate attributeName="scale" values="40;60;40" ${animationConfig} />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    // Missing fashion series
+    case 'couture-shimmer':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;50%;0%" ${animationConfig} />
+        </linearGradient>
+        <filter id="shimmerEffect">
+          <feGaussianBlur stdDeviation="3"/>
+          <feColorMatrix values="1.4 0 0 0 0 0 1.4 0 0 0 0 0 1.4 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'street-neon':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 0.5}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="neonStreet">
+          <feGaussianBlur stdDeviation="4"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>`;
+      break;
+
+    case 'vintage-sepia':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="80%">
+          ${stops}
+          <animate attributeName="r" values="70%;100%;70%" ${animationConfig} />
+        </radialGradient>
+        <filter id="sepiaAge">
+          <feColorMatrix values="0.393 0.769 0.189 0 0 0.349 0.686 0.168 0 0 0.272 0.534 0.131 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'avant-garde-geometry':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animateTransform attributeName="gradientTransform" type="rotate" values="0 50 50;180 50 50;360 50 50" ${animationConfig} />
+        </linearGradient>`;
+      break;
+
+    case 'bohemian-waves':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;30%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="0%;70%;0%" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="bohemianFlow">
+          <feTurbulence baseFrequency="0.3" numOctaves="3"/>
+          <feDisplacementMap scale="15"/>
+        </filter>`;
+      break;
+
+    case 'minimalist-gradient':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+          <animate attributeName="x1" values="0%;10%;0%" dur="${parseFloat(animationDuration) * 3}s" repeatCount="indefinite" />
+        </linearGradient>`;
+      break;
+
+    case 'gothic-shadows':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="80%">
+          ${stops}
+          <animate attributeName="r" values="70%;100%;70%" ${animationConfig} />
+        </radialGradient>
+        <filter id="gothicDarkness">
+          <feGaussianBlur stdDeviation="6"/>
+          <feColorMatrix values="0.8 0 0 0 0 0 0.8 0 0 0 0 0 0.8 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'cyberpunk-fashion':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 0.4}s" repeatCount="indefinite" />
+          <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 0.6}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="cyberpunkGlow">
+          <feGaussianBlur stdDeviation="5"/>
+          <feColorMatrix values="1.6 0 0 0 0 0 1.6 0 0 0 0 0 1.6 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    // Missing architecture series
+    case 'gothic-arches':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          ${stops}
+          <animate attributeName="y1" values="0%;30%;0%" ${animationConfig} />
+        </linearGradient>
+        <filter id="stoneTexture">
+          <feTurbulence baseFrequency="0.5" numOctaves="4"/>
+          <feDisplacementMap scale="6"/>
+        </filter>`;
+      break;
+
+    case 'bauhaus-geometry':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animateTransform attributeName="gradientTransform" type="rotate" values="0 50 50;90 50 50;180 50 50;270 50 50;360 50 50" ${animationConfig} />
+        </linearGradient>`;
+      break;
+
+    case 'art-deco-rays':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="100%" r="80%">
+          ${stops}
+          <animate attributeName="r" values="60%;100%;60%" ${animationConfig} />
+        </radialGradient>
+        <filter id="sunburstRays">
+          <feGaussianBlur stdDeviation="2"/>
+        </filter>`;
+      break;
+
+    case 'brutalist-concrete':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+        </linearGradient>
+        <filter id="concreteTexture">
+          <feTurbulence baseFrequency="0.8" numOctaves="6"/>
+          <feDisplacementMap scale="4"/>
+          <feColorMatrix values="0.9 0.9 0.9 0 0 0.9 0.9 0.9 0 0 0.9 0.9 0.9 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'organic-flow':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;50%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 1.4}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="organicCurves">
+          <feTurbulence baseFrequency="0.4" numOctaves="3"/>
+          <feDisplacementMap scale="18"/>
+        </filter>`;
+      break;
+
+    case 'zen-minimalism':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+          <animate attributeName="x1" values="0%;5%;0%" dur="${parseFloat(animationDuration) * 4}s" repeatCount="indefinite" />
+        </linearGradient>`;
+      break;
+
+    case 'parametric-waves':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
+        </linearGradient>
+        <filter id="parametricDistortion">
+          <feTurbulence baseFrequency="0.6" numOctaves="2"/>
+          <feDisplacementMap scale="25">
+            <animate attributeName="scale" values="25;40;25" ${animationConfig} />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'classical-columns':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          ${stops}
+          <animate attributeName="y1" values="0%;20%;0%" ${animationConfig} />
+        </linearGradient>
+        <filter id="marbleColumns">
+          <feTurbulence baseFrequency="0.3" numOctaves="4"/>
+          <feDisplacementMap scale="5"/>
+        </filter>`;
+      break;
+
+    case 'deconstructed-chaos':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 0.6}s" repeatCount="indefinite" />
+          <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="chaosDistortion">
+          <feTurbulence baseFrequency="1.5" numOctaves="4"/>
+          <feDisplacementMap scale="30">
+            <animate attributeName="scale" values="30;50;30" dur="${parseFloat(animationDuration) * 0.7}s" repeatCount="indefinite" />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'islamic-patterns':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
+          ${stops}
+          <animate attributeName="r" values="60%;90%;60%" ${animationConfig} />
+        </radialGradient>
+        <pattern id="islamicGeometry" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+          <polygon points="30,5 45,25 25,25" fill="#${colorsCopy[2]}" opacity="0.3"/>
+          <polygon points="30,55 15,35 35,35" fill="#${colorsCopy[3]}" opacity="0.3"/>
+          <circle cx="30" cy="30" r="20" fill="none" stroke="#${colorsCopy[1]}" stroke-width="2" opacity="0.4"/>
+        </pattern>`;
+      break;
+
+    // Missing cultural series  
+    case 'ink-brush-strokes':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;50%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="inkBrush">
+          <feTurbulence baseFrequency="0.7" numOctaves="3"/>
+          <feDisplacementMap scale="12"/>
+        </filter>`;
+      break;
+
+    case 'wabi-sabi-texture':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="80%">
+          ${stops}
+          <animate attributeName="r" values="70%;100%;70%" ${animationConfig} />
+        </radialGradient>
+        <filter id="wabiSabi">
+          <feTurbulence baseFrequency="0.4" numOctaves="5"/>
+          <feDisplacementMap scale="8"/>
+          <feColorMatrix values="0.9 0.1 0.1 0 0 0.1 0.9 0.1 0 0 0.1 0.1 0.9 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'mandala-circles':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
+          ${stops}
+          <animate attributeName="r" values="60%;90%;60%" ${animationConfig} />
+        </radialGradient>`;
+      additionalElements = `
+        <g opacity="0.6">
+          <circle cx="427" cy="60" r="50" fill="none" stroke="#${colorsCopy[2]}" stroke-width="2">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;360 427 60" dur="${parseFloat(animationDuration) * 2}s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="427" cy="60" r="30" fill="none" stroke="#${colorsCopy[3]}" stroke-width="1">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;-360 427 60" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          </circle>
+        </g>`;
+      break;
+
+    case 'tile-mosaic':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+        </linearGradient>
+        <pattern id="tilePattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <rect width="20" height="20" fill="#${colorsCopy[0]}" opacity="0.8"/>
+          <rect x="20" width="20" height="20" fill="#${colorsCopy[1]}" opacity="0.8"/>
+          <rect y="20" width="20" height="20" fill="#${colorsCopy[2]}" opacity="0.8"/>
+          <rect x="20" y="20" width="20" height="20" fill="#${colorsCopy[3] || colorsCopy[0]}" opacity="0.8"/>
+        </pattern>`;
+      break;
+
     default:
       gradientDef = `
         <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">

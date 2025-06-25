@@ -135,6 +135,101 @@ function generateGradientSVG({
     case 'typewriter':
       filterEffect = 'url(#typewriterEffect)';
       break;
+
+    // Cinematic Series
+    case 'film-noir-shadows':
+      filterEffect = 'url(#dramaticShadow)';
+      break;
+    case 'spotlight-glamour':
+      filterEffect = 'url(#spotlightGlow)';
+      break;
+    case 'neon-rain':
+      filterEffect = 'url(#neonRainEffect)';
+      break;
+    case 'heat-waves':
+      filterEffect = 'url(#heatDistortion)';
+      break;
+    case 'ice-crystals':
+      filterEffect = 'url(#crystalFormation)';
+      break;
+    case 'blood-moon':
+      filterEffect = 'url(#gothicMood)';
+      break;
+    case 'soft-bokeh':
+      filterEffect = 'url(#bokehBlur)';
+      break;
+    case 'explosion-smoke':
+      filterEffect = 'url(#explosionEffect)';
+      break;
+
+    // Cosmic Series
+    case 'galaxy-spiral':
+      filterEffect = 'url(#starField)';
+      break;
+    case 'nebula-swirl':
+      filterEffect = 'url(#nebulaEffect)';
+      break;
+    case 'gravitational-lens':
+      filterEffect = 'url(#spacetimeBend)';
+      break;
+    case 'stellar-explosion':
+      filterEffect = 'url(#supernovaBlast)';
+      break;
+    case 'cosmic-aurora':
+      filterEffect = 'url(#auroraWave)';
+      break;
+
+    // Fashion Series
+    case 'silk-drape':
+      filterEffect = 'url(#silkTexture)';
+      break;
+    case 'runway-spotlight':
+      filterEffect = 'url(#spotlightGlow)';
+      break;
+    case 'urban-graffiti':
+      filterEffect = 'url(#graffitiSpray)';
+      break;
+    case 'metallic-geometric':
+      filterEffect = 'url(#metallicSheen)';
+      break;
+    case 'flowing-fabric':
+      filterEffect = 'url(#fabricFlow)';
+      break;
+    case 'natural-linen':
+      filterEffect = 'url(#linenTexture)';
+      break;
+    case 'holographic-led':
+      filterEffect = 'url(#hologramGlow)';
+      break;
+
+    // Architecture Series
+    case 'gothic-arches':
+      filterEffect = 'url(#stoneTexture)';
+      break;
+    case 'brutalist-concrete':
+      filterEffect = 'url(#concreteTexture)';
+      break;
+    case 'organic-flow':
+      filterEffect = 'url(#organicCurves)';
+      break;
+    case 'parametric-waves':
+      filterEffect = 'url(#parametricDistortion)';
+      break;
+    case 'classical-columns':
+      filterEffect = 'url(#marbleColumns)';
+      break;
+    case 'deconstructed-chaos':
+      filterEffect = 'url(#chaosDistortion)';
+      break;
+
+    // Cultural Series
+    case 'ink-brush-strokes':
+      filterEffect = 'url(#inkBrush)';
+      break;
+    case 'wabi-sabi-texture':
+      filterEffect = 'url(#wabiSabi)';
+      break;
+
     default:
       filterEffect = 'url(#smoothTransition)';
   }
