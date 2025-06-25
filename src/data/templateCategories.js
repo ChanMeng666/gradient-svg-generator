@@ -1,4 +1,73 @@
 export const templateCategories = {
+  textEffects: {
+    label: 'Text Effects',
+    templates: [
+      {
+        name: 'luminance-glow',
+        label: 'Luminance Glow',
+        colors: ['ffffff', 'cccccc', '999999'],
+        gradientType: 'luminance',
+        animationDuration: '3s',
+        description: 'Text with luminous glow effect that reveals gradually'
+      },
+      {
+        name: 'rainbow-wave',
+        label: 'Rainbow Wave',
+        colors: ['ff0000', 'ff8000', 'ffff00', '80ff00', '00ff00', '00ff80', '00ffff', '0080ff', '0000ff', '8000ff', 'ff00ff', 'ff0080'],
+        gradientType: 'rainbow',
+        animationDuration: '1.5s',
+        description: 'Multi-colored text with rainbow wave animation'
+      },
+      {
+        name: 'border-draw',
+        label: 'Border Draw',
+        colors: ['19f6e8', '00bfff', '40e0d0'],
+        gradientType: 'textBox',
+        animationDuration: '1s',
+        description: 'Text with animated border drawing effect'
+      },
+      {
+        name: 'glitch-cyber',
+        label: 'Glitch Cyber',
+        colors: ['ffffff', '67f3da', 'f16f6f'],
+        gradientType: 'glitch',
+        animationDuration: '2.5s',
+        description: 'Cyberpunk glitch effect with color separation'
+      },
+      {
+        name: 'typewriter-terminal',
+        label: 'Typewriter Terminal',
+        colors: ['00ff00', '00cc00', '009900'],
+        gradientType: 'typewriter',
+        animationDuration: '4s',
+        description: 'Terminal-style typewriter effect with gradient'
+      },
+      {
+        name: 'neon-luminance',
+        label: 'Neon Luminance',
+        colors: ['ff00ff', '00ffff', 'ffffff'],
+        gradientType: 'luminance',
+        animationDuration: '2.5s',
+        description: 'Neon colors with luminous glow effect'
+      },
+      {
+        name: 'fire-luminance',
+        label: 'Fire Luminance',
+        colors: ['ff4500', 'ff8c00', 'ffd700', 'ffffff'],
+        gradientType: 'luminance',
+        animationDuration: '3.5s',
+        description: 'Fire-like colors with luminous glow'
+      },
+      {
+        name: 'ocean-rainbow',
+        label: 'Ocean Rainbow',
+        colors: ['0066cc', '0099ff', '00ccff', '66ffff', '99ffff', 'ccffff'],
+        gradientType: 'rainbow',
+        animationDuration: '2s',
+        description: 'Ocean-themed rainbow wave effect'
+      }
+    ]
+  },
   basic: {
     label: 'Basic Templates',
     templates: [

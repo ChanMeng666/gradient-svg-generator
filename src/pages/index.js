@@ -29,7 +29,9 @@ export default function Home() {
   const examples = [
     { text: "Welcome", template: "sunset-gold" },
     { text: "GitHub", template: "ocean-heart" },
-    { text: "Design", template: "pride-rainbow" },
+    { text: "GLOW", template: "luminance-glow" },
+    { text: "RAINBOW", template: "rainbow-wave" },
+    { text: "GLITCH", template: "glitch-cyber" },
     { text: "Code", template: "midnight-galaxy" }
   ];
 

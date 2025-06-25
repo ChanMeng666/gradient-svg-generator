@@ -16,6 +16,7 @@ const TemplatesSection = ({
           <button
             key={key}
             className={`category-tab ${activeCategory === key ? 'active' : ''}`}
+            data-category={key}
             onClick={() => setActiveCategory(key)}
           >
             <span>{category.label}</span>
@@ -28,6 +29,7 @@ const TemplatesSection = ({
           <button
             key={template.name}
             className={`template-card ${selectedTemplate?.name === template.name ? 'active' : ''}`}
+            data-effect-type={activeCategory === 'textEffects' ? 'textEffect' : 'regular'}
             onClick={() => {
               console.log('🎨 TemplatesSection: Template selected', {
                 templateName: template.name,

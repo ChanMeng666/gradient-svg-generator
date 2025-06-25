@@ -11,6 +11,52 @@
   flex-wrap: wrap;
 }
 
+/* Special highlighting for Text Effects category */
+.category-tab[data-category="textEffects"] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: #667eea;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tab[data-category="textEffects"]::before {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.category-tab[data-category="textEffects"]::after {
+  content: '✨';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.category-tab[data-category="textEffects"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Text Effects template cards special styling */
+.template-card[data-effect-type="textEffect"] {
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, #667eea, #764ba2) border-box;
+}
+
+.template-card[data-effect-type="textEffect"]:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.template-card[data-effect-type="textEffect"] .template-name {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .category-tab {
   flex: 1;
   min-width: 120px;
