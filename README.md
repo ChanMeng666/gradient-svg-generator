@@ -326,9 +326,8 @@ https://gradient-svg-generator.vercel.app/api/svg
 
 ### 📊 System Architecture
 
-<function_calls>
-<invoke name="create_diagram">
-<parameter name="content">graph TB
+```mermaid
+graph TB
     subgraph "Client Layer"
         A[Landing Page] --> B[Settings Panel]
         B --> C[Live Preview]
@@ -372,21 +371,316 @@ https://gradient-svg-generator.vercel.app/api/svg
     S --> T
     T --> U
     T --> V
+```
+
+### 🔄 Data Flow
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant UI as Settings UI
+    participant H as useGradientConfig Hook
+    participant API as /api/svg
+    participant G as SVG Generator
+    participant T as Template System
     
-    classDef clientLayer fill:#e1f5fe
-    classDef apiLayer fill:#f3e5f5
-    classDef coreComponents fill:#e8f5e8
-    classDef dataLayer fill:#fff3e0
-    classDef uiFramework fill:#fce4ec
+    U->>UI: Select template or custom settings
+    UI->>H: Update configuration
+    H->>H: Generate preview URL
+    H->>API: Request SVG with parameters
     
-    class A,B,C,D clientLayer
-    class E,F,G,H apiLayer
-    class I,J,K,L,M,N coreComponents
-    class O,P,Q,R dataLayer
-    class S,T,U,V uiFramework
-</code_block_to_apply_changes_from>
-</invoke>
+    alt Template Mode
+        API->>T: Get template configuration
+        T-->>API: Return template colors & settings
+    else Custom Mode
+        API->>API: Use custom colors & settings
+    end
+    
+    API->>G: Generate SVG with final config
+    G->>G: Create gradient definitions
+    G->>G: Apply filters and animations
+    G-->>API: Return SVG string
+    API-->>H: SVG response
+    H-->>UI: Update preview & markdown
+    UI-->>U: Display live preview
+```
+
+### 🧩 Component Hierarchy
+
+```mermaid
+graph TD
+    A[_app.js] --> B[Landing Page - index.js]
+    A --> C[Settings Page - settings.js]
+    A --> D[API Route - api/svg.js]
+    
+    C --> E[Navbar Component]
+    C --> F[BasicSettings Component]
+    C --> G[TemplatesSection Component]
+    C --> H[PreviewPanel Component]
+    
+    F --> I[ColorRow Component]
+    F --> J[useGradientConfig Hook]
+    F --> K[useTheme Hook]
+    
+    D --> L[gradientGenerator.js]
+    L --> M[Template Config]
+    L --> N[SVG Utils]
+    L --> O[Color Utils]
+    
+    M --> P[Basic Templates]
+    M --> Q[Nature Templates]
+    M --> R[Tech Templates]
+    M --> S[Art Templates]
+    M --> T[Material Templates]
+    M --> U[Pride Templates]
+```
+
+---
 </function_calls>
+
+## 📁 Project Structure
+
+```mermaid
+graph LR
+    subgraph "Frontend Components"
+        A[Landing Page] --> B[Settings Panel]
+        B --> C[Live Preview]
+        D[Navbar] --> E[Theme Toggle]
+        F[BasicSettings] --> G[Color Picker]
+        H[Template Gallery] --> I[Category Filter]
+    end
+    
+    subgraph "Backend API"
+        J[SVG Endpoint] --> K[Gradient Generator]
+        K --> L[Template System]
+        K --> M[Filter Effects]
+    end
+    
+    subgraph "Data & Utils"
+        N[Template Data] --> O[6 Categories]
+        P[Color Utils] --> Q[Hex/RGB Convert]
+        R[SVG Utils] --> S[Animation Logic]
+    end
+```
+
+### 📂 Directory Structure
+
+```
+gradient-svg-generator/
+├── 📁 public/                     # Static assets
+│   └── gradient-svg-generator.svg # App logo
+├── 📁 src/
+│   ├── 📁 components/             # React UI Components
+│   │   ├── BasicSettings.js       # Custom gradient controls
+│   │   ├── ColorRow.js            # Individual color picker
+│   │   ├── Navbar.js              # Navigation bar
+│   │   ├── PreviewPanel.js        # Live preview display
+│   │   └── TemplatesSection.js    # Template gallery
+│   ├── 📁 config/
+│   │   └── gradientConfig.js      # Template configuration
+│   ├── 📁 constants/
+│   │   └── gradientTypes.js       # Available gradient types
+│   ├── 📁 data/
+│   │   └── templateCategories.js  # Template organization
+│   ├── 📁 hooks/                  # Custom React hooks
+│   │   ├── useGradientConfig.js   # Gradient state management
+│   │   └── useTheme.js            # Theme switching
+│   ├── 📁 pages/                  # Next.js pages
+│   │   ├── _app.js                # App wrapper
+│   │   ├── _document.js           # HTML document
+│   │   ├── index.js               # Landing page
+│   │   ├── settings.js            # Settings panel
+│   │   └── 📁 api/
+│   │       └── svg.js             # SVG generation API
+│   ├── 📁 styles/                 # CSS stylesheets
+│   │   ├── globals.css            # Global styles
+│   │   ├── components.css         # Component styles
+│   │   ├── landing.css            # Landing page styles
+│   │   ├── forms.css              # Form controls
+│   │   ├── animations.css         # Animations
+│   │   └── responsive.css         # Mobile responsiveness
+│   ├── 📁 templates/              # Template definitions
+│   │   ├── basicTemplates.js      # 11 basic templates
+│   │   ├── artTemplates.js        # 12 art-inspired
+│   │   ├── emotionTemplates.js    # 12 emotion-based
+│   │   ├── materialTemplates.js   # 12 material effects
+│   │   ├── natureTemplates.js     # 12 nature themes
+│   │   ├── prideTemplates.js      # 20 pride flags
+│   │   └── techTemplates.js       # 12 tech themes
+│   ├── 📁 utils/                  # Utility functions
+│   │   ├── colorUtils.js          # Color manipulation
+│   │   ├── svgUtils.js            # SVG generation logic
+│   │   └── templateUtils.js       # Template helpers
+│   ├── gradientGenerator.js       # Core SVG generator
+│   └── index.js                   # Entry point
+├── 📄 package.json                # Dependencies & scripts
+├── 📄 vercel.json                 # Deployment config
+├── 📄 server.js                   # Local server setup
+├── 📄 LICENSE                     # MIT License
+└── 📄 README.md                   # This documentation
+```
+
+---
+
+## ⚡ Performance & Optimization
+
+### 🚀 Technical Features
+
+- **Server-Side Rendering**: Next.js pre-renders pages for faster loading
+- **Static Generation**: Template data is statically generated at build time
+- **Optimized SVG**: Efficient SVG generation with minimal file sizes
+- **Client-Side Caching**: Browser caches frequently used templates
+- **Responsive Images**: Adaptive sizing for different screen sizes
+
+### 📊 Performance Metrics
+
+```mermaid
+pie title SVG Generation Performance
+    "Template Loading" : 15
+    "Color Processing" : 20
+    "SVG Rendering" : 35
+    "Animation Setup" : 20
+    "Export Generation" : 10
+```
+
+### 🔧 Optimization Techniques
+
+1. **Lazy Loading**: Templates load only when viewed
+2. **Memoization**: React hooks prevent unnecessary re-renders
+3. **Debounced Updates**: Live preview updates are debounced
+4. **Efficient SVG**: Optimized SVG markup reduces file size
+5. **CDN Delivery**: Vercel CDN ensures fast global access
+
+---
+
+## 🎨 Advanced Customization
+
+### 🔄 Creating Custom Templates
+
+You can extend the template system by adding new templates:
+
+```javascript
+// src/templates/customTemplates.js
+module.exports = {
+  'my-custom-template': {
+    name: 'my-custom-template',
+    label: 'My Custom Template',
+    colors: ['ff6b6b', '4ecdc4', '45b7d1'],
+    gradientType: 'diagonal',
+    animationDuration: '8s',
+    description: 'My awesome custom gradient'
+  }
+};
+```
+
+### 🎯 Adding New Gradient Types
+
+Extend the gradient system with new effects:
+
+```javascript
+// src/utils/svgUtils.js - Add new case in createGradientFromColors
+case 'my-effect':
+  gradientDef = `
+    <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+      ${stops}
+      <animate attributeName="r" values="20%;80%;20%" dur="${animationDuration}" repeatCount="indefinite" />
+    </radialGradient>`;
+  break;
+```
+
+### 🎨 Custom Filter Effects
+
+Add your own SVG filter effects:
+
+```xml
+<filter id="myCustomEffect">
+  <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+  <feColorMatrix type="saturate" values="1.5"/>
+  <feComposite operator="over" in2="SourceGraphic"/>
+</filter>
+```
+
+---
+
+## 🔍 Troubleshooting
+
+### Common Issues and Solutions
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| SVG not displaying | Invalid color format | Use 6-digit hex colors without # |
+| Animation not working | Browser compatibility | Update to modern browser |
+| Template not loading | Template name typo | Check exact template name |
+| Export code not working | Special characters in text | URL encode special characters |
+
+### 🐛 Debug Mode
+
+Enable debug logging by setting:
+
+```javascript
+// Add to your environment
+DEBUG=true npm run dev
+```
+
+### 📱 Mobile Issues
+
+- **iOS Safari**: Some animations may be limited
+- **Android Chrome**: Full feature compatibility
+- **Mobile Edge**: Reduced animation effects
+
+---
+
+## 🌟 Showcase Gallery
+
+### 🏆 Community Examples
+
+#### GitHub Profile Headers
+```markdown
+![Profile Header](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20to%20My%20Profile&template=cyber-matrix&height=200)
+```
+
+#### Project Banners
+```markdown
+![Project Banner](https://gradient-svg-generator.vercel.app/api/svg?text=My%20Awesome%20Project&template=neural-network&height=150)
+```
+
+#### Social Media Graphics
+```markdown
+![Social Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Follow%20Me&template=neon-city&height=120)
+```
+
+---
+
+## 🚀 Deployment
+
+### 🌐 Vercel Deployment (Recommended)
+
+1. **Fork** this repository
+2. **Connect** to Vercel
+3. **Deploy** automatically
+
+### 🐳 Docker Deployment
+
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+### 🔧 Environment Variables
+
+```bash
+# .env.local
+NEXT_PUBLIC_APP_URL=https://yourdomain.com
+NODE_ENV=production
+```
+
+---
 
 ## 💻 Installation & Development
 
