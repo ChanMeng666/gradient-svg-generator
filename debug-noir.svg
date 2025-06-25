@@ -1,152 +1,16 @@
-/*
- *
- */
-
-/*
- *
- */
-
-/*
- * MIT License
- *
- * Copyright (c) 2025 ChanMeng666
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
-
-/*
- *
- */
-
-// gradientGenerator.js
-const { createGradientFromColors } = require('./utils/svgUtils');
-const { getTemplateConfig } = require('./config/gradientConfig');
-const { generateTextEffectSVG } = require('./utils/textEffectGenerator');
-
-function generateGradientSVG({ 
-  text, 
-  colors = ['000000'], 
-  height = 120, 
-  gradientType = 'horizontal',
-  duration = '6s',
-  template = '' 
-}) {
-  // If template is provided, use template configuration
-  let config;
-  if (template) {
-    config = getTemplateConfig(template);
-    colors = config.colors;
-    gradientType = config.gradientType;
-    duration = config.animationDuration;
-  }
-
-  // Check if this is a text effect type or advanced effect type
-  const textEffectTypes = ['luminance', 'rainbow', 'textBox', 'glitch', 'typewriter'];
-  const advancedEffectTypes = [
-    // Future Tech
-    'hologram', 'quantum', 'laserGrid', 'neuralNet', 'plasma', 'dataStream',
-    // Artistic
-    'watercolor', 'oilPaint', 'inkSplash', 'mosaic', 'abstractGeo', 'graffiti', 'vintage',
-    // Luxury
-    'goldFoil', 'diamond', 'marble', 'platinum', 'roseGold', 'crystal', 'velvet',
-    // Organic Nature
-    'flowingWater', 'flame', 'clouds', 'aurora', 'oceanWaves', 'forest', 'lightning', 'mountainMist',
-    // Gaming
-    'pixelArt', 'neonArcade', 'energyBlast', 'speedLines', 'bossBattle', 'powerUp', 'cyberpunk', 'retroWave'
-  ];
-  
-  if (textEffectTypes.includes(gradientType) || advancedEffectTypes.includes(gradientType)) {
-    return generateTextEffectSVG({
-      text,
-      colors,
-      height,
-      gradientType,
-      duration,
-      template
-    });
-  }
-
-  const gradientResult = createGradientFromColors(colors, gradientType, duration);
-
-  // Choose appropriate filter effects based on gradient type
-  let filterEffect = 'url(#smoothTransition)';
-  let additionalFilters = '';
-
-  switch (gradientType) {
-    case 'radial':
-      filterEffect = 'url(#radialBlur)';
-      break;
-    case 'circular':
-      filterEffect = 'url(#energyEffect)';
-      break;
-    case 'burst':
-    case 'pulse':
-      filterEffect = 'url(#energyEffect)';
-      break;
-    case 'spiral':
-      filterEffect = 'url(#spiralEffect)';
-      break;
-    case 'conic':
-      filterEffect = 'url(#crystalEffect)';
-      break;
-    case 'wave':
-      filterEffect = 'url(#waveEffect)';
-      break;
-    case 'diamond':
-      filterEffect = 'url(#crystalEffect)';
-      break;
-    case 'reflection':
-      filterEffect = 'url(#reflectionEffect)';
-      break;
-    case 'star':
-      filterEffect = 'url(#starEffect)';
-      break;
-    case 'heart':
-      filterEffect = 'url(#heartEffect)';
-      break;
-    case 'zigzag':
-      filterEffect = 'url(#zigzagEffect)';
-      break;
-    case 'ripple':
-      filterEffect = 'url(#rippleEffect)';
-      break;
-    case 'galaxy':
-      filterEffect = 'url(#galaxyEffect)';
-      break;
-    case 'lightning':
-      filterEffect = 'url(#lightningEffect)';
-      break;
-    case 'luminance':
-      filterEffect = 'url(#luminanceEffect)';
-      break;
-    case 'rainbow':
-      filterEffect = 'url(#rainbowEffect)';
-      break;
-    case 'textBox':
-      filterEffect = 'url(#textBoxEffect)';
-      break;
-    case 'glitch':
-      filterEffect = 'url(#glitchEffect)';
-      break;
-    case 'typewriter':
-      filterEffect = 'url(#typewriterEffect)';
-      break;
-    default:
-      filterEffect = 'url(#smoothTransition)';
-  }
-
-  // Determine if we need to apply clip path
-  const clipPath = gradientResult.hasClipPath ? `clip-path="url(#${gradientResult.clipPathId})"` : '';
-
-  return `<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="${height}" viewBox="0 0 854 ${height}">
+      width="854" height="120" viewBox="0 0 854 120">
       <defs>
-        ${gradientResult.gradientDef}
+        
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#000000" /><stop offset="9.090909090909092%" stop-color="#1a1a1a" /><stop offset="18.181818181818183%" stop-color="#333333" /><stop offset="27.27272727272727%" stop-color="#666666" /><stop offset="36.36363636363637%" stop-color="#cccccc" /><stop offset="45.45454545454545%" stop-color="#ffffff" /><stop offset="54.54545454545454%" stop-color="#000000" /><stop offset="63.63636363636363%" stop-color="#1a1a1a" /><stop offset="72.72727272727273%" stop-color="#333333" /><stop offset="81.81818181818183%" stop-color="#666666" /><stop offset="90.9090909090909%" stop-color="#cccccc" /><stop offset="100%" stop-color="#ffffff" />
+          <animate attributeName="x1" values="0%;30%;0%" dur="8s" repeatCount="indefinite" />
+          <animate attributeName="y1" values="0%;50%;0%" dur="8s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="dramaticShadow">
+          <feDropShadow dx="8" dy="8" stdDeviation="4" flood-opacity="0.8"/>
+        </filter>
         
         <!-- Enhanced Filter Effects -->
         <filter id="softLight">
@@ -196,7 +60,7 @@ function generateGradientSVG({
           <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
           <feColorMatrix type="saturate" values="1.7"/>
           <feSpecularLighting in="SourceGraphic" specularConstant="1.5" specularExponent="20" lighting-color="white">
-            <fePointLight x="427" y="${height/4}" z="100"/>
+            <fePointLight x="427" y="30" z="100"/>
           </feSpecularLighting>
           <feComposite operator="over" in2="SourceGraphic"/>
         </filter>
@@ -217,7 +81,7 @@ function generateGradientSVG({
           <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
           <feColorMatrix type="saturate" values="2"/>
           <feSpecularLighting in="SourceGraphic" specularConstant="2" specularExponent="30" lighting-color="#ffff00">
-            <fePointLight x="427" y="${height/2}" z="150"/>
+            <fePointLight x="427" y="60" z="150"/>
           </feSpecularLighting>
           <feComposite operator="over" in2="SourceGraphic"/>
         </filter>
@@ -262,7 +126,7 @@ function generateGradientSVG({
           <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
           <feColorMatrix type="saturate" values="1.5"/>
           <feSpecularLighting in="SourceGraphic" specularConstant="3" specularExponent="25" lighting-color="white">
-            <fePointLight x="427" y="${height/2}" z="200"/>
+            <fePointLight x="427" y="60" z="200"/>
           </feSpecularLighting>
           <feComposite operator="over" in2="SourceGraphic"/>
         </filter>
@@ -312,14 +176,14 @@ function generateGradientSVG({
       </defs>
       
       <!-- Additional elements for complex effects -->
-      ${gradientResult.additionalElements}
+      
       
       <rect 
         width="854" 
-        height="${height}" 
+        height="120" 
         fill="url(#gradient)"
-        filter="${filterEffect}"
-        ${clipPath}
+        filter="url(#dramaticShadow)"
+        
       >
         <animate
           attributeName="opacity"
@@ -334,7 +198,7 @@ function generateGradientSVG({
       
       <text 
         x="427" 
-        y="${height/2}"
+        y="60"
         font-size="40"
         font-family="'Arial Black', Arial, sans-serif"
         font-weight="bold"
@@ -343,7 +207,7 @@ function generateGradientSVG({
         fill="#ffffff"
         filter="url(#textShadow)"
       >
-        ${text}
+        NOIR
         <animate
           attributeName="opacity"
           values="0.9;1;0.9"
@@ -354,7 +218,4 @@ function generateGradientSVG({
           keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
         />
       </text>
-    </svg>`;
-}
-
-module.exports = generateGradientSVG;
+    </svg>

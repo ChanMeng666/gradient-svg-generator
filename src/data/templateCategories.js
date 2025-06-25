@@ -24,14 +24,6 @@ const artisticTemplates = require('../templates/artisticTemplates');
 const luxuryTemplates = require('../templates/luxuryTemplates');
 const organicTemplates = require('../templates/organicTemplates');
 const gamingTemplates = require('../templates/gamingTemplates');
-const cinematicTemplates = require('../templates/cinematicTemplates');
-const cosmicTemplates = require('../templates/cosmicTemplates');
-const fashionTemplates = require('../templates/fashionTemplates');
-const architectureTemplates = require('../templates/architectureTemplates');
-const culturalTemplates = require('../templates/culturalTemplates');
-const weatherTemplates = require('../templates/weatherTemplates');
-const musicTemplates = require('../templates/musicTemplates');
-const abstractTemplates = require('../templates/abstractTemplates');
 
 // Template categories configuration
 const templateCategories = [
@@ -125,62 +117,6 @@ const templateCategories = [
     icon: '🎮',
     description: 'Gaming aesthetics from retro pixel art to cyberpunk',
     templates: Object.values(gamingTemplates)
-  },
-  {
-    id: 'cinematic',
-    name: 'Cinematic',
-    icon: '🎬',
-    description: 'Movie and theatrical visual styles from noir to sci-fi',
-    templates: Object.values(cinematicTemplates)
-  },
-  {
-    id: 'cosmic',
-    name: 'Cosmic',
-    icon: '🌌',
-    description: 'Universe, galaxies, and stellar phenomena',
-    templates: Object.values(cosmicTemplates)
-  },
-  {
-    id: 'fashion',
-    name: 'Fashion',
-    icon: '👗',
-    description: 'Haute couture, street fashion, and designer aesthetics',
-    templates: Object.values(fashionTemplates)
-  },
-  {
-    id: 'architecture',
-    name: 'Architecture',
-    icon: '🏛️',
-    description: 'Architectural styles and structural design aesthetics',
-    templates: Object.values(architectureTemplates)
-  },
-  {
-    id: 'cultural',
-    name: 'Cultural',
-    icon: '🌍',
-    description: 'World cultures, traditions, and regional aesthetics',
-    templates: Object.values(culturalTemplates)
-  },
-  {
-    id: 'weather',
-    name: 'Weather',
-    icon: '🌦️',
-    description: 'Atmospheric phenomena and weather effects',
-    templates: Object.values(weatherTemplates)
-  },
-  {
-    id: 'music',
-    name: 'Music',
-    icon: '🎵',
-    description: 'Audio visualization, rhythms, and sound waves',
-    templates: Object.values(musicTemplates)
-  },
-  {
-    id: 'abstract',
-    name: 'Abstract',
-    icon: '🎨',
-    description: 'Conceptual, experimental, and avant-garde designs',
-    templates: Object.values(abstractTemplates)
   }
 ];
 

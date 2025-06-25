@@ -28,15 +28,15 @@ export default function Home() {
 
   const examples = [
     { text: "Welcome", template: "sunset-gold" },
-    { text: "NOIR", template: "film-noir" },
-    { text: "GALAXY", template: "milky-way-galaxy" },
-    { text: "COUTURE", template: "parisian-couture" },
-    { text: "GOTHIC", template: "gothic-cathedral" },
-    { text: "ZEN", template: "japanese-wabi-sabi" },
-    { text: "STORM", template: "thunderstorm-lightning" },
-    { text: "SYNTH", template: "synthwave-retro" },
-    { text: "ART", template: "kandinsky-composition" },
+    { text: "GitHub", template: "ocean-heart" },
+    { text: "GLOW", template: "luminance-glow" },
+    { text: "RAINBOW", template: "rainbow-wave" },
+    { text: "GLITCH", template: "glitch-cyber" },
+    { text: "HOLOGRAM", template: "hologram-matrix" },
+    { text: "QUANTUM", template: "quantum-field" },
+    { text: "FLAME", template: "burning-flame" },
     { text: "CRYSTAL", template: "crystal-prism" },
+    { text: "GOLDEN", template: "golden-leaf" },
     { text: "PIXEL", template: "pixel-art-retro" },
     { text: "NEON", template: "neon-arcade" },
     { text: "Code", template: "midnight-galaxy" }
