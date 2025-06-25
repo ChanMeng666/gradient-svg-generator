@@ -404,4 +404,215 @@
     justify-content: flex-start;
     flex-wrap: wrap;
   }
+}
+
+/* Text Effects Category - Enhanced */
+.templates-container .category[data-category="text-effects"] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.templates-container .category[data-category="text-effects"] .category-header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.templates-container .category[data-category="text-effects"]::before {
+  content: "✨";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+/* Future Tech Category */
+.templates-container .category[data-category="future-tech"] {
+  background: linear-gradient(135deg, #00d4aa 0%, #00a8ff 50%, #9c88ff 100%);
+  border: 1px solid rgba(0, 212, 170, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.templates-container .category[data-category="future-tech"]::before {
+  content: "🚀";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+.templates-container .category[data-category="future-tech"]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.templates-container .category[data-category="future-tech"] .category-header {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Artistic Category */
+.templates-container .category[data-category="artistic"] {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+  border: 1px solid rgba(255, 154, 158, 0.3);
+}
+
+.templates-container .category[data-category="artistic"]::before {
+  content: "🎨";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.templates-container .category[data-category="artistic"] .category-header {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+/* Luxury Category */
+.templates-container .category[data-category="luxury"] {
+  background: linear-gradient(135deg, #f7971e 0%, #ffd200 50%, #f7971e 100%);
+  border: 1px solid rgba(247, 151, 30, 0.4);
+  position: relative;
+}
+
+.templates-container .category[data-category="luxury"]::before {
+  content: "👑";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 5px rgba(255, 210, 0, 0.5));
+}
+
+.templates-container .category[data-category="luxury"] .category-header {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 210, 0, 0.3);
+}
+
+.templates-container .category[data-category="luxury"] .template-card {
+  border: 1px solid rgba(255, 210, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.templates-container .category[data-category="luxury"] .template-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(247, 151, 30, 0.3);
+}
+
+/* Organic Nature Category */
+.templates-container .category[data-category="organic-nature"] {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%);
+  border: 1px solid rgba(79, 172, 254, 0.3);
+}
+
+.templates-container .category[data-category="organic-nature"]::before {
+  content: "🌊";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+.templates-container .category[data-category="organic-nature"] .category-header {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+/* Gaming Category */
+.templates-container .category[data-category="gaming"] {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  position: relative;
+}
+
+.templates-container .category[data-category="gaming"]::before {
+  content: "🎮";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+.templates-container .category[data-category="gaming"] .category-header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.templates-container .category[data-category="gaming"] .template-card {
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  transition: all 0.3s ease;
+}
+
+.templates-container .category[data-category="gaming"] .template-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(118, 75, 162, 0.3);
+}
+
+/* Enhanced Template Card Animations for New Categories */
+.templates-container .category[data-category="future-tech"] .template-card:hover,
+.templates-container .category[data-category="artistic"] .template-card:hover,
+.templates-container .category[data-category="organic-nature"] .template-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glow Effects for High-Tech Categories */
+.templates-container .category[data-category="future-tech"] .template-card:hover {
+  box-shadow: 
+    0 8px 20px rgba(0, 212, 170, 0.3),
+    0 0 15px rgba(0, 168, 255, 0.2);
+}
+
+.templates-container .category[data-category="gaming"] .template-card:hover {
+  box-shadow: 
+    0 8px 20px rgba(102, 126, 234, 0.3),
+    0 0 15px rgba(240, 147, 251, 0.2);
+}
+
+/* Enhanced Category Headers */
+.templates-container .category[data-category="future-tech"] .category-title,
+.templates-container .category[data-category="luxury"] .category-title {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.templates-container .category[data-category="artistic"] .category-title {
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.templates-container .category[data-category="organic-nature"] .category-title {
+  color: #2c5530;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Adjustments for New Categories */
+@media (max-width: 768px) {
+  .templates-container .category[data-category="future-tech"]::after {
+    opacity: 0.5;
+  }
+  
+  .templates-container .category[data-category="luxury"] .template-card:hover,
+  .templates-container .category[data-category="gaming"] .template-card:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
 } 

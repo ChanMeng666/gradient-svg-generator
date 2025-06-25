@@ -604,6 +604,485 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
         </defs>`;
       break;
 
+    // Future Tech Series
+    case 'hologram':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;50%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="0%;50%;0%" ${animationConfig} />
+        </linearGradient>
+        <filter id="hologramGlow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>`;
+      additionalElements = `
+        <animateTransform attributeName="transform" type="skewX" values="0;2;0;-2;0" ${animationConfig} />`;
+      break;
+
+    case 'quantum':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+          ${stops}
+          <animate attributeName="r" values="30%;80%;30%" ${animationConfig} />
+        </radialGradient>
+        <filter id="quantumTurbulence">
+          <feTurbulence baseFrequency="0.9" numOctaves="4" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="20">
+            <animate attributeName="scale" values="20;40;20" ${animationConfig} />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'laserGrid':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
+        </linearGradient>
+        <pattern id="laserPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="20" x2="40" y2="20" stroke="#ff00ff" stroke-width="1" opacity="0.8"/>
+          <line x1="20" y1="0" x2="20" y2="40" stroke="#00ffff" stroke-width="1" opacity="0.8"/>
+          <animate attributeName="x" values="0;40;0" ${animationConfig} />
+        </pattern>`;
+      break;
+
+    case 'neuralNet':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
+          ${stops}
+          <animate attributeName="cx" values="30%;70%;30%" ${animationConfig} />
+          <animate attributeName="cy" values="30%;70%;30%" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+        </radialGradient>`;
+      break;
+
+    case 'plasma':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+          ${stops}
+          <animate attributeName="r" values="30%;100%;30%" ${animationConfig} />
+        </radialGradient>
+        <filter id="plasmaTurbulence">
+          <feTurbulence baseFrequency="0.6" numOctaves="3" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="30">
+            <animate attributeName="scale" values="30;60;30" ${animationConfig} />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'dataStream':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          ${stops}
+          <animate attributeName="y1" values="-50%;50%" ${animationConfig} />
+          <animate attributeName="y2" values="50%;150%" ${animationConfig} />
+        </linearGradient>`;
+      break;
+
+    // Artistic Series
+    case 'watercolor':
+      gradientDef = `
+        <radialGradient id="gradient" cx="40%" cy="40%" r="60%">
+          ${stops}
+          <animate attributeName="cx" values="40%;60%;40%" ${animationConfig} />
+          <animate attributeName="cy" values="40%;60%;40%" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+        </radialGradient>
+        <filter id="watercolorBlur">
+          <feGaussianBlur stdDeviation="8" result="blur"/>
+          <feOffset in="blur" dx="2" dy="2"/>
+        </filter>`;
+      break;
+
+    case 'oilPaint':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;30%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="0%;30%;0%" ${animationConfig} />
+        </linearGradient>
+        <filter id="oilPaintTexture">
+          <feTurbulence baseFrequency="0.4" numOctaves="2"/>
+          <feDisplacementMap scale="5"/>
+        </filter>`;
+      break;
+
+    case 'inkSplash':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="40%">
+          ${stops}
+          <animate attributeName="r" values="20%;80%;20%" ${animationConfig} />
+        </radialGradient>
+        <filter id="inkSplatter">
+          <feTurbulence baseFrequency="1.2" numOctaves="3"/>
+          <feDisplacementMap scale="15">
+            <animate attributeName="scale" values="15;30;15" ${animationConfig} />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'mosaic':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+        </linearGradient>
+        <pattern id="mosaicPattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+          <rect width="15" height="15" fill="#${colorsCopy[0]}" opacity="0.8"/>
+          <rect x="15" width="15" height="15" fill="#${colorsCopy[1]}" opacity="0.8"/>
+          <rect y="15" width="15" height="15" fill="#${colorsCopy[2]}" opacity="0.8"/>
+          <rect x="15" y="15" width="15" height="15" fill="#${colorsCopy[3] || colorsCopy[0]}" opacity="0.8"/>
+          <animateTransform attributeName="patternTransform" type="rotate" values="0 15 15;360 15 15" ${animationConfig} />
+        </pattern>`;
+      break;
+
+    case 'abstractGeo':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animateTransform attributeName="gradientTransform" type="rotate" values="0 50 50;180 50 50;360 50 50" ${animationConfig} />
+        </linearGradient>`;
+      break;
+
+    case 'graffiti':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+          ${stops}
+          <animate attributeName="x1" values="-30%;70%;-30%" ${animationConfig} />
+          <animate attributeName="x2" values="30%;130%;30%" ${animationConfig} />
+        </linearGradient>
+        <filter id="graffitiSpray">
+          <feTurbulence baseFrequency="2" numOctaves="1"/>
+          <feDisplacementMap scale="3"/>
+        </filter>`;
+      break;
+
+    case 'vintage':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
+          ${stops}
+          <animate attributeName="r" values="50%;90%;50%" ${animationConfig} />
+        </radialGradient>
+        <filter id="vintageTexture">
+          <feTurbulence baseFrequency="0.8" numOctaves="2"/>
+          <feColorMatrix values="0.9 0.3 0.2 0 0.1 0.3 0.8 0.1 0 0.1 0.2 0.2 0.8 0 0.1 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    // Luxury Series
+    case 'goldFoil':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animateTransform attributeName="gradientTransform" type="rotate" values="0 50 50;360 50 50" ${animationConfig} />
+        </linearGradient>
+        <filter id="goldGlow">
+          <feGaussianBlur stdDeviation="2"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>`;
+      break;
+
+    case 'diamond':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="40%">
+          ${stops}
+          <animate attributeName="r" values="30%;60%;30%" dur="${parseFloat(animationDuration) * 0.6}s" repeatCount="indefinite" />
+        </radialGradient>
+        <filter id="diamondSparkle">
+          <feGaussianBlur stdDeviation="1"/>
+          <feColorMatrix values="1.5 0 0 0 0 0 1.5 0 0 0 0 0 1.5 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'marble':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x2" values="100%;80%;120%;100%" ${animationConfig} />
+          <animate attributeName="y2" values="100%;120%;80%;100%" ${animationConfig} />
+        </linearGradient>
+        <filter id="marbleVeins">
+          <feTurbulence baseFrequency="0.3" numOctaves="4"/>
+          <feDisplacementMap scale="8"/>
+        </filter>`;
+      break;
+
+    case 'platinum':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+          ${stops}
+          <animate attributeName="x1" values="0%;20%;0%" ${animationConfig} />
+          <animate attributeName="x2" values="100%;80%;100%" ${animationConfig} />
+        </linearGradient>
+        <filter id="platinumShine">
+          <feGaussianBlur stdDeviation="1"/>
+          <feSpecularLighting surfaceScale="2" specularConstant="1.5" specularExponent="20" lighting-color="white">
+            <fePointLight x="50" y="50" z="200"/>
+          </feSpecularLighting>
+        </filter>`;
+      break;
+
+    case 'roseGold':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
+          ${stops}
+          <animate attributeName="cx" values="30%;70%;30%" ${animationConfig} />
+          <animate attributeName="cy" values="30%;70%;30%" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+        </radialGradient>`;
+      break;
+
+    case 'crystal':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+          <animate attributeName="x2" values="100%;200%;100%" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="crystalPrism">
+          <feGaussianBlur stdDeviation="2"/>
+          <feColorMatrix values="1.2 0 0 0 0 0 1.2 0 0 0 0 0 1.2 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'velvet':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="80%">
+          ${stops}
+          <animate attributeName="r" values="60%;100%;60%" ${animationConfig} />
+        </radialGradient>
+        <filter id="velvetTexture">
+          <feTurbulence baseFrequency="1.5" numOctaves="2"/>
+          <feDisplacementMap scale="2"/>
+          <feGaussianBlur stdDeviation="0.5"/>
+        </filter>`;
+      break;
+
+    // Organic Nature Series
+    case 'flowingWater':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="waterRipple">
+          <feTurbulence baseFrequency="0.5" numOctaves="2"/>
+          <feDisplacementMap scale="10">
+            <animate attributeName="scale" values="5;15;5" ${animationConfig} />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'flame':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="80%" r="60%">
+          ${stops}
+          <animate attributeName="cy" values="80%;60%;80%" ${animationConfig} />
+          <animate attributeName="r" values="60%;80%;60%" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+        </radialGradient>
+        <filter id="flameFlicker">
+          <feTurbulence baseFrequency="0.9" numOctaves="4"/>
+          <feDisplacementMap scale="15">
+            <animate attributeName="scale" values="15;25;15" ${animationConfig} />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'clouds':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="40%" r="80%">
+          ${stops}
+          <animate attributeName="cx" values="30%;70%;30%" dur="${parseFloat(animationDuration) * 2}s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="40%;60%;40%" ${animationConfig} />
+        </radialGradient>
+        <filter id="cloudFloat">
+          <feTurbulence baseFrequency="0.2" numOctaves="3"/>
+          <feDisplacementMap scale="20">
+            <animate attributeName="scale" values="20;30;20" ${animationConfig} />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'aurora':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="0%;50%;100%;50%;0%" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+        </radialGradient>
+        <filter id="auroraWave">
+          <feTurbulence baseFrequency="0.6" numOctaves="3"/>
+          <feDisplacementMap scale="25">
+            <animate attributeName="scale" values="25;40;25" ${animationConfig} />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'oceanWaves':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="100%" r="70%">
+          ${stops}
+          <animate attributeName="r" values="50%;90%;50%" ${animationConfig} />
+          <animate attributeName="cy" values="100%;80%;100%" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+        </radialGradient>
+        <filter id="oceanFlow">
+          <feTurbulence baseFrequency="0.4" numOctaves="2"/>
+          <feDisplacementMap scale="12">
+            <animate attributeName="scale" values="12;20;12" ${animationConfig} />
+          </feDisplacementMap>
+        </filter>`;
+      break;
+
+    case 'forest':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          ${stops}
+          <animate attributeName="y1" values="0%;30%;0%" ${animationConfig} />
+          <animate attributeName="y2" values="100%;70%;100%" ${animationConfig} />
+        </linearGradient>
+        <filter id="forestCanopy">
+          <feTurbulence baseFrequency="0.8" numOctaves="3"/>
+          <feDisplacementMap scale="5"/>
+        </filter>`;
+      break;
+
+    case 'lightning':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="40%">
+          ${stops}
+          <animate attributeName="r" values="20%;60%;20%" dur="${parseFloat(animationDuration) * 0.3}s" repeatCount="indefinite" />
+        </radialGradient>
+        <filter id="lightningBolt">
+          <feGaussianBlur stdDeviation="3"/>
+          <feColorMatrix values="1.5 0 0 0 0 0 1.5 0 0 0 0 0 1.5 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'mountainMist':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+          ${stops}
+          <animate attributeName="y1" values="100%;80%;100%" ${animationConfig} />
+          <animate attributeName="y2" values="0%;20%;0%" ${animationConfig} />
+        </linearGradient>
+        <filter id="mistEffect">
+          <feTurbulence baseFrequency="0.3" numOctaves="4"/>
+          <feDisplacementMap scale="15">
+            <animate attributeName="scale" values="15;25;15" ${animationConfig} />
+          </feDisplacementMap>
+          <feGaussianBlur stdDeviation="2"/>
+        </filter>`;
+      break;
+
+    // Gaming Series
+    case 'pixelArt':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+        </linearGradient>
+        <pattern id="pixelPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="10" height="10" fill="#${colorsCopy[0]}"/>
+          <rect x="10" y="0" width="10" height="10" fill="#${colorsCopy[1]}"/>
+          <rect x="0" y="10" width="10" height="10" fill="#${colorsCopy[2]}"/>
+          <rect x="10" y="10" width="10" height="10" fill="#${colorsCopy[3] || colorsCopy[0]}"/>
+          <animateTransform attributeName="patternTransform" type="translate" values="0,0;20,0;0,20;0,0" ${animationConfig} />
+        </pattern>`;
+      break;
+
+    case 'neonArcade':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 0.5}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="neonGlow">
+          <feGaussianBlur stdDeviation="5"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>`;
+      break;
+
+    case 'energyBlast':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+          ${stops}
+          <animate attributeName="r" values="30%;80%;30%" dur="${parseFloat(animationDuration) * 0.4}s" repeatCount="indefinite" />
+        </radialGradient>
+        <filter id="energyWave">
+          <feGaussianBlur stdDeviation="5"/>
+          <feMorphology operator="dilate" radius="2"/>
+        </filter>`;
+      break;
+
+    case 'speedLines':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+          ${stops}
+          <animate attributeName="x1" values="-50%;50%" dur="${parseFloat(animationDuration) * 0.3}s" repeatCount="indefinite" />
+          <animate attributeName="x2" values="50%;150%" dur="${parseFloat(animationDuration) * 0.3}s" repeatCount="indefinite" />
+        </linearGradient>`;
+      break;
+
+    case 'bossBattle':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
+          ${stops}
+          <animate attributeName="r" values="40%;80%;40%" dur="${parseFloat(animationDuration) * 0.5}s" repeatCount="indefinite" />
+          <animate attributeName="cx" values="30%;70%;30%" ${animationConfig} />
+        </radialGradient>
+        <filter id="battleIntensity">
+          <feGaussianBlur stdDeviation="3"/>
+          <feColorMatrix values="1.3 0 0 0 0 0 1.3 0 0 0 0 0 1.3 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'powerUp':
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+          ${stops}
+          <animate attributeName="r" values="30%;70%;30%" dur="${parseFloat(animationDuration) * 0.7}s" repeatCount="indefinite" />
+        </radialGradient>
+        <filter id="powerGlow">
+          <feGaussianBlur stdDeviation="4"/>
+          <feColorMatrix values="1.2 0 0 0 0 0 1.2 0 0 0 0 0 1.2 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'cyberpunk':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+        </linearGradient>
+        <filter id="cyberpunkGlow">
+          <feGaussianBlur stdDeviation="3"/>
+          <feColorMatrix values="1.4 0 0 0 0 0 1.4 0 0 0 0 0 1.4 0 0 0 0 0 1 0"/>
+        </filter>`;
+      break;
+
+    case 'retroWave':
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+          ${stops}
+          <animate attributeName="x1" values="0%;50%;100%;50%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="100%;50%;0%;50%;100%" ${animationConfig} />
+        </linearGradient>
+        <filter id="retroGlow">
+          <feGaussianBlur stdDeviation="2"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>`;
+      break;
+
     default:
       gradientDef = `
         <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">

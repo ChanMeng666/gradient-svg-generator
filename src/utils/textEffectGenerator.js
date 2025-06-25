@@ -11,6 +11,7 @@
  */
 
 const { createGradientFromColors } = require('./svgUtils');
+const { generateAdvancedEffect } = require('./advancedEffectGenerator');
 
 function generateTextEffectSVG({ 
   text, 
@@ -22,6 +23,7 @@ function generateTextEffectSVG({
 }) {
   const gradientResult = createGradientFromColors(colors, gradientType, duration);
   
+  // Handle original text effects
   switch (gradientType) {
     case 'luminance':
       return generateLuminanceEffect(text, colors, height, duration, gradientResult);
@@ -33,9 +35,59 @@ function generateTextEffectSVG({
       return generateGlitchEffect(text, colors, height, duration, gradientResult);
     case 'typewriter':
       return generateTypewriterEffect(text, colors, height, duration, gradientResult);
+    
+    // Handle advanced effects
+    case 'hologram':
+    case 'quantum':
+    case 'laserGrid':
+    case 'neuralNet':
+    case 'plasma':
+    case 'dataStream':
+    case 'watercolor':
+    case 'oilPaint':
+    case 'inkSplash':
+    case 'mosaic':
+    case 'abstractGeo':
+    case 'graffiti':
+    case 'vintage':
+    case 'goldFoil':
+    case 'diamond':
+    case 'marble':
+    case 'platinum':
+    case 'roseGold':
+    case 'crystal':
+    case 'velvet':
+    case 'flowingWater':
+    case 'flame':
+    case 'clouds':
+    case 'aurora':
+    case 'oceanWaves':
+    case 'forest':
+    case 'lightning':
+    case 'mountainMist':
+    case 'pixelArt':
+    case 'neonArcade':
+    case 'energyBlast':
+    case 'speedLines':
+    case 'bossBattle':
+    case 'powerUp':
+    case 'cyberpunk':
+    case 'retroWave':
+      return generateAdvancedEffectSVG(text, colors, height, gradientType, duration);
+    
     default:
       return generateLuminanceEffect(text, colors, height, duration, gradientResult);
   }
+}
+
+function generateAdvancedEffectSVG(text, colors, height, gradientType, duration) {
+  const advancedEffectContent = generateAdvancedEffect(gradientType, colors, duration, text);
+  
+  return `<?xml version="1.0" encoding="UTF-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+      width="854" height="${height}" viewBox="0 0 854 ${height}">
+      ${advancedEffectContent}
+    </svg>`;
 }
 
 function generateLuminanceEffect(text, colors, height, duration, gradientResult) {

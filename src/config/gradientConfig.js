@@ -31,6 +31,11 @@ const artTemplates = require('../templates/artTemplates');
 const emotionTemplates = require('../templates/emotionTemplates');
 const materialTemplates = require('../templates/materialTemplates');
 const textEffectTemplates = require('../templates/textEffectTemplates');
+const futureTechTemplates = require('../templates/futureTechTemplates');
+const artisticTemplates = require('../templates/artisticTemplates');
+const luxuryTemplates = require('../templates/luxuryTemplates');
+const organicTemplates = require('../templates/organicTemplates');
+const gamingTemplates = require('../templates/gamingTemplates');
 
 const templates = { 
   ...basicTemplates, 
@@ -40,7 +45,12 @@ const templates = {
   ...artTemplates,
   ...emotionTemplates,
   ...materialTemplates,
-  ...textEffectTemplates
+  ...textEffectTemplates,
+  ...futureTechTemplates,
+  ...artisticTemplates,
+  ...luxuryTemplates,
+  ...organicTemplates,
+  ...gamingTemplates
 };
 
 function getTemplateConfig(template, defaultColor = '000000') {
@@ -94,7 +104,64 @@ function validateConfig(config) {
   return config;
 }
 
+const GRADIENT_TYPES = [
+  'linear',
+  'radial',
+  'conic',
+  'diamond',
+  'reflected',
+  'square',
+  'ellipse',
+  'luminance',
+  'rainbow',
+  'textBox',
+  'glitch',
+  'typewriter',
+  // Future Tech Series
+  'hologram',
+  'quantum',
+  'laserGrid',
+  'neuralNet',
+  'plasma',
+  'dataStream',
+  // Artistic Series
+  'watercolor',
+  'oilPaint',
+  'inkSplash',
+  'mosaic',
+  'abstractGeo',
+  'graffiti',
+  'vintage',
+  // Luxury Series
+  'goldFoil',
+  'diamond',
+  'marble',
+  'platinum',
+  'roseGold',
+  'crystal',
+  'velvet',
+  // Organic Nature Series
+  'flowingWater',
+  'flame',
+  'clouds',
+  'aurora',
+  'oceanWaves',
+  'forest',
+  'lightning',
+  'mountainMist',
+  // Gaming Series
+  'pixelArt',
+  'neonArcade',
+  'energyBlast',
+  'speedLines',
+  'bossBattle',
+  'powerUp',
+  'cyberpunk',
+  'retroWave'
+];
+
 module.exports = { 
   getTemplateConfig,
-  validateConfig
+  validateConfig,
+  GRADIENT_TYPES
 };

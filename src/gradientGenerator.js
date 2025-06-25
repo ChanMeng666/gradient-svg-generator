@@ -44,9 +44,22 @@ function generateGradientSVG({
     duration = config.animationDuration;
   }
 
-  // Check if this is a text effect type
+  // Check if this is a text effect type or advanced effect type
   const textEffectTypes = ['luminance', 'rainbow', 'textBox', 'glitch', 'typewriter'];
-  if (textEffectTypes.includes(gradientType)) {
+  const advancedEffectTypes = [
+    // Future Tech
+    'hologram', 'quantum', 'laserGrid', 'neuralNet', 'plasma', 'dataStream',
+    // Artistic
+    'watercolor', 'oilPaint', 'inkSplash', 'mosaic', 'abstractGeo', 'graffiti', 'vintage',
+    // Luxury
+    'goldFoil', 'diamond', 'marble', 'platinum', 'roseGold', 'crystal', 'velvet',
+    // Organic Nature
+    'flowingWater', 'flame', 'clouds', 'aurora', 'oceanWaves', 'forest', 'lightning', 'mountainMist',
+    // Gaming
+    'pixelArt', 'neonArcade', 'energyBlast', 'speedLines', 'bossBattle', 'powerUp', 'cyberpunk', 'retroWave'
+  ];
+  
+  if (textEffectTypes.includes(gradientType) || advancedEffectTypes.includes(gradientType)) {
     return generateTextEffectSVG({
       text,
       colors,

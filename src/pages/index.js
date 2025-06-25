@@ -32,6 +32,13 @@ export default function Home() {
     { text: "GLOW", template: "luminance-glow" },
     { text: "RAINBOW", template: "rainbow-wave" },
     { text: "GLITCH", template: "glitch-cyber" },
+    { text: "HOLOGRAM", template: "hologram-matrix" },
+    { text: "QUANTUM", template: "quantum-field" },
+    { text: "FLAME", template: "burning-flame" },
+    { text: "CRYSTAL", template: "crystal-prism" },
+    { text: "GOLDEN", template: "golden-leaf" },
+    { text: "PIXEL", template: "pixel-art-retro" },
+    { text: "NEON", template: "neon-arcade" },
     { text: "Code", template: "midnight-galaxy" }
   ];
 
