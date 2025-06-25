@@ -43,7 +43,7 @@ function generateGradientSVG({
     duration = config.animationDuration;
   }
 
-  const gradientDef = createGradientFromColors(colors, gradientType, duration);
+  const gradientResult = createGradientFromColors(colors, gradientType, duration);
 
   // Choose appropriate filter effects based on gradient type
   let filterEffect = 'url(#smoothTransition)';
@@ -75,15 +75,36 @@ function generateGradientSVG({
     case 'reflection':
       filterEffect = 'url(#reflectionEffect)';
       break;
+    case 'star':
+      filterEffect = 'url(#starEffect)';
+      break;
+    case 'heart':
+      filterEffect = 'url(#heartEffect)';
+      break;
+    case 'zigzag':
+      filterEffect = 'url(#zigzagEffect)';
+      break;
+    case 'ripple':
+      filterEffect = 'url(#rippleEffect)';
+      break;
+    case 'galaxy':
+      filterEffect = 'url(#galaxyEffect)';
+      break;
+    case 'lightning':
+      filterEffect = 'url(#lightningEffect)';
+      break;
     default:
       filterEffect = 'url(#smoothTransition)';
   }
+
+  // Determine if we need to apply clip path
+  const clipPath = gradientResult.hasClipPath ? `clip-path="url(#${gradientResult.clipPathId})"` : '';
 
   return `<?xml version="1.0" encoding="UTF-8"?>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
       width="854" height="${height}" viewBox="0 0 854 ${height}">
       <defs>
-        ${gradientDef}
+        ${gradientResult.gradientDef}
         
         <!-- Enhanced Filter Effects -->
         <filter id="softLight">
@@ -150,6 +171,51 @@ function generateGradientSVG({
           </feMerge>
         </filter>
 
+        <filter id="starEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+          <feColorMatrix type="saturate" values="2"/>
+          <feSpecularLighting in="SourceGraphic" specularConstant="2" specularExponent="30" lighting-color="#ffff00">
+            <fePointLight x="427" y="${height/2}" z="150"/>
+          </feSpecularLighting>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="heartEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+          <feColorMatrix type="saturate" values="1.8"/>
+          <feColorMatrix type="hueRotate" values="15"/>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="zigzagEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+          <feColorMatrix type="saturate" values="1.6"/>
+          <feTurbulence baseFrequency="0.05" numOctaves="1" result="zigzag"/>
+          <feDisplacementMap in="SourceGraphic" in2="zigzag" scale="2"/>
+        </filter>
+
+        <filter id="rippleEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+          <feColorMatrix type="saturate" values="1.4"/>
+          <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="galaxyEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+          <feColorMatrix type="saturate" values="2"/>
+          <feTurbulence baseFrequency="0.02" numOctaves="4" result="galaxy"/>
+          <feDisplacementMap in="SourceGraphic" in2="galaxy" scale="1"/>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="lightningEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+          <feColorMatrix type="saturate" values="2.5"/>
+          <feColorMatrix type="brightness" values="1.3"/>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
         <!-- Text Shadow Effect -->
         <filter id="textShadow">
           <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
@@ -157,11 +223,15 @@ function generateGradientSVG({
         </filter>
       </defs>
       
+      <!-- Additional elements for complex effects -->
+      ${gradientResult.additionalElements}
+      
       <rect 
         width="854" 
         height="${height}" 
         fill="url(#gradient)"
         filter="${filterEffect}"
+        ${clipPath}
       >
         <animate
           attributeName="opacity"

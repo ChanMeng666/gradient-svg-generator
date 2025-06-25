@@ -10,5 +10,11 @@ export const GRADIENT_TYPES = [
   { value: 'diamond', label: 'Diamond' },
   { value: 'burst', label: 'Burst' },
   { value: 'reflection', label: 'Reflection' },
-  { value: 'pulse', label: 'Pulse' }
+  { value: 'pulse', label: 'Pulse' },
+  { value: 'star', label: 'Star' },
+  { value: 'heart', label: 'Heart' },
+  { value: 'zigzag', label: 'ZigZag' },
+  { value: 'ripple', label: 'Ripple' },
+  { value: 'galaxy', label: 'Galaxy' },
+  { value: 'lightning', label: 'Lightning' }
 ]; 

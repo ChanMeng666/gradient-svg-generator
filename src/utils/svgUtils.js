@@ -47,136 +47,252 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
 
   const animationConfig = `dur="${animationDuration}" repeatCount="indefinite"`;
   
-  let gradientAttributes;
-  let gradientAnimations;
-  let additionalDefs = '';
+  let gradientDef = '';
+  let additionalElements = '';
 
   switch (gradientType) {
     case 'horizontal':
-      gradientAttributes = 'x1="0%" y1="0%" x2="100%" y2="0%"';
-      gradientAnimations = `
-        <animate attributeName="x1" values="-50%;50%;100%;50%;-50%" ${animationConfig} />
-        <animate attributeName="x2" values="50%;150%;200%;150%;50%" ${animationConfig} />`;
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+          <animate attributeName="x1" values="-50%;50%;100%;50%;-50%" ${animationConfig} />
+          <animate attributeName="x2" values="50%;150%;200%;150%;50%" ${animationConfig} />
+        </linearGradient>`;
       break;
 
     case 'vertical':
-      gradientAttributes = 'x1="0%" y1="0%" x2="0%" y2="100%"';
-      gradientAnimations = `
-        <animate attributeName="y1" values="-50%;50%;100%;50%;-50%" ${animationConfig} />
-        <animate attributeName="y2" values="50%;150%;200%;150%;50%" ${animationConfig} />`;
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          ${stops}
+          <animate attributeName="y1" values="-50%;50%;100%;50%;-50%" ${animationConfig} />
+          <animate attributeName="y2" values="50%;150%;200%;150%;50%" ${animationConfig} />
+        </linearGradient>`;
       break;
 
     case 'diagonal':
-      gradientAttributes = 'x1="0%" y1="0%" x2="100%" y2="100%"';
-      gradientAnimations = `
-        <animate attributeName="x1" values="-50%;25%;100%;25%;-50%" ${animationConfig} />
-        <animate attributeName="y1" values="-50%;25%;100%;25%;-50%" ${animationConfig} />
-        <animate attributeName="x2" values="50%;125%;200%;125%;50%" ${animationConfig} />
-        <animate attributeName="y2" values="50%;125%;200%;125%;50%" ${animationConfig} />`;
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="-50%;25%;100%;25%;-50%" ${animationConfig} />
+          <animate attributeName="y1" values="-50%;25%;100%;25%;-50%" ${animationConfig} />
+          <animate attributeName="x2" values="50%;125%;200%;125%;50%" ${animationConfig} />
+          <animate attributeName="y2" values="50%;125%;200%;125%;50%" ${animationConfig} />
+        </linearGradient>`;
       break;
 
     case 'circular':
-      // Circular gradient with pulsing center point
-      additionalDefs = `
+      // Circular gradient with dynamic center movement and pulsing
+      gradientDef = `
         <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
           ${stops}
-          <animate attributeName="r" values="20%;70%;120%;70%;20%" ${animationConfig} />
-          <animate attributeName="cx" values="50%;30%;70%;50%;50%" ${animationConfig} />
-          <animate attributeName="cy" values="50%;30%;70%;50%;50%" ${animationConfig} />
+          <animate attributeName="r" values="30%;90%;130%;70%;30%" ${animationConfig} />
+          <animate attributeName="cx" values="50%;20%;80%;35%;65%;50%" ${animationConfig} />
+          <animate attributeName="cy" values="50%;20%;80%;65%;35%;50%" ${animationConfig} />
         </radialGradient>`;
-      return additionalDefs;
+      break;
 
     case 'radial':
-      // Traditional radial gradient with smooth expansion
-      additionalDefs = `
+      // Traditional radial gradient with smooth expansion from center
+      gradientDef = `
         <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
           ${stops}
-          <animate attributeName="r" values="30%;70%;100%;70%;30%" ${animationConfig} />
+          <animate attributeName="r" values="20%;70%;100%;70%;20%" ${animationConfig} />
         </radialGradient>`;
-      return additionalDefs;
+      break;
 
     case 'burst':
+      // Burst effect with rapid expansion and multiple focal points
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
+          ${stops}
+          <animate attributeName="r" values="10%;120%;40%;150%;10%" ${animationConfig} />
+          <animate attributeName="cx" values="50%;30%;70%;40%;60%;50%" ${animationConfig} />
+          <animate attributeName="cy" values="50%;70%;30%;60%;40%;50%" ${animationConfig} />
+        </radialGradient>`;
+      break;
+
     case 'pulse':
-      additionalDefs = `
+      // Pulsing effect with synchronized size and opacity changes
+      gradientDef = `
         <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
           ${stops}
-          <animate attributeName="r" values="20%;80%;120%;80%;20%" ${animationConfig} />
+          <animate attributeName="r" values="15%;75%;25%;100%;15%" ${animationConfig} />
         </radialGradient>`;
-      return additionalDefs;
+      break;
 
     case 'reflection':
-      gradientAttributes = 'x1="0%" y1="50%" x2="100%" y2="50%"';
-      gradientAnimations = `
-        <animate attributeName="x1" values="0%;25%;50%;75%;100%;75%;50%;25%;0%" ${animationConfig} />
-        <animate attributeName="x2" values="100%;75%;50%;25%;0%;25%;50%;75%;100%" ${animationConfig} />`;
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+          ${stops}
+          <animate attributeName="x1" values="0%;25%;50%;75%;100%;75%;50%;25%;0%" ${animationConfig} />
+          <animate attributeName="x2" values="100%;75%;50%;25%;0%;25%;50%;75%;100%" ${animationConfig} />
+        </linearGradient>`;
       break;
 
     case 'conic':
-      // Conic gradient effect using sweeping linear gradient
-      const conicStops = colorsCopy.map((color, index) => {
-        const offset = (index / (colorsCopy.length - 1)) * 100;
-        return `<stop offset="${offset}%" stop-color="#${color}" />`;
-      }).join('');
-      
-      additionalDefs = `
-        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="objectBoundingBox">
-          ${conicStops}
+      // True conic gradient using rotating radial gradient
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
+          ${stops}
           <animateTransform attributeName="gradientTransform" type="rotate" 
-            values="0 50 50;45 50 50;90 50 50;135 50 50;180 50 50;225 50 50;270 50 50;315 50 50;360 50 50" ${animationConfig} />
-        </linearGradient>`;
-      return additionalDefs;
+            values="0 50 50;90 50 50;180 50 50;270 50 50;360 50 50" ${animationConfig} />
+        </radialGradient>`;
+      additionalElements = `
+        <circle cx="427" cy="60" r="80" fill="none" stroke="url(#gradient)" stroke-width="20" opacity="0.6">
+          <animateTransform attributeName="transform" type="rotate" 
+            values="0 427 60;-360 427 60" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="427" cy="60" r="40" fill="none" stroke="url(#gradient)" stroke-width="10" opacity="0.8">
+          <animateTransform attributeName="transform" type="rotate" 
+            values="0 427 60;360 427 60" ${animationConfig} />
+        </circle>`;
+      break;
 
     case 'wave':
-      // Enhanced wave effect with sinusoidal movement
-      gradientAttributes = 'x1="0%" y1="50%" x2="100%" y2="50%"';
-      gradientAnimations = `
-        <animate attributeName="x1" values="0%;25%;50%;75%;100%;75%;50%;25%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="50%;20%;50%;80%;50%;20%;50%;80%;50%" ${animationConfig} />
-        <animate attributeName="x2" values="100%;125%;150%;175%;200%;175%;150%;125%;100%" ${animationConfig} />
-        <animate attributeName="y2" values="50%;80%;50%;20%;50%;80%;50%;20%;50%" ${animationConfig} />`;
+      // Enhanced wave effect with multiple wave layers
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+          ${stops}
+          <animate attributeName="x1" values="0%;-20%;40%;-10%;60%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="50%;30%;70%;20%;80%;50%" ${animationConfig} />
+          <animate attributeName="x2" values="100%;120%;80%;110%;60%;100%" ${animationConfig} />
+          <animate attributeName="y2" values="50%;70%;30%;80%;20%;50%" ${animationConfig} />
+        </linearGradient>`;
       break;
 
     case 'spiral':
-      // Enhanced spiral effect with both rotation and radius change
-      const spiralStops = colorsCopy.map((color, index) => {
-        const offset = (index / (colorsCopy.length - 1)) * 100;
-        return `<stop offset="${offset}%" stop-color="#${color}" />`;
-      }).join('');
-      
-      additionalDefs = `
-        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
-          ${spiralStops}
+      // Enhanced spiral with complex rotation and movement
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
+          ${stops}
           <animateTransform attributeName="gradientTransform" type="rotate" 
-            values="0 50 50;120 50 50;240 50 50;360 50 50" ${animationConfig} />
-          <animate attributeName="r" values="20%;80%;40%;100%;20%" ${animationConfig} />
-          <animate attributeName="cx" values="50%;40%;60%;45%;55%;50%" ${animationConfig} />
-          <animate attributeName="cy" values="50%;60%;40%;55%;45%;50%" ${animationConfig} />
+            values="0 50 50;180 50 50;360 50 50" ${animationConfig} />
+          <animate attributeName="r" values="30%;90%;50%;120%;30%" ${animationConfig} />
+          <animate attributeName="cx" values="50%;30%;70%;20%;80%;50%" ${animationConfig} />
+          <animate attributeName="cy" values="50%;70%;30%;80%;20%;50%" ${animationConfig} />
         </radialGradient>`;
-      return additionalDefs;
+      break;
 
     case 'diamond':
-      gradientAttributes = 'x1="50%" y1="0%" x2="50%" y2="100%"';
-      gradientAnimations = `
-        <animate attributeName="x1" values="20%;50%;80%;50%;20%" ${animationConfig} />
-        <animate attributeName="y1" values="20%;0%;20%;0%;20%" ${animationConfig} />
-        <animate attributeName="x2" values="80%;50%;20%;50%;80%" ${animationConfig} />
-        <animate attributeName="y2" values="80%;100%;80%;100%;80%" ${animationConfig} />`;
+      gradientDef = `
+        <linearGradient id="gradient" x1="50%" y1="0%" x2="50%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="20%;50%;80%;50%;20%" ${animationConfig} />
+          <animate attributeName="y1" values="20%;0%;20%;0%;20%" ${animationConfig} />
+          <animate attributeName="x2" values="80%;50%;20%;50%;80%" ${animationConfig} />
+          <animate attributeName="y2" values="80%;100%;80%;100%;80%" ${animationConfig} />
+        </linearGradient>`;
+      break;
+
+    case 'star':
+      // Star-shaped gradient using clip path
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+          ${stops}
+          <animate attributeName="r" values="40%;80%;40%" ${animationConfig} />
+        </radialGradient>
+        <clipPath id="star-clip">
+          <polygon points="50,5 61,35 95,35 69,57 79,91 50,70 21,91 31,57 5,35 39,35">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 50 50;360 50 50" dur="${animationDuration}" repeatCount="indefinite" />
+          </polygon>
+        </clipPath>`;
+      break;
+
+    case 'heart':
+      // Heart-shaped gradient using clip path
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="40%" r="60%">
+          ${stops}
+          <animate attributeName="r" values="40%;70%;40%" ${animationConfig} />
+          <animate attributeName="cy" values="40%;45%;40%" ${animationConfig} />
+        </radialGradient>
+        <clipPath id="heart-clip">
+          <path d="M50,85 C50,85 85,50 85,35 C85,20 70,20 50,35 C30,20 15,20 15,35 C15,50 50,85 50,85 Z">
+            <animateTransform attributeName="transform" type="scale" 
+              values="1;1.1;1" ${animationConfig} />
+          </path>
+        </clipPath>`;
+      break;
+
+    case 'zigzag':
+      // ZigZag pattern gradient
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="0%;100%;0%" ${animationConfig} />
+          <animate attributeName="x2" values="100%;0%;100%" ${animationConfig} />
+          <animate attributeName="y2" values="100%;0%;100%" ${animationConfig} />
+        </linearGradient>`;
+      break;
+
+    case 'ripple':
+      // Ripple effect with multiple concentric circles
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="30%">
+          ${stops}
+          <animate attributeName="r" values="10%;50%;80%;10%" ${animationConfig} />
+        </radialGradient>`;
+      additionalElements = `
+        <circle cx="427" cy="60" r="20" fill="none" stroke="url(#gradient)" stroke-width="2" opacity="0.3">
+          <animate attributeName="r" values="10;50;80;10" ${animationConfig} />
+          <animate attributeName="opacity" values="0.8;0.3;0;0.8" ${animationConfig} />
+        </circle>
+        <circle cx="427" cy="60" r="30" fill="none" stroke="url(#gradient)" stroke-width="1" opacity="0.2">
+          <animate attributeName="r" values="20;60;90;20" ${animationConfig} begin="1s" />
+          <animate attributeName="opacity" values="0.6;0.2;0;0.6" ${animationConfig} begin="1s" />
+        </circle>`;
+      break;
+
+    case 'galaxy':
+      // Galaxy spiral effect
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
+          ${stops}
+          <animateTransform attributeName="gradientTransform" type="rotate" 
+            values="0 50 50;360 50 50" dur="${parseFloat(animationDuration) * 2}s" repeatCount="indefinite" />
+          <animate attributeName="r" values="50%;90%;50%" ${animationConfig} />
+        </radialGradient>`;
+      additionalElements = `
+        <ellipse cx="427" cy="60" rx="100" ry="30" fill="url(#gradient)" opacity="0.3">
+          <animateTransform attributeName="transform" type="rotate" 
+            values="0 427 60;360 427 60" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+        </ellipse>`;
+      break;
+
+    case 'lightning':
+      // Lightning effect with sharp angles
+      gradientDef = `
+        <linearGradient id="gradient" x1="20%" y1="0%" x2="80%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="20%;80%;20%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
+          <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
+          <animate attributeName="x2" values="80%;20%;80%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
+          <animate attributeName="y2" values="100%;0%;100%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
+        </linearGradient>
+        <clipPath id="lightning-clip">
+          <polygon points="45,5 55,5 25,40 35,40 15,80 25,50 35,50 65,15 55,15 85,5 75,35 65,35">
+            <animate attributeName="opacity" values="1;0.5;1" dur="${parseFloat(animationDuration) / 3}s" repeatCount="indefinite" />
+          </polygon>
+        </clipPath>`;
       break;
 
     default:
-      gradientAttributes = 'x1="0%" y1="0%" x2="100%" y2="0%"';
-      gradientAnimations = '';
+      gradientDef = `
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          ${stops}
+        </linearGradient>`;
   }
 
-  const isRadialGradient = ['circular', 'radial', 'conic', 'spiral', 'burst', 'pulse'].includes(gradientType);
-  const gradientElement = isRadialGradient ? 'radialGradient' : 'linearGradient';
-
-  return `
-    <${gradientElement} id="gradient" ${gradientAttributes}>
-      ${stops}
-      ${gradientAnimations}
-    </${gradientElement}>
-  `;
+  return {
+    gradientDef,
+    additionalElements,
+    hasClipPath: ['star', 'heart', 'lightning'].includes(gradientType),
+    clipPathId: gradientType === 'star' ? 'star-clip' : 
+                gradientType === 'heart' ? 'heart-clip' : 
+                gradientType === 'lightning' ? 'lightning-clip' : null
+  };
 }
 
 module.exports = { createGradientFromColors };

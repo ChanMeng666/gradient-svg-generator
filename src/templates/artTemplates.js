@@ -106,5 +106,37 @@ module.exports = {
     gradientType: 'pulse',
     animationDuration: '4s',
     description: 'Pop art vibrant colors'
+  },
+  'starry-nights': {
+    name: 'starry-nights',
+    label: 'Starry Nights',
+    colors: ['000033', '191970', 'ffd700', 'ffffff'],
+    gradientType: 'star',
+    animationDuration: '8s',
+    description: 'Twinkling starry night sky'
+  },
+  'love-potion': {
+    name: 'love-potion',
+    label: 'Love Potion',
+    colors: ['ff1493', 'ff69b4', 'ff6347', 'dc143c'],
+    gradientType: 'heart',
+    animationDuration: '6s',
+    description: 'Romantic heart-shaped gradient'
+  },
+  'cosmic-voyage': {
+    name: 'cosmic-voyage',
+    label: 'Cosmic Voyage',
+    colors: ['2c3e50', '8e44ad', 'e74c3c', 'f39c12'],
+    gradientType: 'galaxy',
+    animationDuration: '12s',
+    description: 'Deep space galaxy swirl'
+  },
+  'electric-storm': {
+    name: 'electric-storm',
+    label: 'Electric Storm',
+    colors: ['1a1a2e', '16213e', '0f3460', 'ffffff'],
+    gradientType: 'lightning',
+    animationDuration: '3s',
+    description: 'Lightning bolt energy'
   }
 }; 

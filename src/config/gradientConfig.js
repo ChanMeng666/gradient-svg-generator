@@ -76,7 +76,7 @@ function validateConfig(config) {
   }
 
   // Validate gradient type
-  const validGradientTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'radial', 'conic', 'wave', 'spiral', 'diamond', 'burst', 'reflection', 'pulse'];
+  const validGradientTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'radial', 'conic', 'wave', 'spiral', 'diamond', 'burst', 'reflection', 'pulse', 'star', 'heart', 'zigzag', 'ripple', 'galaxy', 'lightning'];
   if (!validGradientTypes.includes(config.gradientType)) {
     config.gradientType = defaultConfig.gradientType;
   }
