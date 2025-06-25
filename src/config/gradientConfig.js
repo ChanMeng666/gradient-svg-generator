@@ -30,6 +30,7 @@ const techTemplates = require('../templates/techTemplates');
 const artTemplates = require('../templates/artTemplates');
 const emotionTemplates = require('../templates/emotionTemplates');
 const materialTemplates = require('../templates/materialTemplates');
+const textEffectTemplates = require('../templates/textEffectTemplates');
 
 const templates = { 
   ...basicTemplates, 
@@ -38,7 +39,8 @@ const templates = {
   ...techTemplates,
   ...artTemplates,
   ...emotionTemplates,
-  ...materialTemplates
+  ...materialTemplates,
+  ...textEffectTemplates
 };
 
 function getTemplateConfig(template, defaultColor = '000000') {
@@ -76,7 +78,7 @@ function validateConfig(config) {
   }
 
   // Validate gradient type
-  const validGradientTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'radial', 'conic', 'wave', 'spiral', 'diamond', 'burst', 'reflection', 'pulse', 'star', 'heart', 'zigzag', 'ripple', 'galaxy', 'lightning'];
+  const validGradientTypes = ['horizontal', 'vertical', 'diagonal', 'circular', 'radial', 'conic', 'wave', 'spiral', 'diamond', 'burst', 'reflection', 'pulse', 'star', 'heart', 'zigzag', 'ripple', 'galaxy', 'lightning', 'luminance', 'rainbow', 'textBox', 'glitch', 'typewriter'];
   if (!validGradientTypes.includes(config.gradientType)) {
     config.gradientType = defaultConfig.gradientType;
   }

@@ -25,6 +25,7 @@
 // gradientGenerator.js
 const { createGradientFromColors } = require('./utils/svgUtils');
 const { getTemplateConfig } = require('./config/gradientConfig');
+const { generateTextEffectSVG } = require('./utils/textEffectGenerator');
 
 function generateGradientSVG({ 
   text, 
@@ -41,6 +42,19 @@ function generateGradientSVG({
     colors = config.colors;
     gradientType = config.gradientType;
     duration = config.animationDuration;
+  }
+
+  // Check if this is a text effect type
+  const textEffectTypes = ['luminance', 'rainbow', 'textBox', 'glitch', 'typewriter'];
+  if (textEffectTypes.includes(gradientType)) {
+    return generateTextEffectSVG({
+      text,
+      colors,
+      height,
+      gradientType,
+      duration,
+      template
+    });
   }
 
   const gradientResult = createGradientFromColors(colors, gradientType, duration);
@@ -92,6 +106,21 @@ function generateGradientSVG({
       break;
     case 'lightning':
       filterEffect = 'url(#lightningEffect)';
+      break;
+    case 'luminance':
+      filterEffect = 'url(#luminanceEffect)';
+      break;
+    case 'rainbow':
+      filterEffect = 'url(#rainbowEffect)';
+      break;
+    case 'textBox':
+      filterEffect = 'url(#textBoxEffect)';
+      break;
+    case 'glitch':
+      filterEffect = 'url(#glitchEffect)';
+      break;
+    case 'typewriter':
+      filterEffect = 'url(#typewriterEffect)';
       break;
     default:
       filterEffect = 'url(#smoothTransition)';
@@ -213,6 +242,52 @@ function generateGradientSVG({
           <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
           <feColorMatrix type="saturate" values="2.5"/>
           <feColorMatrix type="brightness" values="1.3"/>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="luminanceEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+          <feColorMatrix type="saturate" values="1.5"/>
+          <feSpecularLighting in="SourceGraphic" specularConstant="3" specularExponent="25" lighting-color="white">
+            <fePointLight x="427" y="${height/2}" z="200"/>
+          </feSpecularLighting>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="rainbowEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+          <feColorMatrix type="saturate" values="2"/>
+          <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="textBoxEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+          <feColorMatrix type="saturate" values="1.8"/>
+          <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#19f6e8" flood-opacity="0.6"/>
+          <feComposite operator="over" in2="SourceGraphic"/>
+        </filter>
+
+        <filter id="glitchEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+          <feColorMatrix type="saturate" values="2.2"/>
+          <feOffset in="SourceGraphic" dx="1" dy="1" result="offsetRed"/>
+          <feOffset in="SourceGraphic" dx="-1" dy="-1" result="offsetCyan"/>
+          <feFlood flood-color="#ff0000" result="floodRed"/>
+          <feFlood flood-color="#00ffff" result="floodCyan"/>
+          <feComposite in="floodRed" in2="offsetRed" operator="in" result="redGlow"/>
+          <feComposite in="floodCyan" in2="offsetCyan" operator="in" result="cyanGlow"/>
+          <feMerge>
+            <feMergeNode in="SourceGraphic"/>
+            <feMergeNode in="redGlow"/>
+            <feMergeNode in="cyanGlow"/>
+          </feMerge>
+        </filter>
+
+        <filter id="typewriterEffect">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.3"/>
+          <feColorMatrix type="saturate" values="1.3"/>
+          <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00ff00" flood-opacity="0.4"/>
           <feComposite operator="over" in2="SourceGraphic"/>
         </filter>
 
