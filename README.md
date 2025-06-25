@@ -1,262 +1,394 @@
 <div align="center">
- <h1><img src="public/gradient-svg-generator.svg" width="80px"><br/>Gradient SVG Generator</h1>
- <img src="https://img.shields.io/badge/next.js-%23000000.svg?style=for-the-badge&logo=next.js&logoColor=white"/>
- <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
- <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white"/>
- <img src="https://img.shields.io/badge/SVG-%23FFB13B.svg?style=for-the-badge&logo=svg&logoColor=black"/>
+
+# 🎨 Gradient SVG Generator
+
+<img src="public/gradient-svg-generator.svg" width="120px" alt="Gradient SVG Generator Logo">
+
+**A professional-grade, feature-rich gradient SVG generator with 18+ gradient types, 80+ templates, and real-time preview**
+
+[![Next.js](https://img.shields.io/badge/next.js-%23000000.svg?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
+[![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![SVG](https://img.shields.io/badge/SVG-%23FFB13B.svg?style=for-the-badge&logo=svg&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/SVG)
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge)](LICENSE)
+
+[🚀 **Live Demo**](https://gradient-svg-generator.vercel.app) | [⚙️ **Settings Panel**](https://gradient-svg-generator.vercel.app/settings) | [📖 **Documentation**](#table-of-contents) | [🤝 **Contributing**](#contributing)
+
 </div>
 
-![Welcome](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome&height=200&template=progress-pride)
+---
 
-https://github.com/user-attachments/assets/4a71cdd1-8c48-4038-85fd-2bcb487f9085
+## 🌟 Showcase
 
-![screencapture-gradient-svg-generator-vercel-app-2025-01-15-17_23_24](https://github.com/user-attachments/assets/3a362fde-ed80-42c1-a3da-412b2fe4f435)
+![Welcome Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20to%20Gradient%20SVG%20Generator&height=200&template=progress-pride)
 
-![screencapture-gradient-svg-generator-vercel-app-settings-2025-01-15-17_23_50](https://github.com/user-attachments/assets/13baec12-4222-4302-9450-2c92dd771bce)
+<div align="center">
 
-![screencapture-gradient-svg-generator-vercel-app-settings-2025-01-15-17_24_44](https://github.com/user-attachments/assets/24bf2458-ec31-427b-869e-e216257490ad)
+**Transform your projects with stunning, professional gradient SVG banners**
 
-## 🚀 Major New Features & Enhancements
+*Perfect for GitHub README files, documentation headers, social media, and web projects*
 
-The Gradient SVG Generator has undergone massive upgrades, transforming from a simple tool into a comprehensive creative platform with **300% more features** and professional-grade capabilities!
+</div>
 
-### 🎨 **12 Advanced Gradient Types** (7 NEW!)
-- **Traditional**: Horizontal, Vertical, Diagonal, Circular, Radial
-- **NEW Advanced Effects**: Conic, Wave, Spiral, Diamond, Burst, Reflection, Pulse
-- **Smart Filter Effects**: Energy, Crystal, Wave, Spiral effects with turbulence and lighting
-- **Professional Animations**: Spline-based smooth transitions and dynamic effects
+## 📸 Screenshots
 
-### 🌟 **6 Template Categories with 80+ Templates**
-- **🌿 Nature Templates** (12): Sunrise Dawn, Forest Mist, Northern Aurora, Volcano Fire, Cherry Blossom, Thunderstorm, and more
-- **🔬 Technology Templates** (12): Neural Network, Quantum Field, Cyber Matrix, Hologram Blue, Digital Rain, Synthetic Dream
-- **🎭 Art Styles Templates** (12): Van Gogh Starry, Monet Water Lily, Picasso Blue, Rothko Red, Kandinsky Abstract, Warhol Pop
-- **💭 Emotions Templates** (12): Joy & Happiness, Calm & Serenity, Passion & Fire, Dreams & Fantasy, Peace & Harmony, Mystery & Dark
-- **💎 Materials Templates** (12): Gold Luxury, Silver Chrome, Diamond Crystal, Emerald Gem, Opal Iridescent, Marble White
-- **🏳️‍🌈 Pride Templates** (18): Progress Pride, Trans Pride, Bi Pride, Pan Pride, Nonbinary Pride, and more inclusive designs
+<div align="center">
 
-### 💻 **Enhanced Settings UI**
-- **Dual Creation Modes**: Custom Creation & Template Selection
-- **Live Preview Panel**: Real-time visual feedback
-- **Dark/Light Theme**: Complete theme switching
-- **One-Click Export**: Generate markdown code instantly
-- **Responsive Design**: Works perfectly on all devices
-- **Interactive Gallery**: Click-to-try template previews
+### 🏠 Landing Page
+*Beautiful, responsive landing page with live examples*
 
-## Introduction
+![Landing Page](https://github.com/user-attachments/assets/3a362fde-ed80-42c1-a3da-412b2fe4f435)
 
-The Gradient SVG Generator is now a powerful, professional-grade tool that creates stunning animated gradient SVGs with customizable text overlays. Perfect for:
-- Creating eye-catching headers for documentation and GitHub profiles
-- Designing beautiful badges and banners for social media
-- Generating animated graphics for web projects
-- Adding decorative elements to presentations
-- Creating inclusive pride-themed graphics and professional branding
+### ⚙️ Settings Panel - Custom Creation Mode
+*Full control over colors, animations, and effects*
+
+![Settings Panel](https://github.com/user-attachments/assets/13baec12-4222-4302-9450-2c92dd771bce)
+
+### 📄 Settings Panel - Template Gallery
+*Browse and customize 80+ professional templates*
+
+![Template Gallery](https://github.com/user-attachments/assets/24bf2458-ec31-427b-869e-e216257490ad)
+
+</div>
+
+---
 
 ## 📚 Table of Contents
 
-1. [Quick Start Guide](#quick-start-guide)
-2. [New Gradient Types](#new-gradient-types)
-3. [Template Categories](#template-categories)
-4. [Configuration Options](#configuration-options)
-5. [Advanced Usage Examples](#advanced-usage-examples)
-6. [Installation and Development](#installation-and-development)
+- [🚀 Quick Start](#-quick-start)
+- [✨ Features Overview](#-features-overview)
+- [🎨 Gradient Types](#-gradient-types)
+- [📄 Template Categories](#-template-categories)
+- [🔧 API Reference](#-api-reference)
+- [🏗️ Architecture](#️-architecture)
+- [💻 Installation & Development](#-installation--development)
+- [📁 Project Structure](#-project-structure)
+- [🎯 Usage Examples](#-usage-examples)
+- [⚡ Performance & Optimization](#-performance--optimization)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
 
-## Quick Start Guide
+---
 
-### 🎯 Using the Enhanced Settings UI (Recommended)
+## 🚀 Quick Start
 
-Experience our completely redesigned interface with dual creation modes:
+### 🌐 Using the Web Interface (Recommended)
 
-1. **Visit**: [https://gradient-svg-generator.vercel.app/settings](https://gradient-svg-generator.vercel.app/settings)
+1. **Visit the Live Application**: [https://gradient-svg-generator.vercel.app](https://gradient-svg-generator.vercel.app)
 2. **Choose Your Approach**:
-   - **Custom Creation**: Full control over colors, animations, and effects
-   - **Template Selection**: Browse 80+ professionally designed templates
-3. **Live Preview**: See changes in real-time
-4. **Export**: Copy markdown code with one click
+   - **Settings Panel**: [https://gradient-svg-generator.vercel.app/settings](https://gradient-svg-generator.vercel.app/settings)
+   - **Custom Creation**: Full control over design
+   - **Template Gallery**: 80+ professional templates
+3. **Generate & Export**: Copy markdown code with one click
 
 ### 🔗 Direct API Usage
 
-For programmatic usage or quick testing:
-
 ```markdown
 ![Hello World](https://gradient-svg-generator.vercel.app/api/svg?text=Hello%20World&height=120&template=neural-network)
 ```
+
+**Result:**
 ![Hello World](https://gradient-svg-generator.vercel.app/api/svg?text=Hello%20World&height=120&template=neural-network)
 
-## New Gradient Types
+---
 
-### 🔥 Advanced Visual Effects
+## ✨ Features Overview
 
-| Gradient Type | Description | Best For |
-|---------------|-------------|----------|
-| **Conic** | Rotating cone with spin animation | Loading spinners, dynamic effects |
-| **Wave** | Flowing wave-like patterns | Water themes, music visualizations |
-| **Spiral** | Expanding/contracting spiral motion | Hypnotic effects, cosmic themes |
-| **Diamond** | Diamond-shaped gradient flow | Gem themes, luxury branding |
-| **Burst** | Explosive energy from center | Power expressions, impact visuals |
-| **Reflection** | Mirror-like surface effect | Water reflections, glass materials |
-| **Pulse** | Rhythmic pulsing animation | Heartbeat themes, life energy |
+### 🎨 **18 Advanced Gradient Types**
+- **Basic**: Horizontal, Vertical, Diagonal, Circular, Radial
+- **Advanced**: Conic, Wave, Spiral, Diamond, Burst, Reflection, Pulse
+- **Special**: Star, Heart, ZigZag, Ripple, Galaxy, Lightning
 
-#### Conic Gradient Example
-```markdown
-![Conic Effect](https://gradient-svg-generator.vercel.app/api/svg?text=Spinning&gradientType=conic&color0=ff0080&color1=8000ff&color2=0080ff)
-```
-![Conic Effect](https://gradient-svg-generator.vercel.app/api/svg?text=Spinning&gradientType=conic&color0=ff0080&color1=8000ff&color2=0080ff)
+### 📄 **6 Template Categories with 80+ Templates**
+- 🌿 **Nature** (12 templates): Sunrise, Forest, Ocean, Aurora, etc.
+- 🔬 **Technology** (12 templates): Neural Network, Quantum Field, Cyber Matrix, etc.
+- 🎭 **Art Styles** (12 templates): Van Gogh, Monet, Picasso inspired designs
+- 💭 **Emotions** (12 templates): Joy, Calm, Passion, Dreams, etc.
+- 💎 **Materials** (12 templates): Gold, Silver, Diamond, Crystal effects
+- 🏳️‍🌈 **Pride** (20 templates): Inclusive LGBTQ+ pride flag designs
 
-#### Wave Effect Example
-```markdown
-![Wave Effect](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Wave&gradientType=wave&color0=00ff87&color1=60efff&color2=0078ff)
-```
-![Wave Effect](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Wave&gradientType=wave&color0=00ff87&color1=60efff&color2=0078ff)
+### 🖥️ **Modern User Interface**
+- 🌓 **Dark/Light Theme**: Complete theme switching
+- 📱 **Responsive Design**: Perfect on all devices
+- 👁️ **Live Preview**: Real-time visual feedback
+- ⚡ **One-Click Export**: Generate markdown instantly
+- 🎯 **Dual Creation Modes**: Custom & Template-based
 
-## Template Categories
+### ⚙️ **Professional Features**
+- 🎨 **Multi-Color Support**: Unlimited color gradients
+- ⏱️ **Animation Control**: 1-20 second durations
+- 📏 **Flexible Sizing**: 30px to 300px height
+- 🔧 **Advanced Filters**: Energy, Crystal, Wave effects
+- 🎪 **Smooth Animations**: Spline-based transitions
+
+---
+
+## 🎨 Gradient Types
+
+### 📊 Basic Gradient Types
+
+<div align="center">
+
+| Type | Preview | Description | Best For |
+|------|---------|-------------|----------|
+| **Horizontal** | ![Horizontal](https://gradient-svg-generator.vercel.app/api/svg?text=Horizontal&gradientType=horizontal&color0=ff0080&color1=0080ff&height=60) | Left to right flow | Headers, banners |
+| **Vertical** | ![Vertical](https://gradient-svg-generator.vercel.app/api/svg?text=Vertical&gradientType=vertical&color0=ff0080&color1=0080ff&height=60) | Top to bottom flow | Sidebars, badges |
+| **Diagonal** | ![Diagonal](https://gradient-svg-generator.vercel.app/api/svg?text=Diagonal&gradientType=diagonal&color0=ff0080&color1=0080ff&height=60) | Corner to corner flow | Dynamic layouts |
+| **Circular** | ![Circular](https://gradient-svg-generator.vercel.app/api/svg?text=Circular&gradientType=circular&color0=ff0080&color1=0080ff&height=60) | Multiple circle patterns | Artistic designs |
+| **Radial** | ![Radial](https://gradient-svg-generator.vercel.app/api/svg?text=Radial&gradientType=radial&color0=ff0080&color1=0080ff&height=60) | Center outward flow | Focus points, logos |
+
+</div>
+
+### 🚀 Advanced Gradient Types
+
+<div align="center">
+
+| Type | Preview | Description | Animation Style |
+|------|---------|-------------|----------------|
+| **Conic** | ![Conic](https://gradient-svg-generator.vercel.app/api/svg?text=Conic&gradientType=conic&color0=ff0080&color1=8000ff&color2=0080ff&height=60) | Rotating cone effect | Spinning motion |
+| **Wave** | ![Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Wave&gradientType=wave&color0=00ff87&color1=60efff&color2=0078ff&height=60) | Flowing wave patterns | Oscillating movement |
+| **Spiral** | ![Spiral](https://gradient-svg-generator.vercel.app/api/svg?text=Spiral&gradientType=spiral&color0=ff00ff&color1=00ffff&color2=ff0080&height=60) | Expanding spiral motion | Hypnotic rotation |
+| **Diamond** | ![Diamond](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond&gradientType=diamond&color0=ffd700&color1=ffff00&color2=ff8c00&height=60) | Diamond-shaped flow | Crystalline expansion |
+| **Burst** | ![Burst](https://gradient-svg-generator.vercel.app/api/svg?text=Burst&gradientType=burst&color0=ff00ff&color1=00ffff&color2=ff0080&height=60) | Explosive energy | Rapid pulsing |
+| **Pulse** | ![Pulse](https://gradient-svg-generator.vercel.app/api/svg?text=Pulse&gradientType=pulse&color0=ff1744&color1=f50057&color2=c51162&height=60) | Rhythmic pulsing | Heartbeat-like |
+| **Reflection** | ![Reflection](https://gradient-svg-generator.vercel.app/api/svg?text=Reflection&gradientType=reflection&color0=87ceeb&color1=4682b4&color2=191970&height=60) | Mirror-like surface | Smooth reflection |
+
+</div>
+
+### 🌟 Special Effects
+
+<div align="center">
+
+| Type | Preview | Description | Use Case |
+|------|---------|-------------|----------|
+| **Star** | ![Star](https://gradient-svg-generator.vercel.app/api/svg?text=Star&gradientType=star&color0=ffd700&color1=ff8c00&color2=ff4500&height=60) | Rotating star patterns | Achievement badges |
+| **Heart** | ![Heart](https://gradient-svg-generator.vercel.app/api/svg?text=Heart&gradientType=heart&color0=ff69b4&color1=ff1493&color2=dc143c&height=60) | Animated heart shapes | Love themes |
+| **Galaxy** | ![Galaxy](https://gradient-svg-generator.vercel.app/api/svg?text=Galaxy&gradientType=galaxy&color0=4b0082&color1=8a2be2&color2=9400d3&height=60) | Cosmic swirl patterns | Space themes |
+| **Lightning** | ![Lightning](https://gradient-svg-generator.vercel.app/api/svg?text=Lightning&gradientType=lightning&color0=ffff00&color1=ff6347&color2=ff4500&height=60) | Electric energy | Power themes |
+
+</div>
+
+---
+
+## 📄 Template Categories
 
 ### 🌿 Nature Templates
-Inspired by natural phenomena with authentic color palettes:
 
-#### Sunrise Dawn
-```markdown
-![Sunrise Dawn](https://gradient-svg-generator.vercel.app/api/svg?text=Sunrise%20Dawn&template=sunrise-dawn)
-```
-![Sunrise Dawn](https://gradient-svg-generator.vercel.app/api/svg?text=Sunrise%20Dawn&template=sunrise-dawn)
+*Inspired by natural phenomena with authentic color palettes*
 
-#### Northern Aurora
-```markdown
-![Northern Aurora](https://gradient-svg-generator.vercel.app/api/svg?text=Northern%20Aurora&template=northern-aurora)
-```
-![Northern Aurora](https://gradient-svg-generator.vercel.app/api/svg?text=Northern%20Aurora&template=northern-aurora)
+<div align="center">
 
-#### Volcano Fire
-```markdown
-![Volcano Fire](https://gradient-svg-generator.vercel.app/api/svg?text=Volcano%20Fire&template=volcano-fire)
-```
-![Volcano Fire](https://gradient-svg-generator.vercel.app/api/svg?text=Volcano%20Fire&template=volcano-fire)
+| Template | Preview | Description |
+|----------|---------|-------------|
+| **Sunrise Dawn** | ![Sunrise Dawn](https://gradient-svg-generator.vercel.app/api/svg?text=Sunrise%20Dawn&template=sunrise-dawn&height=80) | Peaceful morning sunrise |
+| **Forest Mist** | ![Forest Mist](https://gradient-svg-generator.vercel.app/api/svg?text=Forest%20Mist&template=forest-mist&height=80) | Misty forest morning |
+| **Ocean Depths** | ![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80) | Deep ocean mysteries |
+| **Northern Aurora** | ![Northern Aurora](https://gradient-svg-generator.vercel.app/api/svg?text=Northern%20Aurora&template=northern-aurora&height=80) | Dancing northern lights |
+| **Volcano Fire** | ![Volcano Fire](https://gradient-svg-generator.vercel.app/api/svg?text=Volcano%20Fire&template=volcano-fire&height=80) | Volcanic eruption energy |
+
+</div>
 
 ### 🔬 Technology Templates
-Futuristic and sci-fi inspired designs:
 
-#### Neural Network
-```markdown
-![Neural Network](https://gradient-svg-generator.vercel.app/api/svg?text=Neural%20Network&template=neural-network)
-```
-![Neural Network](https://gradient-svg-generator.vercel.app/api/svg?text=Neural%20Network&template=neural-network)
+*Futuristic and sci-fi inspired designs*
 
-#### Quantum Field
-```markdown
-![Quantum Field](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Field&template=quantum-field)
-```
-![Quantum Field](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Field&template=quantum-field)
+<div align="center">
+
+| Template | Preview | Description |
+|----------|---------|-------------|
+| **Neural Network** | ![Neural Network](https://gradient-svg-generator.vercel.app/api/svg?text=Neural%20Network&template=neural-network&height=80) | AI and machine learning |
+| **Quantum Field** | ![Quantum Field](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Field&template=quantum-field&height=80) | Quantum computing theme |
+| **Cyber Matrix** | ![Cyber Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Cyber%20Matrix&template=cyber-matrix&height=80) | Digital reality |
+| **Hologram Blue** | ![Hologram Blue](https://gradient-svg-generator.vercel.app/api/svg?text=Hologram%20Blue&template=hologram-blue&height=80) | Futuristic holographic |
+| **Digital Rain** | ![Digital Rain](https://gradient-svg-generator.vercel.app/api/svg?text=Digital%20Rain&template=digital-rain&height=80) | Matrix-inspired |
+
+</div>
 
 ### 🎭 Art Styles Templates
-Inspired by famous artists and art movements:
 
-#### Van Gogh Starry
-```markdown
-![Van Gogh Starry](https://gradient-svg-generator.vercel.app/api/svg?text=Van%20Gogh%20Starry&template=van-gogh-starry)
-```
-![Van Gogh Starry](https://gradient-svg-generator.vercel.app/api/svg?text=Van%20Gogh%20Starry&template=van-gogh-starry)
+*Inspired by famous artists and art movements*
 
-#### Monet Water Lily
-```markdown
-![Monet Water Lily](https://gradient-svg-generator.vercel.app/api/svg?text=Monet%20Water%20Lily&template=monet-water-lily)
-```
-![Monet Water Lily](https://gradient-svg-generator.vercel.app/api/svg?text=Monet%20Water%20Lily&template=monet-water-lily)
+<div align="center">
 
-### 💭 Emotions Templates
-Color psychology meets visual expression:
+| Template | Preview | Description |
+|----------|---------|-------------|
+| **Van Gogh Starry** | ![Van Gogh Starry](https://gradient-svg-generator.vercel.app/api/svg?text=Van%20Gogh%20Starry&template=van-gogh-starry&height=80) | Starry Night inspired |
+| **Monet Water Lily** | ![Monet Water Lily](https://gradient-svg-generator.vercel.app/api/svg?text=Monet%20Water%20Lily&template=monet-water-lily&height=80) | Impressionist style |
+| **Picasso Blue** | ![Picasso Blue](https://gradient-svg-generator.vercel.app/api/svg?text=Picasso%20Blue&template=picasso-blue&height=80) | Blue period inspired |
+| **Rothko Red** | ![Rothko Red](https://gradient-svg-generator.vercel.app/api/svg?text=Rothko%20Red&template=rothko-red&height=80) | Abstract expressionism |
 
-#### Joy & Happiness
-```markdown
-![Joy & Happiness](https://gradient-svg-generator.vercel.app/api/svg?text=Joy%20%26%20Happiness&template=joy-happiness)
-```
-![Joy & Happiness](https://gradient-svg-generator.vercel.app/api/svg?text=Joy%20%26%20Happiness&template=joy-happiness)
-
-#### Dreams & Fantasy
-```markdown
-![Dreams & Fantasy](https://gradient-svg-generator.vercel.app/api/svg?text=Dreams%20%26%20Fantasy&template=dreams-fantasy)
-```
-![Dreams & Fantasy](https://gradient-svg-generator.vercel.app/api/svg?text=Dreams%20%26%20Fantasy&template=dreams-fantasy)
+</div>
 
 ### 💎 Materials Templates
-Realistic material and texture simulations:
 
-#### Gold Luxury
-```markdown
-![Gold Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Luxury&template=gold-luxury)
-```
-![Gold Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Luxury&template=gold-luxury)
+*Realistic material and texture simulations*
 
-#### Diamond Crystal
-```markdown
-![Diamond Crystal](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Crystal&template=diamond-crystal)
-```
-![Diamond Crystal](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Crystal&template=diamond-crystal)
+<div align="center">
+
+| Template | Preview | Description |
+|----------|---------|-------------|
+| **Gold Luxury** | ![Gold Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Luxury&template=gold-luxury&height=80) | Premium gold finish |
+| **Silver Chrome** | ![Silver Chrome](https://gradient-svg-generator.vercel.app/api/svg?text=Silver%20Chrome&template=silver-chrome&height=80) | Metallic chrome effect |
+| **Diamond Crystal** | ![Diamond Crystal](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Crystal&template=diamond-crystal&height=80) | Brilliant diamond shine |
+| **Emerald Gem** | ![Emerald Gem](https://gradient-svg-generator.vercel.app/api/svg?text=Emerald%20Gem&template=emerald-gem&height=80) | Precious emerald green |
+
+</div>
 
 ### 🏳️‍🌈 Pride Templates
-Inclusive and beautiful pride flag representations:
 
-#### Progress Pride
-```markdown
-![Progress Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Progress%20Pride&template=progress-pride)
+*Inclusive and beautiful LGBTQ+ pride flag representations*
+
+<div align="center">
+
+| Template | Preview | Description |
+|----------|---------|-------------|
+| **Progress Pride** | ![Progress Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Progress%20Pride&template=progress-pride&height=80) | Inclusive progress flag |
+| **Trans Pride** | ![Trans Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Pride&template=trans-pride&height=80) | Transgender pride |
+| **Bi Pride** | ![Bi Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Bi%20Pride&template=bi-pride&height=80) | Bisexual pride |
+| **Pan Pride** | ![Pan Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Pan%20Pride&template=pan-pride&height=80) | Pansexual pride |
+| **Nonbinary Pride** | ![Nonbinary Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Nonbinary%20Pride&template=nonbinary-pride&height=80) | Nonbinary pride |
+
+</div>
+
+---
+
+## 🔧 API Reference
+
+### 🌐 Base URL
 ```
-![Progress Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Progress%20Pride&template=progress-pride)
-
-#### Trans Pride
-```markdown
-![Trans Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Pride&template=trans-pride)
+https://gradient-svg-generator.vercel.app/api/svg
 ```
-![Trans Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Pride&template=trans-pride)
 
-[View all 80+ templates in our Settings UI](https://gradient-svg-generator.vercel.app/settings)
+### 📋 Parameters
 
-## Configuration Options
+| Parameter | Type | Default | Description | Example |
+|-----------|------|---------|-------------|---------|
+| `text` | string | **required** | Display text | `text=Hello%20World` |
+| `height` | number | `120` | SVG height in pixels | `height=150` |
+| `template` | string | - | Template name | `template=neural-network` |
+| `gradientType` | string | `horizontal` | Gradient direction/effect | `gradientType=spiral` |
+| `duration` | string | `6s` | Animation duration | `duration=8s` |
+| `color0`, `color1`, ... | string | `000000` | Gradient colors (hex) | `color0=ff0000&color1=00ff00` |
 
-Enhanced API parameters for maximum customization:
+### 🎨 Available Gradient Types
 
-| Parameter                | Description              | Default      | Example                       |
-| ------------------------ | ------------------------ | ------------ | ----------------------------- |
-| `text`                   | Display text (required)  | -            | `text=Hello%20World`          |
-| `color0`, `color1`, etc. | Multiple gradient colors | `000000`     | `color0=ff0000&color1=00ff00` |
-| `height`                 | SVG height               | `120`        | `height=150`                  |
-| `template`               | Gradient template        | -            | `template=neural-network`     |
-| `gradientType`           | Gradient direction/effect| `horizontal` | `gradientType=spiral`         |
-| `duration`               | Animation duration       | `6s`         | `duration=8s`                 |
+```javascript
+// Basic Types
+'horizontal', 'vertical', 'diagonal', 'circular', 'radial'
 
-### Available Gradient Types
-- **Basic**: `horizontal`, `vertical`, `diagonal`, `circular`, `radial`
-- **Advanced**: `conic`, `wave`, `spiral`, `diamond`, `burst`, `reflection`, `pulse`
+// Advanced Types  
+'conic', 'wave', 'spiral', 'diamond', 'burst', 'reflection', 'pulse'
 
-## Advanced Usage Examples
-
-### Multi-Color Custom Gradients
-
-#### 5-Color Rainbow Spiral
-```markdown
-![Rainbow Spiral](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s)
+// Special Effects
+'star', 'heart', 'zigzag', 'ripple', 'galaxy', 'lightning'
 ```
-![Rainbow Spiral](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s)
 
-#### Burst Energy Effect
-```markdown
-![Energy Burst](https://gradient-svg-generator.vercel.app/api/svg?text=POWER&gradientType=burst&color0=ff00ff&color1=00ffff&color2=ff0080&duration=4s)
+### 📄 Available Templates
+
+```javascript
+// Categories with template counts
+{
+  basic: 11,      // sunset-gold, ocean-heart, emerald-forest, etc.
+  nature: 12,     // sunrise-dawn, forest-mist, northern-aurora, etc.
+  tech: 12,       // neural-network, quantum-field, cyber-matrix, etc.
+  art: 12,        // van-gogh-starry, monet-water-lily, picasso-blue, etc.
+  emotions: 12,   // joy-happiness, calm-serenity, passion-fire, etc.
+  materials: 12,  // gold-luxury, silver-chrome, diamond-crystal, etc.
+  pride: 20       // progress-pride, trans-pride, bi-pride, etc.
+}
 ```
-![Energy Burst](https://gradient-svg-generator.vercel.app/api/svg?text=POWER&gradientType=burst&color0=ff00ff&color1=00ffff&color2=ff0080&duration=4s)
 
-#### Reflection Water Effect
+### 🚀 Usage Examples
+
+#### Basic Usage
 ```markdown
-![Water Reflection](https://gradient-svg-generator.vercel.app/api/svg?text=CALM&gradientType=reflection&color0=87ceeb&color1=4682b4&color2=191970&duration=12s)
+![Basic Gradient](https://gradient-svg-generator.vercel.app/api/svg?text=Basic%20Gradient)
 ```
-![Water Reflection](https://gradient-svg-generator.vercel.app/api/svg?text=CALM&gradientType=reflection&color0=87ceeb&color1=4682b4&color2=191970&duration=12s)
 
-### Template Combinations
-
-You can also customize template-based gradients by adding custom parameters:
-
+#### Custom Colors
 ```markdown
-![Custom Neural](https://gradient-svg-generator.vercel.app/api/svg?text=AI%20BRAIN&template=neural-network&height=180&duration=5s)
+![Custom Colors](https://gradient-svg-generator.vercel.app/api/svg?text=Custom&color0=ff0080&color1=8000ff&color2=0080ff)
 ```
-![Custom Neural](https://gradient-svg-generator.vercel.app/api/svg?text=AI%20BRAIN&template=neural-network&height=180&duration=5s)
 
-## Installation and Development
+#### Template with Customization
+```markdown
+![Custom Template](https://gradient-svg-generator.vercel.app/api/svg?text=AI%20Project&template=neural-network&height=180&duration=5s)
+```
+
+#### Advanced Multi-Color
+```markdown
+![Rainbow](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s)
+```
+
+---
+
+## 🏗️ Architecture
+
+### 📊 System Architecture
+
+<function_calls>
+<invoke name="create_diagram">
+<parameter name="content">graph TB
+    subgraph "Client Layer"
+        A[Landing Page] --> B[Settings Panel]
+        B --> C[Live Preview]
+        C --> D[Export Options]
+    end
+    
+    subgraph "API Layer"
+        E[/api/svg] --> F[SVG Generator Engine]
+        F --> G[Template System]
+        F --> H[Gradient Engine]
+    end
+    
+    subgraph "Core Components"
+        I[Basic Settings] --> J[Color Picker]
+        I --> K[Gradient Type Selector]
+        L[Template Gallery] --> M[Category Filter]
+        L --> N[Template Selector]
+    end
+    
+    subgraph "Data Layer"
+        O[Template Categories]
+        P[Gradient Types]
+        Q[Color Utilities]
+        R[SVG Utilities]
+    end
+    
+    subgraph "UI Framework"
+        S[Next.js Pages]
+        T[React Components]
+        U[Custom Hooks]
+        V[CSS Modules]
+    end
+    
+    A --> I
+    B --> L
+    C --> E
+    E --> O
+    F --> P
+    F --> Q
+    F --> R
+    S --> T
+    T --> U
+    T --> V
+    
+    classDef clientLayer fill:#e1f5fe
+    classDef apiLayer fill:#f3e5f5
+    classDef coreComponents fill:#e8f5e8
+    classDef dataLayer fill:#fff3e0
+    classDef uiFramework fill:#fce4ec
+    
+    class A,B,C,D clientLayer
+    class E,F,G,H apiLayer
+    class I,J,K,L,M,N coreComponents
+    class O,P,Q,R dataLayer
+    class S,T,U,V uiFramework
+</code_block_to_apply_changes_from>
+</invoke>
+</function_calls>
+
+## 💻 Installation & Development
 
 ### Prerequisites
 - Node.js (version 14.0.0 or higher)
@@ -301,6 +433,37 @@ gradient-svg-generator/
 ├── public/                # Static assets
 └── package.json          # Dependencies and scripts
 ```
+
+## 🎯 Usage Examples
+
+### Multi-Color Custom Gradients
+
+#### 5-Color Rainbow Spiral
+```markdown
+![Rainbow Spiral](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s)
+```
+![Rainbow Spiral](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s)
+
+#### Burst Energy Effect
+```markdown
+![Energy Burst](https://gradient-svg-generator.vercel.app/api/svg?text=POWER&gradientType=burst&color0=ff00ff&color1=00ffff&color2=ff0080&duration=4s)
+```
+![Energy Burst](https://gradient-svg-generator.vercel.app/api/svg?text=POWER&gradientType=burst&color0=ff00ff&color1=00ffff&color2=ff0080&duration=4s)
+
+#### Reflection Water Effect
+```markdown
+![Water Reflection](https://gradient-svg-generator.vercel.app/api/svg?text=CALM&gradientType=reflection&color0=87ceeb&color1=4682b4&color2=191970&duration=12s)
+```
+![Water Reflection](https://gradient-svg-generator.vercel.app/api/svg?text=CALM&gradientType=reflection&color0=87ceeb&color1=4682b4&color2=191970&duration=12s)
+
+### Template Combinations
+
+You can also customize template-based gradients by adding custom parameters:
+
+```markdown
+![Custom Neural](https://gradient-svg-generator.vercel.app/api/svg?text=AI%20BRAIN&template=neural-network&height=180&duration=5s)
+```
+![Custom Neural](https://gradient-svg-generator.vercel.app/api/svg?text=AI%20BRAIN&template=neural-network&height=180&duration=5s)
 
 ## 🎯 What's New in This Version
 
