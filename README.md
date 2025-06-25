@@ -436,7 +436,6 @@ graph TD
 ```
 
 ---
-</function_calls>
 
 ## 📁 Project Structure
 
