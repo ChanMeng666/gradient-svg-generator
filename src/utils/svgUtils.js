@@ -49,6 +49,8 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
   
   let gradientDef = '';
   let additionalElements = '';
+  let hasClipPath = false;
+  let clipPathId = null;
 
   switch (gradientType) {
     case 'horizontal':
@@ -130,78 +132,70 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
       break;
 
     case 'star':
-      // Multiple stars across the banner with proper coordinates
+      // Multiple stars as clip-path mask with proper coordinates
       gradientDef = `
         <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
           ${stops}
           <animate attributeName="r" values="40%;80%;40%" ${animationConfig} />
-        </radialGradient>`;
-      additionalElements = `
-        <g fill="url(#gradient)" opacity="0.9">
+        </radialGradient>
+        <clipPath id="stars-clip">
           <polygon points="120,20 130,45 160,45 140,65 148,90 120,75 92,90 100,65 80,45 110,45">
             <animateTransform attributeName="transform" type="rotate" 
               values="0 120 55;360 120 55" ${animationConfig} />
-            <animate attributeName="opacity" values="0.7;1;0.7" ${animationConfig} />
           </polygon>
           <polygon points="280,30 288,50 315,50 298,67 305,87 280,75 255,87 262,67 245,50 272,50">
             <animateTransform attributeName="transform" type="rotate" 
               values="0 280 58;-360 280 58" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.6;1;0.6" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
           </polygon>
           <polygon points="440,15 450,40 480,40 460,60 468,85 440,70 412,85 420,60 400,40 430,40">
             <animateTransform attributeName="transform" type="rotate" 
               values="0 440 50;360 440 50" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.8;1;0.8" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
           </polygon>
           <polygon points="600,25 608,45 635,45 618,62 625,82 600,70 575,82 582,62 565,45 592,45">
             <animateTransform attributeName="transform" type="rotate" 
               values="0 600 53;-360 600 53" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.5;1;0.5" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
           </polygon>
           <polygon points="760,30 768,50 795,50 778,67 785,87 760,75 735,87 742,67 725,50 752,50">
             <animateTransform attributeName="transform" type="rotate" 
               values="0 760 58;360 760 58" ${animationConfig} />
-            <animate attributeName="opacity" values="0.9;1;0.9" ${animationConfig} />
           </polygon>
-        </g>`;
+        </clipPath>`;
+      hasClipPath = true;
+      clipPathId = 'stars-clip';
       break;
 
     case 'heart':
-      // Multiple hearts with improved shape and proper coordinates
+      // Multiple hearts as clip-path mask with improved shape and proper coordinates  
       gradientDef = `
         <radialGradient id="gradient" cx="50%" cy="40%" r="60%">
           ${stops}
           <animate attributeName="r" values="40%;70%;40%" ${animationConfig} />
           <animate attributeName="cy" values="40%;45%;40%" ${animationConfig} />
-        </radialGradient>`;
-      additionalElements = `
-        <g fill="url(#gradient)" opacity="0.85">
-          <path d="M120,45 C120,35 110,25 95,25 C80,25 70,35 70,45 C70,55 95,85 95,85 C95,85 120,55 120,45 M95,25 C110,25 120,35 120,45">
+        </radialGradient>
+        <clipPath id="hearts-clip">
+          <path d="M120,45 C120,30 105,15 85,15 C65,15 50,30 50,45 C50,30 35,15 15,15 C-5,15 -20,30 -20,45 C-20,60 50,95 50,95 C50,95 120,60 120,45 Z" transform="translate(45,15)">
             <animateTransform attributeName="transform" type="scale" 
-              values="1;1.2;1" ${animationConfig} />
-            <animate attributeName="opacity" values="0.7;1;0.7" ${animationConfig} />
+              values="1;1.2;1" dur="${animationDuration}" repeatCount="indefinite" additive="sum" />
           </path>
-          <path d="M280,50 C280,40 270,30 255,30 C240,30 230,40 230,50 C230,60 255,90 255,90 C255,90 280,60 280,50 M255,30 C270,30 280,40 280,50">
+          <path d="M120,45 C120,30 105,15 85,15 C65,15 50,30 50,45 C50,30 35,15 15,15 C-5,15 -20,30 -20,45 C-20,60 50,95 50,95 C50,95 120,60 120,45 Z" transform="translate(205,20)">
             <animateTransform attributeName="transform" type="scale" 
-              values="1;1.1;1" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.8;1;0.8" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+              values="1;1.1;1" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" additive="sum" />
           </path>
-          <path d="M440,40 C440,30 430,20 415,20 C400,20 390,30 390,40 C390,50 415,80 415,80 C415,80 440,50 440,40 M415,20 C430,20 440,30 440,40">
+          <path d="M120,45 C120,30 105,15 85,15 C65,15 50,30 50,45 C50,30 35,15 15,15 C-5,15 -20,30 -20,45 C-20,60 50,95 50,95 C50,95 120,60 120,45 Z" transform="translate(365,10)">
             <animateTransform attributeName="transform" type="scale" 
-              values="1;1.15;1" dur="${parseFloat(animationDuration) * 0.9}s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.9;1;0.9" dur="${parseFloat(animationDuration) * 0.9}s" repeatCount="indefinite" />
+              values="1;1.15;1" dur="${parseFloat(animationDuration) * 0.9}s" repeatCount="indefinite" additive="sum" />
           </path>
-          <path d="M600,45 C600,35 590,25 575,25 C560,25 550,35 550,45 C550,55 575,85 575,85 C575,85 600,55 600,45 M575,25 C590,25 600,35 600,45">
+          <path d="M120,45 C120,30 105,15 85,15 C65,15 50,30 50,45 C50,30 35,15 15,15 C-5,15 -20,30 -20,45 C-20,60 50,95 50,95 C50,95 120,60 120,45 Z" transform="translate(525,15)">
             <animateTransform attributeName="transform" type="scale" 
-              values="1;1.25;1" dur="${parseFloat(animationDuration) * 1.1}s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.6;1;0.6" dur="${parseFloat(animationDuration) * 1.1}s" repeatCount="indefinite" />
+              values="1;1.25;1" dur="${parseFloat(animationDuration) * 1.1}s" repeatCount="indefinite" additive="sum" />
           </path>
-          <path d="M760,50 C760,40 750,30 735,30 C720,30 710,40 710,50 C710,60 735,90 735,90 C735,90 760,60 760,50 M735,30 C750,30 760,40 760,50">
+          <path d="M120,45 C120,30 105,15 85,15 C65,15 50,30 50,45 C50,30 35,15 15,15 C-5,15 -20,30 -20,45 C-20,60 50,95 50,95 C50,95 120,60 120,45 Z" transform="translate(685,20)">
             <animateTransform attributeName="transform" type="scale" 
-              values="1;1.3;1" ${animationConfig} />
-            <animate attributeName="opacity" values="0.8;1;0.8" ${animationConfig} />
+              values="1;1.3;1" dur="${animationDuration}" repeatCount="indefinite" additive="sum" />
           </path>
-        </g>`;
+        </clipPath>`;
+      hasClipPath = true;
+      clipPathId = 'hearts-clip';
       break;
 
     case 'lightning':
@@ -379,8 +373,8 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
   return {
     gradientDef,
     additionalElements,
-    hasClipPath: false,
-    clipPathId: null
+    hasClipPath,
+    clipPathId
   };
 }
 
