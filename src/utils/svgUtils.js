@@ -129,8 +129,164 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
         </linearGradient>`;
       break;
 
+    case 'star':
+      // Multiple stars across the banner with proper coordinates
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+          ${stops}
+          <animate attributeName="r" values="40%;80%;40%" ${animationConfig} />
+        </radialGradient>`;
+      additionalElements = `
+        <g fill="url(#gradient)" opacity="0.9">
+          <polygon points="120,20 130,45 160,45 140,65 148,90 120,75 92,90 100,65 80,45 110,45">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 120 55;360 120 55" ${animationConfig} />
+            <animate attributeName="opacity" values="0.7;1;0.7" ${animationConfig} />
+          </polygon>
+          <polygon points="280,30 288,50 315,50 298,67 305,87 280,75 255,87 262,67 245,50 272,50">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 280 58;-360 280 58" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+          </polygon>
+          <polygon points="440,15 450,40 480,40 460,60 468,85 440,70 412,85 420,60 400,40 430,40">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 440 50;360 440 50" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.8;1;0.8" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+          </polygon>
+          <polygon points="600,25 608,45 635,45 618,62 625,82 600,70 575,82 582,62 565,45 592,45">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 600 53;-360 600 53" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.5;1;0.5" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          </polygon>
+          <polygon points="760,30 768,50 795,50 778,67 785,87 760,75 735,87 742,67 725,50 752,50">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 760 58;360 760 58" ${animationConfig} />
+            <animate attributeName="opacity" values="0.9;1;0.9" ${animationConfig} />
+          </polygon>
+        </g>`;
+      break;
+
+    case 'heart':
+      // Multiple hearts with improved shape and proper coordinates
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="40%" r="60%">
+          ${stops}
+          <animate attributeName="r" values="40%;70%;40%" ${animationConfig} />
+          <animate attributeName="cy" values="40%;45%;40%" ${animationConfig} />
+        </radialGradient>`;
+      additionalElements = `
+        <g fill="url(#gradient)" opacity="0.85">
+          <path d="M120,45 C120,35 110,25 95,25 C80,25 70,35 70,45 C70,55 95,85 95,85 C95,85 120,55 120,45 M95,25 C110,25 120,35 120,45">
+            <animateTransform attributeName="transform" type="scale" 
+              values="1;1.2;1" ${animationConfig} />
+            <animate attributeName="opacity" values="0.7;1;0.7" ${animationConfig} />
+          </path>
+          <path d="M280,50 C280,40 270,30 255,30 C240,30 230,40 230,50 C230,60 255,90 255,90 C255,90 280,60 280,50 M255,30 C270,30 280,40 280,50">
+            <animateTransform attributeName="transform" type="scale" 
+              values="1;1.1;1" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.8;1;0.8" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+          </path>
+          <path d="M440,40 C440,30 430,20 415,20 C400,20 390,30 390,40 C390,50 415,80 415,80 C415,80 440,50 440,40 M415,20 C430,20 440,30 440,40">
+            <animateTransform attributeName="transform" type="scale" 
+              values="1;1.15;1" dur="${parseFloat(animationDuration) * 0.9}s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.9;1;0.9" dur="${parseFloat(animationDuration) * 0.9}s" repeatCount="indefinite" />
+          </path>
+          <path d="M600,45 C600,35 590,25 575,25 C560,25 550,35 550,45 C550,55 575,85 575,85 C575,85 600,55 600,45 M575,25 C590,25 600,35 600,45">
+            <animateTransform attributeName="transform" type="scale" 
+              values="1;1.25;1" dur="${parseFloat(animationDuration) * 1.1}s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="${parseFloat(animationDuration) * 1.1}s" repeatCount="indefinite" />
+          </path>
+          <path d="M760,50 C760,40 750,30 735,30 C720,30 710,40 710,50 C710,60 735,90 735,90 C735,90 760,60 760,50 M735,30 C750,30 760,40 760,50">
+            <animateTransform attributeName="transform" type="scale" 
+              values="1;1.3;1" ${animationConfig} />
+            <animate attributeName="opacity" values="0.8;1;0.8" ${animationConfig} />
+          </path>
+        </g>`;
+      break;
+
+    case 'lightning':
+      // Improved lightning bolt shape with multiple bolts
+      gradientDef = `
+        <linearGradient id="gradient" x1="20%" y1="0%" x2="80%" y2="100%">
+          ${stops}
+          <animate attributeName="x1" values="20%;80%;20%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
+          <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
+          <animate attributeName="x2" values="80%;20%;80%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
+          <animate attributeName="y2" values="100%;0%;100%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
+        </linearGradient>`;
+      additionalElements = `
+        <g fill="url(#gradient)" opacity="0.9">
+          <polygon points="150,15 165,15 135,50 150,50 120,95 140,65 155,65 185,30 170,30 200,15 185,45 170,45">
+            <animate attributeName="opacity" values="1;0.3;1" dur="${parseFloat(animationDuration) / 3}s" repeatCount="indefinite" />
+          </polygon>
+          <polygon points="350,20 365,20 335,55 350,55 320,100 340,70 355,70 385,35 370,35 400,20 385,50 370,50">
+            <animate attributeName="opacity" values="0.8;0.2;0.8" dur="${parseFloat(animationDuration) / 4}s" repeatCount="indefinite" begin="0.5s" />
+          </polygon>
+          <polygon points="550,10 565,10 535,45 550,45 520,90 540,60 555,60 585,25 570,25 600,10 585,40 570,40">
+            <animate attributeName="opacity" values="1;0.4;1" dur="${parseFloat(animationDuration) / 2.5}s" repeatCount="indefinite" begin="1s" />
+          </polygon>
+          <polygon points="750,25 765,25 735,60 750,60 720,105 740,75 755,75 785,40 770,40 800,25 785,55 770,55">
+            <animate attributeName="opacity" values="0.9;0.1;0.9" dur="${parseFloat(animationDuration) / 3.5}s" repeatCount="indefinite" begin="1.5s" />
+          </polygon>
+        </g>`;
+      break;
+
+    case 'galaxy':
+      // Galaxy spiral with visible rotating arms
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
+          ${stops}
+          <animate attributeName="r" values="50%;90%;50%" ${animationConfig} />
+        </radialGradient>`;
+      additionalElements = `
+        <g opacity="0.8">
+          <ellipse cx="427" cy="60" rx="200" ry="40" fill="url(#gradient)" opacity="0.6">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;360 427 60" dur="${parseFloat(animationDuration) * 2}s" repeatCount="indefinite" />
+          </ellipse>
+          <ellipse cx="427" cy="60" rx="150" ry="25" fill="url(#gradient)" opacity="0.7">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;-360 427 60" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          </ellipse>
+          <ellipse cx="427" cy="60" rx="100" ry="15" fill="url(#gradient)" opacity="0.8">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;360 427 60" ${animationConfig} />
+          </ellipse>
+          <circle cx="427" cy="60" r="20" fill="url(#gradient)" opacity="0.9">
+            <animate attributeName="r" values="15;25;15" ${animationConfig} />
+          </circle>
+        </g>`;
+      break;
+
+    case 'spiral':
+      // Enhanced spiral with visible rotating elements
+      gradientDef = `
+        <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
+          ${stops}
+          <animate attributeName="r" values="30%;90%;50%;120%;30%" ${animationConfig} />
+          <animate attributeName="cx" values="50%;30%;70%;20%;80%;50%" ${animationConfig} />
+          <animate attributeName="cy" values="50%;70%;30%;80%;20%;50%" ${animationConfig} />
+        </radialGradient>`;
+      additionalElements = `
+        <g opacity="0.85">
+          <path d="M427,60 Q327,60 327,20 Q327,-20 427,-20 Q527,-20 527,60 Q527,140 327,140 Q127,140 127,60 Q127,-40 427,-40" 
+                fill="none" stroke="url(#gradient)" stroke-width="8" opacity="0.6">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;360 427 60" ${animationConfig} />
+          </path>
+          <path d="M427,60 Q377,60 377,40 Q377,20 427,20 Q477,20 477,60 Q477,100 377,100 Q277,100 277,60" 
+                fill="none" stroke="url(#gradient)" stroke-width="6" opacity="0.7">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;-360 427 60" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+          </path>
+          <circle cx="427" cy="60" r="30" fill="url(#gradient)" opacity="0.8">
+            <animate attributeName="r" values="20;40;20" ${animationConfig} />
+          </circle>
+        </g>`;
+      break;
+
     case 'conic':
-      // True conic gradient using rotating radial gradient
+      // True conic gradient with multiple rotating circles
       gradientDef = `
         <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
           ${stops}
@@ -138,39 +294,26 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
             values="0 50 50;90 50 50;180 50 50;270 50 50;360 50 50" ${animationConfig} />
         </radialGradient>`;
       additionalElements = `
-        <circle cx="427" cy="60" r="80" fill="none" stroke="url(#gradient)" stroke-width="20" opacity="0.6">
-          <animateTransform attributeName="transform" type="rotate" 
-            values="0 427 60;-360 427 60" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="427" cy="60" r="40" fill="none" stroke="url(#gradient)" stroke-width="10" opacity="0.8">
-          <animateTransform attributeName="transform" type="rotate" 
-            values="0 427 60;360 427 60" ${animationConfig} />
-        </circle>`;
-      break;
-
-    case 'wave':
-      // Enhanced wave effect with multiple wave layers
-      gradientDef = `
-        <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
-          ${stops}
-          <animate attributeName="x1" values="0%;-20%;40%;-10%;60%;0%" ${animationConfig} />
-          <animate attributeName="y1" values="50%;30%;70%;20%;80%;50%" ${animationConfig} />
-          <animate attributeName="x2" values="100%;120%;80%;110%;60%;100%" ${animationConfig} />
-          <animate attributeName="y2" values="50%;70%;30%;80%;20%;50%" ${animationConfig} />
-        </linearGradient>`;
-      break;
-
-    case 'spiral':
-      // Enhanced spiral with complex rotation and movement
-      gradientDef = `
-        <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
-          ${stops}
-          <animateTransform attributeName="gradientTransform" type="rotate" 
-            values="0 50 50;180 50 50;360 50 50" ${animationConfig} />
-          <animate attributeName="r" values="30%;90%;50%;120%;30%" ${animationConfig} />
-          <animate attributeName="cx" values="50%;30%;70%;20%;80%;50%" ${animationConfig} />
-          <animate attributeName="cy" values="50%;70%;30%;80%;20%;50%" ${animationConfig} />
-        </radialGradient>`;
+        <g opacity="0.8">
+          <circle cx="427" cy="60" r="100" fill="none" stroke="url(#gradient)" stroke-width="15" opacity="0.6" 
+                  stroke-dasharray="20,10">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;360 427 60" ${animationConfig} />
+          </circle>
+          <circle cx="427" cy="60" r="70" fill="none" stroke="url(#gradient)" stroke-width="12" opacity="0.7" 
+                  stroke-dasharray="15,8">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;-360 427 60" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="427" cy="60" r="40" fill="none" stroke="url(#gradient)" stroke-width="8" opacity="0.8" 
+                  stroke-dasharray="10,5">
+            <animateTransform attributeName="transform" type="rotate" 
+              values="0 427 60;360 427 60" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="427" cy="60" r="15" fill="url(#gradient)" opacity="0.9">
+            <animate attributeName="r" values="10;20;10" ${animationConfig} />
+          </circle>
+        </g>`;
       break;
 
     case 'diamond':
@@ -184,35 +327,16 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
         </linearGradient>`;
       break;
 
-    case 'star':
-      // Star-shaped gradient using clip path
+    case 'wave':
+      // Enhanced wave effect with multiple wave layers
       gradientDef = `
-        <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+        <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
           ${stops}
-          <animate attributeName="r" values="40%;80%;40%" ${animationConfig} />
-        </radialGradient>
-        <clipPath id="star-clip">
-          <polygon points="50,5 61,35 95,35 69,57 79,91 50,70 21,91 31,57 5,35 39,35">
-            <animateTransform attributeName="transform" type="rotate" 
-              values="0 50 50;360 50 50" dur="${animationDuration}" repeatCount="indefinite" />
-          </polygon>
-        </clipPath>`;
-      break;
-
-    case 'heart':
-      // Heart-shaped gradient using clip path
-      gradientDef = `
-        <radialGradient id="gradient" cx="50%" cy="40%" r="60%">
-          ${stops}
-          <animate attributeName="r" values="40%;70%;40%" ${animationConfig} />
-          <animate attributeName="cy" values="40%;45%;40%" ${animationConfig} />
-        </radialGradient>
-        <clipPath id="heart-clip">
-          <path d="M50,85 C50,85 85,50 85,35 C85,20 70,20 50,35 C30,20 15,20 15,35 C15,50 50,85 50,85 Z">
-            <animateTransform attributeName="transform" type="scale" 
-              values="1;1.1;1" ${animationConfig} />
-          </path>
-        </clipPath>`;
+          <animate attributeName="x1" values="0%;-20%;40%;-10%;60%;0%" ${animationConfig} />
+          <animate attributeName="y1" values="50%;30%;70%;20%;80%;50%" ${animationConfig} />
+          <animate attributeName="x2" values="100%;120%;80%;110%;60%;100%" ${animationConfig} />
+          <animate attributeName="y2" values="50%;70%;30%;80%;20%;50%" ${animationConfig} />
+        </linearGradient>`;
       break;
 
     case 'zigzag':
@@ -245,39 +369,6 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
         </circle>`;
       break;
 
-    case 'galaxy':
-      // Galaxy spiral effect
-      gradientDef = `
-        <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
-          ${stops}
-          <animateTransform attributeName="gradientTransform" type="rotate" 
-            values="0 50 50;360 50 50" dur="${parseFloat(animationDuration) * 2}s" repeatCount="indefinite" />
-          <animate attributeName="r" values="50%;90%;50%" ${animationConfig} />
-        </radialGradient>`;
-      additionalElements = `
-        <ellipse cx="427" cy="60" rx="100" ry="30" fill="url(#gradient)" opacity="0.3">
-          <animateTransform attributeName="transform" type="rotate" 
-            values="0 427 60;360 427 60" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
-        </ellipse>`;
-      break;
-
-    case 'lightning':
-      // Lightning effect with sharp angles
-      gradientDef = `
-        <linearGradient id="gradient" x1="20%" y1="0%" x2="80%" y2="100%">
-          ${stops}
-          <animate attributeName="x1" values="20%;80%;20%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
-          <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
-          <animate attributeName="x2" values="80%;20%;80%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
-          <animate attributeName="y2" values="100%;0%;100%" dur="${parseFloat(animationDuration) / 2}s" repeatCount="indefinite" />
-        </linearGradient>
-        <clipPath id="lightning-clip">
-          <polygon points="45,5 55,5 25,40 35,40 15,80 25,50 35,50 65,15 55,15 85,5 75,35 65,35">
-            <animate attributeName="opacity" values="1;0.5;1" dur="${parseFloat(animationDuration) / 3}s" repeatCount="indefinite" />
-          </polygon>
-        </clipPath>`;
-      break;
-
     default:
       gradientDef = `
         <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -288,10 +379,8 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
   return {
     gradientDef,
     additionalElements,
-    hasClipPath: ['star', 'heart', 'lightning'].includes(gradientType),
-    clipPathId: gradientType === 'star' ? 'star-clip' : 
-                gradientType === 'heart' ? 'heart-clip' : 
-                gradientType === 'lightning' ? 'lightning-clip' : null
+    hasClipPath: false,
+    clipPathId: null
   };
 }
 
