@@ -335,7 +335,7 @@ graph TB
     end
     
     subgraph "API Layer"
-        E[/api/svg] --> F[SVG Generator Engine]
+        E[SVG API Endpoint] --> F[SVG Generator Engine]
         F --> G[Template System]
         F --> H[Gradient Engine]
     end
