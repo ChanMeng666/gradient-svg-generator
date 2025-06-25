@@ -30,26 +30,11 @@
 
 </div>
 
-## 📸 Screenshots
 
-<div align="center">
 
-### 🏠 Landing Page
-*Beautiful, responsive landing page with live examples*
+https://github.com/user-attachments/assets/2a594ae5-44a1-4aa8-83ec-bc6a729555fb
 
-![Landing Page](https://github.com/user-attachments/assets/3a362fde-ed80-42c1-a3da-412b2fe4f435)
 
-### ⚙️ Settings Panel - Custom Creation Mode
-*Full control over colors, animations, and effects*
-
-![Settings Panel](https://github.com/user-attachments/assets/13baec12-4222-4302-9450-2c92dd771bce)
-
-### 📄 Settings Panel - Template Gallery
-*Browse and customize 80+ professional templates*
-
-![Template Gallery](https://github.com/user-attachments/assets/24bf2458-ec31-427b-869e-e216257490ad)
-
-</div>
 
 ---
 
