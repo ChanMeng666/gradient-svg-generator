@@ -36,6 +36,14 @@ const artisticTemplates = require('../templates/artisticTemplates');
 const luxuryTemplates = require('../templates/luxuryTemplates');
 const organicTemplates = require('../templates/organicTemplates');
 const gamingTemplates = require('../templates/gamingTemplates');
+const cinematicTemplates = require('../templates/cinematicTemplates');
+const cosmicTemplates = require('../templates/cosmicTemplates');
+const fashionTemplates = require('../templates/fashionTemplates');
+const architectureTemplates = require('../templates/architectureTemplates');
+const culturalTemplates = require('../templates/culturalTemplates');
+const weatherTemplates = require('../templates/weatherTemplates');
+const musicTemplates = require('../templates/musicTemplates');
+const abstractTemplates = require('../templates/abstractTemplates');
 
 const templates = { 
   ...basicTemplates, 
@@ -50,7 +58,15 @@ const templates = {
   ...artisticTemplates,
   ...luxuryTemplates,
   ...organicTemplates,
-  ...gamingTemplates
+  ...gamingTemplates,
+  ...cinematicTemplates,
+  ...cosmicTemplates,
+  ...fashionTemplates,
+  ...architectureTemplates,
+  ...culturalTemplates,
+  ...weatherTemplates,
+  ...musicTemplates,
+  ...abstractTemplates
 };
 
 function getTemplateConfig(template, defaultColor = '000000') {
