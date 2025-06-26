@@ -40,13 +40,13 @@ export default function Home() {
     { text: "PIXEL", template: "pixel-art-retro" },
     { text: "NEON", template: "neon-arcade" },
     { text: "Code", template: "midnight-galaxy" },
-    { text: "DREAM", template: "dreamy-pastel" },
-    { text: "COSMIC", template: "cosmic-nebula" },
-    { text: "LUXURY", template: "luxury-gold" },
-    { text: "NATURE", template: "forest-green" },
-    { text: "ELECTRIC", template: "electric-blue" },
-    { text: "SUNSET", template: "warm-sunset" },
-    { text: "FROST", template: "ice-crystal" }
+    { text: "DAWN", template: "sunrise-dawn" },
+    { text: "AURORA", template: "northern-aurora" },
+    { text: "DIAMOND", template: "diamond-sparkle" },
+    { text: "FOREST", template: "forest-mist" },
+    { text: "PLASMA", template: "plasma-core" },
+    { text: "CHERRY", template: "cherry-blossom" },
+    { text: "VOLCANO", template: "volcano-fire" }
   ];
 
   const highlights = [
