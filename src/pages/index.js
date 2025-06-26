@@ -219,7 +219,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="features-section">
+      {/* <section className="features-section">
         <div className="section-container">
           <div className="section-header">
             <h2>Why Choose Our Gradient Generator?</h2>
@@ -236,7 +236,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="cta-section">
