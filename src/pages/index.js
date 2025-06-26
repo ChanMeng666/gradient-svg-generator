@@ -39,7 +39,37 @@ export default function Home() {
     { text: "GOLDEN", template: "golden-leaf" },
     { text: "PIXEL", template: "pixel-art-retro" },
     { text: "NEON", template: "neon-arcade" },
-    { text: "Code", template: "midnight-galaxy" }
+    { text: "Code", template: "midnight-galaxy" },
+    { text: "DREAM", template: "dreamy-pastel" },
+    { text: "COSMIC", template: "cosmic-nebula" },
+    { text: "LUXURY", template: "luxury-gold" },
+    { text: "NATURE", template: "forest-green" },
+    { text: "ELECTRIC", template: "electric-blue" },
+    { text: "SUNSET", template: "warm-sunset" },
+    { text: "FROST", template: "ice-crystal" }
+  ];
+
+  const highlights = [
+    {
+      icon: "🎨",
+      title: "100+ Professional Templates",
+      description: "From sunset gold to hologram matrix - every style you need"
+    },
+    {
+      icon: "⚡",
+      title: "Instant SVG Generation",
+      description: "Real-time preview and one-click export to SVG & Markdown"
+    },
+    {
+      icon: "🎭",
+      title: "Advanced Animations",
+      description: "Smooth CSS animations, gradient shifts, and text effects"
+    },
+    {
+      icon: "🔧",
+      title: "Fully Customizable",
+      description: "Adjust colors, fonts, sizes, and effects to match your vision"
+    }
   ];
 
   return (
@@ -85,22 +115,37 @@ export default function Home() {
                 <span>Star on GitHub</span>
               </a>
             </div>
+
+            <div className="hero-highlights">
+              <h3 className="highlights-title">✨ Why Choose Our Generator?</h3>
+              <div className="highlights-grid">
+                {highlights.map((highlight, index) => (
+                  <div key={index} className="highlight-item">
+                    <div className="highlight-icon">{highlight.icon}</div>
+                    <div className="highlight-content">
+                      <h4 className="highlight-title">{highlight.title}</h4>
+                      <p className="highlight-description">{highlight.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="hero-preview">
             <div className="hero-showcase">
               <div className="showcase-header">
                 <h3 className="showcase-title">Live Examples</h3>
-                <p className="showcase-subtitle">See the magic in action</p>
+                <p className="showcase-subtitle">Click to try instantly • 20+ Professional Templates</p>
               </div>
               
               <div className="preview-gallery-enhanced">
-                {examples.map((example, index) => (
+                {examples.slice(0, 12).map((example, index) => (
                   <Link 
                     key={index} 
                     href={`/settings?template=${example.template}&text=${example.text}`}
                     className="preview-card" 
-                    style={{ animationDelay: `${index * 0.15}s` }}
+                    style={{ animationDelay: `${index * 0.08}s` }}
                   >
                     <div className="preview-image-container">
                       <img 
@@ -119,11 +164,52 @@ export default function Home() {
                   </Link>
                 ))}
               </div>
+
+              <div className="preview-gallery-more">
+                <div className="more-examples-header">
+                  <h4 className="more-title">Even More Styles</h4>
+                  <div className="style-count">{examples.length - 12} Additional Templates</div>
+                </div>
+                <div className="preview-gallery-compact">
+                  {examples.slice(12).map((example, index) => (
+                    <Link 
+                      key={index + 12} 
+                      href={`/settings?template=${example.template}&text=${example.text}`}
+                      className="preview-card-compact" 
+                      style={{ animationDelay: `${(index + 12) * 0.05}s` }}
+                    >
+                      <div className="preview-image-container-compact">
+                        <img 
+                          src={`/api/svg?text=${example.text}&template=${example.template}`} 
+                          alt={example.text}
+                          className="preview-image-compact"
+                        />
+                        <div className="preview-overlay-compact">
+                          <div className="preview-label-compact">{example.text}</div>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
               
               <div className="showcase-cta">
-                <p className="showcase-hint">Click any example to try it yourself</p>
+                <div className="cta-stats">
+                  <div className="stat-item">
+                    <span className="stat-number">{examples.length}+</span>
+                    <span className="stat-label">Templates</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">∞</span>
+                    <span className="stat-label">Combinations</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">100%</span>
+                    <span className="stat-label">Free</span>
+                  </div>
+                </div>
                 <Link href="/settings" className="try-now-btn">
-                  <span>Create Your Own</span>
+                  <span>Start Creating Your Own</span>
                   <span className="btn-arrow">✨</span>
                 </Link>
               </div>
