@@ -12,7 +12,7 @@ One-click **FREE** deployment of your stunning gradient banners.
 
 <br/>
 
-[![🚀 Try Live Demo 🚀](https://gradient-svg-generator.vercel.app/api/svg?text=%F0%9F%9A%80Try%20Live%20Demo%F0%9F%9A%80&template=cyberpunk-city&height=120)][live-demo]
+[![🚀 Try Live Demo 🚀](https://gradient-svg-generator.vercel.app/api/svg?text=%F0%9F%9A%80Try%20Live%20Demo%F0%9F%9A%80&template=cyberpunk-city&height=240)][live-demo]
 
 <br/>
 
