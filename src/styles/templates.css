@@ -604,6 +604,129 @@
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
+/* 新增分类样式 - Shape Collection */
+.templates-container .category[data-category="shape"] {
+  background: linear-gradient(135deg, rgba(255, 121, 198, 0.1), rgba(139, 69, 19, 0.05));
+  border-left: 4px solid #ff79c6;
+}
+
+.templates-container .category[data-category="shape"]::before {
+  content: '⚫';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.templates-container .category[data-category="shape"] .category-header {
+  background: linear-gradient(135deg, #ff79c6, #bd93f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.templates-container .category[data-category="shape"] .template-card {
+  border-color: rgba(255, 121, 198, 0.3);
+}
+
+.templates-container .category[data-category="shape"] .template-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 121, 198, 0.3);
+  border-color: #ff79c6;
+}
+
+/* 新增分类样式 - Animation Effects */
+.templates-container .category[data-category="animation"] {
+  background: linear-gradient(135deg, rgba(255, 85, 85, 0.1), rgba(255, 154, 0, 0.05));
+  border-left: 4px solid #ff5555;
+}
+
+.templates-container .category[data-category="animation"]::before {
+  content: '🎬';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.templates-container .category[data-category="animation"] .category-header {
+  background: linear-gradient(135deg, #ff5555, #ff9a00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.templates-container .category[data-category="animation"] .template-card {
+  border-color: rgba(255, 85, 85, 0.3);
+  animation: subtleGlow 3s ease-in-out infinite;
+}
+
+.templates-container .category[data-category="animation"] .template-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 85, 85, 0.4);
+  border-color: #ff5555;
+  animation: none;
+}
+
+@keyframes subtleGlow {
+  0%, 100% { box-shadow: 0 0 5px rgba(255, 85, 85, 0.2); }
+  50% { box-shadow: 0 0 15px rgba(255, 85, 85, 0.4); }
+}
+
+/* 特殊分类tab样式 */
+.category-tab[data-category="shape"] {
+  background: linear-gradient(135deg, #ff79c6 0%, #bd93f9 100%);
+  color: white;
+  border-color: #ff79c6;
+}
+
+.category-tab[data-category="shape"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 121, 198, 0.4);
+}
+
+.category-tab[data-category="animation"] {
+  background: linear-gradient(135deg, #ff5555 0%, #ff9a00 100%);
+  color: white;
+  border-color: #ff5555;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tab[data-category="animation"]::after {
+  content: '✨';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0.8;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.category-tab[data-category="animation"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 85, 85, 0.4);
+}
+
+.templates-container .category[data-category="shape"] .category-title {
+  background: linear-gradient(135deg, #ff79c6, #bd93f9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.templates-container .category[data-category="animation"] .category-title {
+  background: linear-gradient(135deg, #ff5555, #ff9a00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* Responsive Adjustments for New Categories */
 @media (max-width: 768px) {
   .templates-container .category[data-category="future-tech"]::after {
@@ -611,8 +734,14 @@
   }
   
   .templates-container .category[data-category="luxury"] .template-card:hover,
-  .templates-container .category[data-category="gaming"] .template-card:hover {
+  .templates-container .category[data-category="gaming"] .template-card:hover,
+  .templates-container .category[data-category="shape"] .template-card:hover,
+  .templates-container .category[data-category="animation"] .template-card:hover {
     transform: none;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .category-tab[data-category="animation"]::after {
+    display: none;
   }
 } 

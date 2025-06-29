@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import BasicSettings from '../components/BasicSettings';
 import TemplatesSection from '../components/TemplatesSection';
 import PreviewPanel from '../components/PreviewPanel';
+import NewFeaturesShowcase from '../components/NewFeaturesShowcase';
 import { useTheme } from '../hooks/useTheme';
 import { useGradientConfig } from '../hooks/useGradientConfig';
 import { getUrlParams, applyUrlParamsToConfig, getTemplateConfig, getTemplateCategoryByName } from '../utils/templateUtils';
@@ -186,6 +187,24 @@ export default function Settings() {
                 </div>
               </div>
             </div>
+
+            <NewFeaturesShowcase 
+              onTemplateSelect={(templateName) => {
+                const templateConfig = getTemplateConfig(templateName);
+                if (templateConfig) {
+                  setSelectedTemplate(templateConfig);
+                  const category = getTemplateCategoryByName(templateName);
+                  setActiveCategory(category);
+                  setConfig(prev => ({
+                    ...prev,
+                    template: templateConfig.name,
+                    colors: templateConfig.colors || prev.colors,
+                    gradientType: templateConfig.gradientType || prev.gradientType,
+                    animationDuration: parseInt(templateConfig.animationDuration) || prev.animationDuration
+                  }));
+                }
+              }}
+            />
 
             <TemplatesSection
               activeCategory={activeCategory}

@@ -27,11 +27,9 @@ export default function Home() {
   ];
 
   const examples = [
+    // 原有的经典模板
     { text: "Welcome", template: "sunset-gold" },
     { text: "GitHub", template: "ocean-heart" },
-    { text: "GLOW", template: "luminance-glow" },
-    { text: "RAINBOW", template: "rainbow-wave" },
-    { text: "GLITCH", template: "glitch-cyber" },
     { text: "HOLOGRAM", template: "hologram-matrix" },
     { text: "QUANTUM", template: "quantum-field" },
     { text: "FLAME", template: "burning-flame" },
@@ -40,6 +38,26 @@ export default function Home() {
     { text: "PIXEL", template: "pixel-art-retro" },
     { text: "NEON", template: "neon-arcade" },
     { text: "Code", template: "midnight-galaxy" },
+    
+    // 新增的动画效果模板 (来自svg-banners)
+    { text: "GLITCH", template: "glitch-matrix" },
+    { text: "HACKER", template: "typewriter-code" },
+    { text: "GLOW", template: "luminance-glow" },
+    { text: "RAINBOW", template: "rainbow-wave" },
+    { text: "CYBER", template: "cyber-scan" },
+    { text: "PULSE", template: "neon-pulse" },
+    { text: "SCAN", template: "hologram-flicker" },
+    { text: "ERROR", template: "data-corruption" },
+    
+    // 新增的形状模板 (来自capsule-render)
+    { text: "WAVE", template: "wave-flow" },
+    { text: "CHAT", template: "speech-bubble" },
+    { text: "FLOW", template: "soft-blend" },
+    { text: "FIN", template: "shark-fin" },
+    { text: "ORB", template: "egg-shape" },
+    { text: "BLUR", template: "blur-glow" },
+    
+    // 经典模板延续
     { text: "DAWN", template: "sunrise-dawn" },
     { text: "AURORA", template: "northern-aurora" },
     { text: "DIAMOND", template: "diamond-sparkle" },
@@ -52,8 +70,8 @@ export default function Home() {
   const highlights = [
     {
       icon: "🎨",
-      title: "100+ Professional Templates",
-      description: "From sunset gold to hologram matrix - every style you need"
+      title: "204+ Professional Templates",
+      description: "From glitch effects to hologram shapes - enhanced with svg-banners & capsule-render styles"
     },
     {
       icon: "⚡",

@@ -36,6 +36,10 @@ const artisticTemplates = require('../templates/artisticTemplates');
 const luxuryTemplates = require('../templates/luxuryTemplates');
 const organicTemplates = require('../templates/organicTemplates');
 const gamingTemplates = require('../templates/gamingTemplates');
+// 新增的模板类别 - 借鉴自示例项目
+const shapeTemplates = require('../templates/shapeTemplates');
+const animationTemplates = require('../templates/animationTemplates');
+const { getRandomGradientPalette, getTimedPalette } = require('./colorPalettes');
 
 const templates = { 
   ...basicTemplates, 
@@ -50,7 +54,10 @@ const templates = {
   ...artisticTemplates,
   ...luxuryTemplates,
   ...organicTemplates,
-  ...gamingTemplates
+  ...gamingTemplates,
+  // 新增模板类别
+  ...shapeTemplates,
+  ...animationTemplates
 };
 
 function getTemplateConfig(template, defaultColor = '000000') {

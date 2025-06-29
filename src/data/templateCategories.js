@@ -24,6 +24,9 @@ const artisticTemplates = require('../templates/artisticTemplates');
 const luxuryTemplates = require('../templates/luxuryTemplates');
 const organicTemplates = require('../templates/organicTemplates');
 const gamingTemplates = require('../templates/gamingTemplates');
+// 新增模板类别 - 来自示例项目整合
+const shapeTemplates = require('../templates/shapeTemplates');
+const animationTemplates = require('../templates/animationTemplates');
 
 // Template categories configuration
 const templateCategories = [
@@ -117,6 +120,21 @@ const templateCategories = [
     icon: '🎮',
     description: 'Gaming aesthetics from retro pixel art to cyberpunk',
     templates: Object.values(gamingTemplates)
+  },
+  // 新增分类 - 来自示例项目的整合
+  {
+    id: 'shape',
+    name: 'Shape',
+    icon: '⚫',
+    description: 'Geometric shapes and forms inspired by capsule-render',
+    templates: Object.values(shapeTemplates)
+  },
+  {
+    id: 'animation',
+    name: 'Animation',
+    icon: '🎬',
+    description: 'Special animation and dynamic effects from svg-banners',
+    templates: Object.values(animationTemplates)
   }
 ];
 
