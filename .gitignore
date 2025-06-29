@@ -41,4 +41,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-示例项目/
+/example-1
+/example-2
