@@ -277,6 +277,11 @@ function generateGradientSVG({
 
   const gradientResult = createGradientFromColors(colors, gradientType, duration);
 
+  // 🌟 NEW: Handle special advanced effects that need generateAdvancedSVG
+  if (gradientResult && gradientResult.useAdvancedEffect) {
+    return generateAdvancedSVG(gradientResult.effectType, text, colors, 854, height, { duration });
+  }
+
   // Choose appropriate filter effects based on gradient type
   let filterEffect = 'url(#smoothTransition)';
   let additionalFilters = '';

@@ -122,7 +122,48 @@ const gradientMapping = {
   wormholeEffect: dimensionalGradients.createWormholeEffectGradient,
   fractalDimension: dimensionalGradients.createFractalDimensionGradient,
   multiverseOverlap: dimensionalGradients.createMultiverseOverlapGradient,
-  realityDistortion: dimensionalGradients.createRealityDistortionGradient
+  realityDistortion: dimensionalGradients.createRealityDistortionGradient,
+
+  // 🌟 NEW: Dimensional Portal gradients (using advanced effect generator)
+  quantumTunnel: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'quantumTunnel' }),
+  parallelDimension: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'parallelDimension' }),
+  wormholePortal: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'wormholeTransit' }),
+  dimensionalTear: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'dimensionalRift' }),
+  holographicGrid: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'holographicMatrix' }),
+  voidDistortion: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'voidChamber' }),
+  astralPlane: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'astralProjection' }),
+
+  // 🌟 NEW: Digital Life gradients (using advanced effect generator)
+  aiConsciousness: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'aiConsciousness' }),
+  bioDigitalMerge: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'bioDigitalMerge' }),
+  quantumDNA: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'quantumDNA' }),
+  digitalEvolution: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'digitalEvolution' }),
+  syntheticSoul: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'syntheticSoul' }),
+  cyberSymbiosis: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'cyberSymbiosis' }),
+  neuralStorm: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'neuralStorm' }),
+  digitalGenome: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'digitalGenome' }),
+
+  // 🌟 NEW: Cyber Aesthetics gradients (using advanced effect generator)
+  neonCityscape: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'neonGridCity' }),
+  dataMatrix: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'dataStreamFlow' }),
+  cyberpunkShadow: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'cyberPunkNoir' }),
+  holographicUI: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'hologramInterface' }),
+  pixelCorruption: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'digitalDecay' }),
+  chromeFinish: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'chromeReflection' }),
+  viralSpread: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'virusInfection' }),
+  encryptionField: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'quantumEncryption' }),
+  arOverlay: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'augmentedReality' }),
+
+  // 🌟 NEW: Consciousness Stream gradients (using advanced effect generator)
+  thoughtWaves: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'thoughtWaves' }),
+  memoryFragments: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'memoryFragments' }),
+  dreamLogic: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'dreamLogic' }),
+  emotionalSpectrum: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'emotionalSpectrum' }),
+  meditativeCalm: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'meditativeCalm' }),
+  anxietySpiral: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'anxietySpiral' }),
+  egoDissolution: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'egoDissolution' }),
+  psychedelicInsight: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'psychedelicInsight' }),
+  collectiveUnconscious: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'collectiveUnconscious' })
 };
 
 /**
@@ -149,6 +190,18 @@ function createGradient(gradientType, stops, animationConfig, animationDuration,
 
   // Most gradients require these three parameters
   const result = gradientGenerator(stops, animationConfig, animationDuration);
+  
+  // 🌟 NEW: Handle advanced effects that need special processing
+  if (result && result.useAdvancedEffect) {
+    return {
+      gradientDef: '',
+      additionalElements: '',
+      hasClipPath: false,
+      clipPathId: null,
+      useAdvancedEffect: true,
+      effectType: result.effectType
+    };
+  }
   
   // Handle different return formats
   if (typeof result === 'string') {

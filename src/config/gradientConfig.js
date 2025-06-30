@@ -43,6 +43,11 @@ const animationTemplates = require('../templates/animationTemplates');
 const morphingTemplates = require('../templates/morphingTemplates');
 const fluidDynamicsTemplates = require('../templates/fluidDynamicsTemplates');
 const dimensionalTemplates = require('../templates/dimensionalTemplates');
+// 🌟 NEW: 最新前卫模板系列
+const dimensionalPortalTemplates = require('../templates/dimensionalPortalTemplates');
+const digitalLifeTemplates = require('../templates/digitalLifeTemplates');
+const cyberAestheticsTemplates = require('../templates/cyberAestheticsTemplates');
+const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
 const { getRandomGradientPalette, getTimedPalette } = require('./colorPalettes');
 
 const templates = { 
@@ -65,7 +70,12 @@ const templates = {
   // 🌟 NEW: 前沿创新模板系列
   ...morphingTemplates,
   ...fluidDynamicsTemplates,
-  ...dimensionalTemplates
+  ...dimensionalTemplates,
+  // 🌟 NEW: 最新前卫模板系列
+  ...dimensionalPortalTemplates,
+  ...digitalLifeTemplates,
+  ...cyberAestheticsTemplates,
+  ...consciousnessStreamTemplates
 };
 
 function getTemplateConfig(template, defaultColor = '000000') {
@@ -172,7 +182,65 @@ const GRADIENT_TYPES = [
   'bossBattle',
   'powerUp',
   'cyberpunk',
-  'retroWave'
+  'retroWave',
+  // 🌟 NEW: Morphing Effects
+  'liquidMorphing',
+  'plasmaMorphing',
+  'cosmicMorphing',
+  'bioMorphing',
+  'quantumMorphing',
+  'lavaMorphing',
+  // 🌟 NEW: Fluid Dynamics
+  'turbulentWaves',
+  'electromagneticWaves',
+  'auroraWaves',
+  'soundWaves',
+  'cryogenicWaves',
+  'solarWaves',
+  // 🌟 NEW: Dimensional Effects
+  'portalDistortion',
+  'hypercubeProjection',
+  'wormholeEffect',
+  'fractalDimension',
+  'multiverseOverlap',
+  'realityDistortion',
+  // 🌟 NEW: Dimensional Portal Effects
+  'quantumTunnel',
+  'parallelDimension',
+  'wormholePortal',
+  'dimensionalTear',
+  'holographicGrid',
+  'voidDistortion',
+  'astralPlane',
+  // 🌟 NEW: Digital Life Effects
+  'aiConsciousness',
+  'bioDigitalMerge',
+  'quantumDNA',
+  'digitalEvolution',
+  'syntheticSoul',
+  'cyberSymbiosis',
+  'neuralStorm',
+  'digitalGenome',
+  // 🌟 NEW: Cyber Aesthetics Effects
+  'neonCityscape',
+  'dataMatrix',
+  'cyberpunkShadow',
+  'holographicUI',
+  'pixelCorruption',
+  'chromeFinish',
+  'viralSpread',
+  'encryptionField',
+  'arOverlay',
+  // 🌟 NEW: Consciousness Stream Effects
+  'thoughtWaves',
+  'memoryFragments',
+  'dreamLogic',
+  'emotionalSpectrum',
+  'meditativeCalm',
+  'anxietySpiral',
+  'egoDissolution',
+  'psychedelicInsight',
+  'collectiveUnconscious'
 ];
 
 module.exports = { 
