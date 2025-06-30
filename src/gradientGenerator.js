@@ -80,6 +80,36 @@ function generateGradientSVG({
     // Note: Other templates use standard gradientTypes and will be handled by the normal gradient system
   };
 
+  // 🌟 NEW: Map morphing template names to morphing effect types
+  const morphingTemplateMap = {
+    'liquid-mercury': 'liquidMorphing',
+    'plasma-blob': 'plasmaMorphing',
+    'cosmic-entity': 'cosmicMorphing',
+    'bio-organism': 'bioMorphing',
+    'quantum-foam': 'quantumMorphing',
+    'molten-lava': 'lavaMorphing'
+  };
+
+  // 🌟 NEW: Map fluid dynamics template names to fluid effect types
+  const fluidDynamicsTemplateMap = {
+    'turbulent-waves': 'turbulentWaves',
+    'electromagnetic-field': 'electromagneticWaves',
+    'aurora-streams': 'auroraWaves',
+    'sound-visualization': 'soundWaves',
+    'liquid-nitrogen': 'cryogenicWaves',
+    'solar-wind': 'solarWaves'
+  };
+
+  // 🌟 NEW: Map dimensional template names to dimensional effect types
+  const dimensionalTemplateMap = {
+    'portal-nexus': 'portalDistortion',
+    'tesseract-projection': 'hypercubeProjection',
+    'wormhole-transit': 'wormholeEffect',
+    'fractal-dimension': 'fractalDimension',
+    'parallel-universe': 'multiverseOverlap',
+    'reality-glitch': 'realityDistortion'
+  };
+
   // Check if this is a shape template
   if (template && shapeTemplateMap[template]) {
     const shapeType = shapeTemplateMap[template];
@@ -95,6 +125,24 @@ function generateGradientSVG({
   // Check if this is a text effect template
   if (template && textEffectTemplateMap[template]) {
     const effectType = textEffectTemplateMap[template];
+    return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
+  }
+
+  // 🌟 NEW: Check if this is a morphing effect template
+  if (template && morphingTemplateMap[template]) {
+    const effectType = morphingTemplateMap[template];
+    return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
+  }
+
+  // 🌟 NEW: Check if this is a fluid dynamics template
+  if (template && fluidDynamicsTemplateMap[template]) {
+    const effectType = fluidDynamicsTemplateMap[template];
+    return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
+  }
+
+  // 🌟 NEW: Check if this is a dimensional effect template
+  if (template && dimensionalTemplateMap[template]) {
+    const effectType = dimensionalTemplateMap[template];
     return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
   }
 
@@ -124,7 +172,13 @@ function generateGradientSVG({
     // Organic Nature
     'flowingWater', 'flame', 'clouds', 'aurora', 'oceanWaves', 'forest', 'lightning', 'mountainMist',
     // Gaming
-    'pixelArt', 'neonArcade', 'energyBlast', 'speedLines', 'bossBattle', 'powerUp', 'cyberpunk', 'retroWave'
+    'pixelArt', 'neonArcade', 'energyBlast', 'speedLines', 'bossBattle', 'powerUp', 'cyberpunk', 'retroWave',
+    // 🌟 NEW: Morphing Effects
+    'liquidMorphing', 'plasmaMorphing', 'cosmicMorphing', 'bioMorphing', 'quantumMorphing', 'lavaMorphing',
+    // 🌟 NEW: Fluid Dynamics
+    'turbulentWaves', 'electromagneticWaves', 'auroraWaves', 'soundWaves', 'cryogenicWaves', 'solarWaves',
+    // 🌟 NEW: Dimensional Effects
+    'portalDistortion', 'hypercubeProjection', 'wormholeEffect', 'fractalDimension', 'multiverseOverlap', 'realityDistortion'
   ];
   
   if (textEffectTypes.includes(gradientType) || advancedEffectTypes.includes(gradientType)) {
