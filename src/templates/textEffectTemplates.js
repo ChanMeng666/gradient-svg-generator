@@ -11,6 +11,16 @@
  */
 
 module.exports = {
+  // 🌈 NEW: Rainbow Layer Effect - 借鉴自 example-1/rainbow.js
+  'rainbow-layer': {
+    name: 'rainbow-layer',
+    label: 'Rainbow Layer',
+    colors: ['DEBF40', '5ACB3C', '44A3F7', 'CF52EB', 'D14B3D', 'D49C3D', 'ffffff'],
+    gradientType: 'rainbowLayer',
+    animationDuration: '1.5s',
+    description: 'Multi-layered rainbow text with wave animation - inspired by svg-banners'
+  },
+  
   // High Priority Effects
   'luminance-glow': {
     name: 'luminance-glow',

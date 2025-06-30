@@ -30,6 +30,11 @@ const animationTemplates = require('../templates/animationTemplates');
 const morphingTemplates = require('../templates/morphingTemplates');
 const fluidDynamicsTemplates = require('../templates/fluidDynamicsTemplates');
 const dimensionalTemplates = require('../templates/dimensionalTemplates');
+// 🌟 NEW: Advanced Futuristic Template Categories
+const dimensionalPortalTemplates = require('../templates/dimensionalPortalTemplates');
+const digitalLifeTemplates = require('../templates/digitalLifeTemplates');
+const cyberAestheticsTemplates = require('../templates/cyberAestheticsTemplates');
+const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
 
 // Template categories configuration
 const templateCategories = [
@@ -159,6 +164,35 @@ const templateCategories = [
     icon: '🌌',
     description: 'Multi-dimensional space distortion and portal effects',
     templates: Object.values(dimensionalTemplates)
+  },
+  // 🌟 NEW: Advanced Futuristic Categories - 前卫未来主义设计
+  {
+    id: 'dimensional-portal',
+    name: 'Dimensional Portal',
+    icon: '🌀',
+    description: '次元穿越美学 - 探索多维空间的视觉奇迹与量子隧道效应',
+    templates: Object.values(dimensionalPortalTemplates)
+  },
+  {
+    id: 'digital-life',
+    name: 'Digital Life',
+    icon: '🧬',
+    description: '数字生命美学 - AI意识、生物科技与数字进化的前沿探索',
+    templates: Object.values(digitalLifeTemplates)
+  },
+  {
+    id: 'cyber-aesthetics',
+    name: 'Cyber Aesthetics',
+    icon: '🤖',
+    description: '赛博美学 - 未来主义数字艺术与赛博朋克视觉革命',
+    templates: Object.values(cyberAestheticsTemplates)
+  },
+  {
+    id: 'consciousness-stream',
+    name: 'Consciousness Stream',
+    icon: '🧠',
+    description: '意识流美学 - 心理学、哲学与精神维度的视觉化表达',
+    templates: Object.values(consciousnessStreamTemplates)
   }
 ];
 

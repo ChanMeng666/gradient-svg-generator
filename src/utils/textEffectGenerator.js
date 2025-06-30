@@ -29,6 +29,8 @@ function generateTextEffectSVG({
       return generateLuminanceEffect(text, colors, height, duration, gradientResult);
     case 'rainbow':
       return generateRainbowEffect(text, colors, height, duration, gradientResult);
+    case 'rainbowLayer':
+      return generateRainbowLayerEffect(text, colors, height, duration, gradientResult);
     case 'textBox':
       return generateTextBoxEffect(text, colors, height, duration, gradientResult);
     case 'glitch':
@@ -94,6 +96,43 @@ function generateTextEffectSVG({
     case 'fractalDimension':
     case 'multiverseOverlap':
     case 'realityDistortion':
+    // 🌈 NEW: Dimensional Portal Templates
+    case 'quantumTunnel':
+    case 'parallelDimension':
+    case 'wormholePortal':
+    case 'dimensionalTear':
+    case 'holographicGrid':
+    case 'voidDistortion':
+    case 'astralPlane':
+    // 🧬 NEW: Digital Life Templates
+    case 'neuralNetwork':
+    case 'bioDigitalFusion':
+    case 'quantumHelix':
+    case 'evolutionSpiral':
+    case 'syntheticAura':
+    case 'symbioticFlow':
+    case 'brainWave':
+    case 'codeSequence':
+    // 🤖 NEW: Cyber Aesthetics Templates
+    case 'neonCityscape':
+    case 'dataMatrix':
+    case 'cyberpunkShadow':
+    case 'holographicUI':
+    case 'pixelCorruption':
+    case 'chromeFinish':
+    case 'viralSpread':
+    case 'encryptionField':
+    case 'arOverlay':
+    // 🧠 NEW: Consciousness Stream Templates
+    case 'mentalWaves':
+    case 'memoryFlow':
+    case 'dreamSequence':
+    case 'emotionalFlow':
+    case 'tranquilWaves':
+    case 'anxietyPattern':
+    case 'egoDeath':
+    case 'psychedelicVision':
+    case 'jungianArchetype':
       return generateAdvancedEffectSVG(text, colors, height, gradientType, duration);
     
     default:
@@ -463,6 +502,95 @@ function generateTypewriterEffect(text, colors, height, duration, gradientResult
             <div class="type-writer">
               <p class="line-1">${text}</p>
             </div>
+          </div>
+        </div>
+      </foreignObject>
+    </svg>`;
+}
+
+// 🌈 NEW: Rainbow Layer Effect - 借鉴自 example-1/rainbow.js
+function generateRainbowLayerEffect(text, colors, height, duration, gradientResult) {
+  const rainbowColors = colors.length >= 7 ? colors : ['DEBF40', '5ACB3C', '44A3F7', 'CF52EB', 'D14B3D', 'D49C3D', 'ffffff'];
+  const delay = 10;
+  
+  let rainbowLayers = '';
+  rainbowColors.forEach((color, index) => {
+    const animationDelay = (index + 1) / delay;
+    const marginLeft = 36 - (index * 6);
+    const className = `c-rainbow__layer--${index}`;
+    rainbowLayers += `<li class="c-rainbow__layer ${className}">${text}</li>`;
+  });
+
+  let colorStyles = '';
+  rainbowColors.forEach((color, index) => {
+    const cleanColor = color.startsWith('#') ? color.substring(1) : color;
+    const animationDelay = (index + 1) / delay;
+    const marginLeft = 36 - (index * 6);
+    colorStyles += `
+      .c-rainbow__layer--${index} {
+        --text-color: #${cleanColor};
+        animation-delay: calc(${animationDelay}s);
+        margin-left: ${marginLeft}px;
+      }
+    `;
+  });
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+      width="854" height="${height}" viewBox="0 0 854 ${height}">
+      <defs>
+        <style>
+          .container {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            width: 100%;
+            height: ${height}px;
+            background-color: #31037D;
+            border-radius: 10px;
+            color: rgba(255,255,255,.75);
+            text-align: center;
+            font-size: 24px;
+          }
+          .c-rainbow {
+            counter-reset: rainbow;
+            position: relative;
+            display: block;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            line-height: 2px;
+          }
+          .c-rainbow__layer {
+            --text-color: #ffffff;
+            counter-increment: rainbow;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 4px 4px 0 rgba(0, 0, 0, 0.2);
+            animation: rainbow ${duration} ease-in-out infinite;
+          }
+          ${colorStyles}
+          @keyframes rainbow {
+            0%, 100% {
+              transform: translatey(1rem);
+            }
+            50% {
+              transform: translatey(-1rem);
+            }
+          }
+        </style>
+      </defs>
+      
+      <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <div class="container">
+            <ul class="c-rainbow">
+              ${rainbowLayers}
+            </ul>
           </div>
         </div>
       </foreignObject>

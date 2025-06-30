@@ -801,6 +801,173 @@
   background-clip: text;
 }
 
+/* 🌀 NEW: Dimensional Portal Category */
+.templates-container .category[data-category="dimensional-portal"] {
+  background: linear-gradient(135deg, rgba(128, 0, 255, 0.15) 0%, rgba(255, 0, 128, 0.1) 50%, rgba(0, 255, 255, 0.1) 100%);
+  border: 2px solid rgba(128, 0, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.templates-container .category[data-category="dimensional-portal"]::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #8000ff, #ff0080, #00ffff, #8000ff);
+  background-size: 600% 600%;
+  animation: dimensionalPortal 6s ease-in-out infinite;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.category-tab[data-category="dimensional-portal"] {
+  background: linear-gradient(135deg, #8000ff 0%, #ff0080 50%, #00ffff 100%);
+  color: white;
+  border-color: #8000ff;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tab[data-category="dimensional-portal"]:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(128, 0, 255, 0.6);
+}
+
+.category-tab[data-category="dimensional-portal"]::after {
+  content: '🌀';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1rem;
+  animation: portalSpin 3s linear infinite;
+}
+
+/* 🧬 NEW: Digital Life Category */
+.templates-container .category[data-category="digital-life"] {
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.15) 0%, rgba(0, 179, 57, 0.1) 100%);
+  border: 2px solid rgba(0, 255, 65, 0.4);
+  position: relative;
+}
+
+.templates-container .category[data-category="digital-life"]::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ff41, #00b339, #00cc32, #00ff41);
+  background-size: 400% 400%;
+  animation: digitalLifePulse 5s ease-in-out infinite;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.category-tab[data-category="digital-life"] {
+  background: linear-gradient(135deg, #00ff41 0%, #00b339 100%);
+  color: white;
+  border-color: #00ff41;
+}
+
+.category-tab[data-category="digital-life"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 255, 65, 0.5);
+}
+
+.category-tab[data-category="digital-life"]::after {
+  content: '🧬';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1rem;
+  animation: dnaHelix 4s linear infinite;
+}
+
+/* 🤖 NEW: Cyber Aesthetics Category */
+.templates-container .category[data-category="cyber-aesthetics"] {
+  background: linear-gradient(135deg, rgba(255, 0, 128, 0.15) 0%, rgba(128, 255, 0, 0.1) 50%, rgba(0, 128, 255, 0.1) 100%);
+  border: 2px solid rgba(255, 0, 128, 0.4);
+  position: relative;
+}
+
+.templates-container .category[data-category="cyber-aesthetics"]::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff0080, #80ff00, #0080ff, #ff0080);
+  background-size: 500% 500%;
+  animation: cyberFlicker 3s ease-in-out infinite;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.category-tab[data-category="cyber-aesthetics"] {
+  background: linear-gradient(135deg, #ff0080 0%, #80ff00 50%, #0080ff 100%);
+  color: white;
+  border-color: #ff0080;
+}
+
+.category-tab[data-category="cyber-aesthetics"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(255, 0, 128, 0.5);
+}
+
+.category-tab[data-category="cyber-aesthetics"]::after {
+  content: '🤖';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1rem;
+  animation: cyberGlow 2s ease-in-out infinite alternate;
+}
+
+/* 🧠 NEW: Consciousness Stream Category */
+.templates-container .category[data-category="consciousness-stream"] {
+  background: linear-gradient(135deg, rgba(230, 230, 250, 0.15) 0%, rgba(216, 191, 216, 0.1) 50%, rgba(221, 160, 221, 0.1) 100%);
+  border: 2px solid rgba(186, 85, 211, 0.4);
+  position: relative;
+}
+
+.templates-container .category[data-category="consciousness-stream"]::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #e6e6fa, #d8bfd8, #dda0dd, #ba55d3);
+  background-size: 400% 400%;
+  animation: consciousnessWaves 8s ease-in-out infinite;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.category-tab[data-category="consciousness-stream"] {
+  background: linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 50%, #ba55d3 100%);
+  color: #4a0e4e;
+  border-color: #ba55d3;
+}
+
+.category-tab[data-category="consciousness-stream"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(186, 85, 211, 0.5);
+}
+
+.category-tab[data-category="consciousness-stream"]::after {
+  content: '🧠';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1rem;
+  animation: brainWaves 6s ease-in-out infinite;
+}
+
 /* Fluid Dynamics Category */
 .templates-container .category[data-category="fluid-dynamics"] {
   background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(0, 255, 128, 0.1) 100%);
@@ -937,5 +1104,104 @@
   75% {
     background-position: 0% 0%;
     transform: rotate(-1deg);
+  }
+}
+
+/* 🌟 NEW: Advanced Animation Keyframes for Futuristic Categories */
+@keyframes dimensionalPortal {
+  0%, 100% {
+    background-position: 0% 0%;
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    background-position: 100% 0%;
+    transform: rotate(90deg) scale(1.05);
+  }
+  50% {
+    background-position: 100% 100%;
+    transform: rotate(180deg) scale(1);
+  }
+  75% {
+    background-position: 0% 100%;
+    transform: rotate(270deg) scale(1.05);
+  }
+}
+
+@keyframes portalSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes digitalLifePulse {
+  0%, 100% {
+    background-position: 0% 50%;
+    opacity: 1;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.8;
+  }
+}
+
+@keyframes dnaHelix {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+@keyframes cyberFlicker {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  25% {
+    background-position: 50% 0%;
+    filter: brightness(1.2);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(0.8);
+  }
+  75% {
+    background-position: 50% 100%;
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes cyberGlow {
+  0% { filter: brightness(1) drop-shadow(0 0 5px currentColor); }
+  100% { filter: brightness(1.3) drop-shadow(0 0 15px currentColor); }
+}
+
+@keyframes consciousnessWaves {
+  0%, 100% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+  25% {
+    background-position: 25% 75%;
+    transform: scale(1.02);
+  }
+  50% {
+    background-position: 75% 25%;
+    transform: scale(1);
+  }
+  75% {
+    background-position: 100% 100%;
+    transform: scale(1.01);
+  }
+}
+
+@keyframes brainWaves {
+  0%, 100% { 
+    transform: scale(1);
+    filter: hue-rotate(0deg);
+  }
+  33% { 
+    transform: scale(1.1);
+    filter: hue-rotate(120deg);
+  }
+  66% { 
+    transform: scale(0.9);
+    filter: hue-rotate(240deg);
   }
 } 

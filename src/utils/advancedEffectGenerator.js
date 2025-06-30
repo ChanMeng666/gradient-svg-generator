@@ -625,6 +625,80 @@ function generateAdvancedEffect(gradientType, colors, duration, text) {
     case 'realityDistortion':
       return generatePortalDistortionEffect(colors, duration, text); // 暂时复用传送门效果
     
+    // 🌌 NEW: Dimensional Portal Templates
+    case 'quantumTunnel':
+      return generateQuantumTunnelEffect(colors, duration, text);
+    case 'parallelDimension':
+      return generateParallelUniverseEffect(colors, duration, text);
+    case 'wormholePortal':
+      return generateWormholeTransitEffect(colors, duration, text);
+    case 'dimensionalTear':
+      return generateDimensionalRiftEffect(colors, duration, text);
+    case 'holographicGrid':
+      return generateHolographicMatrixEffect(colors, duration, text);
+    case 'voidDistortion':
+      return generateVoidChamberEffect(colors, duration, text);
+    case 'astralPlane':
+      return generateAstralProjectionEffect(colors, duration, text);
+    
+    // 🧬 NEW: Digital Life Templates
+    case 'neuralNetwork':
+      return generateAIConsciousnessEffect(colors, duration, text);
+    case 'bioDigitalFusion':
+      return generateBioDigitalMergeEffect(colors, duration, text);
+    case 'quantumHelix':
+      return generateQuantumDNAEffect(colors, duration, text);
+    case 'evolutionSpiral':
+      return generateDigitalEvolutionEffect(colors, duration, text);
+    case 'syntheticAura':
+      return generateSyntheticSoulEffect(colors, duration, text);
+    case 'symbioticFlow':
+      return generateCyberSymbiosisEffect(colors, duration, text);
+    case 'brainWave':
+      return generateNeuralStormEffect(colors, duration, text);
+    case 'codeSequence':
+      return generateDigitalGenomeEffect(colors, duration, text);
+    
+    // 🤖 NEW: Cyber Aesthetics Templates
+    case 'neonCityscape':
+      return generateNeonGridCityEffect(colors, duration, text);
+    case 'dataMatrix':
+      return generateDataStreamFlowEffect(colors, duration, text);
+    case 'cyberpunkShadow':
+      return generateCyberPunkNoirEffect(colors, duration, text);
+    case 'holographicUI':
+      return generateHologramInterfaceEffect(colors, duration, text);
+    case 'pixelCorruption':
+      return generateDigitalDecayEffect(colors, duration, text);
+    case 'chromeFinish':
+      return generateChromeReflectionEffect(colors, duration, text);
+    case 'viralSpread':
+      return generateVirusInfectionEffect(colors, duration, text);
+    case 'encryptionField':
+      return generateQuantumEncryptionEffect(colors, duration, text);
+    case 'arOverlay':
+      return generateAugmentedRealityEffect(colors, duration, text);
+    
+    // 🧠 NEW: Consciousness Stream Templates
+    case 'mentalWaves':
+      return generateThoughtWavesEffect(colors, duration, text);
+    case 'memoryFlow':
+      return generateMemoryFragmentsEffect(colors, duration, text);
+    case 'dreamSequence':
+      return generateDreamLogicEffect(colors, duration, text);
+    case 'emotionalFlow':
+      return generateEmotionalSpectrumEffect(colors, duration, text);
+    case 'tranquilWaves':
+      return generateMeditativeCalmEffect(colors, duration, text);
+    case 'anxietyPattern':
+      return generateAnxietySpiralEffect(colors, duration, text);
+    case 'egoDeath':
+      return generateEgoDissolutionEffect(colors, duration, text);
+    case 'psychedelicVision':
+      return generatePsychedelicInsightEffect(colors, duration, text);
+    case 'jungianArchetype':
+      return generateCollectiveUnconsciousEffect(colors, duration, text);
+    
     default:
       // Return a basic gradient for unsupported types
       return `
@@ -650,6 +724,216 @@ function generateAdvancedEffect(gradientType, colors, duration, text) {
   }
 }
 
+// 🌌 Dimensional Portal Effects
+function generateQuantumTunnelEffect(colors, duration = '4s', text = 'QUANTUM') {
+  return `
+    <defs>
+      <radialGradient id="quantumTunnel" cx="50%" cy="50%" r="50%">
+        ${colors.map((color, i) => `<stop offset="${(i / (colors.length - 1)) * 100}%" style="stop-color:#${color};stop-opacity:${1 - i * 0.1}"/>`).join('')}
+      </radialGradient>
+      <filter id="quantumDistortion">
+        <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="15"/>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#quantumTunnel)" filter="url(#quantumDistortion)">
+      <animateTransform attributeName="transform" type="scale" values="1;1.2;1" dur="${duration}" repeatCount="indefinite"/>
+    </rect>
+    <foreignObject x="10%" y="35%" width="80%" height="30%">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="
+        color: #${colors[colors.length - 1]};
+        font-family: 'Orbitron', sans-serif;
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 20px #${colors[0]};
+        animation: quantumPulse ${duration} infinite;
+      ">
+        ${text}
+      </div>
+      <style>
+        @keyframes quantumPulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.8; transform: scale(1.1); }
+        }
+      </style>
+    </foreignObject>
+  `;
+}
+
+// 🧬 Digital Life Effects
+function generateAIConsciousnessEffect(colors, duration = '4s', text = 'AI MIND') {
+  return `
+    <defs>
+      <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        ${colors.map((color, i) => `<stop offset="${(i / (colors.length - 1)) * 100}%" style="stop-color:#${color}"/>`).join('')}
+      </linearGradient>
+      <filter id="neuralGlow">
+        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#neuralGradient)"/>
+    <g filter="url(#neuralGlow)">
+      ${Array.from({length: 20}, (_, i) => `
+        <circle cx="${Math.random() * 100}%" cy="${Math.random() * 100}%" r="3" fill="#${colors[0]}" opacity="0.8">
+          <animate attributeName="opacity" values="0.2;1;0.2" dur="${Math.random() * 3 + 1}s" repeatCount="indefinite"/>
+        </circle>
+        <line x1="${Math.random() * 100}%" y1="${Math.random() * 100}%" x2="${Math.random() * 100}%" y2="${Math.random() * 100}%" 
+              stroke="#${colors[1]}" stroke-width="1" opacity="0.5">
+          <animate attributeName="opacity" values="0.1;0.8;0.1" dur="${Math.random() * 2 + 1}s" repeatCount="indefinite"/>
+        </line>
+      `).join('')}
+    </g>
+    <foreignObject x="10%" y="35%" width="80%" height="30%">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="
+        color: white;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 15px #${colors[0]};
+        animation: neuralPulse ${duration} infinite;
+      ">
+        ${text}
+      </div>
+      <style>
+        @keyframes neuralPulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+      </style>
+    </foreignObject>
+  `;
+}
+
+// 🤖 Cyber Aesthetics Effects
+function generateNeonGridCityEffect(colors, duration = '4s', text = 'CYBER') {
+  return `
+    <defs>
+      <linearGradient id="neonCity" x1="0%" y1="0%" x2="100%" y2="100%">
+        ${colors.map((color, i) => `<stop offset="${(i / (colors.length - 1)) * 100}%" style="stop-color:#${color}"/>`).join('')}
+      </linearGradient>
+      <filter id="neonGlow">
+        <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="#000014"/>
+    <g filter="url(#neonGlow)">
+      ${Array.from({length: 10}, (_, i) => `
+        <rect x="${i * 10 + 5}%" y="60%" width="8%" height="${Math.random() * 40 + 20}%" fill="#${colors[i % colors.length]}" opacity="0.8">
+          <animate attributeName="height" values="${Math.random() * 40 + 20}%;${Math.random() * 60 + 30}%;${Math.random() * 40 + 20}%" 
+                   dur="${Math.random() * 3 + 2}s" repeatCount="indefinite"/>
+        </rect>
+      `).join('')}
+    </g>
+    <foreignObject x="10%" y="35%" width="80%" height="30%">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="
+        color: #${colors[0]};
+        font-family: 'Orbitron', sans-serif;
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 25px #${colors[0]}, 0 0 50px #${colors[1]};
+        animation: neonFlicker ${duration} infinite;
+      ">
+        ${text}
+      </div>
+      <style>
+        @keyframes neonFlicker {
+          0%, 100% { opacity: 1; }
+          25% { opacity: 0.8; }
+          50% { opacity: 1; }
+          75% { opacity: 0.9; }
+        }
+      </style>
+    </foreignObject>
+  `;
+}
+
+// 🧠 Consciousness Stream Effects
+function generateThoughtWavesEffect(colors, duration = '6s', text = 'MIND') {
+  return `
+    <defs>
+      <radialGradient id="mentalWaves" cx="50%" cy="50%" r="50%">
+        ${colors.map((color, i) => `<stop offset="${(i / (colors.length - 1)) * 100}%" style="stop-color:#${color}"/>`).join('')}
+      </radialGradient>
+      <filter id="mentalRipple">
+        <feTurbulence baseFrequency="0.01" numOctaves="2" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8"/>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#mentalWaves)" filter="url(#mentalRipple)">
+      <animateTransform attributeName="transform" type="rotate" values="0;360" dur="${duration}" repeatCount="indefinite"/>
+    </rect>
+    ${Array.from({length: 5}, (_, i) => `
+      <circle cx="50%" cy="50%" r="${(i + 1) * 15}%" fill="none" stroke="#${colors[i % colors.length]}" stroke-width="2" opacity="0.6">
+        <animate attributeName="r" values="${(i + 1) * 15}%;${(i + 1) * 25}%;${(i + 1) * 15}%" dur="${Math.random() * 4 + 3}s" repeatCount="indefinite"/>
+      </circle>
+    `).join('')}
+    <foreignObject x="10%" y="35%" width="80%" height="30%">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="
+        color: white;
+        font-family: 'Playfair Display', serif;
+        font-size: 42px;
+        font-weight: 300;
+        text-align: center;
+        text-shadow: 0 0 20px #${colors[0]};
+        animation: mentalFloat ${duration} infinite ease-in-out;
+      ">
+        ${text}
+      </div>
+      <style>
+        @keyframes mentalFloat {
+          0%, 100% { transform: translateY(0); opacity: 1; }
+          50% { transform: translateY(-10px); opacity: 0.8; }
+        }
+      </style>
+    </foreignObject>
+  `;
+}
+
+// Fallback implementations for other new effect types
+function generateParallelUniverseEffect(colors, duration, text) { return generateQuantumTunnelEffect(colors, duration, text); }
+function generateWormholeTransitEffect(colors, duration, text) { return generateQuantumTunnelEffect(colors, duration, text); }
+function generateDimensionalRiftEffect(colors, duration, text) { return generateQuantumTunnelEffect(colors, duration, text); }
+function generateHolographicMatrixEffect(colors, duration, text) { return generateQuantumTunnelEffect(colors, duration, text); }
+function generateVoidChamberEffect(colors, duration, text) { return generateQuantumTunnelEffect(colors, duration, text); }
+function generateAstralProjectionEffect(colors, duration, text) { return generateQuantumTunnelEffect(colors, duration, text); }
+
+function generateBioDigitalMergeEffect(colors, duration, text) { return generateAIConsciousnessEffect(colors, duration, text); }
+function generateQuantumDNAEffect(colors, duration, text) { return generateAIConsciousnessEffect(colors, duration, text); }
+function generateDigitalEvolutionEffect(colors, duration, text) { return generateAIConsciousnessEffect(colors, duration, text); }
+function generateSyntheticSoulEffect(colors, duration, text) { return generateAIConsciousnessEffect(colors, duration, text); }
+function generateCyberSymbiosisEffect(colors, duration, text) { return generateAIConsciousnessEffect(colors, duration, text); }
+function generateNeuralStormEffect(colors, duration, text) { return generateAIConsciousnessEffect(colors, duration, text); }
+function generateDigitalGenomeEffect(colors, duration, text) { return generateAIConsciousnessEffect(colors, duration, text); }
+
+function generateDataStreamFlowEffect(colors, duration, text) { return generateNeonGridCityEffect(colors, duration, text); }
+function generateCyberPunkNoirEffect(colors, duration, text) { return generateNeonGridCityEffect(colors, duration, text); }
+function generateHologramInterfaceEffect(colors, duration, text) { return generateNeonGridCityEffect(colors, duration, text); }
+function generateDigitalDecayEffect(colors, duration, text) { return generateNeonGridCityEffect(colors, duration, text); }
+function generateChromeReflectionEffect(colors, duration, text) { return generateNeonGridCityEffect(colors, duration, text); }
+function generateVirusInfectionEffect(colors, duration, text) { return generateNeonGridCityEffect(colors, duration, text); }
+function generateQuantumEncryptionEffect(colors, duration, text) { return generateNeonGridCityEffect(colors, duration, text); }
+function generateAugmentedRealityEffect(colors, duration, text) { return generateNeonGridCityEffect(colors, duration, text); }
+
+function generateMemoryFragmentsEffect(colors, duration, text) { return generateThoughtWavesEffect(colors, duration, text); }
+function generateDreamLogicEffect(colors, duration, text) { return generateThoughtWavesEffect(colors, duration, text); }
+function generateEmotionalSpectrumEffect(colors, duration, text) { return generateThoughtWavesEffect(colors, duration, text); }
+function generateMeditativeCalmEffect(colors, duration, text) { return generateThoughtWavesEffect(colors, duration, text); }
+function generateAnxietySpiralEffect(colors, duration, text) { return generateThoughtWavesEffect(colors, duration, text); }
+function generateEgoDissolutionEffect(colors, duration, text) { return generateThoughtWavesEffect(colors, duration, text); }
+function generatePsychedelicInsightEffect(colors, duration, text) { return generateThoughtWavesEffect(colors, duration, text); }
+function generateCollectiveUnconsciousEffect(colors, duration, text) { return generateThoughtWavesEffect(colors, duration, text); }
+
 module.exports = {
   generateAdvancedEffect,
   generateHologramEffect,
@@ -666,5 +950,42 @@ module.exports = {
   // 🌟 NEW: Fluid Dynamics Effects
   generateTurbulentWavesEffect,
   // 🌟 NEW: Dimensional Effects
-  generatePortalDistortionEffect
+  generatePortalDistortionEffect,
+  // 🌌 NEW: Dimensional Portal Effects
+  generateQuantumTunnelEffect,
+  generateParallelUniverseEffect,
+  generateWormholeTransitEffect,
+  generateDimensionalRiftEffect,
+  generateHolographicMatrixEffect,
+  generateVoidChamberEffect,
+  generateAstralProjectionEffect,
+  // 🧬 NEW: Digital Life Effects
+  generateAIConsciousnessEffect,
+  generateBioDigitalMergeEffect,
+  generateQuantumDNAEffect,
+  generateDigitalEvolutionEffect,
+  generateSyntheticSoulEffect,
+  generateCyberSymbiosisEffect,
+  generateNeuralStormEffect,
+  generateDigitalGenomeEffect,
+  // 🤖 NEW: Cyber Aesthetics Effects
+  generateNeonGridCityEffect,
+  generateDataStreamFlowEffect,
+  generateCyberPunkNoirEffect,
+  generateHologramInterfaceEffect,
+  generateDigitalDecayEffect,
+  generateChromeReflectionEffect,
+  generateVirusInfectionEffect,
+  generateQuantumEncryptionEffect,
+  generateAugmentedRealityEffect,
+  // 🧠 NEW: Consciousness Stream Effects
+  generateThoughtWavesEffect,
+  generateMemoryFragmentsEffect,
+  generateDreamLogicEffect,
+  generateEmotionalSpectrumEffect,
+  generateMeditativeCalmEffect,
+  generateAnxietySpiralEffect,
+  generateEgoDissolutionEffect,
+  generatePsychedelicInsightEffect,
+  generateCollectiveUnconsciousEffect
 }; 
