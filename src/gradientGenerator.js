@@ -67,6 +67,19 @@ function generateGradientSVG({
     // and will be handled by the normal gradient system
   };
 
+  // Map text effect template names to effect types (only special effects, not standard gradients)
+  const textEffectTemplateMap = {
+    'luminance-glow': 'luminance',
+    'rainbow-wave': 'rainbow',
+    'border-draw': 'textBox',
+    'glitch-cyber': 'glitch',
+    'typewriter-terminal': 'typewriter',
+    'neon-luminance': 'luminance',
+    'fire-luminance': 'luminance',
+    'ocean-rainbow': 'rainbow'
+    // Note: Other templates use standard gradientTypes and will be handled by the normal gradient system
+  };
+
   // Check if this is a shape template
   if (template && shapeTemplateMap[template]) {
     const shapeType = shapeTemplateMap[template];
@@ -77,6 +90,12 @@ function generateGradientSVG({
   if (template && animationTemplateMap[template]) {
     const animationType = animationTemplateMap[template];
     return generateAdvancedSVG(animationType, text, colors, 854, height, { duration });
+  }
+
+  // Check if this is a text effect template
+  if (template && textEffectTemplateMap[template]) {
+    const effectType = textEffectTemplateMap[template];
+    return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
   }
 
   // Check if this is a geometric shape type (from advancedSvgGenerator)

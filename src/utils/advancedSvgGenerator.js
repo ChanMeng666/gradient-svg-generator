@@ -306,44 +306,58 @@ function generateTextBoxEffect(text, colors, width, height) {
 
 // 生成Rainbow彩虹效果
 function generateRainbowEffect(text, colors, width, height) {
+  const gradientId = `rainbow-gradient-${Date.now()}`;
+  
   return `
     <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="rainbowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <linearGradient id="${gradientId}" x1="0%" y1="0%" x2="100%" y2="0%">
           ${colors.map((color, index) => 
             `<stop offset="${(index / (colors.length - 1)) * 100}%" stop-color="#${color}"/>`
           ).join('')}
         </linearGradient>
-        <style>
-          .rainbow-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #000, #111);
-          }
-          .rainbow-text {
-            font-size: 3em;
-            font-weight: bold;
-            fill: url(#rainbowGradient);
-            animation: rainbow 6s linear infinite;
-          }
-          @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-          }
-        </style>
+        <filter id="rainbowAnimation">
+          <feColorMatrix type="hueRotate" values="0">
+            <animate attributeName="values" 
+                     values="0;360;0" 
+                     dur="6s" 
+                     repeatCount="indefinite"/>
+          </feColorMatrix>
+        </filter>
       </defs>
-      <foreignObject width="100%" height="100%">
-        <div xmlns="http://www.w3.org/1999/xhtml" class="rainbow-container">
-          <svg width="100%" height="100%">
-            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" class="rainbow-text">
-              ${text}
-            </text>
-          </svg>
-        </div>
-      </foreignObject>
+      
+      <!-- Background -->
+      <rect width="${width}" height="${height}" fill="url(#${gradientId})" opacity="0.8"/>
+      
+      <!-- Animated rainbow text -->
+      <text x="${width/2}" y="${height/2}" 
+            text-anchor="middle" 
+            dominant-baseline="central"
+            font-family="Arial, sans-serif" 
+            font-size="3em" 
+            font-weight="bold" 
+            fill="url(#${gradientId})"
+            filter="url(#rainbowAnimation)"
+            stroke="#ffffff" 
+            stroke-width="1"
+            opacity="0.9">
+        ${text}
+      </text>
+      
+      <!-- Text glow effect -->
+      <text x="${width/2}" y="${height/2}" 
+            text-anchor="middle" 
+            dominant-baseline="central"
+            font-family="Arial, sans-serif" 
+            font-size="3em" 
+            font-weight="bold" 
+            fill="none"
+            stroke="url(#${gradientId})" 
+            stroke-width="3"
+            opacity="0.6"
+            filter="url(#rainbowAnimation)">
+        ${text}
+      </text>
     </svg>
   `;
 }
