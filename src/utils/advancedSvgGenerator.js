@@ -478,6 +478,50 @@ function generateAdvancedSVG(type, text, colors, width = 800, height = 400, opti
         gradientType: type,
         duration: options.duration || '6s'
       });
+    // 🌟 NEW: Dimensional Portal Effects
+    case 'quantumTunnel':
+    case 'parallelUniverse':
+    case 'wormholeTransit':
+    case 'dimensionalRift':
+    case 'holographicMatrix':
+    case 'voidChamber':
+    case 'realityGlitch':
+    case 'astralProjection':
+    // 🧬 NEW: Digital Life Effects
+    case 'aiConsciousness':
+    case 'bioDigitalMerge':
+    case 'quantumDNA':
+    case 'digitalEvolution':
+    case 'syntheticSoul':
+    case 'cyberSymbiosis':
+    case 'neuralStorm':
+    case 'digitalGenome':
+    // 🤖 NEW: Cyber Aesthetics Effects
+    case 'neonGridCity':
+    case 'dataStreamFlow':
+    case 'cyberPunkNoir':
+    case 'hologramInterface':
+    case 'digitalDecay':
+    case 'chromeReflection':
+    case 'virusInfection':
+    case 'quantumEncryption':
+    case 'augmentedReality':
+    // 🧠 NEW: Consciousness Stream Effects
+    case 'thoughtWaves':
+    case 'memoryFragments':
+    case 'dreamLogic':
+    case 'emotionalSpectrum':
+    case 'meditativeCalm':
+    case 'anxietySpiral':
+    case 'egoDissolution':
+    case 'psychedelicInsight':
+    case 'collectiveUnconscious':
+      // Use the advanced effect generator for complex animations
+      const { generateAdvancedEffect } = require('./advancedEffectGenerator');
+      return `<?xml version="1.0" encoding="UTF-8"?>
+        <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+          ${generateAdvancedEffect(type, colors, options.duration || '6s', text)}
+        </svg>`;
     default:
       return generateWaveShape(text, colors, width, height, 'wave');
   }

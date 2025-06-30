@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画效果测试</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        .test-title {
+            color: #00ff88;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .svg-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 10px 0;
+        }
+        .svg-container svg {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 新模板动画效果测试</h1>
+    
+    <div class="test-section">
+        <div class="test-title">🌀 量子隧道效果 (quantum-tunnel)</div>
+        <div class="svg-container">
+            <img src="http://localhost:3000/api/svg?text=QUANTUM&template=quantum-tunnel&height=150" alt="Quantum Tunnel">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">🤖 霓虹网格城市 (neon-grid-city)</div>
+        <div class="svg-container">
+            <img src="http://localhost:3000/api/svg?text=CYBER&template=neon-grid-city&height=150" alt="Neon Grid City">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">📡 数据流瀑布 (data-stream-flow)</div>
+        <div class="svg-container">
+            <img src="http://localhost:3000/api/svg?text=DATA&template=data-stream-flow&height=150" alt="Data Stream Flow">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">🧬 AI意识神经网络 (ai-consciousness)</div>
+        <div class="svg-container">
+            <img src="http://localhost:3000/api/svg?text=AI MIND&template=ai-consciousness&height=150" alt="AI Consciousness">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">🧬 生物数字融合 (bio-digital-merge)</div>
+        <div class="svg-container">
+            <img src="http://localhost:3000/api/svg?text=FUSION&template=bio-digital-merge&height=150" alt="Bio Digital Merge">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">🧠 思维波纹 (thought-waves)</div>
+        <div class="svg-container">
+            <img src="http://localhost:3000/api/svg?text=MIND&template=thought-waves&height=150" alt="Thought Waves">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">🌈 Rainbow Layer (rainbow-layer)</div>
+        <div class="svg-container">
+            <img src="http://localhost:3000/api/svg?text=RAINBOW&template=rainbow-layer&height=150" alt="Rainbow Layer">
+        </div>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">⚡ 现实故障 (reality-glitch)</div>
+        <div class="svg-container">
+            <img src="http://localhost:3000/api/svg?text=GLITCH&template=reality-glitch&height=150" alt="Reality Glitch">
+        </div>
+    </div>
+
+    <script>
+        // 自动刷新图片以显示动画效果
+        function refreshImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                const src = img.src;
+                if (src.includes('timestamp')) {
+                    img.src = src.replace(/timestamp=\d+/, 'timestamp=' + Date.now());
+                } else {
+                    img.src = src + (src.includes('?') ? '&' : '?') + 'timestamp=' + Date.now();
+                }
+            });
+        }
+
+        // 每10秒刷新一次图片
+        setInterval(refreshImages, 10000);
+
+        // 点击图片也可以刷新
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'IMG') {
+                const img = e.target;
+                const src = img.src;
+                if (src.includes('timestamp')) {
+                    img.src = src.replace(/timestamp=\d+/, 'timestamp=' + Date.now());
+                } else {
+                    img.src = src + (src.includes('?') ? '&' : '?') + 'timestamp=' + Date.now();
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

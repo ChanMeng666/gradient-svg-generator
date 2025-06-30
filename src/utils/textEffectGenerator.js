@@ -29,6 +29,7 @@ function generateTextEffectSVG({
       return generateLuminanceEffect(text, colors, height, duration, gradientResult);
     case 'rainbow':
       return generateRainbowEffect(text, colors, height, duration, gradientResult);
+    case 'rainbow-layer':
     case 'rainbowLayer':
       return generateRainbowLayerEffect(text, colors, height, duration, gradientResult);
     case 'textBox':
@@ -98,41 +99,42 @@ function generateTextEffectSVG({
     case 'realityDistortion':
     // 🌈 NEW: Dimensional Portal Templates
     case 'quantumTunnel':
-    case 'parallelDimension':
-    case 'wormholePortal':
-    case 'dimensionalTear':
-    case 'holographicGrid':
-    case 'voidDistortion':
-    case 'astralPlane':
+    case 'parallelUniverse':
+    case 'wormholeTransit':
+    case 'dimensionalRift':
+    case 'holographicMatrix':
+    case 'voidChamber':
+    case 'realityGlitch':
+    case 'astralProjection':
     // 🧬 NEW: Digital Life Templates
-    case 'neuralNetwork':
-    case 'bioDigitalFusion':
-    case 'quantumHelix':
-    case 'evolutionSpiral':
-    case 'syntheticAura':
-    case 'symbioticFlow':
-    case 'brainWave':
-    case 'codeSequence':
+    case 'aiConsciousness':
+    case 'bioDigitalMerge':
+    case 'quantumDNA':
+    case 'digitalEvolution':
+    case 'syntheticSoul':
+    case 'cyberSymbiosis':
+    case 'neuralStorm':
+    case 'digitalGenome':
     // 🤖 NEW: Cyber Aesthetics Templates
-    case 'neonCityscape':
-    case 'dataMatrix':
-    case 'cyberpunkShadow':
-    case 'holographicUI':
-    case 'pixelCorruption':
-    case 'chromeFinish':
-    case 'viralSpread':
-    case 'encryptionField':
-    case 'arOverlay':
+    case 'neonGridCity':
+    case 'dataStreamFlow':
+    case 'cyberPunkNoir':
+    case 'hologramInterface':
+    case 'digitalDecay':
+    case 'chromeReflection':
+    case 'virusInfection':
+    case 'quantumEncryption':
+    case 'augmentedReality':
     // 🧠 NEW: Consciousness Stream Templates
-    case 'mentalWaves':
-    case 'memoryFlow':
-    case 'dreamSequence':
-    case 'emotionalFlow':
-    case 'tranquilWaves':
-    case 'anxietyPattern':
-    case 'egoDeath':
-    case 'psychedelicVision':
-    case 'jungianArchetype':
+    case 'thoughtWaves':
+    case 'memoryFragments':
+    case 'dreamLogic':
+    case 'emotionalSpectrum':
+    case 'meditativeCalm':
+    case 'anxietySpiral':
+    case 'egoDissolution':
+    case 'psychedelicInsight':
+    case 'collectiveUnconscious':
       return generateAdvancedEffectSVG(text, colors, height, gradientType, duration);
     
     default:
