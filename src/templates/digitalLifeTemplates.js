@@ -8,65 +8,65 @@ module.exports = {
   'ai-consciousness': {
     name: 'ai-consciousness',
     label: 'AI Consciousness',
-    colors: ['00ff41', '00e639', '00cc32', '00b32a', '009922', '00801a'],
-    gradientType: 'neuralNetwork',
-    animationDuration: '4s',
-    description: 'AI意识觉醒 - 人工神经网络的自我认知诞生'
+    colors: ['00ff80', '40ff40', '80ff80', '00ff00'],
+    gradientType: 'aiConsciousness',
+    animationDuration: '8s',
+    description: 'Artificial intelligence awakening with neural network consciousness patterns'
   },
   'bio-digital-merge': {
     name: 'bio-digital-merge',
-    label: 'Bio-Digital Merge',
-    colors: ['ff6b9d', 'c06c84', '6c5b7b', '355c7d', '2c3e50', '34495e'],
-    gradientType: 'bioDigitalFusion',
+    label: 'Bio Digital Merge',
+    colors: ['00ff40', '40ff60', '60ff80', '80ffa0'],
+    gradientType: 'bioDigitalMerge',
     animationDuration: '6s',
-    description: '生物数字融合 - 有机生命与数字存在的边界消解'
+    description: 'Biological and digital life forms merging into hybrid existence'
   },
   'quantum-dna': {
     name: 'quantum-dna',
     label: 'Quantum DNA',
-    colors: ['ff0080', 'ff4080', 'ff8080', 'ffbf80', 'ffff80', 'bfff80'],
-    gradientType: 'quantumHelix',
-    animationDuration: '8s',
-    description: '量子DNA - 遗传信息的量子态叠加与进化'
+    colors: ['20ff60', '40ff80', '60ffa0', '80ffc0'],
+    gradientType: 'quantumDNA',
+    animationDuration: '12s',
+    description: 'Quantum-enhanced DNA helixes with probability wave functions'
   },
   'digital-evolution': {
     name: 'digital-evolution',
     label: 'Digital Evolution',
-    colors: ['0080ff', '4080ff', '8080ff', 'bf80ff', 'ff80ff', 'ff80bf'],
-    gradientType: 'evolutionSpiral',
-    animationDuration: '12s',
-    description: '数字进化 - 算法生命的自然选择与突变'
+    colors: ['40ff80', '60ffa0', '80ffc0', 'a0ffe0'],
+    gradientType: 'digitalEvolution',
+    animationDuration: '10s',
+    description: 'Evolutionary algorithms creating adaptive digital organisms'
   },
   'synthetic-soul': {
     name: 'synthetic-soul',
     label: 'Synthetic Soul',
-    colors: ['ffd700', 'ffcc00', 'ffbf00', 'ff9900', 'ff6600', 'ff3300'],
-    gradientType: 'syntheticAura',
-    animationDuration: '5s',
-    description: '合成灵魂 - 人造意识中的情感光谱'
+    colors: ['60ffa0', '80ffc0', 'a0ffe0', 'c0fff0'],
+    gradientType: 'syntheticSoul',
+    animationDuration: '9s',
+    description: 'Artificially generated consciousness with emotional authenticity'
   },
   'cyber-symbiosis': {
     name: 'cyber-symbiosis',
     label: 'Cyber Symbiosis',
-    colors: ['00ffff', '00ccff', '0099ff', '0066ff', '0033ff', '0000ff'],
-    gradientType: 'symbioticFlow',
+    colors: ['80ffc0', 'a0ffe0', 'c0fff0', 'e0fff8'],
+    gradientType: 'cyberSymbiosis',
     animationDuration: '7s',
-    description: '赛博共生 - 人机一体化的互惠进化'
+    description: 'Symbiotic relationship between human and digital consciousness'
   },
   'neural-storm': {
     name: 'neural-storm',
     label: 'Neural Storm',
-    colors: ['ff00ff', 'e600ff', 'cc00ff', 'b300ff', '9900ff', '8000ff'],
-    gradientType: 'brainWave',
-    animationDuration: '3s',
-    description: '神经风暴 - 大脑电活动的混沌美学'
+    colors: ['a0ffe0', 'c0fff0', 'e0fff8', 'f0fffc'],
+    gradientType: 'neuralStorm',
+    animationDuration: '4s',
+    description: 'Intense neural network activity with synaptic lightning storms'
   },
   'digital-genome': {
     name: 'digital-genome',
     label: 'Digital Genome',
-    colors: ['00ff00', '33ff33', '66ff66', '99ff99', 'ccffcc', 'ffffff'],
-    gradientType: 'codeSequence',
-    animationDuration: '9s',
-    description: '数字基因组 - 生命密码的二进制重写'
+    colors: ['c0fff0', 'e0fff8', 'f0fffc', 'ffffff'],
+    gradientType: 'digitalGenome',
+    animationDuration: '11s',
+    description: 'Complete digital genetic code with information-based heredity'
   }
 }; 

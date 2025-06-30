@@ -54,6 +54,9 @@ const gradientMapping = {
   glitch: effectGradients.createGlitchGradient,
   typewriter: effectGradients.createTypewriterGradient,
 
+  // 🌈 NEW: Rainbow Layer Effect - 借鉴自 example-1/rainbow.js
+  rainbowLayer: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'rainbow-layer' }),
+
   // Future tech gradients
   hologram: futureTechGradients.createHologramGradient,
   quantum: futureTechGradients.createQuantumGradient,
@@ -131,6 +134,7 @@ const gradientMapping = {
   dimensionalTear: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'dimensionalRift' }),
   holographicGrid: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'holographicMatrix' }),
   voidDistortion: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'voidChamber' }),
+  realityGlitch: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'realityGlitch' }),
   astralPlane: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'astralProjection' }),
 
   // 🌟 NEW: Digital Life gradients (using advanced effect generator)

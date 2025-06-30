@@ -57,7 +57,7 @@ module.exports = {
     name: 'reality-glitch',
     label: 'Reality Glitch',
     colors: ['ff0000', '00ff00', '0000ff', 'ffff00', 'ff00ff', '00ffff'],
-    gradientType: 'realityDistortion',
+    gradientType: 'realityGlitch',
     animationDuration: '2s',
     description: '现实故障 - 宇宙程序的数字错误与重启'
   },
