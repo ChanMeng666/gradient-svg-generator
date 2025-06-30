@@ -63,7 +63,7 @@ export default function Home() {
     { text: "DIAMOND", template: "diamond-sparkle" },
     { text: "FOREST", template: "forest-mist" },
     
-    // 🌟 全新前卫模板展示
+    // 🌟 全新前卫模板展示 - 先进科技类
     { text: "MERCURY", template: "liquid-mercury" },
     { text: "PLASMA", template: "plasma-blob" },
     { text: "COSMIC", template: "cosmic-entity" },
@@ -74,14 +74,45 @@ export default function Home() {
     { text: "AURORA", template: "aurora-streams" },
     { text: "REALITY", template: "reality-glitch" },
     { text: "SOLAR", template: "solar-wind" },
-    { text: "FRACTAL", template: "fractal-dimension" }
+    { text: "FRACTAL", template: "fractal-dimension" },
+    
+    // 🌟 次元门户美学 - Dimensional Portal
+    { text: "TUNNEL", template: "quantum-tunnel" },
+    { text: "MULTIVERSE", template: "parallel-universe" },
+    { text: "MATRIX", template: "holographic-matrix" },
+    { text: "VOID", template: "void-chamber" },
+    { text: "ASTRAL", template: "astral-projection" },
+    
+    // 🌟 数字生命美学 - Digital Life  
+    { text: "AI", template: "ai-consciousness" },
+    { text: "DNA", template: "quantum-dna" },
+    { text: "EVOLVE", template: "digital-evolution" },
+    { text: "SOUL", template: "synthetic-soul" },
+    { text: "NEURAL", template: "neural-storm" },
+    
+    // 🌟 赛博美学 - Cyber Aesthetics
+    { text: "GRID", template: "neon-grid-city" },
+    { text: "STREAM", template: "data-stream-flow" },
+    { text: "NOIR", template: "cyber-punk-noir" },
+    { text: "CHROME", template: "chrome-reflection" },
+    { text: "AR", template: "augmented-reality" },
+    
+    // 🌟 意识流美学 - Consciousness Stream
+    { text: "THOUGHTS", template: "thought-waves" },
+    { text: "MEMORY", template: "memory-fragments" },
+    { text: "DREAMS", template: "dream-logic" },
+    { text: "CALM", template: "meditative-calm" },
+    { text: "INSIGHT", template: "psychedelic-insight" },
+    
+    // 🌟 彩虹分层效果 - Rainbow Layer from example-1
+    { text: "RAINBOW", template: "rainbow-layer" }
   ];
 
   const highlights = [
     {
       icon: "🎨",
-      title: "220+ Professional Templates",
-      description: "From morphing effects to dimensional portals - enhanced with cutting-edge SVG animations"
+      title: "260+ Professional Templates",
+      description: "From consciousness streams to dimensional portals - enhanced with cutting-edge SVG animations and avant-garde aesthetics"
     },
     {
       icon: "⚡",
@@ -164,7 +195,7 @@ export default function Home() {
             <div className="hero-showcase">
               <div className="showcase-header">
                 <h3 className="showcase-title">Live Examples</h3>
-                <p className="showcase-subtitle">Click to try instantly • 20+ Professional Templates</p>
+                <p className="showcase-subtitle">Click to try instantly • 40+ Featured Templates</p>
               </div>
               
               <div className="preview-gallery-enhanced">

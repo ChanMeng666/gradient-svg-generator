@@ -76,7 +76,8 @@ function generateGradientSVG({
     'typewriter-terminal': 'typewriter',
     'neon-luminance': 'luminance',
     'fire-luminance': 'luminance',
-    'ocean-rainbow': 'rainbow'
+    'ocean-rainbow': 'rainbow',
+    'rainbow-layer': 'rainbow-layer'
     // Note: Other templates use standard gradientTypes and will be handled by the normal gradient system
   };
 
@@ -108,6 +109,56 @@ function generateGradientSVG({
     'fractal-dimension': 'fractalDimension',
     'parallel-universe': 'multiverseOverlap',
     'reality-glitch': 'realityDistortion'
+  };
+
+  // 🌟 NEW: Map dimensional portal template names to dimensional portal effect types
+  const dimensionalPortalTemplateMap = {
+    'quantum-tunnel': 'quantumTunnel',
+    'parallel-universe': 'parallelUniverse',
+    'wormhole-transit': 'wormholeTransit',
+    'dimensional-rift': 'dimensionalRift',
+    'holographic-matrix': 'holographicMatrix',
+    'void-chamber': 'voidChamber',
+    'reality-glitch': 'realityGlitch',
+    'astral-projection': 'astralProjection'
+  };
+
+  // 🌟 NEW: Map digital life template names to digital life effect types
+  const digitalLifeTemplateMap = {
+    'ai-consciousness': 'aiConsciousness',
+    'bio-digital-merge': 'bioDigitalMerge',
+    'quantum-dna': 'quantumDNA',
+    'digital-evolution': 'digitalEvolution',
+    'synthetic-soul': 'syntheticSoul',
+    'cyber-symbiosis': 'cyberSymbiosis',
+    'neural-storm': 'neuralStorm',
+    'digital-genome': 'digitalGenome'
+  };
+
+  // 🌟 NEW: Map cyber aesthetics template names to cyber aesthetics effect types
+  const cyberAestheticsTemplateMap = {
+    'neon-grid-city': 'neonGridCity',
+    'data-stream-flow': 'dataStreamFlow',
+    'cyber-punk-noir': 'cyberPunkNoir',
+    'hologram-interface': 'hologramInterface',
+    'digital-decay': 'digitalDecay',
+    'chrome-reflection': 'chromeReflection',
+    'virus-infection': 'virusInfection',
+    'quantum-encryption': 'quantumEncryption',
+    'augmented-reality': 'augmentedReality'
+  };
+
+  // 🌟 NEW: Map consciousness stream template names to consciousness stream effect types
+  const consciousnessStreamTemplateMap = {
+    'thought-waves': 'thoughtWaves',
+    'memory-fragments': 'memoryFragments',
+    'dream-logic': 'dreamLogic',
+    'emotional-spectrum': 'emotionalSpectrum',
+    'meditative-calm': 'meditativeCalm',
+    'anxiety-spiral': 'anxietySpiral',
+    'ego-dissolution': 'egoDissolution',
+    'psychedelic-insight': 'psychedelicInsight',
+    'collective-unconscious': 'collectiveUnconscious'
   };
 
   // Check if this is a shape template
@@ -146,6 +197,30 @@ function generateGradientSVG({
     return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
   }
 
+  // 🌟 NEW: Check if this is a dimensional portal template
+  if (template && dimensionalPortalTemplateMap[template]) {
+    const effectType = dimensionalPortalTemplateMap[template];
+    return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
+  }
+
+  // 🌟 NEW: Check if this is a digital life template
+  if (template && digitalLifeTemplateMap[template]) {
+    const effectType = digitalLifeTemplateMap[template];
+    return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
+  }
+
+  // 🌟 NEW: Check if this is a cyber aesthetics template
+  if (template && cyberAestheticsTemplateMap[template]) {
+    const effectType = cyberAestheticsTemplateMap[template];
+    return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
+  }
+
+  // 🌟 NEW: Check if this is a consciousness stream template
+  if (template && consciousnessStreamTemplateMap[template]) {
+    const effectType = consciousnessStreamTemplateMap[template];
+    return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
+  }
+
   // Check if this is a geometric shape type (from advancedSvgGenerator)
   const geometricShapeTypes = ['wave', 'ellipse', 'square'];
   const animationEffectTypes = ['glitch', 'typewriter', 'luminance', 'rainbow'];
@@ -161,7 +236,7 @@ function generateGradientSVG({
   }
 
   // Check if this is a text effect type or advanced effect type
-  const textEffectTypes = ['luminance', 'rainbow', 'textBox', 'glitch', 'typewriter'];
+  const textEffectTypes = ['luminance', 'rainbow', 'textBox', 'glitch', 'typewriter', 'rainbow-layer'];
   const advancedEffectTypes = [
     // Future Tech
     'hologram', 'quantum', 'laserGrid', 'neuralNet', 'plasma', 'dataStream',
@@ -178,7 +253,15 @@ function generateGradientSVG({
     // 🌟 NEW: Fluid Dynamics
     'turbulentWaves', 'electromagneticWaves', 'auroraWaves', 'soundWaves', 'cryogenicWaves', 'solarWaves',
     // 🌟 NEW: Dimensional Effects
-    'portalDistortion', 'hypercubeProjection', 'wormholeEffect', 'fractalDimension', 'multiverseOverlap', 'realityDistortion'
+    'portalDistortion', 'hypercubeProjection', 'wormholeEffect', 'fractalDimension', 'multiverseOverlap', 'realityDistortion',
+    // 🌟 NEW: Dimensional Portal Effects
+    'quantumTunnel', 'parallelUniverse', 'wormholeTransit', 'dimensionalRift', 'holographicMatrix', 'voidChamber', 'realityGlitch', 'astralProjection',
+    // 🌟 NEW: Digital Life Effects
+    'aiConsciousness', 'bioDigitalMerge', 'quantumDNA', 'digitalEvolution', 'syntheticSoul', 'cyberSymbiosis', 'neuralStorm', 'digitalGenome',
+    // 🌟 NEW: Cyber Aesthetics Effects
+    'neonGridCity', 'dataStreamFlow', 'cyberPunkNoir', 'hologramInterface', 'digitalDecay', 'chromeReflection', 'virusInfection', 'quantumEncryption', 'augmentedReality',
+    // 🌟 NEW: Consciousness Stream Effects
+    'thoughtWaves', 'memoryFragments', 'dreamLogic', 'emotionalSpectrum', 'meditativeCalm', 'anxietySpiral', 'egoDissolution', 'psychedelicInsight', 'collectiveUnconscious'
   ];
   
   if (textEffectTypes.includes(gradientType) || advancedEffectTypes.includes(gradientType)) {
