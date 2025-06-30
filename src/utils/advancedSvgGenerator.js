@@ -95,7 +95,7 @@ function generateGlitchEffect(text, colors, width, height) {
 }
 
 // 生成Wave形状 (来自capsule-render)
-function generateWaveShape(colors, width, height, waveType = 'wave') {
+function generateWaveShape(text, colors, width, height, waveType = 'wave') {
   const gradientId = `wave-gradient-${Date.now()}`;
   const colorStops = colors.map((color, index) => 
     `<stop offset="${(index / (colors.length - 1)) * 100}%" stop-color="#${color}"/>`
@@ -112,6 +112,21 @@ function generateWaveShape(colors, width, height, waveType = 'wave') {
     case 'shark':
       pathData = `M0,${height} L${width * 0.3},${height * 0.2} L${width * 0.8},${height * 0.6} L${width},0 V${height} Z`;
       break;
+    case 'slice':
+      pathData = `M0,0 L${width * 0.6},0 L${width},${height * 0.4} L${width * 0.4},${height} L0,${height} Z`;
+      break;
+    case 'tube':
+      pathData = `M${width * 0.2},0 Q${width * 0.5},${height * 0.2} ${width * 0.8},0 V${height} Q${width * 0.5},${height * 0.8} ${width * 0.2},${height} Z`;
+      break;
+    case 'venom':
+      pathData = `M0,0 Q${width * 0.3},${height * 0.8} ${width * 0.5},${height * 0.2} Q${width * 0.7},${height * 0.9} ${width},${height * 0.1} V${height} H0 Z`;
+      break;
+    case 'bubble':
+      pathData = `M${width * 0.1},${height * 0.3} Q${width * 0.3},0 ${width * 0.7},${height * 0.2} Q${width * 0.9},${height * 0.5} ${width * 0.6},${height * 0.8} Q${width * 0.4},${height} ${width * 0.1},${height * 0.7} Z`;
+      break;
+    case 'glass':
+      pathData = `M0,${height * 0.2} Q${width * 0.2},0 ${width * 0.5},${height * 0.1} Q${width * 0.8},${height * 0.2} ${width},0 V${height} Q${width * 0.8},${height * 0.8} ${width * 0.5},${height * 0.9} Q${width * 0.2},${height} 0,${height * 0.8} Z`;
+      break;
     default:
       pathData = `M0,${height * 0.7} Q${width * 0.25},${height * 0.3} ${width * 0.5},${height * 0.6} T${width},${height * 0.4} V${height} H0 Z`;
   }
@@ -122,8 +137,20 @@ function generateWaveShape(colors, width, height, waveType = 'wave') {
         <linearGradient id="${gradientId}" x1="0%" y1="0%" x2="100%" y2="100%">
           ${colorStops}
         </linearGradient>
+        <style>
+          .wave-text {
+            font-family: Arial, sans-serif;
+            font-size: 3em;
+            font-weight: bold;
+            fill: white;
+            text-anchor: middle;
+            dominant-baseline: central;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+          }
+        </style>
       </defs>
       <path d="${pathData}" fill="url(#${gradientId})"/>
+      <text x="${width/2}" y="${height/2}" class="wave-text">${text}</text>
     </svg>
   `;
 }
@@ -227,6 +254,56 @@ function generateLuminanceEffect(text, colors, width, height) {
   `;
 }
 
+// 生成TextBox效果
+function generateTextBoxEffect(text, colors, width, height) {
+  const [bgColor, borderColor, textColor, shadowColor] = colors;
+  
+  return `
+    <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .textbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: #${bgColor};
+          }
+          .textbox-element {
+            padding: 20px 40px;
+            background: #${bgColor};
+            border: 3px solid #${borderColor};
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            animation: popup 2s ease-out infinite;
+          }
+          .textbox-text {
+            font-family: Arial, sans-serif;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #${textColor};
+            text-align: center;
+            margin: 0;
+          }
+          @keyframes popup {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+          }
+        </style>
+      </defs>
+      <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="textbox-container">
+          <div class="textbox-element">
+            <div class="textbox-text">${text}</div>
+          </div>
+        </div>
+      </foreignObject>
+    </svg>
+  `;
+}
+
 // 生成Rainbow彩虹效果
 function generateRainbowEffect(text, colors, width, height) {
   return `
@@ -271,6 +348,70 @@ function generateRainbowEffect(text, colors, width, height) {
   `;
 }
 
+// 生成椭圆形状
+function generateEllipseShape(text, colors, width, height) {
+  const gradientId = `ellipse-gradient-${Date.now()}`;
+  const colorStops = colors.map((color, index) => 
+    `<stop offset="${(index / (colors.length - 1)) * 100}%" stop-color="#${color}"/>`
+  ).join('');
+
+  return `
+    <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="${gradientId}" cx="50%" cy="50%" r="50%">
+          ${colorStops}
+        </radialGradient>
+        <style>
+          .ellipse-text {
+            font-family: Arial, sans-serif;
+            font-size: 3em;
+            font-weight: bold;
+            fill: white;
+            text-anchor: middle;
+            dominant-baseline: central;
+          }
+        </style>
+      </defs>
+      <ellipse cx="${width/2}" cy="${height/2}" rx="${width*0.4}" ry="${height*0.3}" fill="url(#${gradientId})"/>
+      <text x="${width/2}" y="${height/2}" class="ellipse-text">${text}</text>
+    </svg>
+  `;
+}
+
+// 生成正方形形状
+function generateSquareShape(text, colors, width, height) {
+  const gradientId = `square-gradient-${Date.now()}`;
+  const colorStops = colors.map((color, index) => 
+    `<stop offset="${(index / (colors.length - 1)) * 100}%" stop-color="#${color}"/>`
+  ).join('');
+
+  const squareSize = Math.min(width, height) * 0.8;
+  const x = (width - squareSize) / 2;
+  const y = (height - squareSize) / 2;
+
+  return `
+    <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="${gradientId}" x1="0%" y1="0%" x2="100%" y2="100%">
+          ${colorStops}
+        </linearGradient>
+        <style>
+          .square-text {
+            font-family: Arial, sans-serif;
+            font-size: 3em;
+            font-weight: bold;
+            fill: white;
+            text-anchor: middle;
+            dominant-baseline: central;
+          }
+        </style>
+      </defs>
+      <rect x="${x}" y="${y}" width="${squareSize}" height="${squareSize}" rx="10" fill="url(#${gradientId})"/>
+      <text x="${width/2}" y="${height/2}" class="square-text">${text}</text>
+    </svg>
+  `;
+}
+
 // 主生成函数
 function generateAdvancedSVG(type, text, colors, width = 800, height = 400, options = {}) {
   switch (type) {
@@ -279,15 +420,26 @@ function generateAdvancedSVG(type, text, colors, width = 800, height = 400, opti
     case 'wave':
     case 'egg':
     case 'shark':
-      return generateWaveShape(colors, width, height, type);
+    case 'slice':
+    case 'tube':
+    case 'venom':
+    case 'bubble':
+    case 'glass':
+      return generateWaveShape(text, colors, width, height, type);
+    case 'ellipse':
+      return generateEllipseShape(text, colors, width, height);
+    case 'square':
+      return generateSquareShape(text, colors, width, height);
     case 'typewriter':
       return generateTypewriterEffect(text, colors, width, height);
     case 'luminance':
       return generateLuminanceEffect(text, colors, width, height);
     case 'rainbow':
       return generateRainbowEffect(text, colors, width, height);
+    case 'textBox':
+      return generateTextBoxEffect(text, colors, width, height);
     default:
-      return generateWaveShape(colors, width, height, 'wave');
+      return generateWaveShape(text, colors, width, height, 'wave');
   }
 }
 
@@ -295,7 +447,10 @@ module.exports = {
   generateAdvancedSVG,
   generateGlitchEffect,
   generateWaveShape,
+  generateEllipseShape,
+  generateSquareShape,
   generateTypewriterEffect,
   generateLuminanceEffect,
+  generateTextBoxEffect,
   generateRainbowEffect
 }; 

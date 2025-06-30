@@ -26,6 +26,7 @@
 const { createGradientFromColors } = require('./utils/svgUtils');
 const { getTemplateConfig } = require('./config/gradientConfig');
 const { generateTextEffectSVG } = require('./utils/textEffectGenerator');
+const { generateAdvancedSVG } = require('./utils/advancedSvgGenerator');
 
 function generateGradientSVG({ 
   text, 
@@ -42,6 +43,54 @@ function generateGradientSVG({
     colors = config.colors;
     gradientType = config.gradientType;
     duration = config.animationDuration;
+  }
+
+  // Map shape template names to shape types (only special shapes, not standard gradients)
+  const shapeTemplateMap = {
+    'wave-flow': 'wave',        // gradientType: 'wave' - needs special handling
+    'egg-shape': 'ellipse',     // gradientType: 'ellipse' - needs special handling  
+    'rounded-corners': 'square', // gradientType: 'square' - needs special handling
+    'waving-banner': 'wave'     // gradientType: 'wave' - needs special handling
+    // Note: Other shape templates use standard gradientTypes (horizontal, vertical, radial, diagonal)
+    // and will be handled by the normal gradient system
+  };
+
+  // Map animation template names to animation types (only special animations, not standard gradients)
+  const animationTemplateMap = {
+    'glitch-matrix': 'glitch',
+    'typewriter-code': 'typewriter', 
+    'luminance-glow': 'luminance',
+    'rainbow-wave': 'rainbow',
+    'text-box-popup': 'textBox',
+    'data-corruption': 'glitch'
+    // Note: Other animation templates use standard gradientTypes (horizontal, vertical, radial, etc.)
+    // and will be handled by the normal gradient system
+  };
+
+  // Check if this is a shape template
+  if (template && shapeTemplateMap[template]) {
+    const shapeType = shapeTemplateMap[template];
+    return generateAdvancedSVG(shapeType, text, colors, 854, height, { duration });
+  }
+
+  // Check if this is an animation template  
+  if (template && animationTemplateMap[template]) {
+    const animationType = animationTemplateMap[template];
+    return generateAdvancedSVG(animationType, text, colors, 854, height, { duration });
+  }
+
+  // Check if this is a geometric shape type (from advancedSvgGenerator)
+  const geometricShapeTypes = ['wave', 'ellipse', 'square'];
+  const animationEffectTypes = ['glitch', 'typewriter', 'luminance', 'rainbow'];
+  
+  if (geometricShapeTypes.includes(gradientType)) {
+    // Use advanced SVG generator for geometric shapes
+    return generateAdvancedSVG(gradientType, text, colors, 854, height, { duration });
+  }
+  
+  if (animationEffectTypes.includes(gradientType)) {
+    // Use advanced SVG generator for animation effects
+    return generateAdvancedSVG(gradientType, text, colors, 854, height, { duration });
   }
 
   // Check if this is a text effect type or advanced effect type
