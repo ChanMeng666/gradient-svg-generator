@@ -54,7 +54,13 @@ const TemplatesSection = ({
             <button
               key={template.name}
               className={`template-card ${selectedTemplate?.name === template.name ? 'active' : ''}`}
-              data-effect-type={activeCategory === 'text-effects' ? 'textEffect' : 'regular'}
+              data-effect-type={
+                activeCategory === 'text-effects' ? 'textEffect' :
+                activeCategory === 'morphing' ? 'morphing' :
+                activeCategory === 'fluid-dynamics' ? 'fluid-dynamics' :
+                activeCategory === 'dimensional' ? 'dimensional' :
+                'regular'
+              }
               onClick={() => {
                 console.log('🎨 TemplatesSection: Template selected', {
                   templateName: template.name,

@@ -19,6 +19,9 @@ const artisticGradients = require('./gradientGenerators/artisticGradients');
 const luxuryGradients = require('./gradientGenerators/luxuryGradients');
 const organicGradients = require('./gradientGenerators/organicGradients');
 const gamingGradients = require('./gradientGenerators/gamingGradients');
+const morphingGradients = require('./gradientGenerators/morphingGradients');
+const fluidDynamicsGradients = require('./gradientGenerators/fluidDynamicsGradients');
+const dimensionalGradients = require('./gradientGenerators/dimensionalGradients');
 
 // Gradient type mapping
 const gradientMapping = {
@@ -95,7 +98,31 @@ const gradientMapping = {
   bossBattle: gamingGradients.createBossBattleGradient,
   powerUp: gamingGradients.createPowerUpGradient,
   cyberpunk: gamingGradients.createCyberpunkGradient,
-  retroWave: gamingGradients.createRetroWaveGradient
+  retroWave: gamingGradients.createRetroWaveGradient,
+
+  // Morphing gradients
+  liquidMorphing: morphingGradients.createLiquidMorphingGradient,
+  plasmaMorphing: morphingGradients.createPlasmaMorphingGradient,
+  cosmicMorphing: morphingGradients.createCosmicMorphingGradient,
+  bioMorphing: morphingGradients.createBioMorphingGradient,
+  quantumMorphing: morphingGradients.createQuantumMorphingGradient,
+  lavaMorphing: morphingGradients.createLavaMorphingGradient,
+
+  // Fluid dynamics gradients
+  turbulentWaves: fluidDynamicsGradients.createTurbulentWavesGradient,
+  electromagneticWaves: fluidDynamicsGradients.createElectromagneticWavesGradient,
+  auroraWaves: fluidDynamicsGradients.createAuroraWavesGradient,
+  soundWaves: fluidDynamicsGradients.createSoundWavesGradient,
+  cryogenicWaves: fluidDynamicsGradients.createCryogenicWavesGradient,
+  solarWaves: fluidDynamicsGradients.createSolarWavesGradient,
+
+  // Dimensional gradients
+  portalDistortion: dimensionalGradients.createPortalDistortionGradient,
+  hypercubeProjection: dimensionalGradients.createHypercubeProjectionGradient,
+  wormholeEffect: dimensionalGradients.createWormholeEffectGradient,
+  fractalDimension: dimensionalGradients.createFractalDimensionGradient,
+  multiverseOverlap: dimensionalGradients.createMultiverseOverlapGradient,
+  realityDistortion: dimensionalGradients.createRealityDistortionGradient
 };
 
 /**

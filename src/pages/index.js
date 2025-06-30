@@ -62,16 +62,26 @@ export default function Home() {
     { text: "AURORA", template: "northern-aurora" },
     { text: "DIAMOND", template: "diamond-sparkle" },
     { text: "FOREST", template: "forest-mist" },
-    { text: "PLASMA", template: "plasma-core" },
-    { text: "CHERRY", template: "cherry-blossom" },
-    { text: "VOLCANO", template: "volcano-fire" }
+    
+    // 🌟 全新前卫模板展示
+    { text: "MERCURY", template: "liquid-mercury" },
+    { text: "PLASMA", template: "plasma-blob" },
+    { text: "COSMIC", template: "cosmic-entity" },
+    { text: "PORTAL", template: "portal-nexus" },
+    { text: "WAVES", template: "turbulent-waves" },
+    { text: "QUANTUM", template: "quantum-foam" },
+    { text: "WORMHOLE", template: "wormhole-transit" },
+    { text: "AURORA", template: "aurora-streams" },
+    { text: "REALITY", template: "reality-glitch" },
+    { text: "SOLAR", template: "solar-wind" },
+    { text: "FRACTAL", template: "fractal-dimension" }
   ];
 
   const highlights = [
     {
       icon: "🎨",
-      title: "204+ Professional Templates",
-      description: "From glitch effects to hologram shapes - enhanced with svg-banners & capsule-render styles"
+      title: "220+ Professional Templates",
+      description: "From morphing effects to dimensional portals - enhanced with cutting-edge SVG animations"
     },
     {
       icon: "⚡",

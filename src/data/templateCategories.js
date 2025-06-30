@@ -27,6 +27,9 @@ const gamingTemplates = require('../templates/gamingTemplates');
 // 新增模板类别 - 来自示例项目整合
 const shapeTemplates = require('../templates/shapeTemplates');
 const animationTemplates = require('../templates/animationTemplates');
+const morphingTemplates = require('../templates/morphingTemplates');
+const fluidDynamicsTemplates = require('../templates/fluidDynamicsTemplates');
+const dimensionalTemplates = require('../templates/dimensionalTemplates');
 
 // Template categories configuration
 const templateCategories = [
@@ -135,6 +138,27 @@ const templateCategories = [
     icon: '🎬',
     description: 'Special animation and dynamic effects from svg-banners',
     templates: Object.values(animationTemplates)
+  },
+  {
+    id: 'morphing',
+    name: 'Morphing Effects',
+    icon: '🌊',
+    description: 'Advanced morphing animations with fluid transformations',
+    templates: Object.values(morphingTemplates)
+  },
+  {
+    id: 'fluid-dynamics',
+    name: 'Fluid Dynamics',
+    icon: '��',
+    description: 'Complex fluid simulation and wave propagation effects',
+    templates: Object.values(fluidDynamicsTemplates)
+  },
+  {
+    id: 'dimensional',
+    name: 'Dimensional Effects',
+    icon: '🌌',
+    description: 'Multi-dimensional space distortion and portal effects',
+    templates: Object.values(dimensionalTemplates)
   }
 ];
 
