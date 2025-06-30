@@ -39,6 +39,10 @@ const gamingTemplates = require('../templates/gamingTemplates');
 // 新增的模板类别 - 借鉴自示例项目
 const shapeTemplates = require('../templates/shapeTemplates');
 const animationTemplates = require('../templates/animationTemplates');
+// 🌟 NEW: 前沿创新模板系列
+const morphingTemplates = require('../templates/morphingTemplates');
+const fluidDynamicsTemplates = require('../templates/fluidDynamicsTemplates');
+const dimensionalTemplates = require('../templates/dimensionalTemplates');
 const { getRandomGradientPalette, getTimedPalette } = require('./colorPalettes');
 
 const templates = { 
@@ -57,7 +61,11 @@ const templates = {
   ...gamingTemplates,
   // 新增模板类别
   ...shapeTemplates,
-  ...animationTemplates
+  ...animationTemplates,
+  // 🌟 NEW: 前沿创新模板系列
+  ...morphingTemplates,
+  ...fluidDynamicsTemplates,
+  ...dimensionalTemplates
 };
 
 function getTemplateConfig(template, defaultColor = '000000') {

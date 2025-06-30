@@ -452,6 +452,32 @@ function generateAdvancedSVG(type, text, colors, width = 800, height = 400, opti
       return generateRainbowEffect(text, colors, width, height);
     case 'textBox':
       return generateTextBoxEffect(text, colors, width, height);
+    case 'liquidMorphing':
+    case 'plasmaMorphing':
+    case 'cosmicMorphing':
+    case 'bioMorphing':
+    case 'quantumMorphing':
+    case 'lavaMorphing':
+    case 'turbulentWaves':
+    case 'electromagneticWaves':
+    case 'auroraWaves':
+    case 'soundWaves':
+    case 'cryogenicWaves':
+    case 'solarWaves':
+    case 'portalDistortion':
+    case 'hypercubeProjection':
+    case 'wormholeEffect':
+    case 'fractalDimension':
+    case 'multiverseOverlap':
+    case 'realityDistortion':
+      const { generateTextEffectSVG } = require('./textEffectGenerator');
+      return generateTextEffectSVG({
+        text,
+        colors,
+        height,
+        gradientType: type,
+        duration: options.duration || '6s'
+      });
     default:
       return generateWaveShape(text, colors, width, height, 'wave');
   }
