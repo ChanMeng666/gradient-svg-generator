@@ -194,6 +194,241 @@ function generateGoldFoilEffect(colors, duration = '4s', text = 'GOLDEN') {
   `;
 }
 
+// 🌟 NEW: Morphing Effect Generators
+function generateLiquidMorphingEffect(colors, duration = '8s', text = 'MERCURY') {
+  return `
+    <defs>
+      <radialGradient id="liquidMercury" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" style="stop-color:#${colors[0]};stop-opacity:1">
+          <animate attributeName="stop-color" values="#${colors[0]};#${colors[1]};#${colors[2]};#${colors[0]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="70%" style="stop-color:#${colors[1]};stop-opacity:0.8">
+          <animate attributeName="stop-color" values="#${colors[1]};#${colors[2]};#${colors[3]};#${colors[1]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="100%" style="stop-color:#${colors[2]};stop-opacity:0.6">
+          <animate attributeName="stop-opacity" values="0.6;0.9;0.6" dur="${parseFloat(duration) * 0.5}s" repeatCount="indefinite"/>
+        </stop>
+        <animate attributeName="r" values="40%;80%;40%" dur="${duration}" repeatCount="indefinite"/>
+      </radialGradient>
+      <filter id="metallicReflection">
+        <feGaussianBlur stdDeviation="3" result="blur"/>
+        <feSpecularLighting surfaceScale="8" specularConstant="2" specularExponent="15" lighting-color="white" in="blur" result="specOut">
+          <feDistantLight azimuth="45" elevation="60"/>
+        </feSpecularLighting>
+        <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
+        <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#liquidMercury)" filter="url(#metallicReflection)"/>
+    <foreignObject x="10%" y="40%" width="80%" height="20%">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="
+        color: #${colors[3]};
+        font-family: 'Arial Black', sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 10px #${colors[0]};
+        animation: mercuryFlow ${duration} infinite;
+      ">
+        ${text}
+      </div>
+      <style>
+        @keyframes mercuryFlow {
+          0%, 100% { transform: scaleX(1); filter: blur(0px); }
+          50% { transform: scaleX(1.1); filter: blur(0.5px); }
+        }
+      </style>
+    </foreignObject>
+  `;
+}
+
+function generatePlasmaMorphingEffect(colors, duration = '6s', text = 'PLASMA') {
+  return `
+    <defs>
+      <radialGradient id="plasmaBlob" cx="50%" cy="50%" r="70%">
+        <stop offset="0%" style="stop-color:#${colors[0]};stop-opacity:1">
+          <animate attributeName="stop-color" values="#${colors[0]};#${colors[1]};#${colors[2]};#${colors[0]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="50%" style="stop-color:#${colors[1]};stop-opacity:0.8">
+          <animate attributeName="stop-color" values="#${colors[1]};#${colors[2]};#${colors[3]};#${colors[1]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="100%" style="stop-color:#${colors[2]};stop-opacity:0.4">
+          <animate attributeName="stop-color" values="#${colors[2]};#${colors[3]};#${colors[0]};#${colors[2]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <animate attributeName="cx" values="30%;70%;30%" dur="${duration}" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="30%;70%;30%" dur="${parseFloat(duration) * 1.5}s" repeatCount="indefinite"/>
+      </radialGradient>
+      <filter id="plasmaGlow">
+        <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#plasmaBlob)" filter="url(#plasmaGlow)"/>
+    <foreignObject x="10%" y="40%" width="80%" height="20%">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="
+        color: #${colors[3]};
+        font-family: 'Impact', sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 15px #${colors[0]}, 0 0 25px #${colors[1]}, 0 0 35px #${colors[2]};
+        animation: plasmaEnergy ${duration} infinite;
+      ">
+        ${text}
+      </div>
+      <style>
+        @keyframes plasmaEnergy {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.05); opacity: 0.9; }
+        }
+      </style>
+    </foreignObject>
+  `;
+}
+
+function generateCosmicMorphingEffect(colors, duration = '12s', text = 'COSMIC') {
+  return `
+    <defs>
+      <radialGradient id="cosmicEntity" cx="50%" cy="50%" r="80%">
+        <stop offset="0%" style="stop-color:#${colors[0]};stop-opacity:0.9">
+          <animate attributeName="stop-color" values="#${colors[0]};#${colors[1]};#${colors[2]};#${colors[0]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="70%" style="stop-color:#${colors[1]};stop-opacity:0.6">
+          <animate attributeName="stop-color" values="#${colors[1]};#${colors[2]};#${colors[3]};#${colors[1]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="100%" style="stop-color:#${colors[2]};stop-opacity:0.3">
+          <animate attributeName="stop-color" values="#${colors[2]};#${colors[3]};#${colors[0]};#${colors[2]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <animate attributeName="r" values="60%;100%;60%" dur="${duration}" repeatCount="indefinite"/>
+      </radialGradient>
+      <filter id="cosmicDistortion">
+        <feTurbulence baseFrequency="0.3" numOctaves="3" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="20">
+          <animate attributeName="scale" values="10;30;10" dur="${duration}" repeatCount="indefinite"/>
+        </feDisplacementMap>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#cosmicEntity)" filter="url(#cosmicDistortion)"/>
+    <foreignObject x="10%" y="40%" width="80%" height="20%">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="
+        color: #${colors[3]};
+        font-family: 'Orbitron', monospace;
+        font-size: 26px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 20px #${colors[0]}, 0 0 30px #${colors[1]};
+        animation: cosmicPulse ${duration} infinite;
+      ">
+        ${text}
+      </div>
+      <style>
+        @keyframes cosmicPulse {
+          0%, 100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+          50% { transform: scale(1.02) rotate(1deg); filter: brightness(1.2); }
+        }
+      </style>
+    </foreignObject>
+  `;
+}
+
+// 🌟 NEW: Fluid Dynamics Effect Generators
+function generateTurbulentWavesEffect(colors, duration = '5s', text = 'WAVES') {
+  return `
+    <defs>
+      <linearGradient id="turbulentFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#${colors[0]};stop-opacity:0.9">
+          <animate attributeName="stop-color" values="#${colors[0]};#${colors[1]};#${colors[0]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="50%" style="stop-color:#${colors[1]};stop-opacity:0.7">
+          <animate attributeName="stop-color" values="#${colors[1]};#${colors[2]};#${colors[1]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="100%" style="stop-color:#${colors[2]};stop-opacity:0.5">
+          <animate attributeName="stop-color" values="#${colors[2]};#${colors[3]};#${colors[2]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <animateTransform attributeName="gradientTransform" type="translate" values="0 0;50 0;0 0" dur="${duration}" repeatCount="indefinite"/>
+      </linearGradient>
+      <filter id="fluidDistortion">
+        <feTurbulence baseFrequency="0.8" numOctaves="4" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="25">
+          <animate attributeName="scale" values="15;35;15" dur="${duration}" repeatCount="indefinite"/>
+        </feDisplacementMap>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#turbulentFlow)" filter="url(#fluidDistortion)"/>
+    <foreignObject x="10%" y="40%" width="80%" height="20%">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="
+        color: #${colors[3]};
+        font-family: 'Trebuchet MS', sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 10px #${colors[0]};
+        animation: fluidMotion ${duration} infinite;
+      ">
+        ${text}
+      </div>
+      <style>
+        @keyframes fluidMotion {
+          0%, 100% { transform: translateX(0px) skewX(0deg); }
+          50% { transform: translateX(5px) skewX(2deg); }
+        }
+      </style>
+    </foreignObject>
+  `;
+}
+
+// 🌟 NEW: Dimensional Effect Generators
+function generatePortalDistortionEffect(colors, duration = '4s', text = 'PORTAL') {
+  return `
+    <defs>
+      <radialGradient id="portalNexus" cx="50%" cy="50%" r="70%">
+        <stop offset="0%" style="stop-color:#${colors[0]};stop-opacity:1">
+          <animate attributeName="stop-color" values="#${colors[0]};#${colors[1]};#${colors[2]};#${colors[0]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="30%" style="stop-color:#${colors[1]};stop-opacity:0.8">
+          <animate attributeName="stop-color" values="#${colors[1]};#${colors[2]};#${colors[3]};#${colors[1]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="70%" style="stop-color:#${colors[2]};stop-opacity:0.4">
+          <animate attributeName="stop-color" values="#${colors[2]};#${colors[3]};#${colors[0]};#${colors[2]}" dur="${duration}" repeatCount="indefinite"/>
+        </stop>
+        <stop offset="100%" style="stop-color:#${colors[3]};stop-opacity:0.1">
+          <animate attributeName="stop-opacity" values="0.1;0.3;0.1" dur="${parseFloat(duration) * 0.5}s" repeatCount="indefinite"/>
+        </stop>
+        <animateTransform attributeName="gradientTransform" type="rotate" values="0 50 50;360 50 50" dur="${duration}" repeatCount="indefinite"/>
+      </radialGradient>
+      <filter id="dimensionalWarp">
+        <feTurbulence baseFrequency="1.2" numOctaves="2" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="30">
+          <animate attributeName="scale" values="20;40;20" dur="${duration}" repeatCount="indefinite"/>
+        </feDisplacementMap>
+      </filter>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#portalNexus)" filter="url(#dimensionalWarp)"/>
+    <foreignObject x="10%" y="40%" width="80%" height="20%">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="
+        color: #${colors[3]};
+        font-family: 'Futura', sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 15px #${colors[0]}, 0 0 25px #${colors[1]};
+        animation: dimensionalShift ${duration} infinite;
+      ">
+        ${text}
+      </div>
+      <style>
+        @keyframes dimensionalShift {
+          0%, 100% { transform: perspective(500px) rotateY(0deg); opacity: 1; }
+          50% { transform: perspective(500px) rotateY(5deg); opacity: 0.8; }
+        }
+      </style>
+    </foreignObject>
+  `;
+}
+
 // Organic Nature Effect Generators
 function generateFlameEffect(colors, duration = '3s', text = 'FLAME') {
   return `
@@ -348,6 +583,48 @@ function generateAdvancedEffect(gradientType, colors, duration, text) {
     case 'energyBlast':
       return generateEnergyBlastEffect(colors, duration, text);
     
+    // 🌟 NEW: Morphing Effects
+    case 'liquidMorphing':
+      return generateLiquidMorphingEffect(colors, duration, text);
+    case 'plasmaMorphing':
+      return generatePlasmaMorphingEffect(colors, duration, text);
+    case 'cosmicMorphing':
+      return generateCosmicMorphingEffect(colors, duration, text);
+    case 'bioMorphing':
+      return generateLiquidMorphingEffect(colors, duration, text); // 暂时复用液态效果
+    case 'quantumMorphing':
+      return generateCosmicMorphingEffect(colors, duration, text); // 暂时复用宇宙效果
+    case 'lavaMorphing':
+      return generateFlameEffect(colors, duration, text); // 使用火焰效果，适合熔岩
+    
+    // 🌟 NEW: Fluid Dynamics
+    case 'turbulentWaves':
+      return generateTurbulentWavesEffect(colors, duration, text);
+    case 'electromagneticWaves':
+      return generateTurbulentWavesEffect(colors, duration, text); // 暂时复用湍流效果
+    case 'auroraWaves':
+      return generateTurbulentWavesEffect(colors, duration, text); // 暂时复用湍流效果
+    case 'soundWaves':
+      return generateTurbulentWavesEffect(colors, duration, text); // 暂时复用湍流效果
+    case 'cryogenicWaves':
+      return generateTurbulentWavesEffect(colors, duration, text); // 暂时复用湍流效果
+    case 'solarWaves':
+      return generateTurbulentWavesEffect(colors, duration, text); // 暂时复用湍流效果
+    
+    // 🌟 NEW: Dimensional Effects
+    case 'portalDistortion':
+      return generatePortalDistortionEffect(colors, duration, text);
+    case 'hypercubeProjection':
+      return generatePortalDistortionEffect(colors, duration, text); // 暂时复用传送门效果
+    case 'wormholeEffect':
+      return generatePortalDistortionEffect(colors, duration, text); // 暂时复用传送门效果
+    case 'fractalDimension':
+      return generatePortalDistortionEffect(colors, duration, text); // 暂时复用传送门效果
+    case 'multiverseOverlap':
+      return generatePortalDistortionEffect(colors, duration, text); // 暂时复用传送门效果
+    case 'realityDistortion':
+      return generatePortalDistortionEffect(colors, duration, text); // 暂时复用传送门效果
+    
     default:
       // Return a basic gradient for unsupported types
       return `
@@ -381,5 +658,13 @@ module.exports = {
   generateGoldFoilEffect,
   generateFlameEffect,
   generatePixelArtEffect,
-  generateEnergyBlastEffect
+  generateEnergyBlastEffect,
+  // 🌟 NEW: Morphing Effects
+  generateLiquidMorphingEffect,
+  generatePlasmaMorphingEffect,
+  generateCosmicMorphingEffect,
+  // 🌟 NEW: Fluid Dynamics Effects
+  generateTurbulentWavesEffect,
+  // 🌟 NEW: Dimensional Effects
+  generatePortalDistortionEffect
 }; 

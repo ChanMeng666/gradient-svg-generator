@@ -73,6 +73,27 @@ function generateTextEffectSVG({
     case 'powerUp':
     case 'cyberpunk':
     case 'retroWave':
+    // 🌟 NEW: Morphing Effects
+    case 'liquidMorphing':
+    case 'plasmaMorphing':
+    case 'cosmicMorphing':
+    case 'bioMorphing':
+    case 'quantumMorphing':
+    case 'lavaMorphing':
+    // 🌟 NEW: Fluid Dynamics
+    case 'turbulentWaves':
+    case 'electromagneticWaves':
+    case 'auroraWaves':
+    case 'soundWaves':
+    case 'cryogenicWaves':
+    case 'solarWaves':
+    // 🌟 NEW: Dimensional Effects
+    case 'portalDistortion':
+    case 'hypercubeProjection':
+    case 'wormholeEffect':
+    case 'fractalDimension':
+    case 'multiverseOverlap':
+    case 'realityDistortion':
       return generateAdvancedEffectSVG(text, colors, height, gradientType, duration);
     
     default:
