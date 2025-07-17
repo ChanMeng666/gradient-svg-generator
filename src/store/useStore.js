@@ -58,6 +58,10 @@ const useStore = create(
           ...state.recentTemplates.filter(t => t.name !== template.name)
         ].slice(0, 10)
       })),
+      
+      clearFavorites: () => set({ favorites: [] }),
+      
+      clearRecent: () => set({ recentTemplates: [] }),
     }),
     {
       name: 'gradient-svg-storage',

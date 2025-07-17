@@ -10,7 +10,8 @@ import {
   ChevronLeft, 
   ChevronRight,
   Sparkles,
-  Filter
+  Filter,
+  Trash2
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import useStore from '../../store/useStore';
@@ -23,7 +24,9 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
     sidebarCollapsed, 
     toggleSidebar,
     addFavorite,
-    removeFavorite 
+    removeFavorite,
+    clearFavorites,
+    clearRecent 
   } = useStore();
   
   const [searchQuery, setSearchQuery] = useState('');
@@ -175,6 +178,32 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
                         </Badge>
                       ))}
                     </div>
+                  </div>
+                )}
+                
+                {/* Clear All button for Favorites and Recent */}
+                {((activeTab === 'favorites' && favorites.length > 0) || 
+                  (activeTab === 'recent' && recentTemplates.length > 0)) && (
+                  <div className="p-4 border-b">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        if (activeTab === 'favorites') {
+                          if (confirm('Are you sure you want to clear all favorites?')) {
+                            clearFavorites();
+                          }
+                        } else {
+                          if (confirm('Are you sure you want to clear recent history?')) {
+                            clearRecent();
+                          }
+                        }
+                      }}
+                      className="w-full gap-2 hover:bg-destructive hover:text-destructive-foreground"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                      {activeTab === 'favorites' ? 'Clear All Favorites' : 'Clear Recent History'}
+                    </Button>
                   </div>
                 )}
 
