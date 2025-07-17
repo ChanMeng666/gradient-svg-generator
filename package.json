@@ -13,11 +13,26 @@
   "license": "ISC",
   "description": "A service that generates animated gradient SVGs with customizable text overlays",
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
+    "@tanstack/react-query": "^5.83.0",
     "@vercel/node": "^2.15.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.6",
+    "fuse.js": "^7.1.0",
+    "lucide-react": "^0.525.0",
     "next": "^13.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.0",
-    "@heroicons/react": "^2.0.18"
+    "react-window": "^1.8.11",
+    "tailwind-merge": "^3.3.1",
+    "zustand": "^5.0.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11"
   }
 }

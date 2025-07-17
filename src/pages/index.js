@@ -1,382 +1,337 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import Header from '../components/layout/Header';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Badge } from '../components/ui/badge';
+import { 
+  Sparkles, 
+  Palette, 
+  Zap, 
+  Eye, 
+  Download, 
+  ChevronRight,
+  Star,
+  Code2,
+  Layers
+} from 'lucide-react';
 
 export default function Home() {
+  const [currentTemplateIndex, setCurrentTemplateIndex] = useState(0);
+  
+  // Featured templates for hero section
+  const featuredTemplates = [
+    { name: "hologram-matrix", displayName: "Hologram Matrix", text: "FUTURISTIC" },
+    { name: "quantum-field", displayName: "Quantum Field", text: "QUANTUM" },
+    { name: "neon-arcade", displayName: "Neon Arcade", text: "GAMING" },
+    { name: "burning-flame", displayName: "Burning Flame", text: "FIRE" },
+  ];
+
+  // Editor's choice templates
+  const editorsChoice = [
+    { name: "sunset-gold", displayName: "Sunset Gold", category: "luxury", text: "PREMIUM" },
+    { name: "ocean-heart", displayName: "Ocean Heart", category: "nature", text: "OCEAN" },
+    { name: "crystal-prism", displayName: "Crystal Prism", category: "material", text: "CRYSTAL" },
+    { name: "rainbow-wave", displayName: "Rainbow Wave", category: "pride", text: "RAINBOW" },
+    { name: "cyber-scan", displayName: "Cyber Scanner", category: "tech", text: "CYBER" },
+    { name: "glitch-matrix", displayName: "Glitch Matrix", category: "textEffects", text: "GLITCH" },
+    { name: "liquid-morph", displayName: "Liquid Morph", category: "morphing", text: "MORPH" },
+    { name: "neural-network", displayName: "Neural Network", category: "digitalLife", text: "AI" },
+  ];
+
+  // Popular templates
+  const popularTemplates = [
+    { name: "gradient-wave", displayName: "Gradient Wave", users: "2.3k" },
+    { name: "aurora-flow", displayName: "Aurora Flow", users: "1.8k" },
+    { name: "plasma-field", displayName: "Plasma Field", users: "1.5k" },
+    { name: "cosmic-dust", displayName: "Cosmic Dust", users: "1.2k" },
+    { name: "neon-pulse", displayName: "Neon Pulse", users: "980" },
+    { name: "data-stream", displayName: "Data Stream", users: "850" },
+  ];
+
+  // Features
   const features = [
     {
-      icon: <div className="feature-icon">🎨</div>,
-      title: "Diverse Gradients",
-      description: "Supports various gradient types like linear, radial with unlimited color combinations"
+      icon: <Palette className="h-6 w-6" />,
+      title: "216+ Templates",
+      description: "Professional templates across 22 categories"
     },
     {
-      icon: <div className="feature-icon">✨</div>,
-      title: "Animation Effects",
-      description: "Built-in smooth CSS animations to bring your gradients to life"
+      icon: <Sparkles className="h-6 w-6" />,
+      title: "50+ Effects",
+      description: "Advanced animations and visual effects"
     },
     {
-      icon: <div className="feature-icon">👁️</div>,
+      icon: <Eye className="h-6 w-6" />,
       title: "Live Preview",
-      description: "Real-time gradient preview with what-you-see-is-what-you-get design experience"
+      description: "Real-time updates as you customize"
     },
     {
-      icon: <div className="feature-icon">⬇️</div>,
-      title: "One-Click Export",
-      description: "Generate SVG code and Markdown, easily integrate into your projects"
+      icon: <Zap className="h-6 w-6" />,
+      title: "API Access",
+      description: "Generate SVGs programmatically"
     }
   ];
 
-  const examples = [
-    // 原有的经典模板
-    { text: "Welcome", template: "sunset-gold" },
-    { text: "GitHub", template: "ocean-heart" },
-    { text: "HOLOGRAM", template: "hologram-matrix" },
-    { text: "QUANTUM", template: "quantum-field" },
-    { text: "FLAME", template: "burning-flame" },
-    { text: "CRYSTAL", template: "crystal-prism" },
-    { text: "GOLDEN", template: "golden-leaf" },
-    { text: "PIXEL", template: "pixel-art-retro" },
-    { text: "NEON", template: "neon-arcade" },
-    { text: "Code", template: "midnight-galaxy" },
-    
-    // 新增的动画效果模板 (来自svg-banners)
-    { text: "GLITCH", template: "glitch-matrix" },
-    { text: "HACKER", template: "typewriter-code" },
-    { text: "GLOW", template: "luminance-glow" },
-    { text: "RAINBOW", template: "rainbow-wave" },
-    { text: "CYBER", template: "cyber-scan" },
-    { text: "PULSE", template: "neon-pulse" },
-    { text: "SCAN", template: "hologram-flicker" },
-    { text: "ERROR", template: "data-corruption" },
-    
-    // 新增的形状模板 (来自capsule-render)
-    { text: "WAVE", template: "wave-flow" },
-    { text: "CHAT", template: "speech-bubble" },
-    { text: "FLOW", template: "soft-blend" },
-    { text: "FIN", template: "shark-fin" },
-    { text: "ORB", template: "egg-shape" },
-    { text: "BLUR", template: "blur-glow" },
-    
-    // 经典模板延续
-    { text: "DAWN", template: "sunrise-dawn" },
-    { text: "AURORA", template: "northern-aurora" },
-    { text: "DIAMOND", template: "diamond-sparkle" },
-    { text: "FOREST", template: "forest-mist" },
-    
-    // 🌟 全新前卫模板展示 - 先进科技类
-    { text: "MERCURY", template: "liquid-mercury" },
-    { text: "PLASMA", template: "plasma-blob" },
-    { text: "COSMIC", template: "cosmic-entity" },
-    { text: "PORTAL", template: "portal-nexus" },
-    { text: "WAVES", template: "turbulent-waves" },
-    { text: "QUANTUM", template: "quantum-foam" },
-    { text: "WORMHOLE", template: "wormhole-transit" },
-    { text: "AURORA", template: "aurora-streams" },
-    { text: "REALITY", template: "reality-glitch" },
-    { text: "SOLAR", template: "solar-wind" },
-    { text: "FRACTAL", template: "fractal-dimension" },
-    
-    // 🌟 次元门户美学 - Dimensional Portal
-    { text: "TUNNEL", template: "quantum-tunnel" },
-    { text: "MULTIVERSE", template: "parallel-universe" },
-    { text: "MATRIX", template: "holographic-matrix" },
-    { text: "VOID", template: "void-chamber" },
-    { text: "ASTRAL", template: "astral-projection" },
-    
-    // 🌟 数字生命美学 - Digital Life  
-    { text: "AI", template: "ai-consciousness" },
-    { text: "DNA", template: "quantum-dna" },
-    { text: "EVOLVE", template: "digital-evolution" },
-    { text: "SOUL", template: "synthetic-soul" },
-    { text: "NEURAL", template: "neural-storm" },
-    
-    // 🌟 赛博美学 - Cyber Aesthetics
-    { text: "GRID", template: "neon-grid-city" },
-    { text: "STREAM", template: "data-stream-flow" },
-    { text: "NOIR", template: "cyber-punk-noir" },
-    { text: "CHROME", template: "chrome-reflection" },
-    { text: "AR", template: "augmented-reality" },
-    
-    // 🌟 意识流美学 - Consciousness Stream
-    { text: "THOUGHTS", template: "thought-waves" },
-    { text: "MEMORY", template: "memory-fragments" },
-    { text: "DREAMS", template: "dream-logic" },
-    { text: "CALM", template: "meditative-calm" },
-    { text: "INSIGHT", template: "psychedelic-insight" },
-    
-    // 🌟 彩虹分层效果 - Rainbow Layer from example-1
-    { text: "RAINBOW", template: "rainbow-layer" }
-  ];
-
-  const highlights = [
-    {
-      icon: "🎨",
-      title: "260+ Professional Templates",
-      description: "From consciousness streams to dimensional portals - enhanced with cutting-edge SVG animations and avant-garde aesthetics"
-    },
-    {
-      icon: "⚡",
-      title: "Instant SVG Generation",
-      description: "Real-time preview and one-click export to SVG & Markdown"
-    },
-    {
-      icon: "🎭",
-      title: "Advanced Animations",
-      description: "Smooth CSS animations, gradient shifts, and text effects"
-    },
-    {
-      icon: "🔧",
-      title: "Fully Customizable",
-      description: "Adjust colors, fonts, sizes, and effects to match your vision"
-    }
-  ];
+  // Rotate featured templates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTemplateIndex((prev) => (prev + 1) % featuredTemplates.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
       <Head>
-        <title>Gradient SVG Generator</title>
+        <title>Gradient SVG Generator - Create Stunning Animated Gradients</title>
+        <meta name="description" content="Generate beautiful animated SVG gradients with 216+ professional templates. Perfect for headers, banners, and creative projects." />
       </Head>
-      <div className="landing-page">
+
+      <div className="min-h-screen bg-background">
+        <Header />
+        
         {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-container">
-          <div className="hero-content">
-            <div className="hero-badge">
-              <span className="badge-icon">⚡</span>
-              <span>Free Open Source Tool</span>
-            </div>
-            
-            <h1 className="hero-title">
-              Create <span className="gradient-text">Stunning</span>
-              <br />
-              Gradient SVG Banners
-            </h1>
-            
-            <p className="hero-description">
-              Professional gradient SVG generator to create beautiful animated gradient banners
-              <br />
-              for your projects, GitHub README, design works - completely free and easy to use
-            </p>
-
-            <div className="hero-actions">
-              <Link href="/settings" className="cta-button primary">
-                <span>Start Creating</span>
-                <span className="cta-icon">→</span>
-              </Link>
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/5" />
+          <div className="container mx-auto px-4 py-20 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center max-w-3xl mx-auto"
+            >
+              <Badge variant="secondary" className="mb-4">
+                <Sparkles className="h-3 w-3 mr-1" />
+                New: AI-powered gradients coming soon
+              </Badge>
               
-              <a 
-                href="https://github.com/ChanMeng666/gradient-svg-generator"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cta-button secondary"
-              >
-                <span className="cta-icon">⭐</span>
-                <span>Star on GitHub</span>
-              </a>
-            </div>
-
-            <div className="hero-highlights">
-              <h3 className="highlights-title">✨ Why Choose Our Generator?</h3>
-              <div className="highlights-grid">
-                {highlights.map((highlight, index) => (
-                  <div key={index} className="highlight-item">
-                    <div className="highlight-icon">{highlight.icon}</div>
-                    <div className="highlight-content">
-                      <h4 className="highlight-title">{highlight.title}</h4>
-                      <p className="highlight-description">{highlight.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="hero-preview">
-            <div className="hero-showcase">
-              <div className="showcase-header">
-                <h3 className="showcase-title">Live Examples</h3>
-                <p className="showcase-subtitle">Click to try instantly • 40+ Featured Templates</p>
-              </div>
+              <h1 className="text-5xl md:text-6xl font-bold mb-6">
+                Create Stunning
+                <span className="gradient-text"> Animated SVG </span>
+                Gradients
+              </h1>
               
-              <div className="preview-gallery-enhanced">
-                {examples.slice(0, 12).map((example, index) => (
-                  <Link 
-                    key={index} 
-                    href={`/settings?template=${example.template}&text=${example.text}`}
-                    className="preview-card" 
-                    style={{ animationDelay: `${index * 0.08}s` }}
-                  >
-                    <div className="preview-image-container">
-                      <img 
-                        src={`/api/svg?text=${example.text}&template=${example.template}`} 
-                        alt={example.text}
-                        className="preview-image-enhanced"
-                      />
-                      <div className="preview-overlay">
-                        <div className="preview-label">{example.text}</div>
-                        <div className="preview-action">Try This Style</div>
-                      </div>
-                    </div>
-                    <div className="template-badge">
-                      {example.template.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              <p className="text-xl text-muted-foreground mb-8">
+                Professional gradient generator with 216+ templates and 50+ animation effects. 
+                Perfect for headers, banners, and creative projects.
+              </p>
 
-              <div className="preview-gallery-more">
-                <div className="more-examples-header">
-                  <h4 className="more-title">Even More Styles</h4>
-                  <div className="style-count">{examples.length - 12} Additional Templates</div>
-                </div>
-                <div className="preview-gallery-compact">
-                  {examples.slice(12).map((example, index) => (
-                    <Link 
-                      key={index + 12} 
-                      href={`/settings?template=${example.template}&text=${example.text}`}
-                      className="preview-card-compact" 
-                      style={{ animationDelay: `${(index + 12) * 0.05}s` }}
-                    >
-                      <div className="preview-image-container-compact">
-                        <img 
-                          src={`/api/svg?text=${example.text}&template=${example.template}`} 
-                          alt={example.text}
-                          className="preview-image-compact"
-                        />
-                        <div className="preview-overlay-compact">
-                          <div className="preview-label-compact">{example.text}</div>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="showcase-cta">
-                <div className="cta-stats">
-                  <div className="stat-item">
-                    <span className="stat-number">{examples.length}+</span>
-                    <span className="stat-label">Templates</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-number">∞</span>
-                    <span className="stat-label">Combinations</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-number">100%</span>
-                    <span className="stat-label">Free</span>
-                  </div>
-                </div>
-                <Link href="/settings" className="try-now-btn">
-                  <span>Start Creating Your Own</span>
-                  <span className="btn-arrow">✨</span>
+              <div className="flex gap-4 justify-center mb-12">
+                <Link href="/create">
+                  <Button size="lg" className="gap-2">
+                    <Palette className="h-5 w-5" />
+                    Start Creating
+                  </Button>
+                </Link>
+                <Link href="/templates">
+                  <Button size="lg" variant="outline" className="gap-2">
+                    Browse Templates
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
                 </Link>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Features Section */}
-      {/* <section className="features-section">
-        <div className="section-container">
-          <div className="section-header">
-            <h2>Why Choose Our Gradient Generator?</h2>
-            <p>Powerful features, simple operation, professional results</p>
-          </div>
-
-          <div className="features-grid">
-            {features.map((feature, index) => (
-              <div key={index} className="feature-card">
-                {feature.icon}
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
+              {/* Live Preview */}
+              <div className="relative max-w-2xl mx-auto">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-600/20 blur-3xl" />
+                <Card className="overflow-hidden relative">
+                  <div className="aspect-[2/1] bg-muted flex items-center justify-center">
+                    <img 
+                      src={`/api/svg?text=${featuredTemplates[currentTemplateIndex].text}&template=${featuredTemplates[currentTemplateIndex].name}&height=200`}
+                      alt={featuredTemplates[currentTemplateIndex].displayName}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">
+                    <Badge variant="secondary" className="bg-background/80 backdrop-blur">
+                      {featuredTemplates[currentTemplateIndex].displayName}
+                    </Badge>
+                    <div className="flex gap-1">
+                      {featuredTemplates.map((_, index) => (
+                        <div
+                          key={index}
+                          className={`h-1.5 w-1.5 rounded-full transition-all ${
+                            index === currentTemplateIndex 
+                              ? 'bg-primary w-4' 
+                              : 'bg-muted-foreground/30'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </Card>
               </div>
-            ))}
+            </motion.div>
           </div>
-        </div>
-      </section> */}
+        </section>
 
-      {/* CTA Section */}
-      <section className="cta-section">
-        <div className="cta-container">
-          <h2>Ready to Create Your First Gradient?</h2>
-          <p>Create professional-level gradient banners in just minutes</p>
-          
-          <Link href="/settings" className="cta-button large">
-            <span>Start for Free</span>
-            <span className="cta-icon">→</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-content">
-            <div className="footer-brand">
-              <img 
-                src="/gradient-svg-generator.svg" 
-                alt="Gradient SVG Generator Logo" 
-                className="footer-logo"
-                width="32" 
-                height="32"
-              />
-              <div className="footer-brand-content">
-                <span className="footer-brand-title">Gradient SVG Generator</span>
-                <span className="footer-brand-subtitle">Create Beautiful Gradients</span>
-              </div>
+        {/* Features Section */}
+        <section className="py-20 border-t">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Everything You Need</h2>
+              <p className="text-muted-foreground">Powerful features for creating professional gradients</p>
             </div>
             
-            <div className="footer-sections">
-              <div className="footer-section">
-                <h4 className="footer-section-title">🚀 Get Started</h4>
-                <div className="footer-section-links">
-                  <Link href="/settings">
-                    Create Gradient
-                  </Link>
-                  <a href="https://github.com/ChanMeng666/gradient-svg-generator/blob/main/README.md" target="_blank" rel="noopener noreferrer">
-                    Documentation
-                  </a>
-                </div>
-              </div>
-              
-              <div className="footer-section">
-                <h4 className="footer-section-title">🔗 Connect</h4>
-                <div className="footer-section-links">
-                  <a href="https://github.com/ChanMeng666/gradient-svg-generator" target="_blank" rel="noopener noreferrer">
-                    ⭐ GitHub
-                  </a>
-                  <a href="https://github.com/ChanMeng666/gradient-svg-generator/issues" target="_blank" rel="noopener noreferrer">
-                    🐛 Report Issue
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="footer-bottom">
-            <div className="footer-bottom-content">
-              <p className="footer-copyright">
-                Made with 💛 by{' '}
-                <a 
-                  href="https://github.com/ChanMeng666" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="footer-author"
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  Chan Meng
-                </a>
-              </p>
-              <p className="footer-status">
-                <span className="footer-status-indicator">●</span>
-                <span>Open Source & Free Forever</span>
-              </p>
+                  <Card className="h-full">
+                    <CardHeader>
+                      <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
+                        {feature.icon}
+                      </div>
+                      <CardTitle className="text-xl">{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </div>
-      </footer>
-    </div>
+        </section>
+
+        {/* Editor's Choice Section */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between mb-12">
+              <div>
+                <h2 className="text-3xl font-bold mb-2">Editor's Choice</h2>
+                <p className="text-muted-foreground">Hand-picked premium templates</p>
+              </div>
+              <Link href="/templates">
+                <Button variant="outline" className="gap-2">
+                  View All
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {editorsChoice.map((template, index) => (
+                <motion.div
+                  key={template.name}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  <Card className="overflow-hidden cursor-pointer hover:shadow-lg transition-all">
+                    <div className="aspect-video bg-muted">
+                      <img 
+                        src={`/api/svg?text=${template.text}&template=${template.name}&height=120`}
+                        alt={template.displayName}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <CardHeader className="p-4">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <CardTitle className="text-base">{template.displayName}</CardTitle>
+                          <CardDescription className="text-xs capitalize">{template.category}</CardDescription>
+                        </div>
+                        <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                      </div>
+                    </CardHeader>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Popular Templates Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between mb-12">
+              <div>
+                <h2 className="text-3xl font-bold mb-2">Popular This Week</h2>
+                <p className="text-muted-foreground">Most used templates by the community</p>
+              </div>
+              <Badge variant="outline" className="gap-1">
+                <Layers className="h-3 w-3" />
+                Updated weekly
+              </Badge>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {popularTemplates.map((template, index) => (
+                <Card key={template.name} className="hover:shadow-md transition-shadow">
+                  <CardHeader className="pb-3">
+                    <div className="flex justify-between items-center">
+                      <CardTitle className="text-lg">{template.displayName}</CardTitle>
+                      <Badge variant="secondary">{template.users} uses</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="aspect-[3/1] bg-muted rounded-md overflow-hidden">
+                      <img 
+                        src={`/api/svg?text=PREVIEW&template=${template.name}&height=80`}
+                        alt={template.displayName}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 border-t">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-4">Ready to Create?</h2>
+            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Join thousands of developers and designers creating beautiful gradients.
+              Free to use, no sign-up required.
+            </p>
+            <div className="flex gap-4 justify-center">
+              <Link href="/create">
+                <Button size="lg" className="gap-2">
+                  <Sparkles className="h-5 w-5" />
+                  Create Your Gradient
+                </Button>
+              </Link>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="gap-2"
+                onClick={() => window.open('https://github.com/yourusername/gradient-svg-generator', '_blank')}
+              >
+                <Code2 className="h-5 w-5" />
+                View on GitHub
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="border-t py-8">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-primary" />
+                <span className="font-semibold">Gradient SVG Generator</span>
+              </div>
+              <div className="flex gap-6 text-sm text-muted-foreground">
+                <Link href="/api/svg" className="hover:text-foreground">API</Link>
+                <a href="https://github.com/yourusername/gradient-svg-generator" className="hover:text-foreground">GitHub</a>
+                <Link href="/templates" className="hover:text-foreground">Templates</Link>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
     </>
   );
-} 
+}

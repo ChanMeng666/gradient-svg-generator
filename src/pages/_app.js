@@ -1,15 +1,22 @@
 import '../styles/globals.css';
-import '../styles/variables.css';
-import '../styles/components.css';
-import '../styles/navbar.css';
-import '../styles/forms.css';
-import '../styles/preview.css';
-import '../styles/templates.css';
-import '../styles/landing.css';
-import '../styles/responsive.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000,
+        refetchOnWindowFocus: false,
+      },
+    },
+  }));
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Component {...pageProps} />
+    </QueryClientProvider>
+  );
 }
 
 export default MyApp; 

@@ -1,79 +1,215 @@
-import templateCategories from '../data/templateCategories';
+// Import all template files
+import basicTemplates from '../templates/basicTemplates';
+import prideTemplates from '../templates/prideTemplates';
+import natureTemplates from '../templates/natureTemplates';
+import techTemplates from '../templates/techTemplates';
+import artTemplates from '../templates/artTemplates';
+import emotionTemplates from '../templates/emotionTemplates';
+import materialTemplates from '../templates/materialTemplates';
+import textEffectTemplates from '../templates/textEffectTemplates';
+import futureTechTemplates from '../templates/futureTechTemplates';
+import artisticTemplates from '../templates/artisticTemplates';
+import luxuryTemplates from '../templates/luxuryTemplates';
+import organicTemplates from '../templates/organicTemplates';
+import gamingTemplates from '../templates/gamingTemplates';
+import shapeTemplates from '../templates/shapeTemplates';
+import animationTemplates from '../templates/animationTemplates';
+import morphingTemplates from '../templates/morphingTemplates';
+import fluidDynamicsTemplates from '../templates/fluidDynamicsTemplates';
+import dimensionalTemplates from '../templates/dimensionalTemplates';
+import dimensionalPortalTemplates from '../templates/dimensionalPortalTemplates';
+import digitalLifeTemplates from '../templates/digitalLifeTemplates';
+import cyberAestheticsTemplates from '../templates/cyberAestheticsTemplates';
+import consciousnessStreamTemplates from '../templates/consciousnessStreamTemplates';
 
-// Create a flat map of all templates
-const getAllTemplates = () => {
+// Legacy support - import template categories if it exists
+let templateCategories = [];
+try {
+  const categories = require('../data/templateCategories');
+  templateCategories = categories.default || categories;
+} catch (e) {
+  // File doesn't exist, use new system
+}
+
+// Combine all templates
+const allTemplateGroups = [
+  basicTemplates,
+  prideTemplates,
+  natureTemplates,
+  techTemplates,
+  artTemplates,
+  emotionTemplates,
+  materialTemplates,
+  textEffectTemplates,
+  futureTechTemplates,
+  artisticTemplates,
+  luxuryTemplates,
+  organicTemplates,
+  gamingTemplates,
+  shapeTemplates,
+  animationTemplates,
+  morphingTemplates,
+  fluidDynamicsTemplates,
+  dimensionalTemplates,
+  dimensionalPortalTemplates,
+  digitalLifeTemplates,
+  cyberAestheticsTemplates,
+  consciousnessStreamTemplates,
+];
+
+// Get all templates as a flat array
+export function getAllTemplates() {
+  return allTemplateGroups.flat();
+}
+
+// Legacy function - Create a flat map of all templates
+const getAllTemplatesMap = () => {
   const allTemplates = {};
   
-  // 安全检查：确保模板分类数据存在且是数组
-  if (!templateCategories || !Array.isArray(templateCategories)) {
-    console.error('templateUtils: templateCategories is not available or not an array');
-    return allTemplates;
-  }
-  
-  templateCategories.forEach(category => {
-    // 安全检查：确保分类有模板数据
-    if (category && category.templates && Array.isArray(category.templates)) {
-      category.templates.forEach(template => {
-        // 安全检查：确保模板有名称
-        if (template && template.name) {
-          allTemplates[template.name] = template;
-        }
-      });
+  // Use new template system
+  getAllTemplates().forEach(template => {
+    if (template && template.name) {
+      allTemplates[template.name] = template;
     }
   });
+  
+  // Legacy support
+  if (templateCategories && Array.isArray(templateCategories)) {
+    templateCategories.forEach(category => {
+      if (category && category.templates && Array.isArray(category.templates)) {
+        category.templates.forEach(template => {
+          if (template && template.name) {
+            allTemplates[template.name] = template;
+          }
+        });
+      }
+    });
+  }
   
   return allTemplates;
 };
 
-// Get template configuration by name
+// Get templates by category
+export function getTemplatesByCategory(category) {
+  return getAllTemplates().filter(template => template.category === category);
+}
+
+// Get unique categories with metadata
+export function getCategories() {
+  const categoryMap = {
+    basic: { id: 'basic', name: 'Basic', icon: '🎨' },
+    pride: { id: 'pride', name: 'Pride', icon: '🏳️‍🌈' },
+    nature: { id: 'nature', name: 'Nature', icon: '🌿' },
+    tech: { id: 'tech', name: 'Tech', icon: '⚡' },
+    art: { id: 'art', name: 'Art', icon: '🎭' },
+    emotion: { id: 'emotion', name: 'Emotion', icon: '💫' },
+    material: { id: 'material', name: 'Material', icon: '💎' },
+    textEffects: { id: 'textEffects', name: 'Text Effects', icon: '✨' },
+    futureTech: { id: 'futureTech', name: 'Future Tech', icon: '🚀' },
+    artistic: { id: 'artistic', name: 'Artistic', icon: '🎨' },
+    luxury: { id: 'luxury', name: 'Luxury', icon: '👑' },
+    organicNature: { id: 'organicNature', name: 'Organic', icon: '🌊' },
+    gaming: { id: 'gaming', name: 'Gaming', icon: '🎮' },
+    shape: { id: 'shape', name: 'Shape', icon: '⚫' },
+    animation: { id: 'animation', name: 'Animation', icon: '🎬' },
+    morphing: { id: 'morphing', name: 'Morphing', icon: '🌊' },
+    fluidDynamics: { id: 'fluidDynamics', name: 'Fluid', icon: '💧' },
+    dimensional: { id: 'dimensional', name: 'Dimensional', icon: '🌌' },
+    dimensionalPortal: { id: 'dimensionalPortal', name: 'Portal', icon: '🌀' },
+    digitalLife: { id: 'digitalLife', name: 'Digital Life', icon: '🧬' },
+    cyberAesthetics: { id: 'cyberAesthetics', name: 'Cyber', icon: '🤖' },
+    consciousness: { id: 'consciousness', name: 'Consciousness', icon: '🧠' },
+  };
+
+  // Get unique categories from templates
+  const uniqueCategories = [...new Set(getAllTemplates().map(t => t.category))];
+  
+  return uniqueCategories
+    .map(cat => categoryMap[cat] || { id: cat, name: cat, icon: '📦' })
+    .filter(Boolean);
+}
+
+// Search templates
+export function searchTemplates(query) {
+  const lowercaseQuery = query.toLowerCase();
+  return getAllTemplates().filter(template => 
+    template.name.toLowerCase().includes(lowercaseQuery) ||
+    template.displayName.toLowerCase().includes(lowercaseQuery) ||
+    template.category.toLowerCase().includes(lowercaseQuery)
+  );
+}
+
+// Get template by name
+export function getTemplateByName(name) {
+  return getAllTemplates().find(template => template.name === name);
+}
+
+// Legacy function - Get template configuration by name
 export const getTemplateConfig = (templateName) => {
-  // 安全检查：确保模板名称存在
   if (!templateName || typeof templateName !== 'string') {
     return null;
   }
   
-  const allTemplates = getAllTemplates();
+  const allTemplates = getAllTemplatesMap();
   
   if (!allTemplates[templateName]) {
     console.warn(`templateUtils: Template '${templateName}' not found`);
     return null;
   }
   
-  const template = allTemplates[templateName];
-  
-  return template; // Return the original template object for UI consistency
+  return allTemplates[templateName];
 };
 
-// Get template category by template name
+// Legacy function - Get template category by template name
 export const getTemplateCategoryByName = (templateName) => {
-  // 安全检查：确保模板分类数据存在且是数组
-  if (!templateCategories || !Array.isArray(templateCategories)) {
-    console.error('templateUtils: templateCategories is not available or not an array');
-    return 'basic'; // Default category
-  }
-  
-  // 安全检查：确保模板名称存在
   if (!templateName || typeof templateName !== 'string') {
-    return 'basic'; // Default category
+    return 'basic';
   }
   
-  for (const category of templateCategories) {
-    // 安全检查：确保分类有ID和模板数据
-    if (category && category.id && category.templates && Array.isArray(category.templates)) {
-      const templateExists = category.templates.some(template => 
-        template && template.name === templateName
-      );
-      if (templateExists) {
-        return category.id;
-      }
-    }
-  }
-  return 'basic'; // Default category
+  const template = getTemplateByName(templateName);
+  return template ? template.category : 'basic';
 };
 
-// Get URL search parameters
+// Get featured templates
+export function getFeaturedTemplates() {
+  const featured = [
+    'hologram-matrix',
+    'quantum-field',
+    'neon-arcade',
+    'burning-flame',
+    'sunset-gold',
+    'ocean-heart',
+    'crystal-prism',
+    'rainbow-wave',
+  ];
+  
+  return featured
+    .map(name => getTemplateByName(name))
+    .filter(Boolean);
+}
+
+// Get popular templates (mock data for now)
+export function getPopularTemplates() {
+  const popular = [
+    'gradient-wave',
+    'aurora-flow',
+    'plasma-field',
+    'cosmic-dust',
+    'neon-pulse',
+    'data-stream',
+  ];
+  
+  return popular
+    .map(name => getTemplateByName(name))
+    .filter(Boolean)
+    .map((template, index) => ({
+      ...template,
+      uses: Math.floor(Math.random() * 2000) + 500
+    }));
+}
+
+// Legacy function - Get URL search parameters
 export const getUrlParams = () => {
-  // 服务器端渲染时返回空对象
   if (typeof window === 'undefined') return {};
   
   try {
@@ -91,21 +227,18 @@ export const getUrlParams = () => {
   }
 };
 
-// Apply URL parameters to config
+// Legacy function - Apply URL parameters to config
 export const applyUrlParamsToConfig = (urlParams) => {
   const config = {};
   
-  // 安全检查：确保urlParams存在
   if (!urlParams || typeof urlParams !== 'object') {
     return config;
   }
   
-  // Apply text parameter
   if (urlParams.text && typeof urlParams.text === 'string') {
     config.text = urlParams.text;
   }
   
-  // Apply template parameter and its associated configuration
   if (urlParams.template && typeof urlParams.template === 'string') {
     const templateConfig = getTemplateConfig(urlParams.template);
     if (templateConfig) {
@@ -117,4 +250,4 @@ export const applyUrlParamsToConfig = (urlParams) => {
   }
   
   return config;
-}; 
+};
