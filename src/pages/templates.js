@@ -81,7 +81,7 @@ export default function Templates() {
       </Head>
 
       <div className="min-h-screen bg-background">
-        <Header />
+        <Header showMobileMenu={false} />
 
         {/* Hero Section */}
         <section className="border-b bg-muted/30">

@@ -91,7 +91,7 @@ export default function Home() {
       </Head>
 
       <div className="min-h-screen bg-background">
-        <Header />
+        <Header showMobileMenu={false} />
         
         {/* Hero Section */}
         <section className="relative overflow-hidden">
@@ -306,7 +306,7 @@ export default function Home() {
                 size="lg" 
                 variant="outline" 
                 className="gap-2"
-                onClick={() => window.open('https://github.com/chanmenglin/gradient-svg-generator', '_blank')}
+                onClick={() => window.open('https://github.com/ChanMeng666/gradient-svg-generator', '_blank')}
               >
                 <Code2 className="h-5 w-5" />
                 View on GitHub
@@ -316,16 +316,25 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t py-8">
+        <footer className="border-t py-8 mb-16 md:mb-0">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-primary" />
-                <span className="font-semibold">Gradient SVG Generator</span>
+              <div className="flex flex-col items-center md:items-start gap-2">
+                <div className="flex items-center gap-2">
+                  <img 
+                    src="/gradient-svg-generator.svg" 
+                    alt="Gradient SVG Generator" 
+                    className="h-6 w-6"
+                  />
+                  <span className="font-semibold">Gradient SVG Generator</span>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Created by <a href="https://github.com/ChanMeng666" target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline">Chan Meng</a>
+                </p>
               </div>
               <div className="flex gap-6 text-sm text-muted-foreground">
                 <Link href="/api/svg" className="hover:text-foreground">API</Link>
-                <a href="https://github.com/chanmenglin/gradient-svg-generator" className="hover:text-foreground">GitHub</a>
+                <a href="https://github.com/ChanMeng666/gradient-svg-generator" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">GitHub</a>
                 <Link href="/templates" className="hover:text-foreground">Templates</Link>
               </div>
             </div>
