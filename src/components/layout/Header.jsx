@@ -80,7 +80,7 @@ export default function Header({ onMenuClick }) {
             variant="ghost"
             size="sm"
             className="hidden md:inline-flex"
-            onClick={() => window.open('https://github.com/yourusername/gradient-svg-generator', '_blank')}
+            onClick={() => window.open('https://github.com/chanmenglin/gradient-svg-generator', '_blank')}
           >
             <Code2 className="mr-2 h-4 w-4" />
             GitHub

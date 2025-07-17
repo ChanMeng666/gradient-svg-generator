@@ -215,7 +215,7 @@ export default function Create() {
                   <div className="hidden md:flex items-center gap-2 text-sm text-muted-foreground">
                     <Code2 className="h-4 w-4" />
                     <code className="font-mono text-xs">
-                      {window.location.origin}{previewUrl}
+                      {typeof window !== 'undefined' ? window.location.origin : ''}{previewUrl}
                     </code>
                   </div>
                 </div>

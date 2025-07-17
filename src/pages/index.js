@@ -306,7 +306,7 @@ export default function Home() {
                 size="lg" 
                 variant="outline" 
                 className="gap-2"
-                onClick={() => window.open('https://github.com/yourusername/gradient-svg-generator', '_blank')}
+                onClick={() => window.open('https://github.com/chanmenglin/gradient-svg-generator', '_blank')}
               >
                 <Code2 className="h-5 w-5" />
                 View on GitHub
@@ -325,7 +325,7 @@ export default function Home() {
               </div>
               <div className="flex gap-6 text-sm text-muted-foreground">
                 <Link href="/api/svg" className="hover:text-foreground">API</Link>
-                <a href="https://github.com/yourusername/gradient-svg-generator" className="hover:text-foreground">GitHub</a>
+                <a href="https://github.com/chanmenglin/gradient-svg-generator" className="hover:text-foreground">GitHub</a>
                 <Link href="/templates" className="hover:text-foreground">Templates</Link>
               </div>
             </div>

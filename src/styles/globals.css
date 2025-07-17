@@ -6,6 +6,7 @@
 /* Import all style modules */
 @import './variables.css';
 @import './reset.css';
+/* Temporarily disabled to prevent conflicts with Tailwind
 @import './components.css';
 @import './navbar.css';
 @import './forms.css';
@@ -15,6 +16,7 @@
 @import './responsive.css';
 @import './animations.css';
 @import './landing.css';
+*/
 
 /* Tailwind CSS Custom Layers */
 @layer base {
