@@ -25,7 +25,8 @@ import {
   Code2,
   Share2,
   RotateCcw,
-  Menu
+  Menu,
+  X
 } from 'lucide-react';
 
 // Dynamic imports for heavy components
@@ -50,6 +51,7 @@ export default function Create() {
 
   const [previewUrl, setPreviewUrl] = useState('');
   const [isCopied, setIsCopied] = useState(false);
+  const [isShared, setIsShared] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobilePropertiesOpen, setMobilePropertiesOpen] = useState(false);
@@ -68,6 +70,17 @@ export default function Create() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Handle escape key for fullscreen
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isFullscreen]);
 
   // Generate preview URL
   useEffect(() => {
@@ -228,18 +241,27 @@ export default function Create() {
                 styles.canvasContent,
                 isFullscreen && "fixed inset-0 z-50 bg-background"
               )}>
+                {/* Close button for fullscreen mode */}
+                {isFullscreen && (
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => setIsFullscreen(false)}
+                    className="absolute top-4 right-4 z-10"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                )}
                 <div className={styles.canvasWrapper}>
-                  <Card className={styles.previewCard}>
-                    <div className={styles.previewImage}>
-                      {previewUrl && (
-                        <img 
-                          src={previewUrl}
-                          alt="Gradient Preview"
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                    </div>
-                  </Card>
+                  <div className="bg-white">
+                    {previewUrl && (
+                      <img 
+                        src={previewUrl}
+                        alt="Gradient Preview"
+                        className="block"
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -279,17 +301,43 @@ export default function Create() {
                           "gap-2",
                           isMobile && "text-xs px-3"
                         )}
+                        onClick={async () => {
+                          const shareUrl = `https://gradient-svg-generator.vercel.app${previewUrl}`;
+                          const shareText = `Check out this awesome gradient: ${currentConfig.text}`;
+                          
+                          // Try Web Share API first (mobile)
+                          if (navigator.share) {
+                            try {
+                              await navigator.share({
+                                title: 'Gradient SVG',
+                                text: shareText,
+                                url: shareUrl,
+                              });
+                            } catch (err) {
+                              console.log('Share cancelled');
+                            }
+                          } else {
+                            // Fallback: Copy share link
+                            await navigator.clipboard.writeText(shareUrl);
+                            setIsShared(true);
+                            setTimeout(() => setIsShared(false), 2000);
+                          }
+                        }}
                       >
                         <Share2 className="h-4 w-4" />
-                        <span className={cn(isMobile && "hidden sm:inline")}>Share</span>
+                        <span className={cn(isMobile && "hidden sm:inline")}>
+                          {isShared ? "Link Copied!" : "Share"}
+                        </span>
                       </Button>
                     </div>
                   </div>
                   <div className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground">
                     <Code2 className="h-4 w-4 flex-shrink-0" />
-                    <code className="font-mono text-xs bg-muted px-2 py-1 rounded">
-                      https://gradient-svg-generator.vercel.app{previewUrl}
-                    </code>
+                    <div className="flex-1 overflow-hidden">
+                      <code className="font-mono text-xs bg-muted px-2 py-1 rounded block truncate">
+                        https://gradient-svg-generator.vercel.app{previewUrl}
+                      </code>
+                    </div>
                   </div>
                 </div>
               </div>
