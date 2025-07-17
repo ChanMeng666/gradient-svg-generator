@@ -50,7 +50,9 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
     gradientDef,
     additionalElements,
     hasClipPath,
-    clipPathId
+    clipPathId,
+    useAdvancedEffect: result.useAdvancedEffect || false,
+    effectType: result.effectType || null
   };
 }
 
