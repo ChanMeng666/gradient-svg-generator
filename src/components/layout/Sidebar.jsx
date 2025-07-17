@@ -42,24 +42,34 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
   const filteredTemplates = useMemo(() => {
     let results = templates;
 
-    // Apply search
-    if (searchQuery) {
-      results = fuse.search(searchQuery).map(result => result.item);
-    }
-
-    // Apply category filter
-    if (selectedCategories.length > 0) {
-      results = results.filter(template => 
-        selectedCategories.includes(template.category)
-      );
-    }
-
-    // Apply tab filter
+    // Apply tab filter first
     if (activeTab === 'favorites') {
-      results = results.filter(template => favorites.includes(template.name));
+      // Only show templates that exist in both templates array AND favorites array
+      const validFavorites = favorites.filter(favName => 
+        templates.some(template => template.name === favName)
+      );
+      results = results.filter(template => validFavorites.includes(template.name));
     } else if (activeTab === 'recent') {
-      const recentNames = recentTemplates.map(t => t.name);
-      results = results.filter(template => recentNames.includes(template.name));
+      // Get recent template names and validate they still exist
+      const recentNames = recentTemplates
+        .map(t => t.name)
+        .filter(name => templates.some(template => template.name === name));
+      
+      // Sort by recency (most recent first)
+      results = recentNames
+        .map(name => templates.find(t => t.name === name))
+        .filter(Boolean);
+    } else {
+      // Only apply search and category filters on 'all' tab
+      if (searchQuery) {
+        results = fuse.search(searchQuery).map(result => result.item);
+      }
+
+      if (selectedCategories.length > 0) {
+        results = results.filter(template => 
+          selectedCategories.includes(template.category)
+        );
+      }
     }
 
     return results;
@@ -89,7 +99,7 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
     )}>
       <div className="flex flex-col h-full overflow-hidden">
         {/* Sidebar Header */}
-        <div className="p-4 border-b">
+        <div className="p-4 border-b flex-shrink-0">
           <div className="flex items-center justify-between">
             {!sidebarCollapsed && (
               <h2 className="text-lg font-semibold">Templates</h2>
@@ -98,9 +108,10 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
               variant="ghost"
               size="icon"
               onClick={toggleSidebar}
-              className="ml-auto"
+              className={cn("ml-auto", sidebarCollapsed && "mx-auto")}
+              title={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
             >
-              {sidebarCollapsed ? <ChevronRight /> : <ChevronLeft />}
+              {sidebarCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
             </Button>
           </div>
         </div>
@@ -127,13 +138,19 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
                   <Sparkles className="h-4 w-4 mr-1" />
                   All
                 </TabsTrigger>
-                <TabsTrigger value="favorites" className="flex-1">
+                <TabsTrigger value="favorites" className="flex-1 relative">
                   <Star className="h-4 w-4 mr-1" />
                   Favorites
+                  {favorites.length > 0 && (
+                    <span className="ml-1 text-xs">({favorites.length})</span>
+                  )}
                 </TabsTrigger>
-                <TabsTrigger value="recent" className="flex-1">
+                <TabsTrigger value="recent" className="flex-1 relative">
                   <Clock className="h-4 w-4 mr-1" />
                   Recent
+                  {recentTemplates.length > 0 && (
+                    <span className="ml-1 text-xs">({recentTemplates.length})</span>
+                  )}
                 </TabsTrigger>
               </TabsList>
 
@@ -163,41 +180,57 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
 
                 {/* Template Grid */}
                 <div className="p-4">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 gap-4">
                   {filteredTemplates.map((template) => (
                     <div
                       key={template.name}
                       className="relative group cursor-pointer"
                       onClick={() => onTemplateSelect(template)}
                     >
-                      <div className="relative rounded-lg overflow-hidden border bg-background transition-all hover:shadow-lg hover:scale-105">
+                      <div className="relative">
                         <img
-                          src={`/api/svg?text=PREVIEW&template=${template.name}&height=80`}
+                          src={`/api/svg?text=PREVIEW&template=${template.name}&height=120`}
                           alt={template.displayName}
                           className="w-full"
                           loading="lazy"
                         />
+                        
+                        {/* Favorite button */}
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="absolute top-2 right-2 h-8 w-8 bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                          onClick={(e) => toggleFavorite(e, template.name)}
+                        >
+                          <Star
+                            className={cn(
+                              "h-4 w-4",
+                              favorites.includes(template.name) && "fill-current text-yellow-500"
+                            )}
+                          />
+                        </Button>
                       </div>
                       
-                      {/* Favorite button */}
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="absolute top-1 right-1 h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
-                        onClick={(e) => toggleFavorite(e, template.name)}
-                      >
-                        <Star
-                          className={cn(
-                            "h-3 w-3",
-                            favorites.includes(template.name) && "fill-current text-yellow-500"
-                          )}
-                        />
-                      </Button>
+                      {/* Template name */}
+                      <div className="mt-2">
+                        <div className="text-sm font-medium text-center">
+                          {template.displayName}
+                        </div>
+                        {activeTab === 'recent' && (
+                          <div className="text-xs text-muted-foreground text-center mt-1">
+                            Recently used
+                          </div>
+                        )}
+                      </div>
                     </div>
                   ))}
                     {filteredTemplates.length === 0 && (
-                      <div className="text-center py-8 text-muted-foreground col-span-2">
-                        <p className="text-sm">No templates found</p>
+                      <div className="text-center py-8 text-muted-foreground">
+                        <p className="text-sm">
+                          {activeTab === 'favorites' && "No favorite templates yet. Click the star icon to add favorites."}
+                          {activeTab === 'recent' && "No recent templates. Select a template to get started."}
+                          {activeTab === 'all' && "No templates found matching your search."}
+                        </p>
                       </div>
                     )}
                   </div>

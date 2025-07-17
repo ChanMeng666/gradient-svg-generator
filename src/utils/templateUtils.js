@@ -60,16 +60,23 @@ const allTemplateGroups = [
 // Get all templates as a flat array
 export function getAllTemplates() {
   const allTemplates = [];
+  const seenNames = new Set();
   
   allTemplateGroups.forEach((templateGroup, groupIndex) => {
     // Handle both object and array formats
     if (Array.isArray(templateGroup)) {
       // If it's an array, add all templates
-      allTemplates.push(...templateGroup);
+      templateGroup.forEach(template => {
+        if (template && template.name && !seenNames.has(template.name)) {
+          seenNames.add(template.name);
+          allTemplates.push(template);
+        }
+      });
     } else if (typeof templateGroup === 'object' && templateGroup !== null) {
       // If it's an object, convert to array
       Object.values(templateGroup).forEach(template => {
-        if (template && typeof template === 'object' && template.name) {
+        if (template && typeof template === 'object' && template.name && !seenNames.has(template.name)) {
+          seenNames.add(template.name);
           // Add category based on the template group index
           const categoryMap = ['basic', 'pride', 'nature', 'tech', 'art', 'emotion', 'material', 
             'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming', 
