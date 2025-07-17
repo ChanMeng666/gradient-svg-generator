@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, memo } from 'react';
 import { FixedSizeGrid as Grid } from 'react-window';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
@@ -6,8 +6,9 @@ import { Star } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '../../lib/utils';
 import TemplatePreviewModal from './TemplatePreviewModal';
+import { throttle } from '../../utils/performance';
 
-const TemplateCard = ({ template, onFavorite, isFavorite, style, onPreview }) => {
+const TemplateCard = memo(({ template, onFavorite, isFavorite, style, onPreview }) => {
   return (
     <div style={style} className="p-3">
       <Card className="h-full overflow-hidden hover:shadow-lg transition-all">
@@ -52,7 +53,7 @@ const TemplateCard = ({ template, onFavorite, isFavorite, style, onPreview }) =>
       </Card>
     </div>
   );
-};
+});
 
 export default function VirtualizedTemplateGrid({ 
   templates, 

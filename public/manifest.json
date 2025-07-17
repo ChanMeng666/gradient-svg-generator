@@ -1,0 +1,54 @@
+{
+  "name": "Gradient SVG Generator",
+  "short_name": "GradientSVG",
+  "description": "Create beautiful animated SVG gradients with 216+ templates",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["productivity", "utilities", "graphics"],
+  "screenshots": [
+    {
+      "src": "/screenshot-1.png",
+      "sizes": "412x915",
+      "type": "image/png"
+    },
+    {
+      "src": "/screenshot-2.png",
+      "sizes": "412x915", 
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Create New",
+      "short_name": "Create",
+      "description": "Create a new gradient",
+      "url": "/create",
+      "icons": [{ "src": "/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Templates",
+      "short_name": "Templates",
+      "description": "Browse all templates",
+      "url": "/templates",
+      "icons": [{ "src": "/icon-96.png", "sizes": "96x96" }]
+    }
+  ]
+}

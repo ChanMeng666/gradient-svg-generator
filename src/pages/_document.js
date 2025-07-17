@@ -16,8 +16,15 @@ export default function Document() {
         {/* Apple Touch Icon */}
         <link rel="apple-touch-icon" href="/gradient-svg-generator.svg" />
         
-        {/* Manifest */}
+        {/* PWA Meta Tags */}
+        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        
+        {/* Viewport for mobile optimization */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </Head>
       <body>
         <Main />
