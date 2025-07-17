@@ -48,7 +48,7 @@ export default function Home() {
     { name: "plasma-field", displayName: "Plasma Field", users: "1.5k" },
     { name: "cosmic-voyage", displayName: "Cosmic Voyage", users: "1.2k" },
     { name: "neon-pulse", displayName: "Neon Pulse", users: "980" },
-    { name: "matrix-code", displayName: "Matrix Code", users: "850" },
+    { name: "cyber-matrix", displayName: "Cyber Matrix", users: "850" },
   ];
 
   // Features

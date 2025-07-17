@@ -250,7 +250,7 @@ export function getPopularTemplates() {
     'plasma-field',       // exists
     'cosmic-voyage',      // replaced cosmic-dust
     'neon-pulse',         // exists
-    'matrix-code',        // replaced data-stream to avoid duplicate
+    'cyber-matrix',       // replaced data-stream to avoid duplicate
   ];
   
   return popular
