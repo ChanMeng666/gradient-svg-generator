@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import Header from '../components/layout/Header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -10,15 +11,45 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs'
 import { getAllTemplates, getCategories, getTemplatesByCategory } from '../utils/templateUtils';
 import { Search, Grid3x3, List, Filter, ChevronRight, Star } from 'lucide-react';
 import { cn } from '../lib/utils';
+import useStore from '../store/useStore';
+import TemplatePreviewModal from '../components/features/TemplatePreviewModal';
+
+// Dynamic import for virtualized grid
+const VirtualizedTemplateGrid = dynamic(
+  () => import('../components/features/VirtualizedTemplateGrid'),
+  { ssr: false }
+);
 
 export default function Templates() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [viewMode, setViewMode] = useState('grid');
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const containerRef = useRef(null);
+  
+  const { favorites, addFavorite, removeFavorite } = useStore();
 
   const templates = useMemo(() => getAllTemplates(), []);
   const categories = useMemo(() => getCategories(), []);
+  
+  // Measure container size for virtualization
+  useEffect(() => {
+    const measureContainer = () => {
+      if (containerRef.current) {
+        setContainerSize({
+          width: containerRef.current.clientWidth,
+          height: window.innerHeight - 300 // Adjust based on header/filter height
+        });
+      }
+    };
+
+    measureContainer();
+    window.addEventListener('resize', measureContainer);
+    return () => window.removeEventListener('resize', measureContainer);
+  }, []);
 
   // Filter templates
   const filteredTemplates = useMemo(() => {
@@ -139,10 +170,32 @@ export default function Templates() {
         </section>
 
         {/* Template Grid/List */}
-        <section className="container mx-auto px-4 pb-20">
+        <section className="container mx-auto px-4 pb-20" ref={containerRef}>
           {viewMode === 'grid' ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredTemplates.map((template) => (
+            containerSize.width > 0 && filteredTemplates.length > 20 ? (
+              // Use virtualization for large datasets
+              <VirtualizedTemplateGrid
+                templates={filteredTemplates}
+                favorites={favorites}
+                onFavorite={(templateName) => {
+                  if (favorites.includes(templateName)) {
+                    removeFavorite(templateName);
+                  } else {
+                    addFavorite(templateName);
+                  }
+                }}
+                width={containerSize.width}
+                height={containerSize.height}
+                columnCount={
+                  containerSize.width < 640 ? 1 :
+                  containerSize.width < 768 ? 2 :
+                  containerSize.width < 1024 ? 3 : 4
+                }
+              />
+            ) : (
+              // Use regular grid for small datasets
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredTemplates.map((template) => (
                 <Card key={template.name} className="overflow-hidden hover:shadow-lg transition-all">
                   <div className="aspect-video bg-muted relative group">
                     <img
@@ -155,8 +208,16 @@ export default function Templates() {
                       size="icon"
                       variant="secondary"
                       className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (favorites.includes(template.name)) {
+                          removeFavorite(template.name);
+                        } else {
+                          addFavorite(template.name);
+                        }
+                      }}
                     >
-                      <Star className="h-4 w-4" />
+                      <Star className={cn("h-4 w-4", favorites.includes(template.name) && "fill-current text-yellow-500")} />
                     </Button>
                   </div>
                   <CardHeader className="pb-3">
@@ -172,14 +233,18 @@ export default function Templates() {
                           Use Template
                         </Button>
                       </Link>
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" onClick={() => {
+                        setSelectedTemplate(template);
+                        setIsModalOpen(true);
+                      }}>
                         Preview
                       </Button>
                     </div>
                   </CardContent>
                 </Card>
               ))}
-            </div>
+              </div>
+            )
           ) : (
             <div className="space-y-4">
               {filteredTemplates.map((template) => (
@@ -224,6 +289,23 @@ export default function Templates() {
             </div>
           )}
         </section>
+        
+        <TemplatePreviewModal
+          template={selectedTemplate}
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedTemplate(null);
+          }}
+          onFavorite={(templateName) => {
+            if (favorites.includes(templateName)) {
+              removeFavorite(templateName);
+            } else {
+              addFavorite(templateName);
+            }
+          }}
+          isFavorite={selectedTemplate && favorites.includes(selectedTemplate.name)}
+        />
       </div>
     </>
   );
