@@ -59,7 +59,11 @@ const allTemplateGroups = [
 
 // Get all templates as a flat array
 export function getAllTemplates() {
-  return allTemplateGroups.flat();
+  return allTemplateGroups.flat().map(template => ({
+    ...template,
+    displayName: template.label || template.displayName || template.name,
+    category: template.category || 'basic'
+  }));
 }
 
 // Legacy function - Create a flat map of all templates
@@ -141,7 +145,15 @@ export function searchTemplates(query) {
 
 // Get template by name
 export function getTemplateByName(name) {
-  return getAllTemplates().find(template => template.name === name);
+  const template = allTemplateGroups.flat().find(t => t.name === name);
+  if (template) {
+    return {
+      ...template,
+      displayName: template.label || template.displayName || template.name,
+      category: template.category || 'basic'
+    };
+  }
+  return null;
 }
 
 // Legacy function - Get template configuration by name
@@ -191,12 +203,12 @@ export function getFeaturedTemplates() {
 // Get popular templates (mock data for now)
 export function getPopularTemplates() {
   const popular = [
-    'gradient-wave',
-    'aurora-flow',
-    'plasma-field',
-    'cosmic-dust',
-    'neon-pulse',
-    'data-stream',
+    'wave-flow',          // replaced gradient-wave
+    'aurora-borealis',    // replaced aurora-flow
+    'plasma-field',       // exists
+    'cosmic-voyage',      // replaced cosmic-dust
+    'neon-pulse',         // exists
+    'matrix-code',        // replaced data-stream to avoid duplicate
   ];
   
   return popular

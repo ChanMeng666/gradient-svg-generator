@@ -11,7 +11,7 @@ const useStore = create(
         template: null,
         gradientType: 'horizontal',
         duration: '6s',
-        colors: [],
+        colors: ['#ff0080', '#7928ca', '#ff0080'], // Default gradient colors
       },
       
       // UI state

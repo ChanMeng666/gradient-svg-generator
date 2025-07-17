@@ -60,9 +60,11 @@ export default function Create() {
     });
 
     // Add colors
-    currentConfig.colors?.forEach((color, index) => {
-      params.append(`color${index}`, color.replace('#', ''));
-    });
+    if (currentConfig.colors && currentConfig.colors.length > 0) {
+      currentConfig.colors.forEach((color, index) => {
+        params.append(`color${index}`, color.replace('#', ''));
+      });
+    }
 
     setPreviewUrl(`/api/svg?${params.toString()}`);
   }, [currentConfig]);
