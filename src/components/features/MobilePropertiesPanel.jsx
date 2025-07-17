@@ -65,28 +65,31 @@ export default function MobilePropertiesPanel({
       side="bottom" 
       className={cn(
         "mobile-properties-sheet",
-        expandedHeight ? "h-[80vh]" : "h-[60vh]",
-        "transition-all duration-300 overflow-y-auto"
+        expandedHeight ? "h-[calc(100vh-5rem)]" : "h-[50vh]",
+        "transition-all duration-300 overflow-hidden flex flex-col"
       )}
       onClose={onClose}
     >
-      <SheetHeader className="mt-4">
-        <div className="flex items-center justify-between">
-          <SheetTitle>Properties</SheetTitle>
+      <SheetHeader className="mt-2 pb-2 flex-shrink-0">
+        <div className="flex items-center justify-between pr-8">
+          <div>
+            <SheetTitle>Properties</SheetTitle>
+            <Badge variant={isCustomMode ? "outline" : "default"} className="w-fit mt-1">
+              {isCustomMode ? "Custom Mode" : "Template Mode"}
+            </Badge>
+          </div>
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setExpandedHeight(!expandedHeight)}
+            className="ml-4"
           >
-            {expandedHeight ? <ChevronDown /> : <ChevronUp />}
+            {expandedHeight ? <ChevronDown className="h-5 w-5" /> : <ChevronUp className="h-5 w-5" />}
           </Button>
         </div>
-        <Badge variant={isCustomMode ? "outline" : "default"} className="w-fit">
-          {isCustomMode ? "Custom Mode" : "Template Mode"}
-        </Badge>
       </SheetHeader>
 
-      <div className="mt-6">
+      <div className="flex-1 overflow-y-auto pb-20 px-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="basic" className="text-xs">

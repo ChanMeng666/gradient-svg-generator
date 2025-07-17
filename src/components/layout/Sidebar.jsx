@@ -84,10 +84,10 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
 
   return (
     <aside className={cn(
-      "h-full bg-muted/50 border-r transition-all duration-300",
+      "h-full bg-muted/50 border-r transition-all duration-300 flex flex-col",
       sidebarCollapsed ? "w-16" : "w-80"
     )}>
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full overflow-hidden">
         {/* Sidebar Header */}
         <div className="p-4 border-b">
           <div className="flex items-center justify-between">
@@ -106,9 +106,9 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
         </div>
 
         {!sidebarCollapsed && (
-          <>
+          <div className="flex-1 flex flex-col overflow-hidden">
             {/* Search */}
-            <div className="p-4">
+            <div className="p-4 flex-shrink-0">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
@@ -121,8 +121,8 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
             </div>
 
             {/* Tabs */}
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
-              <TabsList className="mx-4">
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col overflow-hidden">
+              <TabsList className="mx-4 flex-shrink-0">
                 <TabsTrigger value="all" className="flex-1">
                   <Sparkles className="h-4 w-4 mr-1" />
                   All
@@ -137,42 +137,44 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
                 </TabsTrigger>
               </TabsList>
 
-              {/* Category Filter */}
-              {activeTab === 'all' && (
-                <div className="p-4 border-b">
-                  <div className="flex items-center mb-2">
-                    <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
-                    <span className="text-sm font-medium">Categories</span>
+              {/* Scrollable content area */}
+              <div className="flex-1 overflow-y-auto">
+                {/* Category Filter */}
+                {activeTab === 'all' && (
+                  <div className="p-4 border-b">
+                    <div className="flex items-center mb-2">
+                      <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
+                      <span className="text-sm font-medium">Categories</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {categories.map(category => (
+                        <Badge
+                          key={category.id}
+                          variant={selectedCategories.includes(category.id) ? "default" : "outline"}
+                          className="cursor-pointer"
+                          onClick={() => toggleCategory(category.id)}
+                        >
+                          {category.icon} {category.name}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {categories.map(category => (
-                      <Badge
-                        key={category.id}
-                        variant={selectedCategories.includes(category.id) ? "default" : "outline"}
-                        className="cursor-pointer"
-                        onClick={() => toggleCategory(category.id)}
-                      >
-                        {category.icon} {category.name}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
+                )}
 
-              {/* Template Grid */}
-              <div className="flex-1 overflow-y-auto p-4">
-                <div className="grid grid-cols-2 gap-3">
+                {/* Template Grid */}
+                <div className="p-4">
+                  <div className="grid grid-cols-2 gap-3">
                   {filteredTemplates.map((template) => (
                     <div
                       key={template.name}
                       className="relative group cursor-pointer"
                       onClick={() => onTemplateSelect(template)}
                     >
-                      <div className="aspect-video rounded-lg overflow-hidden border bg-background transition-all hover:shadow-lg hover:scale-105">
+                      <div className="relative rounded-lg overflow-hidden border bg-background transition-all hover:shadow-lg hover:scale-105">
                         <img
                           src={`/api/svg?text=PREVIEW&template=${template.name}&height=80`}
                           alt={template.displayName}
-                          className="w-full h-full object-cover"
+                          className="w-full"
                           loading="lazy"
                         />
                       </div>
@@ -193,16 +195,16 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
                       </Button>
                     </div>
                   ))}
-                </div>
-
-                {filteredTemplates.length === 0 && (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <p className="text-sm">No templates found</p>
+                    {filteredTemplates.length === 0 && (
+                      <div className="text-center py-8 text-muted-foreground col-span-2">
+                        <p className="text-sm">No templates found</p>
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
             </Tabs>
-          </>
+          </div>
         )}
       </div>
     </aside>

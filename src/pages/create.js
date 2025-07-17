@@ -11,6 +11,9 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs'
 import { Sheet } from '../components/ui/sheet';
 import { cn } from '../lib/utils';
 import useStore from '../store/useStore';
+import styles from '../styles/create.module.css';
+import { ColorPicker } from '../components/ui/color-picker';
+import { GRADIENT_TYPES } from '../constants/gradientTypes';
 import { 
   Download, 
   Copy, 
@@ -26,7 +29,6 @@ import {
 } from 'lucide-react';
 
 // Dynamic imports for heavy components
-const ColorPicker = dynamic(() => import('../components/features/ColorPicker'), { ssr: false });
 const PropertiesPanel = dynamic(() => import('../components/features/PropertiesPanel'), { ssr: false });
 const MobilePropertiesPanel = dynamic(() => import('../components/features/MobilePropertiesPanel'), { ssr: false });
 const SwipeableTemplateCarousel = dynamic(() => import('../components/features/SwipeableTemplateCarousel'), { ssr: false });
@@ -78,8 +80,9 @@ export default function Create() {
     });
 
     // Add colors
-    if (currentConfig.colors && currentConfig.colors.length > 0) {
-      currentConfig.colors.forEach((color, index) => {
+    const colors = currentConfig.colors || [];
+    if (colors.length > 0) {
+      colors.forEach((color, index) => {
         params.append(`color${index}`, color.replace('#', ''));
       });
     }
@@ -130,6 +133,24 @@ export default function Create() {
     toggleMode(); // Switch to custom mode
   };
 
+  // Color handling functions
+  const handleColorUpdate = (index, newColor) => {
+    const colors = currentConfig.colors || [];
+    const newColors = [...colors];
+    newColors[index] = newColor;
+    updateConfig({ colors: newColors });
+  };
+
+  const handleAddColor = () => {
+    const colors = currentConfig.colors || [];
+    updateConfig({ colors: [...colors, 'ff0000'] });
+  };
+
+  const handleRemoveColor = (index) => {
+    const colors = currentConfig.colors || [];
+    updateConfig({ colors: colors.filter((_, i) => i !== index) });
+  };
+
   return (
     <>
       <Head>
@@ -140,10 +161,11 @@ export default function Create() {
       <div className="min-h-screen bg-background">
         <Header onMenuClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
         
-        <div className="flex h-[calc(100vh-4rem)]">
+        <div className={styles.pageContainer}>
           {/* Sidebar - Hidden on mobile, shown via menu */}
           <div className={cn(
-            "fixed inset-y-16 left-0 z-40 w-80 transform transition-transform md:relative md:inset-y-0 md:transform-none",
+            "h-full transition-all duration-300 flex-shrink-0",
+            "fixed inset-y-16 left-0 z-40 md:relative md:inset-y-0",
             mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
           )}>
             <Sidebar
@@ -162,11 +184,11 @@ export default function Create() {
           )}
 
           {/* Main Content */}
-          <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+          <div className={styles.mainContent}>
             {/* Canvas Area */}
-            <div className="flex-1 flex flex-col bg-muted/30">
+            <div className={styles.canvasArea}>
               {/* Canvas Header */}
-              <div className="border-b bg-background/95 backdrop-blur p-4">
+              <div className={styles.canvasHeader}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 sm:gap-4">
                     <h2 className={cn(
@@ -203,70 +225,70 @@ export default function Create() {
 
               {/* Canvas */}
               <div className={cn(
-                "flex-1 flex items-center justify-center",
-                isMobile ? "p-4" : "p-8",
+                styles.canvasContent,
                 isFullscreen && "fixed inset-0 z-50 bg-background"
               )}>
-                <Card className={cn(
-                  "w-full overflow-hidden shadow-2xl",
-                  !isMobile && "max-w-4xl"
-                )}>
-                  <div className="aspect-[2/1] bg-white flex items-center justify-center">
-                    {previewUrl && (
-                      <img 
-                        src={previewUrl}
-                        alt="Gradient Preview"
-                        className="w-full h-full object-contain"
-                      />
-                    )}
-                  </div>
-                </Card>
+                <div className={styles.canvasWrapper}>
+                  <Card className={styles.previewCard}>
+                    <div className={styles.previewImage}>
+                      {previewUrl && (
+                        <img 
+                          src={previewUrl}
+                          alt="Gradient Preview"
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                    </div>
+                  </Card>
+                </div>
               </div>
 
               {/* Actions Bar */}
-              <div className="border-t bg-background/95 backdrop-blur p-4">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-2">
-                    <Button 
-                      onClick={downloadSVG} 
-                      className={cn(
-                        "gap-2",
-                        isMobile && "text-xs px-3"
-                      )}
-                    >
-                      <Download className="h-4 w-4" />
-                      <span className={cn(isMobile && "hidden sm:inline")}>Download</span>
-                      {isMobile && "SVG"}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={copyCode}
-                      className={cn(
-                        "gap-2",
-                        isMobile && "text-xs px-3"
-                      )}
-                    >
-                      <Copy className="h-4 w-4" />
-                      <span className={cn(isMobile && "hidden sm:inline")}>
-                        {isCopied ? "Copied!" : "Copy Code"}
-                      </span>
-                      {isMobile && (isCopied ? "✓" : "Copy")}
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      className={cn(
-                        "gap-2",
-                        isMobile && "text-xs px-3"
-                      )}
-                    >
-                      <Share2 className="h-4 w-4" />
-                      <span className={cn(isMobile && "hidden sm:inline")}>Share</span>
-                    </Button>
+              <div className={styles.actionsBar}>
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-2">
+                      <Button 
+                        onClick={downloadSVG} 
+                        className={cn(
+                          "gap-2",
+                          isMobile && "text-xs px-3"
+                        )}
+                      >
+                        <Download className="h-4 w-4" />
+                        <span className={cn(isMobile && "hidden sm:inline")}>Download</span>
+                        {isMobile && "SVG"}
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={copyCode}
+                        className={cn(
+                          "gap-2",
+                          isMobile && "text-xs px-3"
+                        )}
+                      >
+                        <Copy className="h-4 w-4" />
+                        <span className={cn(isMobile && "hidden sm:inline")}>
+                          {isCopied ? "Copied!" : "Copy Code"}
+                        </span>
+                        {isMobile && (isCopied ? "✓" : "Copy")}
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className={cn(
+                          "gap-2",
+                          isMobile && "text-xs px-3"
+                        )}
+                      >
+                        <Share2 className="h-4 w-4" />
+                        <span className={cn(isMobile && "hidden sm:inline")}>Share</span>
+                      </Button>
+                    </div>
                   </div>
                   <div className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground">
-                    <Code2 className="h-4 w-4" />
-                    <code className="font-mono text-xs">
-                      {typeof window !== 'undefined' ? window.location.origin : ''}{previewUrl}
+                    <Code2 className="h-4 w-4 flex-shrink-0" />
+                    <code className="font-mono text-xs bg-muted px-2 py-1 rounded">
+                      https://gradient-svg-generator.vercel.app{previewUrl}
                     </code>
                   </div>
                 </div>
@@ -275,8 +297,8 @@ export default function Create() {
 
             {/* Properties Panel - Desktop */}
             {!isMobile && (
-              <div className="w-full lg:w-96 border-l bg-background overflow-y-auto">
-                <div className="p-6">
+              <div className={styles.propertiesPanel}>
+                <div className={styles.propertiesContent}>
                   <h2 className="text-lg font-semibold mb-4">Properties</h2>
                   
                   <Tabs defaultValue="basic" className="w-full">
@@ -346,12 +368,35 @@ export default function Create() {
 
                     <TabsContent value="colors" className="mt-4">
                       <div className="space-y-4">
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground mb-4">
                           {isCustomMode 
-                            ? "Add custom colors to your gradient"
+                            ? "Add custom colors to your gradient. Click + to add more colors."
                             : "Colors are defined by the selected template"}
                         </p>
-                        {/* Color picker component would go here */}
+                        {isCustomMode && currentConfig.colors && currentConfig.colors.length > 0 && (
+                          <div className="space-y-3">
+                            {currentConfig.colors.map((color, index) => (
+                              <ColorPicker
+                                key={index}
+                                color={color}
+                                index={index}
+                                total={currentConfig.colors.length}
+                                onUpdate={handleColorUpdate}
+                                onAdd={handleAddColor}
+                                onRemove={handleRemoveColor}
+                              />
+                            ))}
+                          </div>
+                        )}
+                        {isCustomMode && (!currentConfig.colors || currentConfig.colors.length === 0) && (
+                          <Button 
+                            onClick={handleAddColor}
+                            variant="outline"
+                            className="w-full"
+                          >
+                            Add First Color
+                          </Button>
+                        )}
                       </div>
                     </TabsContent>
 
@@ -359,22 +404,25 @@ export default function Create() {
                       <div className="space-y-4">
                         <div>
                           <label className="text-sm font-medium mb-2 block">
-                            Gradient Type
+                            Gradient Type ({GRADIENT_TYPES.length} types available)
                           </label>
-                          <select
-                            value={currentConfig.gradientType}
-                            onChange={(e) => updateConfig({ gradientType: e.target.value })}
-                            className="w-full rounded-md border border-input bg-background px-3 py-2"
-                            disabled={!isCustomMode}
-                          >
-                            <option value="horizontal">Horizontal</option>
-                            <option value="vertical">Vertical</option>
-                            <option value="diagonal">Diagonal</option>
-                            <option value="radial">Radial</option>
-                            <option value="conical">Conical</option>
-                          </select>
+                          <div className="max-h-96 overflow-y-auto border rounded-md p-2">
+                            <div className="grid grid-cols-2 gap-2">
+                              {GRADIENT_TYPES.map(type => (
+                                <Button
+                                  key={type.value}
+                                  variant={currentConfig.gradientType === type.value ? "default" : "outline"}
+                                  size="sm"
+                                  onClick={() => updateConfig({ gradientType: type.value })}
+                                  disabled={!isCustomMode}
+                                  className="justify-start text-xs"
+                                >
+                                  {type.label}
+                                </Button>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                        {/* More advanced options would go here */}
                       </div>
                     </TabsContent>
                   </Tabs>
@@ -384,7 +432,7 @@ export default function Create() {
 
             {/* Mobile Properties Button */}
             {isMobile && (
-              <div className="fixed bottom-4 right-4 z-20">
+              <div className="fixed bottom-20 right-4 z-20">
                 <Button 
                   size="icon"
                   className="h-14 w-14 rounded-full shadow-lg"
@@ -411,7 +459,7 @@ export default function Create() {
 
       {/* Mobile Template Carousel - Show on mobile when not in fullscreen */}
       {isMobile && !isFullscreen && !mobilePropertiesOpen && (
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t">
+        <div className="fixed bottom-16 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t">
           <div className="mb-2">
             <h3 className="text-sm font-medium text-muted-foreground">Quick Templates</h3>
           </div>
@@ -420,7 +468,7 @@ export default function Create() {
             onTemplateSelect={handleTemplateSelect}
             favorites={favorites}
             onFavorite={toggleFavorite}
-            className="pb-16" // Add padding for the floating button
+            className="pb-4"
           />
         </div>
       )}
