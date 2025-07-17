@@ -41,14 +41,14 @@ export default function Home() {
     { name: "neural-network", displayName: "Neural Network", category: "digitalLife", text: "AI" },
   ];
 
-  // Popular templates
+  // Popular templates - use actual existing templates
   const popularTemplates = [
-    { name: "gradient-wave", displayName: "Gradient Wave", users: "2.3k" },
-    { name: "aurora-flow", displayName: "Aurora Flow", users: "1.8k" },
+    { name: "wave-flow", displayName: "Wave Flow", users: "2.3k" },
+    { name: "aurora-borealis", displayName: "Aurora Borealis", users: "1.8k" },
     { name: "plasma-field", displayName: "Plasma Field", users: "1.5k" },
-    { name: "cosmic-dust", displayName: "Cosmic Dust", users: "1.2k" },
+    { name: "cosmic-voyage", displayName: "Cosmic Voyage", users: "1.2k" },
     { name: "neon-pulse", displayName: "Neon Pulse", users: "980" },
-    { name: "data-stream", displayName: "Data Stream", users: "850" },
+    { name: "matrix-code", displayName: "Matrix Code", users: "850" },
   ];
 
   // Features

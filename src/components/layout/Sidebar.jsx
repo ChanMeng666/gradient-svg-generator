@@ -169,12 +169,12 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
                       onClick={() => onTemplateSelect(template)}
                     >
                       <div className="aspect-video rounded-lg overflow-hidden border bg-background transition-all hover:shadow-lg hover:scale-105">
-                        {/* Template preview would go here */}
-                        <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                          <span className="text-xs font-medium text-center px-2">
-                            {template.displayName}
-                          </span>
-                        </div>
+                        <img
+                          src={`/api/svg?text=PREVIEW&template=${template.name}&height=80`}
+                          alt={template.displayName}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
                       </div>
                       
                       {/* Favorite button */}

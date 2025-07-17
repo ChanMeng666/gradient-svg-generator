@@ -59,11 +59,34 @@ const allTemplateGroups = [
 
 // Get all templates as a flat array
 export function getAllTemplates() {
-  return allTemplateGroups.flat().map(template => ({
-    ...template,
-    displayName: template.label || template.displayName || template.name,
-    category: template.category || 'basic'
-  }));
+  const allTemplates = [];
+  
+  allTemplateGroups.forEach((templateGroup, groupIndex) => {
+    // Handle both object and array formats
+    if (Array.isArray(templateGroup)) {
+      // If it's an array, add all templates
+      allTemplates.push(...templateGroup);
+    } else if (typeof templateGroup === 'object' && templateGroup !== null) {
+      // If it's an object, convert to array
+      Object.values(templateGroup).forEach(template => {
+        if (template && typeof template === 'object' && template.name) {
+          // Add category based on the template group index
+          const categoryMap = ['basic', 'pride', 'nature', 'tech', 'art', 'emotion', 'material', 
+            'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming', 
+            'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
+            'digitalLife', 'cyberAesthetics', 'consciousness'];
+          
+          allTemplates.push({
+            ...template,
+            displayName: template.label || template.displayName || template.name,
+            category: template.category || categoryMap[groupIndex] || 'basic'
+          });
+        }
+      });
+    }
+  });
+  
+  return allTemplates;
 }
 
 // Legacy function - Create a flat map of all templates
@@ -145,14 +168,33 @@ export function searchTemplates(query) {
 
 // Get template by name
 export function getTemplateByName(name) {
-  const template = allTemplateGroups.flat().find(t => t.name === name);
-  if (template) {
-    return {
-      ...template,
-      displayName: template.label || template.displayName || template.name,
-      category: template.category || 'basic'
-    };
+  // Search through all template groups
+  for (let groupIndex = 0; groupIndex < allTemplateGroups.length; groupIndex++) {
+    const templateGroup = allTemplateGroups[groupIndex];
+    let template = null;
+    
+    if (Array.isArray(templateGroup)) {
+      // If it's an array, find the template
+      template = templateGroup.find(t => t && t.name === name);
+    } else if (typeof templateGroup === 'object' && templateGroup !== null) {
+      // If it's an object, check if the key exists
+      template = templateGroup[name];
+    }
+    
+    if (template) {
+      const categoryMap = ['basic', 'pride', 'nature', 'tech', 'art', 'emotion', 'material', 
+        'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming', 
+        'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
+        'digitalLife', 'cyberAesthetics', 'consciousness'];
+      
+      return {
+        ...template,
+        displayName: template.label || template.displayName || template.name,
+        category: template.category || categoryMap[groupIndex] || 'basic'
+      };
+    }
   }
+  
   return null;
 }
 
