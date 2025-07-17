@@ -53,12 +53,7 @@ export const reportWebVitals = (onPerfEntry) => {
   }
 };
 
-// Lazy loading helper
-export const lazyWithPreload = (factory) => {
-  const Component = lazy(factory);
-  Component.preload = factory;
-  return Component;
-};
+// Lazy loading helper (removed due to React import dependency)
 
 // Check if device has low performance
 export const isLowEndDevice = () => {
