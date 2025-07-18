@@ -112,7 +112,7 @@ export default function Create() {
 
   // Copy code to clipboard
   const copyCode = async () => {
-    const code = `![${currentConfig.text}](${window.location.origin}${previewUrl})`;
+    const code = `![${currentConfig.text}](https://gradient-svg-generator.vercel.app${previewUrl})`;
     await navigator.clipboard.writeText(code);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
@@ -331,12 +331,14 @@ export default function Create() {
                       </Button>
                     </div>
                   </div>
-                  <div className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground">
-                    <Code2 className="h-4 w-4 flex-shrink-0" />
-                    <div className="flex-1 overflow-hidden">
-                      <code className="font-mono text-xs bg-muted px-2 py-1 rounded block truncate">
-                        https://gradient-svg-generator.vercel.app{previewUrl}
-                      </code>
+                  <div className="hidden lg:block mt-3">
+                    <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <Code2 className="h-4 w-4 flex-shrink-0 mt-1" />
+                      <div className="flex-1">
+                        <code className="font-mono text-xs bg-muted px-3 py-2 rounded block break-all whitespace-pre-wrap">
+                          https://gradient-svg-generator.vercel.app{previewUrl}
+                        </code>
+                      </div>
                     </div>
                   </div>
                 </div>
