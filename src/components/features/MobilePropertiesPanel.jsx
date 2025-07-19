@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SheetContent, SheetHeader, SheetTitle } from '../ui/sheet';
+// Removed Sheet imports - using custom implementation
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
@@ -17,8 +17,10 @@ export default function MobilePropertiesPanel({
   isModified,
   resetToTemplate
 }) {
-  const [panelHeight, setPanelHeight] = useState('mini'); // 'mini', 'normal', 'expanded'
+  const [panelHeight, setPanelHeight] = useState('normal'); // 'mini', 'normal', 'expanded'
   const [activeTab, setActiveTab] = useState('basic');
+  
+  if (!isOpen) return null;
 
   // Handle swipe gestures
   useEffect(() => {
@@ -65,11 +67,11 @@ export default function MobilePropertiesPanel({
     }
   }, [isOpen, onClose, panelHeight]);
 
-  // Height mapping
+  // Height mapping - account for bottom navigation
   const heightClasses = {
-    mini: "h-[25vh]",
-    normal: "h-[50vh]",
-    expanded: "h-[75vh]"
+    mini: "h-[30vh] mb-16",
+    normal: "h-[50vh] mb-16",
+    expanded: "h-[calc(100vh-8rem)]" // Full height minus header and some padding
   };
 
   // Cycle through heights
@@ -80,17 +82,19 @@ export default function MobilePropertiesPanel({
   };
 
   return (
-    <SheetContent 
-      side="bottom" 
+    <div
       className={cn(
+        "fixed inset-x-0 bottom-0 z-50 bg-background border-t rounded-t-[10px] shadow-lg",
         "mobile-properties-sheet",
         heightClasses[panelHeight],
         "transition-all duration-300 overflow-hidden flex flex-col"
       )}
-      onClose={onClose}
     >
+      {/* Drag handle */}
+      <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-muted mb-2" />
+      
       {/* Custom header with properly spaced buttons */}
-      <div className="flex items-start justify-between p-4 pb-2">
+      <div className="flex items-start justify-between p-4 pb-2 pt-0">
         <div className="flex-1">
           <h3 className="text-lg font-semibold">Properties</h3>
           <Badge 
@@ -273,6 +277,6 @@ export default function MobilePropertiesPanel({
           </TabsContent>
         </Tabs>
       </div>
-    </SheetContent>
+    </div>
   );
 }

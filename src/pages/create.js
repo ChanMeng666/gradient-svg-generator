@@ -522,8 +522,8 @@ export default function Create() {
             )}
 
             {/* Mobile Properties Button */}
-            {isMobile && (
-              <div className="fixed bottom-20 right-4 z-20">
+            {isMobile && !mobilePropertiesOpen && (
+              <div className="fixed bottom-24 right-4 z-20">
                 <Button 
                   size="icon"
                   className="h-14 w-14 rounded-full shadow-lg"

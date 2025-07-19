@@ -33,7 +33,14 @@ const SheetContent = React.forwardRef(({ side = "bottom", className, children, o
   }
 
   return (
-    <Sheet open={true} onOpenChange={onClose}>
+    <>
+      {/* Only show overlay for non-bottom sheets */}
+      {side !== "bottom" && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/50 animate-in fade-in md:hidden" 
+          onClick={onClose}
+        />
+      )}
       <div
         ref={ref}
         className={cn(
@@ -59,7 +66,7 @@ const SheetContent = React.forwardRef(({ side = "bottom", className, children, o
           {children}
         </div>
       </div>
-    </Sheet>
+    </>
   )
 })
 SheetContent.displayName = "SheetContent"
