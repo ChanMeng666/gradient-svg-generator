@@ -19,8 +19,6 @@ export default function MobilePropertiesPanel({
 }) {
   const [panelHeight, setPanelHeight] = useState('normal'); // 'mini', 'normal', 'expanded'
   const [activeTab, setActiveTab] = useState('basic');
-  
-  if (!isOpen) return null;
 
   // Handle swipe gestures
   useEffect(() => {
@@ -80,6 +78,9 @@ export default function MobilePropertiesPanel({
     else if (panelHeight === 'normal') setPanelHeight('expanded');
     else setPanelHeight('mini');
   };
+
+  // Render nothing if panel is not open
+  if (!isOpen) return null;
 
   return (
     <div
