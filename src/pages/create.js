@@ -46,7 +46,11 @@ export default function Create() {
     toggleMode,
     addToRecent,
     favorites,
-    toggleFavorite
+    toggleFavorite,
+    baseTemplate,
+    isModified,
+    resetToTemplate,
+    clearTemplate
   } = useStore();
 
   const [previewUrl, setPreviewUrl] = useState('');
@@ -87,21 +91,38 @@ export default function Create() {
     const params = new URLSearchParams({
       text: currentConfig.text || 'Preview',
       height: currentConfig.height || 120,
-      ...(currentConfig.template && { template: currentConfig.template }),
-      ...(currentConfig.gradientType && { gradientType: currentConfig.gradientType }),
-      ...(currentConfig.duration && { duration: currentConfig.duration }),
     });
 
-    // Add colors
-    const colors = currentConfig.colors || [];
-    if (colors.length > 0) {
-      colors.forEach((color, index) => {
-        params.append(`color${index}`, color.replace('#', ''));
-      });
+    // Debug logging
+    console.log('Generating preview URL:', {
+      template: currentConfig.template,
+      isModified,
+      gradientType: currentConfig.gradientType,
+      duration: currentConfig.duration,
+      colors: currentConfig.colors
+    });
+
+    // If template is not modified, use template parameter only
+    if (currentConfig.template && !isModified) {
+      params.append('template', currentConfig.template);
+    } else {
+      // Send all specific parameters when template is modified or in custom mode
+      params.append('gradientType', currentConfig.gradientType || 'horizontal');
+      params.append('duration', currentConfig.duration || '6s');
+      
+      // Add colors
+      const colors = currentConfig.colors || [];
+      if (colors.length > 0) {
+        colors.forEach((color, index) => {
+          params.append(`color${index}`, color.replace('#', ''));
+        });
+      }
     }
 
-    setPreviewUrl(`/api/svg?${params.toString()}`);
-  }, [currentConfig]);
+    const url = `/api/svg?${params.toString()}`;
+    console.log('Generated URL:', url);
+    setPreviewUrl(url);
+  }, [currentConfig, isModified]);
 
   // Handle template selection
   const handleTemplateSelect = (template) => {
@@ -135,15 +156,30 @@ export default function Create() {
 
   // Reset to defaults
   const resetConfig = () => {
-    updateConfig({
-      text: 'Gradient SVG',
-      height: 120,
-      template: null,
-      gradientType: 'horizontal',
-      duration: '6s',
-      colors: [],
-    });
-    toggleMode(); // Switch to custom mode
+    if (baseTemplate && !isModified) {
+      // If using an unmodified template, clear it
+      clearTemplate();
+      updateConfig({
+        text: 'Gradient SVG',
+        height: 120,
+        gradientType: 'horizontal',
+        duration: '6s',
+        colors: ['#ff0080', '#7928ca', '#ff0080'],
+      });
+    } else if (baseTemplate && isModified) {
+      // If template is modified, reset to original template
+      resetToTemplate();
+    } else {
+      // If in custom mode, reset to defaults
+      updateConfig({
+        text: 'Gradient SVG',
+        height: 120,
+        template: null,
+        gradientType: 'horizontal',
+        duration: '6s',
+        colors: ['#ff0080', '#7928ca', '#ff0080'],
+      });
+    }
   };
 
   // Color handling functions
@@ -209,10 +245,10 @@ export default function Create() {
                       isMobile ? "text-base" : "text-lg"
                     )}>Preview</h2>
                     <Badge 
-                      variant={isCustomMode ? "outline" : "default"}
+                      variant={baseTemplate && !isModified ? "default" : "outline"}
                       className={cn(isMobile && "text-xs px-2 py-0.5")}
                     >
-                      {isCustomMode ? "Custom" : "Template"}
+                      {baseTemplate ? (isModified ? "Modified" : "Template") : "Custom"}
                     </Badge>
                   </div>
                   <div className="flex items-center gap-1 sm:gap-2">
@@ -418,12 +454,19 @@ export default function Create() {
 
                     <TabsContent value="colors" className="mt-4">
                       <div className="space-y-4">
-                        <p className="text-sm text-muted-foreground mb-4">
-                          {isCustomMode 
-                            ? "Add custom colors to your gradient. Click + to add more colors."
-                            : "Colors are defined by the selected template"}
-                        </p>
-                        {isCustomMode && currentConfig.colors && currentConfig.colors.length > 0 && (
+                        <div className="space-y-2">
+                          <p className="text-sm text-muted-foreground">
+                            Customize your gradient colors. Click + to add more colors.
+                          </p>
+                          {baseTemplate && (
+                            <p className="text-xs text-muted-foreground">
+                              {isModified ? 
+                                `Modified from template: ${baseTemplate.label || baseTemplate.name}` : 
+                                `Using template: ${baseTemplate.label || baseTemplate.name}`}
+                            </p>
+                          )}
+                        </div>
+                        {currentConfig.colors && currentConfig.colors.length > 0 ? (
                           <div className="space-y-3">
                             {currentConfig.colors.map((color, index) => (
                               <ColorPicker
@@ -437,14 +480,23 @@ export default function Create() {
                               />
                             ))}
                           </div>
-                        )}
-                        {isCustomMode && (!currentConfig.colors || currentConfig.colors.length === 0) && (
+                        ) : (
                           <Button 
                             onClick={handleAddColor}
                             variant="outline"
                             className="w-full"
                           >
                             Add First Color
+                          </Button>
+                        )}
+                        {baseTemplate && isModified && (
+                          <Button
+                            onClick={resetToTemplate}
+                            variant="outline"
+                            size="sm"
+                            className="w-full"
+                          >
+                            Reset to Original Template Colors
                           </Button>
                         )}
                       </div>
@@ -464,7 +516,6 @@ export default function Create() {
                                   variant={currentConfig.gradientType === type.value ? "default" : "outline"}
                                   size="sm"
                                   onClick={() => updateConfig({ gradientType: type.value })}
-                                  disabled={!isCustomMode}
                                   className="justify-start text-xs"
                                 >
                                   {type.label}
@@ -504,6 +555,9 @@ export default function Create() {
           currentConfig={currentConfig}
           updateConfig={updateConfig}
           isCustomMode={isCustomMode}
+          baseTemplate={baseTemplate}
+          isModified={isModified}
+          resetToTemplate={resetToTemplate}
         />
       )}
 

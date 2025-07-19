@@ -12,7 +12,10 @@ export default function MobilePropertiesPanel({
   onClose, 
   currentConfig, 
   updateConfig, 
-  isCustomMode 
+  isCustomMode,
+  baseTemplate,
+  isModified,
+  resetToTemplate
 }) {
   const [expandedHeight, setExpandedHeight] = useState(false);
   const [activeTab, setActiveTab] = useState('basic');
@@ -74,8 +77,11 @@ export default function MobilePropertiesPanel({
         <div className="flex items-center justify-between pr-8">
           <div>
             <SheetTitle>Properties</SheetTitle>
-            <Badge variant={isCustomMode ? "outline" : "default"} className="w-fit mt-1">
-              {isCustomMode ? "Custom Mode" : "Template Mode"}
+            <Badge 
+              variant={baseTemplate && !isModified ? "default" : "outline"} 
+              className="w-fit mt-1"
+            >
+              {baseTemplate ? (isModified ? "Modified" : "Template") : "Custom"}
             </Badge>
           </div>
           <Button
@@ -164,11 +170,18 @@ export default function MobilePropertiesPanel({
 
           <TabsContent value="colors" className="mt-4">
             <div className="space-y-4">
-              <p className="text-sm text-muted-foreground">
-                {isCustomMode 
-                  ? "Add custom colors to your gradient"
-                  : "Colors are defined by the selected template"}
-              </p>
+              <div className="space-y-2">
+                <p className="text-sm text-muted-foreground">
+                  Customize your gradient colors
+                </p>
+                {baseTemplate && (
+                  <p className="text-xs text-muted-foreground">
+                    {isModified ? 
+                      `Modified from: ${baseTemplate.label || baseTemplate.name}` : 
+                      `Using: ${baseTemplate.label || baseTemplate.name}`}
+                  </p>
+                )}
+              </div>
               
               {/* Color picker interface for mobile */}
               <div className="grid grid-cols-3 gap-3">
@@ -179,18 +192,27 @@ export default function MobilePropertiesPanel({
                     style={{ backgroundColor: color }}
                   />
                 ))}
-                {isCustomMode && (
-                  <Button
-                    variant="outline"
-                    className="aspect-square"
-                    onClick={() => {
-                      // Add color picker functionality
-                    }}
-                  >
-                    +
-                  </Button>
-                )}
+                <Button
+                  variant="outline"
+                  className="aspect-square"
+                  onClick={() => {
+                    // Add color picker functionality
+                  }}
+                >
+                  +
+                </Button>
               </div>
+              
+              {baseTemplate && isModified && (
+                <Button
+                  onClick={resetToTemplate}
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                >
+                  Reset to Template Colors
+                </Button>
+              )}
             </div>
           </TabsContent>
 
@@ -206,7 +228,6 @@ export default function MobilePropertiesPanel({
                       key={type}
                       variant={currentConfig.gradientType === type ? "default" : "outline"}
                       onClick={() => updateConfig({ gradientType: type })}
-                      disabled={!isCustomMode}
                       className="w-full capitalize"
                     >
                       {type}

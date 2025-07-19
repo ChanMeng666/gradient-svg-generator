@@ -14,6 +14,10 @@ const useStore = create(
         colors: ['#ff0080', '#7928ca', '#ff0080'], // Default gradient colors
       },
       
+      // Template tracking
+      baseTemplate: null, // Original template before modifications
+      isModified: false, // Whether current config differs from base template
+      
       // UI state
       isCustomMode: true,
       sidebarCollapsed: false,
@@ -25,9 +29,41 @@ const useStore = create(
       recentTemplates: [],
       
       // Actions
-      updateConfig: (config) => set((state) => ({
-        currentConfig: { ...state.currentConfig, ...config }
-      })),
+      updateConfig: (config) => set((state) => {
+        const newConfig = { ...state.currentConfig, ...config };
+        // Check if config has been modified from base template
+        let isModified = false;
+        if (state.baseTemplate) {
+          const templateDuration = state.baseTemplate.animationDuration || state.baseTemplate.duration || '6s';
+          isModified = 
+            JSON.stringify(newConfig.colors) !== JSON.stringify(state.baseTemplate.colors) ||
+            newConfig.gradientType !== state.baseTemplate.gradientType ||
+            newConfig.duration !== templateDuration;
+          
+          console.log('Checking if modified:', {
+            colors: {
+              new: newConfig.colors,
+              template: state.baseTemplate.colors,
+              match: JSON.stringify(newConfig.colors) === JSON.stringify(state.baseTemplate.colors)
+            },
+            gradientType: {
+              new: newConfig.gradientType,
+              template: state.baseTemplate.gradientType,
+              match: newConfig.gradientType === state.baseTemplate.gradientType
+            },
+            duration: {
+              new: newConfig.duration,
+              template: templateDuration,
+              match: newConfig.duration === templateDuration
+            },
+            isModified
+          });
+        }
+        return {
+          currentConfig: newConfig,
+          isModified,
+        };
+      }),
       
       setTemplate: (template) => set((state) => ({
         currentConfig: {
@@ -35,9 +71,34 @@ const useStore = create(
           template: template.name,
           colors: template.colors || [],
           gradientType: template.gradientType || 'horizontal',
+          duration: template.animationDuration || template.duration || '6s',
           animation: template.animation || {},
         },
-        isCustomMode: false,
+        baseTemplate: template,
+        isModified: false,
+        isCustomMode: true, // Always keep custom mode enabled
+      })),
+      
+      resetToTemplate: () => set((state) => {
+        if (!state.baseTemplate) return state;
+        return {
+          currentConfig: {
+            ...state.currentConfig,
+            colors: state.baseTemplate.colors || [],
+            gradientType: state.baseTemplate.gradientType || 'horizontal',
+            duration: state.baseTemplate.animationDuration || state.baseTemplate.duration || '6s',
+          },
+          isModified: false,
+        };
+      }),
+      
+      clearTemplate: () => set((state) => ({
+        currentConfig: {
+          ...state.currentConfig,
+          template: null,
+        },
+        baseTemplate: null,
+        isModified: false,
       })),
       
       toggleMode: () => set((state) => ({ isCustomMode: !state.isCustomMode })),
