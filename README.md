@@ -702,16 +702,25 @@ https://gradient-svg-generator.vercel.app/api/svg
 ```
 
 #### Custom Colors
+
+![Custom Colors](https://gradient-svg-generator.vercel.app/api/svg?text=Custom&color0=ff0080&color1=8000ff&color2=0080ff)
+
 ```markdown
 ![Custom Colors](https://gradient-svg-generator.vercel.app/api/svg?text=Custom&color0=ff0080&color1=8000ff&color2=0080ff)
 ```
 
 #### Template with Customization
+
+![Custom Template](https://gradient-svg-generator.vercel.app/api/svg?text=AI%20Project&template=neural-network&height=180&duration=5s)
+
 ```markdown
 ![Custom Template](https://gradient-svg-generator.vercel.app/api/svg?text=AI%20Project&template=neural-network&height=180&duration=5s)
 ```
 
 #### Advanced Multi-Color
+
+![Rainbow](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s)
+
 ```markdown
 ![Rainbow](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s)
 ```
