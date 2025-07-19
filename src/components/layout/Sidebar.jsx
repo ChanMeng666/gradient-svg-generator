@@ -97,10 +97,10 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
 
   return (
     <aside className={cn(
-      "h-full bg-muted/50 border-r transition-all duration-300 flex flex-col",
+      "h-full bg-background border-r transition-all duration-300 flex flex-col",
       sidebarCollapsed ? "w-16" : "w-80"
     )}>
-      <div className="flex flex-col h-full overflow-hidden">
+      <div className="flex flex-col h-full overflow-hidden pb-16 md:pb-0">
         {/* Sidebar Header */}
         <div className="p-4 border-b flex-shrink-0">
           <div className="flex items-center justify-between">

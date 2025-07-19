@@ -204,10 +204,10 @@ export default function Create() {
         <div className={styles.pageContainer}>
           {/* Sidebar - Hidden on mobile, shown via menu */}
           <div className={cn(
-            "h-full transition-all duration-300 flex-shrink-0",
-            "fixed inset-y-16 left-0 z-40 md:relative md:inset-y-0",
+            "transition-all duration-300 flex-shrink-0",
+            "fixed top-16 left-0 z-40 md:relative md:inset-y-0",
             "md:h-full", // Full height on desktop
-            isMobile ? "bottom-16" : "", // Account for mobile nav bar
+            isMobile ? "bottom-0 h-[calc(100vh-4rem)]" : "h-full", // Full height minus header on mobile
             mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
           )}>
             <Sidebar
@@ -249,17 +249,23 @@ export default function Create() {
                       variant="outline"
                       size={isMobile ? "default" : "icon"}
                       onClick={() => setIsFullscreen(!isFullscreen)}
-                      className={cn(isMobile && "h-10 w-10")}
+                      className={cn(
+                        "transition-all",
+                        isMobile ? "h-12 w-12" : "h-10 w-10"
+                      )}
                     >
-                      <Maximize2 className={cn(isMobile ? "h-5 w-5" : "h-4 w-4")} />
+                      <Maximize2 className={cn(isMobile ? "h-6 w-6" : "h-4 w-4")} />
                     </Button>
                     <Button
                       variant="outline"
                       size={isMobile ? "default" : "icon"}
                       onClick={resetConfig}
-                      className={cn(isMobile && "h-10 w-10")}
+                      className={cn(
+                        "transition-all",
+                        isMobile ? "h-12 w-12" : "h-10 w-10"
+                      )}
                     >
-                      <RotateCcw className={cn(isMobile ? "h-5 w-5" : "h-4 w-4")} />
+                      <RotateCcw className={cn(isMobile ? "h-6 w-6" : "h-4 w-4")} />
                     </Button>
                   </div>
                 </div>
