@@ -153,7 +153,7 @@ export default function MobilePropertiesPanel({
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto pb-6 px-4">
+      <div className="flex-1 overflow-y-auto pb-20 px-4">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="basic" className="text-xs">
@@ -323,7 +323,7 @@ export default function MobilePropertiesPanel({
                 <label className="text-sm font-medium mb-2 block">
                   Gradient Type ({GRADIENT_TYPES.length} types available)
                 </label>
-                <div className="max-h-96 overflow-y-auto border rounded-md p-2">
+                <div className="max-h-64 overflow-y-auto border rounded-md p-2 mb-4">
                   <div className="grid grid-cols-2 gap-2">
                     {GRADIENT_TYPES.map(type => (
                       <Button
