@@ -694,6 +694,9 @@ https://gradient-svg-generator.vercel.app/api/svg
 ### 🚀 Usage Examples
 
 #### Basic Usage
+
+![Basic Gradient](https://gradient-svg-generator.vercel.app/api/svg?text=Basic%20Gradient)
+
 ```markdown
 ![Basic Gradient](https://gradient-svg-generator.vercel.app/api/svg?text=Basic%20Gradient)
 ```
