@@ -93,14 +93,6 @@ export default function Create() {
       height: currentConfig.height || 120,
     });
 
-    // Debug logging
-    console.log('Generating preview URL:', {
-      template: currentConfig.template,
-      isModified,
-      gradientType: currentConfig.gradientType,
-      duration: currentConfig.duration,
-      colors: currentConfig.colors
-    });
 
     // If template is not modified, use template parameter only
     if (currentConfig.template && !isModified) {
@@ -119,9 +111,7 @@ export default function Create() {
       }
     }
 
-    const url = `/api/svg?${params.toString()}`;
-    console.log('Generated URL:', url);
-    setPreviewUrl(url);
+    setPreviewUrl(`/api/svg?${params.toString()}`);
   }, [currentConfig, isModified]);
 
   // Handle template selection
@@ -561,18 +551,26 @@ export default function Create() {
         />
       )}
 
-      {/* Mobile Template Carousel - Show on mobile when not in fullscreen */}
+      {/* Mobile Template Carousel - Show on mobile when not in fullscreen and properties panel is closed */}
       {isMobile && !isFullscreen && !mobilePropertiesOpen && (
-        <div className="fixed bottom-16 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t">
-          <div className="mb-2">
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t">
+          <div className="mb-2 flex items-center justify-between">
             <h3 className="text-sm font-medium text-muted-foreground">Quick Templates</h3>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={() => setMobileMenuOpen(true)}
+              className="text-xs"
+            >
+              View All
+            </Button>
           </div>
           <SwipeableTemplateCarousel
             templates={templates.slice(0, 12)} // Show top 12 templates
             onTemplateSelect={handleTemplateSelect}
             favorites={favorites}
             onFavorite={toggleFavorite}
-            className="pb-4"
+            className="pb-safe" // Add safe area padding for iOS
           />
         </div>
       )}

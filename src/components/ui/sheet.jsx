@@ -47,13 +47,15 @@ const SheetContent = React.forwardRef(({ side = "bottom", className, children, o
           {side === "bottom" && (
             <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-muted" />
           )}
-          <button
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none z-10 p-1"
-            onClick={onClose}
-          >
-            <X className="h-5 w-5" />
-            <span className="sr-only">Close</span>
-          </button>
+          {side !== "bottom" && (
+            <button
+              className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none z-10 p-1"
+              onClick={onClose}
+            >
+              <X className="h-5 w-5" />
+              <span className="sr-only">Close</span>
+            </button>
+          )}
           {children}
         </div>
       </div>

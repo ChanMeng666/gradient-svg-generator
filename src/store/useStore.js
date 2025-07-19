@@ -39,25 +39,6 @@ const useStore = create(
             JSON.stringify(newConfig.colors) !== JSON.stringify(state.baseTemplate.colors) ||
             newConfig.gradientType !== state.baseTemplate.gradientType ||
             newConfig.duration !== templateDuration;
-          
-          console.log('Checking if modified:', {
-            colors: {
-              new: newConfig.colors,
-              template: state.baseTemplate.colors,
-              match: JSON.stringify(newConfig.colors) === JSON.stringify(state.baseTemplate.colors)
-            },
-            gradientType: {
-              new: newConfig.gradientType,
-              template: state.baseTemplate.gradientType,
-              match: newConfig.gradientType === state.baseTemplate.gradientType
-            },
-            duration: {
-              new: newConfig.duration,
-              template: templateDuration,
-              match: newConfig.duration === templateDuration
-            },
-            isModified
-          });
         }
         return {
           currentConfig: newConfig,

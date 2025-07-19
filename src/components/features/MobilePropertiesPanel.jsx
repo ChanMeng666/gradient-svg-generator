@@ -4,7 +4,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Type, Palette, Sliders, ChevronUp, ChevronDown } from 'lucide-react';
+import { Type, Palette, Sliders, ChevronUp, ChevronDown, X } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export default function MobilePropertiesPanel({ 
@@ -17,7 +17,7 @@ export default function MobilePropertiesPanel({
   isModified,
   resetToTemplate
 }) {
-  const [expandedHeight, setExpandedHeight] = useState(false);
+  const [panelHeight, setPanelHeight] = useState('mini'); // 'mini', 'normal', 'expanded'
   const [activeTab, setActiveTab] = useState('basic');
 
   // Handle swipe gestures
@@ -45,7 +45,9 @@ export default function MobilePropertiesPanel({
       }
       // Swipe up to expand
       else if (diffY < -threshold) {
-        setExpandedHeight(true);
+        // Cycle through heights
+        if (panelHeight === 'mini') setPanelHeight('normal');
+        else if (panelHeight === 'normal') setPanelHeight('expanded');
       }
     };
 
@@ -61,41 +63,73 @@ export default function MobilePropertiesPanel({
         sheet.removeEventListener('touchend', handleTouchEnd);
       };
     }
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, panelHeight]);
+
+  // Height mapping
+  const heightClasses = {
+    mini: "h-[25vh]",
+    normal: "h-[50vh]",
+    expanded: "h-[75vh]"
+  };
+
+  // Cycle through heights
+  const cycleHeight = () => {
+    if (panelHeight === 'mini') setPanelHeight('normal');
+    else if (panelHeight === 'normal') setPanelHeight('expanded');
+    else setPanelHeight('mini');
+  };
 
   return (
     <SheetContent 
       side="bottom" 
       className={cn(
         "mobile-properties-sheet",
-        expandedHeight ? "h-[calc(100vh-5rem)]" : "h-[50vh]",
+        heightClasses[panelHeight],
         "transition-all duration-300 overflow-hidden flex flex-col"
       )}
       onClose={onClose}
     >
-      <SheetHeader className="mt-2 pb-2 flex-shrink-0">
-        <div className="flex items-center justify-between pr-8">
-          <div>
-            <SheetTitle>Properties</SheetTitle>
-            <Badge 
-              variant={baseTemplate && !isModified ? "default" : "outline"} 
-              className="w-fit mt-1"
-            >
-              {baseTemplate ? (isModified ? "Modified" : "Template") : "Custom"}
-            </Badge>
-          </div>
+      {/* Custom header with properly spaced buttons */}
+      <div className="flex items-start justify-between p-4 pb-2">
+        <div className="flex-1">
+          <h3 className="text-lg font-semibold">Properties</h3>
+          <Badge 
+            variant={baseTemplate && !isModified ? "default" : "outline"} 
+            className="w-fit mt-1"
+          >
+            {baseTemplate ? (isModified ? "Modified" : "Template") : "Custom"}
+          </Badge>
+        </div>
+        
+        {/* Button container with proper spacing */}
+        <div className="flex items-center gap-2 ml-4">
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setExpandedHeight(!expandedHeight)}
-            className="ml-4"
+            onClick={cycleHeight}
+            className="h-10 w-10"
+            title={`Height: ${panelHeight}`}
           >
-            {expandedHeight ? <ChevronDown className="h-5 w-5" /> : <ChevronUp className="h-5 w-5" />}
+            {panelHeight === 'expanded' ? (
+              <ChevronDown className="h-5 w-5" />
+            ) : (
+              <ChevronUp className="h-5 w-5" />
+            )}
+          </Button>
+          
+          {/* Close button moved here for better spacing */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onClose}
+            className="h-10 w-10"
+          >
+            <X className="h-5 w-5" />
           </Button>
         </div>
-      </SheetHeader>
+      </div>
 
-      <div className="flex-1 overflow-y-auto pb-20 px-6">
+      <div className="flex-1 overflow-y-auto pb-6 px-4">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="basic" className="text-xs">
