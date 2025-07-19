@@ -1006,7 +1006,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <!-- Images -->
 [image-star]: https://gradient-svg-generator.vercel.app/api/svg?text=%E2%AD%90%20Star%20Us%20on%20GitHub%20%E2%AD%90&template=golden-leaf&height=100
-[image-feat-core]: https://gradient-svg-generator.vercel.app/api/svg?text=Core%20Features&template=diamond-sparkle&height=80
+[image-feat-core]: https://gradient-svg-generator.vercel.app/api/svg?text=Core%20Features&template=diamond-sparkle&height=120
 
 <!-- Trending -->
 [github-trending-url]: https://github.com/trending
