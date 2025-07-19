@@ -36,6 +36,33 @@ export default function Templates() {
   const templates = useMemo(() => getAllTemplates(), []);
   const categories = useMemo(() => getCategories(), []);
   
+  // Get available gradient types and animation speeds from actual templates
+  const availableGradientTypes = useMemo(() => {
+    const types = new Set();
+    templates.forEach(t => {
+      if (t.gradientType) {
+        types.add(t.gradientType);
+      }
+    });
+    return Array.from(types).sort();
+  }, [templates]);
+  
+  const availableAnimationSpeeds = useMemo(() => {
+    const speeds = new Map();
+    templates.forEach(t => {
+      const duration = t.animationDuration || '6s';
+      const seconds = parseInt(duration);
+      if (seconds <= 4) {
+        speeds.set('fast', true);
+      } else if (seconds >= 5 && seconds <= 8) {
+        speeds.set('normal', true);
+      } else if (seconds >= 9) {
+        speeds.set('slow', true);
+      }
+    });
+    return Array.from(speeds.keys());
+  }, [templates]);
+  
   // Measure container size for virtualization
   useEffect(() => {
     const measureContainer = () => {
@@ -74,7 +101,7 @@ export default function Templates() {
     // Advanced filters
     if (selectedFilters.length > 0) {
       const gradientTypeFilters = selectedFilters.filter(f => 
-        ['horizontal', 'vertical', 'diagonal', 'radial', 'conical'].includes(f)
+        availableGradientTypes.includes(f)
       );
       const speedFilters = selectedFilters.filter(f => 
         ['fast', 'normal', 'slow'].includes(f)
@@ -87,16 +114,17 @@ export default function Templates() {
       if (speedFilters.length > 0) {
         result = result.filter(t => {
           const duration = t.animationDuration || '6s';
-          if (speedFilters.includes('fast') && (duration === '3s' || duration === '4s')) return true;
-          if (speedFilters.includes('normal') && (duration === '6s' || duration === '7s' || duration === '8s')) return true;
-          if (speedFilters.includes('slow') && (duration === '10s' || duration === '15s')) return true;
+          const seconds = parseInt(duration);
+          if (speedFilters.includes('fast') && seconds <= 4) return true;
+          if (speedFilters.includes('normal') && seconds >= 5 && seconds <= 8) return true;
+          if (speedFilters.includes('slow') && seconds >= 9) return true;
           return false;
         });
       }
     }
 
     return result;
-  }, [templates, selectedCategory, searchQuery, selectedFilters]);
+  }, [templates, selectedCategory, searchQuery, selectedFilters, availableGradientTypes]);
 
   return (
     <>
@@ -205,46 +233,54 @@ export default function Templates() {
             <div className="container mx-auto px-4 py-6">
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-sm font-medium mb-3">Filter by Gradient Type</h3>
+                  <h3 className="text-sm font-medium mb-3">Filter by Gradient Type ({availableGradientTypes.length} types)</h3>
                   <div className="flex flex-wrap gap-2">
-                    {['horizontal', 'vertical', 'diagonal', 'radial', 'conical'].map((type) => (
-                      <Badge
-                        key={type}
-                        variant={selectedFilters.includes(type) ? "default" : "outline"}
-                        className="cursor-pointer capitalize"
-                        onClick={() => {
-                          setSelectedFilters(prev => 
-                            prev.includes(type) 
-                              ? prev.filter(f => f !== type)
-                              : [...prev, type]
-                          );
-                        }}
-                      >
-                        {type}
-                      </Badge>
-                    ))}
+                    {availableGradientTypes.length > 0 ? (
+                      availableGradientTypes.map((type) => (
+                        <Badge
+                          key={type}
+                          variant={selectedFilters.includes(type) ? "default" : "outline"}
+                          className="cursor-pointer capitalize"
+                          onClick={() => {
+                            setSelectedFilters(prev => 
+                              prev.includes(type) 
+                                ? prev.filter(f => f !== type)
+                                : [...prev, type]
+                            );
+                          }}
+                        >
+                          {type.replace(/([A-Z])/g, ' $1').trim()}
+                        </Badge>
+                      ))
+                    ) : (
+                      <p className="text-sm text-muted-foreground">No gradient types available</p>
+                    )}
                   </div>
                 </div>
                 
                 <div>
                   <h3 className="text-sm font-medium mb-3">Filter by Animation Speed</h3>
                   <div className="flex flex-wrap gap-2">
-                    {['fast', 'normal', 'slow'].map((speed) => (
-                      <Badge
-                        key={speed}
-                        variant={selectedFilters.includes(speed) ? "default" : "outline"}
-                        className="cursor-pointer capitalize"
-                        onClick={() => {
-                          setSelectedFilters(prev => 
-                            prev.includes(speed) 
-                              ? prev.filter(f => f !== speed)
-                              : [...prev, speed]
-                          );
-                        }}
-                      >
-                        {speed}
-                      </Badge>
-                    ))}
+                    {availableAnimationSpeeds.length > 0 ? (
+                      availableAnimationSpeeds.map((speed) => (
+                        <Badge
+                          key={speed}
+                          variant={selectedFilters.includes(speed) ? "default" : "outline"}
+                          className="cursor-pointer capitalize"
+                          onClick={() => {
+                            setSelectedFilters(prev => 
+                              prev.includes(speed) 
+                                ? prev.filter(f => f !== speed)
+                                : [...prev, speed]
+                            );
+                          }}
+                        >
+                          {speed}
+                        </Badge>
+                      ))
+                    ) : (
+                      <p className="text-sm text-muted-foreground">No animation speeds available</p>
+                    )}
                   </div>
                 </div>
                 
