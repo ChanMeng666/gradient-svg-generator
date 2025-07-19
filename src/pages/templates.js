@@ -28,6 +28,7 @@ export default function Templates() {
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   const containerRef = useRef(null);
   
   const { favorites, addFavorite, removeFavorite } = useStore();
@@ -70,8 +71,32 @@ export default function Templates() {
       );
     }
 
+    // Advanced filters
+    if (selectedFilters.length > 0) {
+      const gradientTypeFilters = selectedFilters.filter(f => 
+        ['horizontal', 'vertical', 'diagonal', 'radial', 'conical'].includes(f)
+      );
+      const speedFilters = selectedFilters.filter(f => 
+        ['fast', 'normal', 'slow'].includes(f)
+      );
+
+      if (gradientTypeFilters.length > 0) {
+        result = result.filter(t => gradientTypeFilters.includes(t.gradientType));
+      }
+
+      if (speedFilters.length > 0) {
+        result = result.filter(t => {
+          const duration = t.animationDuration || '6s';
+          if (speedFilters.includes('fast') && (duration === '3s' || duration === '4s')) return true;
+          if (speedFilters.includes('normal') && (duration === '6s' || duration === '7s' || duration === '8s')) return true;
+          if (speedFilters.includes('slow') && (duration === '10s' || duration === '15s')) return true;
+          return false;
+        });
+      }
+    }
+
     return result;
-  }, [templates, selectedCategory, searchQuery]);
+  }, [templates, selectedCategory, searchQuery, selectedFilters]);
 
   return (
     <>
@@ -162,12 +187,84 @@ export default function Templates() {
               {searchQuery && ` for "${searchQuery}"`}
               {selectedCategory !== 'all' && ` in ${categories.find(c => c.id === selectedCategory)?.name}`}
             </p>
-            <Button variant="outline" size="sm" className="gap-2">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="gap-2"
+              onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+            >
               <Filter className="h-4 w-4" />
               Advanced Filters
             </Button>
           </div>
         </section>
+
+        {/* Advanced Filters Panel */}
+        {showAdvancedFilters && (
+          <section className="border-b bg-muted/10">
+            <div className="container mx-auto px-4 py-6">
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-sm font-medium mb-3">Filter by Gradient Type</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {['horizontal', 'vertical', 'diagonal', 'radial', 'conical'].map((type) => (
+                      <Badge
+                        key={type}
+                        variant={selectedFilters.includes(type) ? "default" : "outline"}
+                        className="cursor-pointer capitalize"
+                        onClick={() => {
+                          setSelectedFilters(prev => 
+                            prev.includes(type) 
+                              ? prev.filter(f => f !== type)
+                              : [...prev, type]
+                          );
+                        }}
+                      >
+                        {type}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-sm font-medium mb-3">Filter by Animation Speed</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {['fast', 'normal', 'slow'].map((speed) => (
+                      <Badge
+                        key={speed}
+                        variant={selectedFilters.includes(speed) ? "default" : "outline"}
+                        className="cursor-pointer capitalize"
+                        onClick={() => {
+                          setSelectedFilters(prev => 
+                            prev.includes(speed) 
+                              ? prev.filter(f => f !== speed)
+                              : [...prev, speed]
+                          );
+                        }}
+                      >
+                        {speed}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="flex justify-between items-center pt-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSelectedFilters([])}
+                    disabled={selectedFilters.length === 0}
+                  >
+                    Clear Filters
+                  </Button>
+                  <p className="text-sm text-muted-foreground">
+                    {selectedFilters.length} filter{selectedFilters.length !== 1 ? 's' : ''} active
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Template Grid/List */}
         <section className="container mx-auto px-4 pb-20" ref={containerRef}>
@@ -196,8 +293,8 @@ export default function Templates() {
               // Use regular grid for small datasets
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredTemplates.map((template) => (
-                <Card key={template.name} className="overflow-hidden hover:shadow-lg transition-all">
-                  <div className="aspect-video bg-muted relative group">
+                <div key={template.name} className="group">
+                  <div className="aspect-video bg-muted relative overflow-hidden rounded-lg border hover:shadow-lg transition-all">
                     <img
                       src={`/api/svg?text=PREVIEW&template=${template.name}&height=150`}
                       alt={template.displayName}
@@ -220,13 +317,11 @@ export default function Templates() {
                       <Star className={cn("h-4 w-4", favorites.includes(template.name) && "fill-current text-yellow-500")} />
                     </Button>
                   </div>
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-lg">{template.displayName}</CardTitle>
-                    <CardDescription className="text-sm">
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold mb-1">{template.displayName}</h3>
+                    <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1">
                       {categories.find(c => c.id === template.category)?.icon} {template.category}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
+                    </p>
                     <div className="flex gap-2">
                       <Link href={`/create?template=${template.name}`} className="flex-1">
                         <Button className="w-full" size="sm">
@@ -240,8 +335,8 @@ export default function Templates() {
                         Preview
                       </Button>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
               </div>
             )
