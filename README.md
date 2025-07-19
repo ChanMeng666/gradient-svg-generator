@@ -1,6 +1,6 @@
 <div align="center"><a name="readme-top"></a>
 
-[![Project Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Gradient%20SVG%20Generator&height=200&template=hologram-matrix)](#)
+[![Project Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Gradient+SVG+Generator&height=300&gradientType=holographicUI&duration=10s&color0=00ffff&color1=40e0d0&color2=87ceeb&color3=add8e6&color4=b0e0e6&color5=f0f8ff)](#)
 
 # 🎨 Gradient SVG Generator<br/><h3>Professional Dynamic SVG Gradient Creator with 180+ Templates</h3>
 
@@ -12,7 +12,7 @@ One-click **FREE** deployment of your stunning gradient banners.
 
 <br/>
 
-[![🚀 Try Live Demo 🚀](https://gradient-svg-generator.vercel.app/api/svg?text=%F0%9F%9A%80Try%20Live%20Demo%F0%9F%9A%80&template=cyberpunk-city&height=240)][live-demo]
+[![🚀 Try Live Demo 🚀](https://gradient-svg-generator.vercel.app/api/svg?text=%F0%9F%9A%80+Try+Live+Demo+%F0%9F%9A%80&height=300&gradientType=dataMatrix&duration=10s&color0=00ff00&color1=00cc00&color2=009900&color3=006600&color4=003300&color5=001100)][live-demo]
 
 <br/>
 
@@ -49,7 +49,7 @@ One-click **FREE** deployment of your stunning gradient banners.
 <div align="center">
   <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20to%20Our%20Gallery&template=neural-network&height=120" alt="Neural Network" width="800"/>
   <p><em>Neural Network Template - AI-inspired gradient with animated effects</em></p>
-  
+
   ```markdown
   ![Neural Network](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20to%20Our%20Gallery&template=neural-network&height=120)
   ```
@@ -65,7 +65,7 @@ One-click **FREE** deployment of your stunning gradient banners.
         <p><strong>Hologram Matrix</strong></p>
         <details>
         <summary>📋 Copy Code</summary>
-        
+
   ```markdown
   ![Hologram Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Hologram%20Effect&template=hologram-matrix&height=100)
   ```
@@ -76,7 +76,7 @@ One-click **FREE** deployment of your stunning gradient banners.
         <p><strong>Energy Blast</strong></p>
         <details>
         <summary>📋 Copy Code</summary>
-        
+
   ```markdown
   ![Energy Blast](https://gradient-svg-generator.vercel.app/api/svg?text=Energy%20Blast&template=energy-blast&height=100)
   ```
@@ -89,7 +89,7 @@ One-click **FREE** deployment of your stunning gradient banners.
         <p><strong>Quantum Field</strong></p>
         <details>
         <summary>📋 Copy Code</summary>
-        
+
   ```markdown
   ![Quantum Field](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Field&template=quantum-field&height=100)
   ```
@@ -100,7 +100,7 @@ One-click **FREE** deployment of your stunning gradient banners.
         <p><strong>Diamond Sparkle</strong></p>
         <details>
         <summary>📋 Copy Code</summary>
-        
+
   ```markdown
   ![Diamond Sparkle](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Sparkle&template=diamond-sparkle&height=100)
   ```
@@ -120,7 +120,7 @@ One-click **FREE** deployment of your stunning gradient banners.
         <p><strong>Northern Aurora</strong></p>
         <details>
         <summary>📋 Copy Code</summary>
-        
+
   ```markdown
   ![Northern Aurora](https://gradient-svg-generator.vercel.app/api/svg?text=Aurora%20Borealis&template=northern-aurora&height=90)
   ```
@@ -131,7 +131,7 @@ One-click **FREE** deployment of your stunning gradient banners.
         <p><strong>Lava Flow</strong></p>
         <details>
         <summary>📋 Copy Code</summary>
-        
+
   ```markdown
   ![Lava Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Lava%20Flow&template=lava-flow&height=90)
   ```
@@ -142,7 +142,7 @@ One-click **FREE** deployment of your stunning gradient banners.
         <p><strong>Ocean Wave</strong></p>
         <details>
         <summary>📋 Copy Code</summary>
-        
+
   ```markdown
   ![Ocean Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Wave&template=ocean-wave&height=90)
   ```
@@ -163,7 +163,7 @@ One-click **FREE** deployment of your stunning gradient banners.
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Pride%20%26%20Progress&template=progress-pride&height=80" alt="Progress Pride" width="350"/>
         <p><strong>Progress Pride</strong></p>
-        
+
   ```markdown
   ![Progress Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Pride%20%26%20Progress&template=progress-pride&height=80)
   ```
@@ -171,7 +171,7 @@ One-click **FREE** deployment of your stunning gradient banners.
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Rights&template=trans-pride&height=80" alt="Trans Pride" width="350"/>
         <p><strong>Trans Pride</strong></p>
-        
+
   ```markdown
   ![Trans Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Rights&template=trans-pride&height=80)
   ```
@@ -188,7 +188,7 @@ One-click **FREE** deployment of your stunning gradient banners.
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Golden%20Leaf&template=golden-leaf&height=90" alt="Golden Leaf" width="300"/>
         <p><strong>Golden Leaf</strong></p>
-        
+
   ```markdown
   ![Golden Leaf](https://gradient-svg-generator.vercel.app/api/svg?text=Golden%20Leaf&template=golden-leaf&height=90)
   ```
@@ -196,7 +196,7 @@ One-click **FREE** deployment of your stunning gradient banners.
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Royal%20Velvet&template=royal-velvet&height=90" alt="Royal Velvet" width="300"/>
         <p><strong>Royal Velvet</strong></p>
-        
+
   ```markdown
   ![Royal Velvet](https://gradient-svg-generator.vercel.app/api/svg?text=Royal%20Velvet&template=royal-velvet&height=90)
   ```
@@ -204,7 +204,7 @@ One-click **FREE** deployment of your stunning gradient banners.
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Rose%20Gold&template=rose-gold&height=90" alt="Rose Gold" width="300"/>
         <p><strong>Rose Gold</strong></p>
-        
+
   ```markdown
   ![Rose Gold](https://gradient-svg-generator.vercel.app/api/svg?text=Rose%20Gold&template=rose-gold&height=90)
   ```
@@ -221,7 +221,7 @@ One-click **FREE** deployment of your stunning gradient banners.
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Pixel%20Art&template=pixel-art-retro&height=80" alt="Pixel Art" width="250"/>
         <p><strong>Pixel Art Retro</strong></p>
-        
+
   ```markdown
   ![Pixel Art](https://gradient-svg-generator.vercel.app/api/svg?text=Pixel%20Art&template=pixel-art-retro&height=80)
   ```
@@ -229,7 +229,7 @@ One-click **FREE** deployment of your stunning gradient banners.
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Arcade&template=neon-arcade&height=80" alt="Neon Arcade" width="250"/>
         <p><strong>Neon Arcade</strong></p>
-        
+
   ```markdown
   ![Neon Arcade](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Arcade&template=neon-arcade&height=80)
   ```
@@ -237,7 +237,7 @@ One-click **FREE** deployment of your stunning gradient banners.
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Retro%20Wave&template=retro-wave&height=80" alt="Retro Wave" width="250"/>
         <p><strong>Retro Wave</strong></p>
-        
+
   ```markdown
   ![Retro Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Retro%20Wave&template=retro-wave&height=80)
   ```
@@ -254,7 +254,7 @@ One-click **FREE** deployment of your stunning gradient banners.
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Cyber%20Matrix&template=cyber-matrix&height=80" alt="Cyber Matrix" width="350"/>
         <p><strong>Cyber Matrix</strong></p>
-        
+
   ```markdown
   ![Cyber Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Cyber%20Matrix&template=cyber-matrix&height=80)
   ```
@@ -262,7 +262,7 @@ One-click **FREE** deployment of your stunning gradient banners.
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Data%20Stream&template=data-stream&height=80" alt="Data Stream" width="350"/>
         <p><strong>Data Stream</strong></p>
-        
+
   ```markdown
   ![Data Stream](https://gradient-svg-generator.vercel.app/api/svg?text=Data%20Stream&template=data-stream&height=80)
   ```
@@ -363,7 +363,7 @@ Experience our extensive template library spanning 22 categories. Our innovative
 <div align="center">
   <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Template%20Gallery&template=diamond-sparkle&height=120" alt="Template Gallery Demo" width="600"/>
   <p><em>Diamond Sparkle Template from our Luxury Collection</em></p>
-  
+
   ```markdown
   ![Diamond Sparkle](https://gradient-svg-generator.vercel.app/api/svg?text=Template%20Gallery&template=diamond-sparkle&height=120)
   ```
@@ -398,7 +398,7 @@ Revolutionary gradient system that transforms how users create visual effects. W
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Spiral&gradientType=spiral&color0=ff00ff&color1=00ffff&height=80" alt="Spiral" width="150"/>
         <p><strong>Spiral</strong></p>
-        
+
   ```markdown
   ![Spiral](https://gradient-svg-generator.vercel.app/api/svg?text=Spiral&gradientType=spiral&color0=ff00ff&color1=00ffff&height=80)
   ```
@@ -406,7 +406,7 @@ Revolutionary gradient system that transforms how users create visual effects. W
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Diamond&gradientType=diamond&color0=ffd700&color1=ff6b6b&height=80" alt="Diamond" width="150"/>
         <p><strong>Diamond</strong></p>
-        
+
   ```markdown
   ![Diamond](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond&gradientType=diamond&color0=ffd700&color1=ff6b6b&height=80)
   ```
@@ -414,7 +414,7 @@ Revolutionary gradient system that transforms how users create visual effects. W
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Wave&gradientType=wave&color0=4facfe&color1=00f2fe&height=80" alt="Wave" width="150"/>
         <p><strong>Wave</strong></p>
-        
+
   ```markdown
   ![Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Wave&gradientType=wave&color0=4facfe&color1=00f2fe&height=80)
   ```
@@ -422,7 +422,7 @@ Revolutionary gradient system that transforms how users create visual effects. W
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Burst&gradientType=burst&color0=fa709a&color1=fee140&height=80" alt="Burst" width="150"/>
         <p><strong>Burst</strong></p>
-        
+
   ```markdown
   ![Burst](https://gradient-svg-generator.vercel.app/api/svg?text=Burst&gradientType=burst&color0=fa709a&color1=fee140&height=80)
   ```
