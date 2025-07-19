@@ -738,6 +738,8 @@ https://gradient-svg-generator.vercel.app/api/svg
 
 ### 🔗 Direct API Usage
 
+![Welcome Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20Banner&template=hologram-matrix&height=120)
+
 ```markdown
 ![Welcome Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20Banner&template=hologram-matrix&height=120)
 ```
@@ -805,16 +807,25 @@ services:
 ### Basic Usage Examples
 
 #### GitHub Profile Headers
+
+![Profile Header](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20to%20My%20Profile&template=cyber-matrix&height=200)
+
 ```markdown
 ![Profile Header](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20to%20My%20Profile&template=cyber-matrix&height=200)
 ```
 
 #### Project Banners
+
+![Project Banner](https://gradient-svg-generator.vercel.app/api/svg?text=My%20Awesome%20Project&template=neural-network&height=150)
+
 ```markdown
 ![Project Banner](https://gradient-svg-generator.vercel.app/api/svg?text=My%20Awesome%20Project&template=neural-network&height=150)
 ```
 
 #### Social Media Graphics
+
+![Social Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Follow%20Me&template=neon-arcade&height=120)
+
 ```markdown
 ![Social Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Follow%20Me&template=neon-arcade&height=120)
 ```
@@ -822,16 +833,25 @@ services:
 ### Advanced Customization
 
 #### Multi-Color Gradients
+
+![Rainbow Spiral](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s)
+
 ```markdown
 ![Rainbow Spiral](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s)
 ```
 
 #### Custom Animations
+
+![Fast Animation](https://gradient-svg-generator.vercel.app/api/svg?text=SPEED&template=energy-blast&duration=2s)
+
 ```markdown
 ![Fast Animation](https://gradient-svg-generator.vercel.app/api/svg?text=SPEED&template=energy-blast&duration=2s)
 ```
 
 #### Combined Effects
+
+![Combined](https://gradient-svg-generator.vercel.app/api/svg?text=CUSTOM&gradientType=hologram&color0=ff00ff&color1=00ffff&color2=ffff00&height=200&duration=4s)
+
 ```markdown
 ![Combined](https://gradient-svg-generator.vercel.app/api/svg?text=CUSTOM&gradientType=hologram&color0=ff00ff&color1=00ffff&color2=ffff00&height=200&duration=4s)
 ```
