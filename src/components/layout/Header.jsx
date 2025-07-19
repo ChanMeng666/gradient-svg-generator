@@ -36,9 +36,6 @@ export default function Header({ onMenuClick, showMobileMenu = true }) {
           <span className="font-bold text-xl hidden sm:inline-block">
             Gradient SVG
           </span>
-          <Badge variant="secondary" className="ml-2 hidden sm:inline-flex">
-            Beta
-          </Badge>
         </Link>
 
         {/* Navigation */}
