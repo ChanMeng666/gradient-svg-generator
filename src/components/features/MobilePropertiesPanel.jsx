@@ -4,8 +4,9 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { Type, Palette, Sliders, ChevronUp, ChevronDown, X } from 'lucide-react';
+import { Type, Palette, Sliders, ChevronUp, ChevronDown, X, Plus, Minus } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { GRADIENT_TYPES } from '../../constants/gradientTypes';
 
 export default function MobilePropertiesPanel({ 
   isOpen, 
@@ -19,6 +20,24 @@ export default function MobilePropertiesPanel({
 }) {
   const [panelHeight, setPanelHeight] = useState('normal'); // 'mini', 'normal', 'expanded'
   const [activeTab, setActiveTab] = useState('basic');
+
+  // Color handling functions
+  const handleColorUpdate = (index, newColor) => {
+    const colors = currentConfig.colors || [];
+    const newColors = [...colors];
+    newColors[index] = newColor;
+    updateConfig({ colors: newColors });
+  };
+
+  const handleAddColor = () => {
+    const colors = currentConfig.colors || [];
+    updateConfig({ colors: [...colors, 'ff0000'] });
+  };
+
+  const handleRemoveColor = (index) => {
+    const colors = currentConfig.colors || [];
+    updateConfig({ colors: colors.filter((_, i) => i !== index) });
+  };
 
   // Handle swipe gestures
   useEffect(() => {
@@ -223,23 +242,66 @@ export default function MobilePropertiesPanel({
               </div>
               
               {/* Color picker interface for mobile */}
-              <div className="grid grid-cols-3 gap-3">
+              <div className="space-y-3">
                 {currentConfig.colors?.map((color, index) => (
-                  <div
-                    key={index}
-                    className="aspect-square rounded-lg border-2 border-border"
-                    style={{ backgroundColor: color }}
-                  />
+                  <div key={index} className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-1">
+                      <div className="relative">
+                        <input
+                          type="color"
+                          value={`#${color}`}
+                          onChange={(e) => handleColorUpdate(index, e.target.value.substring(1))}
+                          className="sr-only"
+                          id={`mobile-color-picker-${index}`}
+                        />
+                        <label
+                          htmlFor={`mobile-color-picker-${index}`}
+                          className="block w-12 h-12 rounded-md border-2 border-border cursor-pointer hover:border-primary transition-colors"
+                          style={{ backgroundColor: `#${color}` }}
+                        />
+                      </div>
+                      <Input
+                        value={color}
+                        onChange={(e) => handleColorUpdate(index, e.target.value)}
+                        placeholder="Hex color"
+                        className="font-mono text-sm"
+                        maxLength={6}
+                      />
+                    </div>
+                    <div className="flex items-center gap-1">
+                      {currentConfig.colors.length > 1 && (
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          onClick={() => handleRemoveColor(index)}
+                          className="h-10 w-10"
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                      )}
+                      {index === currentConfig.colors.length - 1 && (
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          onClick={handleAddColor}
+                          className="h-10 w-10"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
                 ))}
-                <Button
-                  variant="outline"
-                  className="aspect-square"
-                  onClick={() => {
-                    // Add color picker functionality
-                  }}
-                >
-                  +
-                </Button>
+                {(!currentConfig.colors || currentConfig.colors.length === 0) && (
+                  <Button
+                    variant="outline"
+                    onClick={handleAddColor}
+                    className="w-full"
+                  >
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add First Color
+                  </Button>
+                )}
               </div>
               
               {baseTemplate && isModified && (
@@ -259,19 +321,22 @@ export default function MobilePropertiesPanel({
             <div className="space-y-4">
               <div>
                 <label className="text-sm font-medium mb-2 block">
-                  Gradient Type
+                  Gradient Type ({GRADIENT_TYPES.length} types available)
                 </label>
-                <div className="grid grid-cols-2 gap-2">
-                  {['horizontal', 'vertical', 'diagonal', 'radial'].map((type) => (
-                    <Button
-                      key={type}
-                      variant={currentConfig.gradientType === type ? "default" : "outline"}
-                      onClick={() => updateConfig({ gradientType: type })}
-                      className="w-full capitalize"
-                    >
-                      {type}
-                    </Button>
-                  ))}
+                <div className="max-h-96 overflow-y-auto border rounded-md p-2">
+                  <div className="grid grid-cols-2 gap-2">
+                    {GRADIENT_TYPES.map(type => (
+                      <Button
+                        key={type.value}
+                        variant={currentConfig.gradientType === type.value ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => updateConfig({ gradientType: type.value })}
+                        className="justify-start text-xs w-full"
+                      >
+                        {type.label}
+                      </Button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
