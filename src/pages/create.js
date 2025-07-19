@@ -60,6 +60,7 @@ export default function Create() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobilePropertiesOpen, setMobilePropertiesOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [quickTemplatesOpen, setQuickTemplatesOpen] = useState(false);
 
   // Get all templates and categories
   const templates = useMemo(() => getAllTemplates(), []);
@@ -205,6 +206,8 @@ export default function Create() {
           <div className={cn(
             "h-full transition-all duration-300 flex-shrink-0",
             "fixed inset-y-16 left-0 z-40 md:relative md:inset-y-0",
+            "md:h-full", // Full height on desktop
+            isMobile ? "bottom-16" : "", // Account for mobile nav bar
             mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
           )}>
             <Sidebar
@@ -244,19 +247,19 @@ export default function Create() {
                   <div className="flex items-center gap-1 sm:gap-2">
                     <Button
                       variant="outline"
-                      size={isMobile ? "sm" : "icon"}
+                      size={isMobile ? "default" : "icon"}
                       onClick={() => setIsFullscreen(!isFullscreen)}
-                      className={cn(isMobile && "h-8 w-8")}
+                      className={cn(isMobile && "h-10 w-10")}
                     >
-                      <Maximize2 className={cn(isMobile ? "h-3 w-3" : "h-4 w-4")} />
+                      <Maximize2 className={cn(isMobile ? "h-5 w-5" : "h-4 w-4")} />
                     </Button>
                     <Button
                       variant="outline"
-                      size={isMobile ? "sm" : "icon"}
+                      size={isMobile ? "default" : "icon"}
                       onClick={resetConfig}
-                      className={cn(isMobile && "h-8 w-8")}
+                      className={cn(isMobile && "h-10 w-10")}
                     >
-                      <RotateCcw className={cn(isMobile ? "h-3 w-3" : "h-4 w-4")} />
+                      <RotateCcw className={cn(isMobile ? "h-5 w-5" : "h-4 w-4")} />
                     </Button>
                   </div>
                 </div>
@@ -551,27 +554,58 @@ export default function Create() {
         />
       )}
 
-      {/* Mobile Template Carousel - Show on mobile when not in fullscreen and properties panel is closed */}
+      {/* Mobile Quick Templates Toggle Button */}
       {isMobile && !isFullscreen && !mobilePropertiesOpen && (
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur border-t">
-          <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-sm font-medium text-muted-foreground">Quick Templates</h3>
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => setMobileMenuOpen(true)}
-              className="text-xs"
-            >
-              View All
-            </Button>
+        <div className="fixed bottom-20 left-4 z-20">
+          <Button
+            size="sm"
+            variant={quickTemplatesOpen ? "default" : "outline"}
+            className="shadow-lg"
+            onClick={() => setQuickTemplatesOpen(!quickTemplatesOpen)}
+          >
+            <Palette className="h-4 w-4 mr-1" />
+            Templates
+          </Button>
+        </div>
+      )}
+
+      {/* Mobile Template Carousel - Collapsible */}
+      {isMobile && !isFullscreen && quickTemplatesOpen && !mobilePropertiesOpen && (
+        <div className="fixed bottom-0 left-0 right-0 z-30 animate-in slide-in-from-bottom duration-300">
+          <div className="bg-background/95 backdrop-blur border-t rounded-t-lg shadow-lg">
+            <div className="p-4 pb-20">
+              <div className="mb-3 flex items-center justify-between">
+                <h3 className="text-sm font-medium">Quick Templates</h3>
+                <div className="flex items-center gap-2">
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => setMobileMenuOpen(true)}
+                    className="text-xs"
+                  >
+                    View All
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setQuickTemplatesOpen(false)}
+                    className="h-8 w-8"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+              <SwipeableTemplateCarousel
+                templates={templates.slice(0, 12)}
+                onTemplateSelect={(template) => {
+                  handleTemplateSelect(template);
+                  setQuickTemplatesOpen(false); // Auto-close after selection
+                }}
+                favorites={favorites}
+                onFavorite={toggleFavorite}
+              />
+            </div>
           </div>
-          <SwipeableTemplateCarousel
-            templates={templates.slice(0, 12)} // Show top 12 templates
-            onTemplateSelect={handleTemplateSelect}
-            favorites={favorites}
-            onFavorite={toggleFavorite}
-            className="pb-safe" // Add safe area padding for iOS
-          />
         </div>
       )}
     </>
