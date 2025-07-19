@@ -155,7 +155,7 @@ export default function Create() {
         height: 120,
         gradientType: 'horizontal',
         duration: '6s',
-        colors: ['#ff0080', '#7928ca', '#ff0080'],
+        colors: ['ff0080', '7928ca', 'ff0080'], // Remove # from colors
       });
     } else if (baseTemplate && isModified) {
       // If template is modified, reset to original template
@@ -168,7 +168,7 @@ export default function Create() {
         template: null,
         gradientType: 'horizontal',
         duration: '6s',
-        colors: ['#ff0080', '#7928ca', '#ff0080'],
+        colors: ['ff0080', '7928ca', 'ff0080'], // Remove # from colors
       });
     }
   };

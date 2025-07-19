@@ -11,7 +11,7 @@ const useStore = create(
         template: null,
         gradientType: 'horizontal',
         duration: '6s',
-        colors: ['#ff0080', '#7928ca', '#ff0080'], // Default gradient colors
+        colors: ['ff0080', '7928ca', 'ff0080'], // Default gradient colors (no # prefix)
       },
       
       // Template tracking

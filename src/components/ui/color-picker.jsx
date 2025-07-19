@@ -11,7 +11,7 @@ export function ColorPicker({ color, index, total, onUpdate, onAdd, onRemove }) 
         <div className="relative">
           <input
             type="color"
-            value={`#${color}`}
+            value={color.startsWith('#') ? color : `#${color}`}
             onChange={(e) => onUpdate(index, e.target.value.substring(1))}
             className="sr-only"
             id={`color-picker-${index}`}
@@ -22,7 +22,7 @@ export function ColorPicker({ color, index, total, onUpdate, onAdd, onRemove }) 
               "block w-10 h-10 rounded-md border-2 border-border cursor-pointer",
               "hover:border-primary transition-colors"
             )}
-            style={{ backgroundColor: `#${color}` }}
+            style={{ backgroundColor: color.startsWith('#') ? color : `#${color}` }}
           />
         </div>
         <Input

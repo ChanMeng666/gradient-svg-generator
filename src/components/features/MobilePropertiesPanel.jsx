@@ -249,7 +249,7 @@ export default function MobilePropertiesPanel({
                       <div className="relative">
                         <input
                           type="color"
-                          value={`#${color}`}
+                          value={color.startsWith('#') ? color : `#${color}`}
                           onChange={(e) => handleColorUpdate(index, e.target.value.substring(1))}
                           className="sr-only"
                           id={`mobile-color-picker-${index}`}
@@ -257,7 +257,7 @@ export default function MobilePropertiesPanel({
                         <label
                           htmlFor={`mobile-color-picker-${index}`}
                           className="block w-12 h-12 rounded-md border-2 border-border cursor-pointer hover:border-primary transition-colors"
-                          style={{ backgroundColor: `#${color}` }}
+                          style={{ backgroundColor: color.startsWith('#') ? color : `#${color}` }}
                         />
                       </div>
                       <Input
