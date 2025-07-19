@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Header from '../components/layout/Header';
 import Sidebar from '../components/layout/Sidebar';
@@ -38,6 +39,7 @@ const SwipeableTemplateCarousel = dynamic(() => import('../components/features/S
 import { getAllTemplates, getCategories } from '../utils/templateUtils';
 
 export default function Create() {
+  const router = useRouter();
   const {
     currentConfig,
     updateConfig,
@@ -86,6 +88,18 @@ export default function Create() {
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isFullscreen]);
+
+  // Handle template from URL query parameter
+  useEffect(() => {
+    if (router.isReady && router.query.template) {
+      const templateName = router.query.template;
+      const template = templates.find(t => t.name === templateName);
+      if (template) {
+        setTemplate(template);
+        addToRecent(template);
+      }
+    }
+  }, [router.isReady, router.query.template, templates, setTemplate, addToRecent]);
 
   // Generate preview URL
   useEffect(() => {

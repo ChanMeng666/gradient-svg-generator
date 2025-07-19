@@ -48,7 +48,7 @@ export default function TemplatePreviewModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto" onClose={onClose}>
         <DialogHeader>
-          <div className="flex items-start justify-between">
+          <div className="flex items-start justify-between pr-8">
             <div>
               <DialogTitle className="text-2xl">{template.displayName}</DialogTitle>
               <DialogDescription className="mt-2 flex items-center gap-2">
@@ -60,6 +60,7 @@ export default function TemplatePreviewModal({
               variant="ghost"
               size="icon"
               onClick={() => onFavorite(template.name)}
+              className="mt-1"
             >
               <Star className={cn("h-5 w-5", isFavorite && "fill-current text-yellow-500")} />
             </Button>
