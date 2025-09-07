@@ -316,26 +316,65 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t py-8 mb-16 md:mb-0">
+        <footer className="border-t bg-gradient-to-br from-muted/20 to-background py-10 mb-16 md:mb-0">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex flex-col items-center md:items-start gap-2">
+            {/* Main Project Brand Section */}
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <img 
+                  src="/gradient-svg-generator.svg" 
+                  alt="Gradient SVG Generator" 
+                  className="h-8 w-8"
+                />
+                <h3 className="text-xl font-bold">Gradient SVG Generator</h3>
+              </div>
+              <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
+                Professional gradient generator with 216+ templates and 50+ animation effects. 
+                Create stunning animated SVG gradients for your projects.
+              </p>
+              <div className="flex flex-wrap justify-center gap-6 text-sm">
+                <Link href="/create" className="hover:text-primary transition-colors font-medium">Create Gradient</Link>
+                <Link href="/templates" className="hover:text-primary transition-colors font-medium">Browse Templates</Link>
+                <Link href="/api/svg" className="hover:text-primary transition-colors font-medium">API Documentation</Link>
+                <a href="https://github.com/ChanMeng666/gradient-svg-generator" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">GitHub Repository</a>
+              </div>
+            </div>
+
+            {/* Bottom Section with Developer Info */}
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-border/50">
+              <div className="flex items-center gap-4">
+                <div className="text-xs text-muted-foreground">
+                  © 2025 Open source under MIT License
+                </div>
+              </div>
+
+              {/* Developer Attribution - Minimized */}
+              <div className="flex items-center gap-3 text-xs">
+                <span className="text-muted-foreground">Created by</span>
                 <div className="flex items-center gap-2">
                   <img 
-                    src="/gradient-svg-generator.svg" 
-                    alt="Gradient SVG Generator" 
-                    className="h-6 w-6"
+                    src="/chan_logo.svg" 
+                    alt="Chan Meng" 
+                    className="h-5 w-5 bg-white/80 p-0.5 shadow-sm"
                   />
-                  <span className="font-semibold">Gradient SVG Generator</span>
+                  <div className="flex items-center gap-3">
+                    <a 
+                      href="https://github.com/ChanMeng666" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      Chan Meng
+                    </a>
+                    <span className="text-muted-foreground/60">•</span>
+                    <a 
+                      href="mailto:chanmeng.dev@gmail.com" 
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      Contact for custom development
+                    </a>
+                  </div>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Created by <a href="https://github.com/ChanMeng666" target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline">Chan Meng</a>
-                </p>
-              </div>
-              <div className="flex gap-6 text-sm text-muted-foreground">
-                <Link href="/api/svg" className="hover:text-foreground">API</Link>
-                <a href="https://github.com/ChanMeng666/gradient-svg-generator" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">GitHub</a>
-                <Link href="/templates" className="hover:text-foreground">Templates</Link>
               </div>
             </div>
           </div>
