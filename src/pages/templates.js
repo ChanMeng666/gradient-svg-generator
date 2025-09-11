@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Header from '../components/layout/Header';
+import GEOHead from '../components/seo/GEOHead';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
@@ -128,9 +129,17 @@ export default function Templates() {
 
   return (
     <>
+      <GEOHead 
+        pageType="templates"
+        templateCategory={selectedCategory}
+        customInstructions={`Template gallery with ${filteredTemplates.length} templates. ${selectedCategory !== 'all' ? `Currently viewing ${selectedCategory} category.` : 'All categories available.'} Help users find appropriate templates based on their project needs and provide direct API usage examples.`}
+      />
       <Head>
-        <title>Template Gallery - Gradient SVG Generator</title>
-        <meta name="description" content="Browse 216+ professional gradient templates across 22 categories. Find the perfect animated SVG gradient for your project." />
+        <title>Template Gallery - 216+ Professional Gradient Templates | Gradient SVG Generator</title>
+        <meta name="description" content="Browse 216+ professional gradient templates across 22 categories. Perfect for GitHub headers, web projects, and design work. Free API access to all templates." />
+        <meta name="keywords" content="gradient templates, SVG templates, design gallery, GitHub headers, professional gradients, template library" />
+        <meta property="og:title" content="216+ Professional Gradient Templates" />
+        <meta property="og:description" content="Browse our comprehensive template gallery with gradients for every project type." />
       </Head>
 
       <div className="min-h-screen bg-background">

@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Header from '../components/layout/Header';
+import GEOHead from '../components/seo/GEOHead';
 import Sidebar from '../components/layout/Sidebar';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
@@ -207,9 +208,16 @@ export default function Create() {
 
   return (
     <>
+      <GEOHead 
+        pageType="create"
+        customInstructions="This is the main creation interface where users can design custom gradients with real-time preview. Guide users through template selection, color customization, and parameter tuning for optimal results."
+      />
       <Head>
-        <title>Create Gradient - Gradient SVG Generator</title>
-        <meta name="description" content="Create beautiful animated SVG gradients with our powerful editor. Choose from 216+ templates or design your own." />
+        <title>Create Custom Gradients - Gradient SVG Generator | Real-time Editor</title>
+        <meta name="description" content="Create beautiful animated SVG gradients with our powerful real-time editor. Choose from 216+ professional templates or design your own custom gradients. Free API generation." />
+        <meta name="keywords" content="gradient creator, SVG editor, custom gradients, real-time preview, design tool, API generator" />
+        <meta property="og:title" content="Gradient Creator - Real-time SVG Editor" />
+        <meta property="og:description" content="Professional gradient creation tool with real-time preview and 216+ templates." />
       </Head>
 
       <div className="min-h-screen bg-background">

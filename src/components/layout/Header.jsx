@@ -67,14 +67,15 @@ export default function Header({ onMenuClick, showMobileMenu = true }) {
           >
             Templates
           </Link>
-          <a
-            href="https://gradient-svg-generator.vercel.app/api/svg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          <Link
+            href="/api-docs"
+            className={cn(
+              "text-sm font-medium transition-colors hover:text-primary",
+              router.pathname === '/api-docs' ? "text-foreground" : "text-muted-foreground"
+            )}
           >
             API
-          </a>
+          </Link>
         </nav>
 
         {/* Actions */}

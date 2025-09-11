@@ -1,13 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Home, Grid3x3, PlusCircle, Clock, Star } from 'lucide-react';
+import { Home, Grid3x3, PlusCircle, Clock, Star, Code } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const navItems = [
   { href: '/', icon: Home, label: 'Home' },
   { href: '/templates', icon: Grid3x3, label: 'Templates' },
   { href: '/create', icon: PlusCircle, label: 'Create' },
+  { href: '/api-docs', icon: Code, label: 'API' },
   { href: '/recent', icon: Clock, label: 'Recent' },
   { href: '/favorites', icon: Star, label: 'Favorites' },
 ];

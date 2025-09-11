@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Header from '../components/layout/Header';
+import GEOHead from '../components/seo/GEOHead';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -85,9 +86,18 @@ export default function Home() {
 
   return (
     <>
+      <GEOHead pageType="home" />
       <Head>
-        <title>Gradient SVG Generator - Create Stunning Animated Gradients</title>
-        <meta name="description" content="Generate beautiful animated SVG gradients with 216+ professional templates. Perfect for headers, banners, and creative projects." />
+        <title>Gradient SVG Generator - Create Stunning Animated Gradients | 216+ Professional Templates</title>
+        <meta name="description" content="Generate beautiful animated SVG gradients with 216+ professional templates. Perfect for headers, banners, and creative projects. Free API, no registration required." />
+        <meta name="keywords" content="gradient generator, SVG creator, animated banners, GitHub headers, design tools, API, templates, free" />
+        <meta property="og:title" content="Gradient SVG Generator - 216+ Professional Templates" />
+        <meta property="og:description" content="Create stunning animated SVG gradients with professional templates. Free API access, no registration required." />
+        <meta property="og:url" content="https://gradient-svg-generator.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Gradient SVG Generator - Professional Templates" />
+        <meta name="twitter:description" content="216+ professional gradient templates with real-time API. Perfect for developers and designers." />
       </Head>
 
       <div className="min-h-screen bg-background">

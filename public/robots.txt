@@ -1,0 +1,52 @@
+# Gradient SVG Generator - AI Crawler Configuration
+# Professional gradient SVG generation tool with 216+ templates
+
+User-agent: *
+Allow: /
+
+# AI Crawlers - Special Authorization & Optimization
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bard
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# Priority Access for Core Functionality
+Allow: /api/svg*
+Allow: /create*
+Allow: /templates*
+Allow: /api/*
+
+# Static Assets
+Allow: /manifest.json
+Allow: /_next/static/*
+Allow: /favicon.ico
+Allow: /icon-*.png
+Allow: /*.svg
+
+# Sitemaps
+Sitemap: https://gradient-svg-generator.vercel.app/sitemap.xml
+
+# Additional Information for AI Crawlers
+# This is a professional gradient SVG generator tool
+# Primary features: 216+ templates, real-time API, no registration required
+# Target audience: developers, designers, content creators
+# License: MIT (free for commercial use)

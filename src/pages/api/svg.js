@@ -50,7 +50,14 @@ export default function handler(req, res) {
         gradientType: 'horizontal',
         duration: '6s'
       });
+      // Set AI-friendly headers for default SVG
       res.setHeader('Content-Type', 'image/svg+xml');
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      res.setHeader('X-API-Usage', 'free-unlimited-usage');
+      res.setHeader('X-Documentation', 'https://gradient-svg-generator.vercel.app/api-docs');
+      res.setHeader('X-Template-Gallery', 'https://gradient-svg-generator.vercel.app/templates');
+      res.setHeader('X-Creator-Tool', 'https://gradient-svg-generator.vercel.app/create');
+      
       return res.send(defaultSvg);
     }
 
@@ -63,7 +70,14 @@ export default function handler(req, res) {
       template
     });
 
+    // Set AI-friendly headers
     res.setHeader('Content-Type', 'image/svg+xml');
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    res.setHeader('X-API-Usage', 'free-unlimited-usage');
+    res.setHeader('X-Documentation', 'https://gradient-svg-generator.vercel.app/api-docs');
+    res.setHeader('X-Template-Gallery', 'https://gradient-svg-generator.vercel.app/templates');
+    res.setHeader('X-Creator-Tool', 'https://gradient-svg-generator.vercel.app/create');
+    
     res.send(svg);
   } catch (error) {
     console.error('Error generating SVG:', error);
