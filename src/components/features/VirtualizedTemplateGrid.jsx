@@ -14,10 +14,11 @@ const TemplateCard = memo(({ template, onFavorite, isFavorite, style, onPreview 
       <Card className="h-full overflow-hidden hover:shadow-lg transition-all">
         <div className="aspect-video bg-muted relative group">
           <img
-            src={`/api/svg?text=PREVIEW&template=${template.name}&height=150`}
+            src={`/api/svg?text=PREVIEW&template=${template.name}&height=150&v=2`}
             alt={template.displayName}
             className="w-full h-full object-cover"
             loading="lazy"
+            key={`virtual-${template.name}`}
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
           <Button

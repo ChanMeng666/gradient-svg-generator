@@ -341,9 +341,10 @@ export default function Templates() {
                 <div key={template.name} className="group">
                   <div className="aspect-video bg-muted relative overflow-hidden rounded-lg border hover:shadow-lg transition-all">
                     <img
-                      src={`/api/svg?text=PREVIEW&template=${template.name}&height=150`}
+                      src={`/api/svg?text=PREVIEW&template=${template.name}&height=150&v=2`}
                       alt={template.displayName}
                       className="w-full h-full object-cover"
+                      key={`grid-${template.name}`}
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
                     <Button
@@ -392,9 +393,10 @@ export default function Templates() {
                   <div className="flex items-center gap-4 p-4">
                     <div className="w-32 h-20 bg-muted rounded-md overflow-hidden flex-shrink-0">
                       <img
-                        src={`/api/svg?text=PREVIEW&template=${template.name}&height=80`}
+                        src={`/api/svg?text=PREVIEW&template=${template.name}&height=80&v=2`}
                         alt={template.displayName}
                         className="w-full h-full object-cover"
+                        key={`list-${template.name}`}
                       />
                     </div>
                     <div className="flex-1">

@@ -149,10 +149,11 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-600/20 blur-3xl" />
                 <Card className="overflow-hidden relative">
                   <div className="aspect-[2/1] bg-muted flex items-center justify-center">
-                    <img 
-                      src={`/api/svg?text=${featuredTemplates[currentTemplateIndex].text}&template=${featuredTemplates[currentTemplateIndex].name}&height=200`}
+                    <img
+                      src={`/api/svg?text=${featuredTemplates[currentTemplateIndex].text}&template=${featuredTemplates[currentTemplateIndex].name}&height=200&v=2`}
                       alt={featuredTemplates[currentTemplateIndex].displayName}
                       className="w-full h-full object-cover"
+                      key={`hero-${featuredTemplates[currentTemplateIndex].name}`}
                     />
                   </div>
                   <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">
@@ -237,10 +238,11 @@ export default function Home() {
                 >
                   <Card className="overflow-hidden cursor-pointer hover:shadow-lg transition-all">
                     <div className="aspect-video bg-muted">
-                      <img 
-                        src={`/api/svg?text=${template.text}&template=${template.name}&height=120`}
+                      <img
+                        src={`/api/svg?text=${template.text}&template=${template.name}&height=120&v=2`}
                         alt={template.displayName}
                         className="w-full h-full object-cover"
+                        key={`editor-${template.name}`}
                       />
                     </div>
                     <CardHeader className="p-4">
@@ -284,10 +286,11 @@ export default function Home() {
                   </CardHeader>
                   <CardContent>
                     <div className="aspect-[3/1] bg-muted rounded-md overflow-hidden">
-                      <img 
-                        src={`/api/svg?text=PREVIEW&template=${template.name}&height=80`}
+                      <img
+                        src={`/api/svg?text=PREVIEW&template=${template.name}&height=80&v=2`}
                         alt={template.displayName}
                         className="w-full h-full object-cover"
+                        key={`popular-${template.name}`}
                       />
                     </div>
                   </CardContent>
