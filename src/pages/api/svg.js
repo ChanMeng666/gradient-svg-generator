@@ -1,5 +1,14 @@
 // svg.js
-const generateGradientSVG = require('../../gradientGenerator');
+// Try to use new unified generator, fallback to legacy if needed
+let generateGradientSVG;
+try {
+  const unified = require('../../core/UnifiedGradientGenerator');
+  generateGradientSVG = unified.generateGradientSVG;
+  console.log('✅ Using new Unified Gradient Generator');
+} catch (error) {
+  console.warn('⚠️  Falling back to legacy gradient generator:', error.message);
+  generateGradientSVG = require('../../gradientGenerator');
+}
 
 export default function handler(req, res) {
   try {
