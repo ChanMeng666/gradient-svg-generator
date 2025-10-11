@@ -88,7 +88,7 @@ const TEMPLATE_MAPPINGS = {
 
   // Luxury templates
   'golden-leaf': 'goldFoil',
-  'diamond-sparkle': 'diamond',
+  'diamond-sparkle': 'diamondSparkle',
   'marble-royal': 'marble',
   'platinum-shine': 'platinum',
   'rose-gold-elegance': 'roseGold',
@@ -112,7 +112,7 @@ const TEMPLATE_MAPPINGS = {
   'aurora-borealis': 'aurora',
   'ocean-waves': 'oceanWaves',
   'forest-canopy': 'forest',
-  'lightning-storm': 'lightning',
+  'lightning-storm': 'lightningStorm',
   'mountain-mist': 'mountainMist',
 
   // Morphing templates
@@ -340,55 +340,132 @@ function getTemplatesForEffect(effectName) {
 }
 
 /**
- * Load and register all advanced effects
- * These use the advancedEffectGenerator
+ * Load and register Future Tech effects
  */
-function loadAdvancedEffects() {
+function loadFutureTechEffects() {
+  const effects = [
+    { name: 'hologram', generator: futureTechGradients.createHologramGradient, description: 'Holographic projection effect' },
+    { name: 'quantum', generator: futureTechGradients.createQuantumGradient, description: 'Quantum field visualization' },
+    { name: 'laserGrid', generator: futureTechGradients.createLaserGridGradient, description: 'Laser grid pattern' },
+    { name: 'neuralNet', generator: futureTechGradients.createNeuralNetGradient, description: 'Neural network visualization' },
+    { name: 'plasma', generator: futureTechGradients.createPlasmaGradient, description: 'Plasma energy effect' },
+    { name: 'dataStream', generator: futureTechGradients.createDataStreamGradient, description: 'Flowing data stream' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'futureTech',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Artistic effects
+ */
+function loadArtisticEffects() {
+  const effects = [
+    { name: 'watercolor', generator: artisticGradients.createWatercolorGradient, description: 'Watercolor paint effect' },
+    { name: 'oilPaint', generator: artisticGradients.createOilPaintGradient, description: 'Oil painting texture' },
+    { name: 'inkSplash', generator: artisticGradients.createInkSplashGradient, description: 'Ink splash effect' },
+    { name: 'mosaic', generator: artisticGradients.createMosaicGradient, description: 'Mosaic tile pattern' },
+    { name: 'abstractGeo', generator: artisticGradients.createAbstractGeoGradient, description: 'Abstract geometric shapes' },
+    { name: 'graffiti', generator: artisticGradients.createGraffitiGradient, description: 'Graffiti street art style' },
+    { name: 'vintage', generator: artisticGradients.createVintageGradient, description: 'Vintage retro effect' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'artistic',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Luxury effects
+ */
+function loadLuxuryEffects() {
+  const effects = [
+    { name: 'goldFoil', generator: luxuryGradients.createGoldFoilGradient, description: 'Gold foil shimmer' },
+    { name: 'diamondSparkle', generator: luxuryGradients.createDiamondGradient, description: 'Diamond sparkle effect' },
+    { name: 'marble', generator: luxuryGradients.createMarbleGradient, description: 'Marble stone texture' },
+    { name: 'platinum', generator: luxuryGradients.createPlatinumGradient, description: 'Platinum metallic finish' },
+    { name: 'roseGold', generator: luxuryGradients.createRoseGoldGradient, description: 'Rose gold elegance' },
+    { name: 'crystal', generator: luxuryGradients.createCrystalGradient, description: 'Crystal clear effect' },
+    { name: 'velvet', generator: luxuryGradients.createVelvetGradient, description: 'Soft velvet texture' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'luxury',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Gaming effects
+ */
+function loadGamingEffects() {
+  const effects = [
+    { name: 'pixelArt', generator: gamingGradients.createPixelArtGradient, description: '8-bit pixel art style' },
+    { name: 'neonArcade', generator: gamingGradients.createNeonArcadeGradient, description: 'Neon arcade aesthetic' },
+    { name: 'energyBlast', generator: gamingGradients.createEnergyBlastGradient, description: 'Energy blast animation' },
+    { name: 'speedLines', generator: gamingGradients.createSpeedLinesGradient, description: 'Speed lines motion effect' },
+    { name: 'bossBattle', generator: gamingGradients.createBossBattleGradient, description: 'Epic boss battle atmosphere' },
+    { name: 'powerUp', generator: gamingGradients.createPowerUpGradient, description: 'Power-up collection effect' },
+    { name: 'cyberpunk', generator: gamingGradients.createCyberpunkGradient, description: 'Cyberpunk aesthetic' },
+    { name: 'retroWave', generator: gamingGradients.createRetroWaveGradient, description: 'Retro wave 80s style' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'gaming',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Organic effects
+ */
+function loadOrganicEffects() {
+  const effects = [
+    { name: 'flowingWater', generator: organicGradients.createFlowingWaterGradient, description: 'Flowing water animation' },
+    { name: 'flame', generator: organicGradients.createFlameGradient, description: 'Flickering flame effect' },
+    { name: 'clouds', generator: organicGradients.createCloudsGradient, description: 'Cloudy atmosphere' },
+    { name: 'aurora', generator: organicGradients.createAuroraGradient, description: 'Aurora borealis lights' },
+    { name: 'oceanWaves', generator: organicGradients.createOceanWavesGradient, description: 'Ocean wave motion' },
+    { name: 'forest', generator: organicGradients.createForestGradient, description: 'Forest ambiance' },
+    { name: 'lightningStorm', generator: organicGradients.createLightningGradient, description: 'Lightning storm effect' },
+    { name: 'mountainMist', generator: organicGradients.createMountainMistGradient, description: 'Mountain mist effect' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'organic',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register advanced effects that use advancedEffectGenerator
+ * These are effects that require complete SVG generation (not just gradients)
+ */
+function loadAdvancedComplexEffects() {
   const advancedEffects = [
-    // Future Tech
-    { name: 'hologram', category: 'futureTech', description: 'Holographic projection effect', templates: getTemplatesForEffect('hologram') },
-    { name: 'quantum', category: 'futureTech', description: 'Quantum field visualization', templates: getTemplatesForEffect('quantum') },
-    { name: 'laserGrid', category: 'futureTech', description: 'Laser grid pattern', templates: getTemplatesForEffect('laserGrid') },
-    { name: 'neuralNet', category: 'futureTech', description: 'Neural network visualization', templates: getTemplatesForEffect('neuralNet') },
-    { name: 'plasma', category: 'futureTech', description: 'Plasma energy effect', templates: getTemplatesForEffect('plasma') },
-    { name: 'dataStream', category: 'futureTech', description: 'Flowing data stream', templates: getTemplatesForEffect('dataStream') },
-
-    // Artistic
-    { name: 'watercolor', category: 'artistic', description: 'Watercolor paint effect', templates: getTemplatesForEffect('watercolor') },
-    { name: 'oilPaint', category: 'artistic', description: 'Oil painting texture', templates: getTemplatesForEffect('oilPaint') },
-    { name: 'inkSplash', category: 'artistic', description: 'Ink splash effect', templates: getTemplatesForEffect('inkSplash') },
-    { name: 'mosaic', category: 'artistic', description: 'Mosaic tile pattern', templates: getTemplatesForEffect('mosaic') },
-    { name: 'abstractGeo', category: 'artistic', description: 'Abstract geometric shapes', templates: getTemplatesForEffect('abstractGeo') },
-    { name: 'graffiti', category: 'artistic', description: 'Graffiti street art style', templates: getTemplatesForEffect('graffiti') },
-    { name: 'vintage', category: 'artistic', description: 'Vintage retro effect', templates: getTemplatesForEffect('vintage') },
-
-    // Luxury
-    { name: 'goldFoil', category: 'luxury', description: 'Gold foil shimmer', templates: getTemplatesForEffect('goldFoil') },
-    { name: 'marble', category: 'luxury', description: 'Marble stone texture', templates: getTemplatesForEffect('marble') },
-    { name: 'platinum', category: 'luxury', description: 'Platinum metallic finish', templates: getTemplatesForEffect('platinum') },
-    { name: 'roseGold', category: 'luxury', description: 'Rose gold elegance', templates: getTemplatesForEffect('roseGold') },
-    { name: 'crystal', category: 'luxury', description: 'Crystal clear effect', templates: getTemplatesForEffect('crystal') },
-    { name: 'velvet', category: 'luxury', description: 'Soft velvet texture', templates: getTemplatesForEffect('velvet') },
-
-    // Organic
-    { name: 'flowingWater', category: 'organic', description: 'Flowing water animation', templates: getTemplatesForEffect('flowingWater') },
-    { name: 'flame', category: 'organic', description: 'Flickering flame effect', templates: getTemplatesForEffect('flame') },
-    { name: 'clouds', category: 'organic', description: 'Cloudy atmosphere', templates: getTemplatesForEffect('clouds') },
-    { name: 'aurora', category: 'organic', description: 'Aurora borealis lights', templates: getTemplatesForEffect('aurora') },
-    { name: 'oceanWaves', category: 'organic', description: 'Ocean wave motion', templates: getTemplatesForEffect('oceanWaves') },
-    { name: 'forest', category: 'organic', description: 'Forest ambiance', templates: getTemplatesForEffect('forest') },
-    { name: 'mountainMist', category: 'organic', description: 'Mountain mist effect', templates: getTemplatesForEffect('mountainMist') },
-
-    // Gaming
-    { name: 'pixelArt', category: 'gaming', description: '8-bit pixel art style', templates: getTemplatesForEffect('pixelArt') },
-    { name: 'neonArcade', category: 'gaming', description: 'Neon arcade aesthetic', templates: getTemplatesForEffect('neonArcade') },
-    { name: 'energyBlast', category: 'gaming', description: 'Energy blast animation', templates: getTemplatesForEffect('energyBlast') },
-    { name: 'speedLines', category: 'gaming', description: 'Speed lines motion effect', templates: getTemplatesForEffect('speedLines') },
-    { name: 'bossBattle', category: 'gaming', description: 'Epic boss battle atmosphere', templates: getTemplatesForEffect('bossBattle') },
-    { name: 'powerUp', category: 'gaming', description: 'Power-up collection effect', templates: getTemplatesForEffect('powerUp') },
-    { name: 'cyberpunk', category: 'gaming', description: 'Cyberpunk aesthetic', templates: getTemplatesForEffect('cyberpunk') },
-    { name: 'retroWave', category: 'gaming', description: 'Retro wave 80s style', templates: getTemplatesForEffect('retroWave') },
-
     // Morphing
     { name: 'liquidMorphing', category: 'morphing', description: 'Liquid mercury morphing', templates: ['liquid-mercury'] },
     { name: 'plasmaMorphing', category: 'morphing', description: 'Plasma blob morphing', templates: ['plasma-blob'] },
@@ -477,7 +554,12 @@ function loadAdvancedEffects() {
 function loadAllEffects() {
   loadBasicGradients();
   loadShapeGradients();
-  loadAdvancedEffects();
+  loadFutureTechEffects();
+  loadArtisticEffects();
+  loadLuxuryEffects();
+  loadGamingEffects();
+  loadOrganicEffects();
+  loadAdvancedComplexEffects();
 
   console.log('✅ Loaded all effects into registry');
   console.log(effectRegistry.getStats());
