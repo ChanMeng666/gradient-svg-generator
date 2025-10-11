@@ -69,6 +69,52 @@ const TEMPLATE_MAPPINGS = {
   'glitch-cyber': 'glitch',
   'typewriter-terminal': 'typewriter',
 
+  // Future Tech templates
+  'hologram-matrix': 'hologram',
+  'quantum-field': 'quantum',
+  'laser-grid': 'laserGrid',
+  'neural-network': 'neuralNet',
+  'plasma-core': 'plasma',
+  'data-stream': 'dataStream',
+
+  // Artistic templates
+  'watercolor-dream': 'watercolor',
+  'oil-painting': 'oilPaint',
+  'ink-splash': 'inkSplash',
+  'mosaic-tiles': 'mosaic',
+  'abstract-geometry': 'abstractGeo',
+  'graffiti-street': 'graffiti',
+  'vintage-poster': 'vintage',
+
+  // Luxury templates
+  'golden-leaf': 'goldFoil',
+  'diamond-sparkle': 'diamond',
+  'marble-royal': 'marble',
+  'platinum-shine': 'platinum',
+  'rose-gold-elegance': 'roseGold',
+  'crystal-prism': 'crystal',
+  'velvet-luxury': 'velvet',
+
+  // Gaming templates
+  'pixel-art-retro': 'pixelArt',
+  'neon-arcade': 'neonArcade',
+  'energy-blast': 'energyBlast',
+  'racing-speed': 'speedLines',
+  'boss-battle': 'bossBattle',
+  'power-up-glow': 'powerUp',
+  'cyberpunk-city': 'cyberpunk',
+  'retro-wave': 'retroWave',
+
+  // Organic templates
+  'flowing-water': 'flowingWater',
+  'burning-flame': 'flame',
+  'cloud-drift': 'clouds',
+  'aurora-borealis': 'aurora',
+  'ocean-waves': 'oceanWaves',
+  'forest-canopy': 'forest',
+  'lightning-storm': 'lightning',
+  'mountain-mist': 'mountainMist',
+
   // Morphing templates
   'liquid-mercury': 'liquidMorphing',
   'plasma-blob': 'plasmaMorphing',
@@ -281,54 +327,67 @@ function loadShapeGradients() {
 }
 
 /**
+ * Helper function to get template names for an effect from TEMPLATE_MAPPINGS
+ */
+function getTemplatesForEffect(effectName) {
+  const templates = [];
+  for (const [templateName, mappedEffectName] of Object.entries(TEMPLATE_MAPPINGS)) {
+    if (mappedEffectName === effectName) {
+      templates.push(templateName);
+    }
+  }
+  return templates;
+}
+
+/**
  * Load and register all advanced effects
  * These use the advancedEffectGenerator
  */
 function loadAdvancedEffects() {
   const advancedEffects = [
     // Future Tech
-    { name: 'hologram', category: 'futureTech', description: 'Holographic projection effect' },
-    { name: 'quantum', category: 'futureTech', description: 'Quantum field visualization' },
-    { name: 'laserGrid', category: 'futureTech', description: 'Laser grid pattern' },
-    { name: 'neuralNet', category: 'futureTech', description: 'Neural network visualization' },
-    { name: 'plasma', category: 'futureTech', description: 'Plasma energy effect' },
-    { name: 'dataStream', category: 'futureTech', description: 'Flowing data stream' },
+    { name: 'hologram', category: 'futureTech', description: 'Holographic projection effect', templates: getTemplatesForEffect('hologram') },
+    { name: 'quantum', category: 'futureTech', description: 'Quantum field visualization', templates: getTemplatesForEffect('quantum') },
+    { name: 'laserGrid', category: 'futureTech', description: 'Laser grid pattern', templates: getTemplatesForEffect('laserGrid') },
+    { name: 'neuralNet', category: 'futureTech', description: 'Neural network visualization', templates: getTemplatesForEffect('neuralNet') },
+    { name: 'plasma', category: 'futureTech', description: 'Plasma energy effect', templates: getTemplatesForEffect('plasma') },
+    { name: 'dataStream', category: 'futureTech', description: 'Flowing data stream', templates: getTemplatesForEffect('dataStream') },
 
     // Artistic
-    { name: 'watercolor', category: 'artistic', description: 'Watercolor paint effect' },
-    { name: 'oilPaint', category: 'artistic', description: 'Oil painting texture' },
-    { name: 'inkSplash', category: 'artistic', description: 'Ink splash effect' },
-    { name: 'mosaic', category: 'artistic', description: 'Mosaic tile pattern' },
-    { name: 'abstractGeo', category: 'artistic', description: 'Abstract geometric shapes' },
-    { name: 'graffiti', category: 'artistic', description: 'Graffiti street art style' },
-    { name: 'vintage', category: 'artistic', description: 'Vintage retro effect' },
+    { name: 'watercolor', category: 'artistic', description: 'Watercolor paint effect', templates: getTemplatesForEffect('watercolor') },
+    { name: 'oilPaint', category: 'artistic', description: 'Oil painting texture', templates: getTemplatesForEffect('oilPaint') },
+    { name: 'inkSplash', category: 'artistic', description: 'Ink splash effect', templates: getTemplatesForEffect('inkSplash') },
+    { name: 'mosaic', category: 'artistic', description: 'Mosaic tile pattern', templates: getTemplatesForEffect('mosaic') },
+    { name: 'abstractGeo', category: 'artistic', description: 'Abstract geometric shapes', templates: getTemplatesForEffect('abstractGeo') },
+    { name: 'graffiti', category: 'artistic', description: 'Graffiti street art style', templates: getTemplatesForEffect('graffiti') },
+    { name: 'vintage', category: 'artistic', description: 'Vintage retro effect', templates: getTemplatesForEffect('vintage') },
 
     // Luxury
-    { name: 'goldFoil', category: 'luxury', description: 'Gold foil shimmer' },
-    { name: 'marble', category: 'luxury', description: 'Marble stone texture' },
-    { name: 'platinum', category: 'luxury', description: 'Platinum metallic finish' },
-    { name: 'roseGold', category: 'luxury', description: 'Rose gold elegance' },
-    { name: 'crystal', category: 'luxury', description: 'Crystal clear effect' },
-    { name: 'velvet', category: 'luxury', description: 'Soft velvet texture' },
+    { name: 'goldFoil', category: 'luxury', description: 'Gold foil shimmer', templates: getTemplatesForEffect('goldFoil') },
+    { name: 'marble', category: 'luxury', description: 'Marble stone texture', templates: getTemplatesForEffect('marble') },
+    { name: 'platinum', category: 'luxury', description: 'Platinum metallic finish', templates: getTemplatesForEffect('platinum') },
+    { name: 'roseGold', category: 'luxury', description: 'Rose gold elegance', templates: getTemplatesForEffect('roseGold') },
+    { name: 'crystal', category: 'luxury', description: 'Crystal clear effect', templates: getTemplatesForEffect('crystal') },
+    { name: 'velvet', category: 'luxury', description: 'Soft velvet texture', templates: getTemplatesForEffect('velvet') },
 
     // Organic
-    { name: 'flowingWater', category: 'organic', description: 'Flowing water animation' },
-    { name: 'flame', category: 'organic', description: 'Flickering flame effect' },
-    { name: 'clouds', category: 'organic', description: 'Cloudy atmosphere' },
-    { name: 'aurora', category: 'organic', description: 'Aurora borealis lights' },
-    { name: 'oceanWaves', category: 'organic', description: 'Ocean wave motion' },
-    { name: 'forest', category: 'organic', description: 'Forest ambiance' },
-    { name: 'mountainMist', category: 'organic', description: 'Mountain mist effect' },
+    { name: 'flowingWater', category: 'organic', description: 'Flowing water animation', templates: getTemplatesForEffect('flowingWater') },
+    { name: 'flame', category: 'organic', description: 'Flickering flame effect', templates: getTemplatesForEffect('flame') },
+    { name: 'clouds', category: 'organic', description: 'Cloudy atmosphere', templates: getTemplatesForEffect('clouds') },
+    { name: 'aurora', category: 'organic', description: 'Aurora borealis lights', templates: getTemplatesForEffect('aurora') },
+    { name: 'oceanWaves', category: 'organic', description: 'Ocean wave motion', templates: getTemplatesForEffect('oceanWaves') },
+    { name: 'forest', category: 'organic', description: 'Forest ambiance', templates: getTemplatesForEffect('forest') },
+    { name: 'mountainMist', category: 'organic', description: 'Mountain mist effect', templates: getTemplatesForEffect('mountainMist') },
 
     // Gaming
-    { name: 'pixelArt', category: 'gaming', description: '8-bit pixel art style' },
-    { name: 'neonArcade', category: 'gaming', description: 'Neon arcade aesthetic' },
-    { name: 'energyBlast', category: 'gaming', description: 'Energy blast animation' },
-    { name: 'speedLines', category: 'gaming', description: 'Speed lines motion effect' },
-    { name: 'bossBattle', category: 'gaming', description: 'Epic boss battle atmosphere' },
-    { name: 'powerUp', category: 'gaming', description: 'Power-up collection effect' },
-    { name: 'cyberpunk', category: 'gaming', description: 'Cyberpunk aesthetic' },
-    { name: 'retroWave', category: 'gaming', description: 'Retro wave 80s style' },
+    { name: 'pixelArt', category: 'gaming', description: '8-bit pixel art style', templates: getTemplatesForEffect('pixelArt') },
+    { name: 'neonArcade', category: 'gaming', description: 'Neon arcade aesthetic', templates: getTemplatesForEffect('neonArcade') },
+    { name: 'energyBlast', category: 'gaming', description: 'Energy blast animation', templates: getTemplatesForEffect('energyBlast') },
+    { name: 'speedLines', category: 'gaming', description: 'Speed lines motion effect', templates: getTemplatesForEffect('speedLines') },
+    { name: 'bossBattle', category: 'gaming', description: 'Epic boss battle atmosphere', templates: getTemplatesForEffect('bossBattle') },
+    { name: 'powerUp', category: 'gaming', description: 'Power-up collection effect', templates: getTemplatesForEffect('powerUp') },
+    { name: 'cyberpunk', category: 'gaming', description: 'Cyberpunk aesthetic', templates: getTemplatesForEffect('cyberpunk') },
+    { name: 'retroWave', category: 'gaming', description: 'Retro wave 80s style', templates: getTemplatesForEffect('retroWave') },
 
     // Morphing
     { name: 'liquidMorphing', category: 'morphing', description: 'Liquid mercury morphing', templates: ['liquid-mercury'] },
