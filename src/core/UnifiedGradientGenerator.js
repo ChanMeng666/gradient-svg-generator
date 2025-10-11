@@ -102,7 +102,8 @@ function generateGradientSVG({
       colors: effectColors,
       height,
       duration: effectDuration,
-      gradientType: effectName
+      gradientType: effectName,
+      template
     });
   }
 
@@ -125,7 +126,7 @@ function generateGradientSVG({
  * @returns {string} Complete SVG document
  */
 function generateFromRegistry(effectMetadata, params) {
-  const { text, colors, height, duration, gradientType } = params;
+  const { text, colors, height, duration, gradientType, template = '' } = params;
   const width = 854; // Standard width
 
   // Call the generator function
@@ -160,7 +161,14 @@ function generateFromRegistry(effectMetadata, params) {
         } else if (result && typeof result === 'object') {
           // Check if it's signaling to use advanced effect
           if (result.useAdvancedEffect) {
-            return generateAdvancedSVG(result.effectType, text, colors, width, height, { duration });
+            return generateTextEffectSVG({
+              text,
+              colors,
+              height,
+              gradientType: result.effectType,
+              duration,
+              template
+            });
           }
 
           // Object with gradient definition and metadata
@@ -197,7 +205,14 @@ function generateFromRegistry(effectMetadata, params) {
 
         // Check if it's signaling to use advanced effect
         if (result && typeof result === 'object' && result.useAdvancedEffect) {
-          return generateAdvancedSVG(result.effectType, text, colors, width, height, { duration });
+          return generateTextEffectSVG({
+            text,
+            colors,
+            height,
+            gradientType: result.effectType,
+            duration,
+            template
+          });
         }
 
         // Otherwise, treat as complete SVG document
@@ -222,7 +237,14 @@ function generateFromRegistry(effectMetadata, params) {
 
         // Check if it's signaling to use advanced effect
         if (result && typeof result === 'object' && result.useAdvancedEffect) {
-          return generateAdvancedSVG(result.effectType, text, colors, width, height, { duration });
+          return generateTextEffectSVG({
+            text,
+            colors,
+            height,
+            gradientType: result.effectType,
+            duration,
+            template
+          });
         }
 
         // Otherwise, treat as SVG fragment
