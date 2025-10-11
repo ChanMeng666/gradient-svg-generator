@@ -185,7 +185,22 @@ function generateFromRegistry(effectMetadata, params) {
 
       case 'complete': {
         // Generator returns complete SVG document
-        const result = effectMetadata.generator(colors, duration, text);
+        // Need to check if it's a signal to use advanced effect
+        const colorsCopy = [...colors];
+        const extendedColors = [...colorsCopy, ...colorsCopy];
+        const stops = extendedColors.map((color, index) => {
+          const offset = (index / (extendedColors.length - 1)) * 100;
+          return `<stop offset="${offset}%" stop-color="#${color}" />`;
+        }).join('');
+
+        const result = effectMetadata.generator(stops, animationConfig, duration);
+
+        // Check if it's signaling to use advanced effect
+        if (result && typeof result === 'object' && result.useAdvancedEffect) {
+          return generateAdvancedSVG(result.effectType, text, colors, width, height, { duration });
+        }
+
+        // Otherwise, treat as complete SVG document
         return svgComposer.compose({
           content: result,
           contentType: 'complete',
@@ -196,7 +211,21 @@ function generateFromRegistry(effectMetadata, params) {
 
       case 'fragment': {
         // Generator returns SVG fragment
-        const result = effectMetadata.generator(colors, duration, text);
+        const colorsCopy = [...colors];
+        const extendedColors = [...colorsCopy, ...colorsCopy];
+        const stops = extendedColors.map((color, index) => {
+          const offset = (index / (extendedColors.length - 1)) * 100;
+          return `<stop offset="${offset}%" stop-color="#${color}" />`;
+        }).join('');
+
+        const result = effectMetadata.generator(stops, animationConfig, duration);
+
+        // Check if it's signaling to use advanced effect
+        if (result && typeof result === 'object' && result.useAdvancedEffect) {
+          return generateAdvancedSVG(result.effectType, text, colors, width, height, { duration });
+        }
+
+        // Otherwise, treat as SVG fragment
         return svgComposer.compose({
           content: result,
           contentType: 'fragment',
