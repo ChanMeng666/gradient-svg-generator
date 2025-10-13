@@ -32,14 +32,15 @@ function createCylinderGradient(stops, animationConfig, duration = '6s') {
   `;
 
   // Cylinder path: Rectangle with semicircular ends (capsule shape)
-  // Using ry="50%" creates pill/capsule shape with rounded ends
-  // When only ry is specified, rx is automatically set to the same value
+  // rx = width/2 = 427, ry = height/2 = 60 creates pill/capsule shape
+  // This creates full semicircular ends on left and right sides
   const additionalElements = `
     <rect
       x="0"
       y="0"
       width="854"
       height="120"
+      rx="427"
       ry="60"
       fill="url(#gradient)"
       opacity="1"
