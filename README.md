@@ -2,9 +2,9 @@
 
 [![Project Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Gradient+SVG+Generator&height=300&gradientType=holographicUI&duration=10s&color0=00ffff&color1=40e0d0&color2=87ceeb&color3=add8e6&color4=b0e0e6&color5=f0f8ff)](#)
 
-# 🎨 Gradient SVG Generator<br/><h3>Professional Dynamic SVG Gradient Creator with 180+ Templates</h3>
+# 🎨 Gradient SVG Generator<br/><h3>Professional Dynamic SVG Gradient Creator with 300+ Templates</h3>
 
-The ultimate gradient SVG generator featuring 140+ gradient types, 180+ professional templates across 22 categories, and real-time preview.<br/>
+The ultimate gradient SVG generator featuring 200+ gradient types, 300+ professional templates across 30 categories, and real-time preview.<br/>
 Supports custom colors, multiple animation effects, and extensible template system with advanced visual effects.<br/>
 One-click **FREE** deployment of your stunning gradient banners.
 
@@ -288,7 +288,7 @@ One-click **FREE** deployment of your stunning gradient banners.
 </div>
 
 > [!IMPORTANT]
-> This project demonstrates advanced SVG generation techniques with 180+ professional templates across 22 categories. It combines modern web technologies with sophisticated animation systems to provide stunning visual effects for any project.
+> This project demonstrates advanced SVG generation techniques with 300+ professional templates across 30 categories. It combines modern web technologies with sophisticated animation systems to provide stunning visual effects for any project.
 
 <details>
 <summary><kbd>📑 Table of Contents</kbd></summary>
@@ -356,9 +356,9 @@ Whether you're a web developer, content creator, or design enthusiast, this proj
 
 [![][image-feat-core]][live-demo]
 
-### `1` [180+ Professional Templates][template-gallery]
+### `1` [300+ Professional Templates][template-gallery]
 
-Experience our extensive template library spanning 22 categories. Our innovative template system provides unprecedented variety through carefully curated color palettes and animation effects. This comprehensive collection delivers professional-grade gradients for any project.
+Experience our extensive template library spanning 30 categories. Our innovative template system provides unprecedented variety through carefully curated color palettes and animation effects. This comprehensive collection delivers professional-grade gradients for any project.
 
 <div align="center">
   <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Template%20Gallery&template=diamond-sparkle&height=120" alt="Template Gallery Demo" width="600"/>
@@ -370,15 +370,22 @@ Experience our extensive template library spanning 22 categories. Our innovative
 </div>
 
 Key template categories include:
-- 🌈 **Pride Collection**: 20+ LGBTQ+ pride flag templates
-- 🔬 **Technology**: AI, neural networks, cyberpunk aesthetics  
-- 🌿 **Nature**: Sunrise, ocean, forest, aurora effects
-- 💎 **Materials**: Gold, diamond, marble, crystal textures
-- 🎮 **Gaming**: Retro, neon arcade, energy blast effects
-- 🎨 **Artistic**: Watercolor, oil paint, graffiti styles
-- ✨ **Text Effects**: Glitch, typewriter, luminance animations
-- 🌊 **Organic**: Flowing water, flame, lightning effects
-- 🔮 **Experimental**: Morphing, dimensional, consciousness streams
+- 🌈 **Pride Collection**: 20 LGBTQ+ pride flag templates
+- 🔬 **Technology**: AI, neural networks, cyberpunk aesthetics (12 templates)
+- 🌿 **Nature**: Sunrise, ocean, forest, aurora effects (13 templates)
+- 💎 **Materials & Luxury**: Gold, diamond, marble, crystal textures (19 templates)
+- 🎮 **Gaming**: Retro, neon arcade, energy blast effects (8 templates)
+- 🎨 **Artistic & Art Movements**: Watercolor, oil paint, impressionism, cubism (35 templates)
+- ✨ **Text Effects & Animations**: Glitch, typewriter, luminance (41 templates)
+- 🌊 **Organic & Fluid**: Flowing water, flame, liquid dynamics (14 templates)
+- 🔮 **Experimental**: Morphing, dimensional, consciousness streams (29 templates)
+- ☁️ **Weather & Atmosphere**: Fog, rain, snow, lightning (12 templates)
+- 💡 **Light & Shadow**: Caustic, lens flare, god rays, bokeh (12 templates)
+- 🍳 **Culinary & Liquid**: Coffee, wine, honey, chocolate (12 templates)
+- 🎯 **Patterns**: Candy stripe, zigzag, diamond, hearts (8 templates)
+- ✨ **Metallic**: Copper, chrome, bronze, platinum (8 templates)
+- 📝 **Path Text**: Typing, curved flow, spiral text (12 templates)
+- 🔷 **Shape Backgrounds**: Capsule, egg, blob, wave morphing (37 templates)
 
 > [!TIP]
 > You can also combine templates with custom parameters:
@@ -388,7 +395,7 @@ Key template categories include:
 
 [![][back-to-top]](#readme-top)
 
-### `2` [140+ Advanced Gradient Types][api-docs]
+### `2` [200+ Advanced Gradient Types][api-docs]
 
 Revolutionary gradient system that transforms how users create visual effects. With our advanced algorithms and intuitive API, users can generate professional gradients while maintaining perfect animation performance.
 
@@ -432,15 +439,28 @@ Revolutionary gradient system that transforms how users create visual effects. W
 </div>
 
 **Available Gradient Types:**
-- **Basic Types**: Horizontal, Vertical, Diagonal, Circular, Radial
-- **Advanced Types**: Conic, Wave, Spiral, Diamond, Burst, Pulse, Reflection
-- **Special Effects**: Star, Heart, Galaxy, Lightning, ZigZag, Ripple
-- **Future Tech**: Hologram, Quantum, Laser Grid, Neural Net, Plasma, Data Stream
-- **Artistic**: Watercolor, Oil Paint, Ink Splash, Mosaic, Abstract Geometry
-- **Luxury**: Gold Foil, Diamond, Marble, Platinum, Rose Gold, Crystal, Velvet
-- **Organic**: Flowing Water, Flame, Clouds, Aurora, Ocean Waves, Forest, Lightning
-- **Gaming**: Pixel Art, Neon Arcade, Energy Blast, Speed Lines, Boss Battle
-- **Experimental**: Morphing, Dimensional Portal, Consciousness Stream, Digital Life
+- **Basic Types** (7): Linear, Radial, Conic, Diamond, Reflected, Square, Ellipse
+- **Text Effects** (5): Luminance, Rainbow, Text Box, Glitch, Typewriter
+- **Future Tech** (6): Hologram, Quantum, Laser Grid, Neural Net, Plasma, Data Stream
+- **Artistic** (7): Watercolor, Oil Paint, Ink Splash, Mosaic, Abstract Geometry, Graffiti, Vintage
+- **Luxury Materials** (7): Gold Foil, Diamond, Marble, Platinum, Rose Gold, Crystal, Velvet
+- **Organic Nature** (8): Flowing Water, Flame, Clouds, Aurora, Ocean Waves, Forest, Lightning, Mountain Mist
+- **Gaming Effects** (8): Pixel Art, Neon Arcade, Energy Blast, Speed Lines, Boss Battle, Power Up, Cyberpunk, Retro Wave
+- **Morphing Effects** (6): Liquid Morphing, Plasma Morphing, Cosmic Morphing, Bio Morphing, Quantum Morphing, Lava Morphing
+- **Fluid Dynamics** (6): Turbulent Waves, Electromagnetic Waves, Aurora Waves, Sound Waves, Cryogenic Waves, Solar Waves
+- **Dimensional Effects** (6): Portal Distortion, Hypercube Projection, Wormhole Effect, Fractal Dimension, Multiverse Overlap, Reality Distortion
+- **Dimensional Portal** (7): Quantum Tunnel, Parallel Dimension, Wormhole Portal, Dimensional Tear, Holographic Grid, Void Distortion, Astral Plane
+- **Digital Life** (8): AI Consciousness, Bio-Digital Merge, Quantum DNA, Digital Evolution, Synthetic Soul, Cyber Symbiosis, Neural Storm, Digital Genome
+- **Cyber Aesthetics** (9): Neon Cityscape, Data Matrix, Cyberpunk Shadow, Holographic UI, Pixel Corruption, Chrome Finish, Viral Spread, Encryption Field, AR Overlay
+- **Consciousness Stream** (9): Thought Waves, Memory Fragments, Dream Logic, Emotional Spectrum, Meditative Calm, Anxiety Spiral, Ego Dissolution, Psychedelic Insight, Collective Unconscious
+- **Weather & Atmosphere** (7): Fog Rolling, Monsoon Rain, Snowfall Drift, Sandstorm Swirl, Tornado Vortex, Lightning Web, Prism Refraction
+- **Light & Shadow** (7): Caustic Underwater, Venetian Blind, Stained Glass, Lens Flare, Bokeh Blur, God Rays, Eclipse Corona
+- **Art Movements** (7): Art Nouveau Flow, Art Deco Luxury, Bauhaus Minimal, Impressionist Dots, Cubist Fragments, Surrealist Melt, Pop Art Halftone
+- **Culinary & Liquid** (7): Coffee Cream, Wine Pour, Honey Drizzle, Chocolate Melt, Caramel Swirl, Tie Dye, Marble Mixing
+- **Pattern Based** (8): Candy Stripe, Pattern Zigzag, Diamond Pattern, Hearts Pattern, Checkered, Diagonal Flow, Geometric Pulse, Pattern Wave
+- **Metallic Effects** (9): Copper Metallic, Shine Shimmer, Neon Pulse, Aqua Flow, Sparkle Effect, Chrome Flow, Bronze Gleam, Platinum Sparkle, Steel Aqua
+- **Path Text Animation** (12): Typing Path Reveal, Curved Flow, Spiral Text, Wave Text Path, Char by Char, Word Cascade, Line Sequence, Fade In Path, Handwriting, Brush Stroke, Neon Flicker, Elastic Bounce
+- **Blob & Shape Effects** (8): Blob Morph, Liquid Blob, Organic Blob, Layered Waves, Blur Motion, Dreamy Circles, Abstract Blur, Shape Backgrounds (Cylinder, Soft Rounded, Egg Shape, Slice, Speech Bubble, Shark Teeth, Large Rounded)
 
 [![][back-to-top]](#readme-top)
 
@@ -453,7 +473,7 @@ Beyond the core template and gradient systems, this project includes:
 - [x] 🔒 **No Registration**: Direct usage without sign-up requirements
 - [x] 💎 **Modern UI/UX**: Beautiful Next.js interface with responsive design
 - [x] 🗣️ **Multi-Parameter**: Support for unlimited colors and custom sizing
-- [x] 📊 **140+ Gradient Types**: From basic to advanced visual effects
+- [x] 📊 **200+ Gradient Types**: From basic to advanced visual effects
 - [x] 🔌 **Template System**: Extensible architecture for custom templates
 - [x] 📱 **Mobile Ready**: Perfect responsive design for all devices
 - [x] ⚡ **High Performance**: Optimized SVG generation with fast API responses
@@ -529,7 +549,7 @@ Beyond the core template and gradient systems, this project includes:
 ## 🎨 Template Showcase
 
 > [!IMPORTANT]
-> Explore our comprehensive template library with 180+ professional designs across 22 categories. Each template is carefully crafted with authentic color palettes and optimized animations.
+> Explore our comprehensive template library with 300+ professional designs across 30 categories. Each template is carefully crafted with authentic color palettes and optimized animations.
 
 ### 🌈 Pride Templates (20 Templates)
 
@@ -639,6 +659,196 @@ Beyond the core template and gradient systems, this project includes:
 
 </div>
 
+### ☁️ Weather & Atmospheric Templates (12 Templates)
+
+*Natural weather phenomena and atmospheric visual effects*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Fog Rolling** | ![Fog Rolling](https://gradient-svg-generator.vercel.app/api/svg?text=Fog%20Rolling&template=fog-rolling&height=80) | `![Fog Rolling](https://gradient-svg-generator.vercel.app/api/svg?text=Fog%20Rolling&template=fog-rolling&height=80)` |
+| **Monsoon Rain** | ![Monsoon Rain](https://gradient-svg-generator.vercel.app/api/svg?text=Monsoon%20Rain&template=monsoon-rain&height=80) | `![Monsoon Rain](https://gradient-svg-generator.vercel.app/api/svg?text=Monsoon%20Rain&template=monsoon-rain&height=80)` |
+| **Snowfall Drift** | ![Snowfall Drift](https://gradient-svg-generator.vercel.app/api/svg?text=Snowfall%20Drift&template=snowfall-drift&height=80) | `![Snowfall Drift](https://gradient-svg-generator.vercel.app/api/svg?text=Snowfall%20Drift&template=snowfall-drift&height=80)` |
+| **Lightning Web** | ![Lightning Web](https://gradient-svg-generator.vercel.app/api/svg?text=Lightning%20Web&template=lightning-web&height=80) | `![Lightning Web](https://gradient-svg-generator.vercel.app/api/svg?text=Lightning%20Web&template=lightning-web&height=80)` |
+
+</div>
+
+### 💡 Light & Shadow Templates (12 Templates)
+
+*Optical effects and illumination patterns*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Caustic Underwater** | ![Caustic Underwater](https://gradient-svg-generator.vercel.app/api/svg?text=Caustic%20Underwater&template=caustic-underwater&height=80) | `![Caustic Underwater](https://gradient-svg-generator.vercel.app/api/svg?text=Caustic%20Underwater&template=caustic-underwater&height=80)` |
+| **Lens Flare** | ![Lens Flare](https://gradient-svg-generator.vercel.app/api/svg?text=Lens%20Flare&template=lens-flare&height=80) | `![Lens Flare](https://gradient-svg-generator.vercel.app/api/svg?text=Lens%20Flare&template=lens-flare&height=80)` |
+| **Bokeh Blur** | ![Bokeh Blur](https://gradient-svg-generator.vercel.app/api/svg?text=Bokeh%20Blur&template=bokeh-blur&height=80) | `![Bokeh Blur](https://gradient-svg-generator.vercel.app/api/svg?text=Bokeh%20Blur&template=bokeh-blur&height=80)` |
+| **God Rays** | ![God Rays](https://gradient-svg-generator.vercel.app/api/svg?text=God%20Rays&template=god-rays&height=80) | `![God Rays](https://gradient-svg-generator.vercel.app/api/svg?text=God%20Rays&template=god-rays&height=80)` |
+
+</div>
+
+### 🎨 Art Movement Templates (12 Templates)
+
+*Historical artistic styles and aesthetic movements*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Art Nouveau Flow** | ![Art Nouveau Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Nouveau%20Flow&template=art-nouveau-flow&height=80) | `![Art Nouveau Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Nouveau%20Flow&template=art-nouveau-flow&height=80)` |
+| **Art Deco Luxury** | ![Art Deco Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Deco%20Luxury&template=art-deco-luxury&height=80) | `![Art Deco Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Deco%20Luxury&template=art-deco-luxury&height=80)` |
+| **Impressionist Dots** | ![Impressionist Dots](https://gradient-svg-generator.vercel.app/api/svg?text=Impressionist%20Dots&template=impressionist-dots&height=80) | `![Impressionist Dots](https://gradient-svg-generator.vercel.app/api/svg?text=Impressionist%20Dots&template=impressionist-dots&height=80)` |
+| **Pop Art Halftone** | ![Pop Art Halftone](https://gradient-svg-generator.vercel.app/api/svg?text=Pop%20Art%20Halftone&template=pop-art-halftone&height=80) | `![Pop Art Halftone](https://gradient-svg-generator.vercel.app/api/svg?text=Pop%20Art%20Halftone&template=pop-art-halftone&height=80)` |
+
+</div>
+
+### 🍳 Culinary & Liquid Flow Templates (12 Templates)
+
+*Food and beverage aesthetics with fluid dynamics*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Coffee Cream** | ![Coffee Cream](https://gradient-svg-generator.vercel.app/api/svg?text=Coffee%20Cream&template=coffee-cream&height=80) | `![Coffee Cream](https://gradient-svg-generator.vercel.app/api/svg?text=Coffee%20Cream&template=coffee-cream&height=80)` |
+| **Wine Pour** | ![Wine Pour](https://gradient-svg-generator.vercel.app/api/svg?text=Wine%20Pour&template=wine-pour&height=80) | `![Wine Pour](https://gradient-svg-generator.vercel.app/api/svg?text=Wine%20Pour&template=wine-pour&height=80)` |
+| **Honey Drizzle** | ![Honey Drizzle](https://gradient-svg-generator.vercel.app/api/svg?text=Honey%20Drizzle&template=honey-drizzle&height=80) | `![Honey Drizzle](https://gradient-svg-generator.vercel.app/api/svg?text=Honey%20Drizzle&template=honey-drizzle&height=80)` |
+| **Chocolate Melt** | ![Chocolate Melt](https://gradient-svg-generator.vercel.app/api/svg?text=Chocolate%20Melt&template=chocolate-melt&height=80) | `![Chocolate Melt](https://gradient-svg-generator.vercel.app/api/svg?text=Chocolate%20Melt&template=chocolate-melt&height=80)` |
+
+</div>
+
+### 🎯 Pattern Templates (8 Templates)
+
+*Geometric patterns with dynamic animations*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Candy Stripe Dream** | ![Candy Stripe Dream](https://gradient-svg-generator.vercel.app/api/svg?text=Candy%20Stripe%20Dream&template=candy-stripe-dream&height=80) | `![Candy Stripe Dream](https://gradient-svg-generator.vercel.app/api/svg?text=Candy%20Stripe%20Dream&template=candy-stripe-dream&height=80)` |
+| **Zigzag Energy** | ![Zigzag Energy](https://gradient-svg-generator.vercel.app/api/svg?text=Zigzag%20Energy&template=zigzag-energy&height=80) | `![Zigzag Energy](https://gradient-svg-generator.vercel.app/api/svg?text=Zigzag%20Energy&template=zigzag-energy&height=80)` |
+| **Diamond Grid** | ![Diamond Grid](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Grid&template=diamond-grid&height=80) | `![Diamond Grid](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Grid&template=diamond-grid&height=80)` |
+| **Heart Beat** | ![Heart Beat](https://gradient-svg-generator.vercel.app/api/svg?text=Heart%20Beat&template=heart-beat&height=80) | `![Heart Beat](https://gradient-svg-generator.vercel.app/api/svg?text=Heart%20Beat&template=heart-beat&height=80)` |
+
+</div>
+
+### ✨ Metallic Effect Templates (8 Templates)
+
+*Metallic and shimmer effects with realistic textures*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Copper Shine** | ![Copper Shine](https://gradient-svg-generator.vercel.app/api/svg?text=Copper%20Shine&template=copper-shine&height=80) | `![Copper Shine](https://gradient-svg-generator.vercel.app/api/svg?text=Copper%20Shine&template=copper-shine&height=80)` |
+| **Gold Shimmer** | ![Gold Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Shimmer&template=gold-shimmer&height=80) | `![Gold Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Shimmer&template=gold-shimmer&height=80)` |
+| **Chrome Flow** | ![Chrome Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Chrome%20Flow&template=chrome-flow&height=80) | `![Chrome Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Chrome%20Flow&template=chrome-flow&height=80)` |
+| **Platinum Sparkle** | ![Platinum Sparkle](https://gradient-svg-generator.vercel.app/api/svg?text=Platinum%20Sparkle&template=platinum-sparkle&height=80) | `![Platinum Sparkle](https://gradient-svg-generator.vercel.app/api/svg?text=Platinum%20Sparkle&template=platinum-sparkle&height=80)` |
+
+</div>
+
+### 📝 Path Text Animation Templates (12 Templates)
+
+*Advanced text reveal with SVG path animations*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Typing Path Reveal** | ![Typing Path Reveal](https://gradient-svg-generator.vercel.app/api/svg?text=Typing%20Path%20Reveal&template=typing-path-reveal&height=80) | `![Typing Path Reveal](https://gradient-svg-generator.vercel.app/api/svg?text=Typing%20Path%20Reveal&template=typing-path-reveal&height=80)` |
+| **Curved Flow** | ![Curved Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Curved%20Flow&template=curved-flow&height=80) | `![Curved Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Curved%20Flow&template=curved-flow&height=80)` |
+| **Spiral Text** | ![Spiral Text](https://gradient-svg-generator.vercel.app/api/svg?text=Spiral%20Text&template=spiral-text&height=80) | `![Spiral Text](https://gradient-svg-generator.vercel.app/api/svg?text=Spiral%20Text&template=spiral-text&height=80)` |
+| **Neon Flicker** | ![Neon Flicker](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Flicker&template=neon-flicker&height=80) | `![Neon Flicker](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Flicker&template=neon-flicker&height=80)` |
+
+</div>
+
+### 🔷 Shape Background Templates (25 Templates)
+
+*Capsule-render inspired shape backgrounds with blob morphing and wave effects*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Liquid Venom** | ![Liquid Venom](https://gradient-svg-generator.vercel.app/api/svg?text=Liquid%20Venom&template=liquid-venom&height=80) | `![Liquid Venom](https://gradient-svg-generator.vercel.app/api/svg?text=Liquid%20Venom&template=liquid-venom&height=80)` |
+| **Ocean Depths** | ![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80) | `![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80)` |
+| **Dreamy Sunset** | ![Dreamy Sunset](https://gradient-svg-generator.vercel.app/api/svg?text=Dreamy%20Sunset&template=dreamy-sunset&height=80) | `![Dreamy Sunset](https://gradient-svg-generator.vercel.app/api/svg?text=Dreamy%20Sunset&template=dreamy-sunset&height=80)` |
+| **Capsule Tech** | ![Capsule Tech](https://gradient-svg-generator.vercel.app/api/svg?text=Capsule%20Tech&template=capsule-tech&height=80) | `![Capsule Tech](https://gradient-svg-generator.vercel.app/api/svg?text=Capsule%20Tech&template=capsule-tech&height=80)` |
+
+</div>
+
+### 🔮 Experimental Templates (29 Templates)
+
+<details>
+<summary><kbd>View Morphing Effects (6 Templates)</kbd></summary>
+
+*Organic liquid transformations with advanced morphing*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Liquid Mercury** | ![Liquid Mercury](https://gradient-svg-generator.vercel.app/api/svg?text=Liquid%20Mercury&template=liquid-mercury&height=80) | `![Liquid Mercury](https://gradient-svg-generator.vercel.app/api/svg?text=Liquid%20Mercury&template=liquid-mercury&height=80)` |
+| **Plasma Blob** | ![Plasma Blob](https://gradient-svg-generator.vercel.app/api/svg?text=Plasma%20Blob&template=plasma-blob&height=80) | `![Plasma Blob](https://gradient-svg-generator.vercel.app/api/svg?text=Plasma%20Blob&template=plasma-blob&height=80)` |
+| **Quantum Foam** | ![Quantum Foam](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Foam&template=quantum-foam&height=80) | `![Quantum Foam](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Foam&template=quantum-foam&height=80)` |
+
+</div>
+
+</details>
+
+<details>
+<summary><kbd>View Fluid Dynamics (6 Templates)</kbd></summary>
+
+*Advanced fluid simulation and wave propagation effects*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Turbulent Waves** | ![Turbulent Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Turbulent%20Waves&template=turbulent-waves&height=80) | `![Turbulent Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Turbulent%20Waves&template=turbulent-waves&height=80)` |
+| **Electromagnetic Field** | ![Electromagnetic Field](https://gradient-svg-generator.vercel.app/api/svg?text=Electromagnetic%20Field&template=electromagnetic-field&height=80) | `![Electromagnetic Field](https://gradient-svg-generator.vercel.app/api/svg?text=Electromagnetic%20Field&template=electromagnetic-field&height=80)` |
+| **Aurora Streams** | ![Aurora Streams](https://gradient-svg-generator.vercel.app/api/svg?text=Aurora%20Streams&template=aurora-streams&height=80) | `![Aurora Streams](https://gradient-svg-generator.vercel.app/api/svg?text=Aurora%20Streams&template=aurora-streams&height=80)` |
+
+</div>
+
+</details>
+
+<details>
+<summary><kbd>View Dimensional Portal (8 Templates)</kbd></summary>
+
+*Multi-dimensional space distortion and portal effects*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Quantum Tunnel** | ![Quantum Tunnel](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Tunnel&template=quantum-tunnel&height=80) | `![Quantum Tunnel](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Tunnel&template=quantum-tunnel&height=80)` |
+| **Wormhole Transit** | ![Wormhole Transit](https://gradient-svg-generator.vercel.app/api/svg?text=Wormhole%20Transit&template=wormhole-transit&height=80) | `![Wormhole Transit](https://gradient-svg-generator.vercel.app/api/svg?text=Wormhole%20Transit&template=wormhole-transit&height=80)` |
+| **Dimensional Rift** | ![Dimensional Rift](https://gradient-svg-generator.vercel.app/api/svg?text=Dimensional%20Rift&template=dimensional-rift&height=80) | `![Dimensional Rift](https://gradient-svg-generator.vercel.app/api/svg?text=Dimensional%20Rift&template=dimensional-rift&height=80)` |
+
+</div>
+
+</details>
+
+<details>
+<summary><kbd>View Consciousness Stream (9 Templates)</kbd></summary>
+
+*Psychological and philosophical visualization of consciousness*
+
+<div align="center">
+
+| Template | Preview | Markdown Code |
+|----------|---------|---------------|
+| **Thought Waves** | ![Thought Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Thought%20Waves&template=thought-waves&height=80) | `![Thought Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Thought%20Waves&template=thought-waves&height=80)` |
+| **Memory Fragments** | ![Memory Fragments](https://gradient-svg-generator.vercel.app/api/svg?text=Memory%20Fragments&template=memory-fragments&height=80) | `![Memory Fragments](https://gradient-svg-generator.vercel.app/api/svg?text=Memory%20Fragments&template=memory-fragments&height=80)` |
+| **Dream Logic** | ![Dream Logic](https://gradient-svg-generator.vercel.app/api/svg?text=Dream%20Logic&template=dream-logic&height=80) | `![Dream Logic](https://gradient-svg-generator.vercel.app/api/svg?text=Dream%20Logic&template=dream-logic&height=80)` |
+
+</div>
+
+</details>
+
 ## 🔧 API Reference
 
 ### 🌐 Base URL
@@ -660,14 +870,11 @@ https://gradient-svg-generator.vercel.app/api/svg
 ### 🎨 Available Gradient Types
 
 ```javascript
-// Basic Types (5 types)
-'horizontal', 'vertical', 'diagonal', 'circular', 'radial'
+// Basic Types (7 types)
+'linear', 'radial', 'conic', 'diamond', 'reflected', 'square', 'ellipse'
 
-// Advanced Types (7 types)
-'conic', 'wave', 'spiral', 'diamond', 'burst', 'reflection', 'pulse'
-
-// Special Effects (6 types)  
-'star', 'heart', 'zigzag', 'ripple', 'galaxy', 'lightning'
+// Text Effects (5 types)
+'luminance', 'rainbow', 'textBox', 'glitch', 'typewriter'
 
 // Future Tech (6 types)
 'hologram', 'quantum', 'laserGrid', 'neuralNet', 'plasma', 'dataStream'
@@ -675,20 +882,61 @@ https://gradient-svg-generator.vercel.app/api/svg
 // Artistic (7 types)
 'watercolor', 'oilPaint', 'inkSplash', 'mosaic', 'abstractGeo', 'graffiti', 'vintage'
 
-// Luxury (7 types)
+// Luxury Materials (7 types)
 'goldFoil', 'diamond', 'marble', 'platinum', 'roseGold', 'crystal', 'velvet'
 
 // Organic Nature (8 types)
 'flowingWater', 'flame', 'clouds', 'aurora', 'oceanWaves', 'forest', 'lightning', 'mountainMist'
 
-// Gaming (8 types)
+// Gaming Effects (8 types)
 'pixelArt', 'neonArcade', 'energyBlast', 'speedLines', 'bossBattle', 'powerUp', 'cyberpunk', 'retroWave'
 
-// Text Effects (5 types)
-'luminance', 'rainbow', 'textBox', 'glitch', 'typewriter'
+// Morphing Effects (6 types)
+'liquidMorphing', 'plasmaMorphing', 'cosmicMorphing', 'bioMorphing', 'quantumMorphing', 'lavaMorphing'
 
-// Experimental (20+ types)
-'morphing', 'dimensionalPortal', 'consciousnessStream', 'digitalLife', 'cyberAesthetics'
+// Fluid Dynamics (6 types)
+'turbulentWaves', 'electromagneticWaves', 'auroraWaves', 'soundWaves', 'cryogenicWaves', 'solarWaves'
+
+// Dimensional Effects (6 types)
+'portalDistortion', 'hypercubeProjection', 'wormholeEffect', 'fractalDimension', 'multiverseOverlap', 'realityDistortion'
+
+// Dimensional Portal (7 types)
+'quantumTunnel', 'parallelDimension', 'wormholePortal', 'dimensionalTear', 'holographicGrid', 'voidDistortion', 'astralPlane'
+
+// Digital Life (8 types)
+'aiConsciousness', 'bioDigitalMerge', 'quantumDNA', 'digitalEvolution', 'syntheticSoul', 'cyberSymbiosis', 'neuralStorm', 'digitalGenome'
+
+// Cyber Aesthetics (9 types)
+'neonCityscape', 'dataMatrix', 'cyberpunkShadow', 'holographicUI', 'pixelCorruption', 'chromeFinish', 'viralSpread', 'encryptionField', 'arOverlay'
+
+// Consciousness Stream (9 types)
+'thoughtWaves', 'memoryFragments', 'dreamLogic', 'emotionalSpectrum', 'meditativeCalm', 'anxietySpiral', 'egoDissolution', 'psychedelicInsight', 'collectiveUnconscious'
+
+// Weather & Atmosphere (7 types)
+'fogRolling', 'monsoonRain', 'snowfallDrift', 'sandstormSwirl', 'tornadoVortex', 'lightningWeb', 'prismRefraction'
+
+// Light & Shadow (7 types)
+'causticUnderwater', 'venetianBlind', 'stainedGlass', 'lensFlare', 'bokehBlur', 'godRays', 'eclipseCorona'
+
+// Art Movements (7 types)
+'artNouveauFlow', 'artDecoLuxury', 'bauhausMinimal', 'impressionistDots', 'cubistFragments', 'surrealistMelt', 'popArtHalftone'
+
+// Culinary & Liquid (7 types)
+'coffeeCream', 'winePour', 'honeyDrizzle', 'chocolateMelt', 'caramelSwirl', 'tieDye', 'marbleMixing'
+
+// Pattern Based (8 types)
+'candystripe', 'patternZigzag', 'diamondPattern', 'heartsPattern', 'checkered', 'diagonalFlow', 'geometricPulse', 'patternWave'
+
+// Metallic Effects (9 types)
+'copperMetallic', 'shineShimmer', 'neonPulse', 'aquaFlow', 'sparkleEffect', 'chromeFlow', 'bronzeGleam', 'platinumSparkle', 'steelAqua'
+
+// Path Text Animation (12 types)
+'typingPathReveal', 'curvedFlow', 'spiralText', 'waveTextPath', 'charByChar', 'wordCascade', 'lineSequence', 'fadeInPath', 'handwriting', 'brushStroke', 'neonFlicker', 'elasticBounce'
+
+// Blob & Shape Effects (8 types)
+'blobMorph', 'liquidBlob', 'organicBlob', 'layeredWaves', 'blurMotion', 'dreamyCircles', 'abstractBlur'
+// Shape Backgrounds (7 types)
+'cylinder', 'softRounded', 'eggShape', 'sliceShape', 'speechBubble', 'sharkTeeth', 'largeRounded'
 ```
 
 ### 🚀 Usage Examples
