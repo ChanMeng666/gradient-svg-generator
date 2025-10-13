@@ -23,7 +23,7 @@ export default function handler(req, res) {
       text,
       height = 120,
       template = '',
-      gradientType = 'horizontal',
+      gradientType, // Don't default - let template config provide it
       duration = '6s',
       animation = 'none',
       stroke = null,
@@ -31,6 +31,9 @@ export default function handler(req, res) {
       textBg = null,
       rotate = 0
     } = req.query;
+
+    // Only use 'horizontal' as default if no template is provided
+    const finalGradientType = gradientType || (template ? undefined : 'horizontal');
 
     // Handle multiple color parameters
     const colors = [];
@@ -53,7 +56,7 @@ export default function handler(req, res) {
       text,
       height,
       template,
-      gradientType,
+      gradientType: finalGradientType,
       duration,
       animation,
       stroke,
@@ -93,7 +96,7 @@ export default function handler(req, res) {
       text,
       colors,
       height,
-      gradientType,
+      gradientType: finalGradientType,
       duration,
       template,
       animation,

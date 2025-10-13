@@ -31,16 +31,16 @@ function createCylinderGradient(stops, animationConfig, duration = '6s') {
     </linearGradient>
   `;
 
-  // Cylinder path: Rectangle with semicircular ends
-  // Using viewBox-relative coordinates for better scaling
+  // Cylinder path: Rectangle with semicircular ends (capsule shape)
+  // Using ry="50%" creates pill/capsule shape with rounded ends
+  // When only ry is specified, rx is automatically set to the same value
   const additionalElements = `
     <rect
       x="0"
       y="0"
-      width="100%"
-      height="100%"
-      rx="50%"
-      ry="50%"
+      width="854"
+      height="120"
+      ry="60"
       fill="url(#gradient)"
       opacity="1"
     >
