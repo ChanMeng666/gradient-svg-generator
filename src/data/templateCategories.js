@@ -35,6 +35,9 @@ const dimensionalPortalTemplates = require('../templates/dimensionalPortalTempla
 const digitalLifeTemplates = require('../templates/digitalLifeTemplates');
 const cyberAestheticsTemplates = require('../templates/cyberAestheticsTemplates');
 const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
+// 🌟 NEW: Pattern & Metallic Templates (inspired by example project)
+const patternTemplates = require('../templates/patternTemplates');
+const metallicTemplates = require('../templates/metallicTemplates');
 
 // Template categories configuration
 const templateCategories = [
@@ -193,6 +196,21 @@ const templateCategories = [
     icon: '🧠',
     description: '意识流美学 - 心理学、哲学与精神维度的视觉化表达',
     templates: Object.values(consciousnessStreamTemplates)
+  },
+  // 🌟 NEW: Pattern & Metallic Categories (inspired by example project)
+  {
+    id: 'pattern',
+    name: 'Pattern',
+    icon: '🔷',
+    description: 'Geometric patterns with dynamic animations - stripes, zigzags, diamonds, and more',
+    templates: Object.values(patternTemplates)
+  },
+  {
+    id: 'metallic',
+    name: 'Metallic',
+    icon: '✨',
+    description: 'Luxurious metallic effects with shimmer, shine, and glow animations',
+    templates: Object.values(metallicTemplates)
   }
 ];
 
