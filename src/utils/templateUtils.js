@@ -31,6 +31,8 @@ import patternTemplates from '../templates/patternTemplates';
 import metallicTemplates from '../templates/metallicTemplates';
 // 🌟 NEW: Path-Based Text Animation Templates (inspired by Readme Typing SVG)
 import pathTextTemplates from '../templates/pathTextTemplates';
+// 🌟 NEW: Capsule-Render Inspired Shape Templates (blob, wave, blur, shape backgrounds)
+import capsuleShapeTemplates from '../templates/capsuleShapeTemplates';
 
 // Legacy support - import template categories if it exists
 let templateCategories = [];
@@ -75,6 +77,8 @@ const allTemplateGroups = [
   metallicTemplates,
   // 🌟 NEW: Path-Based Text Animation Templates
   pathTextTemplates,
+  // 🌟 NEW: Capsule-Render Inspired Shape Templates
+  capsuleShapeTemplates,
 ];
 
 // Get all templates as a flat array
@@ -103,7 +107,7 @@ export function getAllTemplates() {
             'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
             'digitalLife', 'cyberAesthetics', 'consciousness',
             'weather', 'lightShadow', 'artMovement', 'culinaryLiquid',
-            'pattern', 'metallic', 'pathText'];
+            'pattern', 'metallic', 'pathText', 'capsuleShape'];
           
           allTemplates.push({
             ...template,
@@ -185,6 +189,8 @@ export function getCategories() {
     metallic: { id: 'metallic', name: 'Metallic', icon: '✨' },
     // 🌟 NEW: Path-Based Text Animation Category
     pathText: { id: 'pathText', name: 'Path Animation', icon: '✍️' },
+    // 🌟 NEW: Capsule-Render Inspired Shape Category
+    capsuleShape: { id: 'capsuleShape', name: 'Capsule Effects', icon: '💊' },
   };
 
   // Get unique categories from templates
@@ -226,7 +232,7 @@ export function getTemplateByName(name) {
         'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
         'digitalLife', 'cyberAesthetics', 'consciousness',
         'weather', 'lightShadow', 'artMovement', 'culinaryLiquid',
-        'pattern', 'metallic', 'pathText'];
+        'pattern', 'metallic', 'pathText', 'capsuleShape'];
 
       return {
         ...template,
