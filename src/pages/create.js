@@ -214,10 +214,10 @@ export default function Create() {
       />
       <Head>
         <title>Create Custom Gradients - Gradient SVG Generator | Real-time Editor</title>
-        <meta name="description" content="Create beautiful animated SVG gradients with our powerful real-time editor. Choose from 216+ professional templates or design your own custom gradients. Free API generation." />
-        <meta name="keywords" content="gradient creator, SVG editor, custom gradients, real-time preview, design tool, API generator" />
+        <meta name="description" content="Create beautiful animated SVG gradients with our powerful real-time editor. Choose from 223+ professional templates including Weather, Light & Shadow, Art Movement, and Culinary effects or design your own custom gradients. Free API generation." />
+        <meta name="keywords" content="gradient creator, SVG editor, custom gradients, real-time preview, design tool, API generator, weather effects, light shadow, art movement, culinary" />
         <meta property="og:title" content="Gradient Creator - Real-time SVG Editor" />
-        <meta property="og:description" content="Professional gradient creation tool with real-time preview and 216+ templates." />
+        <meta property="og:description" content="Professional gradient creation tool with real-time preview and 223+ templates across 26 categories." />
       </Head>
 
       <div className="min-h-screen bg-background">

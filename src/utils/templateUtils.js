@@ -21,6 +21,11 @@ import dimensionalPortalTemplates from '../templates/dimensionalPortalTemplates'
 import digitalLifeTemplates from '../templates/digitalLifeTemplates';
 import cyberAestheticsTemplates from '../templates/cyberAestheticsTemplates';
 import consciousnessStreamTemplates from '../templates/consciousnessStreamTemplates';
+// 🌟 NEW: 2025 Creative Expansion Templates
+import weatherTemplates from '../templates/weatherTemplates';
+import lightShadowTemplates from '../templates/lightShadowTemplates';
+import artMovementTemplates from '../templates/artMovementTemplates';
+import culinaryLiquidTemplates from '../templates/culinaryLiquidTemplates';
 
 // Legacy support - import template categories if it exists
 let templateCategories = [];
@@ -55,6 +60,11 @@ const allTemplateGroups = [
   digitalLifeTemplates,
   cyberAestheticsTemplates,
   consciousnessStreamTemplates,
+  // 🌟 NEW: 2025 Creative Expansion
+  weatherTemplates,
+  lightShadowTemplates,
+  artMovementTemplates,
+  culinaryLiquidTemplates,
 ];
 
 // Get all templates as a flat array
@@ -78,10 +88,11 @@ export function getAllTemplates() {
         if (template && typeof template === 'object' && template.name && !seenNames.has(template.name)) {
           seenNames.add(template.name);
           // Add category based on the template group index
-          const categoryMap = ['basic', 'pride', 'nature', 'tech', 'art', 'emotion', 'material', 
-            'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming', 
+          const categoryMap = ['basic', 'pride', 'nature', 'tech', 'art', 'emotion', 'material',
+            'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming',
             'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
-            'digitalLife', 'cyberAesthetics', 'consciousness'];
+            'digitalLife', 'cyberAesthetics', 'consciousness',
+            'weather', 'lightShadow', 'artMovement', 'culinaryLiquid'];
           
           allTemplates.push({
             ...template,
@@ -153,6 +164,11 @@ export function getCategories() {
     digitalLife: { id: 'digitalLife', name: 'Digital Life', icon: '🧬' },
     cyberAesthetics: { id: 'cyberAesthetics', name: 'Cyber', icon: '🤖' },
     consciousness: { id: 'consciousness', name: 'Consciousness', icon: '🧠' },
+    // 🌟 NEW: 2025 Creative Expansion Categories
+    weather: { id: 'weather', name: 'Weather', icon: '🌦️' },
+    lightShadow: { id: 'lightShadow', name: 'Light & Shadow', icon: '💡' },
+    artMovement: { id: 'artMovement', name: 'Art Movement', icon: '🎭' },
+    culinaryLiquid: { id: 'culinaryLiquid', name: 'Culinary', icon: '☕' },
   };
 
   // Get unique categories from templates
@@ -189,10 +205,11 @@ export function getTemplateByName(name) {
     }
     
     if (template) {
-      const categoryMap = ['basic', 'pride', 'nature', 'tech', 'art', 'emotion', 'material', 
-        'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming', 
+      const categoryMap = ['basic', 'pride', 'nature', 'tech', 'art', 'emotion', 'material',
+        'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming',
         'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
-        'digitalLife', 'cyberAesthetics', 'consciousness'];
+        'digitalLife', 'cyberAesthetics', 'consciousness',
+        'weather', 'lightShadow', 'artMovement', 'culinaryLiquid'];
       
       return {
         ...template,

@@ -110,11 +110,11 @@ export default function Templates() {
         customInstructions={`Template gallery with ${filteredTemplates.length} templates. ${selectedCategory !== 'all' ? `Currently viewing ${selectedCategory} category.` : 'All categories available.'} Help users find appropriate templates based on their project needs and provide direct API usage examples.`}
       />
       <Head>
-        <title>Template Gallery - 216+ Professional Gradient Templates | Gradient SVG Generator</title>
-        <meta name="description" content="Browse 216+ professional gradient templates across 22 categories. Perfect for GitHub headers, web projects, and design work. Free API access to all templates." />
-        <meta name="keywords" content="gradient templates, SVG templates, design gallery, GitHub headers, professional gradients, template library" />
-        <meta property="og:title" content="216+ Professional Gradient Templates" />
-        <meta property="og:description" content="Browse our comprehensive template gallery with gradients for every project type." />
+        <title>Template Gallery - 223+ Professional Gradient Templates | Gradient SVG Generator</title>
+        <meta name="description" content="Browse 223+ professional gradient templates across 26 categories including Weather, Light & Shadow, Art Movement, and Culinary effects. Perfect for GitHub headers, web projects, and design work. Free API access to all templates." />
+        <meta name="keywords" content="gradient templates, SVG templates, design gallery, GitHub headers, professional gradients, template library, weather effects, light shadow, art movement, culinary" />
+        <meta property="og:title" content="223+ Professional Gradient Templates" />
+        <meta property="og:description" content="Browse our comprehensive template gallery with gradients for every project type, including new Weather, Light & Shadow, Art Movement, and Culinary categories." />
       </Head>
 
       <div className="min-h-screen bg-background">
