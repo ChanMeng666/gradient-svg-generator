@@ -26,6 +26,8 @@ const weatherGradients = require('./gradientGenerators/weatherGradients');
 const lightShadowGradients = require('./gradientGenerators/lightShadowGradients');
 const artMovementGradients = require('./gradientGenerators/artMovementGradients');
 const culinaryLiquidGradients = require('./gradientGenerators/culinaryLiquidGradients');
+const patternGradients = require('./gradientGenerators/patternGradients');
+const metallicGradients = require('./gradientGenerators/metallicGradients');
 
 // Gradient type mapping
 const gradientMapping = {
@@ -207,7 +209,28 @@ const gradientMapping = {
   chocolateMelt: culinaryLiquidGradients.createChocolateMeltGradient,
   caramelSwirl: culinaryLiquidGradients.createCaramelSwirlGradient,
   tieDye: culinaryLiquidGradients.createTieDyeGradient,
-  marbleMixing: culinaryLiquidGradients.createMarbleMixingGradient
+  marbleMixing: culinaryLiquidGradients.createMarbleMixingGradient,
+
+  // 🌟 NEW: Pattern-based gradients (inspired by example project)
+  candystripe: patternGradients.createCandystripeGradient,
+  patternZigzag: patternGradients.createZigzagGradient,
+  diamondPattern: patternGradients.createDiamondPatternGradient,
+  heartsPattern: patternGradients.createHeartsPatternGradient,
+  checkered: patternGradients.createCheckeredGradient,
+  diagonalFlow: patternGradients.createDiagonalFlowGradient,
+  geometricPulse: patternGradients.createGeometricPulseGradient,
+  patternWave: patternGradients.createPatternWaveGradient,
+
+  // 🌟 NEW: Metallic & Shimmer gradients (inspired by example project)
+  copperMetallic: metallicGradients.createCopperMetallicGradient,
+  shineShimmer: metallicGradients.createShineShimmerGradient,
+  neonPulse: metallicGradients.createNeonPulseGradient,
+  aquaFlow: metallicGradients.createAquaFlowGradient,
+  sparkleEffect: metallicGradients.createSparkleEffectGradient,
+  chromeFlow: metallicGradients.createChromeFlowGradient,
+  bronzeGleam: metallicGradients.createBronzeGleamGradient,
+  platinumSparkle: metallicGradients.createPlatinumSparkleGradient,
+  steelAqua: metallicGradients.createSteelAquaGradient
 };
 
 /**

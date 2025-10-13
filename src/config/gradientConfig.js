@@ -53,6 +53,8 @@ const weatherTemplates = require('../templates/weatherTemplates');
 const lightShadowTemplates = require('../templates/lightShadowTemplates');
 const artMovementTemplates = require('../templates/artMovementTemplates');
 const culinaryLiquidTemplates = require('../templates/culinaryLiquidTemplates');
+const patternTemplates = require('../templates/patternTemplates');
+const metallicTemplates = require('../templates/metallicTemplates');
 const { getRandomGradientPalette, getTimedPalette } = require('./colorPalettes');
 
 const templates = { 
@@ -85,7 +87,10 @@ const templates = {
   ...weatherTemplates,
   ...lightShadowTemplates,
   ...artMovementTemplates,
-  ...culinaryLiquidTemplates
+  ...culinaryLiquidTemplates,
+  // 🌟 NEW: Pattern & Metallic templates (inspired by example project)
+  ...patternTemplates,
+  ...metallicTemplates
 };
 
 function getTemplateConfig(template, defaultColor = '000000') {
@@ -282,7 +287,26 @@ const GRADIENT_TYPES = [
   'chocolateMelt',
   'caramelSwirl',
   'tieDye',
-  'marbleMixing'
+  'marbleMixing',
+  // 🌟 NEW: Pattern-based Effects (inspired by example project)
+  'candystripe',
+  'patternZigzag',
+  'diamondPattern',
+  'heartsPattern',
+  'checkered',
+  'diagonalFlow',
+  'geometricPulse',
+  'patternWave',
+  // 🌟 NEW: Metallic & Shimmer Effects (inspired by example project)
+  'copperMetallic',
+  'shineShimmer',
+  'neonPulse',
+  'aquaFlow',
+  'sparkleEffect',
+  'chromeFlow',
+  'bronzeGleam',
+  'platinumSparkle',
+  'steelAqua'
 ];
 
 module.exports = { 
