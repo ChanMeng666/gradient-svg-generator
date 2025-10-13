@@ -60,8 +60,13 @@ const gradientMapping = {
   glitch: effectGradients.createGlitchGradient,
   typewriter: effectGradients.createTypewriterGradient,
 
-  // 🌈 NEW: Rainbow Layer Effect - 借鉴自 example-1/rainbow.js
+  // 🌈 NEW: Advanced Animation Effects - inspired by svg-banners example project
   rainbowLayer: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'rainbow-layer' }),
+  glitchEnhanced: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'glitchEnhanced' }),
+  luminanceEnhanced: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'luminanceEnhanced' }),
+  borderDrawing: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'borderDrawing' }),
+  layeredWave: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'layeredWave' }),
+  typewriterEnhanced: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'typewriterEnhanced' }),
 
   // Future tech gradients
   hologram: futureTechGradients.createHologramGradient,

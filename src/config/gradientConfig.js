@@ -306,7 +306,14 @@ const GRADIENT_TYPES = [
   'chromeFlow',
   'bronzeGleam',
   'platinumSparkle',
-  'steelAqua'
+  'steelAqua',
+  // 🌟 NEW: Enhanced Animation Effects (inspired by svg-banners example project)
+  'rainbowLayer',
+  'glitchEnhanced',
+  'luminanceEnhanced',
+  'borderDrawing',
+  'layeredWave',
+  'typewriterEnhanced'
 ];
 
 module.exports = { 
