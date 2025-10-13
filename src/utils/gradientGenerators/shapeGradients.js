@@ -224,6 +224,85 @@ function createRippleGradient(stops, animationConfig, animationDuration) {
   };
 }
 
+/**
+ * Create layered wave gradient with depth effect
+ * Inspired by capsule-render's Waving effect
+ * Multiple semi-transparent waves with staggered animations
+ */
+function createLayeredWaveGradient(stops, animationConfig, animationDuration) {
+  return {
+    gradientDef: `
+      <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+        ${stops}
+        <animate attributeName="x1" values="0%;-20%;40%;-10%;60%;0%" ${animationConfig} />
+        <animate attributeName="y1" values="50%;30%;70%;20%;80%;50%" ${animationConfig} />
+        <animate attributeName="x2" values="100%;120%;80%;110%;60%;100%" ${animationConfig} />
+        <animate attributeName="y2" values="50%;70%;30%;80%;20%;50%" ${animationConfig} />
+      </linearGradient>
+      <filter id="waveBlur">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+        <feColorMatrix type="saturate" values="1.3"/>
+      </filter>
+    `,
+    additionalElements: `
+      <g class="layered-waves">
+        <!-- Background wave layer -->
+        <path d="M0,70 Q213.5,30 427,60 T854,50 L854,120 L0,120 Z" fill="url(#gradient)" opacity="0.3" filter="url(#waveBlur)">
+          <animate
+            attributeName="d"
+            dur="${parseFloat(animationDuration) * 2}s"
+            repeatCount="indefinite"
+            calcMode="spline"
+            keyTimes="0;0.333;0.667;1"
+            keySplines="0.2 0 0.2 1;0.2 0 0.2 1;0.2 0 0.2 1"
+            begin="0s"
+            values="M0,70 Q213.5,30 427,60 T854,50 L854,120 L0,120 Z;
+                    M0,60 Q213.5,40 427,50 T854,70 L854,120 L0,120 Z;
+                    M0,45 Q213.5,75 427,45 T854,60 L854,120 L0,120 Z;
+                    M0,70 Q213.5,30 427,60 T854,50 L854,120 L0,120 Z"
+          />
+        </path>
+
+        <!-- Middle wave layer -->
+        <path d="M0,65 Q213.5,25 427,55 T854,45 L854,120 L0,120 Z" fill="url(#gradient)" opacity="0.4">
+          <animate
+            attributeName="d"
+            dur="${parseFloat(animationDuration) * 2}s"
+            repeatCount="indefinite"
+            calcMode="spline"
+            keyTimes="0;0.333;0.667;1"
+            keySplines="0.2 0 0.2 1;0.2 0 0.2 1;0.2 0 0.2 1"
+            begin="-${parseFloat(animationDuration) * 0.5}s"
+            values="M0,65 Q213.5,25 427,55 T854,45 L854,120 L0,120 Z;
+                    M0,55 Q213.5,85 427,45 T854,65 L854,120 L0,120 Z;
+                    M0,50 Q213.5,30 427,60 T854,40 L854,120 L0,120 Z;
+                    M0,65 Q213.5,25 427,55 T854,45 L854,120 L0,120 Z"
+          />
+        </path>
+
+        <!-- Foreground wave layer -->
+        <path d="M0,55 Q213.5,15 427,45 T854,35 L854,120 L0,120 Z" fill="url(#gradient)" opacity="0.5">
+          <animate
+            attributeName="d"
+            dur="${parseFloat(animationDuration) * 2}s"
+            repeatCount="indefinite"
+            calcMode="spline"
+            keyTimes="0;0.333;0.667;1"
+            keySplines="0.2 0 0.2 1;0.2 0 0.2 1;0.2 0 0.2 1"
+            begin="-${parseFloat(animationDuration) * 1}s"
+            values="M0,55 Q213.5,15 427,45 T854,35 L854,120 L0,120 Z;
+                    M0,45 Q213.5,75 427,35 T854,55 L854,120 L0,120 Z;
+                    M0,60 Q213.5,20 427,50 T854,30 L854,120 L0,120 Z;
+                    M0,55 Q213.5,15 427,45 T854,35 L854,120 L0,120 Z"
+          />
+        </path>
+      </g>
+    `,
+    hasClipPath: false,
+    clipPathId: null
+  };
+}
+
 module.exports = {
   createCircularGradient,
   createStarGradient,
@@ -231,5 +310,6 @@ module.exports = {
   createLightningGradient,
   createWaveGradient,
   createZigzagGradient,
-  createRippleGradient
+  createRippleGradient,
+  createLayeredWaveGradient
 }; 

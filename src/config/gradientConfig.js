@@ -57,6 +57,8 @@ const patternTemplates = require('../templates/patternTemplates');
 const metallicTemplates = require('../templates/metallicTemplates');
 // 🌟 NEW: Path-Based Text Animation templates (inspired by Readme Typing SVG)
 const pathTextTemplates = require('../templates/pathTextTemplates');
+// 🌟 NEW: Capsule-Render Inspired Shape templates (blob, wave, blur effects)
+const capsuleShapeTemplates = require('../templates/capsuleShapeTemplates');
 const { getRandomGradientPalette, getTimedPalette } = require('./colorPalettes');
 
 const templates = { 
@@ -94,7 +96,9 @@ const templates = {
   ...patternTemplates,
   ...metallicTemplates,
   // 🌟 NEW: Path-Based Text Animation templates (inspired by Readme Typing SVG)
-  ...pathTextTemplates
+  ...pathTextTemplates,
+  // 🌟 NEW: Capsule-Render Inspired Shape templates
+  ...capsuleShapeTemplates
 };
 
 function getTemplateConfig(template, defaultColor = '000000') {
@@ -330,7 +334,17 @@ const GRADIENT_TYPES = [
   'handwriting',
   'brushStroke',
   'neonFlicker',
-  'elasticBounce'
+  'elasticBounce',
+  // 🌟 NEW: Blob Morphing Effects (inspired by capsule-render Venom effect)
+  'blobMorph',
+  'liquidBlob',
+  'organicBlob',
+  // 🌟 NEW: Layered Wave Effects (inspired by capsule-render Waving effect)
+  'layeredWaves',
+  // 🌟 NEW: Blur Motion Effects (inspired by capsule-render Blur effect)
+  'blurMotion',
+  'dreamyCircles',
+  'abstractBlur'
 ];
 
 module.exports = { 

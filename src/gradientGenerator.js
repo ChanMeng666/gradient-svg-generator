@@ -27,14 +27,16 @@ const { createGradientFromColors } = require('./utils/svgUtils');
 const { getTemplateConfig } = require('./config/gradientConfig');
 const { generateTextEffectSVG } = require('./utils/textEffectGenerator');
 const { generateAdvancedSVG } = require('./utils/advancedSvgGenerator');
+const { getTextAnimationStyles } = require('./utils/textAnimationUtils');
 
-function generateGradientSVG({ 
-  text, 
-  colors = ['000000'], 
-  height = 120, 
+function generateGradientSVG({
+  text,
+  colors = ['000000'],
+  height = 120,
   gradientType = 'horizontal',
   duration = '6s',
-  template = '' 
+  template = '',
+  animation = 'none'
 }) {
   // If template is provided, use template configuration
   let config;
@@ -391,8 +393,11 @@ function generateGradientSVG({
   // Determine if we need to apply clip path
   const clipPath = gradientResult.hasClipPath ? `clip-path="url(#${gradientResult.clipPathId})"` : '';
 
+  // 🎬 NEW: Get text animation styles (inspired by capsule-render)
+  const textAnimationStyles = getTextAnimationStyles(animation, 'text');
+
   return `<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
       width="854" height="${height}" viewBox="0 0 854 ${height}">
       <defs>
         ${gradientResult.gradientDef}
@@ -559,6 +564,8 @@ function generateGradientSVG({
           <feColorMatrix type="saturate" values="1.2"/>
         </filter>
       </defs>
+
+      ${textAnimationStyles}
       
       <!-- Additional elements for complex effects -->
       ${gradientResult.additionalElements}
@@ -581,8 +588,8 @@ function generateGradientSVG({
         />
       </rect>
       
-      <text 
-        x="427" 
+      <text
+        x="427"
         y="${height/2}"
         font-size="40"
         font-family="'Arial Black', Arial, sans-serif"
@@ -591,17 +598,9 @@ function generateGradientSVG({
         alignment-baseline="middle"
         fill="#ffffff"
         filter="url(#textShadow)"
+        class="animated-text"
       >
         ${text}
-        <animate
-          attributeName="opacity"
-          values="0.9;1;0.9"
-          dur="4s"
-          repeatCount="indefinite"
-          calcMode="spline"
-          keyTimes="0;0.5;1"
-          keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
-        />
       </text>
     </svg>`;
 }

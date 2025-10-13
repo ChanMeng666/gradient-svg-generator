@@ -24,7 +24,8 @@ export default function handler(req, res) {
       height = 120,
       template = '',
       gradientType = 'horizontal',
-      duration = '6s'
+      duration = '6s',
+      animation = 'none'
     } = req.query;
 
     // Handle multiple color parameters
@@ -46,6 +47,7 @@ export default function handler(req, res) {
       template,
       gradientType,
       duration,
+      animation,
       colors,
       hasTemplate: !!template
     });
@@ -76,7 +78,8 @@ export default function handler(req, res) {
       height,
       gradientType,
       duration,
-      template
+      template,
+      animation
     });
 
     // Set AI-friendly headers

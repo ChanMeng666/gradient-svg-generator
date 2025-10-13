@@ -30,6 +30,10 @@ const patternGradients = require('./gradientGenerators/patternGradients');
 const metallicGradients = require('./gradientGenerators/metallicGradients');
 // 🌟 NEW: Path-Based Text Animation (inspired by Readme Typing SVG)
 const pathTextGradients = require('./gradientGenerators/pathTextGradients');
+// 🌟 NEW: Blob Morphing (inspired by capsule-render Venom effect)
+const blobMorphingGradients = require('./gradientGenerators/blobMorphingGradients');
+// 🌟 NEW: Blur Motion (inspired by capsule-render Blur effect)
+const blurMotionGradients = require('./gradientGenerators/blurMotionGradients');
 
 // Gradient type mapping
 const gradientMapping = {
@@ -52,6 +56,7 @@ const gradientMapping = {
   wave: shapeGradients.createWaveGradient,
   zigzag: shapeGradients.createZigzagGradient,
   ripple: shapeGradients.createRippleGradient,
+  layeredWaves: shapeGradients.createLayeredWaveGradient,
 
   // Effect gradients
   galaxy: effectGradients.createGalaxyGradient,
@@ -251,7 +256,17 @@ const gradientMapping = {
   handwriting: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'handwriting' }),
   brushStroke: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'brushStroke' }),
   neonFlicker: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'neonFlicker' }),
-  elasticBounce: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'elasticBounce' })
+  elasticBounce: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'elasticBounce' }),
+
+  // 🌟 NEW: Blob Morphing gradients (inspired by capsule-render Venom effect)
+  blobMorph: blobMorphingGradients.createBlobMorphingGradient,
+  liquidBlob: blobMorphingGradients.createLiquidBlobGradient,
+  organicBlob: blobMorphingGradients.createOrganicBlobGradient,
+
+  // 🌟 NEW: Blur Motion gradients (inspired by capsule-render Blur effect)
+  blurMotion: blurMotionGradients.createBlurMotionGradient,
+  dreamyCircles: blurMotionGradients.createDreamyCirclesGradient,
+  abstractBlur: blurMotionGradients.createAbstractBlurGradient
 };
 
 /**
