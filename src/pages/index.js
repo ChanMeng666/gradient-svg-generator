@@ -152,7 +152,7 @@ export default function Home() {
                     <img
                       src={`/api/svg?text=${featuredTemplates[currentTemplateIndex].text}&template=${featuredTemplates[currentTemplateIndex].name}&height=200&v=2`}
                       alt={featuredTemplates[currentTemplateIndex].displayName}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       key={`hero-${featuredTemplates[currentTemplateIndex].name}`}
                     />
                   </div>
@@ -241,7 +241,7 @@ export default function Home() {
                       <img
                         src={`/api/svg?text=${template.text}&template=${template.name}&height=120&v=2`}
                         alt={template.displayName}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         key={`editor-${template.name}`}
                       />
                     </div>
@@ -289,7 +289,7 @@ export default function Home() {
                       <img
                         src={`/api/svg?text=PREVIEW&template=${template.name}&height=80&v=2`}
                         alt={template.displayName}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         key={`popular-${template.name}`}
                       />
                     </div>

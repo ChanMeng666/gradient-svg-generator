@@ -296,7 +296,7 @@ export default function Templates() {
                     <img
                       src={`/api/svg?text=PREVIEW&template=${template.name}&height=150&v=2`}
                       alt={template.displayName}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
@@ -347,7 +347,7 @@ export default function Templates() {
                       <img
                         src={`/api/svg?text=PREVIEW&template=${template.name}&height=80&v=2`}
                         alt={template.displayName}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         loading="lazy"
                       />
                     </div>
