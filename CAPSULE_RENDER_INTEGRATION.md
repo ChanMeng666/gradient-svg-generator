@@ -362,19 +362,169 @@ src/
 
 ---
 
+## 🎨 Additional Features Implemented
+
+### 5. Text Effect Enhancements ✨
+
+Building on capsule-render's text customization capabilities, we've added comprehensive text styling options.
+
+#### Text Stroke Effects
+
+Add outlined text with customizable stroke colors and widths:
+
+```bash
+# Basic stroke
+/api/svg?text=Hello&stroke=FF0000&strokeWidth=2
+
+# Stroke with gradient background
+/api/svg?text=Outlined&template=neural-network&stroke=FFFF00&strokeWidth=3
+
+# Combine with animations
+/api/svg?text=Glowing&animation=twinkling&stroke=00FFFF&strokeWidth=1.5
+```
+
+**Parameters**:
+- `stroke` - Hex color for text outline (without #)
+- `strokeWidth` - Width in pixels (0-10 recommended)
+
+#### Text Background Rectangles
+
+Add highlighted background boxes behind text:
+
+```bash
+# Basic background
+/api/svg?text=Important&textBg=FF0000
+
+# Semi-transparent background
+/api/svg?text=Notice&textBg=FFD700&template=dreamy-sunset
+
+# Combine with stroke
+/api/svg?text=Alert&textBg=FF4444&stroke=FFFFFF&strokeWidth=2
+```
+
+**Parameters**:
+- `textBg` - Hex color for background rectangle (without #)
+- Automatically sized based on text length
+- 25px border radius for rounded corners
+- 0.9 opacity for subtle effect
+
+#### Text Rotation
+
+Rotate text at any angle:
+
+```bash
+# 45-degree angle
+/api/svg?text=Diagonal&rotate=45
+
+# Upside down
+/api/svg?text=Inverted&rotate=180
+
+# Slight tilt
+/api/svg?text=Dynamic&rotate=15&template=cyber-capsule
+```
+
+**Parameters**:
+- `rotate` - Rotation angle in degrees (-360 to 360)
+- Rotates around text center point
+
+#### Combined Text Effects
+
+All text effects can be combined for rich styling:
+
+```bash
+# Full styling
+/api/svg?text=FEATURED&stroke=FFD700&strokeWidth=2&textBg=000000&rotate=5&animation=scaleIn
+
+# Retro gaming style
+/api/svg?text=LEVEL_UP&template=pixel-art-retro&stroke=FFFFFF&strokeWidth=3&textBg=FF00FF
+
+# Modern UI callout
+/api/svg?text=NEW&textBg=FF3B30&stroke=FFFFFF&strokeWidth=1&animation=fadeIn
+```
+
+---
+
+### 6. Shape Background Templates 🔷
+
+Inspired by capsule-render's diverse shape types, we've implemented 7 unique shaped backgrounds beyond standard rectangles.
+
+#### Available Shape Types
+
+1. **`cylinder`** - Capsule/pill shape with rounded ends
+   ```
+   /api/svg?text=Capsule&gradientType=cylinder
+   ```
+
+2. **`softRounded`** - Subtle rounded corners (15px radius)
+   ```
+   /api/svg?text=Modern&gradientType=softRounded
+   ```
+
+3. **`eggShape`** - Organic oval/egg form
+   ```
+   /api/svg?text=Organic&gradientType=eggShape
+   ```
+
+4. **`sliceShape`** - Diagonal angular cut
+   ```
+   /api/svg?text=Dynamic&gradientType=sliceShape
+   ```
+
+5. **`speechBubble`** - Chat bubble with tail
+   ```
+   /api/svg?text=Hello!&gradientType=speechBubble
+   ```
+
+6. **`sharkTeeth`** - Zigzag bottom edge
+   ```
+   /api/svg?text=Energy&gradientType=sharkTeeth
+   ```
+
+7. **`largeRounded`** - Bold rounded corners (61px radius)
+   ```
+   /api/svg?text=Bold&gradientType=largeRounded
+   ```
+
+#### Shape Background Templates (10 new templates)
+
+Pre-configured templates using shape backgrounds:
+
+- **`capsule-tech`** - Tech-themed cylinder shape
+- **`soft-modern`** - Modern soft rounded design
+- **`organic-egg`** - Natural egg shape
+- **`dynamic-slice`** - Angular diagonal slice
+- **`chat-bubble`** - Green chat bubble
+- **`energy-teeth`** - Purple shark teeth
+- **`bold-rounded`** - Bold blue rounded
+- **`cyber-capsule`** - Cyberpunk capsule
+- **`golden-egg`** - Luxurious golden egg
+- **`message-box`** - Messenger-style bubble
+
+**Usage Examples**:
+```bash
+# Use pre-made template
+/api/svg?text=Hello&template=chat-bubble
+
+# Custom colors with shape
+/api/svg?text=Custom&gradientType=cylinder&color0=FF0000&color1=00FF00
+
+# Shape + text effects
+/api/svg?text=Styled&template=cyber-capsule&stroke=00FFFF&strokeWidth=2&animation=fadeIn
+```
+
+---
+
 ## 🔮 Future Enhancements
 
-Potential additions based on capsule-render:
+Potential additional features to consider:
 
-1. **Text Stroke Effects** - Outline text with animated strokes
-2. **Text Background Rectangles** - Highlighted text boxes
-3. **Text Rotation** - Rotated text overlays
-4. **More Shape Types**:
-   - Cylinder/Capsule backgrounds
-   - Speech bubble shapes
-   - Soft rounded rectangles
-   - Egg-shaped ovals
-   - Slice/diagonal designs
+1. **Multi-line Text Support** - Text with line breaks
+2. **Text Alignment Options** - Left, right, center positioning
+3. **Font Size Control** - Adjustable text size
+4. **Additional Shape Variations**:
+   - Asymmetric shapes
+   - Arrow/pointer designs
+   - Badge/shield shapes
 
 ---
 
@@ -423,13 +573,31 @@ Potential additions based on capsule-render:
 
 ### Implementation Summary
 
-- **New Gradient Types**: 7 (blobMorph, liquidBlob, organicBlob, layeredWaves, blurMotion, dreamyCircles, abstractBlur)
-- **New Templates**: 15
+- **New Gradient Types**: 14 total
+  - Blob morphing: 3 (blobMorph, liquidBlob, organicBlob)
+  - Layered waves: 1 (layeredWaves)
+  - Blur motion: 3 (blurMotion, dreamyCircles, abstractBlur)
+  - Shape backgrounds: 7 (cylinder, softRounded, eggShape, sliceShape, speechBubble, sharkTeeth, largeRounded)
+- **New Templates**: 25 total
+  - Blob/wave/blur templates: 15
+  - Shape background templates: 10
 - **New Animation Types**: 5 (fadeIn, scaleIn, blink, blinking, twinkling)
-- **New Files Created**: 3
-- **Files Modified**: 5
-- **Lines of Code Added**: ~800
-- **API Parameters Added**: 1 (`animation`)
+- **New Text Effects**: 3 (stroke, textBg, rotate)
+- **New Files Created**: 4
+  - textAnimationUtils.js
+  - blobMorphingGradients.js
+  - blurMotionGradients.js
+  - shapeBackgroundGradients.js
+- **Files Modified**: 7
+  - gradientGenerator.js
+  - pages/api/svg.js
+  - gradientFactory.js
+  - gradientConfig.js
+  - shapeGradients.js
+  - capsuleShapeTemplates.js
+  - CAPSULE_RENDER_INTEGRATION.md
+- **Lines of Code Added**: ~1500
+- **API Parameters Added**: 5 (`animation`, `stroke`, `strokeWidth`, `textBg`, `rotate`)
 
 ### Feature Breakdown
 

@@ -344,10 +344,18 @@ const GRADIENT_TYPES = [
   // 🌟 NEW: Blur Motion Effects (inspired by capsule-render Blur effect)
   'blurMotion',
   'dreamyCircles',
-  'abstractBlur'
+  'abstractBlur',
+  // 🌟 NEW: Shape Background Effects (inspired by capsule-render shape types)
+  'cylinder',
+  'softRounded',
+  'eggShape',
+  'sliceShape',
+  'speechBubble',
+  'sharkTeeth',
+  'largeRounded'
 ];
 
-module.exports = { 
+module.exports = {
   getTemplateConfig,
   validateConfig,
   GRADIENT_TYPES

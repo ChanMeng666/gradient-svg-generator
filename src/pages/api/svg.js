@@ -25,7 +25,11 @@ export default function handler(req, res) {
       template = '',
       gradientType = 'horizontal',
       duration = '6s',
-      animation = 'none'
+      animation = 'none',
+      stroke = null,
+      strokeWidth = 0,
+      textBg = null,
+      rotate = 0
     } = req.query;
 
     // Handle multiple color parameters
@@ -41,6 +45,10 @@ export default function handler(req, res) {
       colors.push('000000');
     }
 
+    // Parse numeric parameters
+    const parsedStrokeWidth = parseFloat(strokeWidth) || 0;
+    const parsedRotate = parseFloat(rotate) || 0;
+
     console.log('🚀 API: Parsed parameters', {
       text,
       height,
@@ -48,6 +56,10 @@ export default function handler(req, res) {
       gradientType,
       duration,
       animation,
+      stroke,
+      strokeWidth: parsedStrokeWidth,
+      textBg,
+      rotate: parsedRotate,
       colors,
       hasTemplate: !!template
     });
@@ -59,7 +71,12 @@ export default function handler(req, res) {
         colors: ['000000'],
         height: 120,
         gradientType: 'horizontal',
-        duration: '6s'
+        duration: '6s',
+        animation: 'none',
+        stroke: null,
+        strokeWidth: 0,
+        textBg: null,
+        rotate: 0
       });
       // Set AI-friendly headers for default SVG
       res.setHeader('Content-Type', 'image/svg+xml');
@@ -79,7 +96,11 @@ export default function handler(req, res) {
       gradientType,
       duration,
       template,
-      animation
+      animation,
+      stroke,
+      strokeWidth: parsedStrokeWidth,
+      textBg,
+      rotate: parsedRotate
     });
 
     // Set AI-friendly headers

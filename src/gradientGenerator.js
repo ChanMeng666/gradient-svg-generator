@@ -27,7 +27,11 @@ const { createGradientFromColors } = require('./utils/svgUtils');
 const { getTemplateConfig } = require('./config/gradientConfig');
 const { generateTextEffectSVG } = require('./utils/textEffectGenerator');
 const { generateAdvancedSVG } = require('./utils/advancedSvgGenerator');
-const { getTextAnimationStyles } = require('./utils/textAnimationUtils');
+const {
+  getCombinedTextStyles,
+  getTextStrokeAttributes,
+  getTextBackground
+} = require('./utils/textAnimationUtils');
 
 function generateGradientSVG({
   text,
@@ -36,7 +40,11 @@ function generateGradientSVG({
   gradientType = 'horizontal',
   duration = '6s',
   template = '',
-  animation = 'none'
+  animation = 'none',
+  stroke = null,
+  strokeWidth = 0,
+  textBg = null,
+  rotate = 0
 }) {
   // If template is provided, use template configuration
   let config;
@@ -323,6 +331,11 @@ function generateGradientSVG({
     return generateAdvancedSVG(gradientResult.effectType, text, colors, 854, height, { duration });
   }
 
+  // 🌟 NEW: Replace height placeholder in shape backgrounds
+  if (gradientResult.additionalElements && gradientResult.additionalElements.includes('{{HEIGHT}}')) {
+    gradientResult.additionalElements = gradientResult.additionalElements.replace(/\{\{HEIGHT\}\}/g, height);
+  }
+
   // Choose appropriate filter effects based on gradient type
   let filterEffect = 'url(#smoothTransition)';
   let additionalFilters = '';
@@ -393,8 +406,14 @@ function generateGradientSVG({
   // Determine if we need to apply clip path
   const clipPath = gradientResult.hasClipPath ? `clip-path="url(#${gradientResult.clipPathId})"` : '';
 
-  // 🎬 NEW: Get text animation styles (inspired by capsule-render)
-  const textAnimationStyles = getTextAnimationStyles(animation, 'text');
+  // 🎬 NEW: Get combined text styles (animation + rotation) (inspired by capsule-render)
+  const textStyles = getCombinedTextStyles(animation, rotate, '.animated-text');
+
+  // 🎨 NEW: Get text stroke attributes (inspired by capsule-render)
+  const strokeAttributes = getTextStrokeAttributes(stroke, strokeWidth);
+
+  // 📦 NEW: Get text background rectangle (inspired by capsule-render)
+  const textBackgroundRect = getTextBackground(text, textBg, 40, 50, 50, 854, height);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -565,14 +584,14 @@ function generateGradientSVG({
         </filter>
       </defs>
 
-      ${textAnimationStyles}
-      
+      ${textStyles}
+
       <!-- Additional elements for complex effects -->
       ${gradientResult.additionalElements}
-      
-      <rect 
-        width="854" 
-        height="${height}" 
+
+      ${gradientResult.replaceMainRect ? '' : `<rect
+        width="854"
+        height="${height}"
         fill="url(#gradient)"
         filter="${filterEffect}"
         ${clipPath}
@@ -586,8 +605,11 @@ function generateGradientSVG({
           keyTimes="0;0.5;1"
           keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
         />
-      </rect>
-      
+      </rect>`}
+
+      <!-- Text background rectangle (if specified) -->
+      ${textBackgroundRect}
+
       <text
         x="427"
         y="${height/2}"
@@ -599,6 +621,7 @@ function generateGradientSVG({
         fill="#ffffff"
         filter="url(#textShadow)"
         class="animated-text"
+        ${strokeAttributes}
       >
         ${text}
       </text>

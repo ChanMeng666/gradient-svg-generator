@@ -229,9 +229,128 @@ function isValidAnimation(animationType) {
   );
 }
 
+/**
+ * Get text stroke attributes
+ * Inspired by capsule-render's text stroke feature
+ * @param {string} strokeColor - Hex color for stroke (without #)
+ * @param {number} strokeWidth - Width of stroke in pixels
+ * @returns {string} SVG stroke attributes
+ */
+function getTextStrokeAttributes(strokeColor = null, strokeWidth = 0) {
+  if (!strokeColor || strokeWidth === 0) {
+    return '';
+  }
+
+  // Ensure color doesn't have # prefix
+  const color = strokeColor.replace('#', '');
+
+  return `stroke="#${color}" stroke-width="${strokeWidth}"`;
+}
+
+/**
+ * Get text background rectangle
+ * Inspired by capsule-render's textBg feature
+ * @param {string} text - Text content
+ * @param {string} bgColor - Hex color for background (without #)
+ * @param {number} fontSize - Font size in pixels
+ * @param {number} x - X position (percentage 0-100)
+ * @param {number} y - Y position (percentage 0-100)
+ * @param {number} width - SVG width
+ * @param {number} height - SVG height
+ * @returns {string} SVG rect element
+ */
+function getTextBackground(text, bgColor, fontSize, x, y, width, height) {
+  if (!bgColor || !text) {
+    return '';
+  }
+
+  // Ensure color doesn't have # prefix
+  const color = bgColor.replace('#', '');
+
+  // Calculate background dimensions
+  // Use 40px padding and approximate width based on text length
+  const padding = 40;
+  const rectHeight = fontSize + padding;
+  const rectWidth = text.length * fontSize * 0.5 + padding;
+
+  // Calculate position in absolute pixels
+  const posX = (x / 100) * width;
+  const posY = (y / 100) * height;
+
+  return `
+    <rect
+      fill="#${color}"
+      height="${rectHeight}"
+      width="${rectWidth}"
+      x="${posX}"
+      y="${posY}"
+      transform="translate(-${rectWidth / 2}, -${rectHeight / 2})"
+      rx="25"
+      ry="25"
+      opacity="0.9"
+    />
+  `;
+}
+
+/**
+ * Get text rotation styles
+ * Inspired by capsule-render's rotation feature
+ * @param {number} rotation - Rotation angle in degrees
+ * @param {string} selector - CSS selector for text element
+ * @returns {string} CSS style block for rotation
+ */
+function getTextRotationStyles(rotation = 0, selector = 'text') {
+  if (!rotation || rotation === 0) {
+    return '';
+  }
+
+  return `
+    <style>
+      ${selector} {
+        transform-origin: center center;
+        transform-box: fill-box;
+        transform: rotate(${rotation}deg);
+      }
+    </style>
+  `;
+}
+
+/**
+ * Get combined text effect styles
+ * Combines animation and rotation styles
+ * @param {string} animationType - Animation type
+ * @param {number} rotation - Rotation angle
+ * @param {string} selector - CSS selector
+ * @returns {string} Combined CSS styles
+ */
+function getCombinedTextStyles(animationType = 'none', rotation = 0, selector = 'text') {
+  const animationStyles = getTextAnimationStyles(animationType, selector);
+  const rotationStyles = getTextRotationStyles(rotation, selector);
+
+  // If both exist, merge them
+  if (animationStyles && rotationStyles) {
+    // Extract the content between <style> tags and merge
+    const animContent = animationStyles.match(/<style>([\s\S]*?)<\/style>/)?.[1] || '';
+    const rotContent = rotationStyles.match(/<style>([\s\S]*?)<\/style>/)?.[1] || '';
+
+    return `
+      <style>
+        ${animContent}
+        ${rotContent}
+      </style>
+    `;
+  }
+
+  return animationStyles || rotationStyles;
+}
+
 module.exports = {
   getTextAnimationStyles,
   getTextAnimateElements,
   getAvailableAnimations,
-  isValidAnimation
+  isValidAnimation,
+  getTextStrokeAttributes,
+  getTextBackground,
+  getTextRotationStyles,
+  getCombinedTextStyles
 };

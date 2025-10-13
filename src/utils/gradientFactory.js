@@ -34,6 +34,8 @@ const pathTextGradients = require('./gradientGenerators/pathTextGradients');
 const blobMorphingGradients = require('./gradientGenerators/blobMorphingGradients');
 // 🌟 NEW: Blur Motion (inspired by capsule-render Blur effect)
 const blurMotionGradients = require('./gradientGenerators/blurMotionGradients');
+// 🌟 NEW: Shape Backgrounds (inspired by capsule-render shape types)
+const shapeBackgroundGradients = require('./gradientGenerators/shapeBackgroundGradients');
 
 // Gradient type mapping
 const gradientMapping = {
@@ -266,7 +268,16 @@ const gradientMapping = {
   // 🌟 NEW: Blur Motion gradients (inspired by capsule-render Blur effect)
   blurMotion: blurMotionGradients.createBlurMotionGradient,
   dreamyCircles: blurMotionGradients.createDreamyCirclesGradient,
-  abstractBlur: blurMotionGradients.createAbstractBlurGradient
+  abstractBlur: blurMotionGradients.createAbstractBlurGradient,
+
+  // 🌟 NEW: Shape Background gradients (inspired by capsule-render shape types)
+  cylinder: shapeBackgroundGradients.createCylinderGradient,
+  softRounded: shapeBackgroundGradients.createSoftRoundedGradient,
+  eggShape: shapeBackgroundGradients.createEggShapeGradient,
+  sliceShape: shapeBackgroundGradients.createSliceGradient,
+  speechBubble: shapeBackgroundGradients.createSpeechBubbleGradient,
+  sharkTeeth: shapeBackgroundGradients.createSharkTeethGradient,
+  largeRounded: shapeBackgroundGradients.createLargeRoundedGradient
 };
 
 /**

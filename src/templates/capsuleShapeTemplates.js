@@ -156,5 +156,96 @@ module.exports = {
     gradientType: 'liquidBlob',
     animationDuration: '10s',
     description: 'Fiery liquid morphing effect'
+  },
+
+  // 🌟 NEW: Shape Background Templates (inspired by capsule-render shape types)
+  'capsule-tech': {
+    name: 'capsule-tech',
+    label: 'Capsule Tech',
+    colors: ['00D9FF', '00B8D4', '0097A7'],
+    gradientType: 'cylinder',
+    animationDuration: '8s',
+    description: 'Tech-themed cylinder/capsule shape'
+  },
+
+  'soft-modern': {
+    name: 'soft-modern',
+    label: 'Soft Modern',
+    colors: ['E0BBE4', 'D5AAD6', 'C399C8'],
+    gradientType: 'softRounded',
+    animationDuration: '10s',
+    description: 'Modern soft rounded corners'
+  },
+
+  'organic-egg': {
+    name: 'organic-egg',
+    label: 'Organic Egg',
+    colors: ['FFF8E1', 'FFECB3', 'FFE082'],
+    gradientType: 'eggShape',
+    animationDuration: '12s',
+    description: 'Organic egg/oval shape'
+  },
+
+  'dynamic-slice': {
+    name: 'dynamic-slice',
+    label: 'Dynamic Slice',
+    colors: ['FF6B6B', 'FF8E53', 'FFB84D'],
+    gradientType: 'sliceShape',
+    animationDuration: '6s',
+    description: 'Angular diagonal slice design'
+  },
+
+  'chat-bubble': {
+    name: 'chat-bubble',
+    label: 'Chat Bubble',
+    colors: ['4CAF50', '66BB6A', '81C784'],
+    gradientType: 'speechBubble',
+    animationDuration: '10s',
+    description: 'Speech/chat bubble with tail'
+  },
+
+  'energy-teeth': {
+    name: 'energy-teeth',
+    label: 'Energy Teeth',
+    colors: ['9C27B0', 'BA68C8', 'CE93D8'],
+    gradientType: 'sharkTeeth',
+    animationDuration: '8s',
+    description: 'Sharp shark teeth zigzag bottom'
+  },
+
+  'bold-rounded': {
+    name: 'bold-rounded',
+    label: 'Bold Rounded',
+    colors: ['2196F3', '42A5F5', '64B5F6'],
+    gradientType: 'largeRounded',
+    animationDuration: '10s',
+    description: 'Bold large rounded corners'
+  },
+
+  'cyber-capsule': {
+    name: 'cyber-capsule',
+    label: 'Cyber Capsule',
+    colors: ['00FFFF', '00E5FF', '00B8D4'],
+    gradientType: 'cylinder',
+    animationDuration: '6s',
+    description: 'Cyberpunk capsule design'
+  },
+
+  'golden-egg': {
+    name: 'golden-egg',
+    label: 'Golden Egg',
+    colors: ['FFD700', 'FFC107', 'FFB300'],
+    gradientType: 'eggShape',
+    animationDuration: '14s',
+    description: 'Luxurious golden egg shape'
+  },
+
+  'message-box': {
+    name: 'message-box',
+    label: 'Message Box',
+    colors: ['2979FF', '448AFF', '82B1FF'],
+    gradientType: 'speechBubble',
+    animationDuration: '12s',
+    description: 'Messenger-style bubble box'
   }
 };
