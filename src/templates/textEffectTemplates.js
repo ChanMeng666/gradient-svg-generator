@@ -89,5 +89,22 @@ module.exports = {
     gradientType: 'rainbow',
     animationDuration: '2s',
     description: 'Ocean-themed rainbow wave effect'
+  },
+  // Enhanced Luminance Effects - Inspired by svg-banners example
+  'luminance-reveal': {
+    name: 'luminance-reveal',
+    label: 'Luminance Reveal',
+    colors: ['ffd700', 'ffff00', 'ffa500', 'ffffff'],
+    gradientType: 'luminanceEnhanced',
+    animationDuration: '4s',
+    description: 'Luminance with background-clip text reveal and letter-spacing animation'
+  },
+  'aurora-luminance': {
+    name: 'aurora-luminance',
+    label: 'Aurora Luminance',
+    colors: ['00ffaa', '00ffff', '66ccff', '9966ff', 'ffffff'],
+    gradientType: 'luminanceEnhanced',
+    animationDuration: '4s',
+    description: 'Aurora borealis-inspired luminance reveal with gradient text'
   }
 }; 

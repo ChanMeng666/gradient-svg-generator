@@ -58,11 +58,19 @@ function generateGradientSVG({
   // Map animation template names to animation types (only special animations, not standard gradients)
   const animationTemplateMap = {
     'glitch-matrix': 'glitch',
-    'typewriter-code': 'typewriter', 
+    'typewriter-code': 'typewriter',
     'luminance-glow': 'luminance',
     'rainbow-wave': 'rainbow',
     'text-box-popup': 'textBox',
-    'data-corruption': 'glitch'
+    'data-corruption': 'glitch',
+    // 🌟 NEW: Enhanced Effects - Inspired by svg-banners example
+    'cyber-glitch-enhanced': 'glitchEnhanced',
+    'data-corruption-pro': 'glitchEnhanced',
+    'border-reveal': 'borderDrawing',
+    'terminal-frame': 'borderDrawing',
+    'rainbow-wave-cascade': 'layeredWave',
+    'hacker-terminal-pro': 'typewriterEnhanced',
+    'ocean-layers': 'layeredWave'
     // Note: Other animation templates use standard gradientTypes (horizontal, vertical, radial, etc.)
     // and will be handled by the normal gradient system
   };
@@ -77,7 +85,10 @@ function generateGradientSVG({
     'neon-luminance': 'luminance',
     'fire-luminance': 'luminance',
     'ocean-rainbow': 'rainbow',
-    'rainbow-layer': 'rainbow-layer'
+    'rainbow-layer': 'rainbow-layer',
+    // 🌟 NEW: Enhanced Luminance Effects - Inspired by svg-banners example
+    'luminance-reveal': 'luminanceEnhanced',
+    'aurora-luminance': 'luminanceEnhanced'
     // Note: Other templates use standard gradientTypes and will be handled by the normal gradient system
   };
 
@@ -223,13 +234,17 @@ function generateGradientSVG({
 
   // Check if this is a geometric shape type (from advancedSvgGenerator)
   const geometricShapeTypes = ['wave', 'ellipse', 'square'];
-  const animationEffectTypes = ['glitch', 'typewriter', 'luminance', 'rainbow'];
-  
+  const animationEffectTypes = [
+    'glitch', 'typewriter', 'luminance', 'rainbow',
+    // 🌟 NEW: Enhanced Effects - Inspired by svg-banners example
+    'glitchEnhanced', 'luminanceEnhanced', 'borderDrawing', 'layeredWave', 'typewriterEnhanced'
+  ];
+
   if (geometricShapeTypes.includes(gradientType)) {
     // Use advanced SVG generator for geometric shapes
     return generateAdvancedSVG(gradientType, text, colors, 854, height, { duration });
   }
-  
+
   if (animationEffectTypes.includes(gradientType)) {
     // Use advanced SVG generator for animation effects
     return generateAdvancedSVG(gradientType, text, colors, 854, height, { duration });

@@ -110,5 +110,54 @@ module.exports = {
     gradientType: 'vertical',
     animationDuration: '1.5s',
     description: 'Audio spectrum analyzer visualization'
+  },
+  // Enhanced Effects - Inspired by svg-banners example project
+  'cyber-glitch-enhanced': {
+    name: 'cyber-glitch-enhanced',
+    label: 'Cyber Glitch Enhanced',
+    colors: ['1a1a2e', '67f3da', 'f16f6f', '333333'],
+    gradientType: 'glitchEnhanced',
+    animationDuration: '3s',
+    description: 'Enhanced glitch with chromatic aberration and clip-path effects'
+  },
+  'data-corruption-pro': {
+    name: 'data-corruption-pro',
+    label: 'Data Corruption Pro',
+    colors: ['0a0a0f', 'ff006e', '00d9ff', '1a1a2e'],
+    gradientType: 'glitchEnhanced',
+    animationDuration: '3s',
+    description: 'Advanced data corruption with sophisticated RGB offset'
+  },
+  'border-reveal': {
+    name: 'border-reveal',
+    label: 'Border Reveal',
+    colors: ['0f0f1e', '19f6e8', 'ffffff', '00d9ff'],
+    gradientType: 'borderDrawing',
+    animationDuration: '2.5s',
+    description: 'Animated border drawing with stroke-dasharray reveal'
+  },
+  'terminal-frame': {
+    name: 'terminal-frame',
+    label: 'Terminal Frame',
+    colors: ['000000', '00ff00', 'ffffff', '008000'],
+    gradientType: 'borderDrawing',
+    animationDuration: '2.5s',
+    description: 'Terminal-style frame with drawing animation'
+  },
+  'rainbow-wave-cascade': {
+    name: 'rainbow-wave-cascade',
+    label: 'Rainbow Wave Cascade',
+    colors: ['DEBF40', '5ACB3C', '44A3F7', 'CF52EB', 'D14B3D', 'D49C3D', 'FFFFFF'],
+    gradientType: 'layeredWave',
+    animationDuration: '1.5s',
+    description: 'Multi-layered rainbow with cascading wave motion'
+  },
+  'hacker-terminal-pro': {
+    name: 'hacker-terminal-pro',
+    label: 'Hacker Terminal Pro',
+    colors: ['191919', '00ff00', '00ff00', '004400'],
+    gradientType: 'typewriterEnhanced',
+    animationDuration: '4s',
+    description: 'Enhanced terminal typewriter with glowing cursor'
   }
 }; 

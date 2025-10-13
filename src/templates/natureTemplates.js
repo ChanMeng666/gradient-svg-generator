@@ -106,5 +106,14 @@ module.exports = {
     gradientType: 'burst',
     animationDuration: '5s',
     description: 'Volcanic eruption energy'
+  },
+  // Enhanced Wave Effect - Inspired by svg-banners example
+  'ocean-layers': {
+    name: 'ocean-layers',
+    label: 'Ocean Layers',
+    colors: ['005f73', '0a9396', '94d2bd', 'e9d8a6', 'ee9b00', 'ca6702', 'bb3e03'],
+    gradientType: 'layeredWave',
+    animationDuration: '1.5s',
+    description: 'Multi-layered ocean waves with cascading motion'
   }
 }; 
