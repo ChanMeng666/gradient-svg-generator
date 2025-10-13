@@ -48,6 +48,11 @@ const dimensionalPortalTemplates = require('../templates/dimensionalPortalTempla
 const digitalLifeTemplates = require('../templates/digitalLifeTemplates');
 const cyberAestheticsTemplates = require('../templates/cyberAestheticsTemplates');
 const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
+// 🌟 NEW: 2025 创意扩展系列
+const weatherTemplates = require('../templates/weatherTemplates');
+const lightShadowTemplates = require('../templates/lightShadowTemplates');
+const artMovementTemplates = require('../templates/artMovementTemplates');
+const culinaryLiquidTemplates = require('../templates/culinaryLiquidTemplates');
 const { getRandomGradientPalette, getTimedPalette } = require('./colorPalettes');
 
 const templates = { 
@@ -75,7 +80,12 @@ const templates = {
   ...dimensionalPortalTemplates,
   ...digitalLifeTemplates,
   ...cyberAestheticsTemplates,
-  ...consciousnessStreamTemplates
+  ...consciousnessStreamTemplates,
+  // 🌟 NEW: 2025 创意扩展系列
+  ...weatherTemplates,
+  ...lightShadowTemplates,
+  ...artMovementTemplates,
+  ...culinaryLiquidTemplates
 };
 
 function getTemplateConfig(template, defaultColor = '000000') {
@@ -240,7 +250,39 @@ const GRADIENT_TYPES = [
   'anxietySpiral',
   'egoDissolution',
   'psychedelicInsight',
-  'collectiveUnconscious'
+  'collectiveUnconscious',
+  // 🌟 NEW: Weather & Atmospheric Effects
+  'fogRolling',
+  'monsoonRain',
+  'snowfallDrift',
+  'sandstormSwirl',
+  'tornadoVortex',
+  'lightningWeb',
+  'prismRefraction',
+  // 🌟 NEW: Light & Shadow Play Effects
+  'causticUnderwater',
+  'venetianBlind',
+  'stainedGlass',
+  'lensFlare',
+  'bokehBlur',
+  'godRays',
+  'eclipseCorona',
+  // 🌟 NEW: Art Movement Effects
+  'artNouveauFlow',
+  'artDecoLuxury',
+  'bauhausMinimal',
+  'impressionistDots',
+  'cubistFragments',
+  'surrealistMelt',
+  'popArtHalftone',
+  // 🌟 NEW: Culinary & Liquid Flow Effects
+  'coffeeCream',
+  'winePour',
+  'honeyDrizzle',
+  'chocolateMelt',
+  'caramelSwirl',
+  'tieDye',
+  'marbleMixing'
 ];
 
 module.exports = { 

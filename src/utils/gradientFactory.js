@@ -22,6 +22,10 @@ const gamingGradients = require('./gradientGenerators/gamingGradients');
 const morphingGradients = require('./gradientGenerators/morphingGradients');
 const fluidDynamicsGradients = require('./gradientGenerators/fluidDynamicsGradients');
 const dimensionalGradients = require('./gradientGenerators/dimensionalGradients');
+const weatherGradients = require('./gradientGenerators/weatherGradients');
+const lightShadowGradients = require('./gradientGenerators/lightShadowGradients');
+const artMovementGradients = require('./gradientGenerators/artMovementGradients');
+const culinaryLiquidGradients = require('./gradientGenerators/culinaryLiquidGradients');
 
 // Gradient type mapping
 const gradientMapping = {
@@ -167,7 +171,43 @@ const gradientMapping = {
   anxietySpiral: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'anxietySpiral' }),
   egoDissolution: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'egoDissolution' }),
   psychedelicInsight: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'psychedelicInsight' }),
-  collectiveUnconscious: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'collectiveUnconscious' })
+  collectiveUnconscious: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'collectiveUnconscious' }),
+
+  // 🌟 NEW: Weather & Atmospheric gradients
+  fogRolling: weatherGradients.createFogRollingGradient,
+  monsoonRain: weatherGradients.createMonsoonRainGradient,
+  snowfallDrift: weatherGradients.createSnowfallDriftGradient,
+  sandstormSwirl: weatherGradients.createSandstormSwirlGradient,
+  tornadoVortex: weatherGradients.createTornadoVortexGradient,
+  lightningWeb: weatherGradients.createLightningWebGradient,
+  prismRefraction: weatherGradients.createPrismRefractionGradient,
+
+  // 🌟 NEW: Light & Shadow Play gradients
+  causticUnderwater: lightShadowGradients.createCausticUnderwaterGradient,
+  venetianBlind: lightShadowGradients.createVenetianBlindGradient,
+  stainedGlass: lightShadowGradients.createStainedGlassGradient,
+  lensFlare: lightShadowGradients.createLensFlareGradient,
+  bokehBlur: lightShadowGradients.createBokehBlurGradient,
+  godRays: lightShadowGradients.createGodRaysGradient,
+  eclipseCorona: lightShadowGradients.createEclipseCoronaGradient,
+
+  // 🌟 NEW: Art Movement gradients
+  artNouveauFlow: artMovementGradients.createArtNouveauFlowGradient,
+  artDecoLuxury: artMovementGradients.createArtDecoLuxuryGradient,
+  bauhausMinimal: artMovementGradients.createBauhausMinimalGradient,
+  impressionistDots: artMovementGradients.createImpressionistDotsGradient,
+  cubistFragments: artMovementGradients.createCubistFragmentsGradient,
+  surrealistMelt: artMovementGradients.createSurrealistMeltGradient,
+  popArtHalftone: artMovementGradients.createPopArtHalftoneGradient,
+
+  // 🌟 NEW: Culinary & Liquid Flow gradients
+  coffeeCream: culinaryLiquidGradients.createCoffeeCreamGradient,
+  winePour: culinaryLiquidGradients.createWinePourGradient,
+  honeyDrizzle: culinaryLiquidGradients.createHoneyDrizzleGradient,
+  chocolateMelt: culinaryLiquidGradients.createChocolateMeltGradient,
+  caramelSwirl: culinaryLiquidGradients.createCaramelSwirlGradient,
+  tieDye: culinaryLiquidGradients.createTieDyeGradient,
+  marbleMixing: culinaryLiquidGradients.createMarbleMixingGradient
 };
 
 /**
@@ -188,7 +228,8 @@ function createGradient(gradientType, stops, animationConfig, animationDuration,
   }
 
   // Handle different parameter requirements for different gradient types
-  if (gradientType === 'mosaic' || gradientType === 'pixelArt') {
+  if (gradientType === 'mosaic' || gradientType === 'pixelArt' ||
+      gradientType === 'impressionistDots' || gradientType === 'popArtHalftone') {
     return gradientGenerator(stops, animationConfig, animationDuration, colorsCopy);
   }
 
