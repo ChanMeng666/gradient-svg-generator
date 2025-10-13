@@ -1030,6 +1030,26 @@ function generateAdvancedSVG(type, text, colors, width = 800, height = 400, opti
         <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
           ${generateAdvancedEffect(type, colors, options.duration || '6s', text)}
         </svg>`;
+    // 🌟 NEW: Path-Based Text Animation Effects (inspired by Readme Typing SVG)
+    case 'typingPathReveal':
+    case 'curvedFlow':
+    case 'spiralText':
+    case 'waveTextPath':
+    case 'charByChar':
+    case 'wordCascade':
+    case 'lineSequence':
+    case 'fadeInPath':
+    case 'handwriting':
+    case 'brushStroke':
+    case 'neonFlicker':
+    case 'elasticBounce':
+      // Use the path text generator for path-based animations
+      const { createPathTextGradient } = require('./gradientGenerators/pathTextGradients');
+      const pathBasedSVG = createPathTextGradient(type, colors, options.duration || '6s');
+      return `<?xml version="1.0" encoding="UTF-8"?>
+        <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+          ${pathBasedSVG.replaceAll('##TEXT##', text)}
+        </svg>`;
     default:
       return generateWaveShape(text, colors, width, height, 'wave');
   }

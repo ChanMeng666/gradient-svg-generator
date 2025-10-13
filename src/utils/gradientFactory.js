@@ -28,6 +28,8 @@ const artMovementGradients = require('./gradientGenerators/artMovementGradients'
 const culinaryLiquidGradients = require('./gradientGenerators/culinaryLiquidGradients');
 const patternGradients = require('./gradientGenerators/patternGradients');
 const metallicGradients = require('./gradientGenerators/metallicGradients');
+// 🌟 NEW: Path-Based Text Animation (inspired by Readme Typing SVG)
+const pathTextGradients = require('./gradientGenerators/pathTextGradients');
 
 // Gradient type mapping
 const gradientMapping = {
@@ -235,7 +237,21 @@ const gradientMapping = {
   chromeFlow: metallicGradients.createChromeFlowGradient,
   bronzeGleam: metallicGradients.createBronzeGleamGradient,
   platinumSparkle: metallicGradients.createPlatinumSparkleGradient,
-  steelAqua: metallicGradients.createSteelAquaGradient
+  steelAqua: metallicGradients.createSteelAquaGradient,
+
+  // 🌟 NEW: Path-Based Text Animation (inspired by Readme Typing SVG)
+  typingPathReveal: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'typingPathReveal' }),
+  curvedFlow: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'curvedFlow' }),
+  spiralText: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'spiralText' }),
+  waveTextPath: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'waveTextPath' }),
+  charByChar: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'charByChar' }),
+  wordCascade: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'wordCascade' }),
+  lineSequence: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'lineSequence' }),
+  fadeInPath: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'fadeInPath' }),
+  handwriting: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'handwriting' }),
+  brushStroke: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'brushStroke' }),
+  neonFlicker: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'neonFlicker' }),
+  elasticBounce: (stops, animationConfig, duration) => ({ gradientDef: '', useAdvancedEffect: true, effectType: 'elasticBounce' })
 };
 
 /**

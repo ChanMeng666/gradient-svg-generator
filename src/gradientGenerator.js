@@ -172,6 +172,22 @@ function generateGradientSVG({
     'collective-unconscious': 'collectiveUnconscious'
   };
 
+  // 🌟 NEW: Map path-based text animation template names to effect types (inspired by Readme Typing SVG)
+  const pathTextTemplateMap = {
+    'typing-path-reveal': 'typingPathReveal',
+    'curved-flow': 'curvedFlow',
+    'spiral-text': 'spiralText',
+    'wave-text-path': 'waveTextPath',
+    'char-by-char': 'charByChar',
+    'word-cascade': 'wordCascade',
+    'line-sequence': 'lineSequence',
+    'fade-in-path': 'fadeInPath',
+    'handwriting': 'handwriting',
+    'brush-stroke': 'brushStroke',
+    'neon-flicker': 'neonFlicker',
+    'elastic-bounce': 'elasticBounce'
+  };
+
   // Check if this is a shape template
   if (template && shapeTemplateMap[template]) {
     const shapeType = shapeTemplateMap[template];
@@ -232,6 +248,12 @@ function generateGradientSVG({
     return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
   }
 
+  // 🌟 NEW: Check if this is a path-based text animation template (inspired by Readme Typing SVG)
+  if (template && pathTextTemplateMap[template]) {
+    const effectType = pathTextTemplateMap[template];
+    return generateAdvancedSVG(effectType, text, colors, 854, height, { duration });
+  }
+
   // Check if this is a geometric shape type (from advancedSvgGenerator)
   const geometricShapeTypes = ['wave', 'ellipse', 'square'];
   const animationEffectTypes = [
@@ -276,7 +298,9 @@ function generateGradientSVG({
     // 🌟 NEW: Cyber Aesthetics Effects
     'neonGridCity', 'dataStreamFlow', 'cyberPunkNoir', 'hologramInterface', 'digitalDecay', 'chromeReflection', 'virusInfection', 'quantumEncryption', 'augmentedReality',
     // 🌟 NEW: Consciousness Stream Effects
-    'thoughtWaves', 'memoryFragments', 'dreamLogic', 'emotionalSpectrum', 'meditativeCalm', 'anxietySpiral', 'egoDissolution', 'psychedelicInsight', 'collectiveUnconscious'
+    'thoughtWaves', 'memoryFragments', 'dreamLogic', 'emotionalSpectrum', 'meditativeCalm', 'anxietySpiral', 'egoDissolution', 'psychedelicInsight', 'collectiveUnconscious',
+    // 🌟 NEW: Path-Based Text Animation (inspired by Readme Typing SVG)
+    'typingPathReveal', 'curvedFlow', 'spiralText', 'waveTextPath', 'charByChar', 'wordCascade', 'lineSequence', 'fadeInPath', 'handwriting', 'brushStroke', 'neonFlicker', 'elasticBounce'
   ];
   
   if (textEffectTypes.includes(gradientType) || advancedEffectTypes.includes(gradientType)) {

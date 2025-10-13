@@ -29,6 +29,8 @@ import culinaryLiquidTemplates from '../templates/culinaryLiquidTemplates';
 // 🌟 NEW: Pattern & Metallic Templates (inspired by example project)
 import patternTemplates from '../templates/patternTemplates';
 import metallicTemplates from '../templates/metallicTemplates';
+// 🌟 NEW: Path-Based Text Animation Templates (inspired by Readme Typing SVG)
+import pathTextTemplates from '../templates/pathTextTemplates';
 
 // Legacy support - import template categories if it exists
 let templateCategories = [];
@@ -71,6 +73,8 @@ const allTemplateGroups = [
   // 🌟 NEW: Pattern & Metallic Templates
   patternTemplates,
   metallicTemplates,
+  // 🌟 NEW: Path-Based Text Animation Templates
+  pathTextTemplates,
 ];
 
 // Get all templates as a flat array
@@ -99,7 +103,7 @@ export function getAllTemplates() {
             'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
             'digitalLife', 'cyberAesthetics', 'consciousness',
             'weather', 'lightShadow', 'artMovement', 'culinaryLiquid',
-            'pattern', 'metallic'];
+            'pattern', 'metallic', 'pathText'];
           
           allTemplates.push({
             ...template,
@@ -179,6 +183,8 @@ export function getCategories() {
     // 🌟 NEW: Pattern & Metallic Categories
     pattern: { id: 'pattern', name: 'Pattern', icon: '🔷' },
     metallic: { id: 'metallic', name: 'Metallic', icon: '✨' },
+    // 🌟 NEW: Path-Based Text Animation Category
+    pathText: { id: 'pathText', name: 'Path Animation', icon: '✍️' },
   };
 
   // Get unique categories from templates
@@ -220,7 +226,7 @@ export function getTemplateByName(name) {
         'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
         'digitalLife', 'cyberAesthetics', 'consciousness',
         'weather', 'lightShadow', 'artMovement', 'culinaryLiquid',
-        'pattern', 'metallic'];
+        'pattern', 'metallic', 'pathText'];
 
       return {
         ...template,

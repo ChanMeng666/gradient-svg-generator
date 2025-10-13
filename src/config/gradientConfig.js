@@ -55,6 +55,8 @@ const artMovementTemplates = require('../templates/artMovementTemplates');
 const culinaryLiquidTemplates = require('../templates/culinaryLiquidTemplates');
 const patternTemplates = require('../templates/patternTemplates');
 const metallicTemplates = require('../templates/metallicTemplates');
+// 🌟 NEW: Path-Based Text Animation templates (inspired by Readme Typing SVG)
+const pathTextTemplates = require('../templates/pathTextTemplates');
 const { getRandomGradientPalette, getTimedPalette } = require('./colorPalettes');
 
 const templates = { 
@@ -90,7 +92,9 @@ const templates = {
   ...culinaryLiquidTemplates,
   // 🌟 NEW: Pattern & Metallic templates (inspired by example project)
   ...patternTemplates,
-  ...metallicTemplates
+  ...metallicTemplates,
+  // 🌟 NEW: Path-Based Text Animation templates (inspired by Readme Typing SVG)
+  ...pathTextTemplates
 };
 
 function getTemplateConfig(template, defaultColor = '000000') {
@@ -313,7 +317,20 @@ const GRADIENT_TYPES = [
   'luminanceEnhanced',
   'borderDrawing',
   'layeredWave',
-  'typewriterEnhanced'
+  'typewriterEnhanced',
+  // 🌟 NEW: Path-Based Text Animation (inspired by Readme Typing SVG)
+  'typingPathReveal',
+  'curvedFlow',
+  'spiralText',
+  'waveTextPath',
+  'charByChar',
+  'wordCascade',
+  'lineSequence',
+  'fadeInPath',
+  'handwriting',
+  'brushStroke',
+  'neonFlicker',
+  'elasticBounce'
 ];
 
 module.exports = { 
