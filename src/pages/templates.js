@@ -1,7 +1,6 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import Header from '../components/layout/Header';
 import GEOHead from '../components/seo/GEOHead';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
@@ -15,23 +14,15 @@ import { cn } from '../lib/utils';
 import useStore from '../store/useStore';
 import TemplatePreviewModal from '../components/features/TemplatePreviewModal';
 
-// Dynamic import for virtualized grid
-const VirtualizedTemplateGrid = dynamic(
-  () => import('../components/features/VirtualizedTemplateGrid'),
-  { ssr: false }
-);
-
 export default function Templates() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [viewMode, setViewMode] = useState('grid');
   const [selectedFilters, setSelectedFilters] = useState([]);
-  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
-  const containerRef = useRef(null);
-  
+
   const { favorites, addFavorite, removeFavorite } = useStore();
 
   const templates = useMemo(() => getAllTemplates(), []);
@@ -63,22 +54,6 @@ export default function Templates() {
     });
     return Array.from(speeds.keys());
   }, [templates]);
-  
-  // Measure container size for virtualization
-  useEffect(() => {
-    const measureContainer = () => {
-      if (containerRef.current) {
-        setContainerSize({
-          width: containerRef.current.clientWidth,
-          height: window.innerHeight - 300 // Adjust based on header/filter height
-        });
-      }
-    };
-
-    measureContainer();
-    window.addEventListener('resize', measureContainer);
-    return () => window.removeEventListener('resize', measureContainer);
-  }, []);
 
   // Filter templates
   const filteredTemplates = useMemo(() => {
@@ -312,39 +287,17 @@ export default function Templates() {
         )}
 
         {/* Template Grid/List */}
-        <section className="container mx-auto px-4 pb-20" ref={containerRef}>
+        <section className="container mx-auto px-4 pb-20">
           {viewMode === 'grid' ? (
-            containerSize.width > 0 && filteredTemplates.length > 20 ? (
-              // Use virtualization for large datasets
-              <VirtualizedTemplateGrid
-                templates={filteredTemplates}
-                favorites={favorites}
-                onFavorite={(templateName) => {
-                  if (favorites.includes(templateName)) {
-                    removeFavorite(templateName);
-                  } else {
-                    addFavorite(templateName);
-                  }
-                }}
-                width={containerSize.width}
-                height={containerSize.height}
-                columnCount={
-                  containerSize.width < 640 ? 1 :
-                  containerSize.width < 768 ? 2 :
-                  containerSize.width < 1024 ? 3 : 4
-                }
-              />
-            ) : (
-              // Use regular grid for small datasets
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredTemplates.map((template) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredTemplates.map((template) => (
                 <div key={template.name} className="group">
                   <div className="aspect-video bg-muted relative overflow-hidden rounded-lg border hover:shadow-lg transition-all">
                     <img
                       src={`/api/svg?text=PREVIEW&template=${template.name}&height=150&v=2`}
                       alt={template.displayName}
                       className="w-full h-full object-cover"
-                      key={`grid-${template.name}`}
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
                     <Button
@@ -384,8 +337,7 @@ export default function Templates() {
                   </div>
                 </div>
               ))}
-              </div>
-            )
+            </div>
           ) : (
             <div className="space-y-4">
               {filteredTemplates.map((template) => (
@@ -396,7 +348,7 @@ export default function Templates() {
                         src={`/api/svg?text=PREVIEW&template=${template.name}&height=80&v=2`}
                         alt={template.displayName}
                         className="w-full h-full object-cover"
-                        key={`list-${template.name}`}
+                        loading="lazy"
                       />
                     </div>
                     <div className="flex-1">
