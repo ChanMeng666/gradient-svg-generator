@@ -26,6 +26,9 @@ import weatherTemplates from '../templates/weatherTemplates';
 import lightShadowTemplates from '../templates/lightShadowTemplates';
 import artMovementTemplates from '../templates/artMovementTemplates';
 import culinaryLiquidTemplates from '../templates/culinaryLiquidTemplates';
+// 🌟 NEW: Pattern & Metallic Templates (inspired by example project)
+import patternTemplates from '../templates/patternTemplates';
+import metallicTemplates from '../templates/metallicTemplates';
 
 // Legacy support - import template categories if it exists
 let templateCategories = [];
@@ -65,6 +68,9 @@ const allTemplateGroups = [
   lightShadowTemplates,
   artMovementTemplates,
   culinaryLiquidTemplates,
+  // 🌟 NEW: Pattern & Metallic Templates
+  patternTemplates,
+  metallicTemplates,
 ];
 
 // Get all templates as a flat array
@@ -92,7 +98,8 @@ export function getAllTemplates() {
             'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming',
             'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
             'digitalLife', 'cyberAesthetics', 'consciousness',
-            'weather', 'lightShadow', 'artMovement', 'culinaryLiquid'];
+            'weather', 'lightShadow', 'artMovement', 'culinaryLiquid',
+            'pattern', 'metallic'];
           
           allTemplates.push({
             ...template,
@@ -169,6 +176,9 @@ export function getCategories() {
     lightShadow: { id: 'lightShadow', name: 'Light & Shadow', icon: '💡' },
     artMovement: { id: 'artMovement', name: 'Art Movement', icon: '🎭' },
     culinaryLiquid: { id: 'culinaryLiquid', name: 'Culinary', icon: '☕' },
+    // 🌟 NEW: Pattern & Metallic Categories
+    pattern: { id: 'pattern', name: 'Pattern', icon: '🔷' },
+    metallic: { id: 'metallic', name: 'Metallic', icon: '✨' },
   };
 
   // Get unique categories from templates
@@ -209,8 +219,9 @@ export function getTemplateByName(name) {
         'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming',
         'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
         'digitalLife', 'cyberAesthetics', 'consciousness',
-        'weather', 'lightShadow', 'artMovement', 'culinaryLiquid'];
-      
+        'weather', 'lightShadow', 'artMovement', 'culinaryLiquid',
+        'pattern', 'metallic'];
+
       return {
         ...template,
         displayName: template.label || template.displayName || template.name,
