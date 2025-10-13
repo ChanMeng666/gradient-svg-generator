@@ -56,24 +56,16 @@ class SVGComposer {
       filterId,
       gradientType = 'horizontal',
       width = 854,
-      height = 120
+      height = 120,
+      replaceMainRect = false
     } = params;
 
     // Determine filter to use
     const filterToUse = filterId || getFilterForGradientType(gradientType);
     const filterEffect = getFilterUrl(filterToUse);
 
-    return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-  <defs>
-    ${gradientDef}
-    ${getAllFilters(height)}
-  </defs>
-
-  <!-- Additional elements for complex effects -->
-  ${additionalElements}
-
+    // Conditionally render main rect based on replaceMainRect flag
+    const mainRect = replaceMainRect ? '' : `
   <rect
     width="${width}"
     height="${height}"
@@ -90,7 +82,19 @@ class SVGComposer {
       keyTimes="0;0.5;1"
       keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
     />
-  </rect>
+  </rect>`;
+
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+  <defs>
+    ${gradientDef}
+    ${getAllFilters(height)}
+  </defs>
+
+  <!-- Additional elements for complex effects -->
+  ${additionalElements}
+${mainRect}
 
   <text
     x="${width/2}"

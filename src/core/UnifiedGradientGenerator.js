@@ -177,6 +177,7 @@ function generateFromRegistry(effectMetadata, params) {
           const clipPath = result.hasClipPath && result.clipPathId
             ? `clip-path="url(#${result.clipPathId})"`
             : '';
+          const replaceMainRect = result.replaceMainRect || false;
 
           return svgComposer.composeGradientSVG({
             text,
@@ -185,7 +186,8 @@ function generateFromRegistry(effectMetadata, params) {
             clipPath,
             gradientType,
             width,
-            height
+            height,
+            replaceMainRect
           });
         }
         break;
@@ -335,7 +337,8 @@ function generateLegacy(params) {
       : '',
     gradientType,
     width,
-    height
+    height,
+    replaceMainRect: gradientResult.replaceMainRect || false
   });
 }
 

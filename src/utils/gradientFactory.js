@@ -333,7 +333,8 @@ function createGradient(gradientType, stops, animationConfig, animationDuration,
     gradientDef: result.gradientDef || result,
     additionalElements: result.additionalElements || '',
     hasClipPath: result.hasClipPath || false,
-    clipPathId: result.clipPathId || null
+    clipPathId: result.clipPathId || null,
+    replaceMainRect: result.replaceMainRect || false
   };
 }
 
