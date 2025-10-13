@@ -360,12 +360,12 @@ function generateTurbulentWavesEffect(colors, duration = '5s', text = 'WAVES') {
     <rect width="100%" height="100%" fill="url(#turbulentFlow)" filter="url(#fluidDistortion)"/>
     <foreignObject x="10%" y="40%" width="80%" height="20%">
       <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: #ffffff;
+        color: #000000;
         font-family: 'Trebuchet MS', sans-serif;
         font-size: 28px;
         font-weight: bold;
         text-align: center;
-        text-shadow: 0 0 15px #000000, 0 0 25px #${colors[0]}, 2px 2px 4px rgba(0,0,0,0.8);
+        text-shadow: 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #${colors[0]}, 2px 2px 6px rgba(255,255,255,0.9);
         animation: fluidMotion ${duration} infinite;
       ">
         ${text}

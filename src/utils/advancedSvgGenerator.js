@@ -607,7 +607,7 @@ function generateBorderDrawingEffect(text, colors, width, height) {
             fill: #${textColor};
             text-anchor: middle;
             dominant-baseline: central;
-            opacity: 0.3;
+            opacity: 0.7;
             animation: fadeInText 0.8s ease-in forwards 0.5s;
           }
 
@@ -629,7 +629,7 @@ function generateBorderDrawingEffect(text, colors, width, height) {
 
           @keyframes fadeInText {
             from {
-              opacity: 0.3;
+              opacity: 0.7;
             }
             to {
               opacity: 1;
