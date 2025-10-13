@@ -32,15 +32,15 @@ function createCylinderGradient(stops, animationConfig, duration = '6s') {
   `;
 
   // Cylinder path: Rectangle with semicircular ends
-  // Assuming width=854, height varies
-  const cylinderPath = (width, height) => {
-    const radius = height / 2;
-    return `M ${radius} 0 L ${width - radius} 0 A ${radius} ${radius} 0 1 1 ${width - radius} ${height} L ${radius} ${height} A ${radius} ${radius} 0 1 1 ${radius} 0 Z`;
-  };
-
+  // Using viewBox-relative coordinates for better scaling
   const additionalElements = `
-    <path
-      d="${cylinderPath(854, '{{HEIGHT}}')}"
+    <rect
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+      rx="50%"
+      ry="50%"
       fill="url(#gradient)"
       opacity="1"
     >
@@ -52,7 +52,7 @@ function createCylinderGradient(stops, animationConfig, duration = '6s') {
         calcMode="spline"
         keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
       />
-    </path>
+    </rect>
   `;
 
   return {
@@ -79,8 +79,10 @@ function createSoftRoundedGradient(stops, animationConfig, duration = '6s') {
 
   const additionalElements = `
     <rect
-      width="854"
-      height="{{HEIGHT}}"
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
       rx="15"
       ry="15"
       fill="url(#gradient)"
@@ -119,15 +121,13 @@ function createEggShapeGradient(stops, animationConfig, duration = '6s') {
     </radialGradient>
   `;
 
-  // Egg shape path - complex bezier curves forming an egg
-  const eggPath = (width, height) => {
-    const midX = width / 2;
-    return `M ${midX} ${height} Q ${midX - 100} ${height / 3} ${midX - 213.5} ${height} Q ${midX - 327} ${height / 3} ${midX - 427} ${height} Q ${midX - 377} 0 ${midX} 0 Q ${midX + 323} 0 ${width} ${height} Q ${width - 127} ${height / 3} ${width - 214.5} ${height} Q ${width - 327} ${height / 3} ${midX} ${height}`;
-  };
-
+  // Egg shape using ellipse with slightly adjusted proportions
   const additionalElements = `
-    <path
-      d="${eggPath(854, '{{HEIGHT}}')}"
+    <ellipse
+      cx="50%"
+      cy="50%"
+      rx="45%"
+      ry="50%"
       fill="url(#gradient)"
       opacity="1"
     >
@@ -139,7 +139,7 @@ function createEggShapeGradient(stops, animationConfig, duration = '6s') {
         calcMode="spline"
         keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
       />
-    </path>
+    </ellipse>
   `;
 
   return {
@@ -164,14 +164,10 @@ function createSliceGradient(stops, animationConfig, duration = '6s') {
     </linearGradient>
   `;
 
-  // Slice path: Triangle shape from top-left corner
-  const slicePath = (width, height) => {
-    return `M 0 0 L ${width} ${height} L ${width} 0 L 0 0 Z`;
-  };
-
+  // Slice shape: Triangle using polygon with fixed coordinates
   const additionalElements = `
-    <path
-      d="${slicePath(854, '{{HEIGHT}}')}"
+    <polygon
+      points="0,0 854,120 854,0"
       fill="url(#gradient)"
       opacity="1"
     >
@@ -183,7 +179,7 @@ function createSliceGradient(stops, animationConfig, duration = '6s') {
         calcMode="spline"
         keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
       />
-    </path>
+    </polygon>
   `;
 
   return {
@@ -197,8 +193,8 @@ function createSliceGradient(stops, animationConfig, duration = '6s') {
 
 /**
  * Create speech bubble shaped gradient
- * Rectangle with rounded corners and a tail/pointer
- * Perfect for callouts and messages
+ * Rectangle with rounded corners for message/callout appearance
+ * Simplified version for consistent rendering
  */
 function createSpeechBubbleGradient(stops, animationConfig, duration = '6s') {
   const gradientDef = `
@@ -208,33 +204,15 @@ function createSpeechBubbleGradient(stops, animationConfig, duration = '6s') {
     </linearGradient>
   `;
 
-  // Speech bubble path: Rounded rectangle with a tail at bottom center
-  const speechBubblePath = (width, height) => {
-    const cornerRadius = 25;
-    const tailWidth = 30;
-    const tailHeight = 20;
-    const tailPosX = width / 2;
-
-    return `
-      M ${cornerRadius} 0
-      L ${width - cornerRadius} 0
-      Q ${width} 0 ${width} ${cornerRadius}
-      L ${width} ${height - cornerRadius}
-      Q ${width} ${height} ${width - cornerRadius} ${height}
-      L ${tailPosX + tailWidth} ${height}
-      L ${tailPosX} ${height + tailHeight}
-      L ${tailPosX - tailWidth} ${height}
-      L ${cornerRadius} ${height}
-      Q 0 ${height} 0 ${height - cornerRadius}
-      L 0 ${cornerRadius}
-      Q 0 0 ${cornerRadius} 0
-      Z
-    `;
-  };
-
+  // Speech bubble shape: Medium rounded rectangle
   const additionalElements = `
-    <path
-      d="${speechBubblePath(854, '{{HEIGHT}}')}"
+    <rect
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+      rx="25"
+      ry="25"
       fill="url(#gradient)"
       opacity="1"
     >
@@ -246,7 +224,7 @@ function createSpeechBubbleGradient(stops, animationConfig, duration = '6s') {
         calcMode="spline"
         keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
       />
-    </path>
+    </rect>
   `;
 
   return {
@@ -260,7 +238,7 @@ function createSpeechBubbleGradient(stops, animationConfig, duration = '6s') {
 
 /**
  * Create shark teeth/wave gradient
- * Zigzag pattern at the bottom for dynamic energy
+ * Zigzag bottom edge for dynamic energy
  * Inspired by capsule-render's Shark shape
  */
 function createSharkTeethGradient(stops, animationConfig, duration = '6s') {
@@ -271,31 +249,11 @@ function createSharkTeethGradient(stops, animationConfig, duration = '6s') {
     </linearGradient>
   `;
 
-  // Shark teeth path: Rectangle with zigzag bottom edge
-  const sharkPath = (width, height) => {
-    const toothWidth = 61; // Width of each tooth
-    const toothDepth = 27; // How far teeth extend beyond baseline
-    const baseline = height - 95;
-
-    let path = `M 0 0 L ${width} 0 L ${width} ${baseline}`;
-
-    // Create zigzag teeth along the bottom
-    const numTeeth = Math.floor(width / toothWidth);
-    for (let i = numTeeth; i >= 0; i--) {
-      const x = i * toothWidth;
-      path += ` C ${x} ${baseline + toothDepth} ${x} ${baseline + toothDepth} ${x - toothWidth / 2} ${baseline}`;
-      if (i > 0) {
-        path += ` C ${x - toothWidth / 2} ${baseline + toothDepth} ${x - toothWidth / 2} ${baseline + toothDepth} ${x - toothWidth} ${baseline}`;
-      }
-    }
-
-    path += ` L 0 ${baseline} Z`;
-    return path;
-  };
-
+  // Shark teeth shape: Rectangle with zigzag bottom edge
+  // Simplified to fixed coordinates for consistent rendering
   const additionalElements = `
     <path
-      d="${sharkPath(854, '{{HEIGHT}}')}"
+      d="M 0 0 L 854 0 L 854 95 L 793 122 L 732 95 L 671 122 L 610 95 L 549 122 L 488 95 L 427 122 L 366 95 L 305 122 L 244 95 L 183 122 L 122 95 L 61 122 L 0 95 Z"
       fill="url(#gradient)"
       opacity="1"
     >
@@ -332,26 +290,15 @@ function createLargeRoundedGradient(stops, animationConfig, duration = '6s') {
     </linearGradient>
   `;
 
-  // Large rounded rectangle path
-  const roundedPath = (width, height) => {
-    const radius = 61; // Large corner radius
-    return `
-      M ${radius} 0
-      L ${width - radius} 0
-      Q ${width} 0 ${width} ${radius}
-      L ${width} ${height - radius}
-      Q ${width} ${height} ${width - radius} ${height}
-      L ${radius} ${height}
-      Q 0 ${height} 0 ${height - radius}
-      L 0 ${radius}
-      Q 0 0 ${radius} 0
-      Z
-    `;
-  };
-
+  // Large rounded rectangle using simple rect element
   const additionalElements = `
-    <path
-      d="${roundedPath(854, '{{HEIGHT}}')}"
+    <rect
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+      rx="61"
+      ry="61"
       fill="url(#gradient)"
       opacity="1"
     >
@@ -363,7 +310,7 @@ function createLargeRoundedGradient(stops, animationConfig, duration = '6s') {
         calcMode="spline"
         keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
       />
-    </path>
+    </rect>
   `;
 
   return {

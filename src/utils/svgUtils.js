@@ -40,17 +40,19 @@ function createGradientFromColors(colors, gradientType = 'horizontal', animation
   
   // Use the gradient factory to create the gradient
   const result = createGradient(gradientType, stops, animationConfig, animationDuration, colorsCopy);
-  
+
   let gradientDef = result.gradientDef || '';
   let additionalElements = result.additionalElements || '';
   let hasClipPath = result.hasClipPath || false;
   let clipPathId = result.clipPathId || null;
+  let replaceMainRect = result.replaceMainRect || false;
 
   return {
     gradientDef,
     additionalElements,
     hasClipPath,
     clipPathId,
+    replaceMainRect,
     useAdvancedEffect: result.useAdvancedEffect || false,
     effectType: result.effectType || null
   };
