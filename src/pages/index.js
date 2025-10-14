@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -7,57 +7,89 @@ import GEOHead from '../components/seo/GEOHead';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
-import { 
-  Sparkles, 
-  Palette, 
-  Zap, 
-  Eye, 
-  Download, 
+import { getCategories, getTemplatesByCategory } from '../utils/templateUtils';
+import {
+  Sparkles,
+  Palette,
+  Zap,
+  Eye,
+  Download,
   ChevronRight,
   Star,
   Code2,
-  Layers
+  Layers,
+  Grid3x3
 } from 'lucide-react';
 
 export default function Home() {
   const [currentTemplateIndex, setCurrentTemplateIndex] = useState(0);
-  
-  // Featured templates for hero section
+
+  // Get all categories
+  const categories = useMemo(() => getCategories(), []);
+
+  // Featured templates for hero section - Diverse visual styles
   const featuredTemplates = [
     { name: "hologram-matrix", displayName: "Hologram Matrix", text: "FUTURISTIC" },
-    { name: "quantum-field", displayName: "Quantum Field", text: "QUANTUM" },
-    { name: "neon-arcade", displayName: "Neon Arcade", text: "GAMING" },
-    { name: "burning-flame", displayName: "Burning Flame", text: "FIRE" },
+    { name: "aurora-borealis", displayName: "Aurora Borealis", text: "NATURE" },
+    { name: "typing-path-reveal", displayName: "Typing Animation", text: "TYPING" },
+    { name: "liquid-venom", displayName: "Liquid Venom", text: "LIQUID" },
+    { name: "watercolor-dream", displayName: "Watercolor Dream", text: "ARTISTIC" },
+    { name: "sunset-gold", displayName: "Sunset Gold", text: "LUXURY" },
+    { name: "pixel-art-retro", displayName: "Pixel Art", text: "RETRO" },
+    { name: "rainbow-wave", displayName: "Rainbow Wave", text: "RAINBOW" },
   ];
 
-  // Editor's choice templates
+  // Editor's choice templates - Expanded with diverse categories
   const editorsChoice = [
+    // Luxury & Material
     { name: "sunset-gold", displayName: "Sunset Gold", category: "luxury", text: "PREMIUM" },
+    { name: "diamond-sparkle", displayName: "Diamond Sparkle", category: "material", text: "DIAMOND" },
+
+    // Nature & Organic
     { name: "ocean-heart", displayName: "Ocean Heart", category: "nature", text: "OCEAN" },
-    { name: "crystal-prism", displayName: "Crystal Prism", category: "material", text: "CRYSTAL" },
-    { name: "rainbow-wave", displayName: "Rainbow Wave", category: "pride", text: "RAINBOW" },
+    { name: "aurora-borealis", displayName: "Aurora Borealis", category: "organicNature", text: "AURORA" },
+
+    // Tech & Digital
     { name: "cyber-scan", displayName: "Cyber Scanner", category: "tech", text: "CYBER" },
-    { name: "glitch-matrix", displayName: "Glitch Matrix", category: "textEffects", text: "GLITCH" },
-    { name: "liquid-morph", displayName: "Liquid Morph", category: "morphing", text: "MORPH" },
     { name: "neural-network", displayName: "Neural Network", category: "digitalLife", text: "AI" },
+
+    // Artistic & Creative
+    { name: "watercolor-dream", displayName: "Watercolor Dream", category: "artistic", text: "WATERCOLOR" },
+    { name: "art-deco-luxury", displayName: "Art Deco", category: "artMovement", text: "DECO" },
+
+    // Gaming & Retro
+    { name: "neon-arcade", displayName: "Neon Arcade", category: "gaming", text: "ARCADE" },
+    { name: "pixel-art-retro", displayName: "Pixel Art", category: "gaming", text: "PIXEL" },
+
+    // Path Animation & Text Effects
+    { name: "typing-path-reveal", displayName: "Typing Animation", category: "pathText", text: "TYPING" },
+    { name: "handwriting", displayName: "Handwriting", category: "pathText", text: "WRITE" },
+
+    // Capsule & Morphing
+    { name: "liquid-venom", displayName: "Liquid Venom", category: "capsuleShape", text: "VENOM" },
+    { name: "dreamy-sunset", displayName: "Dreamy Sunset", category: "capsuleShape", text: "DREAMY" },
+
+    // Weather & Light
+    { name: "monsoon-rain", displayName: "Monsoon Rain", category: "weather", text: "RAIN" },
+    { name: "stained-glass", displayName: "Stained Glass", category: "lightShadow", text: "GLASS" },
   ];
 
-  // Popular templates - use actual existing templates
+  // Popular templates - Diverse and trending
   const popularTemplates = [
-    { name: "wave-flow", displayName: "Wave Flow", users: "2.3k" },
-    { name: "aurora-borealis", displayName: "Aurora Borealis", users: "1.8k" },
-    { name: "plasma-field", displayName: "Plasma Field", users: "1.5k" },
-    { name: "cosmic-voyage", displayName: "Cosmic Voyage", users: "1.2k" },
-    { name: "neon-pulse", displayName: "Neon Pulse", users: "980" },
-    { name: "cyber-matrix", displayName: "Cyber Matrix", users: "850" },
+    { name: "typing-path-reveal", displayName: "Typing Animation", users: "3.2k" },
+    { name: "aurora-borealis", displayName: "Aurora Borealis", users: "2.8k" },
+    { name: "liquid-venom", displayName: "Liquid Venom", users: "2.5k" },
+    { name: "watercolor-dream", displayName: "Watercolor Dream", users: "2.1k" },
+    { name: "neon-arcade", displayName: "Neon Arcade", users: "1.9k" },
+    { name: "hologram-matrix", displayName: "Hologram Matrix", users: "1.7k" },
   ];
 
   // Features
   const features = [
     {
       icon: <Palette className="h-6 w-6" />,
-      title: "216+ Templates",
-      description: "Professional templates across 22 categories"
+      title: "326+ Templates",
+      description: "Professional templates across 30 categories"
     },
     {
       icon: <Sparkles className="h-6 w-6" />,
@@ -88,16 +120,16 @@ export default function Home() {
     <>
       <GEOHead pageType="home" />
       <Head>
-        <title>Gradient SVG Generator - Create Stunning Animated Gradients | 216+ Professional Templates</title>
-        <meta name="description" content="Generate beautiful animated SVG gradients with 216+ professional templates. Perfect for headers, banners, and creative projects. Free API, no registration required." />
+        <title>Gradient SVG Generator - Create Stunning Animated Gradients | 326+ Professional Templates</title>
+        <meta name="description" content="Generate beautiful animated SVG gradients with 326+ professional templates across 30 categories. Perfect for headers, banners, and creative projects. Free API, no registration required." />
         <meta name="keywords" content="gradient generator, SVG creator, animated banners, GitHub headers, design tools, API, templates, free" />
-        <meta property="og:title" content="Gradient SVG Generator - 216+ Professional Templates" />
-        <meta property="og:description" content="Create stunning animated SVG gradients with professional templates. Free API access, no registration required." />
+        <meta property="og:title" content="Gradient SVG Generator - 326+ Professional Templates" />
+        <meta property="og:description" content="Create stunning animated SVG gradients with 326+ professional templates across 30 categories. Free API access, no registration required." />
         <meta property="og:url" content="https://gradient-svg-generator.vercel.app" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Gradient SVG Generator - Professional Templates" />
-        <meta name="twitter:description" content="216+ professional gradient templates with real-time API. Perfect for developers and designers." />
+        <meta name="twitter:description" content="326+ professional gradient templates across 30 categories with real-time API. Perfect for developers and designers." />
       </Head>
 
       <div className="min-h-screen bg-background">
@@ -125,7 +157,7 @@ export default function Home() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8">
-                Professional gradient generator with 216+ templates and 50+ animation effects. 
+                Professional gradient generator with 326+ templates and 140+ animation effects.
                 Perfect for headers, banners, and creative projects.
               </p>
 
@@ -300,6 +332,74 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Explore Categories Section */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between mb-12">
+              <div>
+                <h2 className="text-3xl font-bold mb-2">Explore Categories</h2>
+                <p className="text-muted-foreground">Discover all {categories.length} template categories</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="gap-1">
+                  <Grid3x3 className="h-3 w-3" />
+                  {categories.length} Categories
+                </Badge>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {categories.map((category) => {
+                const categoryTemplates = getTemplatesByCategory(category.id);
+                const sampleTemplate = categoryTemplates[0];
+
+                return (
+                  <Link
+                    key={category.id}
+                    href={`/templates?category=${category.id}`}
+                    className="group"
+                  >
+                    <Card className="overflow-hidden cursor-pointer hover:shadow-lg transition-all h-full">
+                      {/* Template Preview */}
+                      {sampleTemplate && (
+                        <div className="aspect-video bg-muted overflow-hidden">
+                          <img
+                            src={`/api/svg?text=${category.icon}&template=${sampleTemplate.name}&height=100&v=2`}
+                            alt={category.name}
+                            className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+
+                      {/* Category Info */}
+                      <CardHeader className="p-3">
+                        <div className="text-center">
+                          <div className="text-2xl mb-1">{category.icon}</div>
+                          <CardTitle className="text-sm font-semibold">{category.name}</CardTitle>
+                          <CardDescription className="text-xs mt-1">
+                            {categoryTemplates.length} template{categoryTemplates.length !== 1 ? 's' : ''}
+                          </CardDescription>
+                        </div>
+                      </CardHeader>
+                    </Card>
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link href="/templates">
+                <Button size="lg" variant="outline" className="gap-2">
+                  <Palette className="h-5 w-5" />
+                  View All Templates
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 border-t">
           <div className="container mx-auto px-4 text-center">
@@ -342,7 +442,7 @@ export default function Home() {
                 <h3 className="text-xl font-bold">Gradient SVG Generator</h3>
               </div>
               <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
-                Professional gradient generator with 216+ templates and 50+ animation effects. 
+                Professional gradient generator with 326+ templates and 140+ animation effects.
                 Create stunning animated SVG gradients for your projects.
               </p>
               <div className="flex flex-wrap justify-center gap-6 text-sm">
