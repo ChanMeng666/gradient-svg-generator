@@ -1,12 +1,4 @@
 /*
- *
- */
-
-/*
- *
- */
-
-/*
  * MIT License
  *
  * Copyright (c) 2025 ChanMeng666
@@ -18,91 +10,17 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- *
- */
-
-// gradientConfig.js
-const basicTemplates = require('../templates/basicTemplates');
-const prideTemplates = require('../templates/prideTemplates');
-const natureTemplates = require('../templates/natureTemplates');
-const techTemplates = require('../templates/techTemplates');
-const artTemplates = require('../templates/artTemplates');
-const emotionTemplates = require('../templates/emotionTemplates');
-const materialTemplates = require('../templates/materialTemplates');
-const textEffectTemplates = require('../templates/textEffectTemplates');
-const futureTechTemplates = require('../templates/futureTechTemplates');
-const artisticTemplates = require('../templates/artisticTemplates');
-const luxuryTemplates = require('../templates/luxuryTemplates');
-const organicTemplates = require('../templates/organicTemplates');
-const gamingTemplates = require('../templates/gamingTemplates');
-// 新增的模板类别 - 借鉴自示例项目
-const shapeTemplates = require('../templates/shapeTemplates');
-const animationTemplates = require('../templates/animationTemplates');
-// 🌟 NEW: 前沿创新模板系列
-const morphingTemplates = require('../templates/morphingTemplates');
-const fluidDynamicsTemplates = require('../templates/fluidDynamicsTemplates');
-const dimensionalTemplates = require('../templates/dimensionalTemplates');
-// 🌟 NEW: 最新前卫模板系列
-const dimensionalPortalTemplates = require('../templates/dimensionalPortalTemplates');
-const digitalLifeTemplates = require('../templates/digitalLifeTemplates');
-const cyberAestheticsTemplates = require('../templates/cyberAestheticsTemplates');
-const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
-// 🌟 NEW: 2025 创意扩展系列
-const weatherTemplates = require('../templates/weatherTemplates');
-const lightShadowTemplates = require('../templates/lightShadowTemplates');
-const artMovementTemplates = require('../templates/artMovementTemplates');
-const culinaryLiquidTemplates = require('../templates/culinaryLiquidTemplates');
-const patternTemplates = require('../templates/patternTemplates');
-const metallicTemplates = require('../templates/metallicTemplates');
-// 🌟 NEW: Path-Based Text Animation templates (inspired by Readme Typing SVG)
-const pathTextTemplates = require('../templates/pathTextTemplates');
-// 🌟 NEW: Capsule-Render Inspired Shape templates (blob, wave, blur effects)
-const capsuleShapeTemplates = require('../templates/capsuleShapeTemplates');
+// gradientConfig.js - Now uses lazy loading via TemplateRegistry
+const TemplateRegistry = require('../core/TemplateRegistry');
 const { getRandomGradientPalette, getTimedPalette } = require('./colorPalettes');
 
-const templates = { 
-  ...basicTemplates, 
-  ...prideTemplates,
-  ...natureTemplates,
-  ...techTemplates,
-  ...artTemplates,
-  ...emotionTemplates,
-  ...materialTemplates,
-  ...textEffectTemplates,
-  ...futureTechTemplates,
-  ...artisticTemplates,
-  ...luxuryTemplates,
-  ...organicTemplates,
-  ...gamingTemplates,
-  // 新增模板类别
-  ...shapeTemplates,
-  ...animationTemplates,
-  // 🌟 NEW: 前沿创新模板系列
-  ...morphingTemplates,
-  ...fluidDynamicsTemplates,
-  ...dimensionalTemplates,
-  // 🌟 NEW: 最新前卫模板系列
-  ...dimensionalPortalTemplates,
-  ...digitalLifeTemplates,
-  ...cyberAestheticsTemplates,
-  ...consciousnessStreamTemplates,
-  // 🌟 NEW: 2025 创意扩展系列
-  ...weatherTemplates,
-  ...lightShadowTemplates,
-  ...artMovementTemplates,
-  ...culinaryLiquidTemplates,
-  // 🌟 NEW: Pattern & Metallic templates (inspired by example project)
-  ...patternTemplates,
-  ...metallicTemplates,
-  // 🌟 NEW: Path-Based Text Animation templates (inspired by Readme Typing SVG)
-  ...pathTextTemplates,
-  // 🌟 NEW: Capsule-Render Inspired Shape templates
-  ...capsuleShapeTemplates
-};
+// Lazy template access - templates are loaded on-demand
+const getTemplateByName = (name) => TemplateRegistry.getTemplate(name);
 
 function getTemplateConfig(template, defaultColor = '000000') {
-  if (!template || !templates[template]) {
+  const selectedTemplate = getTemplateByName(template);
+
+  if (!template || !selectedTemplate) {
     return {
       colors: [defaultColor, `${defaultColor}88`],
       gradientType: 'horizontal',
@@ -110,8 +28,6 @@ function getTemplateConfig(template, defaultColor = '000000') {
     };
   }
 
-  const selectedTemplate = templates[template];
-  
   return {
     colors: selectedTemplate.colors || [defaultColor, `${defaultColor}88`],
     gradientType: selectedTemplate.gradientType || 'horizontal',

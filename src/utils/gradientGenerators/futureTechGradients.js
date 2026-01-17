@@ -11,7 +11,24 @@
  */
 
 // Future Tech gradient generators
+// Refactored to use centralized FilterLibrary and AnimationLibrary
+
+const {
+  createTurbulenceFilter,
+  createGlowFilter
+} = require('../../core/FilterLibrary');
+
+const {
+  multiplyDuration
+} = require('../../core/AnimationLibrary');
+
 function createHologramGradient(stops, animationConfig, animationDuration) {
+  const hologramFilter = createGlowFilter('hologramGlow', {
+    color: '#00ffff',
+    intensity: 3,
+    opacity: 0.6
+  });
+
   const additionalElements = `<animateTransform attributeName="transform" type="skewX" values="0;2;0;-2;0" ${animationConfig} />`;
 
   return {
@@ -21,30 +38,28 @@ function createHologramGradient(stops, animationConfig, animationDuration) {
         <animate attributeName="x1" values="0%;50%;0%" ${animationConfig} />
         <animate attributeName="y1" values="0%;50%;0%" ${animationConfig} />
       </linearGradient>
-      <filter id="hologramGlow">
-        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-        <feMerge>
-          <feMergeNode in="coloredBlur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>`,
+      ${hologramFilter}`,
     additionalElements
   };
 }
 
 function createQuantumGradient(stops, animationConfig, animationDuration) {
+  const quantumFilter = createTurbulenceFilter('quantumTurbulence', {
+    baseFrequency: '0.9',
+    numOctaves: 4,
+    scale: 20,
+    animated: true,
+    animationValues: '20;40;20',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
         ${stops}
         <animate attributeName="r" values="30%;80%;30%" ${animationConfig} />
       </radialGradient>
-      <filter id="quantumTurbulence">
-        <feTurbulence baseFrequency="0.9" numOctaves="4" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="20">
-          <animate attributeName="scale" values="20;40;20" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`
+      ${quantumFilter}`
   };
 }
 
@@ -69,24 +84,28 @@ function createNeuralNetGradient(stops, animationConfig, animationDuration) {
       <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
         ${stops}
         <animate attributeName="cx" values="30%;70%;30%" ${animationConfig} />
-        <animate attributeName="cy" values="30%;70%;30%" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="30%;70%;30%" dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
       </radialGradient>`
   };
 }
 
 function createPlasmaGradient(stops, animationConfig, animationDuration) {
+  const plasmaFilter = createTurbulenceFilter('plasmaTurbulence', {
+    baseFrequency: '0.6',
+    numOctaves: 3,
+    scale: 30,
+    animated: true,
+    animationValues: '30;60;30',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
         ${stops}
         <animate attributeName="r" values="30%;100%;30%" ${animationConfig} />
       </radialGradient>
-      <filter id="plasmaTurbulence">
-        <feTurbulence baseFrequency="0.6" numOctaves="3" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="30">
-          <animate attributeName="scale" values="30;60;30" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`
+      ${plasmaFilter}`
   };
 }
 
@@ -108,4 +127,4 @@ module.exports = {
   createNeuralNetGradient,
   createPlasmaGradient,
   createDataStreamGradient
-}; 
+};

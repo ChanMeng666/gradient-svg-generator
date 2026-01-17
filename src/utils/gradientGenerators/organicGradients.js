@@ -11,92 +11,133 @@
  */
 
 // Organic nature gradient generators
+// Refactored to use centralized FilterLibrary and AnimationLibrary
+
+const {
+  createTurbulenceFilter,
+  createBlurFilter,
+  createColorMatrixFilter,
+  createCompositeFilter
+} = require('../../core/FilterLibrary');
+
+const {
+  buildAnimationConfig,
+  multiplyDuration
+} = require('../../core/AnimationLibrary');
+
 function createFlowingWaterGradient(stops, animationConfig, animationDuration) {
+  const waterFilter = createTurbulenceFilter('waterRipple', {
+    baseFrequency: '0.5',
+    numOctaves: 2,
+    scale: 10,
+    animated: true,
+    animationValues: '5;15;5',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
         ${stops}
         <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+        <animate attributeName="y1" values="0%;100%;0%" dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite" />
       </linearGradient>
-      <filter id="waterRipple">
-        <feTurbulence baseFrequency="0.5" numOctaves="2"/>
-        <feDisplacementMap scale="10">
-          <animate attributeName="scale" values="5;15;5" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`
+      ${waterFilter}`
   };
 }
 
 function createFlameGradient(stops, animationConfig, animationDuration) {
+  const flameFilter = createTurbulenceFilter('flameFlicker', {
+    baseFrequency: '0.9',
+    numOctaves: 4,
+    scale: 15,
+    animated: true,
+    animationValues: '15;25;15',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="80%" r="60%">
         ${stops}
         <animate attributeName="cy" values="80%;60%;80%" ${animationConfig} />
-        <animate attributeName="r" values="60%;80%;60%" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+        <animate attributeName="r" values="60%;80%;60%" dur="${multiplyDuration(animationDuration, 0.8)}" repeatCount="indefinite" />
       </radialGradient>
-      <filter id="flameFlicker">
-        <feTurbulence baseFrequency="0.9" numOctaves="4"/>
-        <feDisplacementMap scale="15">
-          <animate attributeName="scale" values="15;25;15" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`
+      ${flameFilter}`
   };
 }
 
 function createCloudsGradient(stops, animationConfig, animationDuration) {
+  const cloudFilter = createTurbulenceFilter('cloudFloat', {
+    baseFrequency: '0.2',
+    numOctaves: 3,
+    scale: 20,
+    animated: true,
+    animationValues: '20;30;20',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="40%" r="80%">
         ${stops}
-        <animate attributeName="cx" values="30%;70%;30%" dur="${parseFloat(animationDuration) * 2}s" repeatCount="indefinite" />
+        <animate attributeName="cx" values="30%;70%;30%" dur="${multiplyDuration(animationDuration, 2)}" repeatCount="indefinite" />
         <animate attributeName="cy" values="40%;60%;40%" ${animationConfig} />
       </radialGradient>
-      <filter id="cloudFloat">
-        <feTurbulence baseFrequency="0.2" numOctaves="3"/>
-        <feDisplacementMap scale="20">
-          <animate attributeName="scale" values="20;30;20" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`
+      ${cloudFilter}`
   };
 }
 
 function createAuroraGradient(stops, animationConfig, animationDuration) {
+  const auroraFilter = createTurbulenceFilter('auroraWave', {
+    baseFrequency: '0.6',
+    numOctaves: 3,
+    scale: 25,
+    animated: true,
+    animationValues: '25;40;25',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
         ${stops}
         <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="0%;50%;100%;50%;0%" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+        <animate attributeName="y1" values="0%;50%;100%;50%;0%" dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
       </linearGradient>
-      <filter id="auroraWave">
-        <feTurbulence baseFrequency="0.6" numOctaves="3"/>
-        <feDisplacementMap scale="25">
-          <animate attributeName="scale" values="25;40;25" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`
+      ${auroraFilter}`
   };
 }
 
 function createOceanWavesGradient(stops, animationConfig, animationDuration) {
+  const oceanFilter = createTurbulenceFilter('oceanFlow', {
+    baseFrequency: '0.4',
+    numOctaves: 2,
+    scale: 12,
+    animated: true,
+    animationValues: '12;20;12',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="100%" r="70%">
         ${stops}
         <animate attributeName="r" values="50%;90%;50%" ${animationConfig} />
-        <animate attributeName="cy" values="100%;80%;100%" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="100%;80%;100%" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite" />
       </radialGradient>
-      <filter id="oceanFlow">
-        <feTurbulence baseFrequency="0.4" numOctaves="2"/>
-        <feDisplacementMap scale="12">
-          <animate attributeName="scale" values="12;20;12" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`
+      ${oceanFilter}`
   };
 }
 
 function createForestGradient(stops, animationConfig, animationDuration) {
+  const forestFilter = createTurbulenceFilter('forestCanopy', {
+    baseFrequency: '0.8',
+    numOctaves: 3,
+    scale: 5,
+    animated: false
+  });
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -104,28 +145,38 @@ function createForestGradient(stops, animationConfig, animationDuration) {
         <animate attributeName="y1" values="0%;30%;0%" ${animationConfig} />
         <animate attributeName="y2" values="100%;70%;100%" ${animationConfig} />
       </linearGradient>
-      <filter id="forestCanopy">
-        <feTurbulence baseFrequency="0.8" numOctaves="3"/>
-        <feDisplacementMap scale="5"/>
-      </filter>`
+      ${forestFilter}`
   };
 }
 
 function createLightningGradient(stops, animationConfig, animationDuration) {
+  const lightningFilter = createColorMatrixFilter('lightningBolt', {
+    saturation: 1.5,
+    includeBlur: true,
+    blurAmount: 3
+  });
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="50%" r="40%">
         ${stops}
-        <animate attributeName="r" values="20%;60%;20%" dur="${parseFloat(animationDuration) * 0.3}s" repeatCount="indefinite" />
+        <animate attributeName="r" values="20%;60%;20%" dur="${multiplyDuration(animationDuration, 0.3)}" repeatCount="indefinite" />
       </radialGradient>
-      <filter id="lightningBolt">
-        <feGaussianBlur stdDeviation="3"/>
-        <feColorMatrix values="1.5 0 0 0 0 0 1.5 0 0 0 0 0 1.5 0 0 0 0 0 1 0"/>
-      </filter>`
+      ${lightningFilter}`
   };
 }
 
 function createMountainMistGradient(stops, animationConfig, animationDuration) {
+  // Mist effect combines turbulence with blur
+  const mistFilter = `
+    <filter id="mistEffect">
+      <feTurbulence baseFrequency="0.3" numOctaves="4" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="15">
+        <animate attributeName="scale" values="15;25;15" ${animationConfig} />
+      </feDisplacementMap>
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>`;
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -133,13 +184,7 @@ function createMountainMistGradient(stops, animationConfig, animationDuration) {
         <animate attributeName="y1" values="100%;80%;100%" ${animationConfig} />
         <animate attributeName="y2" values="0%;20%;0%" ${animationConfig} />
       </linearGradient>
-      <filter id="mistEffect">
-        <feTurbulence baseFrequency="0.3" numOctaves="4"/>
-        <feDisplacementMap scale="15">
-          <animate attributeName="scale" values="15;25;15" ${animationConfig} />
-        </feDisplacementMap>
-        <feGaussianBlur stdDeviation="2"/>
-      </filter>`
+      ${mistFilter}`
   };
 }
 
@@ -152,4 +197,4 @@ module.exports = {
   createForestGradient,
   createLightningGradient,
   createMountainMistGradient
-}; 
+};
