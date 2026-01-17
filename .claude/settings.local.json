@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(xargs:*)",
+      "Bash(npm ls:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx next build:*)",
+      "Bash(timeout:*)",
+      "Bash(ping:*)",
+      "Bash(node -e:*)",
+      "Bash(npm install:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "Bash(curl:*)",
+      "Bash(npm run dev:*)",
+      "Bash(for tmpl in sunset-gold ocean-heart hologram-matrix watercolor-dream neon-arcade liquid-venom monsoon-rain stained-glass art-deco-luxury diamond-sparkle typing-path-reveal)",
+      "Bash(do echo \"Testing $tmpl:\")",
+      "Bash(done)"
+    ]
+  }
+}

@@ -116,6 +116,50 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  // DEBUG: Fetch and check SVG responses for colors
+  useEffect(() => {
+    const debugTemplates = async () => {
+      console.log('=== DEBUG: Checking SVG Templates ===');
+
+      // Check a few key templates
+      const templatesToCheck = [
+        { name: 'hologram-matrix', text: 'TEST', expected: 'SHOULD_WORK' },
+        { name: 'aurora-borealis', text: 'TEST', expected: 'MIGHT_BE_BLACK' },
+        { name: 'watercolor-dream', text: 'TEST', expected: 'MIGHT_BE_BLACK' },
+        { name: 'sunset-gold', text: 'TEST', expected: 'SHOULD_WORK' },
+      ];
+
+      for (const t of templatesToCheck) {
+        try {
+          const url = `/api/svg?text=${t.text}&template=${t.name}&height=100`;
+          const response = await fetch(url);
+          const svgText = await response.text();
+
+          // Check for color content
+          const hasColoredGradient = svgText.includes('stop-color') && !svgText.match(/stop-color=["']#000000["']/g);
+          const containsBlackOnly = svgText.includes('stop-color="#000000"') && !svgText.includes('stop-color="#') ||
+            (svgText.match(/stop-color/g)?.length === svgText.match(/stop-color=["']#000000["']/g)?.length);
+
+          // Extract actual colors from SVG
+          const colorMatches = svgText.match(/stop-color=["']#[0-9a-fA-F]+["']/g) || [];
+
+          console.log(`[${t.name}] Status: ${response.status}, Colors: ${colorMatches.slice(0, 5).join(', ')}, HasColors: ${hasColoredGradient}, BlackOnly: ${containsBlackOnly}`);
+
+          // If SVG looks like black fallback, log first 500 chars
+          if (containsBlackOnly || svgText.includes('fallback')) {
+            console.log(`[${t.name}] SVG Preview: ${svgText.substring(0, 500)}...`);
+          }
+        } catch (err) {
+          console.error(`[${t.name}] Fetch error:`, err.message);
+        }
+      }
+
+      console.log('=== DEBUG: End SVG Check ===');
+    };
+
+    debugTemplates();
+  }, []);
+
   return (
     <>
       <GEOHead pageType="home" />

@@ -1,12 +1,12 @@
 // Service Worker for PWA functionality
-// v2: Fixed to exclude API routes from caching
-const CACHE_NAME = 'gradient-svg-v2';
+// v3: Fixed cache.addAll failure due to missing favicon.ico
+const CACHE_NAME = 'gradient-svg-v3';
 const urlsToCache = [
   '/',
   '/create',
   '/templates',
-  '/manifest.json',
-  '/favicon.ico'
+  '/manifest.json'
+  // Note: favicon.ico removed - it doesn't exist in this project
 ];
 
 // Routes that should NEVER be cached
@@ -23,14 +23,27 @@ function shouldCache(url) {
 
 // Install event
 self.addEventListener('install', event => {
+  console.log('[SW v3] Installing...');
   // Skip waiting to activate new service worker immediately
   self.skipWaiting();
 
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+        console.log('[SW v3] Opened cache, caching URLs individually...');
+        // Cache URLs individually to avoid failing if one URL is unavailable
+        return Promise.all(
+          urlsToCache.map(url => {
+            return cache.add(url).then(() => {
+              console.log('[SW v3] Cached:', url);
+            }).catch(err => {
+              console.warn('[SW v3] Failed to cache:', url, err.message);
+            });
+          })
+        );
+      })
+      .then(() => {
+        console.log('[SW v3] Install complete');
       })
   );
 });
@@ -38,9 +51,14 @@ self.addEventListener('install', event => {
 // Fetch event with network-first strategy
 self.addEventListener('fetch', event => {
   const requestUrl = event.request.url;
+  const urlPath = new URL(requestUrl).pathname;
 
   // Never cache API routes - always fetch from network
   if (!shouldCache(requestUrl)) {
+    // Debug log for API requests
+    if (urlPath.includes('/api/svg')) {
+      console.log('[SW v3] API request (not cached):', urlPath.substring(0, 100));
+    }
     event.respondWith(fetch(event.request));
     return;
   }
@@ -72,21 +90,26 @@ self.addEventListener('fetch', event => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', event => {
+  console.log('[SW v3] Activating...');
   const cacheWhitelist = [CACHE_NAME];
 
   event.waitUntil(
     caches.keys().then(cacheNames => {
+      console.log('[SW v3] Found caches:', cacheNames);
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
-            console.log('Deleting old cache:', cacheName);
+            console.log('[SW v3] Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     }).then(() => {
+      console.log('[SW v3] Taking control of clients...');
       // Take control of all clients immediately
       return self.clients.claim();
+    }).then(() => {
+      console.log('[SW v3] Activation complete - now controlling all clients');
     })
   );
 });
