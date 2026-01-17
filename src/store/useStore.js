@@ -93,7 +93,13 @@ const useStore = create(
       removeFavorite: (templateName) => set((state) => ({
         favorites: state.favorites.filter(name => name !== templateName)
       })),
-      
+
+      toggleFavorite: (templateName) => set((state) => ({
+        favorites: state.favorites.includes(templateName)
+          ? state.favorites.filter(name => name !== templateName)
+          : [...new Set([...state.favorites, templateName])]
+      })),
+
       addToRecent: (template) => set((state) => ({
         recentTemplates: [
           template,
@@ -115,5 +121,16 @@ const useStore = create(
     }
   )
 )
+
+// Selectors for optimized re-renders
+export const useCurrentConfig = () => useStore(state => state.currentConfig)
+export const useColors = () => useStore(state => state.currentConfig.colors)
+export const useFavorites = () => useStore(state => state.favorites)
+export const useRecentTemplates = () => useStore(state => state.recentTemplates)
+export const useTemplateState = () => useStore(state => ({
+  baseTemplate: state.baseTemplate,
+  isModified: state.isModified,
+}))
+export const useIsFavorite = (templateName) => useStore(state => state.favorites.includes(templateName))
 
 export default useStore

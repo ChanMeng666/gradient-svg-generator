@@ -37,6 +37,15 @@ const morphingGradients = require('../utils/gradientGenerators/morphingGradients
 const fluidDynamicsGradients = require('../utils/gradientGenerators/fluidDynamicsGradients');
 const dimensionalGradients = require('../utils/gradientGenerators/dimensionalGradients');
 
+// Additional gradient generators (previously unregistered)
+const weatherGradients = require('../utils/gradientGenerators/weatherGradients');
+const lightShadowGradients = require('../utils/gradientGenerators/lightShadowGradients');
+const artMovementGradients = require('../utils/gradientGenerators/artMovementGradients');
+const culinaryLiquidGradients = require('../utils/gradientGenerators/culinaryLiquidGradients');
+const patternGradients = require('../utils/gradientGenerators/patternGradients');
+const metallicGradients = require('../utils/gradientGenerators/metallicGradients');
+const pathTextGradients = require('../utils/gradientGenerators/pathTextGradients');
+
 // Import advanced effect generators
 const { generateAdvancedEffect } = require('../utils/advancedEffectGenerator');
 const { generateAdvancedSVG } = require('../utils/advancedSvgGenerator');
@@ -549,16 +558,220 @@ function loadAdvancedComplexEffects() {
 }
 
 /**
+ * Load and register Effect gradients (spiral, conic, galaxy, etc.)
+ */
+function loadEffectGradients() {
+  const effects = [
+    { name: 'galaxy', generator: effectGradients.createGalaxyGradient, description: 'Galaxy spiral effect', filters: ['galaxyEffect'] },
+    { name: 'spiral', generator: effectGradients.createSpiralGradient, description: 'Hypnotic spiral pattern', filters: ['spiralEffect'] },
+    { name: 'conic', generator: effectGradients.createConicGradient, description: 'Conic gradient rotation', filters: ['crystalEffect'] },
+    { name: 'luminance', generator: effectGradients.createLuminanceGradient, description: 'Luminance glow effect', filters: ['luminanceEffect'] },
+    { name: 'textBox', generator: effectGradients.createTextBoxGradient, description: 'Text box popup effect', filters: ['textBoxEffect'] },
+    { name: 'glitch', generator: effectGradients.createGlitchGradient, description: 'Digital glitch effect', filters: ['glitchEffect'] },
+    { name: 'typewriter', generator: effectGradients.createTypewriterGradient, description: 'Typewriter text reveal', filters: ['typewriterEffect'] }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'effects',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Weather effects
+ */
+function loadWeatherEffects() {
+  const effects = [
+    { name: 'fogRolling', generator: weatherGradients.createFogRollingGradient, description: 'Rolling fog atmosphere' },
+    { name: 'monsoonRain', generator: weatherGradients.createMonsoonRainGradient, description: 'Monsoon rain effect' },
+    { name: 'snowfallDrift', generator: weatherGradients.createSnowfallDriftGradient, description: 'Gentle snowfall drift' },
+    { name: 'sandstormSwirl', generator: weatherGradients.createSandstormSwirlGradient, description: 'Swirling sandstorm' },
+    { name: 'tornadoVortex', generator: weatherGradients.createTornadoVortexGradient, description: 'Tornado vortex effect' },
+    { name: 'lightningWeb', generator: weatherGradients.createLightningWebGradient, description: 'Lightning web pattern' },
+    { name: 'prismRefraction', generator: weatherGradients.createPrismRefractionGradient, description: 'Prism light refraction' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'weather',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Light & Shadow effects
+ */
+function loadLightShadowEffects() {
+  const effects = [
+    { name: 'causticUnderwater', generator: lightShadowGradients.createCausticUnderwaterGradient, description: 'Underwater caustic light' },
+    { name: 'venetianBlind', generator: lightShadowGradients.createVenetianBlindGradient, description: 'Venetian blind shadows' },
+    { name: 'stainedGlass', generator: lightShadowGradients.createStainedGlassGradient, description: 'Stained glass light' },
+    { name: 'lensFlare', generator: lightShadowGradients.createLensFlareGradient, description: 'Camera lens flare' },
+    { name: 'bokehBlur', generator: lightShadowGradients.createBokehBlurGradient, description: 'Bokeh blur effect' },
+    { name: 'godRays', generator: lightShadowGradients.createGodRaysGradient, description: 'God rays light beams' },
+    { name: 'eclipseCorona', generator: lightShadowGradients.createEclipseCoronaGradient, description: 'Eclipse corona effect' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'lightShadow',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Art Movement effects
+ */
+function loadArtMovementEffects() {
+  const effects = [
+    { name: 'artNouveauFlow', generator: artMovementGradients.createArtNouveauFlowGradient, description: 'Art Nouveau flowing curves' },
+    { name: 'artDecoLuxury', generator: artMovementGradients.createArtDecoLuxuryGradient, description: 'Art Deco geometric luxury' },
+    { name: 'bauhausMinimal', generator: artMovementGradients.createBauhausMinimalGradient, description: 'Bauhaus minimalist design' },
+    { name: 'impressionistDots', generator: artMovementGradients.createImpressionistDotsGradient, description: 'Impressionist pointillism' },
+    { name: 'cubistFragments', generator: artMovementGradients.createCubistFragmentsGradient, description: 'Cubist fragmented shapes' },
+    { name: 'surrealistMelt', generator: artMovementGradients.createSurrealistMeltGradient, description: 'Surrealist melting effect' },
+    { name: 'popArtHalftone', generator: artMovementGradients.createPopArtHalftoneGradient, description: 'Pop Art halftone pattern' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'artMovement',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Culinary/Liquid effects
+ */
+function loadCulinaryLiquidEffects() {
+  const effects = [
+    { name: 'coffeeCream', generator: culinaryLiquidGradients.createCoffeeCreamGradient, description: 'Coffee and cream swirl' },
+    { name: 'winePour', generator: culinaryLiquidGradients.createWinePourGradient, description: 'Wine pouring effect' },
+    { name: 'honeyDrizzle', generator: culinaryLiquidGradients.createHoneyDrizzleGradient, description: 'Honey drizzle flow' },
+    { name: 'chocolateMelt', generator: culinaryLiquidGradients.createChocolateMeltGradient, description: 'Melting chocolate' },
+    { name: 'caramelSwirl', generator: culinaryLiquidGradients.createCaramelSwirlGradient, description: 'Caramel swirl pattern' },
+    { name: 'tieDye', generator: culinaryLiquidGradients.createTieDyeGradient, description: 'Tie-dye pattern' },
+    { name: 'marbleMixing', generator: culinaryLiquidGradients.createMarbleMixingGradient, description: 'Marble mixing effect' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'culinaryLiquid',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Pattern effects
+ */
+function loadPatternEffects() {
+  const effects = [
+    { name: 'candystripe', generator: patternGradients.createCandystripeGradient, description: 'Candy stripe pattern' },
+    { name: 'zigzagPattern', generator: patternGradients.createZigzagGradient, description: 'Zigzag pattern' },
+    { name: 'diamondPattern', generator: patternGradients.createDiamondPatternGradient, description: 'Diamond pattern' },
+    { name: 'heartsPattern', generator: patternGradients.createHeartsPatternGradient, description: 'Hearts pattern' },
+    { name: 'checkered', generator: patternGradients.createCheckeredGradient, description: 'Checkered pattern' },
+    { name: 'diagonalFlow', generator: patternGradients.createDiagonalFlowGradient, description: 'Diagonal flow lines' },
+    { name: 'geometricPulse', generator: patternGradients.createGeometricPulseGradient, description: 'Geometric pulse animation' },
+    { name: 'patternWave', generator: patternGradients.createPatternWaveGradient, description: 'Pattern wave effect' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'pattern',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Metallic effects
+ */
+function loadMetallicEffects() {
+  const effects = [
+    { name: 'copperMetallic', generator: metallicGradients.createCopperMetallicGradient, description: 'Copper metallic finish' },
+    { name: 'shineShimmer', generator: metallicGradients.createShineShimmerGradient, description: 'Shimmering shine effect' },
+    { name: 'neonPulse', generator: metallicGradients.createNeonPulseGradient, description: 'Neon pulse glow' },
+    { name: 'aquaFlow', generator: metallicGradients.createAquaFlowGradient, description: 'Aqua flow effect' },
+    { name: 'sparkleEffect', generator: metallicGradients.createSparkleEffectGradient, description: 'Sparkle glitter effect' },
+    { name: 'chromeFlow', generator: metallicGradients.createChromeFlowGradient, description: 'Chrome flow finish' },
+    { name: 'bronzeGleam', generator: metallicGradients.createBronzeGleamGradient, description: 'Bronze gleam shine' },
+    { name: 'platinumSparkle', generator: metallicGradients.createPlatinumSparkleGradient, description: 'Platinum sparkle' },
+    { name: 'steelAqua', generator: metallicGradients.createSteelAquaGradient, description: 'Steel aqua blend' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'metallic',
+      outputType: 'gradient',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
+ * Load and register Path Text effects
+ */
+function loadPathTextEffects() {
+  const effects = [
+    { name: 'pathText', generator: pathTextGradients.createPathTextGradient, description: 'Animated path text reveal' }
+  ];
+
+  effects.forEach(effect => {
+    effectRegistry.register({
+      ...effect,
+      category: 'pathText',
+      outputType: 'complete',
+      templates: getTemplatesForEffect(effect.name)
+    });
+  });
+}
+
+/**
  * Load all effects into the registry
  */
 function loadAllEffects() {
+  // Basic and shape gradients
   loadBasicGradients();
   loadShapeGradients();
+  loadEffectGradients();
+
+  // Thematic effects
   loadFutureTechEffects();
   loadArtisticEffects();
   loadLuxuryEffects();
   loadGamingEffects();
   loadOrganicEffects();
+
+  // Additional effects (newly registered)
+  loadWeatherEffects();
+  loadLightShadowEffects();
+  loadArtMovementEffects();
+  loadCulinaryLiquidEffects();
+  loadPatternEffects();
+  loadMetallicEffects();
+  loadPathTextEffects();
+
+  // Advanced complex effects
   loadAdvancedComplexEffects();
 
   console.log('✅ Loaded all effects into registry');

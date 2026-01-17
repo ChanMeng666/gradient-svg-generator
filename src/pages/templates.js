@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
+import { useVirtualizer } from '@tanstack/react-virtual';
 import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../components/layout/Header';
@@ -24,6 +25,27 @@ export default function Templates() {
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
   const { favorites, addFavorite, removeFavorite } = useStore();
+
+  // Refs for virtualization
+  const gridContainerRef = useRef(null);
+  const listContainerRef = useRef(null);
+  const [columnCount, setColumnCount] = useState(4);
+
+  // Calculate column count based on container width
+  useEffect(() => {
+    const calculateColumns = () => {
+      if (!gridContainerRef.current) return;
+      const width = gridContainerRef.current.offsetWidth;
+      if (width < 768) setColumnCount(1);
+      else if (width < 1024) setColumnCount(2);
+      else if (width < 1280) setColumnCount(3);
+      else setColumnCount(4);
+    };
+
+    calculateColumns();
+    window.addEventListener('resize', calculateColumns);
+    return () => window.removeEventListener('resize', calculateColumns);
+  }, []);
 
   const templates = useMemo(() => getAllTemplates(), []);
   const categories = useMemo(() => getCategories(), []);
@@ -101,6 +123,41 @@ export default function Templates() {
 
     return result;
   }, [templates, selectedCategory, searchQuery, selectedFilters, availableGradientTypes]);
+
+  // Group templates into rows for grid virtualization
+  const gridRows = useMemo(() => {
+    const rows = [];
+    for (let i = 0; i < filteredTemplates.length; i += columnCount) {
+      rows.push(filteredTemplates.slice(i, i + columnCount));
+    }
+    return rows;
+  }, [filteredTemplates, columnCount]);
+
+  // Grid virtualizer (row-based)
+  const gridVirtualizer = useVirtualizer({
+    count: gridRows.length,
+    getScrollElement: () => gridContainerRef.current,
+    estimateSize: () => 280, // Approximate height of each row
+    overscan: 2,
+  });
+
+  // List virtualizer
+  const listVirtualizer = useVirtualizer({
+    count: filteredTemplates.length,
+    getScrollElement: () => listContainerRef.current,
+    estimateSize: () => 100, // Height of list item
+    overscan: 3,
+  });
+
+  // Memoized toggle favorite handler
+  const handleToggleFavorite = useCallback((e, templateName) => {
+    e.preventDefault();
+    if (favorites.includes(templateName)) {
+      removeFavorite(templateName);
+    } else {
+      addFavorite(templateName);
+    }
+  }, [favorites, addFavorite, removeFavorite]);
 
   return (
     <>
@@ -286,100 +343,151 @@ export default function Templates() {
           </section>
         )}
 
-        {/* Template Grid/List */}
+        {/* Template Grid/List with Virtualization */}
         <section className="container mx-auto px-4 pb-20">
-          {viewMode === 'grid' ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredTemplates.map((template) => (
-                <div key={template.name} className="group">
-                  <div className="aspect-video bg-muted relative overflow-hidden rounded-lg border hover:shadow-lg transition-all">
-                    <img
-                      src={`/api/svg?text=PREVIEW&template=${template.name}&height=150&v=2`}
-                      alt={template.displayName}
-                      className="w-full h-full object-contain"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                    <Button
-                      size="icon"
-                      variant="secondary"
-                      className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        if (favorites.includes(template.name)) {
-                          removeFavorite(template.name);
-                        } else {
-                          addFavorite(template.name);
-                        }
-                      }}
-                    >
-                      <Star className={cn("h-4 w-4", favorites.includes(template.name) && "fill-current text-yellow-500")} />
-                    </Button>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-lg font-semibold mb-1">{template.displayName}</h3>
-                    <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1">
-                      {categories.find(c => c.id === template.category)?.icon} {template.category}
-                    </p>
-                    <div className="flex gap-2">
-                      <Link href={`/create?template=${template.name}`} className="flex-1">
-                        <Button className="w-full" size="sm">
-                          Use Template
-                        </Button>
-                      </Link>
-                      <Button variant="outline" size="sm" onClick={() => {
-                        setSelectedTemplate(template);
-                        setIsModalOpen(true);
-                      }}>
-                        Preview
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {filteredTemplates.map((template) => (
-                <Card key={template.name} className="overflow-hidden hover:shadow-md transition-all">
-                  <div className="flex items-center gap-4 p-4">
-                    <div className="w-32 h-20 bg-muted rounded-md overflow-hidden flex-shrink-0">
-                      <img
-                        src={`/api/svg?text=PREVIEW&template=${template.name}&height=80&v=2`}
-                        alt={template.displayName}
-                        className="w-full h-full object-contain"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-lg">{template.displayName}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {categories.find(c => c.id === template.category)?.icon} {template.category}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button variant="outline" size="icon">
-                        <Star className="h-4 w-4" />
-                      </Button>
-                      <Link href={`/create?template=${template.name}`}>
-                        <Button className="gap-2">
-                          Use Template
-                          <ChevronRight className="h-4 w-4" />
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
-
-          {filteredTemplates.length === 0 && (
+          {filteredTemplates.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-muted-foreground mb-4">No templates found matching your criteria.</p>
               <Button variant="outline" onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}>
                 Clear Filters
               </Button>
+            </div>
+          ) : viewMode === 'grid' ? (
+            <div
+              ref={gridContainerRef}
+              className="h-[calc(100vh-400px)] min-h-[400px] overflow-y-auto"
+            >
+              <div
+                style={{
+                  height: `${gridVirtualizer.getTotalSize()}px`,
+                  width: '100%',
+                  position: 'relative',
+                }}
+              >
+                {gridVirtualizer.getVirtualItems().map((virtualRow) => {
+                  const rowTemplates = gridRows[virtualRow.index];
+                  return (
+                    <div
+                      key={virtualRow.index}
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: `${virtualRow.size}px`,
+                        transform: `translateY(${virtualRow.start}px)`,
+                      }}
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-6">
+                        {rowTemplates.map((template) => (
+                          <div key={template.name} className="group">
+                            <div className="aspect-video bg-muted relative overflow-hidden rounded-lg border hover:shadow-lg transition-all">
+                              <img
+                                src={`/api/svg?text=PREVIEW&template=${template.name}&height=150&v=2`}
+                                alt={template.displayName}
+                                className="w-full h-full object-contain"
+                                loading="lazy"
+                              />
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+                              <Button
+                                size="icon"
+                                variant="secondary"
+                                className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                                onClick={(e) => handleToggleFavorite(e, template.name)}
+                              >
+                                <Star className={cn("h-4 w-4", favorites.includes(template.name) && "fill-current text-yellow-500")} />
+                              </Button>
+                            </div>
+                            <div className="p-4">
+                              <h3 className="text-lg font-semibold mb-1">{template.displayName}</h3>
+                              <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1">
+                                {categories.find(c => c.id === template.category)?.icon} {template.category}
+                              </p>
+                              <div className="flex gap-2">
+                                <Link href={`/create?template=${template.name}`} className="flex-1">
+                                  <Button className="w-full" size="sm">
+                                    Use Template
+                                  </Button>
+                                </Link>
+                                <Button variant="outline" size="sm" onClick={() => {
+                                  setSelectedTemplate(template);
+                                  setIsModalOpen(true);
+                                }}>
+                                  Preview
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <div
+              ref={listContainerRef}
+              className="h-[calc(100vh-400px)] min-h-[400px] overflow-y-auto"
+            >
+              <div
+                style={{
+                  height: `${listVirtualizer.getTotalSize()}px`,
+                  width: '100%',
+                  position: 'relative',
+                }}
+              >
+                {listVirtualizer.getVirtualItems().map((virtualRow) => {
+                  const template = filteredTemplates[virtualRow.index];
+                  return (
+                    <div
+                      key={template.name}
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: `${virtualRow.size}px`,
+                        transform: `translateY(${virtualRow.start}px)`,
+                      }}
+                    >
+                      <Card className="overflow-hidden hover:shadow-md transition-all mb-4">
+                        <div className="flex items-center gap-4 p-4">
+                          <div className="w-32 h-20 bg-muted rounded-md overflow-hidden flex-shrink-0">
+                            <img
+                              src={`/api/svg?text=PREVIEW&template=${template.name}&height=80&v=2`}
+                              alt={template.displayName}
+                              className="w-full h-full object-contain"
+                              loading="lazy"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="font-semibold text-lg">{template.displayName}</h3>
+                            <p className="text-sm text-muted-foreground">
+                              {categories.find(c => c.id === template.category)?.icon} {template.category}
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              onClick={(e) => handleToggleFavorite(e, template.name)}
+                            >
+                              <Star className={cn("h-4 w-4", favorites.includes(template.name) && "fill-current text-yellow-500")} />
+                            </Button>
+                            <Link href={`/create?template=${template.name}`}>
+                              <Button className="gap-2">
+                                Use Template
+                                <ChevronRight className="h-4 w-4" />
+                              </Button>
+                            </Link>
+                          </div>
+                        </div>
+                      </Card>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
         </section>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
@@ -16,10 +16,13 @@ import useStore from '../store/useStore';
 import styles from '../styles/create.module.css';
 import { ColorPicker } from '../components/ui/color-picker';
 import { GRADIENT_TYPES } from '../constants/gradientTypes';
-import { 
-  Download, 
-  Copy, 
-  Maximize2, 
+import { usePreviewUrl } from '../hooks/usePreviewUrl';
+import { useMobileUI } from '../hooks/useMobileUI';
+import { useColorManagement } from '../hooks/useColorManagement';
+import {
+  Download,
+  Copy,
+  Maximize2,
   Settings,
   Palette,
   Type,
@@ -56,28 +59,28 @@ export default function Create() {
     clearTemplate
   } = useStore();
 
-  const [previewUrl, setPreviewUrl] = useState('');
+  // Use custom hooks for cleaner code
+  const { previewUrl, fullUrl, markdownCode } = usePreviewUrl();
+  const {
+    isMobile,
+    mobileMenuOpen,
+    mobilePropertiesOpen,
+    quickTemplatesOpen,
+    setMobileMenuOpen,
+    setMobilePropertiesOpen,
+    setQuickTemplatesOpen,
+    closeMobileMenu
+  } = useMobileUI();
+  const { colors, handleColorUpdate, handleAddColor, handleRemoveColor } = useColorManagement();
+
+  // Local UI state
   const [isCopied, setIsCopied] = useState(false);
   const [isShared, setIsShared] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobilePropertiesOpen, setMobilePropertiesOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [quickTemplatesOpen, setQuickTemplatesOpen] = useState(false);
 
   // Get all templates and categories
   const templates = useMemo(() => getAllTemplates(), []);
   const categories = useMemo(() => getCategories(), []);
-
-  // Check if mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   // Handle escape key for fullscreen
   useEffect(() => {
@@ -102,51 +105,22 @@ export default function Create() {
     }
   }, [router.isReady, router.query.template, templates, setTemplate, addToRecent]);
 
-  // Generate preview URL
-  useEffect(() => {
-    const params = new URLSearchParams({
-      text: currentConfig.text || 'Preview',
-      height: currentConfig.height || 120,
-    });
-
-
-    // If template is not modified, use template parameter only
-    if (currentConfig.template && !isModified) {
-      params.append('template', currentConfig.template);
-    } else {
-      // Send all specific parameters when template is modified or in custom mode
-      params.append('gradientType', currentConfig.gradientType || 'horizontal');
-      params.append('duration', currentConfig.duration || '6s');
-      
-      // Add colors
-      const colors = currentConfig.colors || [];
-      if (colors.length > 0) {
-        colors.forEach((color, index) => {
-          params.append(`color${index}`, color.replace('#', ''));
-        });
-      }
-    }
-
-    setPreviewUrl(`/api/svg?${params.toString()}`);
-  }, [currentConfig, isModified]);
-
-  // Handle template selection
-  const handleTemplateSelect = (template) => {
+  // Handle template selection (memoized to prevent re-renders)
+  const handleTemplateSelect = useCallback((template) => {
     setTemplate(template);
     addToRecent(template);
-    setMobileMenuOpen(false);
-  };
+    closeMobileMenu();
+  }, [setTemplate, addToRecent, closeMobileMenu]);
 
-  // Copy code to clipboard
-  const copyCode = async () => {
-    const code = `![${currentConfig.text}](https://gradient-svg-generator.vercel.app${previewUrl})`;
-    await navigator.clipboard.writeText(code);
+  // Copy code to clipboard (memoized)
+  const copyCode = useCallback(async () => {
+    await navigator.clipboard.writeText(markdownCode);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
-  };
+  }, [markdownCode]);
 
-  // Download SVG
-  const downloadSVG = async () => {
+  // Download SVG (memoized)
+  const downloadSVG = useCallback(async () => {
     const response = await fetch(previewUrl);
     const svgText = await response.text();
     const blob = new Blob([svgText], { type: 'image/svg+xml' });
@@ -158,10 +132,10 @@ export default function Create() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  };
+  }, [previewUrl, currentConfig.text]);
 
-  // Reset to defaults
-  const resetConfig = () => {
+  // Reset to defaults (memoized)
+  const resetConfig = useCallback(() => {
     if (baseTemplate && !isModified) {
       // If using an unmodified template, clear it
       clearTemplate();
@@ -170,7 +144,7 @@ export default function Create() {
         height: 120,
         gradientType: 'horizontal',
         duration: '6s',
-        colors: ['ff0080', '7928ca', 'ff0080'], // Remove # from colors
+        colors: ['ff0080', '7928ca', 'ff0080'],
       });
     } else if (baseTemplate && isModified) {
       // If template is modified, reset to original template
@@ -183,28 +157,10 @@ export default function Create() {
         template: null,
         gradientType: 'horizontal',
         duration: '6s',
-        colors: ['ff0080', '7928ca', 'ff0080'], // Remove # from colors
+        colors: ['ff0080', '7928ca', 'ff0080'],
       });
     }
-  };
-
-  // Color handling functions
-  const handleColorUpdate = (index, newColor) => {
-    const colors = currentConfig.colors || [];
-    const newColors = [...colors];
-    newColors[index] = newColor;
-    updateConfig({ colors: newColors });
-  };
-
-  const handleAddColor = () => {
-    const colors = currentConfig.colors || [];
-    updateConfig({ colors: [...colors, 'ff0000'] });
-  };
-
-  const handleRemoveColor = (index) => {
-    const colors = currentConfig.colors || [];
-    updateConfig({ colors: colors.filter((_, i) => i !== index) });
-  };
+  }, [baseTemplate, isModified, clearTemplate, resetToTemplate, updateConfig]);
 
   return (
     <>
@@ -568,17 +524,11 @@ export default function Create() {
         </div>
       </div>
 
-      {/* Mobile Properties Panel */}
+      {/* Mobile Properties Panel - now uses store directly, simplified props */}
       {isMobile && (
         <MobilePropertiesPanel
           isOpen={mobilePropertiesOpen}
           onClose={() => setMobilePropertiesOpen(false)}
-          currentConfig={currentConfig}
-          updateConfig={updateConfig}
-          isCustomMode={isCustomMode}
-          baseTemplate={baseTemplate}
-          isModified={isModified}
-          resetToTemplate={resetToTemplate}
         />
       )}
 

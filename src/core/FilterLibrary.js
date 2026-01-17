@@ -291,10 +291,314 @@ function getFilterForGradientType(gradientType) {
   return filterMap[gradientType] || 'smoothTransition';
 }
 
+// ============================================================================
+// PARAMETERIZED FILTER GENERATORS
+// These functions create customized filter definitions to replace
+// the 50+ duplicate filter patterns scattered across gradient generators
+// ============================================================================
+
+/**
+ * Create a Gaussian blur filter
+ *
+ * @param {string} id - Unique filter ID
+ * @param {Object} options - Filter options
+ * @param {number} options.stdDeviation - Blur amount (default: 2)
+ * @param {boolean} options.saturate - Whether to add saturation (default: false)
+ * @param {number} options.saturation - Saturation value (default: 1.2)
+ * @returns {string} SVG filter definition
+ */
+function createBlurFilter(id, options = {}) {
+  const {
+    stdDeviation = 2,
+    saturate = false,
+    saturation = 1.2
+  } = options;
+
+  if (saturate) {
+    return `
+      <filter id="${id}">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="${stdDeviation}" result="blur"/>
+        <feColorMatrix in="blur" type="saturate" values="${saturation}"/>
+        <feComposite operator="over" in2="SourceGraphic"/>
+      </filter>`;
+  }
+
+  return `
+    <filter id="${id}">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="${stdDeviation}"/>
+    </filter>`;
+}
+
+/**
+ * Create a turbulence displacement filter
+ * This pattern is repeated 40+ times across generators
+ *
+ * @param {string} id - Unique filter ID
+ * @param {Object} options - Filter options
+ * @param {string|number} options.baseFrequency - Turbulence frequency (default: '0.02')
+ * @param {number} options.numOctaves - Turbulence octaves (default: 3)
+ * @param {number} options.scale - Displacement scale (default: 20)
+ * @param {boolean} options.animated - Whether to animate the scale (default: false)
+ * @param {string} options.animationValues - Scale animation values (default: '20;40;20')
+ * @param {string} options.duration - Animation duration (default: '6s')
+ * @returns {string} SVG filter definition
+ */
+function createTurbulenceFilter(id, options = {}) {
+  const {
+    baseFrequency = '0.02',
+    numOctaves = 3,
+    scale = 20,
+    animated = false,
+    animationValues = '20;40;20',
+    duration = '6s'
+  } = options;
+
+  const animation = animated
+    ? `<animate attributeName="scale" values="${animationValues}" dur="${duration}" repeatCount="indefinite"/>`
+    : '';
+
+  return `
+    <filter id="${id}">
+      <feTurbulence baseFrequency="${baseFrequency}" numOctaves="${numOctaves}" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="${scale}">
+        ${animation}
+      </feDisplacementMap>
+    </filter>`;
+}
+
+/**
+ * Create a glow effect filter
+ *
+ * @param {string} id - Unique filter ID
+ * @param {Object} options - Filter options
+ * @param {string} options.color - Glow color (default: '#ffffff')
+ * @param {number} options.intensity - Blur intensity (default: 3)
+ * @param {number} options.opacity - Glow opacity (default: 0.6)
+ * @returns {string} SVG filter definition
+ */
+function createGlowFilter(id, options = {}) {
+  const {
+    color = '#ffffff',
+    intensity = 3,
+    opacity = 0.6
+  } = options;
+
+  return `
+    <filter id="${id}">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="${intensity}" result="blur"/>
+      <feFlood flood-color="${color}" flood-opacity="${opacity}" result="glow"/>
+      <feComposite in="glow" in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>`;
+}
+
+/**
+ * Create a drop shadow filter
+ *
+ * @param {string} id - Unique filter ID
+ * @param {Object} options - Filter options
+ * @param {number} options.dx - X offset (default: 2)
+ * @param {number} options.dy - Y offset (default: 2)
+ * @param {number} options.stdDeviation - Blur amount (default: 3)
+ * @param {string} options.color - Shadow color (default: 'rgba(0,0,0,0.5)')
+ * @param {number} options.opacity - Shadow opacity (default: 0.5)
+ * @returns {string} SVG filter definition
+ */
+function createDropShadowFilter(id, options = {}) {
+  const {
+    dx = 2,
+    dy = 2,
+    stdDeviation = 3,
+    color = 'rgba(0,0,0,0.5)',
+    opacity = 0.5
+  } = options;
+
+  return `
+    <filter id="${id}">
+      <feDropShadow dx="${dx}" dy="${dy}" stdDeviation="${stdDeviation}" flood-color="${color}" flood-opacity="${opacity}"/>
+    </filter>`;
+}
+
+/**
+ * Create a color matrix filter for saturation/hue adjustments
+ *
+ * @param {string} id - Unique filter ID
+ * @param {Object} options - Filter options
+ * @param {number} options.saturation - Saturation value (default: 1.5)
+ * @param {number} options.hueRotate - Hue rotation in degrees (default: 0)
+ * @param {boolean} options.includeBlur - Whether to include blur (default: false)
+ * @param {number} options.blurAmount - Blur amount if included (default: 1)
+ * @returns {string} SVG filter definition
+ */
+function createColorMatrixFilter(id, options = {}) {
+  const {
+    saturation = 1.5,
+    hueRotate = 0,
+    includeBlur = false,
+    blurAmount = 1
+  } = options;
+
+  let filter = `<filter id="${id}">`;
+
+  if (includeBlur) {
+    filter += `<feGaussianBlur in="SourceGraphic" stdDeviation="${blurAmount}" result="blur"/>`;
+    filter += `<feColorMatrix in="blur" type="saturate" values="${saturation}"/>`;
+  } else {
+    filter += `<feColorMatrix type="saturate" values="${saturation}"/>`;
+  }
+
+  if (hueRotate !== 0) {
+    filter += `<feColorMatrix type="hueRotate" values="${hueRotate}"/>`;
+  }
+
+  filter += `<feComposite operator="over" in2="SourceGraphic"/>`;
+  filter += `</filter>`;
+
+  return filter;
+}
+
+/**
+ * Create a specular lighting filter
+ *
+ * @param {string} id - Unique filter ID
+ * @param {Object} options - Filter options
+ * @param {number} options.specularConstant - Light constant (default: 1.5)
+ * @param {number} options.specularExponent - Light exponent (default: 20)
+ * @param {string} options.lightColor - Light color (default: 'white')
+ * @param {Object} options.lightPosition - Light position {x, y, z}
+ * @returns {string} SVG filter definition
+ */
+function createSpecularLightingFilter(id, options = {}) {
+  const {
+    specularConstant = 1.5,
+    specularExponent = 20,
+    lightColor = 'white',
+    lightPosition = { x: 427, y: 60, z: 100 }
+  } = options;
+
+  return `
+    <filter id="${id}">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur"/>
+      <feSpecularLighting in="blur" specularConstant="${specularConstant}" specularExponent="${specularExponent}" lighting-color="${lightColor}">
+        <fePointLight x="${lightPosition.x}" y="${lightPosition.y}" z="${lightPosition.z}"/>
+      </feSpecularLighting>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>`;
+}
+
+/**
+ * Create a morphology filter (dilate/erode)
+ *
+ * @param {string} id - Unique filter ID
+ * @param {Object} options - Filter options
+ * @param {string} options.operator - 'dilate' or 'erode' (default: 'dilate')
+ * @param {number} options.radius - Morphology radius (default: 1)
+ * @returns {string} SVG filter definition
+ */
+function createMorphologyFilter(id, options = {}) {
+  const {
+    operator = 'dilate',
+    radius = 1
+  } = options;
+
+  return `
+    <filter id="${id}">
+      <feMorphology operator="${operator}" radius="${radius}"/>
+    </filter>`;
+}
+
+/**
+ * Create a convolve matrix filter (sharpen, emboss, etc.)
+ *
+ * @param {string} id - Unique filter ID
+ * @param {Object} options - Filter options
+ * @param {string} options.preset - 'sharpen', 'emboss', 'edge' (default: 'sharpen')
+ * @param {number[]} options.matrix - Custom 3x3 kernel matrix
+ * @returns {string} SVG filter definition
+ */
+function createConvolveFilter(id, options = {}) {
+  const {
+    preset = 'sharpen',
+    matrix = null
+  } = options;
+
+  const presets = {
+    sharpen: '0 -1 0 -1 5 -1 0 -1 0',
+    emboss: '-2 -1 0 -1 1 1 0 1 2',
+    edge: '-1 -1 -1 -1 8 -1 -1 -1 -1'
+  };
+
+  const kernelMatrix = matrix ? matrix.join(' ') : (presets[preset] || presets.sharpen);
+
+  return `
+    <filter id="${id}">
+      <feConvolveMatrix kernelMatrix="${kernelMatrix}"/>
+    </filter>`;
+}
+
+/**
+ * Create a composite filter combining multiple effects
+ *
+ * @param {string} id - Unique filter ID
+ * @param {Object} options - Filter options
+ * @param {boolean} options.blur - Include blur (default: true)
+ * @param {number} options.blurAmount - Blur amount (default: 1)
+ * @param {boolean} options.saturate - Include saturation (default: true)
+ * @param {number} options.saturation - Saturation value (default: 1.5)
+ * @param {boolean} options.turbulence - Include turbulence (default: false)
+ * @param {number} options.turbulenceScale - Turbulence scale (default: 2)
+ * @returns {string} SVG filter definition
+ */
+function createCompositeFilter(id, options = {}) {
+  const {
+    blur = true,
+    blurAmount = 1,
+    saturate = true,
+    saturation = 1.5,
+    turbulence = false,
+    turbulenceScale = 2
+  } = options;
+
+  let filter = `<filter id="${id}">`;
+
+  if (blur) {
+    filter += `<feGaussianBlur in="SourceGraphic" stdDeviation="${blurAmount}" result="blur"/>`;
+  }
+
+  if (saturate) {
+    filter += `<feColorMatrix type="saturate" values="${saturation}"/>`;
+  }
+
+  if (turbulence) {
+    filter += `<feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>`;
+    filter += `<feDisplacementMap in="SourceGraphic" in2="noise" scale="${turbulenceScale}"/>`;
+  }
+
+  filter += `<feComposite operator="over" in2="SourceGraphic"/>`;
+  filter += `</filter>`;
+
+  return filter;
+}
+
 module.exports = {
+  // Static filter accessors
   getAllFilters,
   getFilter,
   getFilters,
   getFilterUrl,
-  getFilterForGradientType
+  getFilterForGradientType,
+
+  // Parameterized filter generators
+  createBlurFilter,
+  createTurbulenceFilter,
+  createGlowFilter,
+  createDropShadowFilter,
+  createColorMatrixFilter,
+  createSpecularLightingFilter,
+  createMorphologyFilter,
+  createConvolveFilter,
+  createCompositeFilter
 };

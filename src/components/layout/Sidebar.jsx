@@ -1,13 +1,14 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
+import { useVirtualizer } from '@tanstack/react-virtual';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs';
-import { 
-  Search, 
-  Star, 
-  Clock, 
-  ChevronLeft, 
+import {
+  Search,
+  Star,
+  Clock,
+  ChevronLeft,
   ChevronRight,
   Sparkles,
   Filter,
@@ -32,6 +33,9 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [activeTab, setActiveTab] = useState('all');
+
+  // Ref for virtualized list container
+  const scrollContainerRef = useRef(null);
 
   // Initialize Fuse.js for fuzzy search
   const fuse = useMemo(() => {
@@ -77,6 +81,14 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
 
     return results;
   }, [templates, searchQuery, selectedCategories, activeTab, favorites, recentTemplates, fuse]);
+
+  // Virtual list setup - each template card is approximately 170px tall (120px image + 50px text/margin)
+  const rowVirtualizer = useVirtualizer({
+    count: filteredTemplates.length,
+    getScrollElement: () => scrollContainerRef.current,
+    estimateSize: () => 170,
+    overscan: 3,
+  });
 
   const toggleCategory = (category) => {
     setSelectedCategories(prev =>
@@ -158,10 +170,10 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
               </TabsList>
 
               {/* Scrollable content area */}
-              <div className="flex-1 overflow-y-auto">
+              <div className="flex-1 flex flex-col overflow-hidden">
                 {/* Category Filter */}
                 {activeTab === 'all' && (
-                  <div className="p-4 border-b">
+                  <div className="p-4 border-b flex-shrink-0">
                     <div className="flex items-center mb-2">
                       <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
                       <span className="text-sm font-medium">Categories</span>
@@ -180,11 +192,11 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
                     </div>
                   </div>
                 )}
-                
+
                 {/* Clear All button for Favorites and Recent */}
-                {((activeTab === 'favorites' && favorites.length > 0) || 
+                {((activeTab === 'favorites' && favorites.length > 0) ||
                   (activeTab === 'recent' && recentTemplates.length > 0)) && (
-                  <div className="p-4 border-b">
+                  <div className="p-4 border-b flex-shrink-0">
                     <Button
                       variant="outline"
                       size="sm"
@@ -207,62 +219,86 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
                   </div>
                 )}
 
-                {/* Template Grid */}
-                <div className="p-4">
-                  <div className="grid grid-cols-1 gap-4">
-                  {filteredTemplates.map((template) => (
-                    <div
-                      key={template.name}
-                      className="relative group cursor-pointer"
-                      onClick={() => onTemplateSelect(template)}
-                    >
-                      <div className="relative">
-                        <img
-                          src={`/api/svg?text=PREVIEW&template=${template.name}&height=120`}
-                          alt={template.displayName}
-                          className="w-full"
-                          loading="lazy"
-                        />
-                        
-                        {/* Favorite button */}
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="absolute top-2 right-2 h-8 w-8 bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
-                          onClick={(e) => toggleFavorite(e, template.name)}
-                        >
-                          <Star
-                            className={cn(
-                              "h-4 w-4",
-                              favorites.includes(template.name) && "fill-current text-yellow-500"
-                            )}
-                          />
-                        </Button>
-                      </div>
-                      
-                      {/* Template name */}
-                      <div className="mt-2">
-                        <div className="text-sm font-medium text-center">
-                          {template.displayName}
-                        </div>
-                        {activeTab === 'recent' && (
-                          <div className="text-xs text-muted-foreground text-center mt-1">
-                            Recently used
-                          </div>
-                        )}
-                      </div>
+                {/* Virtualized Template Grid */}
+                <div
+                  ref={scrollContainerRef}
+                  className="flex-1 overflow-y-auto p-4"
+                >
+                  {filteredTemplates.length === 0 ? (
+                    <div className="text-center py-8 text-muted-foreground">
+                      <p className="text-sm">
+                        {activeTab === 'favorites' && "No favorite templates yet. Click the star icon to add favorites."}
+                        {activeTab === 'recent' && "No recent templates. Select a template to get started."}
+                        {activeTab === 'all' && "No templates found matching your search."}
+                      </p>
                     </div>
-                  ))}
-                    {filteredTemplates.length === 0 && (
-                      <div className="text-center py-8 text-muted-foreground">
-                        <p className="text-sm">
-                          {activeTab === 'favorites' && "No favorite templates yet. Click the star icon to add favorites."}
-                          {activeTab === 'recent' && "No recent templates. Select a template to get started."}
-                          {activeTab === 'all' && "No templates found matching your search."}
-                        </p>
-                      </div>
-                    )}
-                  </div>
+                  ) : (
+                    <div
+                      style={{
+                        height: `${rowVirtualizer.getTotalSize()}px`,
+                        width: '100%',
+                        position: 'relative',
+                      }}
+                    >
+                      {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+                        const template = filteredTemplates[virtualRow.index];
+                        return (
+                          <div
+                            key={template.name}
+                            style={{
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              width: '100%',
+                              height: `${virtualRow.size}px`,
+                              transform: `translateY(${virtualRow.start}px)`,
+                            }}
+                          >
+                            <div
+                              className="relative group cursor-pointer pb-4"
+                              onClick={() => onTemplateSelect(template)}
+                            >
+                              <div className="relative">
+                                <img
+                                  src={`/api/svg?text=PREVIEW&template=${template.name}&height=120`}
+                                  alt={template.displayName}
+                                  className="w-full"
+                                  loading="lazy"
+                                />
+
+                                {/* Favorite button */}
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="absolute top-2 right-2 h-8 w-8 bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                                  onClick={(e) => toggleFavorite(e, template.name)}
+                                >
+                                  <Star
+                                    className={cn(
+                                      "h-4 w-4",
+                                      favorites.includes(template.name) && "fill-current text-yellow-500"
+                                    )}
+                                  />
+                                </Button>
+                              </div>
+
+                              {/* Template name */}
+                              <div className="mt-2">
+                                <div className="text-sm font-medium text-center">
+                                  {template.displayName}
+                                </div>
+                                {activeTab === 'recent' && (
+                                  <div className="text-xs text-muted-foreground text-center mt-1">
+                                    Recently used
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               </div>
             </Tabs>
