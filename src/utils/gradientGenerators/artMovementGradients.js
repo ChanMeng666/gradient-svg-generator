@@ -1,9 +1,13 @@
 /*
  * MIT License - Art Movement Gradient Generators
  * Historical artistic styles and movements
+ * Refactored to use centralized FilterLibrary and AnimationLibrary
  *
  * Copyright (c) 2025 ChanMeng666
  */
+
+const { createTurbulenceFilter } = require('../../core/FilterLibrary');
+const { multiplyDuration } = require('../../core/AnimationLibrary');
 
 // Art Nouveau Flow - Organic curving lines with floral motifs
 function createArtNouveauFlowGradient(stops, animationConfig, animationDuration) {
@@ -12,7 +16,7 @@ function createArtNouveauFlowGradient(stops, animationConfig, animationDuration)
       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
         ${stops}
         <animate attributeName="x1" values="0%;20%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="0%;30%;0%" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+        <animate attributeName="y1" values="0%;30%;0%" dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite" />
       </linearGradient>`,
     additionalElements: `
       <g opacity="0.9">
@@ -30,7 +34,7 @@ function createArtNouveauFlowGradient(stops, animationConfig, animationDuration)
                    values="M 150 200 Q 200 300, 250 200 T 350 200 Q 400 300, 450 400;
                            M 150 220 Q 200 320, 250 220 T 350 220 Q 400 320, 450 420;
                            M 150 200 Q 200 300, 250 200 T 350 200 Q 400 300, 450 400"
-                   dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+                   dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
         </path>
         <ellipse cx="500" cy="250" rx="40" ry="60" fill="url(#gradient)" opacity="0.6">
           <animate attributeName="ry" values="50;70;50" ${animationConfig} />
@@ -139,16 +143,16 @@ function createCubistFragmentsGradient(stops, animationConfig, animationDuration
           <animateTransform attributeName="transform" type="skewX" values="0;3;0" ${animationConfig} />
         </polygon>
         <polygon points="350,180 500,200 480,320 320,300" fill="url(#gradient)" opacity="0.75">
-          <animateTransform attributeName="transform" type="skewY" values="0;-2;0" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+          <animateTransform attributeName="transform" type="skewY" values="0;-2;0" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite" />
         </polygon>
         <polygon points="500,200 600,250 550,380 480,320" fill="url(#gradient)" opacity="0.8">
           <animateTransform attributeName="transform" type="rotate" values="0 550 290;2 550 290;0 550 290" ${animationConfig} />
         </polygon>
         <polygon points="180,280 320,300 300,450 150,420" fill="url(#gradient)" opacity="0.7">
-          <animateTransform attributeName="transform" type="skewX" values="0;-3;0" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+          <animateTransform attributeName="transform" type="skewX" values="0;-3;0" dur="${multiplyDuration(animationDuration, 0.8)}" repeatCount="indefinite" />
         </polygon>
         <polygon points="320,300 480,320 450,480 300,450" fill="url(#gradient)" opacity="0.75">
-          <animateTransform attributeName="transform" type="rotate" values="0 375 390;-2 375 390;0 375 390" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          <animateTransform attributeName="transform" type="rotate" values="0 375 390;-2 375 390;0 375 390" dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
         </polygon>
       </g>`
   };
@@ -156,6 +160,15 @@ function createCubistFragmentsGradient(stops, animationConfig, animationDuration
 
 // Surrealist Melt - Dreamlike melting transformations
 function createSurrealistMeltGradient(stops, animationConfig, animationDuration) {
+  const meltFilter = createTurbulenceFilter('meltDistortion', {
+    baseFrequency: '0.05',
+    numOctaves: 2,
+    scale: 20,
+    animated: true,
+    animationValues: '15;25;15',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="50%" y1="0%" x2="50%" y2="100%">
@@ -163,19 +176,12 @@ function createSurrealistMeltGradient(stops, animationConfig, animationDuration)
         <animate attributeName="y1" values="0%;-20%;0%" ${animationConfig} />
         <animate attributeName="y2" values="100%;120%;100%" ${animationConfig} />
       </linearGradient>
-      <filter id="meltDistortion">
-        <feTurbulence baseFrequency="0.05" numOctaves="2" result="noise">
-          <animate attributeName="baseFrequency" values="0.03;0.07;0.03" ${animationConfig} />
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="20">
-          <animate attributeName="scale" values="15;25;15" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`,
+      ${meltFilter}`,
     additionalElements: `
       <g filter="url(#meltDistortion)">
         <ellipse cx="400" cy="250" rx="120" ry="100" fill="url(#gradient)" opacity="0.9">
           <animate attributeName="ry" values="100;150;100" ${animationConfig} />
-          <animate attributeName="cy" values="250;280;250" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="250;280;250" dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite" />
         </ellipse>
         <rect x="300" y="350" width="200" height="100" fill="url(#gradient)" opacity="0.8">
           <animate attributeName="height" values="100;130;100" ${animationConfig} />

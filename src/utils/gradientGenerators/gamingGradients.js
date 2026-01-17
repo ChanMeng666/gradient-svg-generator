@@ -1,14 +1,16 @@
 /*
  * MIT License
- *
  * Copyright (c) 2025 ChanMeng666
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * Refactored to use centralized FilterLibrary and AnimationLibrary
  */
+
+const {
+  createGlowFilter,
+  createBlurFilter,
+  createColorMatrixFilter
+} = require('../../core/FilterLibrary');
+
+const { multiplyDuration } = require('../../core/AnimationLibrary');
 
 // Gaming gradient generators
 function createPixelArtGradient(stops, animationConfig, animationDuration, colorsCopy) {
@@ -28,33 +30,36 @@ function createPixelArtGradient(stops, animationConfig, animationDuration, color
 }
 
 function createNeonArcadeGradient(stops, animationConfig, animationDuration) {
+  const neonFilter = createGlowFilter('neonGlow', {
+    color: '#ffffff',
+    intensity: 5,
+    opacity: 0.8
+  });
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
         ${stops}
-        <animate attributeName="x1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 0.5}s" repeatCount="indefinite" />
+        <animate attributeName="x1" values="0%;100%;0%" dur="${multiplyDuration(animationDuration, 0.5)}" repeatCount="indefinite" />
       </linearGradient>
-      <filter id="neonGlow">
-        <feGaussianBlur stdDeviation="5"/>
-        <feMerge>
-          <feMergeNode/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>`
+      ${neonFilter}`
   };
 }
 
 function createEnergyBlastGradient(stops, animationConfig, animationDuration) {
+  const energyFilter = `
+    <filter id="energyWave">
+      <feGaussianBlur stdDeviation="5"/>
+      <feMorphology operator="dilate" radius="2"/>
+    </filter>`;
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
         ${stops}
-        <animate attributeName="r" values="30%;80%;30%" dur="${parseFloat(animationDuration) * 0.4}s" repeatCount="indefinite" />
+        <animate attributeName="r" values="30%;80%;30%" dur="${multiplyDuration(animationDuration, 0.4)}" repeatCount="indefinite" />
       </radialGradient>
-      <filter id="energyWave">
-        <feGaussianBlur stdDeviation="5"/>
-        <feMorphology operator="dilate" radius="2"/>
-      </filter>`
+      ${energyFilter}`
   };
 }
 
@@ -63,57 +68,72 @@ function createSpeedLinesGradient(stops, animationConfig, animationDuration) {
     gradientDef: `
       <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
         ${stops}
-        <animate attributeName="x1" values="-50%;50%" dur="${parseFloat(animationDuration) * 0.3}s" repeatCount="indefinite" />
-        <animate attributeName="x2" values="50%;150%" dur="${parseFloat(animationDuration) * 0.3}s" repeatCount="indefinite" />
+        <animate attributeName="x1" values="-50%;50%" dur="${multiplyDuration(animationDuration, 0.3)}" repeatCount="indefinite" />
+        <animate attributeName="x2" values="50%;150%" dur="${multiplyDuration(animationDuration, 0.3)}" repeatCount="indefinite" />
       </linearGradient>`
   };
 }
 
 function createBossBattleGradient(stops, animationConfig, animationDuration) {
+  const battleFilter = createColorMatrixFilter('battleIntensity', {
+    saturation: 1.3,
+    includeBlur: true,
+    blurAmount: 3
+  });
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
         ${stops}
-        <animate attributeName="r" values="40%;80%;40%" dur="${parseFloat(animationDuration) * 0.5}s" repeatCount="indefinite" />
+        <animate attributeName="r" values="40%;80%;40%" dur="${multiplyDuration(animationDuration, 0.5)}" repeatCount="indefinite" />
         <animate attributeName="cx" values="30%;70%;30%" ${animationConfig} />
       </radialGradient>
-      <filter id="battleIntensity">
-        <feGaussianBlur stdDeviation="3"/>
-        <feColorMatrix values="1.3 0 0 0 0 0 1.3 0 0 0 0 0 1.3 0 0 0 0 0 1 0"/>
-      </filter>`
+      ${battleFilter}`
   };
 }
 
 function createPowerUpGradient(stops, animationConfig, animationDuration) {
+  const powerFilter = createColorMatrixFilter('powerGlow', {
+    saturation: 1.2,
+    includeBlur: true,
+    blurAmount: 4
+  });
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
         ${stops}
-        <animate attributeName="r" values="30%;70%;30%" dur="${parseFloat(animationDuration) * 0.7}s" repeatCount="indefinite" />
+        <animate attributeName="r" values="30%;70%;30%" dur="${multiplyDuration(animationDuration, 0.7)}" repeatCount="indefinite" />
       </radialGradient>
-      <filter id="powerGlow">
-        <feGaussianBlur stdDeviation="4"/>
-        <feColorMatrix values="1.2 0 0 0 0 0 1.2 0 0 0 0 0 1.2 0 0 0 0 0 1 0"/>
-      </filter>`
+      ${powerFilter}`
   };
 }
 
 function createCyberpunkGradient(stops, animationConfig, animationDuration) {
+  const cyberpunkFilter = createColorMatrixFilter('cyberpunkGlow', {
+    saturation: 1.4,
+    includeBlur: true,
+    blurAmount: 3
+  });
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
         ${stops}
         <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+        <animate attributeName="y1" values="0%;100%;0%" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite" />
       </linearGradient>
-      <filter id="cyberpunkGlow">
-        <feGaussianBlur stdDeviation="3"/>
-        <feColorMatrix values="1.4 0 0 0 0 0 1.4 0 0 0 0 0 1.4 0 0 0 0 0 1 0"/>
-      </filter>`
+      ${cyberpunkFilter}`
   };
 }
 
 function createRetroWaveGradient(stops, animationConfig, animationDuration) {
+  const retroFilter = createGlowFilter('retroGlow', {
+    color: '#ffffff',
+    intensity: 2,
+    opacity: 0.7
+  });
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -121,13 +141,7 @@ function createRetroWaveGradient(stops, animationConfig, animationDuration) {
         <animate attributeName="x1" values="0%;50%;100%;50%;0%" ${animationConfig} />
         <animate attributeName="y1" values="100%;50%;0%;50%;100%" ${animationConfig} />
       </linearGradient>
-      <filter id="retroGlow">
-        <feGaussianBlur stdDeviation="2"/>
-        <feMerge>
-          <feMergeNode/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>`
+      ${retroFilter}`
   };
 }
 
@@ -140,4 +154,4 @@ module.exports = {
   createPowerUpGradient,
   createCyberpunkGradient,
   createRetroWaveGradient
-}; 
+};

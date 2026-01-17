@@ -2,28 +2,25 @@
  * MIT License
  *
  * Copyright (c) 2025 ChanMeng666
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * Refactored to use centralized AnimationLibrary
  */
+
+const { multiplyDuration } = require('../../core/AnimationLibrary');
 
 // Special effect gradient generators
 function createGalaxyGradient(stops, animationConfig, animationDuration) {
   const additionalElements = `
     <g opacity="0.8">
       <ellipse cx="427" cy="60" rx="200" ry="40" fill="url(#gradient)" opacity="0.6">
-        <animateTransform attributeName="transform" type="rotate" 
-          values="0 427 60;360 427 60" dur="${parseFloat(animationDuration) * 2}s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="rotate"
+          values="0 427 60;360 427 60" dur="${multiplyDuration(animationDuration, 2)}" repeatCount="indefinite" />
       </ellipse>
       <ellipse cx="427" cy="60" rx="150" ry="25" fill="url(#gradient)" opacity="0.7">
-        <animateTransform attributeName="transform" type="rotate" 
-          values="0 427 60;-360 427 60" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="rotate"
+          values="0 427 60;-360 427 60" dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
       </ellipse>
       <ellipse cx="427" cy="60" rx="100" ry="15" fill="url(#gradient)" opacity="0.8">
-        <animateTransform attributeName="transform" type="rotate" 
+        <animateTransform attributeName="transform" type="rotate"
           values="0 427 60;360 427 60" ${animationConfig} />
       </ellipse>
       <circle cx="427" cy="60" r="20" fill="url(#gradient)" opacity="0.9">
@@ -44,15 +41,15 @@ function createGalaxyGradient(stops, animationConfig, animationDuration) {
 function createSpiralGradient(stops, animationConfig, animationDuration) {
   const additionalElements = `
     <g opacity="0.85">
-      <path d="M427,60 Q327,60 327,20 Q327,-20 427,-20 Q527,-20 527,60 Q527,140 327,140 Q127,140 127,60 Q127,-40 427,-40" 
+      <path d="M427,60 Q327,60 327,20 Q327,-20 427,-20 Q527,-20 527,60 Q527,140 327,140 Q127,140 127,60 Q127,-40 427,-40"
             fill="none" stroke="url(#gradient)" stroke-width="8" opacity="0.6">
-        <animateTransform attributeName="transform" type="rotate" 
+        <animateTransform attributeName="transform" type="rotate"
           values="0 427 60;360 427 60" ${animationConfig} />
       </path>
-      <path d="M427,60 Q377,60 377,40 Q377,20 427,20 Q477,20 477,60 Q477,100 377,100 Q277,100 277,60" 
+      <path d="M427,60 Q377,60 377,40 Q377,20 427,20 Q477,20 477,60 Q477,100 377,100 Q277,100 277,60"
             fill="none" stroke="url(#gradient)" stroke-width="6" opacity="0.7">
-        <animateTransform attributeName="transform" type="rotate" 
-          values="0 427 60;-360 427 60" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="rotate"
+          values="0 427 60;-360 427 60" dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite" />
       </path>
       <circle cx="427" cy="60" r="30" fill="url(#gradient)" opacity="0.8">
         <animate attributeName="r" values="20;40;20" ${animationConfig} />
@@ -74,20 +71,20 @@ function createSpiralGradient(stops, animationConfig, animationDuration) {
 function createConicGradient(stops, animationConfig, animationDuration) {
   const additionalElements = `
     <g opacity="0.8">
-      <circle cx="427" cy="60" r="100" fill="none" stroke="url(#gradient)" stroke-width="15" opacity="0.6" 
+      <circle cx="427" cy="60" r="100" fill="none" stroke="url(#gradient)" stroke-width="15" opacity="0.6"
               stroke-dasharray="20,10">
-        <animateTransform attributeName="transform" type="rotate" 
+        <animateTransform attributeName="transform" type="rotate"
           values="0 427 60;360 427 60" ${animationConfig} />
       </circle>
-      <circle cx="427" cy="60" r="70" fill="none" stroke="url(#gradient)" stroke-width="12" opacity="0.7" 
+      <circle cx="427" cy="60" r="70" fill="none" stroke="url(#gradient)" stroke-width="12" opacity="0.7"
               stroke-dasharray="15,8">
-        <animateTransform attributeName="transform" type="rotate" 
-          values="0 427 60;-360 427 60" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="rotate"
+          values="0 427 60;-360 427 60" dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
       </circle>
-      <circle cx="427" cy="60" r="40" fill="none" stroke="url(#gradient)" stroke-width="8" opacity="0.8" 
+      <circle cx="427" cy="60" r="40" fill="none" stroke="url(#gradient)" stroke-width="8" opacity="0.8"
               stroke-dasharray="10,5">
-        <animateTransform attributeName="transform" type="rotate" 
-          values="0 427 60;360 427 60" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="rotate"
+          values="0 427 60;360 427 60" dur="${multiplyDuration(animationDuration, 0.8)}" repeatCount="indefinite" />
       </circle>
       <circle cx="427" cy="60" r="15" fill="url(#gradient)" opacity="0.9">
         <animate attributeName="r" values="10;20;10" ${animationConfig} />
@@ -98,7 +95,7 @@ function createConicGradient(stops, animationConfig, animationDuration) {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
         ${stops}
-        <animateTransform attributeName="gradientTransform" type="rotate" 
+        <animateTransform attributeName="gradientTransform" type="rotate"
           values="0 50 50;90 50 50;180 50 50;270 50 50;360 50 50" ${animationConfig} />
       </radialGradient>`,
     additionalElements
@@ -116,7 +113,7 @@ function createLuminanceGradient(stops, animationConfig, animationDuration) {
           color: transparent;
           font-size: 40px;
           font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-          animation: luminanceReveal ${animationDuration} ease-in-out forwards 200ms, luminanceGlow 2500ms linear infinite ${parseFloat(animationDuration) * 1000 + 500}ms;
+          animation: luminanceReveal ${animationDuration} ease-in-out forwards 200ms, luminanceGlow 2500ms linear infinite ${multiplyDuration(animationDuration, 1000)}ms;
         }
         @keyframes luminanceReveal {
           80% { letter-spacing: 8px; }
@@ -233,8 +230,8 @@ function createGlitchGradient(stops, animationConfig, animationDuration) {
     gradientDef: `
       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
         ${stops}
-        <animate attributeName="x1" values="0%;20%;-10%;30%;0%" dur="${parseFloat(animationDuration) * 0.4}s" repeatCount="indefinite" />
-        <animate attributeName="x2" values="100%;80%;110%;70%;100%" dur="${parseFloat(animationDuration) * 0.4}s" repeatCount="indefinite" />
+        <animate attributeName="x1" values="0%;20%;-10%;30%;0%" dur="${multiplyDuration(animationDuration, 0.4)}" repeatCount="indefinite" />
+        <animate attributeName="x2" values="100%;80%;110%;70%;100%" dur="${multiplyDuration(animationDuration, 0.4)}" repeatCount="indefinite" />
       </linearGradient>`,
     additionalElements
   };
@@ -250,7 +247,7 @@ function createTypewriterGradient(stops, animationConfig, animationDuration) {
           border-right: 2px solid rgba(255,255,255,.75);
           white-space: nowrap;
           overflow: hidden;
-          animation: typewriter ${animationDuration} steps(44) ${parseFloat(animationDuration) * 0.25}s 1 normal both,
+          animation: typewriter ${animationDuration} steps(44) ${multiplyDuration(animationDuration, 0.25)} 1 normal both,
                      blinkCursor 500ms steps(44) infinite normal;
         }
         @keyframes typewriter {
@@ -282,4 +279,4 @@ module.exports = {
   createTextBoxGradient,
   createGlitchGradient,
   createTypewriterGradient
-}; 
+};

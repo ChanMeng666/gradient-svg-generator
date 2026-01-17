@@ -2,10 +2,13 @@
  * MIT License
  *
  * Copyright (c) 2025 ChanMeng666
+ * Refactored to use centralized AnimationLibrary
  *
  * Path-Based Text Animation Gradients
  * Inspired by Readme Typing SVG - uses SVG path animations for text reveal effects
  */
+
+const { multiplyDuration } = require('../../core/AnimationLibrary');
 
 // ============================================
 // Category 1: Path-Based Text Animation
@@ -211,7 +214,7 @@ function generateCharByChar(colors, duration) {
     <line x1="0" y1="30" x2="0" y2="90" stroke="#${highlightColor}" stroke-width="2">
       <animate attributeName="x1" from="0" to="854" dur="${duration}" fill="freeze"/>
       <animate attributeName="x2" from="0" to="854" dur="${duration}" fill="freeze"/>
-      <animate attributeName="opacity" values="1;0" begin="${parseFloat(duration) * 0.95}s" dur="0.2s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" begin="${multiplyDuration(duration, 0.95)}" dur="0.2s" fill="freeze"/>
     </line>
   `;
 }
@@ -275,7 +278,7 @@ function generateLineSequence(colors, duration) {
     <!-- Line 1 -->
     <path id="line1">
       <animate attributeName="d" values="m100,35 h0; m100,35 h654"
-        begin="0s" dur="${parseFloat(duration) / 3}s" fill="freeze"/>
+        begin="0s" dur="${multiplyDuration(duration, 0.333)}" fill="freeze"/>
     </path>
     <text font-family="'Courier New', monospace" font-size="20" fill="#${line1Color}" font-weight="600">
       <textPath href="#line1"><tspan dy="5">> ##TEXT##</tspan></textPath>
@@ -284,7 +287,7 @@ function generateLineSequence(colors, duration) {
     <!-- Line 2 -->
     <path id="line2">
       <animate attributeName="d" values="m100,60 h0; m100,60 h654"
-        begin="${parseFloat(duration) / 3}s" dur="${parseFloat(duration) / 3}s" fill="freeze"/>
+        begin="${multiplyDuration(duration, 0.333)}" dur="${multiplyDuration(duration, 0.333)}" fill="freeze"/>
     </path>
     <text font-family="'Courier New', monospace" font-size="20" fill="#${line2Color}" font-weight="600">
       <textPath href="#line2"><tspan dy="5">> ##TEXT##</tspan></textPath>
@@ -293,7 +296,7 @@ function generateLineSequence(colors, duration) {
     <!-- Line 3 -->
     <path id="line3">
       <animate attributeName="d" values="m100,85 h0; m100,85 h654"
-        begin="${(parseFloat(duration) * 2) / 3}s" dur="${parseFloat(duration) / 3}s" fill="freeze"/>
+        begin="${multiplyDuration(duration, 0.667)}" dur="${multiplyDuration(duration, 0.333)}" fill="freeze"/>
     </path>
     <text font-family="'Courier New', monospace" font-size="20" fill="#${line3Color}" font-weight="600">
       <textPath href="#line3"><tspan dy="5">> ##TEXT##</tspan></textPath>

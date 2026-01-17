@@ -1,34 +1,40 @@
 /*
  * MIT License - Culinary & Liquid Flow Gradient Generators
  * Food and beverage aesthetic patterns with fluid dynamics
+ * Refactored to use centralized FilterLibrary and AnimationLibrary
  *
  * Copyright (c) 2025 ChanMeng666
  */
 
+const { createTurbulenceFilter, createBlurFilter } = require('../../core/FilterLibrary');
+const { multiplyDuration } = require('../../core/AnimationLibrary');
+
 // Coffee Cream - Swirling cream mixing into coffee
 function createCoffeeCreamGradient(stops, animationConfig, animationDuration) {
+  const creamFilter = createTurbulenceFilter('creamMix', {
+    baseFrequency: '0.3',
+    numOctaves: 3,
+    scale: 15,
+    animated: true,
+    animationValues: '10;20;10',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
         ${stops}
         <animate attributeName="cx" values="50%;45%;55%;50%" ${animationConfig} />
-        <animate attributeName="cy" values="50%;55%;45%;50%" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="50%;55%;45%;50%" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite" />
       </radialGradient>
-      <filter id="creamMix">
-        <feTurbulence baseFrequency="0.3" numOctaves="3" result="noise">
-          <animate attributeName="baseFrequency" values="0.2;0.4;0.2" ${animationConfig} />
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="15">
-          <animate attributeName="scale" values="10;20;10" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`,
+      ${creamFilter}`,
     additionalElements: `
       <g filter="url(#creamMix)">
         <ellipse cx="400" cy="300" rx="120" ry="100" fill="url(#gradient)" opacity="0.9">
           <animateTransform attributeName="transform" type="rotate" values="0 400 300;360 400 300" ${animationConfig} />
         </ellipse>
         <ellipse cx="350" cy="280" rx="80" ry="70" fill="url(#gradient)" opacity="0.7">
-          <animateTransform attributeName="transform" type="rotate" values="0 350 280;-360 350 280" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+          <animateTransform attributeName="transform" type="rotate" values="0 350 280;-360 350 280" dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite" />
         </ellipse>
       </g>`
   };
@@ -68,17 +74,20 @@ function createWinePourGradient(stops, animationConfig, animationDuration) {
 
 // Honey Drizzle - Viscous golden syrup flow
 function createHoneyDrizzleGradient(stops, animationConfig, animationDuration) {
+  const honeyFilter = `
+    <filter id="honeyGlow">
+      <feGaussianBlur stdDeviation="2"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="1.2"/>
+      </feComponentTransfer>
+    </filter>`;
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="50%" y1="0%" x2="50%" y2="100%">
         ${stops}
       </linearGradient>
-      <filter id="honeyGlow">
-        <feGaussianBlur stdDeviation="2"/>
-        <feComponentTransfer>
-          <feFuncA type="linear" slope="1.2"/>
-        </feComponentTransfer>
-      </filter>`,
+      ${honeyFilter}`,
     additionalElements: `
       <g filter="url(#honeyGlow)">
         <ellipse cx="400" cy="150" rx="30" ry="20" fill="url(#gradient)" opacity="0.95">
@@ -89,7 +98,7 @@ function createHoneyDrizzleGradient(stops, animationConfig, animationDuration) {
           <animate attributeName="stroke-width" values="20;30;20" ${animationConfig} />
         </path>
         <ellipse cx="385" cy="470" rx="60" ry="25" fill="url(#gradient)" opacity="0.85">
-          <animate attributeName="rx" values="50;70;50" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          <animate attributeName="rx" values="50;70;50" dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
         </ellipse>
       </g>`
   };
@@ -97,18 +106,22 @@ function createHoneyDrizzleGradient(stops, animationConfig, animationDuration) {
 
 // Chocolate Melt - Heat-induced liquefaction
 function createChocolateMeltGradient(stops, animationConfig, animationDuration) {
+  const meltFilter = createTurbulenceFilter('meltDistortion', {
+    baseFrequency: '0.15',
+    numOctaves: 2,
+    scale: 12,
+    animated: true,
+    animationValues: '8;16;8',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="50%" y1="0%" x2="50%" y2="100%">
         ${stops}
         <animate attributeName="y2" values="100%;110%;100%" ${animationConfig} />
       </linearGradient>
-      <filter id="meltDistortion">
-        <feTurbulence baseFrequency="0.15" numOctaves="2" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="12">
-          <animate attributeName="scale" values="8;16;8" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`,
+      ${meltFilter}`,
     additionalElements: `
       <g filter="url(#meltDistortion)">
         <rect x="300" y="150" width="200" height="100" fill="url(#gradient)" opacity="0.95">
@@ -143,7 +156,7 @@ function createCaramelSwirlGradient(stops, animationConfig, animationDuration) {
             <path d="M ${radius * Math.cos(startAngle * Math.PI / 180)} ${radius * Math.sin(startAngle * Math.PI / 180)}
                      A ${radius} ${radius} 0 1 1 ${radius * Math.cos((startAngle + 359) * Math.PI / 180)} ${radius * Math.sin((startAngle + 359) * Math.PI / 180)}"
                   stroke="url(#gradient)" stroke-width="${20 - i * 2}" fill="none" opacity="${0.9 - i * 0.1}">
-              <animateTransform attributeName="transform" type="rotate" values="0;360" dur="${parseFloat(animationDuration) * (1 + i * 0.2)}s" repeatCount="indefinite"/>
+              <animateTransform attributeName="transform" type="rotate" values="0;360" dur="${multiplyDuration(animationDuration, 1 + i * 0.2)}" repeatCount="indefinite"/>
             </path>
           `;
         }).join('')}
@@ -153,29 +166,31 @@ function createCaramelSwirlGradient(stops, animationConfig, animationDuration) {
 
 // Tie-Dye - Fabric dye diffusion spiral
 function createTieDyeGradient(stops, animationConfig, animationDuration) {
+  const tieDyeFilter = createTurbulenceFilter('tieDyeDiffusion', {
+    baseFrequency: '0.5',
+    numOctaves: 2,
+    scale: 25,
+    animated: true,
+    animationValues: '20;30;20',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
         ${stops}
       </radialGradient>
-      <filter id="tieDyeDiffusion">
-        <feTurbulence baseFrequency="0.5" numOctaves="2" result="noise">
-          <animate attributeName="baseFrequency" values="0.4;0.6;0.4" ${animationConfig} />
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="25">
-          <animate attributeName="scale" values="20;30;20" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`,
+      ${tieDyeFilter}`,
     additionalElements: `
       <g filter="url(#tieDyeDiffusion)">
         <circle cx="400" cy="300" r="150" fill="url(#gradient)" opacity="0.8">
           <animateTransform attributeName="transform" type="rotate" values="0 400 300;360 400 300" ${animationConfig} />
         </circle>
         <circle cx="400" cy="300" r="100" fill="url(#gradient)" opacity="0.7">
-          <animateTransform attributeName="transform" type="rotate" values="360 400 300;0 400 300" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+          <animateTransform attributeName="transform" type="rotate" values="360 400 300;0 400 300" dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite" />
         </circle>
         <circle cx="400" cy="300" r="60" fill="url(#gradient)" opacity="0.9">
-          <animateTransform attributeName="transform" type="rotate" values="0 400 300;360 400 300" dur="${parseFloat(animationDuration) * 0.7}s" repeatCount="indefinite" />
+          <animateTransform attributeName="transform" type="rotate" values="0 400 300;360 400 300" dur="${multiplyDuration(animationDuration, 0.7)}" repeatCount="indefinite" />
         </circle>
       </g>`
   };
@@ -183,19 +198,23 @@ function createTieDyeGradient(stops, animationConfig, animationDuration) {
 
 // Marble Mixing - Cake batter swirl patterns
 function createMarbleMixingGradient(stops, animationConfig, animationDuration) {
+  const marbleFilter = createTurbulenceFilter('marbleTexture', {
+    baseFrequency: '0.4',
+    numOctaves: 3,
+    scale: 20,
+    animated: true,
+    animationValues: '15;25;15',
+    duration: animationDuration
+  });
+
   return {
     gradientDef: `
       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
         ${stops}
         <animate attributeName="x1" values="0%;20%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="0%;20%;0%" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+        <animate attributeName="y1" values="0%;20%;0%" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite" />
       </linearGradient>
-      <filter id="marbleTexture">
-        <feTurbulence baseFrequency="0.4" numOctaves="3" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="20">
-          <animate attributeName="scale" values="15;25;15" ${animationConfig} />
-        </feDisplacementMap>
-      </filter>`,
+      ${marbleFilter}`,
     additionalElements: `
       <g filter="url(#marbleTexture)">
         <path d="M 100 200 Q 200 250, 300 200 T 500 200 Q 600 250, 700 200"
@@ -212,7 +231,7 @@ function createMarbleMixingGradient(stops, animationConfig, animationDuration) {
                    values="M 100 350 Q 200 300, 300 350 T 500 350 Q 600 300, 700 350;
                            M 100 330 Q 200 280, 300 330 T 500 330 Q 600 280, 700 330;
                            M 100 350 Q 200 300, 300 350 T 500 350 Q 600 300, 700 350"
-                   dur="${parseFloat(animationDuration) * 1.4}s" repeatCount="indefinite" />
+                   dur="${multiplyDuration(animationDuration, 1.4)}" repeatCount="indefinite" />
         </path>
       </g>`
   };

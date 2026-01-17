@@ -1,9 +1,13 @@
 /*
  * MIT License - Light & Shadow Play Gradient Generators
  * Optical effects and illumination patterns
+ * Refactored to use centralized FilterLibrary and AnimationLibrary
  *
  * Copyright (c) 2025 ChanMeng666
  */
+
+const { createTurbulenceFilter, createBlurFilter, createGlowFilter } = require('../../core/FilterLibrary');
+const { multiplyDuration } = require('../../core/AnimationLibrary');
 
 // Caustic Underwater - Light refraction through water surface
 function createCausticUnderwaterGradient(stops, animationConfig, animationDuration) {
@@ -12,7 +16,7 @@ function createCausticUnderwaterGradient(stops, animationConfig, animationDurati
       <radialGradient id="gradient" cx="50%" cy="50%" r="60%">
         ${stops}
         <animate attributeName="cx" values="40%;60%;40%" ${animationConfig} />
-        <animate attributeName="cy" values="40%;60%;40%" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="40%;60%;40%" dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite" />
       </radialGradient>
       <filter id="causticDistortion">
         <feTurbulence baseFrequency="0.3" numOctaves="2" result="noise">
@@ -27,13 +31,13 @@ function createCausticUnderwaterGradient(stops, animationConfig, animationDurati
       <g filter="url(#causticDistortion)">
         <ellipse cx="300" cy="200" rx="80" ry="50" fill="url(#gradient)" opacity="0.7">
           <animate attributeName="rx" values="60;100;60" ${animationConfig} />
-          <animate attributeName="opacity" values="0.5;0.9;0.5" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.5;0.9;0.5" dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
         </ellipse>
         <ellipse cx="500" cy="300" rx="60" ry="40" fill="url(#gradient)" opacity="0.6">
-          <animate attributeName="ry" values="30;50;30" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+          <animate attributeName="ry" values="30;50;30" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite" />
         </ellipse>
         <ellipse cx="400" cy="400" rx="70" ry="45" fill="url(#gradient)" opacity="0.65">
-          <animate attributeName="cx" values="380;420;380" dur="${parseFloat(animationDuration) * 1.8}s" repeatCount="indefinite" />
+          <animate attributeName="cx" values="380;420;380" dur="${multiplyDuration(animationDuration, 1.8)}" repeatCount="indefinite" />
         </ellipse>
       </g>`
   };
@@ -77,13 +81,13 @@ function createStainedGlassGradient(stops, animationConfig, animationDuration) {
           <animate attributeName="opacity" values="0.8;1;0.8" ${animationConfig} />
         </circle>
         <circle cx="550" cy="250" r="80" fill="url(#gradient)" opacity="0.85" stroke="#222" stroke-width="4">
-          <animate attributeName="opacity" values="0.7;0.95;0.7" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.7;0.95;0.7" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite" />
         </circle>
         <circle cx="400" cy="400" r="90" fill="url(#gradient)" opacity="0.9" stroke="#222" stroke-width="4">
-          <animate attributeName="opacity" values="0.75;1;0.75" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.75;1;0.75" dur="${multiplyDuration(animationDuration, 0.8)}" repeatCount="indefinite" />
         </circle>
         <polygon points="400,150 500,350 300,350" fill="url(#gradient)" opacity="0.8" stroke="#222" stroke-width="4">
-          <animate attributeName="opacity" values="0.7;0.9;0.7" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.7;0.9;0.7" dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
         </polygon>
       </g>`
   };
@@ -105,10 +109,10 @@ function createLensFlareGradient(stops, animationConfig, animationDuration) {
     additionalElements: `
       <g filter="url(#flareGlow)">
         <circle cx="600" cy="150" r="60" fill="url(#gradient)" opacity="0.9">
-          <animate attributeName="opacity" values="0.7;1;0.7" dur="${parseFloat(animationDuration) * 0.5}s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.7;1;0.7" dur="${multiplyDuration(animationDuration, 0.5)}" repeatCount="indefinite" />
         </circle>
         <polygon points="500,200 520,220 510,245 490,245 480,220" fill="url(#gradient)" opacity="0.6">
-          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="${parseFloat(animationDuration) * 0.7}s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="${multiplyDuration(animationDuration, 0.7)}" repeatCount="indefinite" />
         </polygon>
         <circle cx="400" cy="250" r="30" fill="url(#gradient)" opacity="0.5"/>
         <circle cx="300" cy="300" r="25" fill="url(#gradient)" opacity="0.4"/>
@@ -195,13 +199,13 @@ function createEclipseCoronaGradient(stops, animationConfig, animationDuration) 
         <circle r="80" fill="#000000" opacity="1"/>
         <circle r="120" fill="url(#gradient)" filter="url(#coronaGlow)" opacity="0.8">
           <animate attributeName="r" values="110;130;110" ${animationConfig} />
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="${parseFloat(animationDuration) * 1.5}s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.6;1;0.6" dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
         </circle>
         <circle r="150" fill="url(#gradient)" filter="url(#coronaGlow)" opacity="0.5">
-          <animate attributeName="r" values="140;160;140" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite" />
+          <animate attributeName="r" values="140;160;140" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite" />
         </circle>
         <circle r="180" fill="url(#gradient)" filter="url(#coronaGlow)" opacity="0.3">
-          <animate attributeName="r" values="170;190;170" dur="${parseFloat(animationDuration) * 0.9}s" repeatCount="indefinite" />
+          <animate attributeName="r" values="170;190;170" dur="${multiplyDuration(animationDuration, 0.9)}" repeatCount="indefinite" />
         </circle>
       </g>`
   };

@@ -2,6 +2,7 @@
  * MIT License
  *
  * Copyright (c) 2025 ChanMeng666
+ * Refactored to use centralized AnimationLibrary
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  *
@@ -9,6 +10,8 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+
+const { multiplyDuration } = require('../../core/AnimationLibrary');
 
 // Metallic and shimmer gradient generators inspired by example project
 
@@ -54,8 +57,8 @@ function createShineShimmerGradient(stops, animationConfig, animationDuration) {
         <stop offset="50%" style="stop-color:rgba(255,255,255,0.8)" />
         <stop offset="55%" style="stop-color:rgba(255,255,255,0)" />
         <stop offset="100%" style="stop-color:rgba(255,255,255,0)" />
-        <animate attributeName="x1" values="-100%;100%" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite"/>
-        <animate attributeName="x2" values="0%;200%" dur="${parseFloat(animationDuration) * 0.8}s" repeatCount="indefinite"/>
+        <animate attributeName="x1" values="-100%;100%" dur="${multiplyDuration(animationDuration, 0.8)}" repeatCount="indefinite"/>
+        <animate attributeName="x2" values="0%;200%" dur="${multiplyDuration(animationDuration, 0.8)}" repeatCount="indefinite"/>
       </linearGradient>
     </defs>
     <rect x="0" y="0" width="854" height="120" fill="url(#shine-sweep)" opacity="0.6"/>`;
@@ -83,7 +86,7 @@ function createNeonPulseGradient(stops, animationConfig, animationDuration) {
           <feMergeNode in="blur"/>
           <feMergeNode in="SourceGraphic"/>
         </feMerge>
-        <animate attributeName="stdDeviation" values="5;15;5" dur="${parseFloat(animationDuration) * 0.5}s" repeatCount="indefinite"/>
+        <animate attributeName="stdDeviation" values="5;15;5" dur="${multiplyDuration(animationDuration, 0.5)}" repeatCount="indefinite"/>
       </filter>
     </defs>
     <rect x="0" y="0" width="854" height="120" fill="url(#gradient)" filter="url(#neon-glow)" opacity="0.8">
@@ -140,24 +143,24 @@ function createSparkleEffectGradient(stops, animationConfig, animationDuration) 
     </defs>
     <g filter="url(#sparkle-glow)">
       <circle cx="100" cy="30" r="3" fill="white" opacity="0.8">
-        <animate attributeName="opacity" values="0;0.8;0" dur="${parseFloat(animationDuration) * 0.3}s" repeatCount="indefinite"/>
-        <animate attributeName="cx" values="100;800" dur="${parseFloat(animationDuration)}s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.8;0" dur="${multiplyDuration(animationDuration, 0.3)}" repeatCount="indefinite"/>
+        <animate attributeName="cx" values="100;800" dur="${animationDuration}" repeatCount="indefinite"/>
       </circle>
       <circle cx="300" cy="60" r="2" fill="white" opacity="0.6">
-        <animate attributeName="opacity" values="0;0.6;0" dur="${parseFloat(animationDuration) * 0.4}s" repeatCount="indefinite" begin="0.3s"/>
-        <animate attributeName="cx" values="300;750" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.6;0" dur="${multiplyDuration(animationDuration, 0.4)}" repeatCount="indefinite" begin="0.3s"/>
+        <animate attributeName="cx" values="300;750" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite"/>
       </circle>
       <circle cx="500" cy="90" r="4" fill="white" opacity="0.7">
-        <animate attributeName="opacity" values="0;0.7;0" dur="${parseFloat(animationDuration) * 0.35}s" repeatCount="indefinite" begin="0.6s"/>
-        <animate attributeName="cx" values="500;850" dur="${parseFloat(animationDuration) * 0.9}s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.7;0" dur="${multiplyDuration(animationDuration, 0.35)}" repeatCount="indefinite" begin="0.6s"/>
+        <animate attributeName="cx" values="500;850" dur="${multiplyDuration(animationDuration, 0.9)}" repeatCount="indefinite"/>
       </circle>
       <circle cx="200" cy="45" r="2.5" fill="white" opacity="0.5">
-        <animate attributeName="opacity" values="0;0.5;0" dur="${parseFloat(animationDuration) * 0.45}s" repeatCount="indefinite" begin="0.2s"/>
-        <animate attributeName="cx" values="200;700" dur="${parseFloat(animationDuration) * 1.1}s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.5;0" dur="${multiplyDuration(animationDuration, 0.45)}" repeatCount="indefinite" begin="0.2s"/>
+        <animate attributeName="cx" values="200;700" dur="${multiplyDuration(animationDuration, 1.1)}" repeatCount="indefinite"/>
       </circle>
       <circle cx="400" cy="75" r="3.5" fill="white" opacity="0.65">
-        <animate attributeName="opacity" values="0;0.65;0" dur="${parseFloat(animationDuration) * 0.38}s" repeatCount="indefinite" begin="0.5s"/>
-        <animate attributeName="cx" values="400;800" dur="${parseFloat(animationDuration) * 0.95}s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0.65;0" dur="${multiplyDuration(animationDuration, 0.38)}" repeatCount="indefinite" begin="0.5s"/>
+        <animate attributeName="cx" values="400;800" dur="${multiplyDuration(animationDuration, 0.95)}" repeatCount="indefinite"/>
       </circle>
     </g>`;
 
@@ -182,7 +185,7 @@ function createChromeFlowGradient(stops, animationConfig, animationDuration) {
         <stop offset="70%" style="stop-color:rgba(255,255,255,0.6)" />
         <stop offset="100%" style="stop-color:rgba(150,150,150,0.4)" />
         <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="0%;100%;0%" dur="${parseFloat(animationDuration) * 1.3}s" repeatCount="indefinite"/>
+        <animate attributeName="y1" values="0%;100%;0%" dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite"/>
       </linearGradient>
       <filter id="chrome-shine">
         <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
@@ -208,7 +211,7 @@ function createBronzeGleamGradient(stops, animationConfig, animationDuration) {
         <stop offset="50%" style="stop-color:rgba(184,115,51,0.8)" />
         <stop offset="100%" style="stop-color:rgba(139,90,43,0.6)" />
         <animate attributeName="r" values="40%;70%;40%" ${animationConfig} />
-        <animate attributeName="cx" values="50%;60%;40%;50%" dur="${parseFloat(animationDuration) * 1.2}s" repeatCount="indefinite"/>
+        <animate attributeName="cx" values="50%;60%;40%;50%" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite"/>
       </radialGradient>
       <filter id="bronze-depth">
         <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>

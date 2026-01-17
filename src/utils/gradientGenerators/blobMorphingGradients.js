@@ -2,12 +2,7 @@
  * MIT License
  *
  * Copyright (c) 2025 ChanMeng666
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * Refactored to use centralized FilterLibrary and AnimationLibrary
  */
 
 /**
@@ -17,6 +12,9 @@
  * Creates organic, liquid-like shapes that continuously morph between different forms
  * using SVG path animation techniques.
  */
+
+const { createBlurFilter, createColorMatrixFilter } = require('../../core/FilterLibrary');
+const { multiplyDuration } = require('../../core/AnimationLibrary');
 
 /**
  * Generate multiple blob path states for morphing animation
@@ -110,6 +108,12 @@ function createLiquidBlobGradient(stops, animationConfig, duration = '12s') {
   const layer1Paths = generateBlobPaths(854, 120, 3);
   const layer2Paths = generateBlobPaths(854, 120, 4);
 
+  const blobFilter = createBlurFilter('blobBlur', {
+    stdDeviation: 3,
+    saturate: true,
+    saturateAmount: 1.5
+  });
+
   const gradientDef = `
     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
       ${stops}
@@ -119,10 +123,7 @@ function createLiquidBlobGradient(stops, animationConfig, duration = '12s') {
       ${stops}
       ${animationConfig}
     </linearGradient>
-    <filter id="blobBlur">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-    </filter>
+    ${blobFilter}
   `;
 
   const additionalElements = `
@@ -143,8 +144,8 @@ function createLiquidBlobGradient(stops, animationConfig, duration = '12s') {
       <path fill="url(#gradient2)" opacity="0.7" d="${layer2Paths[0]}">
         <animate
           attributeName="d"
-          dur="${parseFloat(duration) * 0.8}s"
-          begin="-${parseFloat(duration) * 0.3}s"
+          dur="${multiplyDuration(duration, 0.8)}"
+          begin="-${multiplyDuration(duration, 0.3)}"
           repeatCount="indefinite"
           values="${layer2Paths.join('; ')};${layer2Paths[0]}"
           calcMode="spline"
@@ -170,11 +171,7 @@ function createLiquidBlobGradient(stops, animationConfig, duration = '12s') {
 function createOrganicBlobGradient(stops, animationConfig, duration = '15s') {
   const paths = generateBlobPaths(854, 120, 5);
 
-  const gradientDef = `
-    <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
-      ${stops}
-      ${animationConfig}
-    </radialGradient>
+  const organicFilter = `
     <filter id="organicGlow">
       <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
       <feColorMatrix in="blur" type="saturate" values="1.8" result="saturated"/>
@@ -183,6 +180,14 @@ function createOrganicBlobGradient(stops, animationConfig, duration = '15s') {
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
+  `;
+
+  const gradientDef = `
+    <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+      ${stops}
+      ${animationConfig}
+    </radialGradient>
+    ${organicFilter}
   `;
 
   const additionalElements = `
@@ -200,7 +205,7 @@ function createOrganicBlobGradient(stops, animationConfig, duration = '15s') {
         <animate
           attributeName="opacity"
           values="0.85;1;0.85"
-          dur="${parseFloat(duration) * 0.6}s"
+          dur="${multiplyDuration(duration, 0.6)}"
           repeatCount="indefinite"
         />
       </path>
