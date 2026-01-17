@@ -26,52 +26,6 @@ export default function Templates() {
 
   const { favorites, addFavorite, removeFavorite } = useStore();
 
-  // DEBUG: Check random sample of templates for black colors
-  useEffect(() => {
-    const debugTemplates = async () => {
-      console.log('=== DEBUG [/templates]: Checking SVG template colors ===');
-
-      // Get all template names from the page
-      const allTemplates = getAllTemplates();
-      console.log(`Total templates found: ${allTemplates.length}`);
-
-      // Check first 30 templates
-      const samplesToCheck = allTemplates.slice(0, 30);
-      const results = { ok: [], failed: [] };
-
-      for (const template of samplesToCheck) {
-        try {
-          const url = `/api/svg?text=DEBUG&template=${template.name}&height=120`;
-          const response = await fetch(url);
-          const svgText = await response.text();
-
-          // Check for black colors (default fallback)
-          const hasBlackDefault = svgText.includes('stop-color="#000000"') ||
-                                  svgText.includes("stop-color='#000000'");
-
-          if (hasBlackDefault) {
-            results.failed.push(template.name);
-            console.log(`❌ ${template.name} (${template.category}): FAILED - black default`);
-          } else {
-            results.ok.push(template.name);
-          }
-        } catch (error) {
-          results.failed.push(template.name);
-          console.log(`❌ ${template.name}: ERROR -`, error.message);
-        }
-      }
-
-      console.log(`=== DEBUG Summary: ${results.ok.length} OK, ${results.failed.length} FAILED ===`);
-      if (results.failed.length > 0) {
-        console.log('Failed templates:', results.failed);
-      }
-    };
-
-    // Run debug check after a short delay
-    const timer = setTimeout(debugTemplates, 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
   // Refs for virtualization
   const gridContainerRef = useRef(null);
   const listContainerRef = useRef(null);

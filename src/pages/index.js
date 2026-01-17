@@ -27,51 +27,6 @@ export default function Home() {
   // Get all categories
   const categories = useMemo(() => getCategories(), []);
 
-  // DEBUG: Check SVG responses for black colors
-  useEffect(() => {
-    const debugTemplates = async () => {
-      console.log('=== DEBUG: Checking SVG template colors ===');
-
-      const templatesToCheck = [
-        'hologram-matrix', 'aurora-borealis', 'typing-path-reveal', 'liquid-venom',
-        'watercolor-dream', 'sunset-gold', 'pixel-art-retro', 'rainbow-wave',
-        'diamond-sparkle', 'ocean-heart', 'cyber-scan', 'neural-network',
-        'art-deco-luxury', 'neon-arcade', 'handwriting', 'dreamy-sunset',
-        'monsoon-rain', 'stained-glass'
-      ];
-
-      for (const templateName of templatesToCheck) {
-        try {
-          const url = `/api/svg?text=DEBUG&template=${templateName}&height=120`;
-          const response = await fetch(url);
-          const svgText = await response.text();
-
-          // Check for black colors (default fallback)
-          const hasBlackDefault = svgText.includes('stop-color="#000000"') ||
-                                  svgText.includes("stop-color='#000000'");
-
-          // Extract actual colors from SVG
-          const colorMatches = svgText.match(/stop-color="(#[0-9a-fA-F]{6})"/g) || [];
-          const colors = colorMatches.map(m => m.match(/#[0-9a-fA-F]{6}/)[0]);
-
-          if (hasBlackDefault) {
-            console.log(`❌ ${templateName}: FAILED - Using black default`, { colors: colors.slice(0, 4) });
-          } else {
-            console.log(`✅ ${templateName}: OK`, { colors: colors.slice(0, 4) });
-          }
-        } catch (error) {
-          console.log(`❌ ${templateName}: ERROR -`, error.message);
-        }
-      }
-
-      console.log('=== DEBUG: Check complete ===');
-    };
-
-    // Run debug check after a short delay
-    const timer = setTimeout(debugTemplates, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
   // Featured templates for hero section - Diverse visual styles
   const featuredTemplates = [
     { name: "hologram-matrix", displayName: "Hologram Matrix", text: "FUTURISTIC" },

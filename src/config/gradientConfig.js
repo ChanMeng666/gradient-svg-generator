@@ -18,23 +18,9 @@ const { getRandomGradientPalette, getTimedPalette } = require('./colorPalettes')
 const getTemplateByName = (name) => TemplateRegistry.getTemplate(name);
 
 function getTemplateConfig(template, defaultColor = '000000') {
-  console.log(`[gradientConfig] getTemplateConfig called with template="${template}"`);
-
   const selectedTemplate = getTemplateByName(template);
 
-  console.log(`[gradientConfig] Template lookup result:`, {
-    templateName: template,
-    found: !!selectedTemplate,
-    templateData: selectedTemplate ? {
-      name: selectedTemplate.name,
-      colors: selectedTemplate.colors,
-      gradientType: selectedTemplate.gradientType,
-      animationDuration: selectedTemplate.animationDuration
-    } : null
-  });
-
   if (!template || !selectedTemplate) {
-    console.log(`[gradientConfig] ⚠️ Template NOT found, using defaults`);
     return {
       colors: [defaultColor, `${defaultColor}88`],
       gradientType: 'horizontal',
@@ -42,7 +28,6 @@ function getTemplateConfig(template, defaultColor = '000000') {
     };
   }
 
-  console.log(`[gradientConfig] ✅ Template found, returning config with colors:`, selectedTemplate.colors);
   return {
     colors: selectedTemplate.colors || [defaultColor, `${defaultColor}88`],
     gradientType: selectedTemplate.gradientType || 'horizontal',
