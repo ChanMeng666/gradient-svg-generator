@@ -4,13 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Gradient SVG Generator is a Next.js 13 application that creates animated SVG gradients with customizable text overlays. It features 180+ templates across 22 categories and supports 140+ gradient types with advanced visual effects.
+Gradient SVG Generator is a Next.js 13 application that creates animated SVG gradients with customizable text overlays. It features **326+ templates** across **30 categories** and supports **200+ gradient types** with advanced visual effects.
 
 ### Tech Stack
 - **Frontend**: React 18.2 with Next.js 13
 - **UI Framework**: Tailwind CSS with CSS Modules
-- **Animation**: Framer Motion for UI animations, CSS animations for SVG effects
+- **Animation**: Framer Motion for UI animations, CSS/SVG animations for effects
 - **State Management**: Zustand with persistence
+- **PWA**: Service Worker for offline support
 - **Build Tools**: Webpack, PostCSS
 
 ## Development Commands
@@ -29,133 +30,295 @@ npm run build
 npm start
 ```
 
+## System Architecture
+
+### High-Level Architecture
+
+```mermaid
+graph TB
+    subgraph Client["Client (Browser)"]
+        UI[React UI Components]
+        SW[Service Worker v3]
+        Store[Zustand Store]
+    end
+
+    subgraph Server["Server (Next.js API)"]
+        API["/api/svg endpoint"]
+        UGG[UnifiedGradientGenerator]
+        TR[TemplateRegistry]
+        ER[EffectRegistry]
+    end
+
+    subgraph Core["Core Modules"]
+        FL[FilterLibrary]
+        AL[AnimationLibrary]
+        SC[SVGComposer]
+        EL[EffectLoader]
+    end
+
+    subgraph Generators["Effect Generators"]
+        BG[Basic Gradients]
+        AG[Artistic Gradients]
+        FT[FutureTech Gradients]
+        OG[Organic Gradients]
+        MORE[...21 more categories]
+    end
+
+    UI --> |HTTP Request| API
+    SW --> |Cache Strategy| UI
+    API --> UGG
+    UGG --> TR
+    UGG --> ER
+    ER --> EL
+    EL --> Generators
+    UGG --> SC
+    SC --> FL
+    SC --> AL
+
+    style SW fill:#f9f,stroke:#333
+    style UGG fill:#bbf,stroke:#333
+    style ER fill:#bfb,stroke:#333
+```
+
+### SVG Generation Pipeline
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant API as /api/svg
+    participant UGG as UnifiedGradientGenerator
+    participant TR as TemplateRegistry
+    participant ER as EffectRegistry
+    participant Gen as Effect Generator
+    participant SC as SVGComposer
+
+    C->>API: GET /api/svg?text=Hello&template=aurora-borealis
+    API->>UGG: generateGradientSVG(params)
+    UGG->>TR: getTemplate("aurora-borealis")
+    TR-->>UGG: {colors, gradientType: "aurora", ...}
+    UGG->>ER: get("aurora")
+    ER-->>UGG: {generator, outputType, ...}
+    UGG->>Gen: generator(stops, animConfig, duration)
+    Gen-->>UGG: {gradientDef, filters}
+    UGG->>SC: composeGradientSVG(...)
+    SC-->>UGG: Complete SVG string
+    UGG-->>API: SVG content
+    API-->>C: SVG response (image/svg+xml)
+```
+
 ## Key Architecture Points
 
 ### API Endpoint
 The main API is at `/api/svg` (src/pages/api/svg.js) which accepts query parameters:
 - `text`: Display text (required)
 - `height`: 30-300px (default: 120)
-- `template`: Template name
-- `gradientType`: Gradient type
-- `duration`: Animation duration
+- `template`: Template name (e.g., "aurora-borealis", "hologram-matrix")
+- `gradientType`: Gradient type (e.g., "horizontal", "aurora", "hologram")
+- `duration`: Animation duration (e.g., "6s")
 - `color0`, `color1`, etc.: Hex colors without #
 
 ### Core Generation Flow
-1. **Entry Point**: `src/pages/api/svg.js` handles HTTP requests
-2. **Main Orchestrator**: `src/gradientGenerator.js` coordinates generation
-3. **Factory Pattern**: `src/utils/gradientFactory.js` creates gradient instances
-4. **Effect Generators**: Multiple generator categories in `src/utils/gradientGenerators/`:
-   - Basic gradients (horizontal, vertical, diagonal, radial)
-   - Shape-based gradients (star, heart, lightning, diamond)
-   - Artistic effects (watercolor, oil paint, graffiti)
-   - Future tech effects (hologram, quantum, neural net)
-   - Gaming effects (pixel art, neon arcade, cyberpunk)
-   - Organic effects (aurora, flame, flowing water)
-   - Experimental effects (morphing, dimensional, consciousness stream)
-5. **Advanced Effects**: Specialized generators for complex visual effects
+
+```mermaid
+flowchart LR
+    A[API Request] --> B{Template provided?}
+    B -->|Yes| C[TemplateRegistry.getTemplate]
+    B -->|No| D[Use gradientType directly]
+    C --> E[Get colors & gradientType]
+    D --> E
+    E --> F{Effect in Registry?}
+    F -->|Yes| G[generateFromRegistry]
+    F -->|No| H[generateLegacy]
+    G --> I[SVGComposer.compose]
+    H --> I
+    I --> J[Return SVG]
+```
+
+### Core Modules (src/core/)
+
+| Module | Purpose |
+|--------|---------|
+| `UnifiedGradientGenerator.js` | Main entry point, orchestrates SVG generation |
+| `EffectRegistry.js` | Central registry mapping effect names to generators |
+| `EffectLoader.js` | Loads and registers all effect generators |
+| `TemplateRegistry.js` | Manages template loading with static imports |
+| `FilterLibrary.js` | Centralized SVG filter definitions |
+| `AnimationLibrary.js` | Reusable animation patterns and utilities |
+| `SVGComposer.js` | Composes complete SVG documents |
 
 ### Template System
-- Templates are organized by category in `src/templates/` (22 categories total)
-- Each category file exports an array of template objects
+
+```mermaid
+graph LR
+    subgraph Categories["30 Template Categories"]
+        B[Basic]
+        P[Pride]
+        N[Nature]
+        T[Tech]
+        A[Art]
+        L[Luxury]
+        G[Gaming]
+        M[Morphing]
+        D[Dimensional]
+        MORE2[...21 more]
+    end
+
+    subgraph Registry["TemplateRegistry"]
+        STATIC[Static Imports]
+        CACHE[Template Cache]
+        NORM[Normalizer]
+    end
+
+    Categories --> STATIC
+    STATIC --> CACHE
+    CACHE --> NORM
+```
+
+- Templates organized by category in `src/templates/` (30 categories)
+- **Static imports** used in TemplateRegistry for Webpack bundling compatibility
 - Template structure: `{ name, label, colors, gradientType, animationDuration, description }`
-- All templates are auto-registered via the config system
-- Categories include: Basic, Nature, Tech, Artistic, Gaming, Luxury, Experimental, and more
+- Auto-registered via the config system
 
-### Adding New Features
+### Service Worker (PWA)
 
-**New Gradient Type**:
+The project uses a Service Worker (`public/sw.js`) for PWA functionality:
+
+```mermaid
+flowchart TB
+    subgraph SW["Service Worker v3"]
+        direction TB
+        INSTALL[Install Event]
+        FETCH[Fetch Event]
+        ACTIVATE[Activate Event]
+    end
+
+    subgraph Cache["Caching Strategy"]
+        STATIC_CACHE["Static Assets<br/>(/, /create, /templates)"]
+        NO_CACHE["Never Cached<br/>(/api/*, /_next/*)"]
+    end
+
+    INSTALL --> |"Cache static assets"| STATIC_CACHE
+    FETCH --> |"Check shouldCache()"| NO_CACHE
+    ACTIVATE --> |"Clean old caches"| STATIC_CACHE
+
+    style NO_CACHE fill:#f99,stroke:#333
+```
+
+**Important**: API routes (`/api/*`) are **never cached** to ensure fresh SVG responses.
+
+## Directory Structure
+
+```
+src/
+├── core/                    # Core architecture modules
+│   ├── UnifiedGradientGenerator.js
+│   ├── EffectRegistry.js
+│   ├── EffectLoader.js
+│   ├── TemplateRegistry.js
+│   ├── FilterLibrary.js
+│   ├── AnimationLibrary.js
+│   └── SVGComposer.js
+├── templates/               # 30 template category files
+│   ├── basicTemplates.js
+│   ├── prideTemplates.js
+│   ├── natureTemplates.js
+│   └── ... (27 more)
+├── utils/
+│   ├── gradientGenerators/  # 21 effect generator files
+│   │   ├── basicGradients.js
+│   │   ├── artisticGradients.js
+│   │   └── ... (19 more)
+│   ├── colorUtils.js
+│   ├── svgUtils.js
+│   └── templateUtils.js
+├── pages/
+│   ├── index.js            # Home page
+│   ├── create.js           # Advanced creation interface
+│   ├── templates.js        # Template gallery
+│   └── api/svg.js          # SVG generation API
+├── components/
+│   ├── layout/             # Header, Sidebar, Footer
+│   ├── features/           # Feature components
+│   └── ui/                 # shadcn/ui components
+├── store/
+│   └── useStore.js         # Zustand state management
+└── styles/                 # CSS Modules
+```
+
+## Adding New Features
+
+### New Gradient Type
 1. Create generator in `src/utils/gradientGenerators/`
-2. Register in `src/utils/gradientFactory.js`
+2. Register in `src/core/EffectLoader.js`
 3. Add to `GRADIENT_TYPES` in `src/config/gradientConfig.js`
 
-**New Template**:
+### New Template
 1. Add to appropriate category file in `src/templates/`
-2. Include in category export
+2. Static import is already in `TemplateRegistry.js`
 3. Templates auto-register via the config system
 
-**New Effect**:
-1. Check if it belongs in `advancedEffectGenerator.js` or needs its own generator
-2. Follow existing patterns for SVG structure and animations
-3. Test with different text lengths and colors
+### New Effect Category
+1. Create new generator file in `src/utils/gradientGenerators/`
+2. Create new template file in `src/templates/`
+3. Add static import to `src/core/TemplateRegistry.js`
+4. Add load function to `src/core/EffectLoader.js`
 
-### Component Structure
-- **Pages**: Next.js pages in `src/pages/`
-  - `/` - Home page with quick access and recent templates
-  - `/create` - Advanced creation interface with real-time preview
-  - `/templates` - Template gallery with search and filters
-  - `/settings` - User preferences and configuration
-- **Components**: React components in `src/components/`
-  - `SwipeableTemplateCarousel` - Mobile-friendly template browsing
-  - `VirtualizedTemplateGrid` - Performance-optimized template grid
-  - `PropertiesPanel` - Desktop configuration panel
-  - `MobilePropertiesPanel` - Mobile configuration panel
-  - `ColorPicker` - Color selection component
-  - `TemplatePreviewModal` - Template preview overlay
-- **Styles**: CSS Modules in `src/styles/` (match component names) + Tailwind CSS
-- **Utils**: Utility functions in `src/utils/`
-- **Store**: Zustand store in `src/store/` for state management
+## Important Patterns
 
-### Important Patterns
-- Use CSS Modules for component-specific styling, Tailwind for utility classes
-- SVG generation is server-side only (no client-side SVG generation)
-- Color utilities are in `src/utils/colorUtils.js`
-- Animation timing uses CSS variables for consistency
-- Filter effects use SVG `<defs>` with unique IDs to avoid conflicts
-- State management uses Zustand with persistence for favorites and recent templates
+- **Static imports** in TemplateRegistry (not dynamic require)
+- SVG generation is **server-side only**
+- API routes are **excluded from Service Worker cache**
+- Filter effects use unique IDs in SVG `<defs>` to avoid conflicts
+- Use `FilterLibrary` and `AnimationLibrary` for reusable patterns
 - Mobile-first responsive design with dedicated mobile components
-- Dynamic imports for heavy components to improve performance
-- Virtualization for large lists to optimize rendering
 
-### Testing Approach
-Currently no automated tests. When testing changes:
+## Testing Approach
+
+When testing changes:
 1. Test with various text lengths (short, medium, long)
 2. Test all color combinations in templates
 3. Verify animations work smoothly
 4. Check SVG validity (well-formed XML)
 5. Test API endpoint with different parameter combinations
+6. Test in **incognito mode** to bypass Service Worker cache
+7. Clear Service Worker via DevTools > Application if needed
 
 ## Development Guidelines
 
 ### Language Requirements
 - **All text content in pages and components must be in English**
-- No Chinese characters should appear in any user-facing content
-- This includes UI labels, error messages, placeholders, and documentation
+- No Chinese characters in user-facing content
 
 ### Git Workflow
-- Use **Conventional Commits** format for all commits:
+- Use **Conventional Commits** format:
   - `feat:` New features
   - `fix:` Bug fixes
   - `docs:` Documentation changes
-  - `style:` Code style changes (formatting, semicolons, etc.)
   - `refactor:` Code refactoring
-  - `test:` Adding or updating tests
   - `chore:` Maintenance tasks
-- GitHub CLI is available for GitHub operations
-
-### Testing Requirements
-- Create functional tests for each feature implementation
-- Test thoroughly after each small milestone
-- Ensure steady project progress through comprehensive testing
-- Test both positive and negative scenarios
-- Verify edge cases and error handling
 
 ## Current Feature Set
 
-### Gradient Types (140+ types)
-The system supports an extensive array of gradient types organized into categories:
-- **Basic**: Horizontal, vertical, diagonal, radial, conical
-- **Shapes**: Star, heart, lightning, diamond, hexagon
-- **Artistic**: Watercolor, oil paint, graffiti, brush strokes
-- **Tech**: Hologram, quantum, neural network, matrix
-- **Gaming**: Pixel art, neon arcade, cyberpunk, retro wave
-- **Organic**: Aurora, flame, flowing water, crystal growth
-- **Experimental**: Morphing effects, dimensional portals, consciousness streams
+### Statistics
+- **326+ Templates** across 30 categories
+- **200+ Gradient Types** with unique effects
+- **50+ Animation Effects**
+
+### Gradient Categories
+| Category | Examples |
+|----------|----------|
+| Basic | horizontal, vertical, diagonal, radial |
+| Shapes | star, heart, lightning, wave |
+| Artistic | watercolor, oil paint, graffiti |
+| Tech | hologram, quantum, neural network |
+| Gaming | pixel art, neon arcade, cyberpunk |
+| Organic | aurora, flame, flowing water |
+| Dimensional | portal, wormhole, fractal |
+| Consciousness | thought waves, dream logic |
 
 ### User Features
-- **Template System**: 180+ pre-designed templates across 22 categories
-- **Custom Mode**: Full control over colors, gradient type, and animation
-- **Favorites**: Save favorite templates for quick access
-- **Recent History**: Track recently used templates
-- **Real-time Preview**: See changes instantly in create mode
-- **Responsive Design**: Optimized for desktop and mobile devices
-- **Export Options**: Download generated SVGs directly
+- Real-time preview with live updates
+- Favorites and recent history (persisted)
+- Responsive design (desktop + mobile)
+- Direct SVG download
+- PWA support for offline access
