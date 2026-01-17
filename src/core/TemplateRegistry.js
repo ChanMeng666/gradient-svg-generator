@@ -1,42 +1,74 @@
 /**
- * TemplateRegistry - Lazy Template Loading System
+ * TemplateRegistry - Template Loading System
  *
- * This module provides on-demand template loading to reduce initial bundle size
- * and improve startup performance. Templates are loaded by category only when accessed.
+ * This module provides template loading for SVG gradient generation.
+ * Uses static imports to ensure proper Webpack bundling.
  */
 
-// Category metadata with module paths
+// Static imports for all template modules
+const basicTemplates = require('../templates/basicTemplates');
+const prideTemplates = require('../templates/prideTemplates');
+const natureTemplates = require('../templates/natureTemplates');
+const techTemplates = require('../templates/techTemplates');
+const artTemplates = require('../templates/artTemplates');
+const emotionTemplates = require('../templates/emotionTemplates');
+const materialTemplates = require('../templates/materialTemplates');
+const textEffectTemplates = require('../templates/textEffectTemplates');
+const futureTechTemplates = require('../templates/futureTechTemplates');
+const artisticTemplates = require('../templates/artisticTemplates');
+const luxuryTemplates = require('../templates/luxuryTemplates');
+const organicTemplates = require('../templates/organicTemplates');
+const gamingTemplates = require('../templates/gamingTemplates');
+const shapeTemplates = require('../templates/shapeTemplates');
+const animationTemplates = require('../templates/animationTemplates');
+const morphingTemplates = require('../templates/morphingTemplates');
+const fluidDynamicsTemplates = require('../templates/fluidDynamicsTemplates');
+const dimensionalTemplates = require('../templates/dimensionalTemplates');
+const dimensionalPortalTemplates = require('../templates/dimensionalPortalTemplates');
+const digitalLifeTemplates = require('../templates/digitalLifeTemplates');
+const cyberAestheticsTemplates = require('../templates/cyberAestheticsTemplates');
+const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
+const weatherTemplates = require('../templates/weatherTemplates');
+const lightShadowTemplates = require('../templates/lightShadowTemplates');
+const artMovementTemplates = require('../templates/artMovementTemplates');
+const culinaryLiquidTemplates = require('../templates/culinaryLiquidTemplates');
+const patternTemplates = require('../templates/patternTemplates');
+const metallicTemplates = require('../templates/metallicTemplates');
+const pathTextTemplates = require('../templates/pathTextTemplates');
+const capsuleShapeTemplates = require('../templates/capsuleShapeTemplates');
+
+// Category metadata with pre-loaded modules
 const CATEGORY_REGISTRY = {
-  basic: { name: 'Basic', icon: '🎨', module: '../templates/basicTemplates' },
-  pride: { name: 'Pride', icon: '🏳️‍🌈', module: '../templates/prideTemplates' },
-  nature: { name: 'Nature', icon: '🌿', module: '../templates/natureTemplates' },
-  tech: { name: 'Tech', icon: '⚡', module: '../templates/techTemplates' },
-  art: { name: 'Art', icon: '🎭', module: '../templates/artTemplates' },
-  emotion: { name: 'Emotion', icon: '💫', module: '../templates/emotionTemplates' },
-  material: { name: 'Material', icon: '💎', module: '../templates/materialTemplates' },
-  textEffects: { name: 'Text Effects', icon: '✨', module: '../templates/textEffectTemplates' },
-  futureTech: { name: 'Future Tech', icon: '🚀', module: '../templates/futureTechTemplates' },
-  artistic: { name: 'Artistic', icon: '🎨', module: '../templates/artisticTemplates' },
-  luxury: { name: 'Luxury', icon: '👑', module: '../templates/luxuryTemplates' },
-  organicNature: { name: 'Organic', icon: '🌊', module: '../templates/organicTemplates' },
-  gaming: { name: 'Gaming', icon: '🎮', module: '../templates/gamingTemplates' },
-  shape: { name: 'Shape', icon: '⚫', module: '../templates/shapeTemplates' },
-  animation: { name: 'Animation', icon: '🎬', module: '../templates/animationTemplates' },
-  morphing: { name: 'Morphing', icon: '🌊', module: '../templates/morphingTemplates' },
-  fluidDynamics: { name: 'Fluid', icon: '💧', module: '../templates/fluidDynamicsTemplates' },
-  dimensional: { name: 'Dimensional', icon: '🌌', module: '../templates/dimensionalTemplates' },
-  dimensionalPortal: { name: 'Portal', icon: '🌀', module: '../templates/dimensionalPortalTemplates' },
-  digitalLife: { name: 'Digital Life', icon: '🧬', module: '../templates/digitalLifeTemplates' },
-  cyberAesthetics: { name: 'Cyber', icon: '🤖', module: '../templates/cyberAestheticsTemplates' },
-  consciousness: { name: 'Consciousness', icon: '🧠', module: '../templates/consciousnessStreamTemplates' },
-  weather: { name: 'Weather', icon: '🌦️', module: '../templates/weatherTemplates' },
-  lightShadow: { name: 'Light & Shadow', icon: '💡', module: '../templates/lightShadowTemplates' },
-  artMovement: { name: 'Art Movement', icon: '🎭', module: '../templates/artMovementTemplates' },
-  culinaryLiquid: { name: 'Culinary', icon: '☕', module: '../templates/culinaryLiquidTemplates' },
-  pattern: { name: 'Pattern', icon: '🔷', module: '../templates/patternTemplates' },
-  metallic: { name: 'Metallic', icon: '✨', module: '../templates/metallicTemplates' },
-  pathText: { name: 'Path Animation', icon: '✍️', module: '../templates/pathTextTemplates' },
-  capsuleShape: { name: 'Capsule Effects', icon: '💊', module: '../templates/capsuleShapeTemplates' },
+  basic: { name: 'Basic', icon: '🎨', templates: basicTemplates },
+  pride: { name: 'Pride', icon: '🏳️‍🌈', templates: prideTemplates },
+  nature: { name: 'Nature', icon: '🌿', templates: natureTemplates },
+  tech: { name: 'Tech', icon: '⚡', templates: techTemplates },
+  art: { name: 'Art', icon: '🎭', templates: artTemplates },
+  emotion: { name: 'Emotion', icon: '💫', templates: emotionTemplates },
+  material: { name: 'Material', icon: '💎', templates: materialTemplates },
+  textEffects: { name: 'Text Effects', icon: '✨', templates: textEffectTemplates },
+  futureTech: { name: 'Future Tech', icon: '🚀', templates: futureTechTemplates },
+  artistic: { name: 'Artistic', icon: '🎨', templates: artisticTemplates },
+  luxury: { name: 'Luxury', icon: '👑', templates: luxuryTemplates },
+  organicNature: { name: 'Organic', icon: '🌊', templates: organicTemplates },
+  gaming: { name: 'Gaming', icon: '🎮', templates: gamingTemplates },
+  shape: { name: 'Shape', icon: '⚫', templates: shapeTemplates },
+  animation: { name: 'Animation', icon: '🎬', templates: animationTemplates },
+  morphing: { name: 'Morphing', icon: '🌊', templates: morphingTemplates },
+  fluidDynamics: { name: 'Fluid', icon: '💧', templates: fluidDynamicsTemplates },
+  dimensional: { name: 'Dimensional', icon: '🌌', templates: dimensionalTemplates },
+  dimensionalPortal: { name: 'Portal', icon: '🌀', templates: dimensionalPortalTemplates },
+  digitalLife: { name: 'Digital Life', icon: '🧬', templates: digitalLifeTemplates },
+  cyberAesthetics: { name: 'Cyber', icon: '🤖', templates: cyberAestheticsTemplates },
+  consciousness: { name: 'Consciousness', icon: '🧠', templates: consciousnessStreamTemplates },
+  weather: { name: 'Weather', icon: '🌦️', templates: weatherTemplates },
+  lightShadow: { name: 'Light & Shadow', icon: '💡', templates: lightShadowTemplates },
+  artMovement: { name: 'Art Movement', icon: '🎭', templates: artMovementTemplates },
+  culinaryLiquid: { name: 'Culinary', icon: '☕', templates: culinaryLiquidTemplates },
+  pattern: { name: 'Pattern', icon: '🔷', templates: patternTemplates },
+  metallic: { name: 'Metallic', icon: '✨', templates: metallicTemplates },
+  pathText: { name: 'Path Animation', icon: '✍️', templates: pathTextTemplates },
+  capsuleShape: { name: 'Capsule Effects', icon: '💊', templates: capsuleShapeTemplates },
 };
 
 // Cache for loaded templates
@@ -44,7 +76,7 @@ const templateCache = new Map();
 const categoryTemplatesCache = new Map();
 
 /**
- * Load templates for a specific category (lazy)
+ * Load templates for a specific category
  * @param {string} categoryId - The category identifier
  * @returns {Array} Array of templates for the category
  */
@@ -59,26 +91,21 @@ function loadCategoryTemplates(categoryId) {
     return [];
   }
 
-  try {
-    // Dynamic require for server-side (Node.js)
-    const templateModule = require(category.module);
-    const templates = normalizeTemplateModule(templateModule, categoryId);
+  // Use pre-loaded templates from static imports
+  const templateModule = category.templates;
+  const templates = normalizeTemplateModule(templateModule, categoryId);
 
-    // Cache the results
-    categoryTemplatesCache.set(categoryId, templates);
+  // Cache the results
+  categoryTemplatesCache.set(categoryId, templates);
 
-    // Also cache individual templates by name
-    templates.forEach(template => {
-      if (template.name) {
-        templateCache.set(template.name, template);
-      }
-    });
+  // Also cache individual templates by name
+  templates.forEach(template => {
+    if (template.name) {
+      templateCache.set(template.name, template);
+    }
+  });
 
-    return templates;
-  } catch (error) {
-    console.error(`TemplateRegistry: Failed to load category '${categoryId}':`, error.message);
-    return [];
-  }
+  return templates;
 }
 
 /**
