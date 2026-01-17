@@ -155,20 +155,34 @@ function normalizeTemplateModule(module, categoryId) {
  * @returns {Object|null} The template or null if not found
  */
 function getTemplate(templateName) {
+  console.log(`[TemplateRegistry] getTemplate called with name="${templateName}"`);
+
   // Check cache first
   if (templateCache.has(templateName)) {
+    console.log(`[TemplateRegistry] ✅ Found in cache`);
     return templateCache.get(templateName);
   }
+
+  console.log(`[TemplateRegistry] Not in cache, searching categories...`);
+  let categoriesSearched = [];
 
   // Search through all categories (loading them as needed)
   for (const categoryId of Object.keys(CATEGORY_REGISTRY)) {
     const templates = loadCategoryTemplates(categoryId);
+    categoriesSearched.push({ categoryId, templateCount: templates.length });
     const found = templates.find(t => t.name === templateName);
     if (found) {
+      console.log(`[TemplateRegistry] ✅ Found in category "${categoryId}":`, {
+        name: found.name,
+        colors: found.colors,
+        gradientType: found.gradientType
+      });
       return found;
     }
   }
 
+  console.log(`[TemplateRegistry] ⚠️ Template NOT found after searching ${categoriesSearched.length} categories`);
+  console.log(`[TemplateRegistry] Categories searched:`, categoriesSearched);
   return null;
 }
 

@@ -69,6 +69,15 @@ function generateGradientSVG({
   duration = '6s',
   template = ''
 }) {
+  console.log(`[UnifiedGenerator] generateGradientSVG called:`, {
+    text,
+    colors,
+    height,
+    gradientType,
+    duration,
+    template
+  });
+
   // Ensure registry is initialized
   ensureInitialized();
 
@@ -78,7 +87,10 @@ function generateGradientSVG({
   let effectDuration = duration;
 
   if (template) {
+    console.log(`[UnifiedGenerator] Template provided, calling getTemplateConfig("${template}")`);
     const config = getTemplateConfig(template);
+    console.log(`[UnifiedGenerator] getTemplateConfig returned:`, config);
+
     if (config) {
       effectColors = config.colors;
       effectDuration = config.animationDuration;
@@ -87,9 +99,19 @@ function generateGradientSVG({
       const effectMetadata = effectRegistry.get(template);
       if (effectMetadata) {
         effectName = effectMetadata.name;
+        console.log(`[UnifiedGenerator] Template mapped to effect: "${effectName}"`);
       } else {
         effectName = config.gradientType;
+        console.log(`[UnifiedGenerator] Using gradientType from config: "${effectName}"`);
       }
+
+      console.log(`[UnifiedGenerator] Final effect params:`, {
+        effectName,
+        effectColors,
+        effectDuration
+      });
+    } else {
+      console.log(`[UnifiedGenerator] ⚠️ No config returned for template "${template}"`);
     }
   }
 
