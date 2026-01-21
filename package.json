@@ -1,5 +1,5 @@
 {
-  "name": "gradient-svg-generator",
+  "name": "chromaflow",
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "Chan Meng",
   "license": "ISC",
-  "description": "A service that generates animated gradient SVGs with customizable text overlays",
+  "description": "Chromaflow - Create stunning animated SVG gradients with 326+ professional templates",
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@tanstack/react-query": "^5.83.0",

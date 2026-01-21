@@ -1,5 +1,5 @@
-# Gradient SVG Generator - AI Crawler Configuration
-# Professional gradient SVG generation tool with 216+ templates
+# Chromaflow - AI Crawler Configuration
+# Professional gradient SVG generation tool with 326+ templates
 
 User-agent: *
 Allow: /

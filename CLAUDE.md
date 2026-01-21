@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Gradient SVG Generator is a Next.js 13 application that creates animated SVG gradients with customizable text overlays. It features **326+ templates** across **30 categories** and supports **200+ gradient types** with advanced visual effects.
+Chromaflow is a Next.js 13 application that creates animated SVG gradients with customizable text overlays. It features **326+ templates** across **30 categories** and supports **200+ gradient types** with advanced visual effects.
 
 ### Tech Stack
 - **Frontend**: React 18.2 with Next.js 13

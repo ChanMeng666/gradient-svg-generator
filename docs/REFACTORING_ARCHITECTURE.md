@@ -1,4 +1,4 @@
-# Gradient SVG Generator - Refactoring Architecture Documentation
+# Chromaflow - Refactoring Architecture Documentation
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -18,13 +18,13 @@
 
 ## Overview
 
-The Gradient SVG Generator project underwent a major refactoring to improve maintainability, scalability, and code organization. The refactoring introduced a new **Effect Registry System** that centralizes effect management and provides a cleaner architecture for SVG generation.
+The Chromaflow project underwent a major refactoring to improve maintainability, scalability, and code organization. The refactoring introduced a new **Effect Registry System** that centralizes effect management and provides a cleaner architecture for SVG generation.
 
 ### Architecture Version: 3.0
 
 ```mermaid
 mindmap
-  root((Gradient SVG Generator))
+  root((Chromaflow))
     Core Modules
       UnifiedGradientGenerator
       EffectRegistry

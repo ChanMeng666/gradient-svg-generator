@@ -96,10 +96,10 @@ def generate_gradient_url(text, template='neural-network', height=150):
         customInstructions="This is the comprehensive API documentation page. Provide specific integration examples, parameter combinations, and troubleshooting guidance. Help developers implement the API in their projects with copy-pasteable code examples."
       />
       <Head>
-        <title>API Documentation - Gradient SVG Generator | RESTful API for Developers</title>
-        <meta name="description" content="Complete API documentation for Gradient SVG Generator. Generate beautiful animated SVG gradients programmatically with our free RESTful API. No authentication required." />
-        <meta name="keywords" content="SVG API, gradient API, REST API, developer documentation, programmatic generation, free API" />
-        <meta property="og:title" content="Gradient SVG API Documentation" />
+        <title>API Documentation - Chromaflow | RESTful API for Developers</title>
+        <meta name="description" content="Complete API documentation for Chromaflow. Generate beautiful animated SVG gradients programmatically with our free RESTful API. No authentication required." />
+        <meta name="keywords" content="chromaflow, SVG API, gradient API, REST API, developer documentation, programmatic generation, free API" />
+        <meta property="og:title" content="Chromaflow API Documentation" />
         <meta property="og:description" content="Free RESTful API for generating professional animated SVG gradients. Complete documentation with examples." />
       </Head>
 
@@ -116,7 +116,7 @@ def generate_gradient_url(text, template='neural-network', height=150):
               </Badge>
               
               <h1 className="text-4xl font-bold mb-4">
-                Gradient SVG API
+                Chromaflow API
               </h1>
               
               <p className="text-xl text-muted-foreground mb-6">

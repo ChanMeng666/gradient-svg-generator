@@ -1,6 +1,6 @@
 # Capsule-Render Integration Guide
 
-This document describes the new features inspired by the [capsule-render](https://github.com/kyechan99/capsule-render) project and how they've been integrated into the Gradient SVG Generator.
+This document describes the new features inspired by the [capsule-render](https://github.com/kyechan99/capsule-render) project and how they've been integrated into Chromaflow.
 
 ## 📊 Project Analysis
 

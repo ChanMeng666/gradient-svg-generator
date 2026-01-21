@@ -120,15 +120,15 @@ export default function Home() {
     <>
       <GEOHead pageType="home" />
       <Head>
-        <title>Gradient SVG Generator - Create Stunning Animated Gradients | 326+ Professional Templates</title>
+        <title>Chromaflow - Create Stunning Animated SVG Gradients | 326+ Professional Templates</title>
         <meta name="description" content="Generate beautiful animated SVG gradients with 326+ professional templates across 30 categories. Perfect for headers, banners, and creative projects. Free API, no registration required." />
-        <meta name="keywords" content="gradient generator, SVG creator, animated banners, GitHub headers, design tools, API, templates, free" />
-        <meta property="og:title" content="Gradient SVG Generator - 326+ Professional Templates" />
+        <meta name="keywords" content="chromaflow, gradient generator, SVG creator, animated banners, GitHub headers, design tools, API, templates, free" />
+        <meta property="og:title" content="Chromaflow - 326+ Professional Gradient Templates" />
         <meta property="og:description" content="Create stunning animated SVG gradients with 326+ professional templates across 30 categories. Free API access, no registration required." />
-        <meta property="og:url" content="https://gradient-svg-generator.vercel.app" />
+        <meta property="og:url" content="https://chromaflow.vercel.app" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Gradient SVG Generator - Professional Templates" />
+        <meta name="twitter:title" content="Chromaflow - Professional Gradient Templates" />
         <meta name="twitter:description" content="326+ professional gradient templates across 30 categories with real-time API. Perfect for developers and designers." />
       </Head>
 
@@ -434,12 +434,12 @@ export default function Home() {
             {/* Main Project Brand Section */}
             <div className="text-center mb-8">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <img 
-                  src="/gradient-svg-generator.svg" 
-                  alt="Gradient SVG Generator" 
+                <img
+                  src="/gradient-svg-generator.svg"
+                  alt="Chromaflow"
                   className="h-8 w-8"
                 />
-                <h3 className="text-xl font-bold">Gradient SVG Generator</h3>
+                <h3 className="text-xl font-bold">Chromaflow</h3>
               </div>
               <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
                 Professional gradient generator with 326+ templates and 140+ animation effects.

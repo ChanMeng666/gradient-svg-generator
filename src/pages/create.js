@@ -169,7 +169,7 @@ export default function Create() {
         customInstructions="This is the main creation interface where users can design custom gradients with real-time preview. Guide users through template selection, color customization, and parameter tuning for optimal results."
       />
       <Head>
-        <title>Create Custom Gradients - Gradient SVG Generator | Real-time Editor</title>
+        <title>Create Custom Gradients - Chromaflow | Real-time Editor</title>
         <meta name="description" content="Create beautiful animated SVG gradients with our powerful real-time editor. Choose from 326+ professional templates including Path Animation, Weather, Light & Shadow, Art Movement, and Culinary effects or design your own custom gradients. Free API generation." />
         <meta name="keywords" content="gradient creator, SVG editor, custom gradients, real-time preview, design tool, API generator, path animation, typing animation, weather effects, light shadow, art movement, culinary" />
         <meta property="og:title" content="Gradient Creator - Real-time SVG Editor" />

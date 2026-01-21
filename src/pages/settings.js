@@ -66,7 +66,7 @@ export default function Settings() {
   return (
     <>
       <Head>
-        <title>Settings - Gradient SVG Generator</title>
+        <title>Settings - Chromaflow</title>
       </Head>
       <div className={`container ${isDarkMode ? 'dark' : ''}`}>
         <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />

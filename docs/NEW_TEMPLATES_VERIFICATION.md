@@ -1,7 +1,7 @@
 # New SVG Animation Templates Verification
 
 ## Overview
-This document verifies that 9 new SVG animation templates inspired by the svg-banners example project have been successfully integrated into the Gradient SVG Generator.
+This document verifies that 9 new SVG animation templates inspired by the svg-banners example project have been successfully integrated into Chromaflow.
 
 ## Integration Status: ✅ COMPLETE
 
@@ -203,7 +203,7 @@ curl -s "http://localhost:3000/api/svg?text=FRAME&template=terminal-frame&height
 
 ## Conclusion
 
-✅ All 9 new SVG animation templates have been successfully integrated into the Gradient SVG Generator and are now available on both the `/create` and `/templates` pages. Users can access them through the UI or directly via the API endpoint.
+✅ All 9 new SVG animation templates have been successfully integrated into Chromaflow and are now available on both the `/create` and `/templates` pages. Users can access them through the UI or directly via the API endpoint.
 
 The templates use advanced foreignObject-based animations with CSS keyframes, inspired by the svg-banners example project, bringing sophisticated animation effects to the platform.
 

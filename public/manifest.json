@@ -1,7 +1,7 @@
 {
-  "name": "Gradient SVG Generator",
-  "short_name": "GradientSVG",
-  "description": "Create beautiful animated SVG gradients with 216+ templates",
+  "name": "Chromaflow",
+  "short_name": "Chromaflow",
+  "description": "Create beautiful animated SVG gradients with 326+ templates",
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "standalone",

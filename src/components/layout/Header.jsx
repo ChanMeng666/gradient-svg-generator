@@ -28,13 +28,13 @@ export default function Header({ onMenuClick, showMobileMenu = true }) {
 
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <img 
-            src="/gradient-svg-generator.svg" 
-            alt="Gradient SVG Generator" 
+          <img
+            src="/gradient-svg-generator.svg"
+            alt="Chromaflow"
             className="h-8 w-8"
           />
           <span className="font-bold text-xl hidden sm:inline-block">
-            Gradient SVG
+            Chromaflow
           </span>
         </Link>
 

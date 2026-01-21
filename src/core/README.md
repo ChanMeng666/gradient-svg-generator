@@ -1,6 +1,6 @@
 # Core Architecture Documentation
 
-This directory contains the core refactored architecture for the Gradient SVG Generator. The new system provides a unified, extensible, and maintainable approach to SVG effect generation.
+This directory contains the core refactored architecture for Chromaflow. The new system provides a unified, extensible, and maintainable approach to SVG effect generation.
 
 ## Overview
 

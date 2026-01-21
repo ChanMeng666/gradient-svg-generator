@@ -2,7 +2,7 @@
 
 [![Project Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Gradient+SVG+Generator&height=300&gradientType=holographicUI&duration=10s&color0=00ffff&color1=40e0d0&color2=87ceeb&color3=add8e6&color4=b0e0e6&color5=f0f8ff)](#)
 
-# 🎨 Gradient SVG Generator<br/><h3>Professional Dynamic SVG Gradient Creator with 300+ Templates</h3>
+# 🎨 Chromaflow<br/><h3>Professional Dynamic SVG Gradient Creator with 300+ Templates</h3>
 
 The ultimate gradient SVG generator featuring 200+ gradient types, 300+ professional templates across 30 categories, and real-time preview.<br/>
 Supports custom colors, multiple animation effects, and extensible template system with advanced visual effects.<br/>
@@ -29,7 +29,7 @@ One-click **FREE** deployment of your stunning gradient banners.
 [![][github-license-shield]][github-license-link]<br>
 [![][sponsor-shield]][sponsor-link]
 
-**Share Gradient SVG Generator**
+**Share Chromaflow**
 
 [![][share-x-shield]][share-x-link]
 [![][share-telegram-shield]][share-telegram-link]
@@ -295,7 +295,7 @@ One-click **FREE** deployment of your stunning gradient banners.
 
 #### TOC
 
-- [🎨 Gradient SVG Generator](#-gradient-svg-generator)
+- [🎨 Chromaflow](#-chromaflow)
       - [TOC](#toc)
       - [](#)
   - [🌟 Introduction](#-introduction)
