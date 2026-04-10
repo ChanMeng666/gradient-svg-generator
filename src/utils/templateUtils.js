@@ -33,6 +33,8 @@ import metallicTemplates from '../templates/metallicTemplates';
 import pathTextTemplates from '../templates/pathTextTemplates';
 // 🌟 NEW: Capsule-Render Inspired Shape Templates (blob, wave, blur, shape backgrounds)
 import capsuleShapeTemplates from '../templates/capsuleShapeTemplates';
+// 🏷️ NEW: GitHub Profile Templates (badges, banners, terminals, cards)
+import githubProfileTemplates from '../templates/githubProfileTemplates';
 
 // Legacy support - import template categories if it exists
 let templateCategories = [];
@@ -79,6 +81,8 @@ const allTemplateGroups = [
   pathTextTemplates,
   // 🌟 NEW: Capsule-Render Inspired Shape Templates
   capsuleShapeTemplates,
+  // 🏷️ NEW: GitHub Profile Templates
+  githubProfileTemplates,
 ];
 
 // Get all templates as a flat array
@@ -107,7 +111,7 @@ export function getAllTemplates() {
             'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
             'digitalLife', 'cyberAesthetics', 'consciousness',
             'weather', 'lightShadow', 'artMovement', 'culinaryLiquid',
-            'pattern', 'metallic', 'pathText', 'capsuleShape'];
+            'pattern', 'metallic', 'pathText', 'capsuleShape', 'githubProfile'];
           
           allTemplates.push({
             ...template,
@@ -191,6 +195,8 @@ export function getCategories() {
     pathText: { id: 'pathText', name: 'Path Animation', icon: '✍️' },
     // 🌟 NEW: Capsule-Render Inspired Shape Category
     capsuleShape: { id: 'capsuleShape', name: 'Capsule Effects', icon: '💊' },
+    // 🏷️ NEW: GitHub Profile Category
+    githubProfile: { id: 'githubProfile', name: 'GitHub Profile', icon: '🏷️' },
   };
 
   // Get unique categories from templates
@@ -232,7 +238,7 @@ export function getTemplateByName(name) {
         'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
         'digitalLife', 'cyberAesthetics', 'consciousness',
         'weather', 'lightShadow', 'artMovement', 'culinaryLiquid',
-        'pattern', 'metallic', 'pathText', 'capsuleShape'];
+        'pattern', 'metallic', 'pathText', 'capsuleShape', 'githubProfile'];
 
       return {
         ...template,
