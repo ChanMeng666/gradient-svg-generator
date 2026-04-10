@@ -849,6 +849,166 @@ Beyond the core template and gradient systems, this project includes:
 
 </details>
 
+### 🏷️ GitHub Profile Templates (30 Templates)
+
+*Badges, banners, terminals, and cards designed for GitHub profile READMEs — animated SVG effects you can embed anywhere with a single `<img>` tag.*
+
+#### Shimmer Badges
+
+Colored status tags with an animated light sweep — perfect for labeling sections, features, or achievements.
+
+<div align="center">
+
+| Preview | Markdown Code |
+|---------|---------------|
+| ![Best Practice](https://gradient-svg-generator.vercel.app/api/svg?text=Best%20Practice&template=shimmer-red&height=28) | `![Best Practice](https://gradient-svg-generator.vercel.app/api/svg?text=Best%20Practice&template=shimmer-red&height=28)` |
+| ![Implemented](https://gradient-svg-generator.vercel.app/api/svg?text=Implemented&template=shimmer-green&height=28) | `![Implemented](https://gradient-svg-generator.vercel.app/api/svg?text=Implemented&template=shimmer-green&height=28)` |
+| ![Workflow](https://gradient-svg-generator.vercel.app/api/svg?text=Workflow&template=shimmer-blue&height=28) | `![Workflow](https://gradient-svg-generator.vercel.app/api/svg?text=Workflow&template=shimmer-blue&height=28)` |
+| ![Community](https://gradient-svg-generator.vercel.app/api/svg?text=Community&template=shimmer-gold&height=28) | `![Community](https://gradient-svg-generator.vercel.app/api/svg?text=Community&template=shimmer-gold&height=28)` |
+| ![Claude Code](https://gradient-svg-generator.vercel.app/api/svg?text=Claude%20Code&template=shimmer-orange&height=28) | `![Claude Code](https://gradient-svg-generator.vercel.app/api/svg?text=Claude%20Code&template=shimmer-orange&height=28)` |
+| ![Beta](https://gradient-svg-generator.vercel.app/api/svg?text=Beta&template=shimmer-purple&height=28) | `![Beta](https://gradient-svg-generator.vercel.app/api/svg?text=Beta&template=shimmer-purple&height=28)` |
+| ![Advanced](https://gradient-svg-generator.vercel.app/api/svg?text=Advanced&template=shimmer-dark&height=28) | `![Advanced](https://gradient-svg-generator.vercel.app/api/svg?text=Advanced&template=shimmer-dark&height=28)` |
+
+</div>
+
+> [!TIP]
+> Change the badge color by using a custom color parameter: `&color0=your_hex_color` (without `#`). Change the text by editing the `text=` parameter.
+
+#### Terminal Typing
+
+macOS-style terminal window with typing animation and blinking cursor — great for showcasing commands or setup instructions.
+
+<div align="center">
+
+| Preview | Markdown Code |
+|---------|---------------|
+| ![Terminal Purple](https://gradient-svg-generator.vercel.app/api/svg?text=npx%20create-next-app&template=terminal-purple&height=50) | `![Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=npx%20create-next-app&template=terminal-purple&height=50)` |
+| ![Terminal Green](https://gradient-svg-generator.vercel.app/api/svg?text=npm%20install%20chromaflow&template=terminal-green&height=50) | `![Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=npm%20install%20chromaflow&template=terminal-green&height=50)` |
+| ![Terminal Blue](https://gradient-svg-generator.vercel.app/api/svg?text=git%20push%20origin%20main&template=terminal-blue&height=50) | `![Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=git%20push%20origin%20main&template=terminal-blue&height=50)` |
+
+</div>
+
+#### Skill Pills
+
+Row of rounded skill/technology pills with shimmer overlay — perfect for showing your tech stack. Use `;` to separate items.
+
+<div align="center">
+
+| Preview | Markdown Code |
+|---------|---------------|
+| ![Pills Dark](https://gradient-svg-generator.vercel.app/api/svg?text=React;Node.js;Python;Docker&template=pills-dark&height=36) | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=React;Node.js;Python;Docker&template=pills-dark&height=36)` |
+| ![Pills Rainbow](https://gradient-svg-generator.vercel.app/api/svg?text=TypeScript;Go;Rust;Swift&template=pills-rainbow&height=36) | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=TypeScript;Go;Rust;Swift&template=pills-rainbow&height=36)` |
+| ![Pills Blue](https://gradient-svg-generator.vercel.app/api/svg?text=AWS;GCP;Azure&template=pills-blue&height=36) | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=AWS;GCP;Azure&template=pills-blue&height=36)` |
+| ![Pills Purple](https://gradient-svg-generator.vercel.app/api/svg?text=Claude;GPT;Gemini&template=pills-purple&height=36) | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=Claude;GPT;Gemini&template=pills-purple&height=36)` |
+
+</div>
+
+> [!TIP]
+> Separate skill names with `;` (semicolons) in the `text=` parameter. Add more colors with `&color0=hex&color1=hex` to alternate pill colors.
+
+#### Shimmer Banners
+
+Wide announcement bars with animated shimmer sweep — ideal for project status, CTAs, or featured notices.
+
+<div align="center">
+
+| Preview | Markdown Code |
+|---------|---------------|
+| ![Banner Orange](https://gradient-svg-generator.vercel.app/api/svg?text=Developed%20by%20Claude%20Code&template=banner-orange&height=32) | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Developed%20by%20Claude%20Code&template=banner-orange&height=32)` |
+| ![Banner Dark](https://gradient-svg-generator.vercel.app/api/svg?text=Now%20Available%20on%20npm&template=banner-dark&height=32) | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Now%20Available%20on%20npm&template=banner-dark&height=32)` |
+| ![Banner Blue](https://gradient-svg-generator.vercel.app/api/svg?text=Star%20this%20repo%20if%20you%20find%20it%20useful&template=banner-blue&height=32) | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Star%20this%20repo%20if%20you%20find%20it%20useful&template=banner-blue&height=32)` |
+| ![Banner Red](https://gradient-svg-generator.vercel.app/api/svg?text=Breaking%20Changes%20in%20v2.0&template=banner-red&height=32) | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Breaking%20Changes%20in%20v2.0&template=banner-red&height=32)` |
+
+</div>
+
+#### Shimmer Text
+
+Text with an animated internal gradient highlight — the light passes through the letterforms themselves. Ideal for titles and headings.
+
+<div align="center">
+
+| Preview | Markdown Code |
+|---------|---------------|
+| ![Purple Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Software%20Architect&template=text-shimmer-purple&height=40) | `![Title](https://gradient-svg-generator.vercel.app/api/svg?text=Software%20Architect&template=text-shimmer-purple&height=40)` |
+| ![Blue Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Full%20Stack%20Developer&template=text-shimmer-blue&height=40) | `![Title](https://gradient-svg-generator.vercel.app/api/svg?text=Full%20Stack%20Developer&template=text-shimmer-blue&height=40)` |
+| ![Gold Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Open%20Source%20Contributor&template=text-shimmer-gold&height=40) | `![Title](https://gradient-svg-generator.vercel.app/api/svg?text=Open%20Source%20Contributor&template=text-shimmer-gold&height=40)` |
+
+</div>
+
+#### Gold Badges
+
+Luxury metallic badges with gold gradient, shimmer sweep, and pulsing diamond accents — for highlighting premium features or achievements.
+
+<div align="center">
+
+| Preview | Markdown Code |
+|---------|---------------|
+| ![Gold Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Featured%20Project&template=gold-luxury&height=40) | `![Badge](https://gradient-svg-generator.vercel.app/api/svg?text=Featured%20Project&template=gold-luxury&height=40)` |
+| ![Platinum](https://gradient-svg-generator.vercel.app/api/svg?text=Enterprise%20Ready&template=gold-platinum&height=40) | `![Badge](https://gradient-svg-generator.vercel.app/api/svg?text=Enterprise%20Ready&template=gold-platinum&height=40)` |
+| ![Rose Gold](https://gradient-svg-generator.vercel.app/api/svg?text=Premium%20Quality&template=gold-rose&height=40) | `![Badge](https://gradient-svg-generator.vercel.app/api/svg?text=Premium%20Quality&template=gold-rose&height=40)` |
+
+</div>
+
+#### Social / Achievement Badges
+
+Wide achievement badges with auto-detected light/dark text — for showcasing milestones, trending status, or social proof.
+
+<div align="center">
+
+| Preview | Markdown Code |
+|---------|---------------|
+| ![Trending](https://gradient-svg-generator.vercel.app/api/svg?text=GitHub%20Monthly%20Trending%20%C2%B7%20Mar%202026&template=social-trending&height=32) | `![Trending](https://gradient-svg-generator.vercel.app/api/svg?text=GitHub%20Monthly%20Trending&template=social-trending&height=32)` |
+| ![Achievement Red](https://gradient-svg-generator.vercel.app/api/svg?text=Top%201%25%20Poster%20on%20Reddit&template=social-achievement-red&height=32) | `![Achievement](https://gradient-svg-generator.vercel.app/api/svg?text=Top%201%25%20Poster%20on%20Reddit&template=social-achievement-red&height=32)` |
+| ![Achievement Blue](https://gradient-svg-generator.vercel.app/api/svg?text=500%2B%20Stars%20on%20GitHub&template=social-achievement-blue&height=32) | `![Achievement](https://gradient-svg-generator.vercel.app/api/svg?text=500%2B%20Stars%20on%20GitHub&template=social-achievement-blue&height=32)` |
+| ![Achievement Green](https://gradient-svg-generator.vercel.app/api/svg?text=100%25%20Test%20Coverage&template=social-achievement-green&height=32) | `![Achievement](https://gradient-svg-generator.vercel.app/api/svg?text=100%25%20Test%20Coverage&template=social-achievement-green&height=32)` |
+
+</div>
+
+#### Repo Cards
+
+GitHub-style two-panel cards with icon area, repo name, and shimmer overlay — for linking to your repositories.
+
+<div align="center">
+
+| Preview | Markdown Code |
+|---------|---------------|
+| ![Repo Dark](https://gradient-svg-generator.vercel.app/api/svg?text=my-awesome-project&template=repo-card-dark&height=48) | `![Repo](https://gradient-svg-generator.vercel.app/api/svg?text=my-awesome-project&template=repo-card-dark&height=48)` |
+| ![Repo Blue](https://gradient-svg-generator.vercel.app/api/svg?text=chromaflow&template=repo-card-blue&height=48) | `![Repo](https://gradient-svg-generator.vercel.app/api/svg?text=chromaflow&template=repo-card-blue&height=48)` |
+
+</div>
+
+<details>
+<summary><kbd>🎯 Custom GitHub Profile Effects via API</kbd></summary>
+
+You can also use the `gradientType` parameter directly for full customization:
+
+```markdown
+<!-- Custom shimmer badge with any color -->
+![Custom](https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Label&gradientType=shimmerBadge&color0=ff6b6b&height=28)
+
+<!-- Terminal with custom prompt color -->
+![Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=docker%20compose%20up&gradientType=terminalTyping&color0=22c55e&height=50)
+
+<!-- Skill pills with custom colors per pill -->
+![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=React;Vue;Angular&gradientType=skillPills&color0=61dafb&color1=4fc08d&color2=dd0031&height=36)
+
+<!-- Shimmer text with base + accent color -->
+![Title](https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Title&gradientType=shimmerText&color0=1f2937&color1=f59e0b&height=40)
+
+<!-- Gold badge with custom gold tones -->
+![Gold](https://gradient-svg-generator.vercel.app/api/svg?text=Award%20Winner&gradientType=goldBadge&color0=b8860b&color1=daa520&color2=ffd700&height=44)
+
+<!-- Social badge — auto light/dark text based on background -->
+![Social](https://gradient-svg-generator.vercel.app/api/svg?text=10K%20Downloads&gradientType=socialBadge&color0=16a34a&height=32)
+
+<!-- Repo card with custom panel colors -->
+![Repo](https://gradient-svg-generator.vercel.app/api/svg?text=project-name&gradientType=repoCard&color0=1e3a5f&color1=e8f0fe&height=56)
+```
+
+</details>
+
+---
+
 ## 🔧 API Reference
 
 ### 🌐 Base URL
@@ -937,6 +1097,9 @@ https://gradient-svg-generator.vercel.app/api/svg
 'blobMorph', 'liquidBlob', 'organicBlob', 'layeredWaves', 'blurMotion', 'dreamyCircles', 'abstractBlur'
 // Shape Backgrounds (7 types)
 'cylinder', 'softRounded', 'eggShape', 'sliceShape', 'speechBubble', 'sharkTeeth', 'largeRounded'
+
+// GitHub Profile Effects (8 types)
+'shimmerBadge', 'terminalTyping', 'skillPills', 'shimmerBanner', 'shimmerText', 'goldBadge', 'socialBadge', 'repoCard'
 ```
 
 ### 🚀 Usage Examples
