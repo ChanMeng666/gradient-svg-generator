@@ -38,6 +38,8 @@ const consciousnessStreamTemplates = require('../templates/consciousnessStreamTe
 // 🌟 NEW: Pattern & Metallic Templates (inspired by example project)
 const patternTemplates = require('../templates/patternTemplates');
 const metallicTemplates = require('../templates/metallicTemplates');
+// 🏷️ NEW: GitHub Profile Templates (badges, banners, terminals, cards)
+const githubProfileTemplates = require('../templates/githubProfileTemplates');
 
 // Template categories configuration
 const templateCategories = [
@@ -211,6 +213,13 @@ const templateCategories = [
     icon: '✨',
     description: 'Luxurious metallic effects with shimmer, shine, and glow animations',
     templates: Object.values(metallicTemplates)
+  },
+  {
+    id: 'github-profile',
+    name: 'GitHub Profile',
+    icon: '🏷️',
+    description: 'Badges, banners, terminals, and cards for GitHub profile READMEs',
+    templates: Object.values(githubProfileTemplates)
   }
 ];
 
