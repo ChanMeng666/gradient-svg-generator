@@ -36,6 +36,7 @@ const patternTemplates = require('../templates/patternTemplates');
 const metallicTemplates = require('../templates/metallicTemplates');
 const pathTextTemplates = require('../templates/pathTextTemplates');
 const capsuleShapeTemplates = require('../templates/capsuleShapeTemplates');
+const githubProfileTemplates = require('../templates/githubProfileTemplates');
 
 // Category metadata with pre-loaded modules
 const CATEGORY_REGISTRY = {
@@ -69,6 +70,7 @@ const CATEGORY_REGISTRY = {
   metallic: { name: 'Metallic', icon: '✨', templates: metallicTemplates },
   pathText: { name: 'Path Animation', icon: '✍️', templates: pathTextTemplates },
   capsuleShape: { name: 'Capsule Effects', icon: '💊', templates: capsuleShapeTemplates },
+  githubProfile: { name: 'GitHub Profile', icon: '🏷️', templates: githubProfileTemplates },
 };
 
 // Cache for loaded templates
