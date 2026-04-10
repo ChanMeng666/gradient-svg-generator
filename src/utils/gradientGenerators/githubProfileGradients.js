@@ -5,10 +5,18 @@
  * GitHub Profile SVG effect generators
  */
 
+// Ensure color has '#' prefix — API pipeline sends colors without it
+function normalizeColor(c) {
+  if (!c) return '#555555';
+  const s = String(c).trim();
+  return s.startsWith('#') ? s : `#${s}`;
+}
+
 // ─── 1. createShimmerBadge ───────────────────────────────────────────────────
 function createShimmerBadge(stops, animationConfig, animationDuration, params) {
   const text = (params && params.text) || 'Badge';
-  const colors = (params && params.colors) || ['#6366f1'];
+  const rawColors = (params && params.colors) || ['6366f1'];
+  const colors = rawColors.map(normalizeColor);
   const height = (params && params.height) || 32;
   const bgColor = colors[0];
   const charWidth = 8.5;
@@ -51,7 +59,8 @@ function createShimmerBadge(stops, animationConfig, animationDuration, params) {
 // ─── 2. createTerminalTyping ─────────────────────────────────────────────────
 function createTerminalTyping(stops, animationConfig, animationDuration, params) {
   const text = (params && params.text) || '$ hello world';
-  const colors = (params && params.colors) || ['#a855f7'];
+  const rawColors = (params && params.colors) || ['a855f7'];
+  const colors = rawColors.map(normalizeColor);
   const height = (params && params.height) || 60;
   const promptColor = colors[0];
   const dur = animationDuration || '3s';
@@ -95,7 +104,8 @@ function createTerminalTyping(stops, animationConfig, animationDuration, params)
 // ─── 3. createSkillPills ─────────────────────────────────────────────────────
 function createSkillPills(stops, animationConfig, animationDuration, params) {
   const text = (params && params.text) || 'React;Node.js;Python';
-  const colors = (params && params.colors) || ['#6366f1', '#a855f7', '#ec4899'];
+  const rawColors = (params && params.colors) || ['6366f1', 'a855f7', 'ec4899'];
+  const colors = rawColors.map(normalizeColor);
   const height = (params && params.height) || 36;
   const skills = text.split(';').map(s => s.trim()).filter(Boolean);
   const pillHeight = 28;
@@ -142,7 +152,8 @@ function createSkillPills(stops, animationConfig, animationDuration, params) {
 // ─── 4. createShimmerBanner ──────────────────────────────────────────────────
 function createShimmerBanner(stops, animationConfig, animationDuration, params) {
   const text = (params && params.text) || 'Developed by Claude Code';
-  const colors = (params && params.colors) || ['#6366f1'];
+  const rawColors = (params && params.colors) || ['6366f1'];
+  const colors = rawColors.map(normalizeColor);
   const height = (params && params.height) || 36;
   const bgColor = colors[0];
   const charWidth = 9;
@@ -184,7 +195,8 @@ function createShimmerBanner(stops, animationConfig, animationDuration, params) 
 // ─── 5. createShimmerText ────────────────────────────────────────────────────
 function createShimmerText(stops, animationConfig, animationDuration, params) {
   const text = (params && params.text) || 'Shimmer Text';
-  const colors = (params && params.colors) || ['#6366f1', '#a855f7'];
+  const rawColors = (params && params.colors) || ['6366f1', 'a855f7'];
+  const colors = rawColors.map(normalizeColor);
   const height = (params && params.height) || 60;
   const baseColor = colors[0];
   const accentColor = colors.length > 1 ? colors[1] : '#ffffff';
@@ -285,7 +297,8 @@ function createGoldBadge(stops, animationConfig, animationDuration, params) {
 // ─── 7. createSocialBadge ────────────────────────────────────────────────────
 function createSocialBadge(stops, animationConfig, animationDuration, params) {
   const text = (params && params.text) || 'Follow';
-  const colors = (params && params.colors) || ['#1DA1F2'];
+  const rawColors = (params && params.colors) || ['1DA1F2'];
+  const colors = rawColors.map(normalizeColor);
   const height = (params && params.height) || 30;
   const bgColor = colors[0];
   const charWidth = 8;
@@ -334,7 +347,8 @@ function createSocialBadge(stops, animationConfig, animationDuration, params) {
 // ─── 8. createRepoCard ──────────────────────────────────────────────────────
 function createRepoCard(stops, animationConfig, animationDuration, params) {
   const text = (params && params.text) || 'my-repo';
-  const colors = (params && params.colors) || ['#24292e', '#f6f8fa'];
+  const rawColors = (params && params.colors) || ['24292e', 'f6f8fa'];
+  const colors = rawColors.map(normalizeColor);
   const height = (params && params.height) || 48;
   const darkColor = colors[0];
   const lightColor = colors.length > 1 ? colors[1] : '#f6f8fa';
