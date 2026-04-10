@@ -137,5 +137,15 @@ export const GRADIENT_TYPES = [
   { value: 'anxietySpiral', label: 'Anxiety Spiral' },
   { value: 'egoDissolution', label: 'Ego Dissolution' },
   { value: 'psychedelicInsight', label: 'Psychedelic Insight' },
-  { value: 'collectiveUnconscious', label: 'Collective Unconscious' }
+  { value: 'collectiveUnconscious', label: 'Collective Unconscious' },
+
+  // GitHub Profile effects
+  { value: 'shimmerBadge', label: 'Shimmer Badge' },
+  { value: 'terminalTyping', label: 'Terminal Typing' },
+  { value: 'skillPills', label: 'Skill Pills' },
+  { value: 'shimmerBanner', label: 'Shimmer Banner' },
+  { value: 'shimmerText', label: 'Shimmer Text' },
+  { value: 'goldBadge', label: 'Gold Badge' },
+  { value: 'socialBadge', label: 'Social Badge' },
+  { value: 'repoCard', label: 'Repo Card' },
 ]; 
