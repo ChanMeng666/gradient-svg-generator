@@ -203,7 +203,11 @@ function generateFromRegistry(effectMetadata, params) {
           return `<stop offset="${offset}%" stop-color="#${color}" />`;
         }).join('');
 
-        const result = effectMetadata.generator(stops, animationConfig, duration);
+        const result = effectMetadata.generator(stops, animationConfig, duration, {
+          text,
+          colors,
+          height
+        });
 
         // Check if it's signaling to use advanced effect
         if (result && typeof result === 'object' && result.useAdvancedEffect) {
@@ -217,9 +221,19 @@ function generateFromRegistry(effectMetadata, params) {
           });
         }
 
-        // Otherwise, treat as complete SVG document
+        // If result has contentType 'complete', pass through directly
+        if (result && typeof result === 'object' && result.contentType === 'complete') {
+          return svgComposer.compose({
+            content: result.content,
+            contentType: 'complete',
+            width,
+            height
+          });
+        }
+
+        // Otherwise, treat as complete SVG document string
         return svgComposer.compose({
-          content: result,
+          content: typeof result === 'string' ? result : (result && result.content) || result,
           contentType: 'complete',
           width,
           height
