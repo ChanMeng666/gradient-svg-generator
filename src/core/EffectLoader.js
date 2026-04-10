@@ -45,6 +45,7 @@ const culinaryLiquidGradients = require('../utils/gradientGenerators/culinaryLiq
 const patternGradients = require('../utils/gradientGenerators/patternGradients');
 const metallicGradients = require('../utils/gradientGenerators/metallicGradients');
 const pathTextGradients = require('../utils/gradientGenerators/pathTextGradients');
+const githubProfileGradients = require('../utils/gradientGenerators/githubProfileGradients');
 
 // Import advanced effect generators
 const { generateAdvancedEffect } = require('../utils/advancedEffectGenerator');
@@ -187,7 +188,39 @@ const TEMPLATE_MAPPINGS = {
   'anxiety-spiral': 'anxietySpiral',
   'ego-dissolution': 'egoDissolution',
   'psychedelic-insight': 'psychedelicInsight',
-  'collective-unconscious': 'collectiveUnconscious'
+  'collective-unconscious': 'collectiveUnconscious',
+
+  // GitHub Profile templates
+  'shimmer-red': 'shimmerBadge',
+  'shimmer-green': 'shimmerBadge',
+  'shimmer-blue': 'shimmerBadge',
+  'shimmer-gold': 'shimmerBadge',
+  'shimmer-orange': 'shimmerBadge',
+  'shimmer-purple': 'shimmerBadge',
+  'shimmer-dark': 'shimmerBadge',
+  'terminal-purple': 'terminalTyping',
+  'terminal-green': 'terminalTyping',
+  'terminal-blue': 'terminalTyping',
+  'pills-dark': 'skillPills',
+  'pills-rainbow': 'skillPills',
+  'pills-blue': 'skillPills',
+  'pills-purple': 'skillPills',
+  'banner-orange': 'shimmerBanner',
+  'banner-dark': 'shimmerBanner',
+  'banner-blue': 'shimmerBanner',
+  'banner-red': 'shimmerBanner',
+  'text-shimmer-purple': 'shimmerText',
+  'text-shimmer-blue': 'shimmerText',
+  'text-shimmer-gold': 'shimmerText',
+  'gold-luxury': 'goldBadge',
+  'gold-platinum': 'goldBadge',
+  'gold-rose': 'goldBadge',
+  'social-trending': 'socialBadge',
+  'social-achievement-red': 'socialBadge',
+  'social-achievement-blue': 'socialBadge',
+  'social-achievement-green': 'socialBadge',
+  'repo-card-dark': 'repoCard',
+  'repo-card-blue': 'repoCard',
 };
 
 /**
@@ -747,6 +780,23 @@ function loadPathTextEffects() {
 }
 
 /**
+ * Load and register GitHub Profile effects
+ */
+function loadGithubProfileEffects() {
+  const effects = [
+    { name: 'shimmerBadge', category: 'githubProfile', generator: githubProfileGradients.createShimmerBadge, outputType: 'complete', description: 'Shimmer badge with colored background and light sweep' },
+    { name: 'terminalTyping', category: 'githubProfile', generator: githubProfileGradients.createTerminalTyping, outputType: 'complete', description: 'macOS terminal with typing animation and blinking cursor' },
+    { name: 'skillPills', category: 'githubProfile', generator: githubProfileGradients.createSkillPills, outputType: 'complete', description: 'Row of skill/tech pills with shimmer overlay' },
+    { name: 'shimmerBanner', category: 'githubProfile', generator: githubProfileGradients.createShimmerBanner, outputType: 'complete', description: 'Wide banner with shimmer sweep for announcements' },
+    { name: 'shimmerText', category: 'githubProfile', generator: githubProfileGradients.createShimmerText, outputType: 'complete', description: 'Text with internal gradient shimmer highlight' },
+    { name: 'goldBadge', category: 'githubProfile', generator: githubProfileGradients.createGoldBadge, outputType: 'complete', description: 'Luxury gold badge with diamond accents and glow' },
+    { name: 'socialBadge', category: 'githubProfile', generator: githubProfileGradients.createSocialBadge, outputType: 'complete', description: 'Social achievement badge with auto light/dark text' },
+    { name: 'repoCard', category: 'githubProfile', generator: githubProfileGradients.createRepoCard, outputType: 'complete', description: 'GitHub-style repo card with icon and shimmer' }
+  ];
+  effects.forEach(effect => effectRegistry.register(effect));
+}
+
+/**
  * Load all effects into the registry
  */
 function loadAllEffects() {
@@ -770,6 +820,9 @@ function loadAllEffects() {
   loadPatternEffects();
   loadMetallicEffects();
   loadPathTextEffects();
+
+  // GitHub Profile effects
+  loadGithubProfileEffects();
 
   // Advanced complex effects
   loadAdvancedComplexEffects();
