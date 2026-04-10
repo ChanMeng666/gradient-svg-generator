@@ -55,7 +55,9 @@ function createTerminalTyping(stops, animationConfig, animationDuration, params)
   const height = (params && params.height) || 60;
   const promptColor = colors[0];
   const dur = animationDuration || '3s';
-  const width = 400;
+  const charWidth = 8.4; // monospace char width at font-size 14
+  const textWidth = text.length * charWidth;
+  const width = Math.round(Math.max(textWidth + 40, 200));
   const headerH = 24;
   const steps = text.length;
 
