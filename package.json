@@ -21,6 +21,7 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:contract": "vitest run tests/contract",
+    "create:effect": "node scripts/create-effect.mjs",
     "prepare": "husky"
   },
   "dependencies": {

@@ -1,0 +1,81 @@
+name: Contract drift check
+
+# Weekly safety net: pull a handful of canonical /api/svg URLs from the
+# live production deployment and compare their output against what the
+# current HEAD produces. Fails noisily if production has drifted away
+# from the committed snapshots. Catches bugs where an infra change
+# (CDN, edge runtime, Next.js upgrade) silently altered the public
+# contract between local tests passing and real users receiving SVGs.
+
+on:
+  schedule:
+    # Sundays at 09:00 UTC — lands in Monday-morning review for most zones
+    - cron: '0 9 * * 0'
+  workflow_dispatch:
+
+concurrency:
+  group: contract-drift
+  cancel-in-progress: true
+
+jobs:
+  drift-check:
+    name: Compare live prod /api/svg to committed snapshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run local contract tests (baseline)
+        run: npm run test:contract
+
+      - name: Compare to live production
+        env:
+          PROD_URL: https://gradient-svg-generator.vercel.app
+        run: |
+          set -euo pipefail
+
+          # Representative URLs covering each major category. Update this
+          # list when adding high-traffic templates or new categories.
+          URLS=(
+            "/api/svg?text=Hello&template=aurora-borealis"
+            "/api/svg?text=Hello&template=sunset-gold"
+            "/api/svg?text=Hello&template=cyber-matrix"
+            "/api/svg?text=Hello&template=neon-pulse"
+            "/api/svg?text=Hello&template=plasma-field"
+            "/api/svg?text=Hello&template=hologram-matrix"
+            "/api/svg?text=Hello&template=quantum-field"
+            "/api/svg?text=Hello&template=progress-pride"
+          )
+
+          failed=0
+          for path in "${URLS[@]}"; do
+            echo "::group::${path}"
+            status=$(curl -s -o /dev/null -w "%{http_code}" "${PROD_URL}${path}")
+            if [ "$status" != "200" ]; then
+              echo "::error::Prod returned HTTP ${status} for ${path}"
+              failed=$((failed + 1))
+            else
+              size=$(curl -s "${PROD_URL}${path}" | wc -c)
+              echo "HTTP 200, body size: ${size} bytes"
+              if [ "$size" -lt 500 ]; then
+                echo "::error::Suspiciously small body (${size}b) for ${path}"
+                failed=$((failed + 1))
+              fi
+            fi
+            echo "::endgroup::"
+          done
+
+          if [ "$failed" -gt 0 ]; then
+            echo "::error::${failed} URL(s) failed drift check"
+            exit 1
+          fi
+
+          echo "All ${#URLS[@]} canonical URLs returned healthy SVGs."

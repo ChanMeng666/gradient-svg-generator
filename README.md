@@ -4,7 +4,7 @@
 
 # 🎨 Chromaflow<br/><h3>Professional Dynamic SVG Gradient Creator with 340+ Templates</h3>
 
-The ultimate gradient SVG generator featuring 180+ gradient types, 340+ professional templates across 31 categories, and real-time preview.<br/>
+The ultimate gradient SVG generator featuring 180+ gradient types, 340+ professional templates across 19 categories, and real-time preview.<br/>
 Supports custom colors, multiple animation effects, and extensible template system with advanced visual effects.<br/>
 One-click **FREE** deployment of your stunning gradient banners.
 
@@ -312,7 +312,7 @@ One-click **FREE** deployment of your stunning gradient banners.
 </div>
 
 > [!IMPORTANT]
-> This project demonstrates advanced SVG generation techniques with 340+ professional templates across 31 categories. It combines modern web technologies with sophisticated animation systems to provide stunning visual effects for any project.
+> This project demonstrates advanced SVG generation techniques with 340+ professional templates across 19 categories. It combines modern web technologies with sophisticated animation systems to provide stunning visual effects for any project.
 
 <details>
 <summary><kbd>📑 Table of Contents</kbd></summary>
@@ -381,7 +381,7 @@ Whether you're a web developer, content creator, or design enthusiast, this proj
 
 ### `1` [340+ Professional Templates][template-gallery]
 
-Experience our extensive template library spanning 30 categories. Our innovative template system provides unprecedented variety through carefully curated color palettes and animation effects. This comprehensive collection delivers professional-grade gradients for any project.
+Experience our extensive template library spanning 19 categories. Our innovative template system provides unprecedented variety through carefully curated color palettes and animation effects. This comprehensive collection delivers professional-grade gradients for any project.
 
 <div align="center">
   <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Template%20Gallery&template=diamond-sparkle&height=120" alt="Template Gallery Demo" width="600"/>
@@ -584,7 +584,7 @@ Beyond the core template and gradient systems, this project includes:
 ## 🎨 Template Showcase
 
 > [!IMPORTANT]
-> Explore our comprehensive template library with 340+ professional designs across 31 categories. Each template is carefully crafted with authentic color palettes and optimized animations.
+> Explore our comprehensive template library with 340+ professional designs across 19 categories. Each template is carefully crafted with authentic color palettes and optimized animations.
 
 ### 🌈 Pride Templates (20 Templates)
 
