@@ -14,12 +14,11 @@
 const basicTemplates = require('../features/basic/templates');
 const prideTemplates = require('../templates/prideTemplates');
 const natureTemplates = require('../features/nature/templates');
-const techTemplates = require('../templates/techTemplates');
+const techTemplates = require('../features/tech/templates');
 const artTemplates = require('../features/art/templates');
 const emotionTemplates = require('../templates/emotionTemplates');
 const materialTemplates = require('../templates/materialTemplates');
 const textEffectTemplates = require('../templates/textEffectTemplates');
-const futureTechTemplates = require('../features/futureTech/templates');
 const luxuryTemplates = require('../features/luxury/templates');
 const gamingTemplates = require('../features/gaming/templates');
 // 新增模板类别 - 来自示例项目整合
@@ -30,8 +29,6 @@ const fluidDynamicsTemplates = require('../templates/fluidDynamicsTemplates');
 const dimensionalTemplates = require('../templates/dimensionalTemplates');
 // 🌟 NEW: Advanced Futuristic Template Categories
 const dimensionalPortalTemplates = require('../templates/dimensionalPortalTemplates');
-const digitalLifeTemplates = require('../templates/digitalLifeTemplates');
-const cyberAestheticsTemplates = require('../templates/cyberAestheticsTemplates');
 const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
 // 🌟 NEW: Pattern & Metallic Templates (inspired by example project)
 const patternTemplates = require('../features/pattern/templates');
@@ -98,13 +95,6 @@ const templateCategories = [
     templates: Object.values(textEffectTemplates),
   },
   {
-    id: 'future-tech',
-    name: 'Future Tech',
-    icon: '🚀',
-    description: 'Cutting-edge sci-fi and futuristic visual effects',
-    templates: Object.values(futureTechTemplates),
-  },
-  {
     id: 'luxury',
     name: 'Luxury',
     icon: '👑',
@@ -161,20 +151,6 @@ const templateCategories = [
     icon: '🌀',
     description: '次元穿越美学 - 探索多维空间的视觉奇迹与量子隧道效应',
     templates: Object.values(dimensionalPortalTemplates),
-  },
-  {
-    id: 'digital-life',
-    name: 'Digital Life',
-    icon: '🧬',
-    description: '数字生命美学 - AI意识、生物科技与数字进化的前沿探索',
-    templates: Object.values(digitalLifeTemplates),
-  },
-  {
-    id: 'cyber-aesthetics',
-    name: 'Cyber Aesthetics',
-    icon: '🤖',
-    description: '赛博美学 - 未来主义数字艺术与赛博朋克视觉革命',
-    templates: Object.values(cyberAestheticsTemplates),
   },
   {
     id: 'consciousness-stream',

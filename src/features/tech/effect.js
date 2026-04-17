@@ -2,11 +2,11 @@
 
 const futureTechGradients = require('../../utils/gradientGenerators/futureTechGradients');
 
-const category = 'futureTech';
+const category = 'tech';
 
 /** @type {EffectManifest} */
 const manifest = {
-  id: 'futureTech',
+  id: 'tech',
   category,
   effects: [
     {

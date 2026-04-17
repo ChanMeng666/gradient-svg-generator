@@ -2,12 +2,11 @@
 import basicTemplates from '../features/basic/templates';
 import prideTemplates from '../templates/prideTemplates';
 import natureTemplates from '../features/nature/templates';
-import techTemplates from '../templates/techTemplates';
+import techTemplates from '../features/tech/templates';
 import artTemplates from '../features/art/templates';
 import emotionTemplates from '../templates/emotionTemplates';
 import materialTemplates from '../templates/materialTemplates';
 import textEffectTemplates from '../templates/textEffectTemplates';
-import futureTechTemplates from '../features/futureTech/templates';
 import luxuryTemplates from '../features/luxury/templates';
 import gamingTemplates from '../features/gaming/templates';
 import shapeTemplates from '../features/shape/templates';
@@ -16,8 +15,6 @@ import morphingTemplates from '../templates/morphingTemplates';
 import fluidDynamicsTemplates from '../templates/fluidDynamicsTemplates';
 import dimensionalTemplates from '../templates/dimensionalTemplates';
 import dimensionalPortalTemplates from '../templates/dimensionalPortalTemplates';
-import digitalLifeTemplates from '../templates/digitalLifeTemplates';
-import cyberAestheticsTemplates from '../templates/cyberAestheticsTemplates';
 import consciousnessStreamTemplates from '../templates/consciousnessStreamTemplates';
 // 🌟 NEW: 2025 Creative Expansion Templates
 import lightShadowTemplates from '../features/lightShadow/templates';
@@ -51,7 +48,6 @@ const allTemplateGroups = [
   emotionTemplates,
   materialTemplates,
   textEffectTemplates,
-  futureTechTemplates,
   luxuryTemplates,
   gamingTemplates,
   shapeTemplates,
@@ -60,8 +56,6 @@ const allTemplateGroups = [
   fluidDynamicsTemplates,
   dimensionalTemplates,
   dimensionalPortalTemplates,
-  digitalLifeTemplates,
-  cyberAestheticsTemplates,
   consciousnessStreamTemplates,
   // 🌟 NEW: 2025 Creative Expansion
   lightShadowTemplates,
@@ -112,7 +106,6 @@ export function getAllTemplates() {
             'emotion',
             'material',
             'textEffects',
-            'futureTech',
             'luxury',
             'gaming',
             'shape',
@@ -121,8 +114,6 @@ export function getAllTemplates() {
             'fluidDynamics',
             'dimensional',
             'dimensionalPortal',
-            'digitalLife',
-            'cyberAesthetics',
             'consciousness',
             'lightShadow',
             'culinaryLiquid',
@@ -189,7 +180,6 @@ export function getCategories() {
     emotion: { id: 'emotion', name: 'Emotion', icon: '💫' },
     material: { id: 'material', name: 'Material', icon: '💎' },
     textEffects: { id: 'textEffects', name: 'Text Effects', icon: '✨' },
-    futureTech: { id: 'futureTech', name: 'Future Tech', icon: '🚀' },
     luxury: { id: 'luxury', name: 'Luxury', icon: '👑' },
     gaming: { id: 'gaming', name: 'Gaming', icon: '🎮' },
     shape: { id: 'shape', name: 'Shape', icon: '⚫' },
@@ -198,8 +188,6 @@ export function getCategories() {
     fluidDynamics: { id: 'fluidDynamics', name: 'Fluid', icon: '💧' },
     dimensional: { id: 'dimensional', name: 'Dimensional', icon: '🌌' },
     dimensionalPortal: { id: 'dimensionalPortal', name: 'Portal', icon: '🌀' },
-    digitalLife: { id: 'digitalLife', name: 'Digital Life', icon: '🧬' },
-    cyberAesthetics: { id: 'cyberAesthetics', name: 'Cyber', icon: '🤖' },
     consciousness: { id: 'consciousness', name: 'Consciousness', icon: '🧠' },
     // 🌟 NEW: 2025 Creative Expansion Categories
     lightShadow: { id: 'lightShadow', name: 'Light & Shadow', icon: '💡' },
@@ -259,7 +247,6 @@ export function getTemplateByName(name) {
         'emotion',
         'material',
         'textEffects',
-        'futureTech',
         'luxury',
         'gaming',
         'shape',
@@ -268,8 +255,6 @@ export function getTemplateByName(name) {
         'fluidDynamics',
         'dimensional',
         'dimensionalPortal',
-        'digitalLife',
-        'cyberAesthetics',
         'consciousness',
         'lightShadow',
         'culinaryLiquid',

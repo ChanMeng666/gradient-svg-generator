@@ -10,7 +10,7 @@
 const { manifest: basicManifest } = require('./basic/effect');
 const { manifest: shapeManifest } = require('./shape/effect');
 const { manifest: effectsManifest } = require('./effects/effect');
-const { manifest: futureTechManifest } = require('./futureTech/effect');
+const { manifest: techManifest } = require('./tech/effect');
 const { manifest: artManifest } = require('./art/effect');
 const { manifest: natureManifest } = require('./nature/effect');
 const { manifest: luxuryManifest } = require('./luxury/effect');
@@ -29,7 +29,7 @@ const manifests = [
   basicManifest,
   shapeManifest,
   effectsManifest,
-  futureTechManifest,
+  techManifest,
   artManifest,
   natureManifest,
   luxuryManifest,
