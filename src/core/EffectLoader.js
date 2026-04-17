@@ -144,12 +144,11 @@ const TEMPLATE_MAPPINGS = {
   // Dimensional templates
   'portal-nexus': 'portalDistortion',
   'tesseract-projection': 'hypercubeProjection',
-  'wormhole-transit': 'wormholeEffect',
   'fractal-dimension': 'fractalDimension',
-  'parallel-universe': 'multiverseOverlap',
   'reality-glitch': 'realityDistortion',
 
-  // Dimensional portal templates
+  // Dimensional portal templates (parallel-universe and wormhole-transit resolve here
+  // — JS would silently overwrite earlier duplicate keys, so they're only declared once)
   'quantum-tunnel': 'quantumTunnel',
   'parallel-universe': 'parallelUniverse',
   'wormhole-transit': 'wormholeTransit',
@@ -233,21 +232,21 @@ function loadBasicGradients() {
       category: 'basic',
       generator: basicGradients.createHorizontalGradient,
       outputType: 'gradient',
-      description: 'Horizontal gradient with smooth animation'
+      description: 'Horizontal gradient with smooth animation',
     },
     {
       name: 'vertical',
       category: 'basic',
       generator: basicGradients.createVerticalGradient,
       outputType: 'gradient',
-      description: 'Vertical gradient with smooth animation'
+      description: 'Vertical gradient with smooth animation',
     },
     {
       name: 'diagonal',
       category: 'basic',
       generator: basicGradients.createDiagonalGradient,
       outputType: 'gradient',
-      description: 'Diagonal gradient from corner to corner'
+      description: 'Diagonal gradient from corner to corner',
     },
     {
       name: 'radial',
@@ -255,7 +254,7 @@ function loadBasicGradients() {
       generator: basicGradients.createRadialGradient,
       outputType: 'gradient',
       description: 'Radial gradient emanating from center',
-      filters: ['radialBlur']
+      filters: ['radialBlur'],
     },
     {
       name: 'burst',
@@ -263,7 +262,7 @@ function loadBasicGradients() {
       generator: basicGradients.createBurstGradient,
       outputType: 'gradient',
       description: 'Explosive burst effect with radial animation',
-      filters: ['energyEffect']
+      filters: ['energyEffect'],
     },
     {
       name: 'pulse',
@@ -271,7 +270,7 @@ function loadBasicGradients() {
       generator: basicGradients.createPulseGradient,
       outputType: 'gradient',
       description: 'Pulsing radial effect',
-      filters: ['energyEffect']
+      filters: ['energyEffect'],
     },
     {
       name: 'reflection',
@@ -279,7 +278,7 @@ function loadBasicGradients() {
       generator: basicGradients.createReflectionGradient,
       outputType: 'gradient',
       description: 'Mirror reflection effect',
-      filters: ['reflectionEffect']
+      filters: ['reflectionEffect'],
     },
     {
       name: 'diamond',
@@ -287,7 +286,7 @@ function loadBasicGradients() {
       generator: basicGradients.createDiamondGradient,
       outputType: 'gradient',
       description: 'Diamond-shaped gradient pattern',
-      filters: ['crystalEffect']
+      filters: ['crystalEffect'],
     },
     {
       name: 'rainbow',
@@ -295,11 +294,11 @@ function loadBasicGradients() {
       generator: basicGradients.createRainbowGradient,
       outputType: 'gradient',
       description: 'Multi-color rainbow effect',
-      filters: ['rainbowEffect']
-    }
+      filters: ['rainbowEffect'],
+    },
   ];
 
-  effects.forEach(effect => effectRegistry.register(effect));
+  effects.forEach((effect) => effectRegistry.register(effect));
 }
 
 /**
@@ -312,7 +311,7 @@ function loadShapeGradients() {
       category: 'shapes',
       generator: shapeGradients.createCircularGradient,
       outputType: 'gradient',
-      description: 'Circular gradient with rotation'
+      description: 'Circular gradient with rotation',
     },
     {
       name: 'star',
@@ -320,7 +319,7 @@ function loadShapeGradients() {
       generator: shapeGradients.createStarGradient,
       outputType: 'gradient',
       description: 'Star-shaped gradient pattern',
-      filters: ['starEffect']
+      filters: ['starEffect'],
     },
     {
       name: 'heart',
@@ -328,7 +327,7 @@ function loadShapeGradients() {
       generator: shapeGradients.createHeartGradient,
       outputType: 'gradient',
       description: 'Heart-shaped gradient for romantic themes',
-      filters: ['heartEffect']
+      filters: ['heartEffect'],
     },
     {
       name: 'lightning',
@@ -336,7 +335,7 @@ function loadShapeGradients() {
       generator: shapeGradients.createLightningGradient,
       outputType: 'gradient',
       description: 'Electric lightning effect',
-      filters: ['lightningEffect']
+      filters: ['lightningEffect'],
     },
     {
       name: 'wave',
@@ -345,7 +344,7 @@ function loadShapeGradients() {
       outputType: 'gradient',
       description: 'Wave pattern with flow animation',
       filters: ['waveEffect'],
-      templates: ['wave-flow', 'waving-banner']
+      templates: ['wave-flow', 'waving-banner'],
     },
     {
       name: 'zigzag',
@@ -353,7 +352,7 @@ function loadShapeGradients() {
       generator: shapeGradients.createZigzagGradient,
       outputType: 'gradient',
       description: 'Zigzag pattern effect',
-      filters: ['zigzagEffect']
+      filters: ['zigzagEffect'],
     },
     {
       name: 'ripple',
@@ -361,11 +360,11 @@ function loadShapeGradients() {
       generator: shapeGradients.createRippleGradient,
       outputType: 'gradient',
       description: 'Ripple effect like water',
-      filters: ['rippleEffect']
-    }
+      filters: ['rippleEffect'],
+    },
   ];
 
-  effects.forEach(effect => effectRegistry.register(effect));
+  effects.forEach((effect) => effectRegistry.register(effect));
 }
 
 /**
@@ -386,20 +385,44 @@ function getTemplatesForEffect(effectName) {
  */
 function loadFutureTechEffects() {
   const effects = [
-    { name: 'hologram', generator: futureTechGradients.createHologramGradient, description: 'Holographic projection effect' },
-    { name: 'quantum', generator: futureTechGradients.createQuantumGradient, description: 'Quantum field visualization' },
-    { name: 'laserGrid', generator: futureTechGradients.createLaserGridGradient, description: 'Laser grid pattern' },
-    { name: 'neuralNet', generator: futureTechGradients.createNeuralNetGradient, description: 'Neural network visualization' },
-    { name: 'plasma', generator: futureTechGradients.createPlasmaGradient, description: 'Plasma energy effect' },
-    { name: 'dataStream', generator: futureTechGradients.createDataStreamGradient, description: 'Flowing data stream' }
+    {
+      name: 'hologram',
+      generator: futureTechGradients.createHologramGradient,
+      description: 'Holographic projection effect',
+    },
+    {
+      name: 'quantum',
+      generator: futureTechGradients.createQuantumGradient,
+      description: 'Quantum field visualization',
+    },
+    {
+      name: 'laserGrid',
+      generator: futureTechGradients.createLaserGridGradient,
+      description: 'Laser grid pattern',
+    },
+    {
+      name: 'neuralNet',
+      generator: futureTechGradients.createNeuralNetGradient,
+      description: 'Neural network visualization',
+    },
+    {
+      name: 'plasma',
+      generator: futureTechGradients.createPlasmaGradient,
+      description: 'Plasma energy effect',
+    },
+    {
+      name: 'dataStream',
+      generator: futureTechGradients.createDataStreamGradient,
+      description: 'Flowing data stream',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'futureTech',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -409,21 +432,49 @@ function loadFutureTechEffects() {
  */
 function loadArtisticEffects() {
   const effects = [
-    { name: 'watercolor', generator: artisticGradients.createWatercolorGradient, description: 'Watercolor paint effect' },
-    { name: 'oilPaint', generator: artisticGradients.createOilPaintGradient, description: 'Oil painting texture' },
-    { name: 'inkSplash', generator: artisticGradients.createInkSplashGradient, description: 'Ink splash effect' },
-    { name: 'mosaic', generator: artisticGradients.createMosaicGradient, description: 'Mosaic tile pattern' },
-    { name: 'abstractGeo', generator: artisticGradients.createAbstractGeoGradient, description: 'Abstract geometric shapes' },
-    { name: 'graffiti', generator: artisticGradients.createGraffitiGradient, description: 'Graffiti street art style' },
-    { name: 'vintage', generator: artisticGradients.createVintageGradient, description: 'Vintage retro effect' }
+    {
+      name: 'watercolor',
+      generator: artisticGradients.createWatercolorGradient,
+      description: 'Watercolor paint effect',
+    },
+    {
+      name: 'oilPaint',
+      generator: artisticGradients.createOilPaintGradient,
+      description: 'Oil painting texture',
+    },
+    {
+      name: 'inkSplash',
+      generator: artisticGradients.createInkSplashGradient,
+      description: 'Ink splash effect',
+    },
+    {
+      name: 'mosaic',
+      generator: artisticGradients.createMosaicGradient,
+      description: 'Mosaic tile pattern',
+    },
+    {
+      name: 'abstractGeo',
+      generator: artisticGradients.createAbstractGeoGradient,
+      description: 'Abstract geometric shapes',
+    },
+    {
+      name: 'graffiti',
+      generator: artisticGradients.createGraffitiGradient,
+      description: 'Graffiti street art style',
+    },
+    {
+      name: 'vintage',
+      generator: artisticGradients.createVintageGradient,
+      description: 'Vintage retro effect',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'artistic',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -433,21 +484,49 @@ function loadArtisticEffects() {
  */
 function loadLuxuryEffects() {
   const effects = [
-    { name: 'goldFoil', generator: luxuryGradients.createGoldFoilGradient, description: 'Gold foil shimmer' },
-    { name: 'diamondSparkle', generator: luxuryGradients.createDiamondGradient, description: 'Diamond sparkle effect' },
-    { name: 'marble', generator: luxuryGradients.createMarbleGradient, description: 'Marble stone texture' },
-    { name: 'platinum', generator: luxuryGradients.createPlatinumGradient, description: 'Platinum metallic finish' },
-    { name: 'roseGold', generator: luxuryGradients.createRoseGoldGradient, description: 'Rose gold elegance' },
-    { name: 'crystal', generator: luxuryGradients.createCrystalGradient, description: 'Crystal clear effect' },
-    { name: 'velvet', generator: luxuryGradients.createVelvetGradient, description: 'Soft velvet texture' }
+    {
+      name: 'goldFoil',
+      generator: luxuryGradients.createGoldFoilGradient,
+      description: 'Gold foil shimmer',
+    },
+    {
+      name: 'diamondSparkle',
+      generator: luxuryGradients.createDiamondGradient,
+      description: 'Diamond sparkle effect',
+    },
+    {
+      name: 'marble',
+      generator: luxuryGradients.createMarbleGradient,
+      description: 'Marble stone texture',
+    },
+    {
+      name: 'platinum',
+      generator: luxuryGradients.createPlatinumGradient,
+      description: 'Platinum metallic finish',
+    },
+    {
+      name: 'roseGold',
+      generator: luxuryGradients.createRoseGoldGradient,
+      description: 'Rose gold elegance',
+    },
+    {
+      name: 'crystal',
+      generator: luxuryGradients.createCrystalGradient,
+      description: 'Crystal clear effect',
+    },
+    {
+      name: 'velvet',
+      generator: luxuryGradients.createVelvetGradient,
+      description: 'Soft velvet texture',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'luxury',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -457,22 +536,54 @@ function loadLuxuryEffects() {
  */
 function loadGamingEffects() {
   const effects = [
-    { name: 'pixelArt', generator: gamingGradients.createPixelArtGradient, description: '8-bit pixel art style' },
-    { name: 'neonArcade', generator: gamingGradients.createNeonArcadeGradient, description: 'Neon arcade aesthetic' },
-    { name: 'energyBlast', generator: gamingGradients.createEnergyBlastGradient, description: 'Energy blast animation' },
-    { name: 'speedLines', generator: gamingGradients.createSpeedLinesGradient, description: 'Speed lines motion effect' },
-    { name: 'bossBattle', generator: gamingGradients.createBossBattleGradient, description: 'Epic boss battle atmosphere' },
-    { name: 'powerUp', generator: gamingGradients.createPowerUpGradient, description: 'Power-up collection effect' },
-    { name: 'cyberpunk', generator: gamingGradients.createCyberpunkGradient, description: 'Cyberpunk aesthetic' },
-    { name: 'retroWave', generator: gamingGradients.createRetroWaveGradient, description: 'Retro wave 80s style' }
+    {
+      name: 'pixelArt',
+      generator: gamingGradients.createPixelArtGradient,
+      description: '8-bit pixel art style',
+    },
+    {
+      name: 'neonArcade',
+      generator: gamingGradients.createNeonArcadeGradient,
+      description: 'Neon arcade aesthetic',
+    },
+    {
+      name: 'energyBlast',
+      generator: gamingGradients.createEnergyBlastGradient,
+      description: 'Energy blast animation',
+    },
+    {
+      name: 'speedLines',
+      generator: gamingGradients.createSpeedLinesGradient,
+      description: 'Speed lines motion effect',
+    },
+    {
+      name: 'bossBattle',
+      generator: gamingGradients.createBossBattleGradient,
+      description: 'Epic boss battle atmosphere',
+    },
+    {
+      name: 'powerUp',
+      generator: gamingGradients.createPowerUpGradient,
+      description: 'Power-up collection effect',
+    },
+    {
+      name: 'cyberpunk',
+      generator: gamingGradients.createCyberpunkGradient,
+      description: 'Cyberpunk aesthetic',
+    },
+    {
+      name: 'retroWave',
+      generator: gamingGradients.createRetroWaveGradient,
+      description: 'Retro wave 80s style',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'gaming',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -482,22 +593,54 @@ function loadGamingEffects() {
  */
 function loadOrganicEffects() {
   const effects = [
-    { name: 'flowingWater', generator: organicGradients.createFlowingWaterGradient, description: 'Flowing water animation' },
-    { name: 'flame', generator: organicGradients.createFlameGradient, description: 'Flickering flame effect' },
-    { name: 'clouds', generator: organicGradients.createCloudsGradient, description: 'Cloudy atmosphere' },
-    { name: 'aurora', generator: organicGradients.createAuroraGradient, description: 'Aurora borealis lights' },
-    { name: 'oceanWaves', generator: organicGradients.createOceanWavesGradient, description: 'Ocean wave motion' },
-    { name: 'forest', generator: organicGradients.createForestGradient, description: 'Forest ambiance' },
-    { name: 'lightningStorm', generator: organicGradients.createLightningGradient, description: 'Lightning storm effect' },
-    { name: 'mountainMist', generator: organicGradients.createMountainMistGradient, description: 'Mountain mist effect' }
+    {
+      name: 'flowingWater',
+      generator: organicGradients.createFlowingWaterGradient,
+      description: 'Flowing water animation',
+    },
+    {
+      name: 'flame',
+      generator: organicGradients.createFlameGradient,
+      description: 'Flickering flame effect',
+    },
+    {
+      name: 'clouds',
+      generator: organicGradients.createCloudsGradient,
+      description: 'Cloudy atmosphere',
+    },
+    {
+      name: 'aurora',
+      generator: organicGradients.createAuroraGradient,
+      description: 'Aurora borealis lights',
+    },
+    {
+      name: 'oceanWaves',
+      generator: organicGradients.createOceanWavesGradient,
+      description: 'Ocean wave motion',
+    },
+    {
+      name: 'forest',
+      generator: organicGradients.createForestGradient,
+      description: 'Forest ambiance',
+    },
+    {
+      name: 'lightningStorm',
+      generator: organicGradients.createLightningGradient,
+      description: 'Lightning storm effect',
+    },
+    {
+      name: 'mountainMist',
+      generator: organicGradients.createMountainMistGradient,
+      description: 'Mountain mist effect',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'organic',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -509,83 +652,343 @@ function loadOrganicEffects() {
 function loadAdvancedComplexEffects() {
   const advancedEffects = [
     // Morphing
-    { name: 'liquidMorphing', category: 'morphing', description: 'Liquid mercury morphing', templates: ['liquid-mercury'] },
-    { name: 'plasmaMorphing', category: 'morphing', description: 'Plasma blob morphing', templates: ['plasma-blob'] },
-    { name: 'cosmicMorphing', category: 'morphing', description: 'Cosmic entity morphing', templates: ['cosmic-entity'] },
-    { name: 'bioMorphing', category: 'morphing', description: 'Biological morphing', templates: ['bio-organism'] },
-    { name: 'quantumMorphing', category: 'morphing', description: 'Quantum foam morphing', templates: ['quantum-foam'] },
-    { name: 'lavaMorphing', category: 'morphing', description: 'Molten lava morphing', templates: ['molten-lava'] },
+    {
+      name: 'liquidMorphing',
+      category: 'morphing',
+      description: 'Liquid mercury morphing',
+      templates: ['liquid-mercury'],
+    },
+    {
+      name: 'plasmaMorphing',
+      category: 'morphing',
+      description: 'Plasma blob morphing',
+      templates: ['plasma-blob'],
+    },
+    {
+      name: 'cosmicMorphing',
+      category: 'morphing',
+      description: 'Cosmic entity morphing',
+      templates: ['cosmic-entity'],
+    },
+    {
+      name: 'bioMorphing',
+      category: 'morphing',
+      description: 'Biological morphing',
+      templates: ['bio-organism'],
+    },
+    {
+      name: 'quantumMorphing',
+      category: 'morphing',
+      description: 'Quantum foam morphing',
+      templates: ['quantum-foam'],
+    },
+    {
+      name: 'lavaMorphing',
+      category: 'morphing',
+      description: 'Molten lava morphing',
+      templates: ['molten-lava'],
+    },
 
     // Fluid Dynamics
-    { name: 'turbulentWaves', category: 'fluidDynamics', description: 'Turbulent wave motion', templates: ['turbulent-waves'] },
-    { name: 'electromagneticWaves', category: 'fluidDynamics', description: 'Electromagnetic field waves', templates: ['electromagnetic-field'] },
-    { name: 'auroraWaves', category: 'fluidDynamics', description: 'Aurora wave streams', templates: ['aurora-streams'] },
-    { name: 'soundWaves', category: 'fluidDynamics', description: 'Sound wave visualization', templates: ['sound-visualization'] },
-    { name: 'cryogenicWaves', category: 'fluidDynamics', description: 'Cryogenic wave effect', templates: ['liquid-nitrogen'] },
-    { name: 'solarWaves', category: 'fluidDynamics', description: 'Solar wind waves', templates: ['solar-wind'] },
+    {
+      name: 'turbulentWaves',
+      category: 'fluidDynamics',
+      description: 'Turbulent wave motion',
+      templates: ['turbulent-waves'],
+    },
+    {
+      name: 'electromagneticWaves',
+      category: 'fluidDynamics',
+      description: 'Electromagnetic field waves',
+      templates: ['electromagnetic-field'],
+    },
+    {
+      name: 'auroraWaves',
+      category: 'fluidDynamics',
+      description: 'Aurora wave streams',
+      templates: ['aurora-streams'],
+    },
+    {
+      name: 'soundWaves',
+      category: 'fluidDynamics',
+      description: 'Sound wave visualization',
+      templates: ['sound-visualization'],
+    },
+    {
+      name: 'cryogenicWaves',
+      category: 'fluidDynamics',
+      description: 'Cryogenic wave effect',
+      templates: ['liquid-nitrogen'],
+    },
+    {
+      name: 'solarWaves',
+      category: 'fluidDynamics',
+      description: 'Solar wind waves',
+      templates: ['solar-wind'],
+    },
 
     // Dimensional
-    { name: 'portalDistortion', category: 'dimensional', description: 'Portal distortion effect', templates: ['portal-nexus'] },
-    { name: 'hypercubeProjection', category: 'dimensional', description: 'Hypercube 4D projection', templates: ['tesseract-projection'] },
-    { name: 'wormholeEffect', category: 'dimensional', description: 'Wormhole space-time effect', templates: ['wormhole-transit'] },
-    { name: 'fractalDimension', category: 'dimensional', description: 'Fractal dimension visualization', templates: ['fractal-dimension'] },
-    { name: 'multiverseOverlap', category: 'dimensional', description: 'Parallel universe overlap', templates: ['parallel-universe'] },
-    { name: 'realityDistortion', category: 'dimensional', description: 'Reality distortion glitch', templates: ['reality-glitch'] },
+    {
+      name: 'portalDistortion',
+      category: 'dimensional',
+      description: 'Portal distortion effect',
+      templates: ['portal-nexus'],
+    },
+    {
+      name: 'hypercubeProjection',
+      category: 'dimensional',
+      description: 'Hypercube 4D projection',
+      templates: ['tesseract-projection'],
+    },
+    {
+      name: 'wormholeEffect',
+      category: 'dimensional',
+      description: 'Wormhole space-time effect',
+      templates: ['wormhole-transit'],
+    },
+    {
+      name: 'fractalDimension',
+      category: 'dimensional',
+      description: 'Fractal dimension visualization',
+      templates: ['fractal-dimension'],
+    },
+    {
+      name: 'multiverseOverlap',
+      category: 'dimensional',
+      description: 'Parallel universe overlap',
+      templates: ['parallel-universe'],
+    },
+    {
+      name: 'realityDistortion',
+      category: 'dimensional',
+      description: 'Reality distortion glitch',
+      templates: ['reality-glitch'],
+    },
 
     // Dimensional Portal
-    { name: 'quantumTunnel', category: 'dimensionalPortal', description: 'Quantum tunnel passage', templates: ['quantum-tunnel'] },
-    { name: 'parallelUniverse', category: 'dimensionalPortal', description: 'Parallel universe portal', templates: ['parallel-universe'] },
-    { name: 'wormholeTransit', category: 'dimensionalPortal', description: 'Wormhole transit animation', templates: ['wormhole-transit'] },
-    { name: 'dimensionalRift', category: 'dimensionalPortal', description: 'Dimensional rift opening', templates: ['dimensional-rift'] },
-    { name: 'holographicMatrix', category: 'dimensionalPortal', description: 'Holographic matrix grid', templates: ['holographic-matrix'] },
-    { name: 'voidChamber', category: 'dimensionalPortal', description: 'Void chamber darkness', templates: ['void-chamber'] },
-    { name: 'realityGlitch', category: 'dimensionalPortal', description: 'Reality glitch effect', templates: ['reality-glitch'] },
-    { name: 'astralProjection', category: 'dimensionalPortal', description: 'Astral projection effect', templates: ['astral-projection'] },
+    {
+      name: 'quantumTunnel',
+      category: 'dimensionalPortal',
+      description: 'Quantum tunnel passage',
+      templates: ['quantum-tunnel'],
+    },
+    {
+      name: 'parallelUniverse',
+      category: 'dimensionalPortal',
+      description: 'Parallel universe portal',
+      templates: ['parallel-universe'],
+    },
+    {
+      name: 'wormholeTransit',
+      category: 'dimensionalPortal',
+      description: 'Wormhole transit animation',
+      templates: ['wormhole-transit'],
+    },
+    {
+      name: 'dimensionalRift',
+      category: 'dimensionalPortal',
+      description: 'Dimensional rift opening',
+      templates: ['dimensional-rift'],
+    },
+    {
+      name: 'holographicMatrix',
+      category: 'dimensionalPortal',
+      description: 'Holographic matrix grid',
+      templates: ['holographic-matrix'],
+    },
+    {
+      name: 'voidChamber',
+      category: 'dimensionalPortal',
+      description: 'Void chamber darkness',
+      templates: ['void-chamber'],
+    },
+    {
+      name: 'realityGlitch',
+      category: 'dimensionalPortal',
+      description: 'Reality glitch effect',
+      templates: ['reality-glitch'],
+    },
+    {
+      name: 'astralProjection',
+      category: 'dimensionalPortal',
+      description: 'Astral projection effect',
+      templates: ['astral-projection'],
+    },
 
     // Digital Life
-    { name: 'aiConsciousness', category: 'digitalLife', description: 'AI consciousness visualization', templates: ['ai-consciousness'] },
-    { name: 'bioDigitalMerge', category: 'digitalLife', description: 'Bio-digital fusion effect', templates: ['bio-digital-merge'] },
-    { name: 'quantumDNA', category: 'digitalLife', description: 'Quantum DNA helix', templates: ['quantum-dna'] },
-    { name: 'digitalEvolution', category: 'digitalLife', description: 'Digital evolution process', templates: ['digital-evolution'] },
-    { name: 'syntheticSoul', category: 'digitalLife', description: 'Synthetic soul visualization', templates: ['synthetic-soul'] },
-    { name: 'cyberSymbiosis', category: 'digitalLife', description: 'Cyber symbiosis effect', templates: ['cyber-symbiosis'] },
-    { name: 'neuralStorm', category: 'digitalLife', description: 'Neural storm activity', templates: ['neural-storm'] },
-    { name: 'digitalGenome', category: 'digitalLife', description: 'Digital genome sequence', templates: ['digital-genome'] },
+    {
+      name: 'aiConsciousness',
+      category: 'digitalLife',
+      description: 'AI consciousness visualization',
+      templates: ['ai-consciousness'],
+    },
+    {
+      name: 'bioDigitalMerge',
+      category: 'digitalLife',
+      description: 'Bio-digital fusion effect',
+      templates: ['bio-digital-merge'],
+    },
+    {
+      name: 'quantumDNA',
+      category: 'digitalLife',
+      description: 'Quantum DNA helix',
+      templates: ['quantum-dna'],
+    },
+    {
+      name: 'digitalEvolution',
+      category: 'digitalLife',
+      description: 'Digital evolution process',
+      templates: ['digital-evolution'],
+    },
+    {
+      name: 'syntheticSoul',
+      category: 'digitalLife',
+      description: 'Synthetic soul visualization',
+      templates: ['synthetic-soul'],
+    },
+    {
+      name: 'cyberSymbiosis',
+      category: 'digitalLife',
+      description: 'Cyber symbiosis effect',
+      templates: ['cyber-symbiosis'],
+    },
+    {
+      name: 'neuralStorm',
+      category: 'digitalLife',
+      description: 'Neural storm activity',
+      templates: ['neural-storm'],
+    },
+    {
+      name: 'digitalGenome',
+      category: 'digitalLife',
+      description: 'Digital genome sequence',
+      templates: ['digital-genome'],
+    },
 
     // Cyber Aesthetics
-    { name: 'neonGridCity', category: 'cyberAesthetics', description: 'Neon grid cityscape', templates: ['neon-grid-city'] },
-    { name: 'dataStreamFlow', category: 'cyberAesthetics', description: 'Data stream matrix flow', templates: ['data-stream-flow'] },
-    { name: 'cyberPunkNoir', category: 'cyberAesthetics', description: 'Cyberpunk noir atmosphere', templates: ['cyber-punk-noir'] },
-    { name: 'hologramInterface', category: 'cyberAesthetics', description: 'Hologram UI interface', templates: ['hologram-interface'] },
-    { name: 'digitalDecay', category: 'cyberAesthetics', description: 'Digital decay corruption', templates: ['digital-decay'] },
-    { name: 'chromeReflection', category: 'cyberAesthetics', description: 'Chrome reflection finish', templates: ['chrome-reflection'] },
-    { name: 'virusInfection', category: 'cyberAesthetics', description: 'Virus infection spread', templates: ['virus-infection'] },
-    { name: 'quantumEncryption', category: 'cyberAesthetics', description: 'Quantum encryption field', templates: ['quantum-encryption'] },
-    { name: 'augmentedReality', category: 'cyberAesthetics', description: 'Augmented reality overlay', templates: ['augmented-reality'] },
+    {
+      name: 'neonGridCity',
+      category: 'cyberAesthetics',
+      description: 'Neon grid cityscape',
+      templates: ['neon-grid-city'],
+    },
+    {
+      name: 'dataStreamFlow',
+      category: 'cyberAesthetics',
+      description: 'Data stream matrix flow',
+      templates: ['data-stream-flow'],
+    },
+    {
+      name: 'cyberPunkNoir',
+      category: 'cyberAesthetics',
+      description: 'Cyberpunk noir atmosphere',
+      templates: ['cyber-punk-noir'],
+    },
+    {
+      name: 'hologramInterface',
+      category: 'cyberAesthetics',
+      description: 'Hologram UI interface',
+      templates: ['hologram-interface'],
+    },
+    {
+      name: 'digitalDecay',
+      category: 'cyberAesthetics',
+      description: 'Digital decay corruption',
+      templates: ['digital-decay'],
+    },
+    {
+      name: 'chromeReflection',
+      category: 'cyberAesthetics',
+      description: 'Chrome reflection finish',
+      templates: ['chrome-reflection'],
+    },
+    {
+      name: 'virusInfection',
+      category: 'cyberAesthetics',
+      description: 'Virus infection spread',
+      templates: ['virus-infection'],
+    },
+    {
+      name: 'quantumEncryption',
+      category: 'cyberAesthetics',
+      description: 'Quantum encryption field',
+      templates: ['quantum-encryption'],
+    },
+    {
+      name: 'augmentedReality',
+      category: 'cyberAesthetics',
+      description: 'Augmented reality overlay',
+      templates: ['augmented-reality'],
+    },
 
     // Consciousness Stream
-    { name: 'thoughtWaves', category: 'consciousness', description: 'Thought wave patterns', templates: ['thought-waves'] },
-    { name: 'memoryFragments', category: 'consciousness', description: 'Memory fragment visualization', templates: ['memory-fragments'] },
-    { name: 'dreamLogic', category: 'consciousness', description: 'Dream logic surrealism', templates: ['dream-logic'] },
-    { name: 'emotionalSpectrum', category: 'consciousness', description: 'Emotional spectrum colors', templates: ['emotional-spectrum'] },
-    { name: 'meditativeCalm', category: 'consciousness', description: 'Meditative calm state', templates: ['meditative-calm'] },
-    { name: 'anxietySpiral', category: 'consciousness', description: 'Anxiety spiral pattern', templates: ['anxiety-spiral'] },
-    { name: 'egoDissolution', category: 'consciousness', description: 'Ego dissolution effect', templates: ['ego-dissolution'] },
-    { name: 'psychedelicInsight', category: 'consciousness', description: 'Psychedelic insight visualization', templates: ['psychedelic-insight'] },
-    { name: 'collectiveUnconscious', category: 'consciousness', description: 'Collective unconscious patterns', templates: ['collective-unconscious'] }
+    {
+      name: 'thoughtWaves',
+      category: 'consciousness',
+      description: 'Thought wave patterns',
+      templates: ['thought-waves'],
+    },
+    {
+      name: 'memoryFragments',
+      category: 'consciousness',
+      description: 'Memory fragment visualization',
+      templates: ['memory-fragments'],
+    },
+    {
+      name: 'dreamLogic',
+      category: 'consciousness',
+      description: 'Dream logic surrealism',
+      templates: ['dream-logic'],
+    },
+    {
+      name: 'emotionalSpectrum',
+      category: 'consciousness',
+      description: 'Emotional spectrum colors',
+      templates: ['emotional-spectrum'],
+    },
+    {
+      name: 'meditativeCalm',
+      category: 'consciousness',
+      description: 'Meditative calm state',
+      templates: ['meditative-calm'],
+    },
+    {
+      name: 'anxietySpiral',
+      category: 'consciousness',
+      description: 'Anxiety spiral pattern',
+      templates: ['anxiety-spiral'],
+    },
+    {
+      name: 'egoDissolution',
+      category: 'consciousness',
+      description: 'Ego dissolution effect',
+      templates: ['ego-dissolution'],
+    },
+    {
+      name: 'psychedelicInsight',
+      category: 'consciousness',
+      description: 'Psychedelic insight visualization',
+      templates: ['psychedelic-insight'],
+    },
+    {
+      name: 'collectiveUnconscious',
+      category: 'consciousness',
+      description: 'Collective unconscious patterns',
+      templates: ['collective-unconscious'],
+    },
   ];
 
-  advancedEffects.forEach(effect => {
+  advancedEffects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       generator: (stops, animationConfig, duration) => {
         // Wrapper function that calls the advanced effect generator
         return {
           useAdvancedEffect: true,
-          effectType: effect.name
+          effectType: effect.name,
         };
       },
-      outputType: 'complete'
+      outputType: 'complete',
     });
   });
 }
@@ -595,21 +998,56 @@ function loadAdvancedComplexEffects() {
  */
 function loadEffectGradients() {
   const effects = [
-    { name: 'galaxy', generator: effectGradients.createGalaxyGradient, description: 'Galaxy spiral effect', filters: ['galaxyEffect'] },
-    { name: 'spiral', generator: effectGradients.createSpiralGradient, description: 'Hypnotic spiral pattern', filters: ['spiralEffect'] },
-    { name: 'conic', generator: effectGradients.createConicGradient, description: 'Conic gradient rotation', filters: ['crystalEffect'] },
-    { name: 'luminance', generator: effectGradients.createLuminanceGradient, description: 'Luminance glow effect', filters: ['luminanceEffect'] },
-    { name: 'textBox', generator: effectGradients.createTextBoxGradient, description: 'Text box popup effect', filters: ['textBoxEffect'] },
-    { name: 'glitch', generator: effectGradients.createGlitchGradient, description: 'Digital glitch effect', filters: ['glitchEffect'] },
-    { name: 'typewriter', generator: effectGradients.createTypewriterGradient, description: 'Typewriter text reveal', filters: ['typewriterEffect'] }
+    {
+      name: 'galaxy',
+      generator: effectGradients.createGalaxyGradient,
+      description: 'Galaxy spiral effect',
+      filters: ['galaxyEffect'],
+    },
+    {
+      name: 'spiral',
+      generator: effectGradients.createSpiralGradient,
+      description: 'Hypnotic spiral pattern',
+      filters: ['spiralEffect'],
+    },
+    {
+      name: 'conic',
+      generator: effectGradients.createConicGradient,
+      description: 'Conic gradient rotation',
+      filters: ['crystalEffect'],
+    },
+    {
+      name: 'luminance',
+      generator: effectGradients.createLuminanceGradient,
+      description: 'Luminance glow effect',
+      filters: ['luminanceEffect'],
+    },
+    {
+      name: 'textBox',
+      generator: effectGradients.createTextBoxGradient,
+      description: 'Text box popup effect',
+      filters: ['textBoxEffect'],
+    },
+    {
+      name: 'glitch',
+      generator: effectGradients.createGlitchGradient,
+      description: 'Digital glitch effect',
+      filters: ['glitchEffect'],
+    },
+    {
+      name: 'typewriter',
+      generator: effectGradients.createTypewriterGradient,
+      description: 'Typewriter text reveal',
+      filters: ['typewriterEffect'],
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'effects',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -619,21 +1057,49 @@ function loadEffectGradients() {
  */
 function loadWeatherEffects() {
   const effects = [
-    { name: 'fogRolling', generator: weatherGradients.createFogRollingGradient, description: 'Rolling fog atmosphere' },
-    { name: 'monsoonRain', generator: weatherGradients.createMonsoonRainGradient, description: 'Monsoon rain effect' },
-    { name: 'snowfallDrift', generator: weatherGradients.createSnowfallDriftGradient, description: 'Gentle snowfall drift' },
-    { name: 'sandstormSwirl', generator: weatherGradients.createSandstormSwirlGradient, description: 'Swirling sandstorm' },
-    { name: 'tornadoVortex', generator: weatherGradients.createTornadoVortexGradient, description: 'Tornado vortex effect' },
-    { name: 'lightningWeb', generator: weatherGradients.createLightningWebGradient, description: 'Lightning web pattern' },
-    { name: 'prismRefraction', generator: weatherGradients.createPrismRefractionGradient, description: 'Prism light refraction' }
+    {
+      name: 'fogRolling',
+      generator: weatherGradients.createFogRollingGradient,
+      description: 'Rolling fog atmosphere',
+    },
+    {
+      name: 'monsoonRain',
+      generator: weatherGradients.createMonsoonRainGradient,
+      description: 'Monsoon rain effect',
+    },
+    {
+      name: 'snowfallDrift',
+      generator: weatherGradients.createSnowfallDriftGradient,
+      description: 'Gentle snowfall drift',
+    },
+    {
+      name: 'sandstormSwirl',
+      generator: weatherGradients.createSandstormSwirlGradient,
+      description: 'Swirling sandstorm',
+    },
+    {
+      name: 'tornadoVortex',
+      generator: weatherGradients.createTornadoVortexGradient,
+      description: 'Tornado vortex effect',
+    },
+    {
+      name: 'lightningWeb',
+      generator: weatherGradients.createLightningWebGradient,
+      description: 'Lightning web pattern',
+    },
+    {
+      name: 'prismRefraction',
+      generator: weatherGradients.createPrismRefractionGradient,
+      description: 'Prism light refraction',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'weather',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -643,21 +1109,49 @@ function loadWeatherEffects() {
  */
 function loadLightShadowEffects() {
   const effects = [
-    { name: 'causticUnderwater', generator: lightShadowGradients.createCausticUnderwaterGradient, description: 'Underwater caustic light' },
-    { name: 'venetianBlind', generator: lightShadowGradients.createVenetianBlindGradient, description: 'Venetian blind shadows' },
-    { name: 'stainedGlass', generator: lightShadowGradients.createStainedGlassGradient, description: 'Stained glass light' },
-    { name: 'lensFlare', generator: lightShadowGradients.createLensFlareGradient, description: 'Camera lens flare' },
-    { name: 'bokehBlur', generator: lightShadowGradients.createBokehBlurGradient, description: 'Bokeh blur effect' },
-    { name: 'godRays', generator: lightShadowGradients.createGodRaysGradient, description: 'God rays light beams' },
-    { name: 'eclipseCorona', generator: lightShadowGradients.createEclipseCoronaGradient, description: 'Eclipse corona effect' }
+    {
+      name: 'causticUnderwater',
+      generator: lightShadowGradients.createCausticUnderwaterGradient,
+      description: 'Underwater caustic light',
+    },
+    {
+      name: 'venetianBlind',
+      generator: lightShadowGradients.createVenetianBlindGradient,
+      description: 'Venetian blind shadows',
+    },
+    {
+      name: 'stainedGlass',
+      generator: lightShadowGradients.createStainedGlassGradient,
+      description: 'Stained glass light',
+    },
+    {
+      name: 'lensFlare',
+      generator: lightShadowGradients.createLensFlareGradient,
+      description: 'Camera lens flare',
+    },
+    {
+      name: 'bokehBlur',
+      generator: lightShadowGradients.createBokehBlurGradient,
+      description: 'Bokeh blur effect',
+    },
+    {
+      name: 'godRays',
+      generator: lightShadowGradients.createGodRaysGradient,
+      description: 'God rays light beams',
+    },
+    {
+      name: 'eclipseCorona',
+      generator: lightShadowGradients.createEclipseCoronaGradient,
+      description: 'Eclipse corona effect',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'lightShadow',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -667,21 +1161,49 @@ function loadLightShadowEffects() {
  */
 function loadArtMovementEffects() {
   const effects = [
-    { name: 'artNouveauFlow', generator: artMovementGradients.createArtNouveauFlowGradient, description: 'Art Nouveau flowing curves' },
-    { name: 'artDecoLuxury', generator: artMovementGradients.createArtDecoLuxuryGradient, description: 'Art Deco geometric luxury' },
-    { name: 'bauhausMinimal', generator: artMovementGradients.createBauhausMinimalGradient, description: 'Bauhaus minimalist design' },
-    { name: 'impressionistDots', generator: artMovementGradients.createImpressionistDotsGradient, description: 'Impressionist pointillism' },
-    { name: 'cubistFragments', generator: artMovementGradients.createCubistFragmentsGradient, description: 'Cubist fragmented shapes' },
-    { name: 'surrealistMelt', generator: artMovementGradients.createSurrealistMeltGradient, description: 'Surrealist melting effect' },
-    { name: 'popArtHalftone', generator: artMovementGradients.createPopArtHalftoneGradient, description: 'Pop Art halftone pattern' }
+    {
+      name: 'artNouveauFlow',
+      generator: artMovementGradients.createArtNouveauFlowGradient,
+      description: 'Art Nouveau flowing curves',
+    },
+    {
+      name: 'artDecoLuxury',
+      generator: artMovementGradients.createArtDecoLuxuryGradient,
+      description: 'Art Deco geometric luxury',
+    },
+    {
+      name: 'bauhausMinimal',
+      generator: artMovementGradients.createBauhausMinimalGradient,
+      description: 'Bauhaus minimalist design',
+    },
+    {
+      name: 'impressionistDots',
+      generator: artMovementGradients.createImpressionistDotsGradient,
+      description: 'Impressionist pointillism',
+    },
+    {
+      name: 'cubistFragments',
+      generator: artMovementGradients.createCubistFragmentsGradient,
+      description: 'Cubist fragmented shapes',
+    },
+    {
+      name: 'surrealistMelt',
+      generator: artMovementGradients.createSurrealistMeltGradient,
+      description: 'Surrealist melting effect',
+    },
+    {
+      name: 'popArtHalftone',
+      generator: artMovementGradients.createPopArtHalftoneGradient,
+      description: 'Pop Art halftone pattern',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'artMovement',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -691,21 +1213,49 @@ function loadArtMovementEffects() {
  */
 function loadCulinaryLiquidEffects() {
   const effects = [
-    { name: 'coffeeCream', generator: culinaryLiquidGradients.createCoffeeCreamGradient, description: 'Coffee and cream swirl' },
-    { name: 'winePour', generator: culinaryLiquidGradients.createWinePourGradient, description: 'Wine pouring effect' },
-    { name: 'honeyDrizzle', generator: culinaryLiquidGradients.createHoneyDrizzleGradient, description: 'Honey drizzle flow' },
-    { name: 'chocolateMelt', generator: culinaryLiquidGradients.createChocolateMeltGradient, description: 'Melting chocolate' },
-    { name: 'caramelSwirl', generator: culinaryLiquidGradients.createCaramelSwirlGradient, description: 'Caramel swirl pattern' },
-    { name: 'tieDye', generator: culinaryLiquidGradients.createTieDyeGradient, description: 'Tie-dye pattern' },
-    { name: 'marbleMixing', generator: culinaryLiquidGradients.createMarbleMixingGradient, description: 'Marble mixing effect' }
+    {
+      name: 'coffeeCream',
+      generator: culinaryLiquidGradients.createCoffeeCreamGradient,
+      description: 'Coffee and cream swirl',
+    },
+    {
+      name: 'winePour',
+      generator: culinaryLiquidGradients.createWinePourGradient,
+      description: 'Wine pouring effect',
+    },
+    {
+      name: 'honeyDrizzle',
+      generator: culinaryLiquidGradients.createHoneyDrizzleGradient,
+      description: 'Honey drizzle flow',
+    },
+    {
+      name: 'chocolateMelt',
+      generator: culinaryLiquidGradients.createChocolateMeltGradient,
+      description: 'Melting chocolate',
+    },
+    {
+      name: 'caramelSwirl',
+      generator: culinaryLiquidGradients.createCaramelSwirlGradient,
+      description: 'Caramel swirl pattern',
+    },
+    {
+      name: 'tieDye',
+      generator: culinaryLiquidGradients.createTieDyeGradient,
+      description: 'Tie-dye pattern',
+    },
+    {
+      name: 'marbleMixing',
+      generator: culinaryLiquidGradients.createMarbleMixingGradient,
+      description: 'Marble mixing effect',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'culinaryLiquid',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -715,22 +1265,54 @@ function loadCulinaryLiquidEffects() {
  */
 function loadPatternEffects() {
   const effects = [
-    { name: 'candystripe', generator: patternGradients.createCandystripeGradient, description: 'Candy stripe pattern' },
-    { name: 'zigzagPattern', generator: patternGradients.createZigzagGradient, description: 'Zigzag pattern' },
-    { name: 'diamondPattern', generator: patternGradients.createDiamondPatternGradient, description: 'Diamond pattern' },
-    { name: 'heartsPattern', generator: patternGradients.createHeartsPatternGradient, description: 'Hearts pattern' },
-    { name: 'checkered', generator: patternGradients.createCheckeredGradient, description: 'Checkered pattern' },
-    { name: 'diagonalFlow', generator: patternGradients.createDiagonalFlowGradient, description: 'Diagonal flow lines' },
-    { name: 'geometricPulse', generator: patternGradients.createGeometricPulseGradient, description: 'Geometric pulse animation' },
-    { name: 'patternWave', generator: patternGradients.createPatternWaveGradient, description: 'Pattern wave effect' }
+    {
+      name: 'candystripe',
+      generator: patternGradients.createCandystripeGradient,
+      description: 'Candy stripe pattern',
+    },
+    {
+      name: 'zigzagPattern',
+      generator: patternGradients.createZigzagGradient,
+      description: 'Zigzag pattern',
+    },
+    {
+      name: 'diamondPattern',
+      generator: patternGradients.createDiamondPatternGradient,
+      description: 'Diamond pattern',
+    },
+    {
+      name: 'heartsPattern',
+      generator: patternGradients.createHeartsPatternGradient,
+      description: 'Hearts pattern',
+    },
+    {
+      name: 'checkered',
+      generator: patternGradients.createCheckeredGradient,
+      description: 'Checkered pattern',
+    },
+    {
+      name: 'diagonalFlow',
+      generator: patternGradients.createDiagonalFlowGradient,
+      description: 'Diagonal flow lines',
+    },
+    {
+      name: 'geometricPulse',
+      generator: patternGradients.createGeometricPulseGradient,
+      description: 'Geometric pulse animation',
+    },
+    {
+      name: 'patternWave',
+      generator: patternGradients.createPatternWaveGradient,
+      description: 'Pattern wave effect',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'pattern',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -740,23 +1322,59 @@ function loadPatternEffects() {
  */
 function loadMetallicEffects() {
   const effects = [
-    { name: 'copperMetallic', generator: metallicGradients.createCopperMetallicGradient, description: 'Copper metallic finish' },
-    { name: 'shineShimmer', generator: metallicGradients.createShineShimmerGradient, description: 'Shimmering shine effect' },
-    { name: 'neonPulse', generator: metallicGradients.createNeonPulseGradient, description: 'Neon pulse glow' },
-    { name: 'aquaFlow', generator: metallicGradients.createAquaFlowGradient, description: 'Aqua flow effect' },
-    { name: 'sparkleEffect', generator: metallicGradients.createSparkleEffectGradient, description: 'Sparkle glitter effect' },
-    { name: 'chromeFlow', generator: metallicGradients.createChromeFlowGradient, description: 'Chrome flow finish' },
-    { name: 'bronzeGleam', generator: metallicGradients.createBronzeGleamGradient, description: 'Bronze gleam shine' },
-    { name: 'platinumSparkle', generator: metallicGradients.createPlatinumSparkleGradient, description: 'Platinum sparkle' },
-    { name: 'steelAqua', generator: metallicGradients.createSteelAquaGradient, description: 'Steel aqua blend' }
+    {
+      name: 'copperMetallic',
+      generator: metallicGradients.createCopperMetallicGradient,
+      description: 'Copper metallic finish',
+    },
+    {
+      name: 'shineShimmer',
+      generator: metallicGradients.createShineShimmerGradient,
+      description: 'Shimmering shine effect',
+    },
+    {
+      name: 'neonPulse',
+      generator: metallicGradients.createNeonPulseGradient,
+      description: 'Neon pulse glow',
+    },
+    {
+      name: 'aquaFlow',
+      generator: metallicGradients.createAquaFlowGradient,
+      description: 'Aqua flow effect',
+    },
+    {
+      name: 'sparkleEffect',
+      generator: metallicGradients.createSparkleEffectGradient,
+      description: 'Sparkle glitter effect',
+    },
+    {
+      name: 'chromeFlow',
+      generator: metallicGradients.createChromeFlowGradient,
+      description: 'Chrome flow finish',
+    },
+    {
+      name: 'bronzeGleam',
+      generator: metallicGradients.createBronzeGleamGradient,
+      description: 'Bronze gleam shine',
+    },
+    {
+      name: 'platinumSparkle',
+      generator: metallicGradients.createPlatinumSparkleGradient,
+      description: 'Platinum sparkle',
+    },
+    {
+      name: 'steelAqua',
+      generator: metallicGradients.createSteelAquaGradient,
+      description: 'Steel aqua blend',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'metallic',
       outputType: 'gradient',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -766,15 +1384,19 @@ function loadMetallicEffects() {
  */
 function loadPathTextEffects() {
   const effects = [
-    { name: 'pathText', generator: pathTextGradients.createPathTextGradient, description: 'Animated path text reveal' }
+    {
+      name: 'pathText',
+      generator: pathTextGradients.createPathTextGradient,
+      description: 'Animated path text reveal',
+    },
   ];
 
-  effects.forEach(effect => {
+  effects.forEach((effect) => {
     effectRegistry.register({
       ...effect,
       category: 'pathText',
       outputType: 'complete',
-      templates: getTemplatesForEffect(effect.name)
+      templates: getTemplatesForEffect(effect.name),
     });
   });
 }
@@ -784,16 +1406,64 @@ function loadPathTextEffects() {
  */
 function loadGithubProfileEffects() {
   const effects = [
-    { name: 'shimmerBadge', category: 'githubProfile', generator: githubProfileGradients.createShimmerBadge, outputType: 'complete', description: 'Shimmer badge with colored background and light sweep' },
-    { name: 'terminalTyping', category: 'githubProfile', generator: githubProfileGradients.createTerminalTyping, outputType: 'complete', description: 'macOS terminal with typing animation and blinking cursor' },
-    { name: 'skillPills', category: 'githubProfile', generator: githubProfileGradients.createSkillPills, outputType: 'complete', description: 'Row of skill/tech pills with shimmer overlay' },
-    { name: 'shimmerBanner', category: 'githubProfile', generator: githubProfileGradients.createShimmerBanner, outputType: 'complete', description: 'Wide banner with shimmer sweep for announcements' },
-    { name: 'shimmerText', category: 'githubProfile', generator: githubProfileGradients.createShimmerText, outputType: 'complete', description: 'Text with internal gradient shimmer highlight' },
-    { name: 'goldBadge', category: 'githubProfile', generator: githubProfileGradients.createGoldBadge, outputType: 'complete', description: 'Luxury gold badge with diamond accents and glow' },
-    { name: 'socialBadge', category: 'githubProfile', generator: githubProfileGradients.createSocialBadge, outputType: 'complete', description: 'Social achievement badge with auto light/dark text' },
-    { name: 'repoCard', category: 'githubProfile', generator: githubProfileGradients.createRepoCard, outputType: 'complete', description: 'GitHub-style repo card with icon and shimmer' }
+    {
+      name: 'shimmerBadge',
+      category: 'githubProfile',
+      generator: githubProfileGradients.createShimmerBadge,
+      outputType: 'complete',
+      description: 'Shimmer badge with colored background and light sweep',
+    },
+    {
+      name: 'terminalTyping',
+      category: 'githubProfile',
+      generator: githubProfileGradients.createTerminalTyping,
+      outputType: 'complete',
+      description: 'macOS terminal with typing animation and blinking cursor',
+    },
+    {
+      name: 'skillPills',
+      category: 'githubProfile',
+      generator: githubProfileGradients.createSkillPills,
+      outputType: 'complete',
+      description: 'Row of skill/tech pills with shimmer overlay',
+    },
+    {
+      name: 'shimmerBanner',
+      category: 'githubProfile',
+      generator: githubProfileGradients.createShimmerBanner,
+      outputType: 'complete',
+      description: 'Wide banner with shimmer sweep for announcements',
+    },
+    {
+      name: 'shimmerText',
+      category: 'githubProfile',
+      generator: githubProfileGradients.createShimmerText,
+      outputType: 'complete',
+      description: 'Text with internal gradient shimmer highlight',
+    },
+    {
+      name: 'goldBadge',
+      category: 'githubProfile',
+      generator: githubProfileGradients.createGoldBadge,
+      outputType: 'complete',
+      description: 'Luxury gold badge with diamond accents and glow',
+    },
+    {
+      name: 'socialBadge',
+      category: 'githubProfile',
+      generator: githubProfileGradients.createSocialBadge,
+      outputType: 'complete',
+      description: 'Social achievement badge with auto light/dark text',
+    },
+    {
+      name: 'repoCard',
+      category: 'githubProfile',
+      generator: githubProfileGradients.createRepoCard,
+      outputType: 'complete',
+      description: 'GitHub-style repo card with icon and shimmer',
+    },
   ];
-  effects.forEach(effect => effectRegistry.register(effect));
+  effects.forEach((effect) => effectRegistry.register(effect));
 }
 
 /**
@@ -833,5 +1503,5 @@ function loadAllEffects() {
 
 module.exports = {
   loadAllEffects,
-  TEMPLATE_MAPPINGS
+  TEMPLATE_MAPPINGS,
 };

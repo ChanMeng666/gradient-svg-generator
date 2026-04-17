@@ -1,17 +1,28 @@
 {
   "name": "chromaflow",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "private": true,
+  "description": "Chromaflow - Create stunning animated SVG gradients with 326+ professional templates",
+  "author": "Chan Meng",
+  "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:contract": "vitest run tests/contract",
+    "prepare": "husky"
   },
-  "keywords": [],
-  "author": "Chan Meng",
-  "license": "ISC",
-  "description": "Chromaflow - Create stunning animated SVG gradients with 326+ professional templates",
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@tanstack/react-query": "^5.83.0",
@@ -27,14 +38,44 @@
     "react-icons": "^4.10.0",
     "tailwind-merge": "^3.3.1",
     "web-vitals": "^5.0.3",
+    "zod": "^3.23.0",
     "zustand": "^5.0.6"
   },
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@next/eslint-plugin-next": "^15.0.0",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
+    "@testing-library/jest-dom": "^6.4.0",
+    "@testing-library/react": "^15.0.0",
+    "@testing-library/user-event": "^14.5.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "@vitest/ui": "^1.6.0",
     "autoprefixer": "^10.4.21",
-    "jest": "^30.3.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.0.0",
+    "husky": "^9.0.0",
+    "jsdom": "^24.0.0",
+    "lint-staged": "^15.2.0",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17"
+    "prettier": "^3.2.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.4.0",
+    "typescript-eslint": "^8.8.0",
+    "vitest": "^1.6.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }
