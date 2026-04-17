@@ -15,9 +15,6 @@ build/
 # .env
 .env
 
-# package-lock.json
-package-lock.json
-
 /.next
 .env.local
 .env.production
@@ -40,6 +37,5 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 /example-1
 /example-2
