@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
@@ -6,19 +6,19 @@ import Header from '../components/layout/Header';
 import GEOHead from '../components/seo/GEOHead';
 import Sidebar from '../components/layout/Sidebar';
 import { Button } from '../components/ui/button';
-import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
-import { Sheet } from '../components/ui/sheet';
 import { cn } from '../lib/utils';
 import useStore from '../store/useStore';
 import styles from '../styles/create.module.css';
 import { ColorPicker } from '../components/ui/color-picker';
 import { GRADIENT_TYPES } from '../constants/gradientTypes';
-import { usePreviewUrl } from '../hooks/usePreviewUrl';
 import { useMobileUI } from '../hooks/useMobileUI';
 import { useColorManagement } from '../hooks/useColorManagement';
+import { useShareActions } from '../hooks/useShareActions';
+import { useFullscreenToggle } from '../hooks/useFullscreenToggle';
+import { useResetConfig } from '../hooks/useResetConfig';
 import {
   Download,
   Copy,
@@ -30,16 +30,10 @@ import {
   Code2,
   Share2,
   RotateCcw,
-  Menu,
   X,
 } from 'lucide-react';
 
 // Dynamic imports for heavy components
-const PropertiesPanel = dynamic(
-  () =>
-    import('../components/features/properties-panel').then((m) => ({ default: m.PropertiesPanel })),
-  { ssr: false },
-);
 const MobilePropertiesPanel = dynamic(
   () =>
     import('../components/features/properties-panel').then((m) => ({
@@ -61,19 +55,14 @@ export default function Create() {
     currentConfig,
     updateConfig,
     setTemplate,
-    isCustomMode,
-    toggleMode,
     addToRecent,
     favorites,
     toggleFavorite,
     baseTemplate,
     isModified,
     resetToTemplate,
-    clearTemplate,
   } = useStore();
 
-  // Use custom hooks for cleaner code
-  const { previewUrl, fullUrl, markdownCode } = usePreviewUrl();
   const {
     isMobile,
     mobileMenuOpen,
@@ -84,33 +73,18 @@ export default function Create() {
     setQuickTemplatesOpen,
     closeMobileMenu,
   } = useMobileUI();
-  const { colors, handleColorUpdate, handleAddColor, handleRemoveColor } = useColorManagement();
+  const { handleColorUpdate, handleAddColor, handleRemoveColor } = useColorManagement();
+  const { previewUrl, copyCode, downloadSVG, share, isCopied, isShared } = useShareActions();
+  const { isFullscreen, toggle: toggleFullscreen, close: closeFullscreen } = useFullscreenToggle();
+  const resetConfig = useResetConfig();
 
-  // Local UI state
-  const [isCopied, setIsCopied] = useState(false);
-  const [isShared, setIsShared] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  // Get all templates and categories
   const templates = useMemo(() => getAllTemplates(), []);
   const categories = useMemo(() => getCategories(), []);
 
-  // Handle escape key for fullscreen
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && isFullscreen) {
-        setIsFullscreen(false);
-      }
-    };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, [isFullscreen]);
-
-  // Handle template from URL query parameter
+  // Load a template referenced by ?template= in the URL.
   useEffect(() => {
     if (router.isReady && router.query.template) {
-      const templateName = router.query.template;
-      const template = templates.find((t) => t.name === templateName);
+      const template = templates.find((t) => t.name === router.query.template);
       if (template) {
         setTemplate(template);
         addToRecent(template);
@@ -118,7 +92,6 @@ export default function Create() {
     }
   }, [router.isReady, router.query.template, templates, setTemplate, addToRecent]);
 
-  // Handle template selection (memoized to prevent re-renders)
   const handleTemplateSelect = useCallback(
     (template) => {
       setTemplate(template);
@@ -127,56 +100,6 @@ export default function Create() {
     },
     [setTemplate, addToRecent, closeMobileMenu],
   );
-
-  // Copy code to clipboard (memoized)
-  const copyCode = useCallback(async () => {
-    await navigator.clipboard.writeText(markdownCode);
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
-  }, [markdownCode]);
-
-  // Download SVG (memoized)
-  const downloadSVG = useCallback(async () => {
-    const response = await fetch(previewUrl);
-    const svgText = await response.text();
-    const blob = new Blob([svgText], { type: 'image/svg+xml' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${currentConfig.text || 'gradient'}.svg`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }, [previewUrl, currentConfig.text]);
-
-  // Reset to defaults (memoized)
-  const resetConfig = useCallback(() => {
-    if (baseTemplate && !isModified) {
-      // If using an unmodified template, clear it
-      clearTemplate();
-      updateConfig({
-        text: 'Gradient SVG',
-        height: 120,
-        gradientType: 'horizontal',
-        duration: '6s',
-        colors: ['ff0080', '7928ca', 'ff0080'],
-      });
-    } else if (baseTemplate && isModified) {
-      // If template is modified, reset to original template
-      resetToTemplate();
-    } else {
-      // If in custom mode, reset to defaults
-      updateConfig({
-        text: 'Gradient SVG',
-        height: 120,
-        template: null,
-        gradientType: 'horizontal',
-        duration: '6s',
-        colors: ['ff0080', '7928ca', 'ff0080'],
-      });
-    }
-  }, [baseTemplate, isModified, clearTemplate, resetToTemplate, updateConfig]);
 
   return (
     <>
@@ -252,7 +175,7 @@ export default function Create() {
                     <Button
                       variant="outline"
                       size={isMobile ? 'default' : 'icon'}
-                      onClick={() => setIsFullscreen(!isFullscreen)}
+                      onClick={toggleFullscreen}
                       className={cn('transition-all', isMobile ? 'h-12 w-12' : 'h-10 w-10')}
                     >
                       <Maximize2 className={cn(isMobile ? 'h-6 w-6' : 'h-4 w-4')} />
@@ -281,7 +204,7 @@ export default function Create() {
                   <Button
                     variant="outline"
                     size="icon"
-                    onClick={() => setIsFullscreen(false)}
+                    onClick={closeFullscreen}
                     className="absolute top-4 right-4 z-10"
                   >
                     <X className="h-4 w-4" />
@@ -323,28 +246,7 @@ export default function Create() {
                       <Button
                         variant="outline"
                         className={cn('gap-2', isMobile && 'text-xs px-3')}
-                        onClick={async () => {
-                          const shareUrl = `https://gradient-svg-generator.vercel.app${previewUrl}`;
-                          const shareText = `Check out this awesome gradient: ${currentConfig.text}`;
-
-                          // Try Web Share API first (mobile)
-                          if (navigator.share) {
-                            try {
-                              await navigator.share({
-                                title: 'Gradient SVG',
-                                text: shareText,
-                                url: shareUrl,
-                              });
-                            } catch (err) {
-                              console.log('Share cancelled');
-                            }
-                          } else {
-                            // Fallback: Copy share link
-                            await navigator.clipboard.writeText(shareUrl);
-                            setIsShared(true);
-                            setTimeout(() => setIsShared(false), 2000);
-                          }
-                        }}
+                        onClick={share}
                       >
                         <Share2 className="h-4 w-4" />
                         <span className={cn(isMobile && 'hidden sm:inline')}>
