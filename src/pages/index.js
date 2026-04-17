@@ -8,6 +8,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { getCategories, getTemplatesByCategory } from '../utils/templateUtils';
+import { FEATURED_TEMPLATES, EDITORS_CHOICE, POPULAR_TEMPLATES } from '../features/home/homeData';
 import {
   Sparkles,
   Palette,
@@ -26,88 +27,6 @@ export default function Home() {
 
   // Get all categories
   const categories = useMemo(() => getCategories(), []);
-
-  // Featured templates for hero section - Diverse visual styles
-  const featuredTemplates = [
-    { name: 'hologram-matrix', displayName: 'Hologram Matrix', text: 'FUTURISTIC' },
-    { name: 'aurora-borealis', displayName: 'Aurora Borealis', text: 'NATURE' },
-    { name: 'typing-path-reveal', displayName: 'Typing Animation', text: 'TYPING' },
-    { name: 'liquid-venom', displayName: 'Liquid Venom', text: 'LIQUID' },
-    { name: 'watercolor-dream', displayName: 'Watercolor Dream', text: 'ARTISTIC' },
-    { name: 'sunset-gold', displayName: 'Sunset Gold', text: 'LUXURY' },
-    { name: 'pixel-art-retro', displayName: 'Pixel Art', text: 'RETRO' },
-    { name: 'rainbow-wave', displayName: 'Rainbow Wave', text: 'RAINBOW' },
-  ];
-
-  // Editor's choice templates - Expanded with diverse categories
-  const editorsChoice = [
-    // Luxury & Material
-    { name: 'sunset-gold', displayName: 'Sunset Gold', category: 'luxury', text: 'PREMIUM' },
-    {
-      name: 'diamond-sparkle',
-      displayName: 'Diamond Sparkle',
-      category: 'material',
-      text: 'DIAMOND',
-    },
-
-    // Nature & Organic
-    { name: 'ocean-heart', displayName: 'Ocean Heart', category: 'nature', text: 'OCEAN' },
-    {
-      name: 'aurora-borealis',
-      displayName: 'Aurora Borealis',
-      category: 'organicNature',
-      text: 'AURORA',
-    },
-
-    // Tech & Digital
-    { name: 'cyber-scan', displayName: 'Cyber Scanner', category: 'tech', text: 'CYBER' },
-    { name: 'neural-network', displayName: 'Neural Network', category: 'digitalLife', text: 'AI' },
-
-    // Artistic & Creative
-    {
-      name: 'watercolor-dream',
-      displayName: 'Watercolor Dream',
-      category: 'artistic',
-      text: 'WATERCOLOR',
-    },
-    { name: 'art-deco-luxury', displayName: 'Art Deco', category: 'artMovement', text: 'DECO' },
-
-    // Gaming & Retro
-    { name: 'neon-arcade', displayName: 'Neon Arcade', category: 'gaming', text: 'ARCADE' },
-    { name: 'pixel-art-retro', displayName: 'Pixel Art', category: 'gaming', text: 'PIXEL' },
-
-    // Path Animation & Text Effects
-    {
-      name: 'typing-path-reveal',
-      displayName: 'Typing Animation',
-      category: 'pathText',
-      text: 'TYPING',
-    },
-    { name: 'handwriting', displayName: 'Handwriting', category: 'pathText', text: 'WRITE' },
-
-    // Capsule & Morphing
-    { name: 'liquid-venom', displayName: 'Liquid Venom', category: 'capsuleShape', text: 'VENOM' },
-    {
-      name: 'dreamy-sunset',
-      displayName: 'Dreamy Sunset',
-      category: 'capsuleShape',
-      text: 'DREAMY',
-    },
-
-    // Weather & Light
-    { name: 'monsoon-rain', displayName: 'Monsoon Rain', category: 'weather', text: 'RAIN' },
-    { name: 'stained-glass', displayName: 'Stained Glass', category: 'lightShadow', text: 'GLASS' },
-  ];
-
-  // Popular templates - Diverse and trending
-  const popularTemplates = [
-    { name: 'typing-path-reveal', displayName: 'Typing Animation', users: '3.2k' },
-    { name: 'aurora-borealis', displayName: 'Aurora Borealis', users: '2.8k' },
-    { name: 'liquid-venom', displayName: 'Liquid Venom', users: '2.5k' },
-    { name: 'watercolor-dream', displayName: 'Watercolor Dream', users: '2.1k' },
-    { name: 'neon-arcade', displayName: 'Neon Arcade', users: '1.9k' },
-    { name: 'hologram-matrix', displayName: 'Hologram Matrix', users: '1.7k' },
-  ];
 
   // Features
   const features = [
@@ -136,7 +55,7 @@ export default function Home() {
   // Rotate featured templates
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTemplateIndex((prev) => (prev + 1) % featuredTemplates.length);
+      setCurrentTemplateIndex((prev) => (prev + 1) % FEATURED_TEMPLATES.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -221,18 +140,18 @@ export default function Home() {
                 <Card className="overflow-hidden relative">
                   <div className="aspect-2/1 bg-muted flex items-center justify-center">
                     <img
-                      src={`/api/svg?text=${featuredTemplates[currentTemplateIndex].text}&template=${featuredTemplates[currentTemplateIndex].name}&height=200&v=2`}
-                      alt={featuredTemplates[currentTemplateIndex].displayName}
+                      src={`/api/svg?text=${FEATURED_TEMPLATES[currentTemplateIndex].text}&template=${FEATURED_TEMPLATES[currentTemplateIndex].name}&height=200&v=2`}
+                      alt={FEATURED_TEMPLATES[currentTemplateIndex].displayName}
                       className="w-full h-full object-contain"
-                      key={`hero-${featuredTemplates[currentTemplateIndex].name}`}
+                      key={`hero-${FEATURED_TEMPLATES[currentTemplateIndex].name}`}
                     />
                   </div>
                   <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">
                     <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm">
-                      {featuredTemplates[currentTemplateIndex].displayName}
+                      {FEATURED_TEMPLATES[currentTemplateIndex].displayName}
                     </Badge>
                     <div className="flex gap-1">
-                      {featuredTemplates.map((_, index) => (
+                      {FEATURED_TEMPLATES.map((_, index) => (
                         <div
                           key={index}
                           className={`h-1.5 w-1.5 rounded-full transition-all ${
@@ -302,7 +221,7 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {editorsChoice.map((template, index) => (
+              {EDITORS_CHOICE.map((template, index) => (
                 <motion.div
                   key={template.name}
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -351,7 +270,7 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {popularTemplates.map((template, index) => (
+              {POPULAR_TEMPLATES.map((template, index) => (
                 <Card key={template.name} className="hover:shadow-md transition-shadow">
                   <CardHeader className="pb-3">
                     <div className="flex justify-between items-center">
