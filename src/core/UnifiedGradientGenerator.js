@@ -32,16 +32,19 @@
 const { effectRegistry } = require('./EffectRegistry');
 const { svgComposer } = require('./SVGComposer');
 const { loadAllEffects } = require('./EffectLoader');
+const { loadEffectsFromManifests } = require('./registry');
 const { getTemplateConfig } = require('../config/gradientConfig');
 const { createGradientFromColors } = require('../utils/svgUtils');
 const { generateTextEffectSVG } = require('../utils/textEffectGenerator');
 const { generateAdvancedSVG } = require('../utils/advancedSvgGenerator');
 
-// Initialize effect registry on first load
+// Initialize effect registry on first load. Declarative feature manifests
+// get first pick; the legacy EffectLoader fills in anything not yet migrated.
 let initialized = false;
 
 function ensureInitialized() {
   if (!initialized) {
+    loadEffectsFromManifests();
     loadAllEffects();
     initialized = true;
   }
@@ -67,7 +70,7 @@ function generateGradientSVG({
   height = 120,
   gradientType = 'horizontal',
   duration = '6s',
-  template = ''
+  template = '',
 }) {
   // Ensure registry is initialized
   ensureInitialized();
@@ -103,7 +106,7 @@ function generateGradientSVG({
       height,
       duration: effectDuration,
       gradientType: effectName,
-      template
+      template,
     });
   }
 
@@ -114,7 +117,7 @@ function generateGradientSVG({
     height,
     gradientType: effectName,
     duration: effectDuration,
-    template
+    template,
   });
 }
 
@@ -139,10 +142,12 @@ function generateFromRegistry(effectMetadata, params) {
         // Generator returns gradient definition
         const colorsCopy = [...colors];
         const extendedColors = [...colorsCopy, ...colorsCopy];
-        const stops = extendedColors.map((color, index) => {
-          const offset = (index / (extendedColors.length - 1)) * 100;
-          return `<stop offset="${offset}%" stop-color="#${color}" />`;
-        }).join('');
+        const stops = extendedColors
+          .map((color, index) => {
+            const offset = (index / (extendedColors.length - 1)) * 100;
+            return `<stop offset="${offset}%" stop-color="#${color}" />`;
+          })
+          .join('');
 
         const result = effectMetadata.generator(stops, animationConfig, duration, colorsCopy);
 
@@ -156,7 +161,7 @@ function generateFromRegistry(effectMetadata, params) {
             clipPath: '',
             gradientType,
             width,
-            height
+            height,
           });
         } else if (result && typeof result === 'object') {
           // Check if it's signaling to use advanced effect
@@ -167,16 +172,15 @@ function generateFromRegistry(effectMetadata, params) {
               height,
               gradientType: result.effectType,
               duration,
-              template
+              template,
             });
           }
 
           // Object with gradient definition and metadata
           const gradientDef = result.gradientDef || result;
           const additionalElements = result.additionalElements || '';
-          const clipPath = result.hasClipPath && result.clipPathId
-            ? `clip-path="url(#${result.clipPathId})"`
-            : '';
+          const clipPath =
+            result.hasClipPath && result.clipPathId ? `clip-path="url(#${result.clipPathId})"` : '';
           const replaceMainRect = result.replaceMainRect || false;
 
           return svgComposer.composeGradientSVG({
@@ -187,7 +191,7 @@ function generateFromRegistry(effectMetadata, params) {
             gradientType,
             width,
             height,
-            replaceMainRect
+            replaceMainRect,
           });
         }
         break;
@@ -198,15 +202,17 @@ function generateFromRegistry(effectMetadata, params) {
         // Need to check if it's a signal to use advanced effect
         const colorsCopy = [...colors];
         const extendedColors = [...colorsCopy, ...colorsCopy];
-        const stops = extendedColors.map((color, index) => {
-          const offset = (index / (extendedColors.length - 1)) * 100;
-          return `<stop offset="${offset}%" stop-color="#${color}" />`;
-        }).join('');
+        const stops = extendedColors
+          .map((color, index) => {
+            const offset = (index / (extendedColors.length - 1)) * 100;
+            return `<stop offset="${offset}%" stop-color="#${color}" />`;
+          })
+          .join('');
 
         const result = effectMetadata.generator(stops, animationConfig, duration, {
           text,
           colors,
-          height
+          height,
         });
 
         // Check if it's signaling to use advanced effect
@@ -217,7 +223,7 @@ function generateFromRegistry(effectMetadata, params) {
             height,
             gradientType: result.effectType,
             duration,
-            template
+            template,
           });
         }
 
@@ -227,7 +233,7 @@ function generateFromRegistry(effectMetadata, params) {
             content: result.content,
             contentType: 'complete',
             width,
-            height
+            height,
           });
         }
 
@@ -236,7 +242,7 @@ function generateFromRegistry(effectMetadata, params) {
           content: typeof result === 'string' ? result : (result && result.content) || result,
           contentType: 'complete',
           width,
-          height
+          height,
         });
       }
 
@@ -244,10 +250,12 @@ function generateFromRegistry(effectMetadata, params) {
         // Generator returns SVG fragment
         const colorsCopy = [...colors];
         const extendedColors = [...colorsCopy, ...colorsCopy];
-        const stops = extendedColors.map((color, index) => {
-          const offset = (index / (extendedColors.length - 1)) * 100;
-          return `<stop offset="${offset}%" stop-color="#${color}" />`;
-        }).join('');
+        const stops = extendedColors
+          .map((color, index) => {
+            const offset = (index / (extendedColors.length - 1)) * 100;
+            return `<stop offset="${offset}%" stop-color="#${color}" />`;
+          })
+          .join('');
 
         const result = effectMetadata.generator(stops, animationConfig, duration);
 
@@ -259,7 +267,7 @@ function generateFromRegistry(effectMetadata, params) {
             height,
             gradientType: result.effectType,
             duration,
-            template
+            template,
           });
         }
 
@@ -269,7 +277,7 @@ function generateFromRegistry(effectMetadata, params) {
           contentType: 'fragment',
           width,
           height,
-          includeFilters: true
+          includeFilters: true,
         });
       }
 
@@ -296,9 +304,17 @@ function generateLegacy(params) {
   // Special handling for advanced effects using advancedSvgGenerator
   const geometricShapeTypes = ['wave', 'ellipse', 'square'];
   const animationEffectTypes = [
-    'glitch', 'typewriter', 'luminance', 'rainbow', 'textBox',
+    'glitch',
+    'typewriter',
+    'luminance',
+    'rainbow',
+    'textBox',
     // 🌟 NEW: Enhanced Effects - Inspired by svg-banners example
-    'glitchEnhanced', 'luminanceEnhanced', 'borderDrawing', 'layeredWave', 'typewriterEnhanced'
+    'glitchEnhanced',
+    'luminanceEnhanced',
+    'borderDrawing',
+    'layeredWave',
+    'typewriterEnhanced',
   ];
 
   if (geometricShapeTypes.includes(gradientType) || animationEffectTypes.includes(gradientType)) {
@@ -306,20 +322,103 @@ function generateLegacy(params) {
   }
 
   // Special handling for text effects
-  const textEffectTypes = ['luminance', 'rainbow', 'textBox', 'glitch', 'typewriter', 'rainbow-layer'];
+  const textEffectTypes = [
+    'luminance',
+    'rainbow',
+    'textBox',
+    'glitch',
+    'typewriter',
+    'rainbow-layer',
+  ];
   const advancedEffectTypes = [
-    'hologram', 'quantum', 'laserGrid', 'neuralNet', 'plasma', 'dataStream',
-    'watercolor', 'oilPaint', 'inkSplash', 'mosaic', 'abstractGeo', 'graffiti', 'vintage',
-    'goldFoil', 'diamond', 'marble', 'platinum', 'roseGold', 'crystal', 'velvet',
-    'flowingWater', 'flame', 'clouds', 'aurora', 'oceanWaves', 'forest', 'lightning', 'mountainMist',
-    'pixelArt', 'neonArcade', 'energyBlast', 'speedLines', 'bossBattle', 'powerUp', 'cyberpunk', 'retroWave',
-    'liquidMorphing', 'plasmaMorphing', 'cosmicMorphing', 'bioMorphing', 'quantumMorphing', 'lavaMorphing',
-    'turbulentWaves', 'electromagneticWaves', 'auroraWaves', 'soundWaves', 'cryogenicWaves', 'solarWaves',
-    'portalDistortion', 'hypercubeProjection', 'wormholeEffect', 'fractalDimension', 'multiverseOverlap', 'realityDistortion',
-    'quantumTunnel', 'parallelUniverse', 'wormholeTransit', 'dimensionalRift', 'holographicMatrix', 'voidChamber', 'realityGlitch', 'astralProjection',
-    'aiConsciousness', 'bioDigitalMerge', 'quantumDNA', 'digitalEvolution', 'syntheticSoul', 'cyberSymbiosis', 'neuralStorm', 'digitalGenome',
-    'neonGridCity', 'dataStreamFlow', 'cyberPunkNoir', 'hologramInterface', 'digitalDecay', 'chromeReflection', 'virusInfection', 'quantumEncryption', 'augmentedReality',
-    'thoughtWaves', 'memoryFragments', 'dreamLogic', 'emotionalSpectrum', 'meditativeCalm', 'anxietySpiral', 'egoDissolution', 'psychedelicInsight', 'collectiveUnconscious'
+    'hologram',
+    'quantum',
+    'laserGrid',
+    'neuralNet',
+    'plasma',
+    'dataStream',
+    'watercolor',
+    'oilPaint',
+    'inkSplash',
+    'mosaic',
+    'abstractGeo',
+    'graffiti',
+    'vintage',
+    'goldFoil',
+    'diamond',
+    'marble',
+    'platinum',
+    'roseGold',
+    'crystal',
+    'velvet',
+    'flowingWater',
+    'flame',
+    'clouds',
+    'aurora',
+    'oceanWaves',
+    'forest',
+    'lightning',
+    'mountainMist',
+    'pixelArt',
+    'neonArcade',
+    'energyBlast',
+    'speedLines',
+    'bossBattle',
+    'powerUp',
+    'cyberpunk',
+    'retroWave',
+    'liquidMorphing',
+    'plasmaMorphing',
+    'cosmicMorphing',
+    'bioMorphing',
+    'quantumMorphing',
+    'lavaMorphing',
+    'turbulentWaves',
+    'electromagneticWaves',
+    'auroraWaves',
+    'soundWaves',
+    'cryogenicWaves',
+    'solarWaves',
+    'portalDistortion',
+    'hypercubeProjection',
+    'wormholeEffect',
+    'fractalDimension',
+    'multiverseOverlap',
+    'realityDistortion',
+    'quantumTunnel',
+    'parallelUniverse',
+    'wormholeTransit',
+    'dimensionalRift',
+    'holographicMatrix',
+    'voidChamber',
+    'realityGlitch',
+    'astralProjection',
+    'aiConsciousness',
+    'bioDigitalMerge',
+    'quantumDNA',
+    'digitalEvolution',
+    'syntheticSoul',
+    'cyberSymbiosis',
+    'neuralStorm',
+    'digitalGenome',
+    'neonGridCity',
+    'dataStreamFlow',
+    'cyberPunkNoir',
+    'hologramInterface',
+    'digitalDecay',
+    'chromeReflection',
+    'virusInfection',
+    'quantumEncryption',
+    'augmentedReality',
+    'thoughtWaves',
+    'memoryFragments',
+    'dreamLogic',
+    'emotionalSpectrum',
+    'meditativeCalm',
+    'anxietySpiral',
+    'egoDissolution',
+    'psychedelicInsight',
+    'collectiveUnconscious',
   ];
 
   if (textEffectTypes.includes(gradientType) || advancedEffectTypes.includes(gradientType)) {
@@ -329,7 +428,7 @@ function generateLegacy(params) {
       height,
       gradientType,
       duration,
-      template
+      template,
     });
   }
 
@@ -338,7 +437,9 @@ function generateLegacy(params) {
 
   // Check if it signals to use advanced effect
   if (gradientResult && gradientResult.useAdvancedEffect) {
-    return generateAdvancedSVG(gradientResult.effectType, text, colors, width, height, { duration });
+    return generateAdvancedSVG(gradientResult.effectType, text, colors, width, height, {
+      duration,
+    });
   }
 
   // Compose standard gradient SVG
@@ -346,13 +447,14 @@ function generateLegacy(params) {
     text,
     gradientDef: gradientResult.gradientDef,
     additionalElements: gradientResult.additionalElements || '',
-    clipPath: gradientResult.hasClipPath && gradientResult.clipPathId
-      ? `clip-path="url(#${gradientResult.clipPathId})"`
-      : '',
+    clipPath:
+      gradientResult.hasClipPath && gradientResult.clipPathId
+        ? `clip-path="url(#${gradientResult.clipPathId})"`
+        : '',
     gradientType,
     width,
     height,
-    replaceMainRect: gradientResult.replaceMainRect || false
+    replaceMainRect: gradientResult.replaceMainRect || false,
   });
 }
 
@@ -368,10 +470,12 @@ function generateFallback(params) {
 
   const gradientDef = `
     <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      ${colors.map((color, index) => {
-        const offset = (index / (colors.length - 1)) * 100;
-        return `<stop offset="${offset}%" stop-color="#${color}" />`;
-      }).join('')}
+      ${colors
+        .map((color, index) => {
+          const offset = (index / (colors.length - 1)) * 100;
+          return `<stop offset="${offset}%" stop-color="#${color}" />`;
+        })
+        .join('')}
       <animate attributeName="x1" values="-50%;50%;100%;50%;-50%" dur="${duration}" repeatCount="indefinite" />
       <animate attributeName="x2" values="50%;150%;200%;150%;50%" dur="${duration}" repeatCount="indefinite" />
     </linearGradient>`;
@@ -381,7 +485,7 @@ function generateFallback(params) {
     gradientDef,
     gradientType: 'horizontal',
     width,
-    height
+    height,
   });
 }
 
@@ -395,11 +499,11 @@ function getSystemStats() {
   return {
     registry: effectRegistry.getStats(),
     categories: effectRegistry.getCategories(),
-    totalEffects: effectRegistry.getAllEffects().length
+    totalEffects: effectRegistry.getAllEffects().length,
   };
 }
 
 module.exports = {
   generateGradientSVG,
-  getSystemStats
+  getSystemStats,
 };

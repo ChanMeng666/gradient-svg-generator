@@ -223,7 +223,12 @@ const TEMPLATE_MAPPINGS = {
 };
 
 /**
- * Load and register all basic gradient effects
+ * Load and register all basic gradient effects.
+ *
+ * Effects already registered via src/features/basic/effect.ts are skipped,
+ * so the manifest-driven path wins and this loader becomes a safety net
+ * during the Phase 4 migration. Will be deleted once every category has
+ * a manifest.
  */
 function loadBasicGradients() {
   const effects = [
@@ -298,7 +303,11 @@ function loadBasicGradients() {
     },
   ];
 
-  effects.forEach((effect) => effectRegistry.register(effect));
+  effects.forEach((effect) => {
+    if (!effectRegistry.has(effect.name)) {
+      effectRegistry.register(effect);
+    }
+  });
 }
 
 /**
