@@ -1476,38 +1476,16 @@ function loadGithubProfileEffects() {
 }
 
 /**
- * Load all effects into the registry
+ * Legacy entry point. All effect registration now flows through
+ * src/core/registry.js:loadEffectsFromManifests(), which iterates the
+ * per-category manifests under src/features/. This function is kept as a
+ * no-op export so any external caller of `loadAllEffects` continues to work.
+ *
+ * The hand-written loadXxxGradients() functions above are dead code kept
+ * for one release cycle as a safety net; Phase 4c will delete them.
  */
 function loadAllEffects() {
-  // Basic and shape gradients
-  loadBasicGradients();
-  loadShapeGradients();
-  loadEffectGradients();
-
-  // Thematic effects
-  loadFutureTechEffects();
-  loadArtisticEffects();
-  loadLuxuryEffects();
-  loadGamingEffects();
-  loadOrganicEffects();
-
-  // Additional effects (newly registered)
-  loadWeatherEffects();
-  loadLightShadowEffects();
-  loadArtMovementEffects();
-  loadCulinaryLiquidEffects();
-  loadPatternEffects();
-  loadMetallicEffects();
-  loadPathTextEffects();
-
-  // GitHub Profile effects
-  loadGithubProfileEffects();
-
-  // Advanced complex effects
-  loadAdvancedComplexEffects();
-
-  console.log('✅ Loaded all effects into registry');
-  console.log(effectRegistry.getStats());
+  // All registration happens in loadEffectsFromManifests().
 }
 
 module.exports = {

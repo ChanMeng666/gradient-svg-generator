@@ -1,20 +1,49 @@
 /**
  * Barrel of all feature manifests.
  *
- * When adding a new effect category, add it here. Every manifest listed here
- * is registered automatically by src/core/registry.js on startup — there is
- * no additional table to update.
- *
- * During the Phase 4 migration this list will grow one category at a time;
- * anything not listed here continues to load via the legacy paths in
- * src/core/EffectLoader.js.
+ * When adding a new effect category: create src/features/<name>/effect.js
+ * exporting a `manifest`, then add a line here. The registry auto-picks it up.
  *
  * @typedef {import('../core/schema/effect.schema').EffectManifest} EffectManifest
  */
 
 const { manifest: basicManifest } = require('./basic/effect');
+const { manifest: shapeManifest } = require('./shape/effect');
+const { manifest: effectsManifest } = require('./effects/effect');
+const { manifest: futureTechManifest } = require('./futureTech/effect');
+const { manifest: artisticManifest } = require('./artistic/effect');
+const { manifest: luxuryManifest } = require('./luxury/effect');
+const { manifest: gamingManifest } = require('./gaming/effect');
+const { manifest: organicManifest } = require('./organic/effect');
+const { manifest: weatherManifest } = require('./weather/effect');
+const { manifest: lightShadowManifest } = require('./lightShadow/effect');
+const { manifest: artMovementManifest } = require('./artMovement/effect');
+const { manifest: culinaryLiquidManifest } = require('./culinaryLiquid/effect');
+const { manifest: patternManifest } = require('./pattern/effect');
+const { manifest: metallicManifest } = require('./metallic/effect');
+const { manifest: pathTextManifest } = require('./pathText/effect');
+const { manifest: githubProfileManifest } = require('./githubProfile/effect');
+const { manifest: advancedManifest } = require('./advanced/effect');
 
 /** @type {ReadonlyArray<EffectManifest>} */
-const manifests = [basicManifest];
+const manifests = [
+  basicManifest,
+  shapeManifest,
+  effectsManifest,
+  futureTechManifest,
+  artisticManifest,
+  luxuryManifest,
+  gamingManifest,
+  organicManifest,
+  weatherManifest,
+  lightShadowManifest,
+  artMovementManifest,
+  culinaryLiquidManifest,
+  patternManifest,
+  metallicManifest,
+  pathTextManifest,
+  githubProfileManifest,
+  advancedManifest,
+];
 
 module.exports = { manifests };
