@@ -12,30 +12,19 @@ export default function Header({ onMenuClick, showMobileMenu = true }) {
   const isHomePage = router.pathname === '/';
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
       <div className="container flex h-16 items-center px-4">
         {/* Mobile menu button */}
         {showMobileMenu && onMenuClick && (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden mr-2"
-            onClick={onMenuClick}
-          >
+          <Button variant="ghost" size="icon" className="md:hidden mr-2" onClick={onMenuClick}>
             <Menu className="h-5 w-5" />
           </Button>
         )}
 
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <img
-            src="/gradient-svg-generator.svg"
-            alt="Chromaflow"
-            className="h-8 w-8"
-          />
-          <span className="font-bold text-xl hidden sm:inline-block">
-            Chromaflow
-          </span>
+          <img src="/gradient-svg-generator.svg" alt="Chromaflow" className="h-8 w-8" />
+          <span className="font-bold text-xl hidden sm:inline-block">Chromaflow</span>
         </Link>
 
         {/* Navigation */}
@@ -43,8 +32,8 @@ export default function Header({ onMenuClick, showMobileMenu = true }) {
           <Link
             href="/"
             className={cn(
-              "text-sm font-medium transition-colors hover:text-primary",
-              isHomePage ? "text-foreground" : "text-muted-foreground"
+              'text-sm font-medium transition-colors hover:text-primary',
+              isHomePage ? 'text-foreground' : 'text-muted-foreground',
             )}
           >
             Home
@@ -52,8 +41,8 @@ export default function Header({ onMenuClick, showMobileMenu = true }) {
           <Link
             href="/create"
             className={cn(
-              "text-sm font-medium transition-colors hover:text-primary",
-              isCreatePage ? "text-foreground" : "text-muted-foreground"
+              'text-sm font-medium transition-colors hover:text-primary',
+              isCreatePage ? 'text-foreground' : 'text-muted-foreground',
             )}
           >
             Create
@@ -61,8 +50,8 @@ export default function Header({ onMenuClick, showMobileMenu = true }) {
           <Link
             href="/templates"
             className={cn(
-              "text-sm font-medium transition-colors hover:text-primary",
-              router.pathname === '/templates' ? "text-foreground" : "text-muted-foreground"
+              'text-sm font-medium transition-colors hover:text-primary',
+              router.pathname === '/templates' ? 'text-foreground' : 'text-muted-foreground',
             )}
           >
             Templates
@@ -70,8 +59,8 @@ export default function Header({ onMenuClick, showMobileMenu = true }) {
           <Link
             href="/api-docs"
             className={cn(
-              "text-sm font-medium transition-colors hover:text-primary",
-              router.pathname === '/api-docs' ? "text-foreground" : "text-muted-foreground"
+              'text-sm font-medium transition-colors hover:text-primary',
+              router.pathname === '/api-docs' ? 'text-foreground' : 'text-muted-foreground',
             )}
           >
             API
@@ -84,12 +73,14 @@ export default function Header({ onMenuClick, showMobileMenu = true }) {
             variant="ghost"
             size="sm"
             className="hidden md:inline-flex"
-            onClick={() => window.open('https://github.com/ChanMeng666/gradient-svg-generator', '_blank')}
+            onClick={() =>
+              window.open('https://github.com/ChanMeng666/gradient-svg-generator', '_blank')
+            }
           >
             <Code2 className="mr-2 h-4 w-4" />
             GitHub
           </Button>
-          
+
           {!isCreatePage && (
             <Button onClick={() => router.push('/create')}>
               <Palette className="mr-2 h-4 w-4" />

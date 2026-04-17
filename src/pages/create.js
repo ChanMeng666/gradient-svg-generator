@@ -31,13 +31,21 @@ import {
   Share2,
   RotateCcw,
   Menu,
-  X
+  X,
 } from 'lucide-react';
 
 // Dynamic imports for heavy components
-const PropertiesPanel = dynamic(() => import('../components/features/PropertiesPanel'), { ssr: false });
-const MobilePropertiesPanel = dynamic(() => import('../components/features/MobilePropertiesPanel'), { ssr: false });
-const SwipeableTemplateCarousel = dynamic(() => import('../components/features/SwipeableTemplateCarousel'), { ssr: false });
+const PropertiesPanel = dynamic(() => import('../components/features/PropertiesPanel'), {
+  ssr: false,
+});
+const MobilePropertiesPanel = dynamic(
+  () => import('../components/features/MobilePropertiesPanel'),
+  { ssr: false },
+);
+const SwipeableTemplateCarousel = dynamic(
+  () => import('../components/features/SwipeableTemplateCarousel'),
+  { ssr: false },
+);
 
 // Import all templates
 import { getAllTemplates, getCategories } from '../utils/templateUtils';
@@ -56,7 +64,7 @@ export default function Create() {
     baseTemplate,
     isModified,
     resetToTemplate,
-    clearTemplate
+    clearTemplate,
   } = useStore();
 
   // Use custom hooks for cleaner code
@@ -69,7 +77,7 @@ export default function Create() {
     setMobileMenuOpen,
     setMobilePropertiesOpen,
     setQuickTemplatesOpen,
-    closeMobileMenu
+    closeMobileMenu,
   } = useMobileUI();
   const { colors, handleColorUpdate, handleAddColor, handleRemoveColor } = useColorManagement();
 
@@ -97,7 +105,7 @@ export default function Create() {
   useEffect(() => {
     if (router.isReady && router.query.template) {
       const templateName = router.query.template;
-      const template = templates.find(t => t.name === templateName);
+      const template = templates.find((t) => t.name === templateName);
       if (template) {
         setTemplate(template);
         addToRecent(template);
@@ -106,11 +114,14 @@ export default function Create() {
   }, [router.isReady, router.query.template, templates, setTemplate, addToRecent]);
 
   // Handle template selection (memoized to prevent re-renders)
-  const handleTemplateSelect = useCallback((template) => {
-    setTemplate(template);
-    addToRecent(template);
-    closeMobileMenu();
-  }, [setTemplate, addToRecent, closeMobileMenu]);
+  const handleTemplateSelect = useCallback(
+    (template) => {
+      setTemplate(template);
+      addToRecent(template);
+      closeMobileMenu();
+    },
+    [setTemplate, addToRecent, closeMobileMenu],
+  );
 
   // Copy code to clipboard (memoized)
   const copyCode = useCallback(async () => {
@@ -164,30 +175,41 @@ export default function Create() {
 
   return (
     <>
-      <GEOHead 
+      <GEOHead
         pageType="create"
         customInstructions="This is the main creation interface where users can design custom gradients with real-time preview. Guide users through template selection, color customization, and parameter tuning for optimal results."
       />
       <Head>
         <title>Create Custom Gradients - Chromaflow | Real-time Editor</title>
-        <meta name="description" content="Create beautiful animated SVG gradients with our powerful real-time editor. Choose from 326+ professional templates including Path Animation, Weather, Light & Shadow, Art Movement, and Culinary effects or design your own custom gradients. Free API generation." />
-        <meta name="keywords" content="gradient creator, SVG editor, custom gradients, real-time preview, design tool, API generator, path animation, typing animation, weather effects, light shadow, art movement, culinary" />
+        <meta
+          name="description"
+          content="Create beautiful animated SVG gradients with our powerful real-time editor. Choose from 326+ professional templates including Path Animation, Weather, Light & Shadow, Art Movement, and Culinary effects or design your own custom gradients. Free API generation."
+        />
+        <meta
+          name="keywords"
+          content="gradient creator, SVG editor, custom gradients, real-time preview, design tool, API generator, path animation, typing animation, weather effects, light shadow, art movement, culinary"
+        />
         <meta property="og:title" content="Gradient Creator - Real-time SVG Editor" />
-        <meta property="og:description" content="Professional gradient creation tool with real-time preview and 326+ templates across 30 categories." />
+        <meta
+          property="og:description"
+          content="Professional gradient creation tool with real-time preview and 326+ templates across 30 categories."
+        />
       </Head>
 
       <div className="min-h-screen bg-background">
         <Header onMenuClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
-        
+
         <div className={styles.pageContainer}>
           {/* Sidebar - Hidden on mobile, shown via menu */}
-          <div className={cn(
-            "transition-all duration-300 flex-shrink-0",
-            "fixed top-16 left-0 z-40 md:relative md:inset-y-0",
-            "md:h-full", // Full height on desktop
-            isMobile ? "bottom-0 h-[calc(100vh-4rem)]" : "h-full", // Full height minus header on mobile
-            mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-          )}>
+          <div
+            className={cn(
+              'transition-all duration-300 shrink-0',
+              'fixed top-16 left-0 z-40 md:relative md:inset-y-0',
+              'md:h-full', // Full height on desktop
+              isMobile ? 'bottom-0 h-[calc(100vh-4rem)]' : 'h-full', // Full height minus header on mobile
+              mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
+            )}
+          >
             <Sidebar
               templates={templates}
               categories={categories}
@@ -197,7 +219,7 @@ export default function Create() {
 
           {/* Mobile overlay */}
           {mobileMenuOpen && (
-            <div 
+            <div
               className="fixed inset-0 bg-black/50 z-30 md:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
@@ -211,49 +233,44 @@ export default function Create() {
               <div className={styles.canvasHeader}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 sm:gap-4">
-                    <h2 className={cn(
-                      "font-semibold",
-                      isMobile ? "text-base" : "text-lg"
-                    )}>Preview</h2>
-                    <Badge 
-                      variant={baseTemplate && !isModified ? "default" : "outline"}
-                      className={cn(isMobile && "text-xs px-2 py-0.5")}
+                    <h2 className={cn('font-semibold', isMobile ? 'text-base' : 'text-lg')}>
+                      Preview
+                    </h2>
+                    <Badge
+                      variant={baseTemplate && !isModified ? 'default' : 'outline'}
+                      className={cn(isMobile && 'text-xs px-2 py-0.5')}
                     >
-                      {baseTemplate ? (isModified ? "Modified" : "Template") : "Custom"}
+                      {baseTemplate ? (isModified ? 'Modified' : 'Template') : 'Custom'}
                     </Badge>
                   </div>
                   <div className="flex items-center gap-1 sm:gap-2">
                     <Button
                       variant="outline"
-                      size={isMobile ? "default" : "icon"}
+                      size={isMobile ? 'default' : 'icon'}
                       onClick={() => setIsFullscreen(!isFullscreen)}
-                      className={cn(
-                        "transition-all",
-                        isMobile ? "h-12 w-12" : "h-10 w-10"
-                      )}
+                      className={cn('transition-all', isMobile ? 'h-12 w-12' : 'h-10 w-10')}
                     >
-                      <Maximize2 className={cn(isMobile ? "h-6 w-6" : "h-4 w-4")} />
+                      <Maximize2 className={cn(isMobile ? 'h-6 w-6' : 'h-4 w-4')} />
                     </Button>
                     <Button
                       variant="outline"
-                      size={isMobile ? "default" : "icon"}
+                      size={isMobile ? 'default' : 'icon'}
                       onClick={resetConfig}
-                      className={cn(
-                        "transition-all",
-                        isMobile ? "h-12 w-12" : "h-10 w-10"
-                      )}
+                      className={cn('transition-all', isMobile ? 'h-12 w-12' : 'h-10 w-10')}
                     >
-                      <RotateCcw className={cn(isMobile ? "h-6 w-6" : "h-4 w-4")} />
+                      <RotateCcw className={cn(isMobile ? 'h-6 w-6' : 'h-4 w-4')} />
                     </Button>
                   </div>
                 </div>
               </div>
 
               {/* Canvas */}
-              <div className={cn(
-                styles.canvasContent,
-                isFullscreen && "fixed inset-0 z-50 bg-background"
-              )}>
+              <div
+                className={cn(
+                  styles.canvasContent,
+                  isFullscreen && 'fixed inset-0 z-50 bg-background',
+                )}
+              >
                 {/* Close button for fullscreen mode */}
                 {isFullscreen && (
                   <Button
@@ -268,11 +285,7 @@ export default function Create() {
                 <div className={styles.canvasWrapper}>
                   <div className="bg-white">
                     {previewUrl && (
-                      <img 
-                        src={previewUrl}
-                        alt="Gradient Preview"
-                        className="block"
-                      />
+                      <img src={previewUrl} alt="Gradient Preview" className="block" />
                     )}
                   </div>
                 </div>
@@ -283,41 +296,32 @@ export default function Create() {
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-2">
-                      <Button 
-                        onClick={downloadSVG} 
-                        className={cn(
-                          "gap-2",
-                          isMobile && "text-xs px-3"
-                        )}
+                      <Button
+                        onClick={downloadSVG}
+                        className={cn('gap-2', isMobile && 'text-xs px-3')}
                       >
                         <Download className="h-4 w-4" />
-                        <span className={cn(isMobile && "hidden sm:inline")}>Download</span>
-                        {isMobile && "SVG"}
+                        <span className={cn(isMobile && 'hidden sm:inline')}>Download</span>
+                        {isMobile && 'SVG'}
                       </Button>
                       <Button
                         variant="outline"
                         onClick={copyCode}
-                        className={cn(
-                          "gap-2",
-                          isMobile && "text-xs px-3"
-                        )}
+                        className={cn('gap-2', isMobile && 'text-xs px-3')}
                       >
                         <Copy className="h-4 w-4" />
-                        <span className={cn(isMobile && "hidden sm:inline")}>
-                          {isCopied ? "Copied!" : "Copy Code"}
+                        <span className={cn(isMobile && 'hidden sm:inline')}>
+                          {isCopied ? 'Copied!' : 'Copy Code'}
                         </span>
-                        {isMobile && (isCopied ? "✓" : "Copy")}
+                        {isMobile && (isCopied ? '✓' : 'Copy')}
                       </Button>
-                      <Button 
-                        variant="outline" 
-                        className={cn(
-                          "gap-2",
-                          isMobile && "text-xs px-3"
-                        )}
+                      <Button
+                        variant="outline"
+                        className={cn('gap-2', isMobile && 'text-xs px-3')}
                         onClick={async () => {
                           const shareUrl = `https://gradient-svg-generator.vercel.app${previewUrl}`;
                           const shareText = `Check out this awesome gradient: ${currentConfig.text}`;
-                          
+
                           // Try Web Share API first (mobile)
                           if (navigator.share) {
                             try {
@@ -338,15 +342,15 @@ export default function Create() {
                         }}
                       >
                         <Share2 className="h-4 w-4" />
-                        <span className={cn(isMobile && "hidden sm:inline")}>
-                          {isShared ? "Link Copied!" : "Share"}
+                        <span className={cn(isMobile && 'hidden sm:inline')}>
+                          {isShared ? 'Link Copied!' : 'Share'}
                         </span>
                       </Button>
                     </div>
                   </div>
                   <div className="hidden lg:block mt-3">
                     <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <Code2 className="h-4 w-4 flex-shrink-0 mt-1" />
+                      <Code2 className="h-4 w-4 shrink-0 mt-1" />
                       <div className="flex-1">
                         <code className="font-mono text-xs bg-muted px-3 py-2 rounded block break-all whitespace-pre-wrap">
                           https://gradient-svg-generator.vercel.app{previewUrl}
@@ -363,7 +367,7 @@ export default function Create() {
               <div className={styles.propertiesPanel}>
                 <div className={styles.propertiesContent}>
                   <h2 className="text-lg font-semibold mb-4">Properties</h2>
-                  
+
                   <Tabs defaultValue="basic" className="w-full">
                     <TabsList className="grid w-full grid-cols-3">
                       <TabsTrigger value="basic" className="gap-1">
@@ -382,9 +386,7 @@ export default function Create() {
 
                     <TabsContent value="basic" className="space-y-4 mt-4">
                       <div>
-                        <label className="text-sm font-medium mb-2 block">
-                          Text Content
-                        </label>
+                        <label className="text-sm font-medium mb-2 block">Text Content</label>
                         <Input
                           value={currentConfig.text}
                           onChange={(e) => updateConfig({ text: e.target.value })}
@@ -394,9 +396,7 @@ export default function Create() {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium mb-2 block">
-                          Height (px)
-                        </label>
+                        <label className="text-sm font-medium mb-2 block">Height (px)</label>
                         <div className="flex items-center gap-2">
                           <input
                             type="range"
@@ -413,9 +413,7 @@ export default function Create() {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium mb-2 block">
-                          Animation Duration
-                        </label>
+                        <label className="text-sm font-medium mb-2 block">Animation Duration</label>
                         <select
                           value={currentConfig.duration}
                           onChange={(e) => updateConfig({ duration: e.target.value })}
@@ -437,9 +435,9 @@ export default function Create() {
                           </p>
                           {baseTemplate && (
                             <p className="text-xs text-muted-foreground">
-                              {isModified ? 
-                                `Modified from template: ${baseTemplate.label || baseTemplate.name}` : 
-                                `Using template: ${baseTemplate.label || baseTemplate.name}`}
+                              {isModified
+                                ? `Modified from template: ${baseTemplate.label || baseTemplate.name}`
+                                : `Using template: ${baseTemplate.label || baseTemplate.name}`}
                             </p>
                           )}
                         </div>
@@ -458,11 +456,7 @@ export default function Create() {
                             ))}
                           </div>
                         ) : (
-                          <Button 
-                            onClick={handleAddColor}
-                            variant="outline"
-                            className="w-full"
-                          >
+                          <Button onClick={handleAddColor} variant="outline" className="w-full">
                             Add First Color
                           </Button>
                         )}
@@ -487,10 +481,14 @@ export default function Create() {
                           </label>
                           <div className="max-h-96 overflow-y-auto border rounded-md p-2">
                             <div className="grid grid-cols-2 gap-2">
-                              {GRADIENT_TYPES.map(type => (
+                              {GRADIENT_TYPES.map((type) => (
                                 <Button
                                   key={type.value}
-                                  variant={currentConfig.gradientType === type.value ? "default" : "outline"}
+                                  variant={
+                                    currentConfig.gradientType === type.value
+                                      ? 'default'
+                                      : 'outline'
+                                  }
                                   size="sm"
                                   onClick={() => updateConfig({ gradientType: type.value })}
                                   className="justify-start text-xs"
@@ -511,7 +509,7 @@ export default function Create() {
             {/* Mobile Properties Button */}
             {isMobile && !mobilePropertiesOpen && (
               <div className="fixed bottom-24 right-4 z-20">
-                <Button 
+                <Button
                   size="icon"
                   className="h-14 w-14 rounded-full shadow-lg"
                   onClick={() => setMobilePropertiesOpen(true)}
@@ -537,7 +535,7 @@ export default function Create() {
         <div className="fixed bottom-20 left-4 z-20">
           <Button
             size="sm"
-            variant={quickTemplatesOpen ? "default" : "outline"}
+            variant={quickTemplatesOpen ? 'default' : 'outline'}
             className="shadow-lg"
             onClick={() => setQuickTemplatesOpen(!quickTemplatesOpen)}
           >
@@ -550,13 +548,13 @@ export default function Create() {
       {/* Mobile Template Carousel - Collapsible */}
       {isMobile && !isFullscreen && quickTemplatesOpen && !mobilePropertiesOpen && (
         <div className="fixed bottom-0 left-0 right-0 z-30 animate-in slide-in-from-bottom duration-300">
-          <div className="bg-background/95 backdrop-blur border-t rounded-t-lg shadow-lg">
+          <div className="bg-background/95 backdrop-blur-sm border-t rounded-t-lg shadow-lg">
             <div className="p-4 pb-20">
               <div className="mb-3 flex items-center justify-between">
                 <h3 className="text-sm font-medium">Quick Templates</h3>
                 <div className="flex items-center gap-2">
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     size="sm"
                     onClick={() => setMobileMenuOpen(true)}
                     className="text-xs"

@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-import { Badge } from '../ui/badge'
-import { Type, Palette, Sliders, ChevronUp, ChevronDown, X, Plus, Minus } from 'lucide-react'
-import { cn } from '../../lib/utils'
-import { GRADIENT_TYPES } from '../../constants/gradientTypes'
-import useStore from '../../store/useStore'
-import { useColorManagement } from '../../hooks/useColorManagement'
-import { usePanelHeight } from '../../hooks/usePanelHeight'
+import React, { useState } from 'react';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
+import { Type, Palette, Sliders, ChevronUp, ChevronDown, X, Plus, Minus } from 'lucide-react';
+import { cn } from '../../lib/utils';
+import { GRADIENT_TYPES } from '../../constants/gradientTypes';
+import useStore from '../../store/useStore';
+import { useColorManagement } from '../../hooks/useColorManagement';
+import { usePanelHeight } from '../../hooks/usePanelHeight';
 
 /**
  * Mobile Properties Panel
@@ -16,25 +16,25 @@ import { usePanelHeight } from '../../hooks/usePanelHeight'
  * Refactored to use custom hooks for better maintainability.
  */
 export default function MobilePropertiesPanel({ isOpen, onClose }) {
-  const [activeTab, setActiveTab] = useState('basic')
+  const [activeTab, setActiveTab] = useState('basic');
 
   // Get state from store instead of props
-  const currentConfig = useStore(state => state.currentConfig)
-  const updateConfig = useStore(state => state.updateConfig)
-  const baseTemplate = useStore(state => state.baseTemplate)
-  const isModified = useStore(state => state.isModified)
-  const resetToTemplate = useStore(state => state.resetToTemplate)
+  const currentConfig = useStore((state) => state.currentConfig);
+  const updateConfig = useStore((state) => state.updateConfig);
+  const baseTemplate = useStore((state) => state.baseTemplate);
+  const isModified = useStore((state) => state.isModified);
+  const resetToTemplate = useStore((state) => state.resetToTemplate);
 
   // Use custom hooks
-  const { colors, handleColorUpdate, handleAddColor, handleRemoveColor } = useColorManagement()
+  const { colors, handleColorUpdate, handleAddColor, handleRemoveColor } = useColorManagement();
   const { panelHeight, heightClass, cycleHeight } = usePanelHeight({
     isOpen,
     onClose,
-    selector: '.mobile-properties-sheet'
-  })
+    selector: '.mobile-properties-sheet',
+  });
 
   // Render nothing if panel is not open
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <div
@@ -42,7 +42,7 @@ export default function MobilePropertiesPanel({ isOpen, onClose }) {
         'fixed inset-x-0 bottom-0 z-50 bg-background border-t rounded-t-[10px] shadow-lg',
         'mobile-properties-sheet',
         heightClass,
-        'transition-all duration-300 overflow-hidden flex flex-col'
+        'transition-all duration-300 overflow-hidden flex flex-col',
       )}
     >
       {/* Drag handle */}
@@ -97,7 +97,7 @@ export default function MobilePropertiesPanel({ isOpen, onClose }) {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }
 
 // ============================================================================
@@ -110,7 +110,7 @@ function PanelHeader({ baseTemplate, isModified, panelHeight, onCycleHeight, onC
       <div className="flex-1">
         <h3 className="text-lg font-semibold">Properties</h3>
         <Badge
-          variant={baseTemplate && !isModified ? 'default' : 'outline'}
+          variant={baseTemplate && !isModified ? 'default' : 'outline-solid'}
           className="w-fit mt-1"
         >
           {baseTemplate ? (isModified ? 'Modified' : 'Template') : 'Custom'}
@@ -137,7 +137,7 @@ function PanelHeader({ baseTemplate, isModified, panelHeight, onCycleHeight, onC
         </Button>
       </div>
     </div>
-  )
+  );
 }
 
 function BasicTab({ currentConfig, updateConfig }) {
@@ -154,9 +154,7 @@ function BasicTab({ currentConfig, updateConfig }) {
       </div>
 
       <div>
-        <label className="text-sm font-medium mb-2 block">
-          Height: {currentConfig.height}px
-        </label>
+        <label className="text-sm font-medium mb-2 block">Height: {currentConfig.height}px</label>
         <input
           type="range"
           min="30"
@@ -165,7 +163,7 @@ function BasicTab({ currentConfig, updateConfig }) {
           onChange={(e) => updateConfig({ height: parseInt(e.target.value) })}
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
           style={{
-            background: `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${((currentConfig.height - 30) / 270) * 100}%, hsl(var(--muted)) ${((currentConfig.height - 30) / 270) * 100}%, hsl(var(--muted)) 100%)`
+            background: `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${((currentConfig.height - 30) / 270) * 100}%, hsl(var(--muted)) ${((currentConfig.height - 30) / 270) * 100}%, hsl(var(--muted)) 100%)`,
           }}
         />
         <div className="flex justify-between text-xs text-muted-foreground mt-1">
@@ -181,11 +179,11 @@ function BasicTab({ currentConfig, updateConfig }) {
             { value: '3s', label: 'Fast' },
             { value: '6s', label: 'Normal' },
             { value: '10s', label: 'Slow' },
-            { value: '15s', label: 'Very Slow' }
+            { value: '15s', label: 'Very Slow' },
           ].map(({ value, label }) => (
             <Button
               key={value}
-              variant={currentConfig.duration === value ? 'default' : 'outline'}
+              variant={currentConfig.duration === value ? 'default' : 'outline-solid'}
               onClick={() => updateConfig({ duration: value })}
               className="w-full"
             >
@@ -195,7 +193,7 @@ function BasicTab({ currentConfig, updateConfig }) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 function ColorsTab({
@@ -205,7 +203,7 @@ function ColorsTab({
   onRemoveColor,
   baseTemplate,
   isModified,
-  onResetToTemplate
+  onResetToTemplate,
 }) {
   return (
     <div className="space-y-4">
@@ -279,7 +277,7 @@ function ColorsTab({
         </Button>
       )}
     </div>
-  )
+  );
 }
 
 function AdvancedTab({ currentConfig, updateConfig }) {
@@ -294,7 +292,7 @@ function AdvancedTab({ currentConfig, updateConfig }) {
             {GRADIENT_TYPES.map((type) => (
               <Button
                 key={type.value}
-                variant={currentConfig.gradientType === type.value ? 'default' : 'outline'}
+                variant={currentConfig.gradientType === type.value ? 'default' : 'outline-solid'}
                 size="sm"
                 onClick={() => updateConfig({ gradientType: type.value })}
                 className="justify-start text-xs w-full"
@@ -306,5 +304,5 @@ function AdvancedTab({ currentConfig, updateConfig }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

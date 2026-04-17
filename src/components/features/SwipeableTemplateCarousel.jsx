@@ -6,12 +6,12 @@ import { Button } from '../ui/button';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-export default function SwipeableTemplateCarousel({ 
-  templates, 
+export default function SwipeableTemplateCarousel({
+  templates,
   onTemplateSelect,
   favorites = [],
   onFavorite,
-  className 
+  className,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
@@ -31,7 +31,7 @@ export default function SwipeableTemplateCarousel({
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
@@ -59,9 +59,7 @@ export default function SwipeableTemplateCarousel({
   // Auto-play carousel
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => 
-        prev === templates.length - 1 ? 0 : prev + 1
-      );
+      setCurrentIndex((prev) => (prev === templates.length - 1 ? 0 : prev + 1));
     }, 5000);
 
     return () => clearInterval(interval);
@@ -73,8 +71,8 @@ export default function SwipeableTemplateCarousel({
   const isFavorite = favorites.includes(currentTemplate?.name);
 
   return (
-    <div className={cn("relative", className)}>
-      <div 
+    <div className={cn('relative', className)}>
+      <div
         ref={containerRef}
         className="relative overflow-hidden rounded-lg"
         onTouchStart={onTouchStart}
@@ -87,20 +85,20 @@ export default function SwipeableTemplateCarousel({
             initial={{ opacity: 0, x: 300 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -300 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             className="w-full"
           >
             <Card className="overflow-hidden">
-              <div className="aspect-[2/1] relative">
+              <div className="aspect-2/1 relative">
                 <img
                   src={`/api/svg?text=PREVIEW&template=${currentTemplate.name}&height=200`}
                   alt={currentTemplate.displayName}
                   className="w-full h-full object-cover"
                 />
-                
+
                 {/* Overlay with template info */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
+
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="text-white font-semibold text-lg">
@@ -115,7 +113,9 @@ export default function SwipeableTemplateCarousel({
                         onFavorite(currentTemplate.name);
                       }}
                     >
-                      <Star className={cn("h-5 w-5", isFavorite && "fill-current text-yellow-400")} />
+                      <Star
+                        className={cn('h-5 w-5', isFavorite && 'fill-current text-yellow-400')}
+                      />
                     </Button>
                   </div>
                   <Badge className="bg-white/20 text-white border-white/30">
@@ -123,12 +123,9 @@ export default function SwipeableTemplateCarousel({
                   </Badge>
                 </div>
               </div>
-              
+
               <div className="p-4">
-                <Button 
-                  className="w-full"
-                  onClick={() => onTemplateSelect(currentTemplate)}
-                >
+                <Button className="w-full" onClick={() => onTemplateSelect(currentTemplate)}>
                   Use This Template
                 </Button>
               </div>
@@ -146,7 +143,7 @@ export default function SwipeableTemplateCarousel({
         >
           <ChevronLeft className="h-6 w-6" />
         </Button>
-        
+
         <Button
           variant="ghost"
           size="icon"
@@ -164,10 +161,8 @@ export default function SwipeableTemplateCarousel({
           <button
             key={index}
             className={cn(
-              "h-2 w-2 rounded-full transition-all",
-              index === currentIndex 
-                ? "bg-primary w-6" 
-                : "bg-muted-foreground/30"
+              'h-2 w-2 rounded-full transition-all',
+              index === currentIndex ? 'bg-primary w-6' : 'bg-muted-foreground/30',
             )}
             onClick={() => setCurrentIndex(index)}
           />

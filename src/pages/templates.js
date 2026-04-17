@@ -49,21 +49,21 @@ export default function Templates() {
 
   const templates = useMemo(() => getAllTemplates(), []);
   const categories = useMemo(() => getCategories(), []);
-  
+
   // Get available gradient types and animation speeds from actual templates
   const availableGradientTypes = useMemo(() => {
     const types = new Set();
-    templates.forEach(t => {
+    templates.forEach((t) => {
       if (t.gradientType) {
         types.add(t.gradientType);
       }
     });
     return Array.from(types).sort();
   }, [templates]);
-  
+
   const availableAnimationSpeeds = useMemo(() => {
     const speeds = new Map();
-    templates.forEach(t => {
+    templates.forEach((t) => {
       const duration = t.animationDuration || '6s';
       const seconds = parseInt(duration);
       if (seconds <= 4) {
@@ -83,34 +83,31 @@ export default function Templates() {
 
     // Category filter
     if (selectedCategory !== 'all') {
-      result = result.filter(t => t.category === selectedCategory);
+      result = result.filter((t) => t.category === selectedCategory);
     }
 
     // Search filter
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      result = result.filter(t => 
-        t.name.toLowerCase().includes(query) ||
-        t.displayName.toLowerCase().includes(query) ||
-        t.category.toLowerCase().includes(query)
+      result = result.filter(
+        (t) =>
+          t.name.toLowerCase().includes(query) ||
+          t.displayName.toLowerCase().includes(query) ||
+          t.category.toLowerCase().includes(query),
       );
     }
 
     // Advanced filters
     if (selectedFilters.length > 0) {
-      const gradientTypeFilters = selectedFilters.filter(f => 
-        availableGradientTypes.includes(f)
-      );
-      const speedFilters = selectedFilters.filter(f => 
-        ['fast', 'normal', 'slow'].includes(f)
-      );
+      const gradientTypeFilters = selectedFilters.filter((f) => availableGradientTypes.includes(f));
+      const speedFilters = selectedFilters.filter((f) => ['fast', 'normal', 'slow'].includes(f));
 
       if (gradientTypeFilters.length > 0) {
-        result = result.filter(t => gradientTypeFilters.includes(t.gradientType));
+        result = result.filter((t) => gradientTypeFilters.includes(t.gradientType));
       }
 
       if (speedFilters.length > 0) {
-        result = result.filter(t => {
+        result = result.filter((t) => {
           const duration = t.animationDuration || '6s';
           const seconds = parseInt(duration);
           if (speedFilters.includes('fast') && seconds <= 4) return true;
@@ -150,28 +147,40 @@ export default function Templates() {
   });
 
   // Memoized toggle favorite handler
-  const handleToggleFavorite = useCallback((e, templateName) => {
-    e.preventDefault();
-    if (favorites.includes(templateName)) {
-      removeFavorite(templateName);
-    } else {
-      addFavorite(templateName);
-    }
-  }, [favorites, addFavorite, removeFavorite]);
+  const handleToggleFavorite = useCallback(
+    (e, templateName) => {
+      e.preventDefault();
+      if (favorites.includes(templateName)) {
+        removeFavorite(templateName);
+      } else {
+        addFavorite(templateName);
+      }
+    },
+    [favorites, addFavorite, removeFavorite],
+  );
 
   return (
     <>
-      <GEOHead 
+      <GEOHead
         pageType="templates"
         templateCategory={selectedCategory}
         customInstructions={`Template gallery with ${filteredTemplates.length} templates. ${selectedCategory !== 'all' ? `Currently viewing ${selectedCategory} category.` : 'All categories available.'} Help users find appropriate templates based on their project needs and provide direct API usage examples.`}
       />
       <Head>
         <title>Template Gallery - 326+ Professional Gradient Templates | Chromaflow</title>
-        <meta name="description" content="Browse 326+ professional gradient templates across 30 categories including Path Animation, Weather, Light & Shadow, Art Movement, and Culinary effects. Perfect for GitHub headers, web projects, and design work. Free API access to all templates." />
-        <meta name="keywords" content="gradient templates, SVG templates, design gallery, GitHub headers, professional gradients, template library, path animation, typing animation, weather effects, light shadow, art movement, culinary" />
+        <meta
+          name="description"
+          content="Browse 326+ professional gradient templates across 30 categories including Path Animation, Weather, Light & Shadow, Art Movement, and Culinary effects. Perfect for GitHub headers, web projects, and design work. Free API access to all templates."
+        />
+        <meta
+          name="keywords"
+          content="gradient templates, SVG templates, design gallery, GitHub headers, professional gradients, template library, path animation, typing animation, weather effects, light shadow, art movement, culinary"
+        />
         <meta property="og:title" content="326+ Professional Gradient Templates" />
-        <meta property="og:description" content="Browse our comprehensive template gallery with 326+ gradients for every project type across 30 categories, including Path-Based Text Animation, Weather, Light & Shadow, Art Movement, and Culinary categories." />
+        <meta
+          property="og:description"
+          content="Browse our comprehensive template gallery with 326+ gradients for every project type across 30 categories, including Path-Based Text Animation, Weather, Light & Shadow, Art Movement, and Culinary categories."
+        />
       </Head>
 
       <div className="min-h-screen bg-background">
@@ -183,10 +192,10 @@ export default function Templates() {
             <div className="max-w-3xl">
               <h1 className="text-4xl font-bold mb-4">Template Gallery</h1>
               <p className="text-lg text-muted-foreground mb-6">
-                Browse our collection of {templates.length}+ professional gradient templates. 
-                Each template is carefully crafted with unique animations and effects.
+                Browse our collection of {templates.length}+ professional gradient templates. Each
+                template is carefully crafted with unique animations and effects.
               </p>
-              
+
               {/* Search Bar */}
               <div className="relative max-w-xl">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -212,10 +221,16 @@ export default function Templates() {
                   <TabsList className="w-full justify-start">
                     <TabsTrigger value="all">
                       All Templates
-                      <Badge variant="secondary" className="ml-2">{templates.length}</Badge>
+                      <Badge variant="secondary" className="ml-2">
+                        {templates.length}
+                      </Badge>
                     </TabsTrigger>
-                    {categories.map(category => (
-                      <TabsTrigger key={category.id} value={category.id} className="whitespace-nowrap">
+                    {categories.map((category) => (
+                      <TabsTrigger
+                        key={category.id}
+                        value={category.id}
+                        className="whitespace-nowrap"
+                      >
                         <span className="mr-1">{category.icon}</span>
                         {category.name}
                         <Badge variant="secondary" className="ml-2">
@@ -230,14 +245,14 @@ export default function Templates() {
               {/* View Mode Toggle */}
               <div className="flex items-center gap-2">
                 <Button
-                  variant={viewMode === 'grid' ? 'default' : 'outline'}
+                  variant={viewMode === 'grid' ? 'default' : 'outline-solid'}
                   size="icon"
                   onClick={() => setViewMode('grid')}
                 >
                   <Grid3x3 className="h-4 w-4" />
                 </Button>
                 <Button
-                  variant={viewMode === 'list' ? 'default' : 'outline'}
+                  variant={viewMode === 'list' ? 'default' : 'outline-solid'}
                   size="icon"
                   onClick={() => setViewMode('list')}
                 >
@@ -254,11 +269,12 @@ export default function Templates() {
             <p className="text-sm text-muted-foreground">
               Showing {filteredTemplates.length} of {templates.length} templates
               {searchQuery && ` for "${searchQuery}"`}
-              {selectedCategory !== 'all' && ` in ${categories.find(c => c.id === selectedCategory)?.name}`}
+              {selectedCategory !== 'all' &&
+                ` in ${categories.find((c) => c.id === selectedCategory)?.name}`}
             </p>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               className="gap-2"
               onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
             >
@@ -274,19 +290,21 @@ export default function Templates() {
             <div className="container mx-auto px-4 py-6">
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-sm font-medium mb-3">Filter by Gradient Type ({availableGradientTypes.length} types)</h3>
+                  <h3 className="text-sm font-medium mb-3">
+                    Filter by Gradient Type ({availableGradientTypes.length} types)
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {availableGradientTypes.length > 0 ? (
                       availableGradientTypes.map((type) => (
                         <Badge
                           key={type}
-                          variant={selectedFilters.includes(type) ? "default" : "outline"}
+                          variant={selectedFilters.includes(type) ? 'default' : 'outline'}
                           className="cursor-pointer capitalize"
                           onClick={() => {
-                            setSelectedFilters(prev => 
-                              prev.includes(type) 
-                                ? prev.filter(f => f !== type)
-                                : [...prev, type]
+                            setSelectedFilters((prev) =>
+                              prev.includes(type)
+                                ? prev.filter((f) => f !== type)
+                                : [...prev, type],
                             );
                           }}
                         >
@@ -298,7 +316,7 @@ export default function Templates() {
                     )}
                   </div>
                 </div>
-                
+
                 <div>
                   <h3 className="text-sm font-medium mb-3">Filter by Animation Speed</h3>
                   <div className="flex flex-wrap gap-2">
@@ -306,13 +324,13 @@ export default function Templates() {
                       availableAnimationSpeeds.map((speed) => (
                         <Badge
                           key={speed}
-                          variant={selectedFilters.includes(speed) ? "default" : "outline"}
+                          variant={selectedFilters.includes(speed) ? 'default' : 'outline'}
                           className="cursor-pointer capitalize"
                           onClick={() => {
-                            setSelectedFilters(prev => 
-                              prev.includes(speed) 
-                                ? prev.filter(f => f !== speed)
-                                : [...prev, speed]
+                            setSelectedFilters((prev) =>
+                              prev.includes(speed)
+                                ? prev.filter((f) => f !== speed)
+                                : [...prev, speed],
                             );
                           }}
                         >
@@ -324,7 +342,7 @@ export default function Templates() {
                     )}
                   </div>
                 </div>
-                
+
                 <div className="flex justify-between items-center pt-2">
                   <Button
                     variant="ghost"
@@ -347,8 +365,16 @@ export default function Templates() {
         <section className="container mx-auto px-4 pb-20">
           {filteredTemplates.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-muted-foreground mb-4">No templates found matching your criteria.</p>
-              <Button variant="outline" onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}>
+              <p className="text-muted-foreground mb-4">
+                No templates found matching your criteria.
+              </p>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedCategory('all');
+                }}
+              >
                 Clear Filters
               </Button>
             </div>
@@ -395,13 +421,20 @@ export default function Templates() {
                                 className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
                                 onClick={(e) => handleToggleFavorite(e, template.name)}
                               >
-                                <Star className={cn("h-4 w-4", favorites.includes(template.name) && "fill-current text-yellow-500")} />
+                                <Star
+                                  className={cn(
+                                    'h-4 w-4',
+                                    favorites.includes(template.name) &&
+                                      'fill-current text-yellow-500',
+                                  )}
+                                />
                               </Button>
                             </div>
                             <div className="p-4">
                               <h3 className="text-lg font-semibold mb-1">{template.displayName}</h3>
                               <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1">
-                                {categories.find(c => c.id === template.category)?.icon} {template.category}
+                                {categories.find((c) => c.id === template.category)?.icon}{' '}
+                                {template.category}
                               </p>
                               <div className="flex gap-2">
                                 <Link href={`/create?template=${template.name}`} className="flex-1">
@@ -409,10 +442,14 @@ export default function Templates() {
                                     Use Template
                                   </Button>
                                 </Link>
-                                <Button variant="outline" size="sm" onClick={() => {
-                                  setSelectedTemplate(template);
-                                  setIsModalOpen(true);
-                                }}>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => {
+                                    setSelectedTemplate(template);
+                                    setIsModalOpen(true);
+                                  }}
+                                >
                                   Preview
                                 </Button>
                               </div>
@@ -453,7 +490,7 @@ export default function Templates() {
                     >
                       <Card className="overflow-hidden hover:shadow-md transition-all mb-4">
                         <div className="flex items-center gap-4 p-4">
-                          <div className="w-32 h-20 bg-muted rounded-md overflow-hidden flex-shrink-0">
+                          <div className="w-32 h-20 bg-muted rounded-md overflow-hidden shrink-0">
                             <img
                               src={`/api/svg?text=PREVIEW&template=${template.name}&height=80&v=2`}
                               alt={template.displayName}
@@ -464,7 +501,8 @@ export default function Templates() {
                           <div className="flex-1">
                             <h3 className="font-semibold text-lg">{template.displayName}</h3>
                             <p className="text-sm text-muted-foreground">
-                              {categories.find(c => c.id === template.category)?.icon} {template.category}
+                              {categories.find((c) => c.id === template.category)?.icon}{' '}
+                              {template.category}
                             </p>
                           </div>
                           <div className="flex items-center gap-2">
@@ -473,7 +511,13 @@ export default function Templates() {
                               size="icon"
                               onClick={(e) => handleToggleFavorite(e, template.name)}
                             >
-                              <Star className={cn("h-4 w-4", favorites.includes(template.name) && "fill-current text-yellow-500")} />
+                              <Star
+                                className={cn(
+                                  'h-4 w-4',
+                                  favorites.includes(template.name) &&
+                                    'fill-current text-yellow-500',
+                                )}
+                              />
                             </Button>
                             <Link href={`/create?template=${template.name}`}>
                               <Button className="gap-2">
@@ -491,7 +535,7 @@ export default function Templates() {
             </div>
           )}
         </section>
-        
+
         <TemplatePreviewModal
           template={selectedTemplate}
           isOpen={isModalOpen}

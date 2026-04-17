@@ -7,3 +7,6 @@ package-lock.json
 public/sw.js
 *.min.js
 *.min.css
+
+# Next owns this file and rewrites it on every build — let it win.
+next-env.d.ts

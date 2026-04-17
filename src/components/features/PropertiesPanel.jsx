@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-import { Badge } from '../ui/badge'
-import { Type, Palette, Sliders, Plus, Minus, RotateCcw } from 'lucide-react'
-import { cn } from '../../lib/utils'
-import { GRADIENT_TYPES } from '../../constants/gradientTypes'
-import useStore from '../../store/useStore'
-import { useColorManagement } from '../../hooks/useColorManagement'
+import React, { useState } from 'react';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { Badge } from '../ui/badge';
+import { Type, Palette, Sliders, Plus, Minus, RotateCcw } from 'lucide-react';
+import { cn } from '../../lib/utils';
+import { GRADIENT_TYPES } from '../../constants/gradientTypes';
+import useStore from '../../store/useStore';
+import { useColorManagement } from '../../hooks/useColorManagement';
 
 /**
  * Desktop Properties Panel
@@ -15,17 +15,18 @@ import { useColorManagement } from '../../hooks/useColorManagement'
  * Uses custom hooks for state management and color handling.
  */
 export default function PropertiesPanel({ className }) {
-  const [activeTab, setActiveTab] = useState('basic')
+  const [activeTab, setActiveTab] = useState('basic');
 
   // Get state from store
-  const currentConfig = useStore(state => state.currentConfig)
-  const updateConfig = useStore(state => state.updateConfig)
-  const baseTemplate = useStore(state => state.baseTemplate)
-  const isModified = useStore(state => state.isModified)
-  const resetToTemplate = useStore(state => state.resetToTemplate)
+  const currentConfig = useStore((state) => state.currentConfig);
+  const updateConfig = useStore((state) => state.updateConfig);
+  const baseTemplate = useStore((state) => state.baseTemplate);
+  const isModified = useStore((state) => state.isModified);
+  const resetToTemplate = useStore((state) => state.resetToTemplate);
 
   // Use color management hook
-  const { colors, handleColorUpdate, handleAddColor, handleRemoveColor, canAddColor } = useColorManagement()
+  const { colors, handleColorUpdate, handleAddColor, handleRemoveColor, canAddColor } =
+    useColorManagement();
 
   return (
     <div className={cn('h-full flex flex-col bg-background', className)}>
@@ -33,9 +34,7 @@ export default function PropertiesPanel({ className }) {
       <div className="p-4 border-b">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Properties</h2>
-          <Badge
-            variant={baseTemplate && !isModified ? 'default' : 'outline'}
-          >
+          <Badge variant={baseTemplate && !isModified ? 'default' : 'outline-solid'}>
             {baseTemplate ? (isModified ? 'Modified' : 'Template') : 'Custom'}
           </Badge>
         </div>
@@ -51,7 +50,10 @@ export default function PropertiesPanel({ className }) {
       {/* Tabs */}
       <div className="flex-1 overflow-hidden">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full flex flex-col">
-          <TabsList className="grid w-full grid-cols-3 mx-4 mt-4" style={{ width: 'calc(100% - 2rem)' }}>
+          <TabsList
+            className="grid w-full grid-cols-3 mx-4 mt-4"
+            style={{ width: 'calc(100% - 2rem)' }}
+          >
             <TabsTrigger value="basic" className="gap-1">
               <Type className="h-4 w-4" />
               <span className="hidden xl:inline">Basic</span>
@@ -91,7 +93,7 @@ export default function PropertiesPanel({ className }) {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }
 
 // ============================================================================
@@ -139,11 +141,11 @@ function BasicSection({ currentConfig, updateConfig }) {
             { value: '3s', label: 'Fast (3s)' },
             { value: '6s', label: 'Normal (6s)' },
             { value: '10s', label: 'Slow (10s)' },
-            { value: '15s', label: 'Very Slow (15s)' }
+            { value: '15s', label: 'Very Slow (15s)' },
           ].map(({ value, label }) => (
             <Button
               key={value}
-              variant={currentConfig.duration === value ? 'default' : 'outline'}
+              variant={currentConfig.duration === value ? 'default' : 'outline-solid'}
               size="sm"
               onClick={() => updateConfig({ duration: value })}
               className="w-full"
@@ -154,7 +156,7 @@ function BasicSection({ currentConfig, updateConfig }) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 function ColorsSection({
@@ -165,7 +167,7 @@ function ColorsSection({
   canAddColor,
   baseTemplate,
   isModified,
-  onResetToTemplate
+  onResetToTemplate,
 }) {
   return (
     <div className="space-y-4">
@@ -228,26 +230,23 @@ function ColorsSection({
         </Button>
       )}
     </div>
-  )
+  );
 }
 
 function AdvancedSection({ currentConfig, updateConfig }) {
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredTypes = GRADIENT_TYPES.filter(type =>
-    type.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    type.value.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  const filteredTypes = GRADIENT_TYPES.filter(
+    (type) =>
+      type.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      type.value.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <label className="text-sm font-medium">
-          Gradient Type
-        </label>
-        <p className="text-xs text-muted-foreground">
-          {GRADIENT_TYPES.length} types available
-        </p>
+        <label className="text-sm font-medium">Gradient Type</label>
+        <p className="text-xs text-muted-foreground">{GRADIENT_TYPES.length} types available</p>
         <Input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -261,7 +260,7 @@ function AdvancedSection({ currentConfig, updateConfig }) {
           {filteredTypes.map((type) => (
             <Button
               key={type.value}
-              variant={currentConfig.gradientType === type.value ? 'default' : 'outline'}
+              variant={currentConfig.gradientType === type.value ? 'default' : 'outline-solid'}
               size="sm"
               onClick={() => updateConfig({ gradientType: type.value })}
               className="justify-start text-xs w-full truncate"
@@ -278,5 +277,5 @@ function AdvancedSection({ currentConfig, updateConfig }) {
         )}
       </div>
     </div>
-  )
+  );
 }
