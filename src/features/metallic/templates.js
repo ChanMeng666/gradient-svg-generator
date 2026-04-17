@@ -19,7 +19,7 @@ module.exports = {
     colors: ['f3e2c7', 'b68d4c', 'e9d4b3'],
     gradientType: 'copperMetallic',
     animationDuration: '6s',
-    description: '3D metallic copper with shine effect'
+    description: '3D metallic copper with shine effect',
   },
   'silver-pulse': {
     name: 'silver-pulse',
@@ -27,7 +27,7 @@ module.exports = {
     colors: ['e8e8e8', 'c0c0c0', 'a8a8a8'],
     gradientType: 'neonPulse',
     animationDuration: '5s',
-    description: 'Pulsing silver glow with neon effect'
+    description: 'Pulsing silver glow with neon effect',
   },
   'gold-shimmer': {
     name: 'gold-shimmer',
@@ -35,7 +35,7 @@ module.exports = {
     colors: ['ffd700', 'ffed4e', 'ffb700'],
     gradientType: 'shineShimmer',
     animationDuration: '7s',
-    description: 'Sweeping golden shimmer effect'
+    description: 'Sweeping golden shimmer effect',
   },
   'neon-glow': {
     name: 'neon-glow',
@@ -43,7 +43,7 @@ module.exports = {
     colors: ['00ff9f', '00ffcc', '00ffff'],
     gradientType: 'neonPulse',
     animationDuration: '4s',
-    description: 'Bright neon glow with pulsing animation'
+    description: 'Bright neon glow with pulsing animation',
   },
   'chrome-flow': {
     name: 'chrome-flow',
@@ -51,7 +51,7 @@ module.exports = {
     colors: ['c8c8c8', 'e0e0e0', 'b0b0b0'],
     gradientType: 'chromeFlow',
     animationDuration: '8s',
-    description: 'Flowing chrome metallic effect'
+    description: 'Flowing chrome metallic effect',
   },
   'bronze-gleam': {
     name: 'bronze-gleam',
@@ -59,7 +59,7 @@ module.exports = {
     colors: ['cd7f32', 'b87333', '8b572a'],
     gradientType: 'bronzeGleam',
     animationDuration: '6s',
-    description: 'Rich bronze with gleaming highlights'
+    description: 'Rich bronze with gleaming highlights',
   },
   'platinum-sparkle': {
     name: 'platinum-sparkle',
@@ -67,7 +67,7 @@ module.exports = {
     colors: ['e5e4e2', 'ffffff', 'cccccc'],
     gradientType: 'platinumSparkle',
     animationDuration: '9s',
-    description: 'Luxurious platinum with sparkle texture'
+    description: 'Luxurious platinum with sparkle texture',
   },
   'steel-aqua': {
     name: 'steel-aqua',
@@ -75,6 +75,6 @@ module.exports = {
     colors: ['b0c4de', '87ceeb', '4682b4'],
     gradientType: 'steelAqua',
     animationDuration: '7s',
-    description: 'Steel blue with aqua flow effect'
-  }
+    description: 'Steel blue with aqua flow effect',
+  },
 };

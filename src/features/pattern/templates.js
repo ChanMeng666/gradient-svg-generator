@@ -19,7 +19,7 @@ module.exports = {
     colors: ['ff1493', 'ff69b4', 'ffb6c1'],
     gradientType: 'candystripe',
     animationDuration: '4s',
-    description: 'Sweet diagonal striped pattern with pink tones'
+    description: 'Sweet diagonal striped pattern with pink tones',
   },
   'zigzag-energy': {
     name: 'zigzag-energy',
@@ -27,7 +27,7 @@ module.exports = {
     colors: ['ffd700', 'ff8c00', 'ff4500'],
     gradientType: 'patternZigzag',
     animationDuration: '5s',
-    description: 'Dynamic zigzag pattern with energetic orange-gold colors'
+    description: 'Dynamic zigzag pattern with energetic orange-gold colors',
   },
   'diamond-grid': {
     name: 'diamond-grid',
@@ -35,7 +35,7 @@ module.exports = {
     colors: ['9370db', '8a2be2', '4b0082'],
     gradientType: 'diamondPattern',
     animationDuration: '6s',
-    description: 'Elegant diamond pattern with purple gradient'
+    description: 'Elegant diamond pattern with purple gradient',
   },
   'heart-beat': {
     name: 'heart-beat',
@@ -43,7 +43,7 @@ module.exports = {
     colors: ['ff69b4', 'ff1493', 'c71585'],
     gradientType: 'heartsPattern',
     animationDuration: '5s',
-    description: 'Romantic hearts pattern with vibrant pink colors'
+    description: 'Romantic hearts pattern with vibrant pink colors',
   },
   'checkered-motion': {
     name: 'checkered-motion',
@@ -51,7 +51,7 @@ module.exports = {
     colors: ['00ced1', '20b2aa', '008b8b'],
     gradientType: 'checkered',
     animationDuration: '7s',
-    description: 'Rotating checkered pattern with turquoise gradient'
+    description: 'Rotating checkered pattern with turquoise gradient',
   },
   'diagonal-flow': {
     name: 'diagonal-flow',
@@ -59,7 +59,7 @@ module.exports = {
     colors: ['32cd32', '00ff00', '7cfc00'],
     gradientType: 'diagonalFlow',
     animationDuration: '4s',
-    description: 'Flowing diagonal lines with bright green gradient'
+    description: 'Flowing diagonal lines with bright green gradient',
   },
   'geometric-pulse': {
     name: 'geometric-pulse',
@@ -67,7 +67,7 @@ module.exports = {
     colors: ['ff6347', 'ff4500', 'dc143c'],
     gradientType: 'geometricPulse',
     animationDuration: '6s',
-    description: 'Pulsing geometric shapes with red-orange colors'
+    description: 'Pulsing geometric shapes with red-orange colors',
   },
   'pattern-wave': {
     name: 'pattern-wave',
@@ -75,6 +75,6 @@ module.exports = {
     colors: ['1e90ff', '00bfff', '87ceeb'],
     gradientType: 'patternWave',
     animationDuration: '8s',
-    description: 'Smooth wave pattern with sky blue gradient'
-  }
+    description: 'Smooth wave pattern with sky blue gradient',
+  },
 };

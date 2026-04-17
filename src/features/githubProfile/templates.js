@@ -19,7 +19,7 @@ module.exports = {
     gradientType: 'shimmerBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Red shimmer badge'
+    description: 'Red shimmer badge',
   },
   'shimmer-green': {
     name: 'shimmer-green',
@@ -28,7 +28,7 @@ module.exports = {
     gradientType: 'shimmerBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Green shimmer badge'
+    description: 'Green shimmer badge',
   },
   'shimmer-blue': {
     name: 'shimmer-blue',
@@ -37,7 +37,7 @@ module.exports = {
     gradientType: 'shimmerBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Blue shimmer badge'
+    description: 'Blue shimmer badge',
   },
   'shimmer-gold': {
     name: 'shimmer-gold',
@@ -46,7 +46,7 @@ module.exports = {
     gradientType: 'shimmerBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Gold shimmer badge'
+    description: 'Gold shimmer badge',
   },
   'shimmer-orange': {
     name: 'shimmer-orange',
@@ -55,7 +55,7 @@ module.exports = {
     gradientType: 'shimmerBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Orange shimmer badge'
+    description: 'Orange shimmer badge',
   },
   'shimmer-purple': {
     name: 'shimmer-purple',
@@ -64,7 +64,7 @@ module.exports = {
     gradientType: 'shimmerBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Purple shimmer badge'
+    description: 'Purple shimmer badge',
   },
   'shimmer-dark': {
     name: 'shimmer-dark',
@@ -73,7 +73,7 @@ module.exports = {
     gradientType: 'shimmerBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Dark shimmer badge'
+    description: 'Dark shimmer badge',
   },
 
   // ── Terminal Typing (3) ──
@@ -84,7 +84,7 @@ module.exports = {
     gradientType: 'terminalTyping',
     animationDuration: '3s',
     category: 'GitHub Profile',
-    description: 'Purple terminal typing effect'
+    description: 'Purple terminal typing effect',
   },
   'terminal-green': {
     name: 'terminal-green',
@@ -93,7 +93,7 @@ module.exports = {
     gradientType: 'terminalTyping',
     animationDuration: '3s',
     category: 'GitHub Profile',
-    description: 'Green terminal typing effect'
+    description: 'Green terminal typing effect',
   },
   'terminal-blue': {
     name: 'terminal-blue',
@@ -102,7 +102,7 @@ module.exports = {
     gradientType: 'terminalTyping',
     animationDuration: '2.5s',
     category: 'GitHub Profile',
-    description: 'Blue terminal typing effect'
+    description: 'Blue terminal typing effect',
   },
 
   // ── Skill Pills (4) ──
@@ -113,7 +113,7 @@ module.exports = {
     gradientType: 'skillPills',
     animationDuration: '2s',
     category: 'GitHub Profile',
-    description: 'Dark skill pills'
+    description: 'Dark skill pills',
   },
   'pills-rainbow': {
     name: 'pills-rainbow',
@@ -122,7 +122,7 @@ module.exports = {
     gradientType: 'skillPills',
     animationDuration: '2s',
     category: 'GitHub Profile',
-    description: 'Rainbow skill pills'
+    description: 'Rainbow skill pills',
   },
   'pills-blue': {
     name: 'pills-blue',
@@ -131,7 +131,7 @@ module.exports = {
     gradientType: 'skillPills',
     animationDuration: '2s',
     category: 'GitHub Profile',
-    description: 'Blue skill pills'
+    description: 'Blue skill pills',
   },
   'pills-purple': {
     name: 'pills-purple',
@@ -140,7 +140,7 @@ module.exports = {
     gradientType: 'skillPills',
     animationDuration: '2s',
     category: 'GitHub Profile',
-    description: 'Purple skill pills'
+    description: 'Purple skill pills',
   },
 
   // ── Shimmer Banners (4) ──
@@ -151,7 +151,7 @@ module.exports = {
     gradientType: 'shimmerBanner',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Orange shimmer banner'
+    description: 'Orange shimmer banner',
   },
   'banner-dark': {
     name: 'banner-dark',
@@ -160,7 +160,7 @@ module.exports = {
     gradientType: 'shimmerBanner',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Dark shimmer banner'
+    description: 'Dark shimmer banner',
   },
   'banner-blue': {
     name: 'banner-blue',
@@ -169,7 +169,7 @@ module.exports = {
     gradientType: 'shimmerBanner',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Blue shimmer banner'
+    description: 'Blue shimmer banner',
   },
   'banner-red': {
     name: 'banner-red',
@@ -178,7 +178,7 @@ module.exports = {
     gradientType: 'shimmerBanner',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Red shimmer banner'
+    description: 'Red shimmer banner',
   },
 
   // ── Shimmer Text (3) ──
@@ -189,7 +189,7 @@ module.exports = {
     gradientType: 'shimmerText',
     animationDuration: '3s',
     category: 'GitHub Profile',
-    description: 'Purple shimmer text effect'
+    description: 'Purple shimmer text effect',
   },
   'text-shimmer-blue': {
     name: 'text-shimmer-blue',
@@ -198,7 +198,7 @@ module.exports = {
     gradientType: 'shimmerText',
     animationDuration: '3s',
     category: 'GitHub Profile',
-    description: 'Blue shimmer text effect'
+    description: 'Blue shimmer text effect',
   },
   'text-shimmer-gold': {
     name: 'text-shimmer-gold',
@@ -207,7 +207,7 @@ module.exports = {
     gradientType: 'shimmerText',
     animationDuration: '3s',
     category: 'GitHub Profile',
-    description: 'Gold shimmer text effect'
+    description: 'Gold shimmer text effect',
   },
 
   // ── Gold Badges (3) ──
@@ -218,7 +218,7 @@ module.exports = {
     gradientType: 'goldBadge',
     animationDuration: '3s',
     category: 'GitHub Profile',
-    description: 'Luxury gold badge effect'
+    description: 'Luxury gold badge effect',
   },
   'gold-platinum': {
     name: 'gold-platinum',
@@ -227,7 +227,7 @@ module.exports = {
     gradientType: 'goldBadge',
     animationDuration: '3s',
     category: 'GitHub Profile',
-    description: 'Platinum badge effect'
+    description: 'Platinum badge effect',
   },
   'gold-rose': {
     name: 'gold-rose',
@@ -236,7 +236,7 @@ module.exports = {
     gradientType: 'goldBadge',
     animationDuration: '3s',
     category: 'GitHub Profile',
-    description: 'Rose gold badge effect'
+    description: 'Rose gold badge effect',
   },
 
   // ── Social Badges (4) ──
@@ -247,7 +247,7 @@ module.exports = {
     gradientType: 'socialBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Trending social badge'
+    description: 'Trending social badge',
   },
   'social-achievement-red': {
     name: 'social-achievement-red',
@@ -256,7 +256,7 @@ module.exports = {
     gradientType: 'socialBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Red achievement social badge'
+    description: 'Red achievement social badge',
   },
   'social-achievement-blue': {
     name: 'social-achievement-blue',
@@ -265,7 +265,7 @@ module.exports = {
     gradientType: 'socialBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Blue achievement social badge'
+    description: 'Blue achievement social badge',
   },
   'social-achievement-green': {
     name: 'social-achievement-green',
@@ -274,7 +274,7 @@ module.exports = {
     gradientType: 'socialBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
-    description: 'Green achievement social badge'
+    description: 'Green achievement social badge',
   },
 
   // ── Repo Cards (2) ──
@@ -285,7 +285,7 @@ module.exports = {
     gradientType: 'repoCard',
     animationDuration: '1.2s',
     category: 'GitHub Profile',
-    description: 'Dark repo card effect'
+    description: 'Dark repo card effect',
   },
   'repo-card-blue': {
     name: 'repo-card-blue',
@@ -294,6 +294,6 @@ module.exports = {
     gradientType: 'repoCard',
     animationDuration: '1.2s',
     category: 'GitHub Profile',
-    description: 'Blue repo card effect'
-  }
+    description: 'Blue repo card effect',
+  },
 };

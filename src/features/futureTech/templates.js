@@ -17,7 +17,7 @@ module.exports = {
     colors: ['00ffff', '0080ff', '4040ff', '8000ff'],
     gradientType: 'hologram',
     animationDuration: '3s',
-    description: 'Futuristic holographic projection effect with matrix-like data streams'
+    description: 'Futuristic holographic projection effect with matrix-like data streams',
   },
   'quantum-field': {
     name: 'quantum-field',
@@ -25,7 +25,7 @@ module.exports = {
     colors: ['ff00ff', '8000ff', '0080ff', '00ffff'],
     gradientType: 'quantum',
     animationDuration: '4s',
-    description: 'Quantum particle field with energy fluctuations and subatomic animations'
+    description: 'Quantum particle field with energy fluctuations and subatomic animations',
   },
   'laser-grid': {
     name: 'laser-grid',
@@ -33,7 +33,7 @@ module.exports = {
     colors: ['ff0080', 'ff00ff', '8000ff', '0080ff'],
     gradientType: 'laserGrid',
     animationDuration: '2.5s',
-    description: 'Cyberpunk laser grid with scanning beams and neon intersections'
+    description: 'Cyberpunk laser grid with scanning beams and neon intersections',
   },
   'neural-network': {
     name: 'neural-network',
@@ -41,7 +41,7 @@ module.exports = {
     colors: ['00ff80', '40ff40', '80ff00', 'ffff00'],
     gradientType: 'neuralNet',
     animationDuration: '5s',
-    description: 'AI neural network visualization with synaptic connections'
+    description: 'AI neural network visualization with synaptic connections',
   },
   'plasma-core': {
     name: 'plasma-core',
@@ -49,7 +49,7 @@ module.exports = {
     colors: ['ff4080', 'ff0040', 'ff8040', 'ffff80'],
     gradientType: 'plasma',
     animationDuration: '3.5s',
-    description: 'High-energy plasma core with electromagnetic field distortions'
+    description: 'High-energy plasma core with electromagnetic field distortions',
   },
   'data-stream': {
     name: 'data-stream',
@@ -57,6 +57,6 @@ module.exports = {
     colors: ['00ff00', '40ff40', '80ff80', 'c0ffc0'],
     gradientType: 'dataStream',
     animationDuration: '2s',
-    description: 'Digital data stream with binary code flow and terminal aesthetics'
-  }
-}; 
+    description: 'Digital data stream with binary code flow and terminal aesthetics',
+  },
+};

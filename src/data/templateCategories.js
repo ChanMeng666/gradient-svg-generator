@@ -19,13 +19,13 @@ const artTemplates = require('../templates/artTemplates');
 const emotionTemplates = require('../templates/emotionTemplates');
 const materialTemplates = require('../templates/materialTemplates');
 const textEffectTemplates = require('../templates/textEffectTemplates');
-const futureTechTemplates = require('../templates/futureTechTemplates');
-const artisticTemplates = require('../templates/artisticTemplates');
-const luxuryTemplates = require('../templates/luxuryTemplates');
-const organicTemplates = require('../templates/organicTemplates');
-const gamingTemplates = require('../templates/gamingTemplates');
+const futureTechTemplates = require('../features/futureTech/templates');
+const artisticTemplates = require('../features/artistic/templates');
+const luxuryTemplates = require('../features/luxury/templates');
+const organicTemplates = require('../features/organic/templates');
+const gamingTemplates = require('../features/gaming/templates');
 // 新增模板类别 - 来自示例项目整合
-const shapeTemplates = require('../templates/shapeTemplates');
+const shapeTemplates = require('../features/shape/templates');
 const animationTemplates = require('../templates/animationTemplates');
 const morphingTemplates = require('../templates/morphingTemplates');
 const fluidDynamicsTemplates = require('../templates/fluidDynamicsTemplates');
@@ -36,10 +36,10 @@ const digitalLifeTemplates = require('../templates/digitalLifeTemplates');
 const cyberAestheticsTemplates = require('../templates/cyberAestheticsTemplates');
 const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
 // 🌟 NEW: Pattern & Metallic Templates (inspired by example project)
-const patternTemplates = require('../templates/patternTemplates');
-const metallicTemplates = require('../templates/metallicTemplates');
+const patternTemplates = require('../features/pattern/templates');
+const metallicTemplates = require('../features/metallic/templates');
 // 🏷️ NEW: GitHub Profile Templates (badges, banners, terminals, cards)
-const githubProfileTemplates = require('../templates/githubProfileTemplates');
+const githubProfileTemplates = require('../features/githubProfile/templates');
 
 // Template categories configuration
 const templateCategories = [

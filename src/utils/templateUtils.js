@@ -7,12 +7,12 @@ import artTemplates from '../templates/artTemplates';
 import emotionTemplates from '../templates/emotionTemplates';
 import materialTemplates from '../templates/materialTemplates';
 import textEffectTemplates from '../templates/textEffectTemplates';
-import futureTechTemplates from '../templates/futureTechTemplates';
-import artisticTemplates from '../templates/artisticTemplates';
-import luxuryTemplates from '../templates/luxuryTemplates';
-import organicTemplates from '../templates/organicTemplates';
-import gamingTemplates from '../templates/gamingTemplates';
-import shapeTemplates from '../templates/shapeTemplates';
+import futureTechTemplates from '../features/futureTech/templates';
+import artisticTemplates from '../features/artistic/templates';
+import luxuryTemplates from '../features/luxury/templates';
+import organicTemplates from '../features/organic/templates';
+import gamingTemplates from '../features/gaming/templates';
+import shapeTemplates from '../features/shape/templates';
 import animationTemplates from '../templates/animationTemplates';
 import morphingTemplates from '../templates/morphingTemplates';
 import fluidDynamicsTemplates from '../templates/fluidDynamicsTemplates';
@@ -22,19 +22,19 @@ import digitalLifeTemplates from '../templates/digitalLifeTemplates';
 import cyberAestheticsTemplates from '../templates/cyberAestheticsTemplates';
 import consciousnessStreamTemplates from '../templates/consciousnessStreamTemplates';
 // 🌟 NEW: 2025 Creative Expansion Templates
-import weatherTemplates from '../templates/weatherTemplates';
-import lightShadowTemplates from '../templates/lightShadowTemplates';
-import artMovementTemplates from '../templates/artMovementTemplates';
-import culinaryLiquidTemplates from '../templates/culinaryLiquidTemplates';
+import weatherTemplates from '../features/weather/templates';
+import lightShadowTemplates from '../features/lightShadow/templates';
+import artMovementTemplates from '../features/artMovement/templates';
+import culinaryLiquidTemplates from '../features/culinaryLiquid/templates';
 // 🌟 NEW: Pattern & Metallic Templates (inspired by example project)
-import patternTemplates from '../templates/patternTemplates';
-import metallicTemplates from '../templates/metallicTemplates';
+import patternTemplates from '../features/pattern/templates';
+import metallicTemplates from '../features/metallic/templates';
 // 🌟 NEW: Path-Based Text Animation Templates (inspired by Readme Typing SVG)
-import pathTextTemplates from '../templates/pathTextTemplates';
+import pathTextTemplates from '../features/pathText/templates';
 // 🌟 NEW: Capsule-Render Inspired Shape Templates (blob, wave, blur, shape backgrounds)
 import capsuleShapeTemplates from '../templates/capsuleShapeTemplates';
 // 🏷️ NEW: GitHub Profile Templates (badges, banners, terminals, cards)
-import githubProfileTemplates from '../templates/githubProfileTemplates';
+import githubProfileTemplates from '../features/githubProfile/templates';
 
 // Legacy support - import template categories if it exists
 let templateCategories = [];

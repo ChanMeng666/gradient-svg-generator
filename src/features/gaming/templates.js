@@ -17,7 +17,7 @@ module.exports = {
     colors: ['FF0080', '00FF80', '8080FF', 'FFFF00'],
     gradientType: 'pixelArt',
     animationDuration: '4s',
-    description: '8-bit pixel art style with retro gaming aesthetics and blocky transitions'
+    description: '8-bit pixel art style with retro gaming aesthetics and blocky transitions',
   },
   'neon-arcade': {
     name: 'neon-arcade',
@@ -25,7 +25,7 @@ module.exports = {
     colors: ['FF073A', '39FF14', '00FFFF', 'FF1493'],
     gradientType: 'neonArcade',
     animationDuration: '2.5s',
-    description: 'Vibrant neon arcade lights with pulsing glow and electric atmosphere'
+    description: 'Vibrant neon arcade lights with pulsing glow and electric atmosphere',
   },
   'energy-blast': {
     name: 'energy-blast',
@@ -33,7 +33,7 @@ module.exports = {
     colors: ['FFD700', 'FF4500', 'DC143C', '8B0000'],
     gradientType: 'energyBlast',
     animationDuration: '1.5s',
-    description: 'Explosive energy blast with radiating power and dynamic expansion'
+    description: 'Explosive energy blast with radiating power and dynamic expansion',
   },
   'racing-speed': {
     name: 'racing-speed',
@@ -41,7 +41,7 @@ module.exports = {
     colors: ['FF6B35', 'F7931E', 'FFD23F', 'FFFFFF'],
     gradientType: 'speedLines',
     animationDuration: '3s',
-    description: 'High-speed racing stripes with motion blur and velocity trails'
+    description: 'High-speed racing stripes with motion blur and velocity trails',
   },
   'boss-battle': {
     name: 'boss-battle',
@@ -49,7 +49,7 @@ module.exports = {
     colors: ['8B0000', 'DC143C', 'FF4500', 'FFD700'],
     gradientType: 'bossBattle',
     animationDuration: '2s',
-    description: 'Epic boss battle atmosphere with menacing red and gold intensity'
+    description: 'Epic boss battle atmosphere with menacing red and gold intensity',
   },
   'power-up-glow': {
     name: 'power-up-glow',
@@ -57,7 +57,7 @@ module.exports = {
     colors: ['00BFFF', '00CED1', '7FFFD4', 'F0FFFF'],
     gradientType: 'powerUp',
     animationDuration: '3.5s',
-    description: 'Power-up collection glow with magical enhancement and cool energy'
+    description: 'Power-up collection glow with magical enhancement and cool energy',
   },
   'cyberpunk-city': {
     name: 'cyberpunk-city',
@@ -65,7 +65,7 @@ module.exports = {
     colors: ['FF1493', '00FFFF', 'FF00FF', '8A2BE2'],
     gradientType: 'cyberpunk',
     animationDuration: '5s',
-    description: 'Futuristic cyberpunk cityscape with neon reflections and urban glow'
+    description: 'Futuristic cyberpunk cityscape with neon reflections and urban glow',
   },
   'retro-wave': {
     name: 'retro-wave',
@@ -73,6 +73,6 @@ module.exports = {
     colors: ['FF006E', 'FB5607', 'FFBE0B', '8338EC'],
     gradientType: 'retroWave',
     animationDuration: '6s',
-    description: 'Synthwave retro aesthetic with 80s nostalgia and vaporwave vibes'
-  }
-}; 
+    description: 'Synthwave retro aesthetic with 80s nostalgia and vaporwave vibes',
+  },
+};

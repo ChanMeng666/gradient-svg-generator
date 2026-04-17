@@ -17,7 +17,8 @@ module.exports = {
     colors: ['ff9999', 'ffcc99', '99ccff', 'cc99ff'],
     gradientType: 'watercolor',
     animationDuration: '6s',
-    description: 'Soft watercolor painting effect with organic color bleeding and fluid transitions'
+    description:
+      'Soft watercolor painting effect with organic color bleeding and fluid transitions',
   },
   'oil-painting': {
     name: 'oil-painting',
@@ -25,7 +26,7 @@ module.exports = {
     colors: ['8B4513', 'CD853F', 'DEB887', 'F5DEB3'],
     gradientType: 'oilPaint',
     animationDuration: '8s',
-    description: 'Classic oil painting texture with rich brushstrokes and impasto techniques'
+    description: 'Classic oil painting texture with rich brushstrokes and impasto techniques',
   },
   'ink-splash': {
     name: 'ink-splash',
@@ -33,7 +34,7 @@ module.exports = {
     colors: ['000000', '333333', '666666', '999999'],
     gradientType: 'inkSplash',
     animationDuration: '3s',
-    description: 'Dynamic ink splash effect with organic splatters and fluid motion'
+    description: 'Dynamic ink splash effect with organic splatters and fluid motion',
   },
   'mosaic-tiles': {
     name: 'mosaic-tiles',
@@ -41,7 +42,7 @@ module.exports = {
     colors: ['FFD700', 'FF6347', '4169E1', '32CD32'],
     gradientType: 'mosaic',
     animationDuration: '4s',
-    description: 'Byzantine mosaic tile pattern with golden accents and geometric precision'
+    description: 'Byzantine mosaic tile pattern with golden accents and geometric precision',
   },
   'abstract-geometry': {
     name: 'abstract-geometry',
@@ -49,7 +50,7 @@ module.exports = {
     colors: ['FF1744', '2196F3', 'FFEB3B', '9C27B0'],
     gradientType: 'abstractGeo',
     animationDuration: '5s',
-    description: 'Modern abstract geometric composition with Bauhaus-inspired color blocking'
+    description: 'Modern abstract geometric composition with Bauhaus-inspired color blocking',
   },
   'graffiti-street': {
     name: 'graffiti-street',
@@ -57,7 +58,7 @@ module.exports = {
     colors: ['FF5722', '795548', 'FFC107', '607D8B'],
     gradientType: 'graffiti',
     animationDuration: '3.5s',
-    description: 'Urban street art graffiti style with spray paint textures and bold colors'
+    description: 'Urban street art graffiti style with spray paint textures and bold colors',
   },
   'vintage-poster': {
     name: 'vintage-poster',
@@ -65,6 +66,6 @@ module.exports = {
     colors: ['D32F2F', 'F57C00', 'FBC02D', '689F38'],
     gradientType: 'vintage',
     animationDuration: '7s',
-    description: 'Retro vintage poster aesthetic with aged paper texture and classic typography'
-  }
-}; 
+    description: 'Retro vintage poster aesthetic with aged paper texture and classic typography',
+  },
+};

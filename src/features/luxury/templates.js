@@ -17,7 +17,7 @@ module.exports = {
     colors: ['FFD700', 'FFA500', 'FF8C00', 'B8860B'],
     gradientType: 'goldFoil',
     animationDuration: '4s',
-    description: 'Luxurious gold leaf effect with metallic shimmer and elegant reflections'
+    description: 'Luxurious gold leaf effect with metallic shimmer and elegant reflections',
   },
   'diamond-sparkle': {
     name: 'diamond-sparkle',
@@ -25,7 +25,7 @@ module.exports = {
     colors: ['FFFFFF', 'F0F8FF', 'E6E6FA', 'DDA0DD'],
     gradientType: 'diamond',
     animationDuration: '2.5s',
-    description: 'Brilliant diamond sparkle with prismatic light refractions and crystal clarity'
+    description: 'Brilliant diamond sparkle with prismatic light refractions and crystal clarity',
   },
   'marble-royal': {
     name: 'marble-royal',
@@ -33,7 +33,7 @@ module.exports = {
     colors: ['F5F5DC', 'DCDCDC', 'C0C0C0', '708090'],
     gradientType: 'marble',
     animationDuration: '6s',
-    description: 'Elegant Carrara marble texture with natural veining and sophisticated patterns'
+    description: 'Elegant Carrara marble texture with natural veining and sophisticated patterns',
   },
   'platinum-shine': {
     name: 'platinum-shine',
@@ -41,7 +41,7 @@ module.exports = {
     colors: ['E5E4E2', 'C0C0C0', '808080', '696969'],
     gradientType: 'platinum',
     animationDuration: '5s',
-    description: 'Premium platinum finish with mirror-like reflections and metallic depth'
+    description: 'Premium platinum finish with mirror-like reflections and metallic depth',
   },
   'rose-gold-elegance': {
     name: 'rose-gold-elegance',
@@ -49,7 +49,7 @@ module.exports = {
     colors: ['E8B4CB', 'D4AF37', 'CD7F32', 'B87333'],
     gradientType: 'roseGold',
     animationDuration: '4.5s',
-    description: 'Sophisticated rose gold with warm metallic tones and romantic shimmer'
+    description: 'Sophisticated rose gold with warm metallic tones and romantic shimmer',
   },
   'crystal-prism': {
     name: 'crystal-prism',
@@ -57,7 +57,7 @@ module.exports = {
     colors: ['FF1493', '00BFFF', '32CD32', 'FFD700'],
     gradientType: 'crystal',
     animationDuration: '3s',
-    description: 'Rainbow crystal prism effect with light dispersion and spectral beauty'
+    description: 'Rainbow crystal prism effect with light dispersion and spectral beauty',
   },
   'velvet-luxury': {
     name: 'velvet-luxury',
@@ -65,6 +65,6 @@ module.exports = {
     colors: ['8B008B', '4B0082', '191970', '000080'],
     gradientType: 'velvet',
     animationDuration: '7s',
-    description: 'Rich velvet texture with deep purple hues and soft tactile appearance'
-  }
-}; 
+    description: 'Rich velvet texture with deep purple hues and soft tactile appearance',
+  },
+};
