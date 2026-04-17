@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { cn } from '../../lib/utils';
 
-const badgeVariants = {
+type BadgeVariant = 'default' | 'secondary' | 'destructive' | 'outline';
+
+const badgeVariants: { variant: Record<BadgeVariant, string> } = {
   variant: {
     default: 'border-transparent bg-primary text-primary-foreground hover:bg-primary/80',
     secondary: 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
@@ -11,7 +13,11 @@ const badgeVariants = {
   },
 };
 
-function Badge({ className, variant = 'default', ...props }) {
+export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: BadgeVariant;
+}
+
+function Badge({ className, variant = 'default', ...props }: BadgeProps) {
   return (
     <div
       className={cn(

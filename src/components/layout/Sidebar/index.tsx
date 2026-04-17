@@ -1,24 +1,33 @@
-import React, { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
-import { Badge } from '../ui/badge';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs';
-import {
-  Search,
-  Star,
-  Clock,
-  ChevronLeft,
-  ChevronRight,
-  Sparkles,
-  Filter,
-  Trash2,
-} from 'lucide-react';
-import { cn } from '../../lib/utils';
-import useStore from '../../store/useStore';
 import Fuse from 'fuse.js';
+import { Button } from '../../ui/button';
+import { Tabs, TabsList, TabsTrigger } from '../../ui/tabs';
+import { Star, Clock, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { cn } from '../../../lib/utils';
+import useStore from '../../../store/useStore';
+import SidebarSearch from './SidebarSearch';
+import SidebarFilters, { type SidebarCategory } from './SidebarFilters';
+import SidebarFavorites from './SidebarFavorites';
 
-export default function Sidebar({ templates, categories, onTemplateSelect }) {
+export interface SidebarTemplate {
+  name: string;
+  displayName: string;
+  category?: string;
+}
+
+interface SidebarProps {
+  templates: readonly SidebarTemplate[];
+  categories: readonly SidebarCategory[];
+  onTemplateSelect: (template: SidebarTemplate) => void;
+}
+
+type Tab = 'all' | 'favorites' | 'recent';
+
+const ROW_HEIGHT = 170;
+const OVERSCAN = 3;
+
+export default function Sidebar({ templates, categories, onTemplateSelect }: SidebarProps) {
   const {
     favorites,
     recentTemplates,
@@ -31,68 +40,61 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
   } = useStore();
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [activeTab, setActiveTab] = useState('all');
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [activeTab, setActiveTab] = useState<Tab>('all');
 
-  // Ref for virtualized list container
-  const scrollContainerRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // Initialize Fuse.js for fuzzy search
-  const fuse = useMemo(() => {
-    return new Fuse(templates, {
-      keys: ['displayName', 'name', 'category'],
-      threshold: 0.3,
-    });
-  }, [templates]);
+  const fuse = useMemo(
+    () =>
+      new Fuse(templates as SidebarTemplate[], {
+        keys: ['displayName', 'name', 'category'],
+        threshold: 0.3,
+      }),
+    [templates],
+  );
 
-  // Filter templates based on search and categories
   const filteredTemplates = useMemo(() => {
-    let results = templates;
-
-    // Apply tab filter first
     if (activeTab === 'favorites') {
-      // Only show templates that exist in both templates array AND favorites array
-      const validFavorites = favorites.filter((favName) =>
-        templates.some((template) => template.name === favName),
+      const validFavorites = favorites.filter((favName: string) =>
+        templates.some((t) => t.name === favName),
       );
-      results = results.filter((template) => validFavorites.includes(template.name));
-    } else if (activeTab === 'recent') {
-      // Get recent template names and validate they still exist
-      const recentNames = recentTemplates
-        .map((t) => t.name)
-        .filter((name) => templates.some((template) => template.name === name));
-
-      // Sort by recency (most recent first)
-      results = recentNames.map((name) => templates.find((t) => t.name === name)).filter(Boolean);
-    } else {
-      // Only apply search and category filters on 'all' tab
-      if (searchQuery) {
-        results = fuse.search(searchQuery).map((result) => result.item);
-      }
-
-      if (selectedCategories.length > 0) {
-        results = results.filter((template) => selectedCategories.includes(template.category));
-      }
+      return templates.filter((t) => validFavorites.includes(t.name));
     }
 
+    if (activeTab === 'recent') {
+      const recentNames = recentTemplates
+        .map((t: SidebarTemplate) => t.name)
+        .filter((name: string) => templates.some((t) => t.name === name));
+      return recentNames
+        .map((name: string) => templates.find((t) => t.name === name))
+        .filter(Boolean) as SidebarTemplate[];
+    }
+
+    let results: readonly SidebarTemplate[] = templates;
+    if (searchQuery) {
+      results = fuse.search(searchQuery).map((r) => r.item);
+    }
+    if (selectedCategories.length > 0) {
+      results = results.filter((t) => t.category && selectedCategories.includes(t.category));
+    }
     return results;
   }, [templates, searchQuery, selectedCategories, activeTab, favorites, recentTemplates, fuse]);
 
-  // Virtual list setup - each template card is approximately 170px tall (120px image + 50px text/margin)
   const rowVirtualizer = useVirtualizer({
     count: filteredTemplates.length,
     getScrollElement: () => scrollContainerRef.current,
-    estimateSize: () => 170,
-    overscan: 3,
+    estimateSize: () => ROW_HEIGHT,
+    overscan: OVERSCAN,
   });
 
-  const toggleCategory = (category) => {
+  const toggleCategory = (category: string) => {
     setSelectedCategories((prev) =>
       prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
     );
   };
 
-  const toggleFavorite = (e, templateName) => {
+  const toggleFavorite = (e: React.MouseEvent, templateName: string) => {
     e.stopPropagation();
     if (favorites.includes(templateName)) {
       removeFavorite(templateName);
@@ -100,6 +102,10 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
       addFavorite(templateName);
     }
   };
+
+  const showClearButton =
+    (activeTab === 'favorites' && favorites.length > 0) ||
+    (activeTab === 'recent' && recentTemplates.length > 0);
 
   return (
     <aside
@@ -109,7 +115,6 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
       )}
     >
       <div className="flex flex-col h-full overflow-hidden pb-16 md:pb-0">
-        {/* Sidebar Header */}
         <div className="p-4 border-b shrink-0">
           <div className="flex items-center justify-between">
             {!sidebarCollapsed && <h2 className="text-lg font-semibold">Templates</h2>}
@@ -131,23 +136,11 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
 
         {!sidebarCollapsed && (
           <div className="flex-1 flex flex-col overflow-hidden">
-            {/* Search */}
-            <div className="p-4 shrink-0">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                  placeholder="Search templates..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-            </div>
+            <SidebarSearch value={searchQuery} onChange={setSearchQuery} />
 
-            {/* Tabs */}
             <Tabs
               value={activeTab}
-              onValueChange={setActiveTab}
+              onValueChange={(v) => setActiveTab(v as Tab)}
               className="flex-1 flex flex-col overflow-hidden"
             >
               <TabsList className="mx-4 shrink-0">
@@ -171,57 +164,22 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
                 </TabsTrigger>
               </TabsList>
 
-              {/* Scrollable content area */}
               <div className="flex-1 flex flex-col overflow-hidden">
-                {/* Category Filter */}
                 {activeTab === 'all' && (
-                  <div className="p-4 border-b shrink-0">
-                    <div className="flex items-center mb-2">
-                      <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
-                      <span className="text-sm font-medium">Categories</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {categories.map((category) => (
-                        <Badge
-                          key={category.id}
-                          variant={selectedCategories.includes(category.id) ? 'default' : 'outline'}
-                          className="cursor-pointer"
-                          onClick={() => toggleCategory(category.id)}
-                        >
-                          {category.icon} {category.name}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
+                  <SidebarFilters
+                    categories={categories}
+                    selected={selectedCategories}
+                    onToggle={toggleCategory}
+                  />
                 )}
 
-                {/* Clear All button for Favorites and Recent */}
-                {((activeTab === 'favorites' && favorites.length > 0) ||
-                  (activeTab === 'recent' && recentTemplates.length > 0)) && (
-                  <div className="p-4 border-b shrink-0">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        if (activeTab === 'favorites') {
-                          if (confirm('Are you sure you want to clear all favorites?')) {
-                            clearFavorites();
-                          }
-                        } else {
-                          if (confirm('Are you sure you want to clear recent history?')) {
-                            clearRecent();
-                          }
-                        }
-                      }}
-                      className="w-full gap-2 hover:bg-destructive hover:text-destructive-foreground"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                      {activeTab === 'favorites' ? 'Clear All Favorites' : 'Clear Recent History'}
-                    </Button>
-                  </div>
+                {showClearButton && (
+                  <SidebarFavorites
+                    variant={activeTab === 'favorites' ? 'favorites' : 'recent'}
+                    onClear={activeTab === 'favorites' ? clearFavorites : clearRecent}
+                  />
                 )}
 
-                {/* Virtualized Template Grid */}
                 <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-4">
                   {filteredTemplates.length === 0 ? (
                     <div className="text-center py-8 text-muted-foreground">
@@ -267,7 +225,6 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
                                   loading="lazy"
                                 />
 
-                                {/* Favorite button */}
                                 <Button
                                   variant="ghost"
                                   size="icon"
@@ -284,7 +241,6 @@ export default function Sidebar({ templates, categories, onTemplateSelect }) {
                                 </Button>
                               </div>
 
-                              {/* Template name */}
                               <div className="mt-2">
                                 <div className="text-sm font-medium text-center">
                                   {template.displayName}
