@@ -25,10 +25,7 @@ const gamingTemplates = require('../features/gaming/templates');
 const shapeTemplates = require('../features/shape/templates');
 const animationTemplates = require('../templates/animationTemplates');
 const morphingTemplates = require('../templates/morphingTemplates');
-const fluidDynamicsTemplates = require('../templates/fluidDynamicsTemplates');
-const dimensionalTemplates = require('../templates/dimensionalTemplates');
-// 🌟 NEW: Advanced Futuristic Template Categories
-const dimensionalPortalTemplates = require('../templates/dimensionalPortalTemplates');
+const fluidsTemplates = require('../features/fluids/templates');
 const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
 // 🌟 NEW: Pattern & Metallic Templates (inspired by example project)
 const patternTemplates = require('../features/pattern/templates');
@@ -131,26 +128,12 @@ const templateCategories = [
     templates: Object.values(morphingTemplates),
   },
   {
-    id: 'fluid-dynamics',
-    name: 'Fluid Dynamics',
-    icon: '��',
-    description: 'Complex fluid simulation and wave propagation effects',
-    templates: Object.values(fluidDynamicsTemplates),
-  },
-  {
-    id: 'dimensional',
-    name: 'Dimensional Effects',
-    icon: '🌌',
-    description: 'Multi-dimensional space distortion and portal effects',
-    templates: Object.values(dimensionalTemplates),
-  },
-  // 🌟 NEW: Advanced Futuristic Categories - 前卫未来主义设计
-  {
-    id: 'dimensional-portal',
-    name: 'Dimensional Portal',
-    icon: '🌀',
-    description: '次元穿越美学 - 探索多维空间的视觉奇迹与量子隧道效应',
-    templates: Object.values(dimensionalPortalTemplates),
+    id: 'fluids',
+    name: 'Fluids',
+    icon: '💧',
+    description:
+      'Fluid dynamics, dimensional portals, and multiverse visualizations in one unified category',
+    templates: Object.values(fluidsTemplates),
   },
   {
     id: 'consciousness-stream',

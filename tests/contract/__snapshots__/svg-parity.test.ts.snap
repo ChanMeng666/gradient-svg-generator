@@ -4060,270 +4060,6 @@ exports[`SVG contract parity > culinaryLiquid:wine-pour 1`] = `
 </svg>"
 `;
 
-exports[`SVG contract parity > dimensional:portal-nexus 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="portalNexus" cx="50%" cy="50%" r="70%">
-        <stop offset="0%" style="stop-color:#4400ff;stop-opacity:1">
-          <animate attributeName="stop-color" values="#4400ff;#6600ff;#8800ff;#4400ff" dur="4s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="30%" style="stop-color:#6600ff;stop-opacity:0.8">
-          <animate attributeName="stop-color" values="#6600ff;#8800ff;#aa00ff;#6600ff" dur="4s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="70%" style="stop-color:#8800ff;stop-opacity:0.4">
-          <animate attributeName="stop-color" values="#8800ff;#aa00ff;#4400ff;#8800ff" dur="4s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="100%" style="stop-color:#aa00ff;stop-opacity:0.1">
-          <animate attributeName="stop-opacity" values="0.1;0.3;0.1" dur="2s" repeatCount="indefinite"/>
-        </stop>
-        <animateTransform attributeName="gradientTransform" type="rotate" values="0 50 50;360 50 50" dur="4s" repeatCount="indefinite"/>
-      </radialGradient>
-      <filter id="dimensionalWarp">
-        <feTurbulence baseFrequency="1.2" numOctaves="2" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="30">
-          <animate attributeName="scale" values="20;40;20" dur="4s" repeatCount="indefinite"/>
-        </feDisplacementMap>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#portalNexus)" filter="url(#dimensionalWarp)"/>
-    <foreignObject x="10%" y="40%" width="80%" height="20%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: #aa00ff;
-        font-family: 'Futura', sans-serif;
-        font-size: 32px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0 0 15px #4400ff, 0 0 25px #6600ff;
-        animation: dimensionalShift 4s infinite;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes dimensionalShift {
-          0%, 100% { transform: perspective(500px) rotateY(0deg); opacity: 1; }
-          50% { transform: perspective(500px) rotateY(5deg); opacity: 0.8; }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
-exports[`SVG contract parity > dimensional:tesseract-projection 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="portalNexus" cx="50%" cy="50%" r="70%">
-        <stop offset="0%" style="stop-color:#ff0040;stop-opacity:1">
-          <animate attributeName="stop-color" values="#ff0040;#ff0080;#ff00c0;#ff0040" dur="15s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="30%" style="stop-color:#ff0080;stop-opacity:0.8">
-          <animate attributeName="stop-color" values="#ff0080;#ff00c0;#ff00ff;#ff0080" dur="15s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="70%" style="stop-color:#ff00c0;stop-opacity:0.4">
-          <animate attributeName="stop-color" values="#ff00c0;#ff00ff;#ff0040;#ff00c0" dur="15s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0.1">
-          <animate attributeName="stop-opacity" values="0.1;0.3;0.1" dur="7.5s" repeatCount="indefinite"/>
-        </stop>
-        <animateTransform attributeName="gradientTransform" type="rotate" values="0 50 50;360 50 50" dur="15s" repeatCount="indefinite"/>
-      </radialGradient>
-      <filter id="dimensionalWarp">
-        <feTurbulence baseFrequency="1.2" numOctaves="2" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="30">
-          <animate attributeName="scale" values="20;40;20" dur="15s" repeatCount="indefinite"/>
-        </feDisplacementMap>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#portalNexus)" filter="url(#dimensionalWarp)"/>
-    <foreignObject x="10%" y="40%" width="80%" height="20%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: #ff00ff;
-        font-family: 'Futura', sans-serif;
-        font-size: 32px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0 0 15px #ff0040, 0 0 25px #ff0080;
-        animation: dimensionalShift 15s infinite;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes dimensionalShift {
-          0%, 100% { transform: perspective(500px) rotateY(0deg); opacity: 1; }
-          50% { transform: perspective(500px) rotateY(5deg); opacity: 0.8; }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
-exports[`SVG contract parity > dimensional:wormhole-transit 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="quantumTunnel" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" style="stop-color:#000000;stop-opacity:1"/><stop offset="RANDOM%" style="stop-color:#330033;stop-opacity:0.9"/><stop offset="RANDOM%" style="stop-color:#660066;stop-opacity:0.8"/><stop offset="100%" style="stop-color:#990099;stop-opacity:0.7"/>
-      </radialGradient>
-      <filter id="quantumDistortion">
-        <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="15"/>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#quantumTunnel)" filter="url(#quantumDistortion)">
-      <animateTransform attributeName="transform" type="scale" values="1;1.2;1" dur="10s" repeatCount="indefinite"/>
-    </rect>
-    <foreignObject x="10%" y="35%" width="80%" height="30%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: #990099;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 48px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0 0 20px #000000;
-        animation: quantumPulse 10s infinite;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes quantumPulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(1.1); }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
-exports[`SVG contract parity > dimensionalPortal:parallel-universe 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="quantumTunnel" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" style="stop-color:#ff0080;stop-opacity:1"/><stop offset="20%" style="stop-color:#8000ff;stop-opacity:0.9"/><stop offset="40%" style="stop-color:#0080ff;stop-opacity:0.8"/><stop offset="60%" style="stop-color:#00ff80;stop-opacity:0.7"/><stop offset="80%" style="stop-color:#ff8000;stop-opacity:0.6"/><stop offset="100%" style="stop-color:#ff0040;stop-opacity:0.5"/>
-      </radialGradient>
-      <filter id="quantumDistortion">
-        <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="15"/>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#quantumTunnel)" filter="url(#quantumDistortion)">
-      <animateTransform attributeName="transform" type="scale" values="1;1.2;1" dur="8s" repeatCount="indefinite"/>
-    </rect>
-    <foreignObject x="10%" y="35%" width="80%" height="30%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: #ff0040;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 48px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0 0 20px #ff0080;
-        animation: quantumPulse 8s infinite;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes quantumPulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(1.1); }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
-exports[`SVG contract parity > dimensionalPortal:quantum-tunnel 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="quantumTunnel" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" style="stop-color:#000000;stop-opacity:1"/><stop offset="20%" style="stop-color:#1a0033;stop-opacity:0.9"/><stop offset="40%" style="stop-color:#330066;stop-opacity:0.8"/><stop offset="60%" style="stop-color:#4d0099;stop-opacity:0.7"/><stop offset="80%" style="stop-color:#6600cc;stop-opacity:0.6"/><stop offset="100%" style="stop-color:#7f00ff;stop-opacity:0.5"/>
-      </radialGradient>
-      <filter id="quantumDistortion">
-        <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="15"/>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#quantumTunnel)" filter="url(#quantumDistortion)">
-      <animateTransform attributeName="transform" type="scale" values="1;1.2;1" dur="4s" repeatCount="indefinite"/>
-    </rect>
-    <foreignObject x="10%" y="35%" width="80%" height="30%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: #7f00ff;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 48px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0 0 20px #000000;
-        animation: quantumPulse 4s infinite;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes quantumPulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(1.1); }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
-exports[`SVG contract parity > dimensionalPortal:wormhole-transit 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="quantumTunnel" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1"/><stop offset="20%" style="stop-color:#ccccff;stop-opacity:0.9"/><stop offset="40%" style="stop-color:#9999ff;stop-opacity:0.8"/><stop offset="60%" style="stop-color:#6666ff;stop-opacity:0.7"/><stop offset="80%" style="stop-color:#3333ff;stop-opacity:0.6"/><stop offset="100%" style="stop-color:#0000ff;stop-opacity:0.5"/>
-      </radialGradient>
-      <filter id="quantumDistortion">
-        <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="15"/>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#quantumTunnel)" filter="url(#quantumDistortion)">
-      <animateTransform attributeName="transform" type="scale" values="1;1.2;1" dur="6s" repeatCount="indefinite"/>
-    </rect>
-    <foreignObject x="10%" y="35%" width="80%" height="30%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: #0000ff;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 48px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0 0 20px #ffffff;
-        animation: quantumPulse 6s infinite;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes quantumPulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(1.1); }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
 exports[`SVG contract parity > edge:animation-none 1`] = `
 "<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -8226,7 +7962,7 @@ exports[`SVG contract parity > emotion:passion-fire 1`] = `
 </svg>"
 `;
 
-exports[`SVG contract parity > fluidDynamics:aurora-streams 1`] = `
+exports[`SVG contract parity > fluids:aurora-streams 1`] = `
 "<?xml version="1.0" encoding="UTF-8"?>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
       width="854" height="120" viewBox="0 0 854 120">
@@ -8275,7 +8011,7 @@ exports[`SVG contract parity > fluidDynamics:aurora-streams 1`] = `
     </svg>"
 `;
 
-exports[`SVG contract parity > fluidDynamics:electromagnetic-field 1`] = `
+exports[`SVG contract parity > fluids:electromagnetic-field 1`] = `
 "<?xml version="1.0" encoding="UTF-8"?>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
       width="854" height="120" viewBox="0 0 854 120">
@@ -8324,7 +8060,7 @@ exports[`SVG contract parity > fluidDynamics:electromagnetic-field 1`] = `
     </svg>"
 `;
 
-exports[`SVG contract parity > fluidDynamics:turbulent-waves 1`] = `
+exports[`SVG contract parity > fluids:turbulent-waves 1`] = `
 "<?xml version="1.0" encoding="UTF-8"?>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
       width="854" height="120" viewBox="0 0 854 120">

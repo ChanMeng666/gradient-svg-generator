@@ -12,9 +12,7 @@ import gamingTemplates from '../features/gaming/templates';
 import shapeTemplates from '../features/shape/templates';
 import animationTemplates from '../templates/animationTemplates';
 import morphingTemplates from '../templates/morphingTemplates';
-import fluidDynamicsTemplates from '../templates/fluidDynamicsTemplates';
-import dimensionalTemplates from '../templates/dimensionalTemplates';
-import dimensionalPortalTemplates from '../templates/dimensionalPortalTemplates';
+import fluidsTemplates from '../features/fluids/templates';
 import consciousnessStreamTemplates from '../templates/consciousnessStreamTemplates';
 // 🌟 NEW: 2025 Creative Expansion Templates
 import lightShadowTemplates from '../features/lightShadow/templates';
@@ -53,9 +51,7 @@ const allTemplateGroups = [
   shapeTemplates,
   animationTemplates,
   morphingTemplates,
-  fluidDynamicsTemplates,
-  dimensionalTemplates,
-  dimensionalPortalTemplates,
+  fluidsTemplates,
   consciousnessStreamTemplates,
   // 🌟 NEW: 2025 Creative Expansion
   lightShadowTemplates,
@@ -111,9 +107,7 @@ export function getAllTemplates() {
             'shape',
             'animation',
             'morphing',
-            'fluidDynamics',
-            'dimensional',
-            'dimensionalPortal',
+            'fluids',
             'consciousness',
             'lightShadow',
             'culinaryLiquid',
@@ -185,9 +179,7 @@ export function getCategories() {
     shape: { id: 'shape', name: 'Shape', icon: '⚫' },
     animation: { id: 'animation', name: 'Animation', icon: '🎬' },
     morphing: { id: 'morphing', name: 'Morphing', icon: '🌊' },
-    fluidDynamics: { id: 'fluidDynamics', name: 'Fluid', icon: '💧' },
-    dimensional: { id: 'dimensional', name: 'Dimensional', icon: '🌌' },
-    dimensionalPortal: { id: 'dimensionalPortal', name: 'Portal', icon: '🌀' },
+    fluids: { id: 'fluids', name: 'Fluids', icon: '💧' },
     consciousness: { id: 'consciousness', name: 'Consciousness', icon: '🧠' },
     // 🌟 NEW: 2025 Creative Expansion Categories
     lightShadow: { id: 'lightShadow', name: 'Light & Shadow', icon: '💡' },
@@ -252,9 +244,7 @@ export function getTemplateByName(name) {
         'shape',
         'animation',
         'morphing',
-        'fluidDynamics',
-        'dimensional',
-        'dimensionalPortal',
+        'fluids',
         'consciousness',
         'lightShadow',
         'culinaryLiquid',

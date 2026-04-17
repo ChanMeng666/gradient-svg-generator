@@ -19,9 +19,7 @@ const gamingTemplates = require('../features/gaming/templates');
 const shapeTemplates = require('../features/shape/templates');
 const animationTemplates = require('../templates/animationTemplates');
 const morphingTemplates = require('../templates/morphingTemplates');
-const fluidDynamicsTemplates = require('../templates/fluidDynamicsTemplates');
-const dimensionalTemplates = require('../templates/dimensionalTemplates');
-const dimensionalPortalTemplates = require('../templates/dimensionalPortalTemplates');
+const fluidsTemplates = require('../features/fluids/templates');
 const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
 const lightShadowTemplates = require('../features/lightShadow/templates');
 const culinaryLiquidTemplates = require('../features/culinaryLiquid/templates');
@@ -46,9 +44,7 @@ const CATEGORY_REGISTRY = {
   shape: { name: 'Shape', icon: '⚫', templates: shapeTemplates },
   animation: { name: 'Animation', icon: '🎬', templates: animationTemplates },
   morphing: { name: 'Morphing', icon: '🌊', templates: morphingTemplates },
-  fluidDynamics: { name: 'Fluid', icon: '💧', templates: fluidDynamicsTemplates },
-  dimensional: { name: 'Dimensional', icon: '🌌', templates: dimensionalTemplates },
-  dimensionalPortal: { name: 'Portal', icon: '🌀', templates: dimensionalPortalTemplates },
+  fluids: { name: 'Fluids', icon: '💧', templates: fluidsTemplates },
   consciousness: { name: 'Consciousness', icon: '🧠', templates: consciousnessStreamTemplates },
   lightShadow: { name: 'Light & Shadow', icon: '💡', templates: lightShadowTemplates },
   culinaryLiquid: { name: 'Culinary', icon: '☕', templates: culinaryLiquidTemplates },
