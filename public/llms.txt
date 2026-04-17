@@ -160,7 +160,7 @@ const bannerUrl = `https://gradient-svg-generator.vercel.app/api/svg?text=${enco
 - **Open Source**: Full source code available for customization
 
 ## Technical Stack
-- **Frontend**: Next.js 13, React 18, Tailwind CSS
+- **Frontend**: Next.js 16, React 19, Tailwind CSS v4, TypeScript
 - **API**: Node.js serverless functions
 - **Deployment**: Vercel with global CDN
 - **Performance**: Optimized for speed and reliability

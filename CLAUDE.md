@@ -4,15 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Chromaflow is a Next.js 13 application that creates animated SVG gradients with customizable text overlays. It features **326+ templates** across **30 categories** and supports **200+ gradient types** with advanced visual effects.
+Chromaflow is a Next.js 16 application that creates animated SVG gradients with customizable text overlays. It features **340+ templates** across **31 categories** and supports **180+ gradient types** with advanced visual effects.
 
 ### Tech Stack
-- **Frontend**: React 18.2 with Next.js 13
-- **UI Framework**: Tailwind CSS with CSS Modules
+
+- **Frontend**: React 19 with Next.js 16 (Pages Router)
+- **Language**: TypeScript (strict, `allowJs` gradual migration) + legacy JavaScript
+- **UI Framework**: Tailwind CSS v4 (CSS-first `@theme`), shadcn/ui primitives
 - **Animation**: Framer Motion for UI animations, CSS/SVG animations for effects
-- **State Management**: Zustand with persistence
+- **State Management**: Zustand v5 with persistence
+- **Testing**: Vitest + Testing Library + jsdom; contract snapshot harness for `/api/svg`
 - **PWA**: Service Worker for offline support
-- **Build Tools**: Webpack, PostCSS
+- **Build Tools**: Next.js + webpack, PostCSS with `@tailwindcss/postcss`
 
 ## Development Commands
 
@@ -109,7 +112,9 @@ sequenceDiagram
 ## Key Architecture Points
 
 ### API Endpoint
+
 The main API is at `/api/svg` (src/pages/api/svg.js) which accepts query parameters:
+
 - `text`: Display text (required)
 - `height`: 30-300px (default: 120)
 - `template`: Template name (e.g., "aurora-borealis", "hologram-matrix")
@@ -136,15 +141,15 @@ flowchart LR
 
 ### Core Modules (src/core/)
 
-| Module | Purpose |
-|--------|---------|
-| `UnifiedGradientGenerator.js` | Main entry point, orchestrates SVG generation |
-| `EffectRegistry.js` | Central registry mapping effect names to generators |
-| `EffectLoader.js` | Loads and registers all effect generators |
-| `TemplateRegistry.js` | Manages template loading with static imports |
-| `FilterLibrary.js` | Centralized SVG filter definitions |
-| `AnimationLibrary.js` | Reusable animation patterns and utilities |
-| `SVGComposer.js` | Composes complete SVG documents |
+| Module                        | Purpose                                             |
+| ----------------------------- | --------------------------------------------------- |
+| `UnifiedGradientGenerator.js` | Main entry point, orchestrates SVG generation       |
+| `EffectRegistry.js`           | Central registry mapping effect names to generators |
+| `EffectLoader.js`             | Loads and registers all effect generators           |
+| `TemplateRegistry.js`         | Manages template loading with static imports        |
+| `FilterLibrary.js`            | Centralized SVG filter definitions                  |
+| `AnimationLibrary.js`         | Reusable animation patterns and utilities           |
+| `SVGComposer.js`              | Composes complete SVG documents                     |
 
 ### Template System
 
@@ -248,16 +253,19 @@ src/
 ## Adding New Features
 
 ### New Gradient Type
+
 1. Create generator in `src/utils/gradientGenerators/`
 2. Register in `src/core/EffectLoader.js`
 3. Add to `GRADIENT_TYPES` in `src/config/gradientConfig.js`
 
 ### New Template
+
 1. Add to appropriate category file in `src/templates/`
 2. Static import is already in `TemplateRegistry.js`
 3. Templates auto-register via the config system
 
 ### New Effect Category
+
 1. Create new generator file in `src/utils/gradientGenerators/`
 2. Create new template file in `src/templates/`
 3. Add static import to `src/core/TemplateRegistry.js`
@@ -275,6 +283,7 @@ src/
 ## Testing Approach
 
 When testing changes:
+
 1. Test with various text lengths (short, medium, long)
 2. Test all color combinations in templates
 3. Verify animations work smoothly
@@ -286,10 +295,12 @@ When testing changes:
 ## Development Guidelines
 
 ### Language Requirements
+
 - **All text content in pages and components must be in English**
 - No Chinese characters in user-facing content
 
 ### Git Workflow
+
 - Use **Conventional Commits** format:
   - `feat:` New features
   - `fix:` Bug fixes
@@ -300,23 +311,26 @@ When testing changes:
 ## Current Feature Set
 
 ### Statistics
-- **326+ Templates** across 30 categories
-- **200+ Gradient Types** with unique effects
+
+- **340+ Templates** across 31 categories
+- **180+ Gradient Types** with unique effects
 - **50+ Animation Effects**
 
 ### Gradient Categories
-| Category | Examples |
-|----------|----------|
-| Basic | horizontal, vertical, diagonal, radial |
-| Shapes | star, heart, lightning, wave |
-| Artistic | watercolor, oil paint, graffiti |
-| Tech | hologram, quantum, neural network |
-| Gaming | pixel art, neon arcade, cyberpunk |
-| Organic | aurora, flame, flowing water |
-| Dimensional | portal, wormhole, fractal |
-| Consciousness | thought waves, dream logic |
+
+| Category      | Examples                               |
+| ------------- | -------------------------------------- |
+| Basic         | horizontal, vertical, diagonal, radial |
+| Shapes        | star, heart, lightning, wave           |
+| Artistic      | watercolor, oil paint, graffiti        |
+| Tech          | hologram, quantum, neural network      |
+| Gaming        | pixel art, neon arcade, cyberpunk      |
+| Organic       | aurora, flame, flowing water           |
+| Dimensional   | portal, wormhole, fractal              |
+| Consciousness | thought waves, dream logic             |
 
 ### User Features
+
 - Real-time preview with live updates
 - Favorites and recent history (persisted)
 - Responsive design (desktop + mobile)

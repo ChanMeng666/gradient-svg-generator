@@ -1,6 +1,7 @@
 # Chromaflow - Refactoring Architecture Documentation
 
 ## Table of Contents
+
 1. [Overview](#overview)
 2. [System Statistics](#system-statistics)
 3. [Core Architecture](#core-architecture)
@@ -34,8 +35,8 @@ mindmap
       AnimationLibrary
       SVGComposer
     Frontend
-      React 18.2
-      Next.js 13
+      React 19
+      Next.js 16
       Zustand Store
       Framer Motion
     Backend
@@ -50,13 +51,13 @@ mindmap
 
 ## System Statistics
 
-| Metric | Count | Description |
-|--------|-------|-------------|
-| Templates | 326+ | Pre-designed gradient templates |
-| Categories | 30 | Template categories |
-| Gradient Types | 200+ | Unique gradient effects |
-| Effect Generators | 21 | Generator modules |
-| Core Modules | 7 | Architecture components |
+| Metric            | Count | Description                     |
+| ----------------- | ----- | ------------------------------- |
+| Templates         | 340+  | Pre-designed gradient templates |
+| Categories        | 31    | Template categories             |
+| Gradient Types    | 180+  | Unique gradient effects         |
+| Effect Generators | 21    | Generator modules               |
+| Core Modules      | 7     | Architecture components         |
 
 ### Effect Categories
 
@@ -417,13 +418,13 @@ const TEMPLATE_MAPPINGS = {
 // Example template definition
 module.exports = {
   'aurora-borealis': {
-    name: 'aurora-borealis',           // Unique identifier
-    label: 'Aurora Borealis',          // Display name
-    colors: ['00FF7F', '00CED1', '9370DB', 'FF1493'],  // Hex colors (no #)
-    gradientType: 'aurora',            // Maps to effect name
-    animationDuration: '6s',           // Animation duration
-    description: 'Mesmerizing northern lights'  // Description
-  }
+    name: 'aurora-borealis', // Unique identifier
+    label: 'Aurora Borealis', // Display name
+    colors: ['00FF7F', '00CED1', '9370DB', 'FF1493'], // Hex colors (no #)
+    gradientType: 'aurora', // Maps to effect name
+    animationDuration: '6s', // Animation duration
+    description: 'Mesmerizing northern lights', // Description
+  },
 };
 ```
 
@@ -537,7 +538,7 @@ const useStore = create(
         height: 120,
         gradientType: 'horizontal',
         duration: '6s',
-        template: ''
+        template: '',
       },
 
       // User preferences
@@ -545,20 +546,23 @@ const useStore = create(
       recentTemplates: [],
 
       // Actions
-      updateConfig: (updates) => set((state) => ({
-        currentConfig: { ...state.currentConfig, ...updates }
-      })),
-      addFavorite: (templateName) => set((state) => ({
-        favorites: [...new Set([...state.favorites, templateName])]
-      })),
-      toggleFavorite: (templateName) => set((state) => ({
-        favorites: state.favorites.includes(templateName)
-          ? state.favorites.filter(name => name !== templateName)
-          : [...new Set([...state.favorites, templateName])]
-      }))
+      updateConfig: (updates) =>
+        set((state) => ({
+          currentConfig: { ...state.currentConfig, ...updates },
+        })),
+      addFavorite: (templateName) =>
+        set((state) => ({
+          favorites: [...new Set([...state.favorites, templateName])],
+        })),
+      toggleFavorite: (templateName) =>
+        set((state) => ({
+          favorites: state.favorites.includes(templateName)
+            ? state.favorites.filter((name) => name !== templateName)
+            : [...new Set([...state.favorites, templateName])],
+        })),
     }),
-    { name: 'gradient-generator-storage' }
-  )
+    { name: 'gradient-generator-storage' },
+  ),
 );
 ```
 
@@ -573,6 +577,7 @@ const useStore = create(
 **Root Cause**: Service Worker caching `/api/svg` responses. Old broken responses served from cache.
 
 **Fix**:
+
 1. Exclude `/api/*` routes from Service Worker cache
 2. Bump cache version to invalidate old caches
 3. Add `skipWaiting()` and `clients.claim()` for immediate activation
@@ -584,6 +589,7 @@ const useStore = create(
 **Root Cause**: `favicon.ico` in cache list but file doesn't exist.
 
 **Fix**:
+
 1. Remove non-existent files from `urlsToCache`
 2. Use individual `cache.add()` with error handling instead of `addAll()`
 
@@ -635,20 +641,20 @@ flowchart LR
 
 ## Troubleshooting
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Black gradients | Service Worker cache | Clear site data, unregister SW |
-| Template not found | Not in TemplateRegistry | Add static import |
-| Effect not found | Not registered | Add to EffectLoader.js |
-| Filter not applied | Missing filter ID | Add to FilterLibrary.js |
-| Build failure | Dynamic require | Use static imports |
+| Issue              | Cause                   | Solution                       |
+| ------------------ | ----------------------- | ------------------------------ |
+| Black gradients    | Service Worker cache    | Clear site data, unregister SW |
+| Template not found | Not in TemplateRegistry | Add static import              |
+| Effect not found   | Not registered          | Add to EffectLoader.js         |
+| Filter not applied | Missing filter ID       | Add to FilterLibrary.js        |
+| Build failure      | Dynamic require         | Use static imports             |
 
 ### Clearing Service Worker Cache
 
 ```javascript
 // In browser console
-navigator.serviceWorker.getRegistrations().then(registrations => {
-  registrations.forEach(r => r.unregister());
+navigator.serviceWorker.getRegistrations().then((registrations) => {
+  registrations.forEach((r) => r.unregister());
 });
 
 // Or via DevTools

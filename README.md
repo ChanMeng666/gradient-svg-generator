@@ -2,9 +2,9 @@
 
 [![Project Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Gradient+SVG+Generator&height=300&gradientType=holographicUI&duration=10s&color0=00ffff&color1=40e0d0&color2=87ceeb&color3=add8e6&color4=b0e0e6&color5=f0f8ff)](#)
 
-# 🎨 Chromaflow<br/><h3>Professional Dynamic SVG Gradient Creator with 300+ Templates</h3>
+# 🎨 Chromaflow<br/><h3>Professional Dynamic SVG Gradient Creator with 340+ Templates</h3>
 
-The ultimate gradient SVG generator featuring 200+ gradient types, 300+ professional templates across 30 categories, and real-time preview.<br/>
+The ultimate gradient SVG generator featuring 180+ gradient types, 340+ professional templates across 31 categories, and real-time preview.<br/>
 Supports custom colors, multiple animation effects, and extensible template system with advanced visual effects.<br/>
 One-click **FREE** deployment of your stunning gradient banners.
 
@@ -50,9 +50,10 @@ One-click **FREE** deployment of your stunning gradient banners.
   <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20to%20Our%20Gallery&template=neural-network&height=120" alt="Neural Network" width="800"/>
   <p><em>Neural Network Template - AI-inspired gradient with animated effects</em></p>
 
-  ```markdown
-  ![Neural Network](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20to%20Our%20Gallery&template=neural-network&height=120)
-  ```
+```markdown
+![Neural Network](https://gradient-svg-generator.vercel.app/api/svg?text=Welcome%20to%20Our%20Gallery&template=neural-network&height=120)
+```
+
 </div>
 
 ### ✨ Popular Animation Styles
@@ -66,9 +67,10 @@ One-click **FREE** deployment of your stunning gradient banners.
         <details>
         <summary>📋 Copy Code</summary>
 
-  ```markdown
-  ![Hologram Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Hologram%20Effect&template=hologram-matrix&height=100)
-  ```
+```markdown
+![Hologram Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Hologram%20Effect&template=hologram-matrix&height=100)
+```
+
         </details>
       </td>
       <td align="center">
@@ -77,9 +79,10 @@ One-click **FREE** deployment of your stunning gradient banners.
         <details>
         <summary>📋 Copy Code</summary>
 
-  ```markdown
-  ![Energy Blast](https://gradient-svg-generator.vercel.app/api/svg?text=Energy%20Blast&template=energy-blast&height=100)
-  ```
+```markdown
+![Energy Blast](https://gradient-svg-generator.vercel.app/api/svg?text=Energy%20Blast&template=energy-blast&height=100)
+```
+
         </details>
       </td>
     </tr>
@@ -90,9 +93,10 @@ One-click **FREE** deployment of your stunning gradient banners.
         <details>
         <summary>📋 Copy Code</summary>
 
-  ```markdown
-  ![Quantum Field](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Field&template=quantum-field&height=100)
-  ```
+```markdown
+![Quantum Field](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Field&template=quantum-field&height=100)
+```
+
         </details>
       </td>
       <td align="center">
@@ -101,12 +105,14 @@ One-click **FREE** deployment of your stunning gradient banners.
         <details>
         <summary>📋 Copy Code</summary>
 
-  ```markdown
-  ![Diamond Sparkle](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Sparkle&template=diamond-sparkle&height=100)
-  ```
+```markdown
+![Diamond Sparkle](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Sparkle&template=diamond-sparkle&height=100)
+```
+
         </details>
       </td>
     </tr>
+
   </table>
 </div>
 
@@ -121,9 +127,10 @@ One-click **FREE** deployment of your stunning gradient banners.
         <details>
         <summary>📋 Copy Code</summary>
 
-  ```markdown
-  ![Northern Aurora](https://gradient-svg-generator.vercel.app/api/svg?text=Aurora%20Borealis&template=northern-aurora&height=90)
-  ```
+```markdown
+![Northern Aurora](https://gradient-svg-generator.vercel.app/api/svg?text=Aurora%20Borealis&template=northern-aurora&height=90)
+```
+
         </details>
       </td>
       <td align="center">
@@ -132,9 +139,10 @@ One-click **FREE** deployment of your stunning gradient banners.
         <details>
         <summary>📋 Copy Code</summary>
 
-  ```markdown
-  ![Lava Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Lava%20Flow&template=lava-flow&height=90)
-  ```
+```markdown
+![Lava Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Lava%20Flow&template=lava-flow&height=90)
+```
+
         </details>
       </td>
       <td align="center">
@@ -143,12 +151,14 @@ One-click **FREE** deployment of your stunning gradient banners.
         <details>
         <summary>📋 Copy Code</summary>
 
-  ```markdown
-  ![Ocean Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Wave&template=ocean-wave&height=90)
-  ```
+```markdown
+![Ocean Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Wave&template=ocean-wave&height=90)
+```
+
         </details>
       </td>
     </tr>
+
   </table>
 </div>
 
@@ -164,19 +174,22 @@ One-click **FREE** deployment of your stunning gradient banners.
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Pride%20%26%20Progress&template=progress-pride&height=80" alt="Progress Pride" width="350"/>
         <p><strong>Progress Pride</strong></p>
 
-  ```markdown
-  ![Progress Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Pride%20%26%20Progress&template=progress-pride&height=80)
-  ```
+```markdown
+![Progress Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Pride%20%26%20Progress&template=progress-pride&height=80)
+```
+
       </td>
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Rights&template=trans-pride&height=80" alt="Trans Pride" width="350"/>
         <p><strong>Trans Pride</strong></p>
 
-  ```markdown
-  ![Trans Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Rights&template=trans-pride&height=80)
-  ```
+```markdown
+![Trans Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Rights&template=trans-pride&height=80)
+```
+
       </td>
     </tr>
+
   </table>
 </div>
 
@@ -189,27 +202,31 @@ One-click **FREE** deployment of your stunning gradient banners.
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Golden%20Leaf&template=golden-leaf&height=90" alt="Golden Leaf" width="300"/>
         <p><strong>Golden Leaf</strong></p>
 
-  ```markdown
-  ![Golden Leaf](https://gradient-svg-generator.vercel.app/api/svg?text=Golden%20Leaf&template=golden-leaf&height=90)
-  ```
+```markdown
+![Golden Leaf](https://gradient-svg-generator.vercel.app/api/svg?text=Golden%20Leaf&template=golden-leaf&height=90)
+```
+
       </td>
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Royal%20Velvet&template=royal-velvet&height=90" alt="Royal Velvet" width="300"/>
         <p><strong>Royal Velvet</strong></p>
 
-  ```markdown
-  ![Royal Velvet](https://gradient-svg-generator.vercel.app/api/svg?text=Royal%20Velvet&template=royal-velvet&height=90)
-  ```
+```markdown
+![Royal Velvet](https://gradient-svg-generator.vercel.app/api/svg?text=Royal%20Velvet&template=royal-velvet&height=90)
+```
+
       </td>
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Rose%20Gold&template=rose-gold&height=90" alt="Rose Gold" width="300"/>
         <p><strong>Rose Gold</strong></p>
 
-  ```markdown
-  ![Rose Gold](https://gradient-svg-generator.vercel.app/api/svg?text=Rose%20Gold&template=rose-gold&height=90)
-  ```
+```markdown
+![Rose Gold](https://gradient-svg-generator.vercel.app/api/svg?text=Rose%20Gold&template=rose-gold&height=90)
+```
+
       </td>
     </tr>
+
   </table>
 </div>
 
@@ -222,27 +239,31 @@ One-click **FREE** deployment of your stunning gradient banners.
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Pixel%20Art&template=pixel-art-retro&height=80" alt="Pixel Art" width="250"/>
         <p><strong>Pixel Art Retro</strong></p>
 
-  ```markdown
-  ![Pixel Art](https://gradient-svg-generator.vercel.app/api/svg?text=Pixel%20Art&template=pixel-art-retro&height=80)
-  ```
+```markdown
+![Pixel Art](https://gradient-svg-generator.vercel.app/api/svg?text=Pixel%20Art&template=pixel-art-retro&height=80)
+```
+
       </td>
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Arcade&template=neon-arcade&height=80" alt="Neon Arcade" width="250"/>
         <p><strong>Neon Arcade</strong></p>
 
-  ```markdown
-  ![Neon Arcade](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Arcade&template=neon-arcade&height=80)
-  ```
+```markdown
+![Neon Arcade](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Arcade&template=neon-arcade&height=80)
+```
+
       </td>
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Retro%20Wave&template=retro-wave&height=80" alt="Retro Wave" width="250"/>
         <p><strong>Retro Wave</strong></p>
 
-  ```markdown
-  ![Retro Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Retro%20Wave&template=retro-wave&height=80)
-  ```
+```markdown
+![Retro Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Retro%20Wave&template=retro-wave&height=80)
+```
+
       </td>
     </tr>
+
   </table>
 </div>
 
@@ -255,19 +276,22 @@ One-click **FREE** deployment of your stunning gradient banners.
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Cyber%20Matrix&template=cyber-matrix&height=80" alt="Cyber Matrix" width="350"/>
         <p><strong>Cyber Matrix</strong></p>
 
-  ```markdown
-  ![Cyber Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Cyber%20Matrix&template=cyber-matrix&height=80)
-  ```
+```markdown
+![Cyber Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Cyber%20Matrix&template=cyber-matrix&height=80)
+```
+
       </td>
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Data%20Stream&template=data-stream&height=80" alt="Data Stream" width="350"/>
         <p><strong>Data Stream</strong></p>
 
-  ```markdown
-  ![Data Stream](https://gradient-svg-generator.vercel.app/api/svg?text=Data%20Stream&template=data-stream&height=80)
-  ```
+```markdown
+![Data Stream](https://gradient-svg-generator.vercel.app/api/svg?text=Data%20Stream&template=data-stream&height=80)
+```
+
       </td>
     </tr>
+
   </table>
 </div>
 
@@ -288,16 +312,14 @@ One-click **FREE** deployment of your stunning gradient banners.
 </div>
 
 > [!IMPORTANT]
-> This project demonstrates advanced SVG generation techniques with 300+ professional templates across 30 categories. It combines modern web technologies with sophisticated animation systems to provide stunning visual effects for any project.
+> This project demonstrates advanced SVG generation techniques with 340+ professional templates across 31 categories. It combines modern web technologies with sophisticated animation systems to provide stunning visual effects for any project.
 
 <details>
 <summary><kbd>📑 Table of Contents</kbd></summary>
 
 #### TOC
 
-- [🎨 Chromaflow](#-chromaflow)
-      - [TOC](#toc)
-      - [](#)
+- [🎨 Chromaflow](#-chromaflow) - [TOC](#toc) - [](#)
   - [🌟 Introduction](#-introduction)
   - [✨ Key Features](#-key-features)
     - [`1` 180+ Professional Templates](#1-180-professional-templates)
@@ -329,14 +351,15 @@ We are passionate developers creating next-generation SVG gradient solutions. By
 Whether you're a web developer, content creator, or design enthusiast, this project will be your gradient creation playground. Please note that this project is under active development, and we welcome feedback for any [issues][issues-link] encountered.
 
 > [!NOTE]
+>
 > - No installation required for basic usage
-> - Next.js 13+ for local development
+> - Next.js 16+ for local development
 > - Vercel account optional for custom deployment
 > - 180+ professional templates available
 > - Real-time preview and customization
 
-| [![][demo-shield-badge]][live-demo]   | No installation required! Visit our demo to experience it firsthand.                           |
-| :------------------------------------ | :--------------------------------------------------------------------------------------------- |
+| [![][demo-shield-badge]][live-demo]          | No installation required! Visit our demo to experience it firsthand.      |
+| :------------------------------------------- | :------------------------------------------------------------------------ |
 | [![][settings-shield-badge]][settings-panel] | Advanced settings panel with full customization options and live preview. |
 
 > [!TIP]
@@ -356,7 +379,7 @@ Whether you're a web developer, content creator, or design enthusiast, this proj
 
 [![][image-feat-core]][live-demo]
 
-### `1` [300+ Professional Templates][template-gallery]
+### `1` [340+ Professional Templates][template-gallery]
 
 Experience our extensive template library spanning 30 categories. Our innovative template system provides unprecedented variety through carefully curated color palettes and animation effects. This comprehensive collection delivers professional-grade gradients for any project.
 
@@ -364,12 +387,14 @@ Experience our extensive template library spanning 30 categories. Our innovative
   <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Template%20Gallery&template=diamond-sparkle&height=120" alt="Template Gallery Demo" width="600"/>
   <p><em>Diamond Sparkle Template from our Luxury Collection</em></p>
 
-  ```markdown
-  ![Diamond Sparkle](https://gradient-svg-generator.vercel.app/api/svg?text=Template%20Gallery&template=diamond-sparkle&height=120)
-  ```
+```markdown
+![Diamond Sparkle](https://gradient-svg-generator.vercel.app/api/svg?text=Template%20Gallery&template=diamond-sparkle&height=120)
+```
+
 </div>
 
 Key template categories include:
+
 - 🌈 **Pride Collection**: 20 LGBTQ+ pride flag templates
 - 🔬 **Technology**: AI, neural networks, cyberpunk aesthetics (12 templates)
 - 🌿 **Nature**: Sunrise, ocean, forest, aurora effects (13 templates)
@@ -389,13 +414,14 @@ Key template categories include:
 
 > [!TIP]
 > You can also combine templates with custom parameters:
+>
 > ```markdown
 > ![Custom Neural](https://gradient-svg-generator.vercel.app/api/svg?text=AI%20BRAIN&template=neural-network&height=180&duration=5s)
 > ```
 
 [![][back-to-top]](#readme-top)
 
-### `2` [200+ Advanced Gradient Types][api-docs]
+### `2` [180+ Advanced Gradient Types][api-docs]
 
 Revolutionary gradient system that transforms how users create visual effects. With our advanced algorithms and intuitive API, users can generate professional gradients while maintaining perfect animation performance.
 
@@ -406,39 +432,45 @@ Revolutionary gradient system that transforms how users create visual effects. W
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Spiral&gradientType=spiral&color0=ff00ff&color1=00ffff&height=80" alt="Spiral" width="150"/>
         <p><strong>Spiral</strong></p>
 
-  ```markdown
-  ![Spiral](https://gradient-svg-generator.vercel.app/api/svg?text=Spiral&gradientType=spiral&color0=ff00ff&color1=00ffff&height=80)
-  ```
+```markdown
+![Spiral](https://gradient-svg-generator.vercel.app/api/svg?text=Spiral&gradientType=spiral&color0=ff00ff&color1=00ffff&height=80)
+```
+
       </td>
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Diamond&gradientType=diamond&color0=ffd700&color1=ff6b6b&height=80" alt="Diamond" width="150"/>
         <p><strong>Diamond</strong></p>
 
-  ```markdown
-  ![Diamond](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond&gradientType=diamond&color0=ffd700&color1=ff6b6b&height=80)
-  ```
+```markdown
+![Diamond](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond&gradientType=diamond&color0=ffd700&color1=ff6b6b&height=80)
+```
+
       </td>
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Wave&gradientType=wave&color0=4facfe&color1=00f2fe&height=80" alt="Wave" width="150"/>
         <p><strong>Wave</strong></p>
 
-  ```markdown
-  ![Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Wave&gradientType=wave&color0=4facfe&color1=00f2fe&height=80)
-  ```
+```markdown
+![Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Wave&gradientType=wave&color0=4facfe&color1=00f2fe&height=80)
+```
+
       </td>
       <td align="center">
         <img src="https://gradient-svg-generator.vercel.app/api/svg?text=Burst&gradientType=burst&color0=fa709a&color1=fee140&height=80" alt="Burst" width="150"/>
         <p><strong>Burst</strong></p>
 
-  ```markdown
-  ![Burst](https://gradient-svg-generator.vercel.app/api/svg?text=Burst&gradientType=burst&color0=fa709a&color1=fee140&height=80)
-  ```
+```markdown
+![Burst](https://gradient-svg-generator.vercel.app/api/svg?text=Burst&gradientType=burst&color0=fa709a&color1=fee140&height=80)
+```
+
       </td>
     </tr>
+
   </table>
 </div>
 
 **Available Gradient Types:**
+
 - **Basic Types** (7): Linear, Radial, Conic, Diamond, Reflected, Square, Ellipse
 - **Text Effects** (5): Luminance, Rainbow, Text Box, Glitch, Typewriter
 - **Future Tech** (6): Hologram, Quantum, Laser Grid, Neural Net, Plasma, Data Stream
@@ -473,7 +505,7 @@ Beyond the core template and gradient systems, this project includes:
 - [x] 🔒 **No Registration**: Direct usage without sign-up requirements
 - [x] 💎 **Modern UI/UX**: Beautiful Next.js interface with responsive design
 - [x] 🗣️ **Multi-Parameter**: Support for unlimited colors and custom sizing
-- [x] 📊 **200+ Gradient Types**: From basic to advanced visual effects
+- [x] 📊 **180+ Gradient Types**: From basic to advanced visual effects
 - [x] 🔌 **Template System**: Extensible architecture for custom templates
 - [x] 📱 **Mobile Ready**: Perfect responsive design for all devices
 - [x] ⚡ **High Performance**: Optimized SVG generation with fast API responses
@@ -497,11 +529,11 @@ Beyond the core template and gradient systems, this project includes:
     <tr>
       <td align="center" width="96">
         <img src="https://cdn.simpleicons.org/nextdotjs" width="48" height="48" alt="Next.js" />
-        <br>Next.js 13
+        <br>Next.js 16
       </td>
       <td align="center" width="96">
         <img src="https://cdn.simpleicons.org/react" width="48" height="48" alt="React" />
-        <br>React 18
+        <br>React 19
       </td>
       <td align="center" width="96">
         <img src="https://cdn.simpleicons.org/javascript" width="48" height="48" alt="JavaScript" />
@@ -524,20 +556,23 @@ Beyond the core template and gradient systems, this project includes:
 </div>
 
 **Frontend Stack:**
-- **Framework**: Next.js 13 with Pages Router
-- **UI Library**: React 18 with Hooks
+
+- **Framework**: Next.js 16 with Pages Router
+- **UI Library**: React 19 with Hooks
 - **Styling**: Tailwind CSS + CSS Modules + Custom Animations
 - **Icons**: React Icons + Lucide Icons
 - **State Management**: Zustand with persistence
 - **Animation**: Framer Motion + CSS3 animations
 
 **Backend Stack:**
+
 - **Runtime**: Node.js with Next.js API Routes
 - **SVG Generation**: Custom SVG engine with advanced filters
 - **Animation System**: CSS3 animations with SVG SMIL
 - **Template System**: Modular template architecture
 
 **DevOps & Deployment:**
+
 - **Deployment**: Vercel (recommended) / Netlify / Docker
 - **Performance**: Server-side rendering + Edge functions
 - **Monitoring**: Built-in error handling
@@ -549,20 +584,20 @@ Beyond the core template and gradient systems, this project includes:
 ## 🎨 Template Showcase
 
 > [!IMPORTANT]
-> Explore our comprehensive template library with 300+ professional designs across 30 categories. Each template is carefully crafted with authentic color palettes and optimized animations.
+> Explore our comprehensive template library with 340+ professional designs across 31 categories. Each template is carefully crafted with authentic color palettes and optimized animations.
 
 ### 🌈 Pride Templates (20 Templates)
 
-*Celebrate diversity and inclusion with our comprehensive LGBTQ+ pride collection*
+_Celebrate diversity and inclusion with our comprehensive LGBTQ+ pride collection_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
+| Template           | Preview                                                                                                                      | Markdown Code                                                                                                                  |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **Progress Pride** | ![Progress Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Progress%20Pride&template=progress-pride&height=80) | `![Progress Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Progress%20Pride&template=progress-pride&height=80)` |
-| **Trans Pride** | ![Trans Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Pride&template=trans-pride&height=80) | `![Trans Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Pride&template=trans-pride&height=80)` |
-| **Bi Pride** | ![Bi Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Bi%20Pride&template=bi-pride&height=80) | `![Bi Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Bi%20Pride&template=bi-pride&height=80)` |
-| **Pan Pride** | ![Pan Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Pan%20Pride&template=pan-pride&height=80) | `![Pan Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Pan%20Pride&template=pan-pride&height=80)` |
+| **Trans Pride**    | ![Trans Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Pride&template=trans-pride&height=80)          | `![Trans Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Trans%20Pride&template=trans-pride&height=80)`          |
+| **Bi Pride**       | ![Bi Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Bi%20Pride&template=bi-pride&height=80)                   | `![Bi Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Bi%20Pride&template=bi-pride&height=80)`                   |
+| **Pan Pride**      | ![Pan Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Pan%20Pride&template=pan-pride&height=80)                | `![Pan Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Pan%20Pride&template=pan-pride&height=80)`                |
 
 </div>
 
@@ -571,14 +606,14 @@ Beyond the core template and gradient systems, this project includes:
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Lesbian Pride** | ![Lesbian Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Lesbian%20Pride&template=lesbian-pride&height=80) | `![Lesbian Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Lesbian%20Pride&template=lesbian-pride&height=80)` |
-| **Nonbinary Pride** | ![Nonbinary Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Nonbinary%20Pride&template=nonbinary-pride&height=80) | `![Nonbinary Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Nonbinary%20Pride&template=nonbinary-pride&height=80)` |
-| **Ace Pride** | ![Ace Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Ace%20Pride&template=ace-pride&height=80) | `![Ace Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Ace%20Pride&template=ace-pride&height=80)` |
-| **Genderfluid Pride** | ![Genderfluid Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Genderfluid&template=genderfluid-pride&height=80) | `![Genderfluid Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Genderfluid&template=genderfluid-pride&height=80)` |
-| **Rainbow Pride** | ![Rainbow Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow%20Pride&template=pride-rainbow&height=80) | `![Rainbow Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow%20Pride&template=pride-rainbow&height=80)` |
-| **Aromantic Pride** | ![Aromantic Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Aro%20Pride&template=aro-pride&height=80) | `![Aromantic Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Aro%20Pride&template=aro-pride&height=80)` |
+| Template              | Preview                                                                                                                         | Markdown Code                                                                                                                     |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Lesbian Pride**     | ![Lesbian Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Lesbian%20Pride&template=lesbian-pride&height=80)       | `![Lesbian Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Lesbian%20Pride&template=lesbian-pride&height=80)`       |
+| **Nonbinary Pride**   | ![Nonbinary Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Nonbinary%20Pride&template=nonbinary-pride&height=80) | `![Nonbinary Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Nonbinary%20Pride&template=nonbinary-pride&height=80)` |
+| **Ace Pride**         | ![Ace Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Ace%20Pride&template=ace-pride&height=80)                   | `![Ace Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Ace%20Pride&template=ace-pride&height=80)`                   |
+| **Genderfluid Pride** | ![Genderfluid Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Genderfluid&template=genderfluid-pride&height=80)   | `![Genderfluid Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Genderfluid&template=genderfluid-pride&height=80)`   |
+| **Rainbow Pride**     | ![Rainbow Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow%20Pride&template=pride-rainbow&height=80)       | `![Rainbow Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow%20Pride&template=pride-rainbow&height=80)`       |
+| **Aromantic Pride**   | ![Aromantic Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Aro%20Pride&template=aro-pride&height=80)             | `![Aromantic Pride](https://gradient-svg-generator.vercel.app/api/svg?text=Aro%20Pride&template=aro-pride&height=80)`             |
 
 </div>
 
@@ -586,196 +621,196 @@ Beyond the core template and gradient systems, this project includes:
 
 ### 🔬 Technology Templates
 
-*Futuristic and cutting-edge technology-inspired gradients*
+_Futuristic and cutting-edge technology-inspired gradients_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
+| Template           | Preview                                                                                                                      | Markdown Code                                                                                                                  |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **Neural Network** | ![Neural Network](https://gradient-svg-generator.vercel.app/api/svg?text=Neural%20Network&template=neural-network&height=80) | `![Neural Network](https://gradient-svg-generator.vercel.app/api/svg?text=Neural%20Network&template=neural-network&height=80)` |
-| **Cyber Matrix** | ![Cyber Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Cyber%20Matrix&template=cyber-matrix&height=80) | `![Cyber Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Cyber%20Matrix&template=cyber-matrix&height=80)` |
-| **Quantum Field** | ![Quantum Field](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Field&template=quantum-field&height=80) | `![Quantum Field](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Field&template=quantum-field&height=80)` |
-| **Hologram Blue** | ![Hologram Blue](https://gradient-svg-generator.vercel.app/api/svg?text=Hologram%20Blue&template=hologram-blue&height=80) | `![Hologram Blue](https://gradient-svg-generator.vercel.app/api/svg?text=Hologram%20Blue&template=hologram-blue&height=80)` |
+| **Cyber Matrix**   | ![Cyber Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Cyber%20Matrix&template=cyber-matrix&height=80)       | `![Cyber Matrix](https://gradient-svg-generator.vercel.app/api/svg?text=Cyber%20Matrix&template=cyber-matrix&height=80)`       |
+| **Quantum Field**  | ![Quantum Field](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Field&template=quantum-field&height=80)    | `![Quantum Field](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Field&template=quantum-field&height=80)`    |
+| **Hologram Blue**  | ![Hologram Blue](https://gradient-svg-generator.vercel.app/api/svg?text=Hologram%20Blue&template=hologram-blue&height=80)    | `![Hologram Blue](https://gradient-svg-generator.vercel.app/api/svg?text=Hologram%20Blue&template=hologram-blue&height=80)`    |
 
 </div>
 
 ### 🌿 Nature Templates
 
-*Natural phenomena with authentic earth-inspired color palettes*
+_Natural phenomena with authentic earth-inspired color palettes_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Sunrise Dawn** | ![Sunrise Dawn](https://gradient-svg-generator.vercel.app/api/svg?text=Sunrise%20Dawn&template=sunrise-dawn&height=80) | `![Sunrise Dawn](https://gradient-svg-generator.vercel.app/api/svg?text=Sunrise%20Dawn&template=sunrise-dawn&height=80)` |
+| Template            | Preview                                                                                                                         | Markdown Code                                                                                                                     |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Sunrise Dawn**    | ![Sunrise Dawn](https://gradient-svg-generator.vercel.app/api/svg?text=Sunrise%20Dawn&template=sunrise-dawn&height=80)          | `![Sunrise Dawn](https://gradient-svg-generator.vercel.app/api/svg?text=Sunrise%20Dawn&template=sunrise-dawn&height=80)`          |
 | **Northern Aurora** | ![Northern Aurora](https://gradient-svg-generator.vercel.app/api/svg?text=Northern%20Aurora&template=northern-aurora&height=80) | `![Northern Aurora](https://gradient-svg-generator.vercel.app/api/svg?text=Northern%20Aurora&template=northern-aurora&height=80)` |
-| **Ocean Depths** | ![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80) | `![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80)` |
-| **Forest Mist** | ![Forest Mist](https://gradient-svg-generator.vercel.app/api/svg?text=Forest%20Mist&template=forest-mist&height=80) | `![Forest Mist](https://gradient-svg-generator.vercel.app/api/svg?text=Forest%20Mist&template=forest-mist&height=80)` |
+| **Ocean Depths**    | ![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80)          | `![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80)`          |
+| **Forest Mist**     | ![Forest Mist](https://gradient-svg-generator.vercel.app/api/svg?text=Forest%20Mist&template=forest-mist&height=80)             | `![Forest Mist](https://gradient-svg-generator.vercel.app/api/svg?text=Forest%20Mist&template=forest-mist&height=80)`             |
 
 </div>
 
 ### 💎 Material Templates
 
-*Realistic material textures and luxury finishes*
+_Realistic material textures and luxury finishes_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Gold Luxury** | ![Gold Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Luxury&template=gold-luxury&height=80) | `![Gold Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Luxury&template=gold-luxury&height=80)` |
+| Template            | Preview                                                                                                                         | Markdown Code                                                                                                                     |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Gold Luxury**     | ![Gold Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Luxury&template=gold-luxury&height=80)             | `![Gold Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Luxury&template=gold-luxury&height=80)`             |
 | **Diamond Crystal** | ![Diamond Crystal](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Crystal&template=diamond-crystal&height=80) | `![Diamond Crystal](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Crystal&template=diamond-crystal&height=80)` |
-| **Silver Chrome** | ![Silver Chrome](https://gradient-svg-generator.vercel.app/api/svg?text=Silver%20Chrome&template=silver-chrome&height=80) | `![Silver Chrome](https://gradient-svg-generator.vercel.app/api/svg?text=Silver%20Chrome&template=silver-chrome&height=80)` |
-| **Emerald Gem** | ![Emerald Gem](https://gradient-svg-generator.vercel.app/api/svg?text=Emerald%20Gem&template=emerald-gem&height=80) | `![Emerald Gem](https://gradient-svg-generator.vercel.app/api/svg?text=Emerald%20Gem&template=emerald-gem&height=80)` |
+| **Silver Chrome**   | ![Silver Chrome](https://gradient-svg-generator.vercel.app/api/svg?text=Silver%20Chrome&template=silver-chrome&height=80)       | `![Silver Chrome](https://gradient-svg-generator.vercel.app/api/svg?text=Silver%20Chrome&template=silver-chrome&height=80)`       |
+| **Emerald Gem**     | ![Emerald Gem](https://gradient-svg-generator.vercel.app/api/svg?text=Emerald%20Gem&template=emerald-gem&height=80)             | `![Emerald Gem](https://gradient-svg-generator.vercel.app/api/svg?text=Emerald%20Gem&template=emerald-gem&height=80)`             |
 
 </div>
 
 ### ✨ Text Effect Templates
 
-*Special visual text effects with advanced animations*
+_Special visual text effects with advanced animations_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Luminance Glow** | ![Luminance Glow](https://gradient-svg-generator.vercel.app/api/svg?text=Luminance%20Glow&template=luminance-glow&height=80) | `![Luminance Glow](https://gradient-svg-generator.vercel.app/api/svg?text=Luminance%20Glow&template=luminance-glow&height=80)` |
-| **Rainbow Wave** | ![Rainbow Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow%20Wave&template=rainbow-wave&height=80) | `![Rainbow Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow%20Wave&template=rainbow-wave&height=80)` |
-| **Glitch Cyber** | ![Glitch Cyber](https://gradient-svg-generator.vercel.app/api/svg?text=Glitch%20Cyber&template=glitch-cyber&height=80) | `![Glitch Cyber](https://gradient-svg-generator.vercel.app/api/svg?text=Glitch%20Cyber&template=glitch-cyber&height=80)` |
+| Template                | Preview                                                                                                                                     | Markdown Code                                                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Luminance Glow**      | ![Luminance Glow](https://gradient-svg-generator.vercel.app/api/svg?text=Luminance%20Glow&template=luminance-glow&height=80)                | `![Luminance Glow](https://gradient-svg-generator.vercel.app/api/svg?text=Luminance%20Glow&template=luminance-glow&height=80)`                |
+| **Rainbow Wave**        | ![Rainbow Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow%20Wave&template=rainbow-wave&height=80)                      | `![Rainbow Wave](https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow%20Wave&template=rainbow-wave&height=80)`                      |
+| **Glitch Cyber**        | ![Glitch Cyber](https://gradient-svg-generator.vercel.app/api/svg?text=Glitch%20Cyber&template=glitch-cyber&height=80)                      | `![Glitch Cyber](https://gradient-svg-generator.vercel.app/api/svg?text=Glitch%20Cyber&template=glitch-cyber&height=80)`                      |
 | **Typewriter Terminal** | ![Typewriter Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=Typewriter%20Terminal&template=typewriter-terminal&height=80) | `![Typewriter Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=Typewriter%20Terminal&template=typewriter-terminal&height=80)` |
 
 </div>
 
 ### 🎮 Gaming Templates
 
-*Gaming-inspired retro and modern aesthetics*
+_Gaming-inspired retro and modern aesthetics_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
+| Template            | Preview                                                                                                                           | Markdown Code                                                                                                                       |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | **Pixel Art Retro** | ![Pixel Art Retro](https://gradient-svg-generator.vercel.app/api/svg?text=Pixel%20Art%20Retro&template=pixel-art-retro&height=80) | `![Pixel Art Retro](https://gradient-svg-generator.vercel.app/api/svg?text=Pixel%20Art%20Retro&template=pixel-art-retro&height=80)` |
-| **Neon Arcade** | ![Neon Arcade](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Arcade&template=neon-arcade&height=80) | `![Neon Arcade](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Arcade&template=neon-arcade&height=80)` |
-| **Energy Blast** | ![Energy Blast](https://gradient-svg-generator.vercel.app/api/svg?text=Energy%20Blast&template=energy-blast&height=80) | `![Energy Blast](https://gradient-svg-generator.vercel.app/api/svg?text=Energy%20Blast&template=energy-blast&height=80)` |
-| **Cyberpunk City** | ![Cyberpunk City](https://gradient-svg-generator.vercel.app/api/svg?text=Cyberpunk%20City&template=cyberpunk-city&height=80) | `![Cyberpunk City](https://gradient-svg-generator.vercel.app/api/svg?text=Cyberpunk%20City&template=cyberpunk-city&height=80)` |
+| **Neon Arcade**     | ![Neon Arcade](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Arcade&template=neon-arcade&height=80)               | `![Neon Arcade](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Arcade&template=neon-arcade&height=80)`               |
+| **Energy Blast**    | ![Energy Blast](https://gradient-svg-generator.vercel.app/api/svg?text=Energy%20Blast&template=energy-blast&height=80)            | `![Energy Blast](https://gradient-svg-generator.vercel.app/api/svg?text=Energy%20Blast&template=energy-blast&height=80)`            |
+| **Cyberpunk City**  | ![Cyberpunk City](https://gradient-svg-generator.vercel.app/api/svg?text=Cyberpunk%20City&template=cyberpunk-city&height=80)      | `![Cyberpunk City](https://gradient-svg-generator.vercel.app/api/svg?text=Cyberpunk%20City&template=cyberpunk-city&height=80)`      |
 
 </div>
 
 ### ☁️ Weather & Atmospheric Templates (12 Templates)
 
-*Natural weather phenomena and atmospheric visual effects*
+_Natural weather phenomena and atmospheric visual effects_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Fog Rolling** | ![Fog Rolling](https://gradient-svg-generator.vercel.app/api/svg?text=Fog%20Rolling&template=fog-rolling&height=80) | `![Fog Rolling](https://gradient-svg-generator.vercel.app/api/svg?text=Fog%20Rolling&template=fog-rolling&height=80)` |
-| **Monsoon Rain** | ![Monsoon Rain](https://gradient-svg-generator.vercel.app/api/svg?text=Monsoon%20Rain&template=monsoon-rain&height=80) | `![Monsoon Rain](https://gradient-svg-generator.vercel.app/api/svg?text=Monsoon%20Rain&template=monsoon-rain&height=80)` |
+| Template           | Preview                                                                                                                      | Markdown Code                                                                                                                  |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Fog Rolling**    | ![Fog Rolling](https://gradient-svg-generator.vercel.app/api/svg?text=Fog%20Rolling&template=fog-rolling&height=80)          | `![Fog Rolling](https://gradient-svg-generator.vercel.app/api/svg?text=Fog%20Rolling&template=fog-rolling&height=80)`          |
+| **Monsoon Rain**   | ![Monsoon Rain](https://gradient-svg-generator.vercel.app/api/svg?text=Monsoon%20Rain&template=monsoon-rain&height=80)       | `![Monsoon Rain](https://gradient-svg-generator.vercel.app/api/svg?text=Monsoon%20Rain&template=monsoon-rain&height=80)`       |
 | **Snowfall Drift** | ![Snowfall Drift](https://gradient-svg-generator.vercel.app/api/svg?text=Snowfall%20Drift&template=snowfall-drift&height=80) | `![Snowfall Drift](https://gradient-svg-generator.vercel.app/api/svg?text=Snowfall%20Drift&template=snowfall-drift&height=80)` |
-| **Lightning Web** | ![Lightning Web](https://gradient-svg-generator.vercel.app/api/svg?text=Lightning%20Web&template=lightning-web&height=80) | `![Lightning Web](https://gradient-svg-generator.vercel.app/api/svg?text=Lightning%20Web&template=lightning-web&height=80)` |
+| **Lightning Web**  | ![Lightning Web](https://gradient-svg-generator.vercel.app/api/svg?text=Lightning%20Web&template=lightning-web&height=80)    | `![Lightning Web](https://gradient-svg-generator.vercel.app/api/svg?text=Lightning%20Web&template=lightning-web&height=80)`    |
 
 </div>
 
 ### 💡 Light & Shadow Templates (12 Templates)
 
-*Optical effects and illumination patterns*
+_Optical effects and illumination patterns_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
+| Template               | Preview                                                                                                                                  | Markdown Code                                                                                                                              |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Caustic Underwater** | ![Caustic Underwater](https://gradient-svg-generator.vercel.app/api/svg?text=Caustic%20Underwater&template=caustic-underwater&height=80) | `![Caustic Underwater](https://gradient-svg-generator.vercel.app/api/svg?text=Caustic%20Underwater&template=caustic-underwater&height=80)` |
-| **Lens Flare** | ![Lens Flare](https://gradient-svg-generator.vercel.app/api/svg?text=Lens%20Flare&template=lens-flare&height=80) | `![Lens Flare](https://gradient-svg-generator.vercel.app/api/svg?text=Lens%20Flare&template=lens-flare&height=80)` |
-| **Bokeh Blur** | ![Bokeh Blur](https://gradient-svg-generator.vercel.app/api/svg?text=Bokeh%20Blur&template=bokeh-blur&height=80) | `![Bokeh Blur](https://gradient-svg-generator.vercel.app/api/svg?text=Bokeh%20Blur&template=bokeh-blur&height=80)` |
-| **God Rays** | ![God Rays](https://gradient-svg-generator.vercel.app/api/svg?text=God%20Rays&template=god-rays&height=80) | `![God Rays](https://gradient-svg-generator.vercel.app/api/svg?text=God%20Rays&template=god-rays&height=80)` |
+| **Lens Flare**         | ![Lens Flare](https://gradient-svg-generator.vercel.app/api/svg?text=Lens%20Flare&template=lens-flare&height=80)                         | `![Lens Flare](https://gradient-svg-generator.vercel.app/api/svg?text=Lens%20Flare&template=lens-flare&height=80)`                         |
+| **Bokeh Blur**         | ![Bokeh Blur](https://gradient-svg-generator.vercel.app/api/svg?text=Bokeh%20Blur&template=bokeh-blur&height=80)                         | `![Bokeh Blur](https://gradient-svg-generator.vercel.app/api/svg?text=Bokeh%20Blur&template=bokeh-blur&height=80)`                         |
+| **God Rays**           | ![God Rays](https://gradient-svg-generator.vercel.app/api/svg?text=God%20Rays&template=god-rays&height=80)                               | `![God Rays](https://gradient-svg-generator.vercel.app/api/svg?text=God%20Rays&template=god-rays&height=80)`                               |
 
 </div>
 
 ### 🎨 Art Movement Templates (12 Templates)
 
-*Historical artistic styles and aesthetic movements*
+_Historical artistic styles and aesthetic movements_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Art Nouveau Flow** | ![Art Nouveau Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Nouveau%20Flow&template=art-nouveau-flow&height=80) | `![Art Nouveau Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Nouveau%20Flow&template=art-nouveau-flow&height=80)` |
-| **Art Deco Luxury** | ![Art Deco Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Deco%20Luxury&template=art-deco-luxury&height=80) | `![Art Deco Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Deco%20Luxury&template=art-deco-luxury&height=80)` |
+| Template               | Preview                                                                                                                                  | Markdown Code                                                                                                                              |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Art Nouveau Flow**   | ![Art Nouveau Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Nouveau%20Flow&template=art-nouveau-flow&height=80)     | `![Art Nouveau Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Nouveau%20Flow&template=art-nouveau-flow&height=80)`     |
+| **Art Deco Luxury**    | ![Art Deco Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Deco%20Luxury&template=art-deco-luxury&height=80)        | `![Art Deco Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Art%20Deco%20Luxury&template=art-deco-luxury&height=80)`        |
 | **Impressionist Dots** | ![Impressionist Dots](https://gradient-svg-generator.vercel.app/api/svg?text=Impressionist%20Dots&template=impressionist-dots&height=80) | `![Impressionist Dots](https://gradient-svg-generator.vercel.app/api/svg?text=Impressionist%20Dots&template=impressionist-dots&height=80)` |
-| **Pop Art Halftone** | ![Pop Art Halftone](https://gradient-svg-generator.vercel.app/api/svg?text=Pop%20Art%20Halftone&template=pop-art-halftone&height=80) | `![Pop Art Halftone](https://gradient-svg-generator.vercel.app/api/svg?text=Pop%20Art%20Halftone&template=pop-art-halftone&height=80)` |
+| **Pop Art Halftone**   | ![Pop Art Halftone](https://gradient-svg-generator.vercel.app/api/svg?text=Pop%20Art%20Halftone&template=pop-art-halftone&height=80)     | `![Pop Art Halftone](https://gradient-svg-generator.vercel.app/api/svg?text=Pop%20Art%20Halftone&template=pop-art-halftone&height=80)`     |
 
 </div>
 
 ### 🍳 Culinary & Liquid Flow Templates (12 Templates)
 
-*Food and beverage aesthetics with fluid dynamics*
+_Food and beverage aesthetics with fluid dynamics_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Coffee Cream** | ![Coffee Cream](https://gradient-svg-generator.vercel.app/api/svg?text=Coffee%20Cream&template=coffee-cream&height=80) | `![Coffee Cream](https://gradient-svg-generator.vercel.app/api/svg?text=Coffee%20Cream&template=coffee-cream&height=80)` |
-| **Wine Pour** | ![Wine Pour](https://gradient-svg-generator.vercel.app/api/svg?text=Wine%20Pour&template=wine-pour&height=80) | `![Wine Pour](https://gradient-svg-generator.vercel.app/api/svg?text=Wine%20Pour&template=wine-pour&height=80)` |
-| **Honey Drizzle** | ![Honey Drizzle](https://gradient-svg-generator.vercel.app/api/svg?text=Honey%20Drizzle&template=honey-drizzle&height=80) | `![Honey Drizzle](https://gradient-svg-generator.vercel.app/api/svg?text=Honey%20Drizzle&template=honey-drizzle&height=80)` |
+| Template           | Preview                                                                                                                      | Markdown Code                                                                                                                  |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Coffee Cream**   | ![Coffee Cream](https://gradient-svg-generator.vercel.app/api/svg?text=Coffee%20Cream&template=coffee-cream&height=80)       | `![Coffee Cream](https://gradient-svg-generator.vercel.app/api/svg?text=Coffee%20Cream&template=coffee-cream&height=80)`       |
+| **Wine Pour**      | ![Wine Pour](https://gradient-svg-generator.vercel.app/api/svg?text=Wine%20Pour&template=wine-pour&height=80)                | `![Wine Pour](https://gradient-svg-generator.vercel.app/api/svg?text=Wine%20Pour&template=wine-pour&height=80)`                |
+| **Honey Drizzle**  | ![Honey Drizzle](https://gradient-svg-generator.vercel.app/api/svg?text=Honey%20Drizzle&template=honey-drizzle&height=80)    | `![Honey Drizzle](https://gradient-svg-generator.vercel.app/api/svg?text=Honey%20Drizzle&template=honey-drizzle&height=80)`    |
 | **Chocolate Melt** | ![Chocolate Melt](https://gradient-svg-generator.vercel.app/api/svg?text=Chocolate%20Melt&template=chocolate-melt&height=80) | `![Chocolate Melt](https://gradient-svg-generator.vercel.app/api/svg?text=Chocolate%20Melt&template=chocolate-melt&height=80)` |
 
 </div>
 
 ### 🎯 Pattern Templates (8 Templates)
 
-*Geometric patterns with dynamic animations*
+_Geometric patterns with dynamic animations_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
+| Template               | Preview                                                                                                                                    | Markdown Code                                                                                                                                |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Candy Stripe Dream** | ![Candy Stripe Dream](https://gradient-svg-generator.vercel.app/api/svg?text=Candy%20Stripe%20Dream&template=candy-stripe-dream&height=80) | `![Candy Stripe Dream](https://gradient-svg-generator.vercel.app/api/svg?text=Candy%20Stripe%20Dream&template=candy-stripe-dream&height=80)` |
-| **Zigzag Energy** | ![Zigzag Energy](https://gradient-svg-generator.vercel.app/api/svg?text=Zigzag%20Energy&template=zigzag-energy&height=80) | `![Zigzag Energy](https://gradient-svg-generator.vercel.app/api/svg?text=Zigzag%20Energy&template=zigzag-energy&height=80)` |
-| **Diamond Grid** | ![Diamond Grid](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Grid&template=diamond-grid&height=80) | `![Diamond Grid](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Grid&template=diamond-grid&height=80)` |
-| **Heart Beat** | ![Heart Beat](https://gradient-svg-generator.vercel.app/api/svg?text=Heart%20Beat&template=heart-beat&height=80) | `![Heart Beat](https://gradient-svg-generator.vercel.app/api/svg?text=Heart%20Beat&template=heart-beat&height=80)` |
+| **Zigzag Energy**      | ![Zigzag Energy](https://gradient-svg-generator.vercel.app/api/svg?text=Zigzag%20Energy&template=zigzag-energy&height=80)                  | `![Zigzag Energy](https://gradient-svg-generator.vercel.app/api/svg?text=Zigzag%20Energy&template=zigzag-energy&height=80)`                  |
+| **Diamond Grid**       | ![Diamond Grid](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Grid&template=diamond-grid&height=80)                     | `![Diamond Grid](https://gradient-svg-generator.vercel.app/api/svg?text=Diamond%20Grid&template=diamond-grid&height=80)`                     |
+| **Heart Beat**         | ![Heart Beat](https://gradient-svg-generator.vercel.app/api/svg?text=Heart%20Beat&template=heart-beat&height=80)                           | `![Heart Beat](https://gradient-svg-generator.vercel.app/api/svg?text=Heart%20Beat&template=heart-beat&height=80)`                           |
 
 </div>
 
 ### ✨ Metallic Effect Templates (8 Templates)
 
-*Metallic and shimmer effects with realistic textures*
+_Metallic and shimmer effects with realistic textures_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Copper Shine** | ![Copper Shine](https://gradient-svg-generator.vercel.app/api/svg?text=Copper%20Shine&template=copper-shine&height=80) | `![Copper Shine](https://gradient-svg-generator.vercel.app/api/svg?text=Copper%20Shine&template=copper-shine&height=80)` |
-| **Gold Shimmer** | ![Gold Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Shimmer&template=gold-shimmer&height=80) | `![Gold Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Shimmer&template=gold-shimmer&height=80)` |
-| **Chrome Flow** | ![Chrome Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Chrome%20Flow&template=chrome-flow&height=80) | `![Chrome Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Chrome%20Flow&template=chrome-flow&height=80)` |
+| Template             | Preview                                                                                                                            | Markdown Code                                                                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **Copper Shine**     | ![Copper Shine](https://gradient-svg-generator.vercel.app/api/svg?text=Copper%20Shine&template=copper-shine&height=80)             | `![Copper Shine](https://gradient-svg-generator.vercel.app/api/svg?text=Copper%20Shine&template=copper-shine&height=80)`             |
+| **Gold Shimmer**     | ![Gold Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Shimmer&template=gold-shimmer&height=80)             | `![Gold Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Gold%20Shimmer&template=gold-shimmer&height=80)`             |
+| **Chrome Flow**      | ![Chrome Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Chrome%20Flow&template=chrome-flow&height=80)                | `![Chrome Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Chrome%20Flow&template=chrome-flow&height=80)`                |
 | **Platinum Sparkle** | ![Platinum Sparkle](https://gradient-svg-generator.vercel.app/api/svg?text=Platinum%20Sparkle&template=platinum-sparkle&height=80) | `![Platinum Sparkle](https://gradient-svg-generator.vercel.app/api/svg?text=Platinum%20Sparkle&template=platinum-sparkle&height=80)` |
 
 </div>
 
 ### 📝 Path Text Animation Templates (12 Templates)
 
-*Advanced text reveal with SVG path animations*
+_Advanced text reveal with SVG path animations_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
+| Template               | Preview                                                                                                                                    | Markdown Code                                                                                                                                |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Typing Path Reveal** | ![Typing Path Reveal](https://gradient-svg-generator.vercel.app/api/svg?text=Typing%20Path%20Reveal&template=typing-path-reveal&height=80) | `![Typing Path Reveal](https://gradient-svg-generator.vercel.app/api/svg?text=Typing%20Path%20Reveal&template=typing-path-reveal&height=80)` |
-| **Curved Flow** | ![Curved Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Curved%20Flow&template=curved-flow&height=80) | `![Curved Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Curved%20Flow&template=curved-flow&height=80)` |
-| **Spiral Text** | ![Spiral Text](https://gradient-svg-generator.vercel.app/api/svg?text=Spiral%20Text&template=spiral-text&height=80) | `![Spiral Text](https://gradient-svg-generator.vercel.app/api/svg?text=Spiral%20Text&template=spiral-text&height=80)` |
-| **Neon Flicker** | ![Neon Flicker](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Flicker&template=neon-flicker&height=80) | `![Neon Flicker](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Flicker&template=neon-flicker&height=80)` |
+| **Curved Flow**        | ![Curved Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Curved%20Flow&template=curved-flow&height=80)                        | `![Curved Flow](https://gradient-svg-generator.vercel.app/api/svg?text=Curved%20Flow&template=curved-flow&height=80)`                        |
+| **Spiral Text**        | ![Spiral Text](https://gradient-svg-generator.vercel.app/api/svg?text=Spiral%20Text&template=spiral-text&height=80)                        | `![Spiral Text](https://gradient-svg-generator.vercel.app/api/svg?text=Spiral%20Text&template=spiral-text&height=80)`                        |
+| **Neon Flicker**       | ![Neon Flicker](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Flicker&template=neon-flicker&height=80)                     | `![Neon Flicker](https://gradient-svg-generator.vercel.app/api/svg?text=Neon%20Flicker&template=neon-flicker&height=80)`                     |
 
 </div>
 
 ### 🔷 Shape Background Templates (25 Templates)
 
-*Capsule-render inspired shape backgrounds with blob morphing and wave effects*
+_Capsule-render inspired shape backgrounds with blob morphing and wave effects_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Liquid Venom** | ![Liquid Venom](https://gradient-svg-generator.vercel.app/api/svg?text=Liquid%20Venom&template=liquid-venom&height=80) | `![Liquid Venom](https://gradient-svg-generator.vercel.app/api/svg?text=Liquid%20Venom&template=liquid-venom&height=80)` |
-| **Ocean Depths** | ![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80) | `![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80)` |
+| Template          | Preview                                                                                                                   | Markdown Code                                                                                                               |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Liquid Venom**  | ![Liquid Venom](https://gradient-svg-generator.vercel.app/api/svg?text=Liquid%20Venom&template=liquid-venom&height=80)    | `![Liquid Venom](https://gradient-svg-generator.vercel.app/api/svg?text=Liquid%20Venom&template=liquid-venom&height=80)`    |
+| **Ocean Depths**  | ![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80)    | `![Ocean Depths](https://gradient-svg-generator.vercel.app/api/svg?text=Ocean%20Depths&template=ocean-depths&height=80)`    |
 | **Dreamy Sunset** | ![Dreamy Sunset](https://gradient-svg-generator.vercel.app/api/svg?text=Dreamy%20Sunset&template=dreamy-sunset&height=80) | `![Dreamy Sunset](https://gradient-svg-generator.vercel.app/api/svg?text=Dreamy%20Sunset&template=dreamy-sunset&height=80)` |
-| **Capsule Tech** | ![Capsule Tech](https://gradient-svg-generator.vercel.app/api/svg?text=Capsule%20Tech&template=capsule-tech&height=80) | `![Capsule Tech](https://gradient-svg-generator.vercel.app/api/svg?text=Capsule%20Tech&template=capsule-tech&height=80)` |
+| **Capsule Tech**  | ![Capsule Tech](https://gradient-svg-generator.vercel.app/api/svg?text=Capsule%20Tech&template=capsule-tech&height=80)    | `![Capsule Tech](https://gradient-svg-generator.vercel.app/api/svg?text=Capsule%20Tech&template=capsule-tech&height=80)`    |
 
 </div>
 
@@ -784,15 +819,15 @@ Beyond the core template and gradient systems, this project includes:
 <details>
 <summary><kbd>View Morphing Effects (6 Templates)</kbd></summary>
 
-*Organic liquid transformations with advanced morphing*
+_Organic liquid transformations with advanced morphing_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
+| Template           | Preview                                                                                                                      | Markdown Code                                                                                                                  |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **Liquid Mercury** | ![Liquid Mercury](https://gradient-svg-generator.vercel.app/api/svg?text=Liquid%20Mercury&template=liquid-mercury&height=80) | `![Liquid Mercury](https://gradient-svg-generator.vercel.app/api/svg?text=Liquid%20Mercury&template=liquid-mercury&height=80)` |
-| **Plasma Blob** | ![Plasma Blob](https://gradient-svg-generator.vercel.app/api/svg?text=Plasma%20Blob&template=plasma-blob&height=80) | `![Plasma Blob](https://gradient-svg-generator.vercel.app/api/svg?text=Plasma%20Blob&template=plasma-blob&height=80)` |
-| **Quantum Foam** | ![Quantum Foam](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Foam&template=quantum-foam&height=80) | `![Quantum Foam](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Foam&template=quantum-foam&height=80)` |
+| **Plasma Blob**    | ![Plasma Blob](https://gradient-svg-generator.vercel.app/api/svg?text=Plasma%20Blob&template=plasma-blob&height=80)          | `![Plasma Blob](https://gradient-svg-generator.vercel.app/api/svg?text=Plasma%20Blob&template=plasma-blob&height=80)`          |
+| **Quantum Foam**   | ![Quantum Foam](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Foam&template=quantum-foam&height=80)       | `![Quantum Foam](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Foam&template=quantum-foam&height=80)`       |
 
 </div>
 
@@ -801,15 +836,15 @@ Beyond the core template and gradient systems, this project includes:
 <details>
 <summary><kbd>View Fluid Dynamics (6 Templates)</kbd></summary>
 
-*Advanced fluid simulation and wave propagation effects*
+_Advanced fluid simulation and wave propagation effects_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Turbulent Waves** | ![Turbulent Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Turbulent%20Waves&template=turbulent-waves&height=80) | `![Turbulent Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Turbulent%20Waves&template=turbulent-waves&height=80)` |
+| Template                  | Preview                                                                                                                                           | Markdown Code                                                                                                                                       |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Turbulent Waves**       | ![Turbulent Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Turbulent%20Waves&template=turbulent-waves&height=80)                   | `![Turbulent Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Turbulent%20Waves&template=turbulent-waves&height=80)`                   |
 | **Electromagnetic Field** | ![Electromagnetic Field](https://gradient-svg-generator.vercel.app/api/svg?text=Electromagnetic%20Field&template=electromagnetic-field&height=80) | `![Electromagnetic Field](https://gradient-svg-generator.vercel.app/api/svg?text=Electromagnetic%20Field&template=electromagnetic-field&height=80)` |
-| **Aurora Streams** | ![Aurora Streams](https://gradient-svg-generator.vercel.app/api/svg?text=Aurora%20Streams&template=aurora-streams&height=80) | `![Aurora Streams](https://gradient-svg-generator.vercel.app/api/svg?text=Aurora%20Streams&template=aurora-streams&height=80)` |
+| **Aurora Streams**        | ![Aurora Streams](https://gradient-svg-generator.vercel.app/api/svg?text=Aurora%20Streams&template=aurora-streams&height=80)                      | `![Aurora Streams](https://gradient-svg-generator.vercel.app/api/svg?text=Aurora%20Streams&template=aurora-streams&height=80)`                      |
 
 </div>
 
@@ -818,13 +853,13 @@ Beyond the core template and gradient systems, this project includes:
 <details>
 <summary><kbd>View Dimensional Portal (8 Templates)</kbd></summary>
 
-*Multi-dimensional space distortion and portal effects*
+_Multi-dimensional space distortion and portal effects_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Quantum Tunnel** | ![Quantum Tunnel](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Tunnel&template=quantum-tunnel&height=80) | `![Quantum Tunnel](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Tunnel&template=quantum-tunnel&height=80)` |
+| Template             | Preview                                                                                                                            | Markdown Code                                                                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **Quantum Tunnel**   | ![Quantum Tunnel](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Tunnel&template=quantum-tunnel&height=80)       | `![Quantum Tunnel](https://gradient-svg-generator.vercel.app/api/svg?text=Quantum%20Tunnel&template=quantum-tunnel&height=80)`       |
 | **Wormhole Transit** | ![Wormhole Transit](https://gradient-svg-generator.vercel.app/api/svg?text=Wormhole%20Transit&template=wormhole-transit&height=80) | `![Wormhole Transit](https://gradient-svg-generator.vercel.app/api/svg?text=Wormhole%20Transit&template=wormhole-transit&height=80)` |
 | **Dimensional Rift** | ![Dimensional Rift](https://gradient-svg-generator.vercel.app/api/svg?text=Dimensional%20Rift&template=dimensional-rift&height=80) | `![Dimensional Rift](https://gradient-svg-generator.vercel.app/api/svg?text=Dimensional%20Rift&template=dimensional-rift&height=80)` |
 
@@ -835,15 +870,15 @@ Beyond the core template and gradient systems, this project includes:
 <details>
 <summary><kbd>View Consciousness Stream (9 Templates)</kbd></summary>
 
-*Psychological and philosophical visualization of consciousness*
+_Psychological and philosophical visualization of consciousness_
 
 <div align="center">
 
-| Template | Preview | Markdown Code |
-|----------|---------|---------------|
-| **Thought Waves** | ![Thought Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Thought%20Waves&template=thought-waves&height=80) | `![Thought Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Thought%20Waves&template=thought-waves&height=80)` |
+| Template             | Preview                                                                                                                            | Markdown Code                                                                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **Thought Waves**    | ![Thought Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Thought%20Waves&template=thought-waves&height=80)          | `![Thought Waves](https://gradient-svg-generator.vercel.app/api/svg?text=Thought%20Waves&template=thought-waves&height=80)`          |
 | **Memory Fragments** | ![Memory Fragments](https://gradient-svg-generator.vercel.app/api/svg?text=Memory%20Fragments&template=memory-fragments&height=80) | `![Memory Fragments](https://gradient-svg-generator.vercel.app/api/svg?text=Memory%20Fragments&template=memory-fragments&height=80)` |
-| **Dream Logic** | ![Dream Logic](https://gradient-svg-generator.vercel.app/api/svg?text=Dream%20Logic&template=dream-logic&height=80) | `![Dream Logic](https://gradient-svg-generator.vercel.app/api/svg?text=Dream%20Logic&template=dream-logic&height=80)` |
+| **Dream Logic**      | ![Dream Logic](https://gradient-svg-generator.vercel.app/api/svg?text=Dream%20Logic&template=dream-logic&height=80)                | `![Dream Logic](https://gradient-svg-generator.vercel.app/api/svg?text=Dream%20Logic&template=dream-logic&height=80)`                |
 
 </div>
 
@@ -851,7 +886,7 @@ Beyond the core template and gradient systems, this project includes:
 
 ### 🏷️ GitHub Profile Templates (30 Templates)
 
-*Badges, banners, terminals, and cards designed for GitHub profile READMEs — animated SVG effects you can embed anywhere with a single `<img>` tag.*
+_Badges, banners, terminals, and cards designed for GitHub profile READMEs — animated SVG effects you can embed anywhere with a single `<img>` tag._
 
 #### Shimmer Badges
 
@@ -859,15 +894,15 @@ Colored status tags with an animated light sweep — perfect for labeling sectio
 
 <div align="center">
 
-| Preview | Markdown Code |
-|---------|---------------|
+| Preview                                                                                                                 | Markdown Code                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | ![Best Practice](https://gradient-svg-generator.vercel.app/api/svg?text=Best%20Practice&template=shimmer-red&height=28) | `![Best Practice](https://gradient-svg-generator.vercel.app/api/svg?text=Best%20Practice&template=shimmer-red&height=28)` |
-| ![Implemented](https://gradient-svg-generator.vercel.app/api/svg?text=Implemented&template=shimmer-green&height=28) | `![Implemented](https://gradient-svg-generator.vercel.app/api/svg?text=Implemented&template=shimmer-green&height=28)` |
-| ![Workflow](https://gradient-svg-generator.vercel.app/api/svg?text=Workflow&template=shimmer-blue&height=28) | `![Workflow](https://gradient-svg-generator.vercel.app/api/svg?text=Workflow&template=shimmer-blue&height=28)` |
-| ![Community](https://gradient-svg-generator.vercel.app/api/svg?text=Community&template=shimmer-gold&height=28) | `![Community](https://gradient-svg-generator.vercel.app/api/svg?text=Community&template=shimmer-gold&height=28)` |
-| ![Claude Code](https://gradient-svg-generator.vercel.app/api/svg?text=Claude%20Code&template=shimmer-orange&height=28) | `![Claude Code](https://gradient-svg-generator.vercel.app/api/svg?text=Claude%20Code&template=shimmer-orange&height=28)` |
-| ![Beta](https://gradient-svg-generator.vercel.app/api/svg?text=Beta&template=shimmer-purple&height=28) | `![Beta](https://gradient-svg-generator.vercel.app/api/svg?text=Beta&template=shimmer-purple&height=28)` |
-| ![Advanced](https://gradient-svg-generator.vercel.app/api/svg?text=Advanced&template=shimmer-dark&height=28) | `![Advanced](https://gradient-svg-generator.vercel.app/api/svg?text=Advanced&template=shimmer-dark&height=28)` |
+| ![Implemented](https://gradient-svg-generator.vercel.app/api/svg?text=Implemented&template=shimmer-green&height=28)     | `![Implemented](https://gradient-svg-generator.vercel.app/api/svg?text=Implemented&template=shimmer-green&height=28)`     |
+| ![Workflow](https://gradient-svg-generator.vercel.app/api/svg?text=Workflow&template=shimmer-blue&height=28)            | `![Workflow](https://gradient-svg-generator.vercel.app/api/svg?text=Workflow&template=shimmer-blue&height=28)`            |
+| ![Community](https://gradient-svg-generator.vercel.app/api/svg?text=Community&template=shimmer-gold&height=28)          | `![Community](https://gradient-svg-generator.vercel.app/api/svg?text=Community&template=shimmer-gold&height=28)`          |
+| ![Claude Code](https://gradient-svg-generator.vercel.app/api/svg?text=Claude%20Code&template=shimmer-orange&height=28)  | `![Claude Code](https://gradient-svg-generator.vercel.app/api/svg?text=Claude%20Code&template=shimmer-orange&height=28)`  |
+| ![Beta](https://gradient-svg-generator.vercel.app/api/svg?text=Beta&template=shimmer-purple&height=28)                  | `![Beta](https://gradient-svg-generator.vercel.app/api/svg?text=Beta&template=shimmer-purple&height=28)`                  |
+| ![Advanced](https://gradient-svg-generator.vercel.app/api/svg?text=Advanced&template=shimmer-dark&height=28)            | `![Advanced](https://gradient-svg-generator.vercel.app/api/svg?text=Advanced&template=shimmer-dark&height=28)`            |
 
 </div>
 
@@ -880,11 +915,11 @@ macOS-style terminal window with typing animation and blinking cursor — great 
 
 <div align="center">
 
-| Preview | Markdown Code |
-|---------|---------------|
-| ![Terminal Purple](https://gradient-svg-generator.vercel.app/api/svg?text=npx%20create-next-app&template=terminal-purple&height=50) | `![Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=npx%20create-next-app&template=terminal-purple&height=50)` |
+| Preview                                                                                                                                | Markdown Code                                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| ![Terminal Purple](https://gradient-svg-generator.vercel.app/api/svg?text=npx%20create-next-app&template=terminal-purple&height=50)    | `![Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=npx%20create-next-app&template=terminal-purple&height=50)`     |
 | ![Terminal Green](https://gradient-svg-generator.vercel.app/api/svg?text=npm%20install%20chromaflow&template=terminal-green&height=50) | `![Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=npm%20install%20chromaflow&template=terminal-green&height=50)` |
-| ![Terminal Blue](https://gradient-svg-generator.vercel.app/api/svg?text=git%20push%20origin%20main&template=terminal-blue&height=50) | `![Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=git%20push%20origin%20main&template=terminal-blue&height=50)` |
+| ![Terminal Blue](https://gradient-svg-generator.vercel.app/api/svg?text=git%20push%20origin%20main&template=terminal-blue&height=50)   | `![Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=git%20push%20origin%20main&template=terminal-blue&height=50)`  |
 
 </div>
 
@@ -894,12 +929,12 @@ Row of rounded skill/technology pills with shimmer overlay — perfect for showi
 
 <div align="center">
 
-| Preview | Markdown Code |
-|---------|---------------|
-| ![Pills Dark](https://gradient-svg-generator.vercel.app/api/svg?text=React;Node.js;Python;Docker&template=pills-dark&height=36) | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=React;Node.js;Python;Docker&template=pills-dark&height=36)` |
+| Preview                                                                                                                            | Markdown Code                                                                                                                 |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| ![Pills Dark](https://gradient-svg-generator.vercel.app/api/svg?text=React;Node.js;Python;Docker&template=pills-dark&height=36)    | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=React;Node.js;Python;Docker&template=pills-dark&height=36)` |
 | ![Pills Rainbow](https://gradient-svg-generator.vercel.app/api/svg?text=TypeScript;Go;Rust;Swift&template=pills-rainbow&height=36) | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=TypeScript;Go;Rust;Swift&template=pills-rainbow&height=36)` |
-| ![Pills Blue](https://gradient-svg-generator.vercel.app/api/svg?text=AWS;GCP;Azure&template=pills-blue&height=36) | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=AWS;GCP;Azure&template=pills-blue&height=36)` |
-| ![Pills Purple](https://gradient-svg-generator.vercel.app/api/svg?text=Claude;GPT;Gemini&template=pills-purple&height=36) | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=Claude;GPT;Gemini&template=pills-purple&height=36)` |
+| ![Pills Blue](https://gradient-svg-generator.vercel.app/api/svg?text=AWS;GCP;Azure&template=pills-blue&height=36)                  | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=AWS;GCP;Azure&template=pills-blue&height=36)`               |
+| ![Pills Purple](https://gradient-svg-generator.vercel.app/api/svg?text=Claude;GPT;Gemini&template=pills-purple&height=36)          | `![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=Claude;GPT;Gemini&template=pills-purple&height=36)`         |
 
 </div>
 
@@ -912,12 +947,12 @@ Wide announcement bars with animated shimmer sweep — ideal for project status,
 
 <div align="center">
 
-| Preview | Markdown Code |
-|---------|---------------|
-| ![Banner Orange](https://gradient-svg-generator.vercel.app/api/svg?text=Developed%20by%20Claude%20Code&template=banner-orange&height=32) | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Developed%20by%20Claude%20Code&template=banner-orange&height=32)` |
-| ![Banner Dark](https://gradient-svg-generator.vercel.app/api/svg?text=Now%20Available%20on%20npm&template=banner-dark&height=32) | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Now%20Available%20on%20npm&template=banner-dark&height=32)` |
+| Preview                                                                                                                                                  | Markdown Code                                                                                                                                         |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![Banner Orange](https://gradient-svg-generator.vercel.app/api/svg?text=Developed%20by%20Claude%20Code&template=banner-orange&height=32)                 | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Developed%20by%20Claude%20Code&template=banner-orange&height=32)`                   |
+| ![Banner Dark](https://gradient-svg-generator.vercel.app/api/svg?text=Now%20Available%20on%20npm&template=banner-dark&height=32)                         | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Now%20Available%20on%20npm&template=banner-dark&height=32)`                         |
 | ![Banner Blue](https://gradient-svg-generator.vercel.app/api/svg?text=Star%20this%20repo%20if%20you%20find%20it%20useful&template=banner-blue&height=32) | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Star%20this%20repo%20if%20you%20find%20it%20useful&template=banner-blue&height=32)` |
-| ![Banner Red](https://gradient-svg-generator.vercel.app/api/svg?text=Breaking%20Changes%20in%20v2.0&template=banner-red&height=32) | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Breaking%20Changes%20in%20v2.0&template=banner-red&height=32)` |
+| ![Banner Red](https://gradient-svg-generator.vercel.app/api/svg?text=Breaking%20Changes%20in%20v2.0&template=banner-red&height=32)                       | `![Banner](https://gradient-svg-generator.vercel.app/api/svg?text=Breaking%20Changes%20in%20v2.0&template=banner-red&height=32)`                      |
 
 </div>
 
@@ -927,10 +962,10 @@ Text with an animated internal gradient highlight — the light passes through t
 
 <div align="center">
 
-| Preview | Markdown Code |
-|---------|---------------|
-| ![Purple Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Software%20Architect&template=text-shimmer-purple&height=40) | `![Title](https://gradient-svg-generator.vercel.app/api/svg?text=Software%20Architect&template=text-shimmer-purple&height=40)` |
-| ![Blue Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Full%20Stack%20Developer&template=text-shimmer-blue&height=40) | `![Title](https://gradient-svg-generator.vercel.app/api/svg?text=Full%20Stack%20Developer&template=text-shimmer-blue&height=40)` |
+| Preview                                                                                                                                  | Markdown Code                                                                                                                       |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| ![Purple Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Software%20Architect&template=text-shimmer-purple&height=40)    | `![Title](https://gradient-svg-generator.vercel.app/api/svg?text=Software%20Architect&template=text-shimmer-purple&height=40)`      |
+| ![Blue Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Full%20Stack%20Developer&template=text-shimmer-blue&height=40)    | `![Title](https://gradient-svg-generator.vercel.app/api/svg?text=Full%20Stack%20Developer&template=text-shimmer-blue&height=40)`    |
 | ![Gold Shimmer](https://gradient-svg-generator.vercel.app/api/svg?text=Open%20Source%20Contributor&template=text-shimmer-gold&height=40) | `![Title](https://gradient-svg-generator.vercel.app/api/svg?text=Open%20Source%20Contributor&template=text-shimmer-gold&height=40)` |
 
 </div>
@@ -941,11 +976,11 @@ Luxury metallic badges with gold gradient, shimmer sweep, and pulsing diamond ac
 
 <div align="center">
 
-| Preview | Markdown Code |
-|---------|---------------|
-| ![Gold Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Featured%20Project&template=gold-luxury&height=40) | `![Badge](https://gradient-svg-generator.vercel.app/api/svg?text=Featured%20Project&template=gold-luxury&height=40)` |
-| ![Platinum](https://gradient-svg-generator.vercel.app/api/svg?text=Enterprise%20Ready&template=gold-platinum&height=40) | `![Badge](https://gradient-svg-generator.vercel.app/api/svg?text=Enterprise%20Ready&template=gold-platinum&height=40)` |
-| ![Rose Gold](https://gradient-svg-generator.vercel.app/api/svg?text=Premium%20Quality&template=gold-rose&height=40) | `![Badge](https://gradient-svg-generator.vercel.app/api/svg?text=Premium%20Quality&template=gold-rose&height=40)` |
+| Preview                                                                                                                  | Markdown Code                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| ![Gold Luxury](https://gradient-svg-generator.vercel.app/api/svg?text=Featured%20Project&template=gold-luxury&height=40) | `![Badge](https://gradient-svg-generator.vercel.app/api/svg?text=Featured%20Project&template=gold-luxury&height=40)`   |
+| ![Platinum](https://gradient-svg-generator.vercel.app/api/svg?text=Enterprise%20Ready&template=gold-platinum&height=40)  | `![Badge](https://gradient-svg-generator.vercel.app/api/svg?text=Enterprise%20Ready&template=gold-platinum&height=40)` |
+| ![Rose Gold](https://gradient-svg-generator.vercel.app/api/svg?text=Premium%20Quality&template=gold-rose&height=40)      | `![Badge](https://gradient-svg-generator.vercel.app/api/svg?text=Premium%20Quality&template=gold-rose&height=40)`      |
 
 </div>
 
@@ -955,12 +990,12 @@ Wide achievement badges with auto-detected light/dark text — for showcasing mi
 
 <div align="center">
 
-| Preview | Markdown Code |
-|---------|---------------|
-| ![Trending](https://gradient-svg-generator.vercel.app/api/svg?text=GitHub%20Monthly%20Trending%20%C2%B7%20Mar%202026&template=social-trending&height=32) | `![Trending](https://gradient-svg-generator.vercel.app/api/svg?text=GitHub%20Monthly%20Trending&template=social-trending&height=32)` |
-| ![Achievement Red](https://gradient-svg-generator.vercel.app/api/svg?text=Top%201%25%20Poster%20on%20Reddit&template=social-achievement-red&height=32) | `![Achievement](https://gradient-svg-generator.vercel.app/api/svg?text=Top%201%25%20Poster%20on%20Reddit&template=social-achievement-red&height=32)` |
-| ![Achievement Blue](https://gradient-svg-generator.vercel.app/api/svg?text=500%2B%20Stars%20on%20GitHub&template=social-achievement-blue&height=32) | `![Achievement](https://gradient-svg-generator.vercel.app/api/svg?text=500%2B%20Stars%20on%20GitHub&template=social-achievement-blue&height=32)` |
-| ![Achievement Green](https://gradient-svg-generator.vercel.app/api/svg?text=100%25%20Test%20Coverage&template=social-achievement-green&height=32) | `![Achievement](https://gradient-svg-generator.vercel.app/api/svg?text=100%25%20Test%20Coverage&template=social-achievement-green&height=32)` |
+| Preview                                                                                                                                                  | Markdown Code                                                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![Trending](https://gradient-svg-generator.vercel.app/api/svg?text=GitHub%20Monthly%20Trending%20%C2%B7%20Mar%202026&template=social-trending&height=32) | `![Trending](https://gradient-svg-generator.vercel.app/api/svg?text=GitHub%20Monthly%20Trending&template=social-trending&height=32)`                 |
+| ![Achievement Red](https://gradient-svg-generator.vercel.app/api/svg?text=Top%201%25%20Poster%20on%20Reddit&template=social-achievement-red&height=32)   | `![Achievement](https://gradient-svg-generator.vercel.app/api/svg?text=Top%201%25%20Poster%20on%20Reddit&template=social-achievement-red&height=32)` |
+| ![Achievement Blue](https://gradient-svg-generator.vercel.app/api/svg?text=500%2B%20Stars%20on%20GitHub&template=social-achievement-blue&height=32)      | `![Achievement](https://gradient-svg-generator.vercel.app/api/svg?text=500%2B%20Stars%20on%20GitHub&template=social-achievement-blue&height=32)`     |
+| ![Achievement Green](https://gradient-svg-generator.vercel.app/api/svg?text=100%25%20Test%20Coverage&template=social-achievement-green&height=32)        | `![Achievement](https://gradient-svg-generator.vercel.app/api/svg?text=100%25%20Test%20Coverage&template=social-achievement-green&height=32)`        |
 
 </div>
 
@@ -970,10 +1005,10 @@ GitHub-style two-panel cards with icon area, repo name, and shimmer overlay — 
 
 <div align="center">
 
-| Preview | Markdown Code |
-|---------|---------------|
+| Preview                                                                                                                   | Markdown Code                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | ![Repo Dark](https://gradient-svg-generator.vercel.app/api/svg?text=my-awesome-project&template=repo-card-dark&height=48) | `![Repo](https://gradient-svg-generator.vercel.app/api/svg?text=my-awesome-project&template=repo-card-dark&height=48)` |
-| ![Repo Blue](https://gradient-svg-generator.vercel.app/api/svg?text=chromaflow&template=repo-card-blue&height=48) | `![Repo](https://gradient-svg-generator.vercel.app/api/svg?text=chromaflow&template=repo-card-blue&height=48)` |
+| ![Repo Blue](https://gradient-svg-generator.vercel.app/api/svg?text=chromaflow&template=repo-card-blue&height=48)         | `![Repo](https://gradient-svg-generator.vercel.app/api/svg?text=chromaflow&template=repo-card-blue&height=48)`         |
 
 </div>
 
@@ -984,24 +1019,31 @@ You can also use the `gradientType` parameter directly for full customization:
 
 ```markdown
 <!-- Custom shimmer badge with any color -->
+
 ![Custom](https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Label&gradientType=shimmerBadge&color0=ff6b6b&height=28)
 
 <!-- Terminal with custom prompt color -->
+
 ![Terminal](https://gradient-svg-generator.vercel.app/api/svg?text=docker%20compose%20up&gradientType=terminalTyping&color0=22c55e&height=50)
 
 <!-- Skill pills with custom colors per pill -->
+
 ![Skills](https://gradient-svg-generator.vercel.app/api/svg?text=React;Vue;Angular&gradientType=skillPills&color0=61dafb&color1=4fc08d&color2=dd0031&height=36)
 
 <!-- Shimmer text with base + accent color -->
+
 ![Title](https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Title&gradientType=shimmerText&color0=1f2937&color1=f59e0b&height=40)
 
 <!-- Gold badge with custom gold tones -->
+
 ![Gold](https://gradient-svg-generator.vercel.app/api/svg?text=Award%20Winner&gradientType=goldBadge&color0=b8860b&color1=daa520&color2=ffd700&height=44)
 
 <!-- Social badge — auto light/dark text based on background -->
+
 ![Social](https://gradient-svg-generator.vercel.app/api/svg?text=10K%20Downloads&gradientType=socialBadge&color0=16a34a&height=32)
 
 <!-- Repo card with custom panel colors -->
+
 ![Repo](https://gradient-svg-generator.vercel.app/api/svg?text=project-name&gradientType=repoCard&color0=1e3a5f&color1=e8f0fe&height=56)
 ```
 
@@ -1012,94 +1054,209 @@ You can also use the `gradientType` parameter directly for full customization:
 ## 🔧 API Reference
 
 ### 🌐 Base URL
+
 ```
 https://gradient-svg-generator.vercel.app/api/svg
 ```
 
 ### 📋 Parameters
 
-| Parameter | Type | Default | Description | Example |
-|-----------|------|---------|-------------|---------|
-| `text` | string | **required** | Display text | `text=Hello%20World` |
-| `height` | number | `120` | SVG height in pixels (30-300) | `height=150` |
-| `template` | string | - | Template name | `template=neural-network` |
-| `gradientType` | string | `horizontal` | Gradient type/effect | `gradientType=spiral` |
-| `duration` | string | `6s` | Animation duration | `duration=8s` |
-| `color0`, `color1`, ... | string | `000000` | Gradient colors (hex without #) | `color0=ff0000&color1=00ff00` |
+| Parameter               | Type   | Default      | Description                     | Example                       |
+| ----------------------- | ------ | ------------ | ------------------------------- | ----------------------------- |
+| `text`                  | string | **required** | Display text                    | `text=Hello%20World`          |
+| `height`                | number | `120`        | SVG height in pixels (30-300)   | `height=150`                  |
+| `template`              | string | -            | Template name                   | `template=neural-network`     |
+| `gradientType`          | string | `horizontal` | Gradient type/effect            | `gradientType=spiral`         |
+| `duration`              | string | `6s`         | Animation duration              | `duration=8s`                 |
+| `color0`, `color1`, ... | string | `000000`     | Gradient colors (hex without #) | `color0=ff0000&color1=00ff00` |
 
 ### 🎨 Available Gradient Types
 
 ```javascript
 // Basic Types (7 types)
-'linear', 'radial', 'conic', 'diamond', 'reflected', 'square', 'ellipse'
+('linear', 'radial', 'conic', 'diamond', 'reflected', 'square', 'ellipse');
 
 // Text Effects (5 types)
-'luminance', 'rainbow', 'textBox', 'glitch', 'typewriter'
+('luminance', 'rainbow', 'textBox', 'glitch', 'typewriter');
 
 // Future Tech (6 types)
-'hologram', 'quantum', 'laserGrid', 'neuralNet', 'plasma', 'dataStream'
+('hologram', 'quantum', 'laserGrid', 'neuralNet', 'plasma', 'dataStream');
 
 // Artistic (7 types)
-'watercolor', 'oilPaint', 'inkSplash', 'mosaic', 'abstractGeo', 'graffiti', 'vintage'
+('watercolor', 'oilPaint', 'inkSplash', 'mosaic', 'abstractGeo', 'graffiti', 'vintage');
 
 // Luxury Materials (7 types)
-'goldFoil', 'diamond', 'marble', 'platinum', 'roseGold', 'crystal', 'velvet'
+('goldFoil', 'diamond', 'marble', 'platinum', 'roseGold', 'crystal', 'velvet');
 
 // Organic Nature (8 types)
-'flowingWater', 'flame', 'clouds', 'aurora', 'oceanWaves', 'forest', 'lightning', 'mountainMist'
+('flowingWater', 'flame', 'clouds', 'aurora', 'oceanWaves', 'forest', 'lightning', 'mountainMist');
 
 // Gaming Effects (8 types)
-'pixelArt', 'neonArcade', 'energyBlast', 'speedLines', 'bossBattle', 'powerUp', 'cyberpunk', 'retroWave'
+('pixelArt',
+  'neonArcade',
+  'energyBlast',
+  'speedLines',
+  'bossBattle',
+  'powerUp',
+  'cyberpunk',
+  'retroWave');
 
 // Morphing Effects (6 types)
-'liquidMorphing', 'plasmaMorphing', 'cosmicMorphing', 'bioMorphing', 'quantumMorphing', 'lavaMorphing'
+('liquidMorphing',
+  'plasmaMorphing',
+  'cosmicMorphing',
+  'bioMorphing',
+  'quantumMorphing',
+  'lavaMorphing');
 
 // Fluid Dynamics (6 types)
-'turbulentWaves', 'electromagneticWaves', 'auroraWaves', 'soundWaves', 'cryogenicWaves', 'solarWaves'
+('turbulentWaves',
+  'electromagneticWaves',
+  'auroraWaves',
+  'soundWaves',
+  'cryogenicWaves',
+  'solarWaves');
 
 // Dimensional Effects (6 types)
-'portalDistortion', 'hypercubeProjection', 'wormholeEffect', 'fractalDimension', 'multiverseOverlap', 'realityDistortion'
+('portalDistortion',
+  'hypercubeProjection',
+  'wormholeEffect',
+  'fractalDimension',
+  'multiverseOverlap',
+  'realityDistortion');
 
 // Dimensional Portal (7 types)
-'quantumTunnel', 'parallelDimension', 'wormholePortal', 'dimensionalTear', 'holographicGrid', 'voidDistortion', 'astralPlane'
+('quantumTunnel',
+  'parallelDimension',
+  'wormholePortal',
+  'dimensionalTear',
+  'holographicGrid',
+  'voidDistortion',
+  'astralPlane');
 
 // Digital Life (8 types)
-'aiConsciousness', 'bioDigitalMerge', 'quantumDNA', 'digitalEvolution', 'syntheticSoul', 'cyberSymbiosis', 'neuralStorm', 'digitalGenome'
+('aiConsciousness',
+  'bioDigitalMerge',
+  'quantumDNA',
+  'digitalEvolution',
+  'syntheticSoul',
+  'cyberSymbiosis',
+  'neuralStorm',
+  'digitalGenome');
 
 // Cyber Aesthetics (9 types)
-'neonCityscape', 'dataMatrix', 'cyberpunkShadow', 'holographicUI', 'pixelCorruption', 'chromeFinish', 'viralSpread', 'encryptionField', 'arOverlay'
+('neonCityscape',
+  'dataMatrix',
+  'cyberpunkShadow',
+  'holographicUI',
+  'pixelCorruption',
+  'chromeFinish',
+  'viralSpread',
+  'encryptionField',
+  'arOverlay');
 
 // Consciousness Stream (9 types)
-'thoughtWaves', 'memoryFragments', 'dreamLogic', 'emotionalSpectrum', 'meditativeCalm', 'anxietySpiral', 'egoDissolution', 'psychedelicInsight', 'collectiveUnconscious'
+('thoughtWaves',
+  'memoryFragments',
+  'dreamLogic',
+  'emotionalSpectrum',
+  'meditativeCalm',
+  'anxietySpiral',
+  'egoDissolution',
+  'psychedelicInsight',
+  'collectiveUnconscious');
 
 // Weather & Atmosphere (7 types)
-'fogRolling', 'monsoonRain', 'snowfallDrift', 'sandstormSwirl', 'tornadoVortex', 'lightningWeb', 'prismRefraction'
+('fogRolling',
+  'monsoonRain',
+  'snowfallDrift',
+  'sandstormSwirl',
+  'tornadoVortex',
+  'lightningWeb',
+  'prismRefraction');
 
 // Light & Shadow (7 types)
-'causticUnderwater', 'venetianBlind', 'stainedGlass', 'lensFlare', 'bokehBlur', 'godRays', 'eclipseCorona'
+('causticUnderwater',
+  'venetianBlind',
+  'stainedGlass',
+  'lensFlare',
+  'bokehBlur',
+  'godRays',
+  'eclipseCorona');
 
 // Art Movements (7 types)
-'artNouveauFlow', 'artDecoLuxury', 'bauhausMinimal', 'impressionistDots', 'cubistFragments', 'surrealistMelt', 'popArtHalftone'
+('artNouveauFlow',
+  'artDecoLuxury',
+  'bauhausMinimal',
+  'impressionistDots',
+  'cubistFragments',
+  'surrealistMelt',
+  'popArtHalftone');
 
 // Culinary & Liquid (7 types)
-'coffeeCream', 'winePour', 'honeyDrizzle', 'chocolateMelt', 'caramelSwirl', 'tieDye', 'marbleMixing'
+('coffeeCream',
+  'winePour',
+  'honeyDrizzle',
+  'chocolateMelt',
+  'caramelSwirl',
+  'tieDye',
+  'marbleMixing');
 
 // Pattern Based (8 types)
-'candystripe', 'patternZigzag', 'diamondPattern', 'heartsPattern', 'checkered', 'diagonalFlow', 'geometricPulse', 'patternWave'
+('candystripe',
+  'patternZigzag',
+  'diamondPattern',
+  'heartsPattern',
+  'checkered',
+  'diagonalFlow',
+  'geometricPulse',
+  'patternWave');
 
 // Metallic Effects (9 types)
-'copperMetallic', 'shineShimmer', 'neonPulse', 'aquaFlow', 'sparkleEffect', 'chromeFlow', 'bronzeGleam', 'platinumSparkle', 'steelAqua'
+('copperMetallic',
+  'shineShimmer',
+  'neonPulse',
+  'aquaFlow',
+  'sparkleEffect',
+  'chromeFlow',
+  'bronzeGleam',
+  'platinumSparkle',
+  'steelAqua');
 
 // Path Text Animation (12 types)
-'typingPathReveal', 'curvedFlow', 'spiralText', 'waveTextPath', 'charByChar', 'wordCascade', 'lineSequence', 'fadeInPath', 'handwriting', 'brushStroke', 'neonFlicker', 'elasticBounce'
+('typingPathReveal',
+  'curvedFlow',
+  'spiralText',
+  'waveTextPath',
+  'charByChar',
+  'wordCascade',
+  'lineSequence',
+  'fadeInPath',
+  'handwriting',
+  'brushStroke',
+  'neonFlicker',
+  'elasticBounce');
 
 // Blob & Shape Effects (8 types)
-'blobMorph', 'liquidBlob', 'organicBlob', 'layeredWaves', 'blurMotion', 'dreamyCircles', 'abstractBlur'
+('blobMorph',
+  'liquidBlob',
+  'organicBlob',
+  'layeredWaves',
+  'blurMotion',
+  'dreamyCircles',
+  'abstractBlur');
 // Shape Backgrounds (7 types)
-'cylinder', 'softRounded', 'eggShape', 'sliceShape', 'speechBubble', 'sharkTeeth', 'largeRounded'
+('cylinder', 'softRounded', 'eggShape', 'sliceShape', 'speechBubble', 'sharkTeeth', 'largeRounded');
 
 // GitHub Profile Effects (8 types)
-'shimmerBadge', 'terminalTyping', 'skillPills', 'shimmerBanner', 'shimmerText', 'goldBadge', 'socialBadge', 'repoCard'
+('shimmerBadge',
+  'terminalTyping',
+  'skillPills',
+  'shimmerBanner',
+  'shimmerText',
+  'goldBadge',
+  'socialBadge',
+  'repoCard');
 ```
 
 ### 🚀 Usage Examples
@@ -1158,10 +1315,12 @@ https://gradient-svg-generator.vercel.app/api/svg
 ### 💻 Local Development
 
 **Prerequisites:**
+
 - Node.js 14.0.0 or higher
 - npm/yarn package manager
 
 **Quick Setup:**
+
 ```bash
 # Clone repository
 git clone https://github.com/ChanMeng666/gradient-svg-generator.git
@@ -1183,6 +1342,7 @@ npm run dev
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FChanMeng666%2Fgradient-svg-generator)
 
 **Manual Deployment:**
+
 ```bash
 # Install Vercel CLI
 npm i -g vercel
@@ -1202,13 +1362,14 @@ docker run -p 3000:3000 gradient-svg-generator
 ```
 
 **docker-compose.yml:**
+
 ```yaml
 version: '3.8'
 services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - NODE_ENV=production
 ```
@@ -1270,6 +1431,7 @@ services:
 ## 🏗️ Architecture
 
 ### Project Structure
+
 ```
 gradient-svg-generator/
 ├── src/
@@ -1287,6 +1449,7 @@ gradient-svg-generator/
 ```
 
 ### Key Components
+
 - **Gradient Factory**: Central factory pattern for gradient creation
 - **Template System**: Modular template architecture with auto-registration
 - **Generator Categories**: Organized gradient generators by type
@@ -1296,6 +1459,7 @@ gradient-svg-generator/
 ## ⌨️ Development
 
 ### Adding New Templates
+
 ```javascript
 // src/templates/myCategory.js
 export default [
@@ -1305,12 +1469,13 @@ export default [
     colors: ['ff0080', '7928ca'],
     gradientType: 'spiral',
     animationDuration: '6s',
-    description: 'My custom template'
-  }
+    description: 'My custom template',
+  },
 ];
 ```
 
 ### Creating New Gradient Types
+
 ```javascript
 // src/utils/gradientGenerators/myGradient.js
 export function generateMyGradient(colors, width, height, animationDuration) {
@@ -1325,6 +1490,7 @@ export function generateMyGradient(colors, width, height, animationDuration) {
 We welcome contributions! Here's how you can help improve this project:
 
 ### Areas for Contribution
+
 - 🎨 New template designs and color palettes
 - ⚡ Additional gradient types and effects
 - 🖥️ UI/UX improvements and new features
@@ -1333,6 +1499,7 @@ We welcome contributions! Here's how you can help improve this project:
 - 🐛 Bug fixes and testing
 
 ### Getting Started
+
 1. **Fork** the repository
 2. **Create** a feature branch (`git checkout -b feature/amazing-template`)
 3. **Make** your changes with proper documentation
@@ -1346,8 +1513,9 @@ For major changes, please open an issue first to discuss your ideas.
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 **Open Source Benefits:**
+
 - ✅ Commercial use allowed
-- ✅ Modification allowed  
+- ✅ Modification allowed
 - ✅ Distribution allowed
 - ✅ Private use allowed
 
@@ -1372,11 +1540,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙋‍♀️ Author
 
 **Chan Meng**
+
 - <img src="https://cdn.simpleicons.org/linkedin/0A66C2" width="16" height="16"> LinkedIn: [chanmeng666](https://www.linkedin.com/in/chanmeng666/)
 - <img src="https://cdn.simpleicons.org/github/181717" width="16" height="16"> GitHub: [ChanMeng666](https://github.com/ChanMeng666)
 - <img src="https://cdn.simpleicons.org/gmail/EA4335" width="16" height="16"> Email: [chanmeng.dev@gmail.com](mailto:chanmeng.dev@gmail.com)
 - <img src="https://cdn.simpleicons.org/internetexplorer/0078D4" width="16" height="16"> Website: [chanmeng.org](https://chanmeng.org/)
-
 
 ---
 
@@ -1400,12 +1568,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
 
 <!-- Project Links -->
+
 [live-demo]: https://gradient-svg-generator.vercel.app
 [settings-panel]: https://gradient-svg-generator.vercel.app/create
 [api-docs]: #-api-reference
 [template-gallery]: #-template-showcase
 
 <!-- GitHub Links -->
+
 [github-issues-link]: https://github.com/ChanMeng666/gradient-svg-generator/issues
 [github-stars-link]: https://github.com/ChanMeng666/gradient-svg-generator/stargazers
 [github-forks-link]: https://github.com/ChanMeng666/gradient-svg-generator/forks
@@ -1415,9 +1585,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [github-license-link]: https://github.com/ChanMeng666/gradient-svg-generator/blob/main/LICENSE
 
 <!-- Community Links -->
+
 [sponsor-link]: https://github.com/sponsors/ChanMeng666
 
 <!-- Shield Badges -->
+
 [github-release-shield]: https://img.shields.io/github/v/release/ChanMeng666/gradient-svg-generator?color=369eff&labelColor=black&logo=github&style=flat-square
 [vercel-shield]: https://img.shields.io/badge/vercel-online-55b467?labelColor=black&logo=vercel&style=flat-square
 [next-shield]: https://img.shields.io/badge/next.js-13-000000?labelColor=black&logo=nextdotjs&logoColor=white&style=flat-square
@@ -1431,16 +1603,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [github-trending-shield]: https://img.shields.io/badge/trending-gradient--svg--generator-ff6b6b?style=flat-square
 
 <!-- Badge Variants -->
+
 [demo-shield-badge]: https://img.shields.io/badge/TRY%20DEMO-ONLINE-55b467?labelColor=black&logo=vercel&style=for-the-badge
 [settings-shield-badge]: https://img.shields.io/badge/ADVANCED-EDITOR-369eff?labelColor=black&logo=react&style=for-the-badge
 
 <!-- Social Share Links -->
+
 [share-x-link]: https://x.com/intent/tweet?hashtags=opensource,svg,gradients&text=Check%20out%20this%20amazing%20Gradient%20SVG%20Generator%20with%20180%2B%20templates&url=https%3A%2F%2Fgithub.com%2FChanMeng666%2Fgradient-svg-generator
 [share-telegram-link]: https://t.me/share/url?text=Gradient%20SVG%20Generator%20-%20180%2B%20Professional%20Templates&url=https%3A%2F%2Fgithub.com%2FChanMeng666%2Fgradient-svg-generator
 [share-whatsapp-link]: https://api.whatsapp.com/send?text=Check%20out%20this%20Gradient%20SVG%20Generator%20https%3A%2F%2Fgithub.com%2FChanMeng666%2Fgradient-svg-generator
 [share-reddit-link]: https://www.reddit.com/submit?title=Gradient%20SVG%20Generator%20with%20180%2B%20Templates&url=https%3A%2F%2Fgithub.com%2FChanMeng666%2Fgradient-svg-generator
 [share-linkedin-link]: https://linkedin.com/sharing/share-offsite/?url=https://github.com/ChanMeng666/gradient-svg-generator
-
 [share-x-shield]: https://img.shields.io/badge/-share%20on%20x-black?labelColor=black&logo=x&logoColor=white&style=flat-square
 [share-telegram-shield]: https://img.shields.io/badge/-share%20on%20telegram-black?labelColor=black&logo=telegram&logoColor=white&style=flat-square
 [share-whatsapp-shield]: https://img.shields.io/badge/-share%20on%20whatsapp-black?labelColor=black&logo=whatsapp&logoColor=white&style=flat-square
@@ -1448,8 +1621,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [share-linkedin-shield]: https://img.shields.io/badge/-share%20on%20linkedin-black?labelColor=black&logo=linkedin&logoColor=white&style=flat-square
 
 <!-- Images -->
+
 [image-star]: https://gradient-svg-generator.vercel.app/api/svg?text=%E2%AD%90%20Star%20Us%20on%20GitHub%20%E2%AD%90&template=golden-leaf&height=200
 [image-feat-core]: https://gradient-svg-generator.vercel.app/api/svg?text=Core%20Features&template=diamond-sparkle&height=120
 
 <!-- Trending -->
+
 [github-trending-url]: https://github.com/trending
