@@ -29,7 +29,7 @@ module.exports = {
     colors: ['ff0000', 'ff8c00', 'ffff00', '008000', '0000ff', '4b0082'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Traditional pride rainbow flag'
+    description: 'Traditional pride rainbow flag',
   },
   'trans-pride': {
     name: 'trans-pride',
@@ -37,7 +37,7 @@ module.exports = {
     colors: ['55cdfc', 'f7a8b8', 'ffffff', 'f7a8b8', '55cdfc'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Trans pride flag colors'
+    description: 'Trans pride flag colors',
   },
   'bi-pride': {
     name: 'bi-pride',
@@ -45,7 +45,7 @@ module.exports = {
     colors: ['d60270', '9b4f96', '0038a8'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Bi pride flag colors'
+    description: 'Bi pride flag colors',
   },
   'pan-pride': {
     name: 'pan-pride',
@@ -53,7 +53,7 @@ module.exports = {
     colors: ['ff1b8d', 'ffd800', '00b5ff'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Pan pride flag colors'
+    description: 'Pan pride flag colors',
   },
   'nonbinary-pride': {
     name: 'nonbinary-pride',
@@ -61,7 +61,7 @@ module.exports = {
     colors: ['fcf434', 'ffffff', '9c59d1', '2c2c2c'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Nonbinary pride flag colors'
+    description: 'Nonbinary pride flag colors',
   },
   'lesbian-pride': {
     name: 'lesbian-pride',
@@ -69,7 +69,7 @@ module.exports = {
     colors: ['d62900', 'ff9b55', 'ffffff', 'd461a6', 'a50062'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Modern lesbian pride flag colors'
+    description: 'Modern lesbian pride flag colors',
   },
   'genderqueer-pride': {
     name: 'genderqueer-pride',
@@ -77,7 +77,7 @@ module.exports = {
     colors: ['b57edc', 'ffffff', '4a8123'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Genderqueer pride flag colors'
+    description: 'Genderqueer pride flag colors',
   },
   'genderfluid-pride': {
     name: 'genderfluid-pride',
@@ -85,7 +85,7 @@ module.exports = {
     colors: ['ff75a2', 'ffffff', 'be18d6', '000000', '333ebd'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Genderfluid pride flag colors'
+    description: 'Genderfluid pride flag colors',
   },
   'ace-pride': {
     name: 'ace-pride',
@@ -93,7 +93,7 @@ module.exports = {
     colors: ['000000', 'a3a3a3', 'ffffff', '800080'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Asexual pride flag colors'
+    description: 'Asexual pride flag colors',
   },
   'aro-pride': {
     name: 'aro-pride',
@@ -101,7 +101,7 @@ module.exports = {
     colors: ['3da542', 'a7d379', 'ffffff', 'a9a9a9', '000000'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Aromantic pride flag colors'
+    description: 'Aromantic pride flag colors',
   },
   'intersex-pride': {
     name: 'intersex-pride',
@@ -109,7 +109,7 @@ module.exports = {
     colors: ['ffd800', '7902aa'],
     gradientType: 'circular',
     animationDuration: '6s',
-    description: 'Intersex pride flag colors with unique circular gradient'
+    description: 'Intersex pride flag colors with unique circular gradient',
   },
   'agender-pride': {
     name: 'agender-pride',
@@ -117,7 +117,7 @@ module.exports = {
     colors: ['000000', 'b9b9b9', 'ffffff', 'b8f483', 'ffffff', 'b9b9b9', '000000'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Agender pride flag colors'
+    description: 'Agender pride flag colors',
   },
   'poly-pride': {
     name: 'poly-pride',
@@ -125,7 +125,7 @@ module.exports = {
     colors: ['0000ff', 'ff0000', '000000'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Polyamory pride flag colors'
+    description: 'Polyamory pride flag colors',
   },
   'demiboy-pride': {
     name: 'demiboy-pride',
@@ -133,7 +133,7 @@ module.exports = {
     colors: ['7f7f7f', 'c4c4c4', '9ad9eb', 'ffffff'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Demiboy pride flag colors'
+    description: 'Demiboy pride flag colors',
   },
   'demigirl-pride': {
     name: 'demigirl-pride',
@@ -141,7 +141,7 @@ module.exports = {
     colors: ['7f7f7f', 'c4c4c4', 'ffaec9', 'ffffff'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Demigirl pride flag colors'
+    description: 'Demigirl pride flag colors',
   },
   'omnisexual-pride': {
     name: 'omnisexual-pride',
@@ -149,7 +149,7 @@ module.exports = {
     colors: ['ff9ccd', 'ff53bd', '2c2c2c', '6760ff', '9cb9ff'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Omnisexual pride flag colors'
+    description: 'Omnisexual pride flag colors',
   },
   'progress-pride': {
     name: 'progress-pride',
@@ -157,7 +157,7 @@ module.exports = {
     colors: ['000000', '784F17', 'ff0000', 'ff8c00', 'ffff00', '008000', '0000ff', '4b0082'],
     gradientType: 'diagonal',
     animationDuration: '8s',
-    description: 'Progress pride flag with inclusive colors'
+    description: 'Progress pride flag with inclusive colors',
   },
   'demiromantic-pride': {
     name: 'demiromantic-pride',
@@ -165,7 +165,7 @@ module.exports = {
     colors: ['ffffff', '3da542', '000000', 'a9a9a9'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Demiromantic pride flag colors'
+    description: 'Demiromantic pride flag colors',
   },
   'demisexual-pride': {
     name: 'demisexual-pride',
@@ -173,7 +173,7 @@ module.exports = {
     colors: ['ffffff', '6e0070', 'd2d2d2', '000000'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Demisexual pride flag colors'
+    description: 'Demisexual pride flag colors',
   },
   'queer-pride': {
     name: 'queer-pride',
@@ -181,6 +181,6 @@ module.exports = {
     colors: ['b57edc', 'ffffff', '4a8123', '000000'],
     gradientType: 'vertical',
     animationDuration: '7s',
-    description: 'Queer pride flag colors'
-  }
+    description: 'Queer pride flag colors',
+  },
 };

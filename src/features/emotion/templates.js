@@ -17,7 +17,7 @@ module.exports = {
     colors: ['ffdd59', 'ff9f43', 'ff6b6b', 'ff9ff3'],
     gradientType: 'burst',
     animationDuration: '5s',
-    description: 'Pure joy and happiness'
+    description: 'Pure joy and happiness',
   },
   'calm-serenity': {
     name: 'calm-serenity',
@@ -25,7 +25,7 @@ module.exports = {
     colors: ['a8e6cf', '88d8c0', '7fcdcd', '68b3c0'],
     gradientType: 'radial',
     animationDuration: '12s',
-    description: 'Peaceful and calming'
+    description: 'Peaceful and calming',
   },
   'passion-fire': {
     name: 'passion-fire',
@@ -33,7 +33,7 @@ module.exports = {
     colors: ['ff0844', 'ff6b6b', 'ff8e53', 'ff6348'],
     gradientType: 'pulse',
     animationDuration: '4s',
-    description: 'Passionate and intense'
+    description: 'Passionate and intense',
   },
   'melancholy-blue': {
     name: 'melancholy-blue',
@@ -41,7 +41,7 @@ module.exports = {
     colors: ['2c3e50', '34495e', '5d6d7e', '85929e'],
     gradientType: 'vertical',
     animationDuration: '15s',
-    description: 'Contemplative melancholy'
+    description: 'Contemplative melancholy',
   },
   'hope-dawn': {
     name: 'hope-dawn',
@@ -49,7 +49,7 @@ module.exports = {
     colors: ['ffecd2', 'fcb69f', 'ee9ca7', 'ffdde1'],
     gradientType: 'horizontal',
     animationDuration: '10s',
-    description: 'New hope and beginnings'
+    description: 'New hope and beginnings',
   },
   'mystery-dark': {
     name: 'mystery-dark',
@@ -57,7 +57,7 @@ module.exports = {
     colors: ['2c2c54', '40407a', '706fd3', '474787'],
     gradientType: 'spiral',
     animationDuration: '11s',
-    description: 'Dark and mysterious'
+    description: 'Dark and mysterious',
   },
   'love-romance': {
     name: 'love-romance',
@@ -65,7 +65,7 @@ module.exports = {
     colors: ['ff9a9e', 'fecfef', 'fecfef', 'ff9a9e'],
     gradientType: 'reflection',
     animationDuration: '8s',
-    description: 'Romantic and loving'
+    description: 'Romantic and loving',
   },
   'energy-power': {
     name: 'energy-power',
@@ -73,7 +73,7 @@ module.exports = {
     colors: ['f39800', 'ff6b35', 'f7931e', 'ffcc02'],
     gradientType: 'diamond',
     animationDuration: '6s',
-    description: 'High energy and power'
+    description: 'High energy and power',
   },
   'dreams-fantasy': {
     name: 'dreams-fantasy',
@@ -81,7 +81,7 @@ module.exports = {
     colors: ['a8edea', 'fed6e3', 'd299c2', 'fef9d7'],
     gradientType: 'wave',
     animationDuration: '14s',
-    description: 'Dreamy and fantastical'
+    description: 'Dreamy and fantastical',
   },
   'wisdom-depth': {
     name: 'wisdom-depth',
@@ -89,7 +89,7 @@ module.exports = {
     colors: ['667eea', '764ba2', '667eea', '764ba2'],
     gradientType: 'diagonal',
     animationDuration: '13s',
-    description: 'Deep wisdom and insight'
+    description: 'Deep wisdom and insight',
   },
   'anxiety-stress': {
     name: 'anxiety-stress',
@@ -97,7 +97,7 @@ module.exports = {
     colors: ['ff5722', 'ff7043', 'ff8a65', 'ffab91'],
     gradientType: 'burst',
     animationDuration: '3s',
-    description: 'Anxious and stressful feelings'
+    description: 'Anxious and stressful feelings',
   },
   'peace-harmony': {
     name: 'peace-harmony',
@@ -105,6 +105,6 @@ module.exports = {
     colors: ['c3f0ca', 'b8e6c1', 'a8ddb5', '98d1a9'],
     gradientType: 'circular',
     animationDuration: '16s',
-    description: 'Perfect peace and harmony'
-  }
-}; 
+    description: 'Perfect peace and harmony',
+  },
+};

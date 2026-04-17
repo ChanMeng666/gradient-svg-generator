@@ -17,7 +17,7 @@ module.exports = {
     colors: ['ffd700', 'ffb347', 'daa520', 'b8860b'],
     gradientType: 'diagonal',
     animationDuration: '8s',
-    description: 'Luxurious gold metallic'
+    description: 'Luxurious gold metallic',
   },
   'silver-chrome': {
     name: 'silver-chrome',
@@ -25,7 +25,7 @@ module.exports = {
     colors: ['c0c0c0', 'dcdcdc', 'a9a9a9', '696969'],
     gradientType: 'reflection',
     animationDuration: '7s',
-    description: 'Shiny chrome finish'
+    description: 'Shiny chrome finish',
   },
   'copper-bronze': {
     name: 'copper-bronze',
@@ -33,7 +33,7 @@ module.exports = {
     colors: ['cd7f32', 'b87333', 'a0522d', '8b4513'],
     gradientType: 'radial',
     animationDuration: '9s',
-    description: 'Warm copper bronze'
+    description: 'Warm copper bronze',
   },
   'diamond-crystal': {
     name: 'diamond-crystal',
@@ -41,7 +41,7 @@ module.exports = {
     colors: ['ffffff', 'f0f8ff', 'e6e6fa', 'dcdcdc'],
     gradientType: 'burst',
     animationDuration: '6s',
-    description: 'Brilliant diamond sparkle'
+    description: 'Brilliant diamond sparkle',
   },
   'emerald-gem': {
     name: 'emerald-gem',
@@ -49,7 +49,7 @@ module.exports = {
     colors: ['50c878', '228b22', '00ff7f', '32cd32'],
     gradientType: 'circular',
     animationDuration: '10s',
-    description: 'Precious emerald green'
+    description: 'Precious emerald green',
   },
   'ruby-red': {
     name: 'ruby-red',
@@ -57,7 +57,7 @@ module.exports = {
     colors: ['e0115f', 'dc143c', 'b22222', '8b0000'],
     gradientType: 'pulse',
     animationDuration: '5s',
-    description: 'Deep ruby red gemstone'
+    description: 'Deep ruby red gemstone',
   },
   'sapphire-blue': {
     name: 'sapphire-blue',
@@ -65,7 +65,7 @@ module.exports = {
     colors: ['0f52ba', '4169e1', '1e90ff', '87ceeb'],
     gradientType: 'wave',
     animationDuration: '11s',
-    description: 'Royal sapphire blue'
+    description: 'Royal sapphire blue',
   },
   'marble-white': {
     name: 'marble-white',
@@ -73,7 +73,7 @@ module.exports = {
     colors: ['ffffff', 'f5f5f5', 'dcdcdc', 'c0c0c0'],
     gradientType: 'diamond',
     animationDuration: '12s',
-    description: 'Elegant marble texture'
+    description: 'Elegant marble texture',
   },
   'obsidian-black': {
     name: 'obsidian-black',
@@ -81,7 +81,7 @@ module.exports = {
     colors: ['000000', '2f2f2f', '1c1c1c', '0d0d0d'],
     gradientType: 'spiral',
     animationDuration: '8s',
-    description: 'Volcanic obsidian glass'
+    description: 'Volcanic obsidian glass',
   },
   'titanium-steel': {
     name: 'titanium-steel',
@@ -89,7 +89,7 @@ module.exports = {
     colors: ['708090', '778899', '2f4f4f', '696969'],
     gradientType: 'horizontal',
     animationDuration: '9s',
-    description: 'Industrial titanium steel'
+    description: 'Industrial titanium steel',
   },
   'pearl-luster': {
     name: 'pearl-luster',
@@ -97,7 +97,7 @@ module.exports = {
     colors: ['faf0e6', 'fff8dc', 'f5f5dc', 'fffacd'],
     gradientType: 'radial',
     animationDuration: '13s',
-    description: 'Lustrous pearl surface'
+    description: 'Lustrous pearl surface',
   },
   'opal-iridescent': {
     name: 'opal-iridescent',
@@ -105,6 +105,6 @@ module.exports = {
     colors: ['ff69b4', '00ffff', 'ffff00', 'ff1493', '9370db'],
     gradientType: 'conic',
     animationDuration: '7s',
-    description: 'Iridescent opal colors'
-  }
-}; 
+    description: 'Iridescent opal colors',
+  },
+};

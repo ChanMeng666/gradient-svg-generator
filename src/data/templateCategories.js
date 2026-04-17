@@ -12,18 +12,18 @@
 
 // Import all template categories
 const basicTemplates = require('../features/basic/templates');
-const prideTemplates = require('../templates/prideTemplates');
+const prideTemplates = require('../features/pride/templates');
 const natureTemplates = require('../features/nature/templates');
 const techTemplates = require('../features/tech/templates');
 const artTemplates = require('../features/art/templates');
-const emotionTemplates = require('../templates/emotionTemplates');
-const materialTemplates = require('../templates/materialTemplates');
+const emotionTemplates = require('../features/emotion/templates');
+const materialTemplates = require('../features/material/templates');
 const textEffectTemplates = require('../templates/textEffectTemplates');
 const luxuryTemplates = require('../features/luxury/templates');
 const gamingTemplates = require('../features/gaming/templates');
 // 新增模板类别 - 来自示例项目整合
 const shapeTemplates = require('../features/shape/templates');
-const animationTemplates = require('../templates/animationTemplates');
+const animationTemplates = require('../features/animation/templates');
 const morphingTemplates = require('../templates/morphingTemplates');
 const fluidsTemplates = require('../features/fluids/templates');
 const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
