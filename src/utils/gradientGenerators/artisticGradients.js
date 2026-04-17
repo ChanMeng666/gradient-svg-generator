@@ -4,15 +4,13 @@
  * Refactored to use centralized FilterLibrary and AnimationLibrary
  */
 
-const {
-  createBlurFilter,
-  createTurbulenceFilter,
-  createColorMatrixFilter
-} = require('../../core/FilterLibrary');
-
+const { createTurbulenceFilter } = require('../../core/FilterLibrary');
 const { multiplyDuration } = require('../../core/AnimationLibrary');
+const {
+  animatedLinearGradient,
+  animatedRadialGradient,
+} = require('../../features/_shared/svgPrimitives');
 
-// Artistic gradient generators
 function createWatercolorGradient(stops, animationConfig, animationDuration) {
   const watercolorFilter = `
     <filter id="watercolorBlur">
@@ -21,13 +19,19 @@ function createWatercolorGradient(stops, animationConfig, animationDuration) {
     </filter>`;
 
   return {
-    gradientDef: `
-      <radialGradient id="gradient" cx="40%" cy="40%" r="60%">
-        ${stops}
-        <animate attributeName="cx" values="40%;60%;40%" ${animationConfig} />
-        <animate attributeName="cy" values="40%;60%;40%" dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite" />
-      </radialGradient>
-      ${watercolorFilter}`
+    gradientDef:
+      animatedRadialGradient(stops, animationConfig, {
+        coords: 'cx="40%" cy="40%" r="60%"',
+        animates: [
+          ['cx', '40%;60%;40%'],
+          {
+            attr: 'cy',
+            values: '40%;60%;40%',
+            cfg: `dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite"`,
+          },
+        ],
+        indent: 6,
+      }) + `\n      ${watercolorFilter}`,
   };
 }
 
@@ -36,17 +40,19 @@ function createOilPaintGradient(stops, animationConfig, animationDuration) {
     baseFrequency: '0.4',
     numOctaves: 2,
     scale: 5,
-    animated: false
+    animated: false,
   });
 
   return {
-    gradientDef: `
-      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        ${stops}
-        <animate attributeName="x1" values="0%;30%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="0%;30%;0%" ${animationConfig} />
-      </linearGradient>
-      ${oilPaintFilter}`
+    gradientDef:
+      animatedLinearGradient(stops, animationConfig, {
+        coords: 'x1="0%" y1="0%" x2="100%" y2="100%"',
+        animates: [
+          ['x1', '0%;30%;0%'],
+          ['y1', '0%;30%;0%'],
+        ],
+        indent: 6,
+      }) + `\n      ${oilPaintFilter}`,
   };
 }
 
@@ -57,16 +63,16 @@ function createInkSplashGradient(stops, animationConfig, animationDuration) {
     scale: 15,
     animated: true,
     animationValues: '15;30;15',
-    duration: animationDuration
+    duration: animationDuration,
   });
 
   return {
-    gradientDef: `
-      <radialGradient id="gradient" cx="50%" cy="50%" r="40%">
-        ${stops}
-        <animate attributeName="r" values="20%;80%;20%" ${animationConfig} />
-      </radialGradient>
-      ${inkFilter}`
+    gradientDef:
+      animatedRadialGradient(stops, animationConfig, {
+        coords: 'cx="50%" cy="50%" r="40%"',
+        animates: [['r', '20%;80%;20%']],
+        indent: 6,
+      }) + `\n      ${inkFilter}`,
   };
 }
 
@@ -82,17 +88,23 @@ function createMosaicGradient(stops, animationConfig, animationDuration, colorsC
         <rect y="15" width="15" height="15" fill="#${colorsCopy[2]}" opacity="0.8"/>
         <rect x="15" y="15" width="15" height="15" fill="#${colorsCopy[3] || colorsCopy[0]}" opacity="0.8"/>
         <animateTransform attributeName="patternTransform" type="rotate" values="0 15 15;360 15 15" ${animationConfig} />
-      </pattern>`
+      </pattern>`,
   };
 }
 
 function createAbstractGeoGradient(stops, animationConfig, animationDuration) {
   return {
-    gradientDef: `
-      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        ${stops}
-        <animateTransform attributeName="gradientTransform" type="rotate" values="0 50 50;180 50 50;360 50 50" ${animationConfig} />
-      </linearGradient>`
+    gradientDef: animatedLinearGradient(stops, animationConfig, {
+      coords: 'x1="0%" y1="0%" x2="100%" y2="100%"',
+      animates: [
+        {
+          attr: 'gradientTransform',
+          values: '0 50 50;180 50 50;360 50 50',
+          type: 'transform',
+        },
+      ],
+      indent: 6,
+    }),
   };
 }
 
@@ -101,17 +113,19 @@ function createGraffitiGradient(stops, animationConfig, animationDuration) {
     baseFrequency: '2',
     numOctaves: 1,
     scale: 3,
-    animated: false
+    animated: false,
   });
 
   return {
-    gradientDef: `
-      <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
-        ${stops}
-        <animate attributeName="x1" values="-30%;70%;-30%" ${animationConfig} />
-        <animate attributeName="x2" values="30%;130%;30%" ${animationConfig} />
-      </linearGradient>
-      ${graffitiFilter}`
+    gradientDef:
+      animatedLinearGradient(stops, animationConfig, {
+        coords: 'x1="0%" y1="50%" x2="100%" y2="50%"',
+        animates: [
+          ['x1', '-30%;70%;-30%'],
+          ['x2', '30%;130%;30%'],
+        ],
+        indent: 6,
+      }) + `\n      ${graffitiFilter}`,
   };
 }
 
@@ -123,12 +137,12 @@ function createVintageGradient(stops, animationConfig, animationDuration) {
     </filter>`;
 
   return {
-    gradientDef: `
-      <radialGradient id="gradient" cx="50%" cy="50%" r="70%">
-        ${stops}
-        <animate attributeName="r" values="50%;90%;50%" ${animationConfig} />
-      </radialGradient>
-      ${vintageFilter}`
+    gradientDef:
+      animatedRadialGradient(stops, animationConfig, {
+        coords: 'cx="50%" cy="50%" r="70%"',
+        animates: [['r', '50%;90%;50%']],
+        indent: 6,
+      }) + `\n      ${vintageFilter}`,
   };
 }
 
@@ -139,5 +153,5 @@ module.exports = {
   createMosaicGradient,
   createAbstractGeoGradient,
   createGraffitiGradient,
-  createVintageGradient
+  createVintageGradient,
 };
