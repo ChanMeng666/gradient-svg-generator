@@ -23,6 +23,7 @@ const { manifest: patternManifest } = require('./pattern/effect');
 const { manifest: metallicManifest } = require('./metallic/effect');
 const { manifest: pathTextManifest } = require('./pathText/effect');
 const { manifest: githubProfileManifest } = require('./githubProfile/effect');
+const { manifest: rawAdvancedManifest } = require('./rawAdvanced/effect');
 const { manifest: advancedManifest } = require('./advanced/effect');
 
 /** @type {ReadonlyArray<EffectManifest>} */
@@ -43,6 +44,7 @@ const manifests = [
   metallicManifest,
   pathTextManifest,
   githubProfileManifest,
+  rawAdvancedManifest,
   advancedManifest,
 ];
 

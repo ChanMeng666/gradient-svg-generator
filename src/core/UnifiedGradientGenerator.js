@@ -301,26 +301,6 @@ function generateLegacy(params) {
   const { text, colors, height, gradientType, duration, template } = params;
   const width = 854;
 
-  // Special handling for advanced effects using advancedSvgGenerator
-  const geometricShapeTypes = ['wave', 'ellipse', 'square'];
-  const animationEffectTypes = [
-    'glitch',
-    'typewriter',
-    'luminance',
-    'rainbow',
-    'textBox',
-    // 🌟 NEW: Enhanced Effects - Inspired by svg-banners example
-    'glitchEnhanced',
-    'luminanceEnhanced',
-    'borderDrawing',
-    'layeredWave',
-    'typewriterEnhanced',
-  ];
-
-  if (geometricShapeTypes.includes(gradientType) || animationEffectTypes.includes(gradientType)) {
-    return generateAdvancedSVG(gradientType, text, colors, width, height, { duration });
-  }
-
   // Special handling for text effects
   const textEffectTypes = [
     'luminance',
