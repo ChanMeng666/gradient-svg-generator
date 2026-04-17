@@ -11,19 +11,17 @@
  */
 
 // Organic nature gradient generators
-// Refactored to use centralized FilterLibrary and AnimationLibrary
+// Refactored to use centralized FilterLibrary, AnimationLibrary, and svgPrimitives
 
+const { createTurbulenceFilter, createColorMatrixFilter } = require('../../core/FilterLibrary');
+const { multiplyDuration } = require('../../core/AnimationLibrary');
 const {
-  createTurbulenceFilter,
-  createBlurFilter,
-  createColorMatrixFilter,
-  createCompositeFilter
-} = require('../../core/FilterLibrary');
+  animatedLinearGradient,
+  animatedRadialGradient,
+} = require('../../features/_shared/svgPrimitives');
 
-const {
-  buildAnimationConfig,
-  multiplyDuration
-} = require('../../core/AnimationLibrary');
+const longDur = (base, factor) =>
+  `dur="${multiplyDuration(base, factor)}" repeatCount="indefinite"`;
 
 function createFlowingWaterGradient(stops, animationConfig, animationDuration) {
   const waterFilter = createTurbulenceFilter('waterRipple', {
@@ -32,17 +30,19 @@ function createFlowingWaterGradient(stops, animationConfig, animationDuration) {
     scale: 10,
     animated: true,
     animationValues: '5;15;5',
-    duration: animationDuration
+    duration: animationDuration,
   });
 
   return {
-    gradientDef: `
-      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        ${stops}
-        <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="0%;100%;0%" dur="${multiplyDuration(animationDuration, 1.3)}" repeatCount="indefinite" />
-      </linearGradient>
-      ${waterFilter}`
+    gradientDef:
+      animatedLinearGradient(stops, animationConfig, {
+        coords: 'x1="0%" y1="0%" x2="100%" y2="100%"',
+        animates: [
+          ['x1', '0%;100%;0%'],
+          { attr: 'y1', values: '0%;100%;0%', cfg: longDur(animationDuration, 1.3) },
+        ],
+        indent: 6,
+      }) + `\n      ${waterFilter}`,
   };
 }
 
@@ -53,17 +53,19 @@ function createFlameGradient(stops, animationConfig, animationDuration) {
     scale: 15,
     animated: true,
     animationValues: '15;25;15',
-    duration: animationDuration
+    duration: animationDuration,
   });
 
   return {
-    gradientDef: `
-      <radialGradient id="gradient" cx="50%" cy="80%" r="60%">
-        ${stops}
-        <animate attributeName="cy" values="80%;60%;80%" ${animationConfig} />
-        <animate attributeName="r" values="60%;80%;60%" dur="${multiplyDuration(animationDuration, 0.8)}" repeatCount="indefinite" />
-      </radialGradient>
-      ${flameFilter}`
+    gradientDef:
+      animatedRadialGradient(stops, animationConfig, {
+        coords: 'cx="50%" cy="80%" r="60%"',
+        animates: [
+          ['cy', '80%;60%;80%'],
+          { attr: 'r', values: '60%;80%;60%', cfg: longDur(animationDuration, 0.8) },
+        ],
+        indent: 6,
+      }) + `\n      ${flameFilter}`,
   };
 }
 
@@ -74,17 +76,19 @@ function createCloudsGradient(stops, animationConfig, animationDuration) {
     scale: 20,
     animated: true,
     animationValues: '20;30;20',
-    duration: animationDuration
+    duration: animationDuration,
   });
 
   return {
-    gradientDef: `
-      <radialGradient id="gradient" cx="50%" cy="40%" r="80%">
-        ${stops}
-        <animate attributeName="cx" values="30%;70%;30%" dur="${multiplyDuration(animationDuration, 2)}" repeatCount="indefinite" />
-        <animate attributeName="cy" values="40%;60%;40%" ${animationConfig} />
-      </radialGradient>
-      ${cloudFilter}`
+    gradientDef:
+      animatedRadialGradient(stops, animationConfig, {
+        coords: 'cx="50%" cy="40%" r="80%"',
+        animates: [
+          { attr: 'cx', values: '30%;70%;30%', cfg: longDur(animationDuration, 2) },
+          ['cy', '40%;60%;40%'],
+        ],
+        indent: 6,
+      }) + `\n      ${cloudFilter}`,
   };
 }
 
@@ -95,17 +99,19 @@ function createAuroraGradient(stops, animationConfig, animationDuration) {
     scale: 25,
     animated: true,
     animationValues: '25;40;25',
-    duration: animationDuration
+    duration: animationDuration,
   });
 
   return {
-    gradientDef: `
-      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        ${stops}
-        <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
-        <animate attributeName="y1" values="0%;50%;100%;50%;0%" dur="${multiplyDuration(animationDuration, 1.5)}" repeatCount="indefinite" />
-      </linearGradient>
-      ${auroraFilter}`
+    gradientDef:
+      animatedLinearGradient(stops, animationConfig, {
+        coords: 'x1="0%" y1="0%" x2="100%" y2="100%"',
+        animates: [
+          ['x1', '0%;100%;0%'],
+          { attr: 'y1', values: '0%;50%;100%;50%;0%', cfg: longDur(animationDuration, 1.5) },
+        ],
+        indent: 6,
+      }) + `\n      ${auroraFilter}`,
   };
 }
 
@@ -116,17 +122,19 @@ function createOceanWavesGradient(stops, animationConfig, animationDuration) {
     scale: 12,
     animated: true,
     animationValues: '12;20;12',
-    duration: animationDuration
+    duration: animationDuration,
   });
 
   return {
-    gradientDef: `
-      <radialGradient id="gradient" cx="50%" cy="100%" r="70%">
-        ${stops}
-        <animate attributeName="r" values="50%;90%;50%" ${animationConfig} />
-        <animate attributeName="cy" values="100%;80%;100%" dur="${multiplyDuration(animationDuration, 1.2)}" repeatCount="indefinite" />
-      </radialGradient>
-      ${oceanFilter}`
+    gradientDef:
+      animatedRadialGradient(stops, animationConfig, {
+        coords: 'cx="50%" cy="100%" r="70%"',
+        animates: [
+          ['r', '50%;90%;50%'],
+          { attr: 'cy', values: '100%;80%;100%', cfg: longDur(animationDuration, 1.2) },
+        ],
+        indent: 6,
+      }) + `\n      ${oceanFilter}`,
   };
 }
 
@@ -135,17 +143,19 @@ function createForestGradient(stops, animationConfig, animationDuration) {
     baseFrequency: '0.8',
     numOctaves: 3,
     scale: 5,
-    animated: false
+    animated: false,
   });
 
   return {
-    gradientDef: `
-      <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-        ${stops}
-        <animate attributeName="y1" values="0%;30%;0%" ${animationConfig} />
-        <animate attributeName="y2" values="100%;70%;100%" ${animationConfig} />
-      </linearGradient>
-      ${forestFilter}`
+    gradientDef:
+      animatedLinearGradient(stops, animationConfig, {
+        coords: 'x1="0%" y1="0%" x2="0%" y2="100%"',
+        animates: [
+          ['y1', '0%;30%;0%'],
+          ['y2', '100%;70%;100%'],
+        ],
+        indent: 6,
+      }) + `\n      ${forestFilter}`,
   };
 }
 
@@ -153,16 +163,16 @@ function createLightningGradient(stops, animationConfig, animationDuration) {
   const lightningFilter = createColorMatrixFilter('lightningBolt', {
     saturation: 1.5,
     includeBlur: true,
-    blurAmount: 3
+    blurAmount: 3,
   });
 
   return {
-    gradientDef: `
-      <radialGradient id="gradient" cx="50%" cy="50%" r="40%">
-        ${stops}
-        <animate attributeName="r" values="20%;60%;20%" dur="${multiplyDuration(animationDuration, 0.3)}" repeatCount="indefinite" />
-      </radialGradient>
-      ${lightningFilter}`
+    gradientDef:
+      animatedRadialGradient(stops, animationConfig, {
+        coords: 'cx="50%" cy="50%" r="40%"',
+        animates: [{ attr: 'r', values: '20%;60%;20%', cfg: longDur(animationDuration, 0.3) }],
+        indent: 6,
+      }) + `\n      ${lightningFilter}`,
   };
 }
 
@@ -178,13 +188,15 @@ function createMountainMistGradient(stops, animationConfig, animationDuration) {
     </filter>`;
 
   return {
-    gradientDef: `
-      <linearGradient id="gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-        ${stops}
-        <animate attributeName="y1" values="100%;80%;100%" ${animationConfig} />
-        <animate attributeName="y2" values="0%;20%;0%" ${animationConfig} />
-      </linearGradient>
-      ${mistFilter}`
+    gradientDef:
+      animatedLinearGradient(stops, animationConfig, {
+        coords: 'x1="0%" y1="100%" x2="100%" y2="0%"',
+        animates: [
+          ['y1', '100%;80%;100%'],
+          ['y2', '0%;20%;0%'],
+        ],
+        indent: 6,
+      }) + `\n      ${mistFilter}`,
   };
 }
 
@@ -196,5 +208,5 @@ module.exports = {
   createOceanWavesGradient,
   createForestGradient,
   createLightningGradient,
-  createMountainMistGradient
+  createMountainMistGradient,
 };
