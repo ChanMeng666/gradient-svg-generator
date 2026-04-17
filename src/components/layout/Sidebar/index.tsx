@@ -64,7 +64,7 @@ export default function Sidebar({ templates, categories, onTemplateSelect }: Sid
 
     if (activeTab === 'recent') {
       const recentNames = recentTemplates
-        .map((t: SidebarTemplate) => t.name)
+        .map((t) => t.name)
         .filter((name: string) => templates.some((t) => t.name === name));
       return recentNames
         .map((name: string) => templates.find((t) => t.name === name))
