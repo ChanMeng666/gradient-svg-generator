@@ -35,11 +35,16 @@ import {
 } from 'lucide-react';
 
 // Dynamic imports for heavy components
-const PropertiesPanel = dynamic(() => import('../components/features/PropertiesPanel'), {
-  ssr: false,
-});
+const PropertiesPanel = dynamic(
+  () =>
+    import('../components/features/properties-panel').then((m) => ({ default: m.PropertiesPanel })),
+  { ssr: false },
+);
 const MobilePropertiesPanel = dynamic(
-  () => import('../components/features/MobilePropertiesPanel'),
+  () =>
+    import('../components/features/properties-panel').then((m) => ({
+      default: m.MobilePropertiesPanel,
+    })),
   { ssr: false },
 );
 const SwipeableTemplateCarousel = dynamic(
