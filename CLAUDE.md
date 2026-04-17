@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Chromaflow is a Next.js 16 application that creates animated SVG gradients with customizable text overlays. It features **340+ templates** across **31 categories** and supports **180+ gradient types** with advanced visual effects.
+Chromaflow is a Next.js 16 application that creates animated SVG gradients with customizable text overlays. It features **340+ templates** across **19 categories** and supports **180+ gradient types** with advanced visual effects.
 
 ### Tech Stack
 
@@ -179,9 +179,10 @@ graph LR
     CACHE --> NORM
 ```
 
-- Templates organized by category in `src/templates/` (30 categories)
+- Templates are co-located with their generator under `src/features/<name>/templates.js` (19 feature folders)
 - **Static imports** used in TemplateRegistry for Webpack bundling compatibility
 - Template structure: `{ name, label, colors, gradientType, animationDuration, description }`
+- Shared color palettes live in `src/features/_shared/palettes.js` and are referenced via `colors: palettes.prideRainbow` where multiple templates share the same sequence or the sequence has a canonical meaning
 - Auto-registered via the config system
 
 ### Service Worker (PWA)
@@ -215,61 +216,70 @@ flowchart TB
 
 ```
 src/
-├── core/                    # Core architecture modules
-│   ├── UnifiedGradientGenerator.js
-│   ├── EffectRegistry.js
-│   ├── EffectLoader.js
-│   ├── TemplateRegistry.js
-│   ├── FilterLibrary.js
-│   ├── AnimationLibrary.js
-│   └── SVGComposer.js
-├── templates/               # 30 template category files
-│   ├── basicTemplates.js
-│   ├── prideTemplates.js
-│   ├── natureTemplates.js
-│   └── ... (27 more)
+├── core/                             # Core architecture modules
+│   ├── UnifiedGradientGenerator.js   # Main entry — orchestrates SVG generation
+│   ├── EffectRegistry.js             # Maps effect names -> generator functions
+│   ├── EffectLoader.js               # Manifest-driven effect registration
+│   ├── TemplateRegistry.js           # Manages template lookup with static imports
+│   ├── FilterLibrary.js              # Backward-compat shim (re-exports ./filters)
+│   ├── filters/                      # Per-primitive filter factories
+│   │   ├── blur.js, turbulence.js, glow.js, shadow.js
+│   │   ├── colorMatrix.js, lighting.js, morphology.js
+│   │   ├── convolve.js, composite.js
+│   │   ├── presets.js                # Static filter catalog (getAllFilters)
+│   │   ├── lookups.js                # getFilter, getFilterUrl, ...
+│   │   └── index.js                  # Barrel
+│   ├── AnimationLibrary.js           # Reusable animation utilities
+│   └── SVGComposer.js                # Composes final SVG documents
+├── features/                         # Vertical slices — 19 category folders + _shared/home
+│   ├── basic/{effect.js, templates.js}
+│   ├── art/, nature/, tech/, fluids/, specialty/   # Merged categories
+│   ├── pride/, emotion/, material/, animation/,    # Standalone
+│   │   luxury/, gaming/, shape/, lightShadow/,
+│   │   pattern/, metallic/, pathText/,
+│   │   culinaryLiquid/, githubProfile/
+│   ├── _shared/
+│   │   ├── palettes.js               # Named color presets (pride flags, rainbow, ...)
+│   │   └── svgPrimitives.js          # animatedLinearGradient / animatedRadialGradient factories
+│   ├── home/homeData.ts              # Featured/popular template lists
+│   └── index.js                      # Manifest barrel
 ├── utils/
-│   ├── gradientGenerators/  # 21 effect generator files
-│   │   ├── basicGradients.js
-│   │   ├── artisticGradients.js
-│   │   └── ... (19 more)
-│   ├── colorUtils.js
-│   ├── svgUtils.js
-│   └── templateUtils.js
+│   ├── gradientGenerators/           # 22 effect generator files
+│   ├── colorUtils.js, svgUtils.js, templateUtils.js
 ├── pages/
-│   ├── index.js            # Home page
-│   ├── create.js           # Advanced creation interface
-│   ├── templates.js        # Template gallery
-│   └── api/svg.js          # SVG generation API
+│   ├── index.js, create.js, templates.js, api-docs.js
+│   └── api/svg.ts                    # SVG generation API (typed, with X-Request-ID)
 ├── components/
-│   ├── layout/             # Header, Sidebar, Footer
-│   ├── features/           # Feature components
-│   └── ui/                 # shadcn/ui components
+│   ├── layout/                       # Header, Sidebar/ (split into 4 files), Footer
+│   ├── features/properties-panel/    # Merged desktop+mobile with `variant` prop
+│   └── ui/                           # shadcn/ui primitives (all .tsx)
+├── hooks/                            # useColorManagement, useShareActions, usePreviewUrl, ...
 ├── store/
-│   └── useStore.js         # Zustand state management
-└── styles/                 # CSS Modules
+│   ├── useStore.ts                   # Zustand v5 composed store
+│   └── slices/{config,template,ui}.ts
+└── styles/                           # Tailwind v4 (@theme in globals.css)
 ```
 
 ## Adding New Features
 
+See `docs/adding-an-effect.md` for a full walkthrough. Quick summary:
+
+### New Template (most common)
+
+Add an entry to the appropriate `src/features/<category>/templates.js` file. The template auto-registers via the existing CATEGORY_REGISTRY lookup. If the color sequence appears in 2+ templates or has a canonical meaning, add a named palette to `src/features/_shared/palettes.js` and reference it via `colors: palettes.myPalette`.
+
 ### New Gradient Type
 
-1. Create generator in `src/utils/gradientGenerators/`
-2. Register in `src/core/EffectLoader.js`
-3. Add to `GRADIENT_TYPES` in `src/config/gradientConfig.js`
-
-### New Template
-
-1. Add to appropriate category file in `src/templates/`
-2. Static import is already in `TemplateRegistry.js`
-3. Templates auto-register via the config system
+1. Create generator in `src/utils/gradientGenerators/` (or extend an existing file)
+2. Register via a manifest at `src/features/<category>/effect.js` (add to the `generators` map)
+3. Add to `GRADIENT_TYPES` in `src/config/gradientConfig.js` if the type should be selectable from the UI
 
 ### New Effect Category
 
-1. Create new generator file in `src/utils/gradientGenerators/`
-2. Create new template file in `src/templates/`
-3. Add static import to `src/core/TemplateRegistry.js`
-4. Add load function to `src/core/EffectLoader.js`
+1. Create `src/features/<name>/effect.js` with a manifest (see `basic/effect.js` for the schema)
+2. Create `src/features/<name>/templates.js` with initial template entries
+3. Add the category to `CATEGORY_REGISTRY` in `src/core/TemplateRegistry.js`, `templateCategories.js`, and `templateUtils.js` (all three are position-indexed)
+4. Add the feature to the barrel export in `src/features/index.js`
 
 ## Important Patterns
 
@@ -312,7 +322,7 @@ When testing changes:
 
 ### Statistics
 
-- **340+ Templates** across 31 categories
+- **340+ Templates** across 19 categories
 - **180+ Gradient Types** with unique effects
 - **50+ Animation Effects**
 
