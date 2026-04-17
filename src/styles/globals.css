@@ -1,22 +1,16 @@
+/* CSS spec: @import must come before any other rules (except @charset/@layer). */
+@import './variables.css';
+@import './reset.css';
+
 /* Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Import all style modules */
-@import './variables.css';
-@import './reset.css';
-/* Temporarily disabled to prevent conflicts with Tailwind
-@import './components.css';
-@import './navbar.css';
-@import './forms.css';
-@import './templates.css';
-@import './newFeatures.css';
-@import './preview.css';
-@import './responsive.css';
-@import './animations.css';
-@import './landing.css';
-*/
+/* Historically-imported modules disabled pending Tailwind migration:
+ * components.css, navbar.css, forms.css, templates.css, newFeatures.css,
+ * preview.css, responsive.css, animations.css, landing.css.
+ * Phase 3 consolidates these; Phase 2 just needs a clean build. */
 
 /* Tailwind CSS Custom Layers */
 @layer base {
@@ -80,11 +74,11 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .animate-in {
     animation: animateIn 0.3s ease-out;
   }
-  
+
   .gradient-text {
     @apply bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent;
   }

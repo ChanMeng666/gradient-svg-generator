@@ -31,14 +31,14 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Typecheck
-        run: npm run typecheck
-
       - name: Unit tests
         run: npm test
 
       - name: Contract tests (SVG byte-parity)
         run: npm run test:contract
 
-      - name: Build
+      # `next build` type-checks internally, and generates .next/types/routes.d.ts
+      # that next-env.d.ts references. A separate `tsc --noEmit` step would
+      # fail in a clean CI without those generated types.
+      - name: Build (includes typecheck)
         run: npm run build
