@@ -6,7 +6,7 @@
  */
 
 // Static imports for all template modules
-const basicTemplates = require('../templates/basicTemplates');
+const basicTemplates = require('../features/basic/templates');
 const prideTemplates = require('../templates/prideTemplates');
 const natureTemplates = require('../templates/natureTemplates');
 const techTemplates = require('../templates/techTemplates');
@@ -101,7 +101,7 @@ function loadCategoryTemplates(categoryId) {
   categoryTemplatesCache.set(categoryId, templates);
 
   // Also cache individual templates by name
-  templates.forEach(template => {
+  templates.forEach((template) => {
     if (template.name) {
       templateCache.set(template.name, template);
     }
@@ -120,12 +120,12 @@ function normalizeTemplateModule(module, categoryId) {
   const templates = [];
 
   if (Array.isArray(module)) {
-    module.forEach(template => {
+    module.forEach((template) => {
       if (template && template.name) {
         templates.push({
           ...template,
           displayName: template.label || template.displayName || template.name,
-          category: template.category || categoryId
+          category: template.category || categoryId,
         });
       }
     });
@@ -137,12 +137,12 @@ function normalizeTemplateModule(module, categoryId) {
       return normalizeTemplateModule(data, categoryId);
     }
 
-    Object.values(data).forEach(template => {
+    Object.values(data).forEach((template) => {
       if (template && typeof template === 'object' && template.name) {
         templates.push({
           ...template,
           displayName: template.label || template.displayName || template.name,
-          category: template.category || categoryId
+          category: template.category || categoryId,
         });
       }
     });
@@ -165,7 +165,7 @@ function getTemplate(templateName) {
   // Search through all categories (loading them as needed)
   for (const categoryId of Object.keys(CATEGORY_REGISTRY)) {
     const templates = loadCategoryTemplates(categoryId);
-    const found = templates.find(t => t.name === templateName);
+    const found = templates.find((t) => t.name === templateName);
     if (found) {
       return found;
     }
@@ -185,7 +185,7 @@ function getAllTemplates() {
 
   for (const categoryId of Object.keys(CATEGORY_REGISTRY)) {
     const templates = loadCategoryTemplates(categoryId);
-    templates.forEach(template => {
+    templates.forEach((template) => {
       if (!seenNames.has(template.name)) {
         seenNames.add(template.name);
         allTemplates.push(template);
@@ -213,7 +213,7 @@ function getCategories() {
   return Object.entries(CATEGORY_REGISTRY).map(([id, meta]) => ({
     id,
     name: meta.name,
-    icon: meta.icon
+    icon: meta.icon,
   }));
 }
 
@@ -230,7 +230,7 @@ function getLoadedCategories() {
  * @param {Array} categoryIds - Categories to preload
  */
 function preloadCategories(categoryIds) {
-  categoryIds.forEach(id => loadCategoryTemplates(id));
+  categoryIds.forEach((id) => loadCategoryTemplates(id));
 }
 
 /**
@@ -249,7 +249,7 @@ function getCacheStats() {
   return {
     templatesLoaded: templateCache.size,
     categoriesLoaded: categoryTemplatesCache.size,
-    totalCategories: Object.keys(CATEGORY_REGISTRY).length
+    totalCategories: Object.keys(CATEGORY_REGISTRY).length,
   };
 }
 
@@ -262,5 +262,5 @@ module.exports = {
   preloadCategories,
   clearCache,
   getCacheStats,
-  CATEGORY_REGISTRY
+  CATEGORY_REGISTRY,
 };

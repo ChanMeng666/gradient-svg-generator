@@ -29,7 +29,7 @@ module.exports = {
     colors: ['ffd700', 'ff8c00', 'ff4500'],
     gradientType: 'horizontal',
     animationDuration: '6s',
-    description: 'Warm golden sunset gradient'
+    description: 'Warm golden sunset gradient',
   },
   'ocean-heart': {
     name: 'ocean-heart',
@@ -37,7 +37,7 @@ module.exports = {
     colors: ['00ffff', '0080ff', '0000ff'],
     gradientType: 'vertical',
     animationDuration: '8s',
-    description: 'Deep ocean blue gradient'
+    description: 'Deep ocean blue gradient',
   },
   'emerald-forest': {
     name: 'emerald-forest',
@@ -45,7 +45,7 @@ module.exports = {
     colors: ['50c878', '228b22', '006400'],
     gradientType: 'diagonal',
     animationDuration: '7s',
-    description: 'Rich emerald green gradient'
+    description: 'Rich emerald green gradient',
   },
   'violet-dream': {
     name: 'violet-dream',
@@ -53,7 +53,7 @@ module.exports = {
     colors: ['9400d3', '8a2be2', '4b0082'],
     gradientType: 'circular',
     animationDuration: '10s',
-    description: 'Mystical violet gradient'
+    description: 'Mystical violet gradient',
   },
   'neon-city': {
     name: 'neon-city',
@@ -61,7 +61,7 @@ module.exports = {
     colors: ['ff1493', 'ff00ff', '00ffff'],
     gradientType: 'horizontal',
     animationDuration: '5s',
-    description: 'Vibrant neon gradient'
+    description: 'Vibrant neon gradient',
   },
   'cyber-punk': {
     name: 'cyber-punk',
@@ -69,7 +69,7 @@ module.exports = {
     colors: ['ff00ff', '00ffff', 'ff00cc'],
     gradientType: 'diagonal',
     animationDuration: '8s',
-    description: 'Vibrant cyberpunk-inspired gradient'
+    description: 'Vibrant cyberpunk-inspired gradient',
   },
   'northern-lights': {
     name: 'northern-lights',
@@ -77,7 +77,7 @@ module.exports = {
     colors: ['9400d3', '4b0082', '00ff00', '00ffff'],
     gradientType: 'vertical',
     animationDuration: '10s',
-    description: 'Aurora borealis inspired colors'
+    description: 'Aurora borealis inspired colors',
   },
   'cotton-candy': {
     name: 'cotton-candy',
@@ -85,7 +85,7 @@ module.exports = {
     colors: ['ff99cc', 'ff99ff', '99ccff'],
     gradientType: 'circular',
     animationDuration: '7s',
-    description: 'Sweet pastel gradient blend'
+    description: 'Sweet pastel gradient blend',
   },
   'midnight-galaxy': {
     name: 'midnight-galaxy',
@@ -93,7 +93,7 @@ module.exports = {
     colors: ['000033', '4b0082', '800080', '000066'],
     gradientType: 'radial',
     animationDuration: '12s',
-    description: 'Deep space inspired colors'
+    description: 'Deep space inspired colors',
   },
   'tropical-paradise': {
     name: 'tropical-paradise',
@@ -101,7 +101,7 @@ module.exports = {
     colors: ['00ff99', '33ccff', '00ffcc'],
     gradientType: 'diagonal',
     animationDuration: '8s',
-    description: 'Fresh tropical ocean colors'
+    description: 'Fresh tropical ocean colors',
   },
   'desert-dusk': {
     name: 'desert-dusk',
@@ -109,6 +109,6 @@ module.exports = {
     colors: ['ff9966', 'ff6699', 'cc6699'],
     gradientType: 'horizontal',
     animationDuration: '9s',
-    description: 'Warm desert sunset colors'
-  }
+    description: 'Warm desert sunset colors',
+  },
 };

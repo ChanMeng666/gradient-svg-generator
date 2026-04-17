@@ -11,7 +11,7 @@
  */
 
 // Import all template categories
-const basicTemplates = require('../templates/basicTemplates');
+const basicTemplates = require('../features/basic/templates');
 const prideTemplates = require('../templates/prideTemplates');
 const natureTemplates = require('../templates/natureTemplates');
 const techTemplates = require('../templates/techTemplates');
@@ -48,91 +48,91 @@ const templateCategories = [
     name: 'Basic',
     icon: '🎨',
     description: 'Essential gradient templates for everyday use',
-    templates: Object.values(basicTemplates)
+    templates: Object.values(basicTemplates),
   },
   {
     id: 'pride',
     name: 'Pride',
     icon: '🏳️‍🌈',
     description: 'Celebrate diversity with pride flag gradients',
-    templates: Object.values(prideTemplates)
+    templates: Object.values(prideTemplates),
   },
   {
     id: 'nature',
     name: 'Nature',
     icon: '🌿',
     description: 'Natural color palettes inspired by earth and sky',
-    templates: Object.values(natureTemplates)
+    templates: Object.values(natureTemplates),
   },
   {
     id: 'tech',
     name: 'Tech',
     icon: '⚡',
     description: 'Modern digital and technological aesthetics',
-    templates: Object.values(techTemplates)
+    templates: Object.values(techTemplates),
   },
   {
     id: 'art',
     name: 'Art',
     icon: '🎭',
     description: 'Artistic and creative color combinations',
-    templates: Object.values(artTemplates)
+    templates: Object.values(artTemplates),
   },
   {
     id: 'emotion',
     name: 'Emotion',
     icon: '💫',
     description: 'Expressive gradients that convey feelings and moods',
-    templates: Object.values(emotionTemplates)
+    templates: Object.values(emotionTemplates),
   },
   {
     id: 'material',
     name: 'Material',
     icon: '💎',
     description: 'Texture-inspired gradients mimicking real materials',
-    templates: Object.values(materialTemplates)
+    templates: Object.values(materialTemplates),
   },
   {
     id: 'text-effects',
     name: 'Text Effects',
     icon: '✨',
     description: 'Advanced text animations with special visual effects',
-    templates: Object.values(textEffectTemplates)
+    templates: Object.values(textEffectTemplates),
   },
   {
     id: 'future-tech',
     name: 'Future Tech',
     icon: '🚀',
     description: 'Cutting-edge sci-fi and futuristic visual effects',
-    templates: Object.values(futureTechTemplates)
+    templates: Object.values(futureTechTemplates),
   },
   {
     id: 'artistic',
     name: 'Artistic',
     icon: '🎨',
     description: 'Creative art styles from watercolor to graffiti',
-    templates: Object.values(artisticTemplates)
+    templates: Object.values(artisticTemplates),
   },
   {
     id: 'luxury',
     name: 'Luxury',
     icon: '👑',
     description: 'Premium materials with gold, diamond, and marble effects',
-    templates: Object.values(luxuryTemplates)
+    templates: Object.values(luxuryTemplates),
   },
   {
     id: 'organic-nature',
     name: 'Organic Nature',
     icon: '🌊',
     description: 'Dynamic natural phenomena like fire, water, and aurora',
-    templates: Object.values(organicTemplates)
+    templates: Object.values(organicTemplates),
   },
   {
     id: 'gaming',
     name: 'Gaming',
     icon: '🎮',
     description: 'Gaming aesthetics from retro pixel art to cyberpunk',
-    templates: Object.values(gamingTemplates)
+    templates: Object.values(gamingTemplates),
   },
   // 新增分类 - 来自示例项目的整合
   {
@@ -140,35 +140,35 @@ const templateCategories = [
     name: 'Shape',
     icon: '⚫',
     description: 'Geometric shapes and forms inspired by capsule-render',
-    templates: Object.values(shapeTemplates)
+    templates: Object.values(shapeTemplates),
   },
   {
     id: 'animation',
     name: 'Animation',
     icon: '🎬',
     description: 'Special animation and dynamic effects from svg-banners',
-    templates: Object.values(animationTemplates)
+    templates: Object.values(animationTemplates),
   },
   {
     id: 'morphing',
     name: 'Morphing Effects',
     icon: '🌊',
     description: 'Advanced morphing animations with fluid transformations',
-    templates: Object.values(morphingTemplates)
+    templates: Object.values(morphingTemplates),
   },
   {
     id: 'fluid-dynamics',
     name: 'Fluid Dynamics',
     icon: '��',
     description: 'Complex fluid simulation and wave propagation effects',
-    templates: Object.values(fluidDynamicsTemplates)
+    templates: Object.values(fluidDynamicsTemplates),
   },
   {
     id: 'dimensional',
     name: 'Dimensional Effects',
     icon: '🌌',
     description: 'Multi-dimensional space distortion and portal effects',
-    templates: Object.values(dimensionalTemplates)
+    templates: Object.values(dimensionalTemplates),
   },
   // 🌟 NEW: Advanced Futuristic Categories - 前卫未来主义设计
   {
@@ -176,51 +176,52 @@ const templateCategories = [
     name: 'Dimensional Portal',
     icon: '🌀',
     description: '次元穿越美学 - 探索多维空间的视觉奇迹与量子隧道效应',
-    templates: Object.values(dimensionalPortalTemplates)
+    templates: Object.values(dimensionalPortalTemplates),
   },
   {
     id: 'digital-life',
     name: 'Digital Life',
     icon: '🧬',
     description: '数字生命美学 - AI意识、生物科技与数字进化的前沿探索',
-    templates: Object.values(digitalLifeTemplates)
+    templates: Object.values(digitalLifeTemplates),
   },
   {
     id: 'cyber-aesthetics',
     name: 'Cyber Aesthetics',
     icon: '🤖',
     description: '赛博美学 - 未来主义数字艺术与赛博朋克视觉革命',
-    templates: Object.values(cyberAestheticsTemplates)
+    templates: Object.values(cyberAestheticsTemplates),
   },
   {
     id: 'consciousness-stream',
     name: 'Consciousness Stream',
     icon: '🧠',
     description: '意识流美学 - 心理学、哲学与精神维度的视觉化表达',
-    templates: Object.values(consciousnessStreamTemplates)
+    templates: Object.values(consciousnessStreamTemplates),
   },
   // 🌟 NEW: Pattern & Metallic Categories (inspired by example project)
   {
     id: 'pattern',
     name: 'Pattern',
     icon: '🔷',
-    description: 'Geometric patterns with dynamic animations - stripes, zigzags, diamonds, and more',
-    templates: Object.values(patternTemplates)
+    description:
+      'Geometric patterns with dynamic animations - stripes, zigzags, diamonds, and more',
+    templates: Object.values(patternTemplates),
   },
   {
     id: 'metallic',
     name: 'Metallic',
     icon: '✨',
     description: 'Luxurious metallic effects with shimmer, shine, and glow animations',
-    templates: Object.values(metallicTemplates)
+    templates: Object.values(metallicTemplates),
   },
   {
     id: 'github-profile',
     name: 'GitHub Profile',
     icon: '🏷️',
     description: 'Badges, banners, terminals, and cards for GitHub profile READMEs',
-    templates: Object.values(githubProfileTemplates)
-  }
+    templates: Object.values(githubProfileTemplates),
+  },
 ];
 
-module.exports = templateCategories; 
+module.exports = templateCategories;

@@ -1,5 +1,5 @@
 // Import all template files
-import basicTemplates from '../templates/basicTemplates';
+import basicTemplates from '../features/basic/templates';
 import prideTemplates from '../templates/prideTemplates';
 import natureTemplates from '../templates/natureTemplates';
 import techTemplates from '../templates/techTemplates';
@@ -89,12 +89,12 @@ const allTemplateGroups = [
 export function getAllTemplates() {
   const allTemplates = [];
   const seenNames = new Set();
-  
+
   allTemplateGroups.forEach((templateGroup, groupIndex) => {
     // Handle both object and array formats
     if (Array.isArray(templateGroup)) {
       // If it's an array, add all templates
-      templateGroup.forEach(template => {
+      templateGroup.forEach((template) => {
         if (template && template.name && !seenNames.has(template.name)) {
           seenNames.add(template.name);
           allTemplates.push(template);
@@ -102,46 +102,78 @@ export function getAllTemplates() {
       });
     } else if (typeof templateGroup === 'object' && templateGroup !== null) {
       // If it's an object, convert to array
-      Object.values(templateGroup).forEach(template => {
-        if (template && typeof template === 'object' && template.name && !seenNames.has(template.name)) {
+      Object.values(templateGroup).forEach((template) => {
+        if (
+          template &&
+          typeof template === 'object' &&
+          template.name &&
+          !seenNames.has(template.name)
+        ) {
           seenNames.add(template.name);
           // Add category based on the template group index
-          const categoryMap = ['basic', 'pride', 'nature', 'tech', 'art', 'emotion', 'material',
-            'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming',
-            'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
-            'digitalLife', 'cyberAesthetics', 'consciousness',
-            'weather', 'lightShadow', 'artMovement', 'culinaryLiquid',
-            'pattern', 'metallic', 'pathText', 'capsuleShape', 'githubProfile'];
-          
+          const categoryMap = [
+            'basic',
+            'pride',
+            'nature',
+            'tech',
+            'art',
+            'emotion',
+            'material',
+            'textEffects',
+            'futureTech',
+            'artistic',
+            'luxury',
+            'organicNature',
+            'gaming',
+            'shape',
+            'animation',
+            'morphing',
+            'fluidDynamics',
+            'dimensional',
+            'dimensionalPortal',
+            'digitalLife',
+            'cyberAesthetics',
+            'consciousness',
+            'weather',
+            'lightShadow',
+            'artMovement',
+            'culinaryLiquid',
+            'pattern',
+            'metallic',
+            'pathText',
+            'capsuleShape',
+            'githubProfile',
+          ];
+
           allTemplates.push({
             ...template,
             displayName: template.label || template.displayName || template.name,
-            category: template.category || categoryMap[groupIndex] || 'basic'
+            category: template.category || categoryMap[groupIndex] || 'basic',
           });
         }
       });
     }
   });
-  
+
   return allTemplates;
 }
 
 // Legacy function - Create a flat map of all templates
 const getAllTemplatesMap = () => {
   const allTemplates = {};
-  
+
   // Use new template system
-  getAllTemplates().forEach(template => {
+  getAllTemplates().forEach((template) => {
     if (template && template.name) {
       allTemplates[template.name] = template;
     }
   });
-  
+
   // Legacy support
   if (templateCategories && Array.isArray(templateCategories)) {
-    templateCategories.forEach(category => {
+    templateCategories.forEach((category) => {
       if (category && category.templates && Array.isArray(category.templates)) {
-        category.templates.forEach(template => {
+        category.templates.forEach((template) => {
           if (template && template.name) {
             allTemplates[template.name] = template;
           }
@@ -149,13 +181,13 @@ const getAllTemplatesMap = () => {
       }
     });
   }
-  
+
   return allTemplates;
 };
 
 // Get templates by category
 export function getTemplatesByCategory(category) {
-  return getAllTemplates().filter(template => template.category === category);
+  return getAllTemplates().filter((template) => template.category === category);
 }
 
 // Get unique categories with metadata
@@ -200,20 +232,21 @@ export function getCategories() {
   };
 
   // Get unique categories from templates
-  const uniqueCategories = [...new Set(getAllTemplates().map(t => t.category))];
-  
+  const uniqueCategories = [...new Set(getAllTemplates().map((t) => t.category))];
+
   return uniqueCategories
-    .map(cat => categoryMap[cat] || { id: cat, name: cat, icon: '📦' })
+    .map((cat) => categoryMap[cat] || { id: cat, name: cat, icon: '📦' })
     .filter(Boolean);
 }
 
 // Search templates
 export function searchTemplates(query) {
   const lowercaseQuery = query.toLowerCase();
-  return getAllTemplates().filter(template => 
-    template.name.toLowerCase().includes(lowercaseQuery) ||
-    template.displayName.toLowerCase().includes(lowercaseQuery) ||
-    template.category.toLowerCase().includes(lowercaseQuery)
+  return getAllTemplates().filter(
+    (template) =>
+      template.name.toLowerCase().includes(lowercaseQuery) ||
+      template.displayName.toLowerCase().includes(lowercaseQuery) ||
+      template.category.toLowerCase().includes(lowercaseQuery),
   );
 }
 
@@ -223,31 +256,58 @@ export function getTemplateByName(name) {
   for (let groupIndex = 0; groupIndex < allTemplateGroups.length; groupIndex++) {
     const templateGroup = allTemplateGroups[groupIndex];
     let template = null;
-    
+
     if (Array.isArray(templateGroup)) {
       // If it's an array, find the template
-      template = templateGroup.find(t => t && t.name === name);
+      template = templateGroup.find((t) => t && t.name === name);
     } else if (typeof templateGroup === 'object' && templateGroup !== null) {
       // If it's an object, check if the key exists
       template = templateGroup[name];
     }
-    
+
     if (template) {
-      const categoryMap = ['basic', 'pride', 'nature', 'tech', 'art', 'emotion', 'material',
-        'textEffects', 'futureTech', 'artistic', 'luxury', 'organicNature', 'gaming',
-        'shape', 'animation', 'morphing', 'fluidDynamics', 'dimensional', 'dimensionalPortal',
-        'digitalLife', 'cyberAesthetics', 'consciousness',
-        'weather', 'lightShadow', 'artMovement', 'culinaryLiquid',
-        'pattern', 'metallic', 'pathText', 'capsuleShape', 'githubProfile'];
+      const categoryMap = [
+        'basic',
+        'pride',
+        'nature',
+        'tech',
+        'art',
+        'emotion',
+        'material',
+        'textEffects',
+        'futureTech',
+        'artistic',
+        'luxury',
+        'organicNature',
+        'gaming',
+        'shape',
+        'animation',
+        'morphing',
+        'fluidDynamics',
+        'dimensional',
+        'dimensionalPortal',
+        'digitalLife',
+        'cyberAesthetics',
+        'consciousness',
+        'weather',
+        'lightShadow',
+        'artMovement',
+        'culinaryLiquid',
+        'pattern',
+        'metallic',
+        'pathText',
+        'capsuleShape',
+        'githubProfile',
+      ];
 
       return {
         ...template,
         displayName: template.label || template.displayName || template.name,
-        category: template.category || categoryMap[groupIndex] || 'basic'
+        category: template.category || categoryMap[groupIndex] || 'basic',
       };
     }
   }
-  
+
   return null;
 }
 
@@ -256,14 +316,14 @@ export const getTemplateConfig = (templateName) => {
   if (!templateName || typeof templateName !== 'string') {
     return null;
   }
-  
+
   const allTemplates = getAllTemplatesMap();
-  
+
   if (!allTemplates[templateName]) {
     console.warn(`templateUtils: Template '${templateName}' not found`);
     return null;
   }
-  
+
   return allTemplates[templateName];
 };
 
@@ -272,7 +332,7 @@ export const getTemplateCategoryByName = (templateName) => {
   if (!templateName || typeof templateName !== 'string') {
     return 'basic';
   }
-  
+
   const template = getTemplateByName(templateName);
   return template ? template.category : 'basic';
 };
@@ -289,44 +349,42 @@ export function getFeaturedTemplates() {
     'crystal-prism',
     'rainbow-wave',
   ];
-  
-  return featured
-    .map(name => getTemplateByName(name))
-    .filter(Boolean);
+
+  return featured.map((name) => getTemplateByName(name)).filter(Boolean);
 }
 
 // Get popular templates (mock data for now)
 export function getPopularTemplates() {
   const popular = [
-    'wave-flow',          // replaced gradient-wave
-    'aurora-borealis',    // replaced aurora-flow
-    'plasma-field',       // exists
-    'cosmic-voyage',      // replaced cosmic-dust
-    'neon-pulse',         // exists
-    'cyber-matrix',       // replaced data-stream to avoid duplicate
+    'wave-flow', // replaced gradient-wave
+    'aurora-borealis', // replaced aurora-flow
+    'plasma-field', // exists
+    'cosmic-voyage', // replaced cosmic-dust
+    'neon-pulse', // exists
+    'cyber-matrix', // replaced data-stream to avoid duplicate
   ];
-  
+
   return popular
-    .map(name => getTemplateByName(name))
+    .map((name) => getTemplateByName(name))
     .filter(Boolean)
     .map((template, index) => ({
       ...template,
-      uses: Math.floor(Math.random() * 2000) + 500
+      uses: Math.floor(Math.random() * 2000) + 500,
     }));
 }
 
 // Legacy function - Get URL search parameters
 export const getUrlParams = () => {
   if (typeof window === 'undefined') return {};
-  
+
   try {
     const urlParams = new URLSearchParams(window.location.search);
     const params = {};
-    
+
     for (const [key, value] of urlParams.entries()) {
       params[key] = value;
     }
-    
+
     return params;
   } catch (error) {
     console.error('templateUtils: Error parsing URL params', error);
@@ -337,15 +395,15 @@ export const getUrlParams = () => {
 // Legacy function - Apply URL parameters to config
 export const applyUrlParamsToConfig = (urlParams) => {
   const config = {};
-  
+
   if (!urlParams || typeof urlParams !== 'object') {
     return config;
   }
-  
+
   if (urlParams.text && typeof urlParams.text === 'string') {
     config.text = urlParams.text;
   }
-  
+
   if (urlParams.template && typeof urlParams.template === 'string') {
     const templateConfig = getTemplateConfig(urlParams.template);
     if (templateConfig) {
@@ -355,6 +413,6 @@ export const applyUrlParamsToConfig = (urlParams) => {
       config.animationDuration = parseInt(templateConfig.animationDuration) || 6;
     }
   }
-  
+
   return config;
 };
