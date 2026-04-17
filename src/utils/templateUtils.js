@@ -1,7 +1,7 @@
 // Import all template files
 import basicTemplates from '../features/basic/templates';
 import prideTemplates from '../templates/prideTemplates';
-import natureTemplates from '../templates/natureTemplates';
+import natureTemplates from '../features/nature/templates';
 import techTemplates from '../templates/techTemplates';
 import artTemplates from '../features/art/templates';
 import emotionTemplates from '../templates/emotionTemplates';
@@ -9,7 +9,6 @@ import materialTemplates from '../templates/materialTemplates';
 import textEffectTemplates from '../templates/textEffectTemplates';
 import futureTechTemplates from '../features/futureTech/templates';
 import luxuryTemplates from '../features/luxury/templates';
-import organicTemplates from '../features/organic/templates';
 import gamingTemplates from '../features/gaming/templates';
 import shapeTemplates from '../features/shape/templates';
 import animationTemplates from '../templates/animationTemplates';
@@ -21,7 +20,6 @@ import digitalLifeTemplates from '../templates/digitalLifeTemplates';
 import cyberAestheticsTemplates from '../templates/cyberAestheticsTemplates';
 import consciousnessStreamTemplates from '../templates/consciousnessStreamTemplates';
 // 🌟 NEW: 2025 Creative Expansion Templates
-import weatherTemplates from '../features/weather/templates';
 import lightShadowTemplates from '../features/lightShadow/templates';
 import culinaryLiquidTemplates from '../features/culinaryLiquid/templates';
 // 🌟 NEW: Pattern & Metallic Templates (inspired by example project)
@@ -55,7 +53,6 @@ const allTemplateGroups = [
   textEffectTemplates,
   futureTechTemplates,
   luxuryTemplates,
-  organicTemplates,
   gamingTemplates,
   shapeTemplates,
   animationTemplates,
@@ -67,7 +64,6 @@ const allTemplateGroups = [
   cyberAestheticsTemplates,
   consciousnessStreamTemplates,
   // 🌟 NEW: 2025 Creative Expansion
-  weatherTemplates,
   lightShadowTemplates,
   culinaryLiquidTemplates,
   // 🌟 NEW: Pattern & Metallic Templates
@@ -118,7 +114,6 @@ export function getAllTemplates() {
             'textEffects',
             'futureTech',
             'luxury',
-            'organicNature',
             'gaming',
             'shape',
             'animation',
@@ -129,7 +124,6 @@ export function getAllTemplates() {
             'digitalLife',
             'cyberAesthetics',
             'consciousness',
-            'weather',
             'lightShadow',
             'culinaryLiquid',
             'pattern',
@@ -197,7 +191,6 @@ export function getCategories() {
     textEffects: { id: 'textEffects', name: 'Text Effects', icon: '✨' },
     futureTech: { id: 'futureTech', name: 'Future Tech', icon: '🚀' },
     luxury: { id: 'luxury', name: 'Luxury', icon: '👑' },
-    organicNature: { id: 'organicNature', name: 'Organic', icon: '🌊' },
     gaming: { id: 'gaming', name: 'Gaming', icon: '🎮' },
     shape: { id: 'shape', name: 'Shape', icon: '⚫' },
     animation: { id: 'animation', name: 'Animation', icon: '🎬' },
@@ -209,7 +202,6 @@ export function getCategories() {
     cyberAesthetics: { id: 'cyberAesthetics', name: 'Cyber', icon: '🤖' },
     consciousness: { id: 'consciousness', name: 'Consciousness', icon: '🧠' },
     // 🌟 NEW: 2025 Creative Expansion Categories
-    weather: { id: 'weather', name: 'Weather', icon: '🌦️' },
     lightShadow: { id: 'lightShadow', name: 'Light & Shadow', icon: '💡' },
     culinaryLiquid: { id: 'culinaryLiquid', name: 'Culinary', icon: '☕' },
     // 🌟 NEW: Pattern & Metallic Categories
@@ -269,7 +261,6 @@ export function getTemplateByName(name) {
         'textEffects',
         'futureTech',
         'luxury',
-        'organicNature',
         'gaming',
         'shape',
         'animation',
@@ -280,7 +271,6 @@ export function getTemplateByName(name) {
         'digitalLife',
         'cyberAesthetics',
         'consciousness',
-        'weather',
         'lightShadow',
         'culinaryLiquid',
         'pattern',

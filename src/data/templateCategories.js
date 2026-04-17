@@ -13,7 +13,7 @@
 // Import all template categories
 const basicTemplates = require('../features/basic/templates');
 const prideTemplates = require('../templates/prideTemplates');
-const natureTemplates = require('../templates/natureTemplates');
+const natureTemplates = require('../features/nature/templates');
 const techTemplates = require('../templates/techTemplates');
 const artTemplates = require('../features/art/templates');
 const emotionTemplates = require('../templates/emotionTemplates');
@@ -21,7 +21,6 @@ const materialTemplates = require('../templates/materialTemplates');
 const textEffectTemplates = require('../templates/textEffectTemplates');
 const futureTechTemplates = require('../features/futureTech/templates');
 const luxuryTemplates = require('../features/luxury/templates');
-const organicTemplates = require('../features/organic/templates');
 const gamingTemplates = require('../features/gaming/templates');
 // 新增模板类别 - 来自示例项目整合
 const shapeTemplates = require('../features/shape/templates');
@@ -111,13 +110,6 @@ const templateCategories = [
     icon: '👑',
     description: 'Premium materials with gold, diamond, and marble effects',
     templates: Object.values(luxuryTemplates),
-  },
-  {
-    id: 'organic-nature',
-    name: 'Organic Nature',
-    icon: '🌊',
-    description: 'Dynamic natural phenomena like fire, water, and aurora',
-    templates: Object.values(organicTemplates),
   },
   {
     id: 'gaming',
