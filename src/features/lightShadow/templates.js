@@ -5,6 +5,8 @@
  * Copyright (c) 2025 ChanMeng666
  */
 
+const palettes = require('../_shared/palettes');
+
 module.exports = {
   'caustic-underwater': {
     name: 'caustic-underwater',
@@ -84,7 +86,7 @@ module.exports = {
   'prism-rainbow': {
     name: 'prism-rainbow',
     label: 'Prism Rainbow',
-    colors: ['ff0000', 'ff7f00', 'ffff00', '00ff00', '0000ff', '4b0082', '9400d3'],
+    colors: palettes.rainbow7,
     gradientType: 'stainedGlass',
     animationDuration: '9s',
     description: 'Complete spectrum through optical prism with chromatic dispersion',

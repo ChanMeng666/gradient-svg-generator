@@ -22,6 +22,8 @@
  * Copyright (c) 2025 ChanMeng666
  */
 
+const palettes = require('../_shared/palettes');
+
 module.exports = {
   // --- formerly techTemplates (classic tech) --------------------------------
   'neural-network': {
@@ -35,7 +37,7 @@ module.exports = {
   'quantum-field': {
     name: 'quantum-field',
     label: 'Quantum Field',
-    colors: ['667eea', '764ba2', 'f093fb', 'f5576c'],
+    colors: palettes.gradientWeb,
     gradientType: 'pulse',
     animationDuration: '6s',
     description: 'Quantum energy field',
@@ -227,7 +229,7 @@ module.exports = {
   'ai-consciousness': {
     name: 'ai-consciousness',
     label: 'AI Consciousness',
-    colors: ['00ff80', '40ff40', '80ff80', '00ff00'],
+    colors: palettes.greenPulse,
     gradientType: 'aiConsciousness',
     animationDuration: '8s',
     description: 'Artificial intelligence awakening with neural network consciousness patterns',

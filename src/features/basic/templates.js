@@ -22,11 +22,13 @@
  *
  */
 
+const palettes = require('../_shared/palettes');
+
 module.exports = {
   'sunset-gold': {
     name: 'sunset-gold',
     label: 'Sunset Gold',
-    colors: ['ffd700', 'ff8c00', 'ff4500'],
+    colors: palettes.sunsetGold,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Warm golden sunset gradient',

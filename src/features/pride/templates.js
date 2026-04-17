@@ -1,12 +1,4 @@
 /*
- *
- */
-
-/*
- *
- */
-
-/*
  * MIT License
  *
  * Copyright (c) 2025 ChanMeng666
@@ -18,15 +10,13 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- *
- */
+const palettes = require('../_shared/palettes');
 
 module.exports = {
   'pride-rainbow': {
     name: 'pride-rainbow',
     label: 'Pride Rainbow',
-    colors: ['ff0000', 'ff8c00', 'ffff00', '008000', '0000ff', '4b0082'],
+    colors: palettes.prideRainbow,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Traditional pride rainbow flag',
@@ -34,7 +24,7 @@ module.exports = {
   'trans-pride': {
     name: 'trans-pride',
     label: 'Trans Pride',
-    colors: ['55cdfc', 'f7a8b8', 'ffffff', 'f7a8b8', '55cdfc'],
+    colors: palettes.transPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Trans pride flag colors',
@@ -42,7 +32,7 @@ module.exports = {
   'bi-pride': {
     name: 'bi-pride',
     label: 'Bi Pride',
-    colors: ['d60270', '9b4f96', '0038a8'],
+    colors: palettes.biPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Bi pride flag colors',
@@ -50,7 +40,7 @@ module.exports = {
   'pan-pride': {
     name: 'pan-pride',
     label: 'Pan Pride',
-    colors: ['ff1b8d', 'ffd800', '00b5ff'],
+    colors: palettes.panPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Pan pride flag colors',
@@ -58,7 +48,7 @@ module.exports = {
   'nonbinary-pride': {
     name: 'nonbinary-pride',
     label: 'Nonbinary Pride',
-    colors: ['fcf434', 'ffffff', '9c59d1', '2c2c2c'],
+    colors: palettes.nonbinaryPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Nonbinary pride flag colors',
@@ -66,7 +56,7 @@ module.exports = {
   'lesbian-pride': {
     name: 'lesbian-pride',
     label: 'Lesbian Pride',
-    colors: ['d62900', 'ff9b55', 'ffffff', 'd461a6', 'a50062'],
+    colors: palettes.lesbianPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Modern lesbian pride flag colors',
@@ -74,7 +64,7 @@ module.exports = {
   'genderqueer-pride': {
     name: 'genderqueer-pride',
     label: 'Genderqueer Pride',
-    colors: ['b57edc', 'ffffff', '4a8123'],
+    colors: palettes.genderqueerPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Genderqueer pride flag colors',
@@ -82,7 +72,7 @@ module.exports = {
   'genderfluid-pride': {
     name: 'genderfluid-pride',
     label: 'Genderfluid Pride',
-    colors: ['ff75a2', 'ffffff', 'be18d6', '000000', '333ebd'],
+    colors: palettes.genderfluidPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Genderfluid pride flag colors',
@@ -90,7 +80,7 @@ module.exports = {
   'ace-pride': {
     name: 'ace-pride',
     label: 'Ace Pride',
-    colors: ['000000', 'a3a3a3', 'ffffff', '800080'],
+    colors: palettes.acePride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Asexual pride flag colors',
@@ -98,7 +88,7 @@ module.exports = {
   'aro-pride': {
     name: 'aro-pride',
     label: 'Aromantic Pride',
-    colors: ['3da542', 'a7d379', 'ffffff', 'a9a9a9', '000000'],
+    colors: palettes.aroPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Aromantic pride flag colors',
@@ -106,7 +96,7 @@ module.exports = {
   'intersex-pride': {
     name: 'intersex-pride',
     label: 'Intersex Pride',
-    colors: ['ffd800', '7902aa'],
+    colors: palettes.intersexPride,
     gradientType: 'circular',
     animationDuration: '6s',
     description: 'Intersex pride flag colors with unique circular gradient',
@@ -114,7 +104,7 @@ module.exports = {
   'agender-pride': {
     name: 'agender-pride',
     label: 'Agender Pride',
-    colors: ['000000', 'b9b9b9', 'ffffff', 'b8f483', 'ffffff', 'b9b9b9', '000000'],
+    colors: palettes.agenderPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Agender pride flag colors',
@@ -122,7 +112,7 @@ module.exports = {
   'poly-pride': {
     name: 'poly-pride',
     label: 'Polyamory Pride',
-    colors: ['0000ff', 'ff0000', '000000'],
+    colors: palettes.polyPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Polyamory pride flag colors',
@@ -130,7 +120,7 @@ module.exports = {
   'demiboy-pride': {
     name: 'demiboy-pride',
     label: 'Demiboy Pride',
-    colors: ['7f7f7f', 'c4c4c4', '9ad9eb', 'ffffff'],
+    colors: palettes.demiboyPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Demiboy pride flag colors',
@@ -138,7 +128,7 @@ module.exports = {
   'demigirl-pride': {
     name: 'demigirl-pride',
     label: 'Demigirl Pride',
-    colors: ['7f7f7f', 'c4c4c4', 'ffaec9', 'ffffff'],
+    colors: palettes.demigirlPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Demigirl pride flag colors',
@@ -146,7 +136,7 @@ module.exports = {
   'omnisexual-pride': {
     name: 'omnisexual-pride',
     label: 'Omnisexual Pride',
-    colors: ['ff9ccd', 'ff53bd', '2c2c2c', '6760ff', '9cb9ff'],
+    colors: palettes.omnisexualPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Omnisexual pride flag colors',
@@ -154,7 +144,7 @@ module.exports = {
   'progress-pride': {
     name: 'progress-pride',
     label: 'Progress Pride',
-    colors: ['000000', '784F17', 'ff0000', 'ff8c00', 'ffff00', '008000', '0000ff', '4b0082'],
+    colors: palettes.progressPride,
     gradientType: 'diagonal',
     animationDuration: '8s',
     description: 'Progress pride flag with inclusive colors',
@@ -162,7 +152,7 @@ module.exports = {
   'demiromantic-pride': {
     name: 'demiromantic-pride',
     label: 'Demiromantic Pride',
-    colors: ['ffffff', '3da542', '000000', 'a9a9a9'],
+    colors: palettes.demiromanticPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Demiromantic pride flag colors',
@@ -170,7 +160,7 @@ module.exports = {
   'demisexual-pride': {
     name: 'demisexual-pride',
     label: 'Demisexual Pride',
-    colors: ['ffffff', '6e0070', 'd2d2d2', '000000'],
+    colors: palettes.demisexualPride,
     gradientType: 'horizontal',
     animationDuration: '6s',
     description: 'Demisexual pride flag colors',
@@ -178,7 +168,7 @@ module.exports = {
   'queer-pride': {
     name: 'queer-pride',
     label: 'Queer Pride',
-    colors: ['b57edc', 'ffffff', '4a8123', '000000'],
+    colors: palettes.queerPride,
     gradientType: 'vertical',
     animationDuration: '7s',
     description: 'Queer pride flag colors',

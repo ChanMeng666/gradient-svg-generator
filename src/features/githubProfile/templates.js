@@ -10,6 +10,8 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+const palettes = require('../_shared/palettes');
+
 module.exports = {
   // ── Shimmer Badges (7) ──
   'shimmer-red': {
@@ -33,7 +35,7 @@ module.exports = {
   'shimmer-blue': {
     name: 'shimmer-blue',
     label: 'Shimmer Blue',
-    colors: ['3b82f6'],
+    colors: palettes.githubBlue,
     gradientType: 'shimmerBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
@@ -98,7 +100,7 @@ module.exports = {
   'terminal-blue': {
     name: 'terminal-blue',
     label: 'Terminal Blue',
-    colors: ['3b82f6'],
+    colors: palettes.githubBlue,
     gradientType: 'terminalTyping',
     animationDuration: '2.5s',
     category: 'GitHub Profile',
@@ -165,7 +167,7 @@ module.exports = {
   'banner-blue': {
     name: 'banner-blue',
     label: 'Banner Blue',
-    colors: ['1d4ed8'],
+    colors: palettes.githubDeepBlue,
     gradientType: 'shimmerBanner',
     animationDuration: '1.8s',
     category: 'GitHub Profile',
@@ -261,7 +263,7 @@ module.exports = {
   'social-achievement-blue': {
     name: 'social-achievement-blue',
     label: 'Social Achievement Blue',
-    colors: ['1d4ed8'],
+    colors: palettes.githubDeepBlue,
     gradientType: 'socialBadge',
     animationDuration: '1.8s',
     category: 'GitHub Profile',

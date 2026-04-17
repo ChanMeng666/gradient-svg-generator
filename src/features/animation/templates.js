@@ -14,6 +14,9 @@
  */
 
 // 借鉴自 svg-banners 项目的动画效果模板
+
+const palettes = require('../_shared/palettes');
+
 module.exports = {
   'glitch-matrix': {
     name: 'glitch-matrix',
@@ -42,7 +45,7 @@ module.exports = {
   'rainbow-wave': {
     name: 'rainbow-wave',
     label: 'Rainbow Wave',
-    colors: ['ff0000', 'ff8000', 'ffff00', '00ff00', '0080ff', '8000ff'],
+    colors: palettes.rainbow6,
     gradientType: 'rainbow',
     animationDuration: '6s',
     description: 'Dancing rainbow colors in wave motion',
@@ -58,7 +61,7 @@ module.exports = {
   'origin-fade': {
     name: 'origin-fade',
     label: 'Origin Fade',
-    colors: ['667eea', '764ba2', 'f093fb', 'f5576c'],
+    colors: palettes.gradientWeb,
     gradientType: 'radial',
     animationDuration: '5s',
     description: 'Subtle origin fade effect with smooth transitions',
@@ -106,7 +109,7 @@ module.exports = {
   'spectrum-analyzer': {
     name: 'spectrum-analyzer',
     label: 'Spectrum Analyzer',
-    colors: ['ff0000', 'ff8000', 'ffff00', '00ff00', '0080ff', '8000ff'],
+    colors: palettes.rainbow6,
     gradientType: 'vertical',
     animationDuration: '1.5s',
     description: 'Audio spectrum analyzer visualization',

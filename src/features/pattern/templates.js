@@ -12,6 +12,8 @@
 
 // Pattern-based templates inspired by example project
 
+const palettes = require('../_shared/palettes');
+
 module.exports = {
   'candy-stripe-dream': {
     name: 'candy-stripe-dream',
@@ -24,7 +26,7 @@ module.exports = {
   'zigzag-energy': {
     name: 'zigzag-energy',
     label: 'Zigzag Energy',
-    colors: ['ffd700', 'ff8c00', 'ff4500'],
+    colors: palettes.sunsetGold,
     gradientType: 'patternZigzag',
     animationDuration: '5s',
     description: 'Dynamic zigzag pattern with energetic orange-gold colors',

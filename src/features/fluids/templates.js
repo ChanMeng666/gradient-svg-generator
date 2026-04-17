@@ -27,6 +27,8 @@
  * Copyright (c) 2025 ChanMeng666
  */
 
+const palettes = require('../_shared/palettes');
+
 module.exports = {
   // --- formerly fluidDynamicsTemplates --------------------------------------
   'turbulent-waves': {
@@ -57,7 +59,7 @@ module.exports = {
   'sound-visualization': {
     name: 'sound-visualization',
     label: 'Sound Visualization',
-    colors: ['ff8000', 'ffaa00', 'ffcc00', 'ffff00'],
+    colors: palettes.amberFlow,
     gradientType: 'soundWaves',
     animationDuration: '2s',
     description: 'Sound wave visualization with frequency modulation and amplitude variations',
@@ -116,7 +118,7 @@ module.exports = {
   'parallel-universe': {
     name: 'parallel-universe',
     label: 'Parallel Universe',
-    colors: ['ff8000', 'ffaa00', 'ffcc00', 'ffff00'],
+    colors: palettes.amberFlow,
     gradientType: 'multiverseOverlap',
     animationDuration: '12s',
     description: 'Parallel universe intersection with reality distortion and dimensional bleeding',

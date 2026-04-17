@@ -25,6 +25,8 @@
  * Copyright (c) 2025 ChanMeng666
  */
 
+const palettes = require('../_shared/palettes');
+
 module.exports = {
   // 🌟 Blob Morphing Templates (inspired by Venom effect)
   'liquid-venom': {
@@ -379,7 +381,7 @@ module.exports = {
   'bio-organism': {
     name: 'bio-organism',
     label: 'Bio Organism',
-    colors: ['00ff80', '40ff40', '80ff80', '00ff00'],
+    colors: palettes.greenPulse,
     gradientType: 'bioMorphing',
     animationDuration: '10s',
     description: 'Living organism simulation with biological growth patterns and cellular division',

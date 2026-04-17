@@ -17,6 +17,8 @@
  * Copyright (c) 2025 ChanMeng666
  */
 
+const palettes = require('../_shared/palettes');
+
 module.exports = {
   'sunrise-dawn': {
     name: 'sunrise-dawn',
@@ -248,7 +250,7 @@ module.exports = {
   'prism-refraction': {
     name: 'prism-refraction',
     label: 'Prism Refraction',
-    colors: ['ff0000', 'ff7f00', 'ffff00', '00ff00', '0000ff', '4b0082', '9400d3'],
+    colors: palettes.rainbow7,
     gradientType: 'prismRefraction',
     animationDuration: '8s',
     description:
