@@ -2269,991 +2269,6 @@ exports[`SVG contract parity > basic:sunset-gold 1`] = `
 </svg>"
 `;
 
-exports[`SVG contract parity > capsuleShape:liquid-venom 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="854" height="120" viewBox="0 0 854 120">
-  <defs>
-    
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#8871e5" /><stop offset="RANDOM%" stop-color="#b678c4" /><stop offset="RANDOM%" stop-color="#8871e5" /><stop offset="100%" stop-color="#b678c4" />
-      dur="10s" repeatCount="indefinite"
-    </linearGradient>
-  
-    
-    <!-- Soft Light Filter -->
-    <filter id="softLight">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-      <feColorMatrix in="blur" type="saturate" values="1.2" result="saturated"/>
-      <feMerge>
-        <feMergeNode in="saturated"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <!-- Smooth Transition Filter -->
-    <filter id="smoothTransition">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Radial Blur Filter -->
-    <filter id="radialBlur">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Energy Effect Filter -->
-    <filter id="energyEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Spiral Effect Filter -->
-    <filter id="spiralEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.6"/>
-      <feTurbulence baseFrequency="0.01" numOctaves="2" result="spiral"/>
-      <feDisplacementMap in="SourceGraphic" in2="spiral" scale="3"/>
-    </filter>
-
-    <!-- Wave Effect Filter -->
-    <filter id="waveEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
-      <feColorMatrix type="saturate" values="1.4"/>
-      <feTurbulence baseFrequency="0.03 0.01" numOctaves="2" result="wave"/>
-      <feDisplacementMap in="SourceGraphic" in2="wave" scale="1.5"/>
-    </filter>
-
-    <!-- Crystal Effect Filter -->
-    <filter id="crystalEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="1.7"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="1.5" specularExponent="20" lighting-color="white">
-        <fePointLight x="427" y="30" z="100"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Reflection Effect Filter -->
-    <filter id="reflectionEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feOffset in="SourceGraphic" dx="0" dy="2" result="offset"/>
-      <feFlood flood-color="rgba(255,255,255,0.3)" result="white"/>
-      <feComposite in="white" in2="offset" operator="in" result="reflection"/>
-      <feMerge>
-        <feMergeNode in="SourceGraphic"/>
-        <feMergeNode in="reflection"/>
-      </feMerge>
-    </filter>
-
-    <!-- Star Effect Filter -->
-    <filter id="starEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="2" specularExponent="30" lighting-color="#ffff00">
-        <fePointLight x="427" y="60" z="150"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Heart Effect Filter -->
-    <filter id="heartEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feColorMatrix type="hueRotate" values="15"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Zigzag Effect Filter -->
-    <filter id="zigzagEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="1.6"/>
-      <feTurbulence baseFrequency="0.05" numOctaves="1" result="zigzag"/>
-      <feDisplacementMap in="SourceGraphic" in2="zigzag" scale="2"/>
-    </filter>
-
-    <!-- Ripple Effect Filter -->
-    <filter id="rippleEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.4"/>
-      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Galaxy Effect Filter -->
-    <filter id="galaxyEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feTurbulence baseFrequency="0.02" numOctaves="4" result="galaxy"/>
-      <feDisplacementMap in="SourceGraphic" in2="galaxy" scale="1"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Lightning Effect Filter -->
-    <filter id="lightningEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="2.5"/>
-      <feColorMatrix type="brightness" values="1.3"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Luminance Effect Filter -->
-    <filter id="luminanceEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="3" specularExponent="25" lighting-color="white">
-        <fePointLight x="427" y="60" z="200"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Rainbow Effect Filter -->
-    <filter id="rainbowEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Text Box Effect Filter -->
-    <filter id="textBoxEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#19f6e8" flood-opacity="0.6"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Glitch Effect Filter -->
-    <filter id="glitchEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="2.2"/>
-      <feOffset in="SourceGraphic" dx="1" dy="1" result="offsetRed"/>
-      <feOffset in="SourceGraphic" dx="-1" dy="-1" result="offsetCyan"/>
-      <feFlood flood-color="#ff0000" result="floodRed"/>
-      <feFlood flood-color="#00ffff" result="floodCyan"/>
-      <feComposite in="floodRed" in2="offsetRed" operator="in" result="redGlow"/>
-      <feComposite in="floodCyan" in2="offsetCyan" operator="in" result="cyanGlow"/>
-      <feMerge>
-        <feMergeNode in="SourceGraphic"/>
-        <feMergeNode in="redGlow"/>
-        <feMergeNode in="cyanGlow"/>
-      </feMerge>
-    </filter>
-
-    <!-- Typewriter Effect Filter -->
-    <filter id="typewriterEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.3"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00ff00" flood-opacity="0.4"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Text Shadow Effect -->
-    <filter id="textShadow">
-      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
-      <feColorMatrix type="saturate" values="1.2"/>
-    </filter>
-  
-  </defs>
-
-  <!-- Additional elements for complex effects -->
-  
-    <g transform="translate(427, 60)">
-      <path fill="url(#gradient)" opacity="0.9" d="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z">
-        <animate
-          attributeName="d"
-          dur="10s"
-          repeatCount="indefinite"
-          values="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z;M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z"
-          calcMode="spline"
-          keyTimes="0;RANDOM;RANDOM;1"
-          keySplines="0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1"
-        />
-      </path>
-    </g>
-  
-
-  <rect
-    width="854"
-    height="120"
-    fill="url(#gradient)"
-    filter="url(#smoothTransition)"
-    
-  >
-    <animate
-      attributeName="opacity"
-      values="0.95;1;0.95"
-      dur="3s"
-      repeatCount="indefinite"
-      calcMode="spline"
-      keyTimes="0;0.5;1"
-      keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
-    />
-  </rect>
-
-  <text
-    x="427"
-    y="60"
-    font-size="40"
-    font-family="'Arial Black', Arial, sans-serif"
-    font-weight="bold"
-    text-anchor="middle"
-    alignment-baseline="middle"
-    fill="#ffffff"
-    filter="url(#textShadow)"
-  >
-    Hello World
-    <animate
-      attributeName="opacity"
-      values="0.9;1;0.9"
-      dur="4s"
-      repeatCount="indefinite"
-      calcMode="spline"
-      keyTimes="0;0.5;1"
-      keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
-    />
-  </text>
-</svg>"
-`;
-
-exports[`SVG contract parity > capsuleShape:mercury-flow 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="854" height="120" viewBox="0 0 854 120">
-  <defs>
-    
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#C0C0C0" /><stop offset="20%" stop-color="#A8A8A8" /><stop offset="40%" stop-color="#D3D3D3" /><stop offset="60%" stop-color="#C0C0C0" /><stop offset="80%" stop-color="#A8A8A8" /><stop offset="100%" stop-color="#D3D3D3" />
-      dur="12s" repeatCount="indefinite"
-    </linearGradient>
-    <linearGradient id="gradient2" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#C0C0C0" /><stop offset="20%" stop-color="#A8A8A8" /><stop offset="40%" stop-color="#D3D3D3" /><stop offset="60%" stop-color="#C0C0C0" /><stop offset="80%" stop-color="#A8A8A8" /><stop offset="100%" stop-color="#D3D3D3" />
-      dur="12s" repeatCount="indefinite"
-    </linearGradient>
-    
-      <filter id="blobBlur">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-        <feColorMatrix in="blur" type="saturate" values="1.2"/>
-        <feComposite operator="over" in2="SourceGraphic"/>
-      </filter>
-  
-    
-    <!-- Soft Light Filter -->
-    <filter id="softLight">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-      <feColorMatrix in="blur" type="saturate" values="1.2" result="saturated"/>
-      <feMerge>
-        <feMergeNode in="saturated"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <!-- Smooth Transition Filter -->
-    <filter id="smoothTransition">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Radial Blur Filter -->
-    <filter id="radialBlur">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Energy Effect Filter -->
-    <filter id="energyEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Spiral Effect Filter -->
-    <filter id="spiralEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.6"/>
-      <feTurbulence baseFrequency="0.01" numOctaves="2" result="spiral"/>
-      <feDisplacementMap in="SourceGraphic" in2="spiral" scale="3"/>
-    </filter>
-
-    <!-- Wave Effect Filter -->
-    <filter id="waveEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
-      <feColorMatrix type="saturate" values="1.4"/>
-      <feTurbulence baseFrequency="0.03 0.01" numOctaves="2" result="wave"/>
-      <feDisplacementMap in="SourceGraphic" in2="wave" scale="1.5"/>
-    </filter>
-
-    <!-- Crystal Effect Filter -->
-    <filter id="crystalEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="1.7"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="1.5" specularExponent="20" lighting-color="white">
-        <fePointLight x="427" y="30" z="100"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Reflection Effect Filter -->
-    <filter id="reflectionEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feOffset in="SourceGraphic" dx="0" dy="2" result="offset"/>
-      <feFlood flood-color="rgba(255,255,255,0.3)" result="white"/>
-      <feComposite in="white" in2="offset" operator="in" result="reflection"/>
-      <feMerge>
-        <feMergeNode in="SourceGraphic"/>
-        <feMergeNode in="reflection"/>
-      </feMerge>
-    </filter>
-
-    <!-- Star Effect Filter -->
-    <filter id="starEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="2" specularExponent="30" lighting-color="#ffff00">
-        <fePointLight x="427" y="60" z="150"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Heart Effect Filter -->
-    <filter id="heartEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feColorMatrix type="hueRotate" values="15"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Zigzag Effect Filter -->
-    <filter id="zigzagEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="1.6"/>
-      <feTurbulence baseFrequency="0.05" numOctaves="1" result="zigzag"/>
-      <feDisplacementMap in="SourceGraphic" in2="zigzag" scale="2"/>
-    </filter>
-
-    <!-- Ripple Effect Filter -->
-    <filter id="rippleEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.4"/>
-      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Galaxy Effect Filter -->
-    <filter id="galaxyEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feTurbulence baseFrequency="0.02" numOctaves="4" result="galaxy"/>
-      <feDisplacementMap in="SourceGraphic" in2="galaxy" scale="1"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Lightning Effect Filter -->
-    <filter id="lightningEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="2.5"/>
-      <feColorMatrix type="brightness" values="1.3"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Luminance Effect Filter -->
-    <filter id="luminanceEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="3" specularExponent="25" lighting-color="white">
-        <fePointLight x="427" y="60" z="200"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Rainbow Effect Filter -->
-    <filter id="rainbowEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Text Box Effect Filter -->
-    <filter id="textBoxEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#19f6e8" flood-opacity="0.6"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Glitch Effect Filter -->
-    <filter id="glitchEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="2.2"/>
-      <feOffset in="SourceGraphic" dx="1" dy="1" result="offsetRed"/>
-      <feOffset in="SourceGraphic" dx="-1" dy="-1" result="offsetCyan"/>
-      <feFlood flood-color="#ff0000" result="floodRed"/>
-      <feFlood flood-color="#00ffff" result="floodCyan"/>
-      <feComposite in="floodRed" in2="offsetRed" operator="in" result="redGlow"/>
-      <feComposite in="floodCyan" in2="offsetCyan" operator="in" result="cyanGlow"/>
-      <feMerge>
-        <feMergeNode in="SourceGraphic"/>
-        <feMergeNode in="redGlow"/>
-        <feMergeNode in="cyanGlow"/>
-      </feMerge>
-    </filter>
-
-    <!-- Typewriter Effect Filter -->
-    <filter id="typewriterEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.3"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00ff00" flood-opacity="0.4"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Text Shadow Effect -->
-    <filter id="textShadow">
-      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
-      <feColorMatrix type="saturate" values="1.2"/>
-    </filter>
-  
-  </defs>
-
-  <!-- Additional elements for complex effects -->
-  
-    <g transform="translate(427, 60)">
-      <!-- Background blob -->
-      <path fill="url(#gradient)" opacity="0.5" filter="url(#blobBlur)" d="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z">
-        <animate
-          attributeName="d"
-          dur="12s"
-          repeatCount="indefinite"
-          values="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z;M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z"
-          calcMode="spline"
-          keyTimes="0;RANDOM;RANDOM;1"
-          keySplines="0.3 0 0.7 1; 0.3 0 0.7 1; 0.3 0 0.7 1"
-        />
-      </path>
-      <!-- Foreground blob -->
-      <path fill="url(#gradient2)" opacity="0.7" d="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z">
-        <animate
-          attributeName="d"
-          dur="9.6s"
-          begin="-3.6s"
-          repeatCount="indefinite"
-          values="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z;M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z"
-          calcMode="spline"
-          keyTimes="0;0.25;0.5;0.75;1"
-          keySplines="0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1"
-        />
-      </path>
-    </g>
-  
-
-  <rect
-    width="854"
-    height="120"
-    fill="url(#gradient)"
-    filter="url(#smoothTransition)"
-    
-  >
-    <animate
-      attributeName="opacity"
-      values="0.95;1;0.95"
-      dur="3s"
-      repeatCount="indefinite"
-      calcMode="spline"
-      keyTimes="0;0.5;1"
-      keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
-    />
-  </rect>
-
-  <text
-    x="427"
-    y="60"
-    font-size="40"
-    font-family="'Arial Black', Arial, sans-serif"
-    font-weight="bold"
-    text-anchor="middle"
-    alignment-baseline="middle"
-    fill="#ffffff"
-    filter="url(#textShadow)"
-  >
-    Hello World
-    <animate
-      attributeName="opacity"
-      values="0.9;1;0.9"
-      dur="4s"
-      repeatCount="indefinite"
-      calcMode="spline"
-      keyTimes="0;0.5;1"
-      keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
-    />
-  </text>
-</svg>"
-`;
-
-exports[`SVG contract parity > capsuleShape:organic-plasma 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="854" height="120" viewBox="0 0 854 120">
-  <defs>
-    
-    <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FF6B6B" /><stop offset="20%" stop-color="#FFA07A" /><stop offset="40%" stop-color="#FF69B4" /><stop offset="60%" stop-color="#FF6B6B" /><stop offset="80%" stop-color="#FFA07A" /><stop offset="100%" stop-color="#FF69B4" />
-      dur="15s" repeatCount="indefinite"
-    </radialGradient>
-    
-    <filter id="organicGlow">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
-      <feColorMatrix in="blur" type="saturate" values="1.8" result="saturated"/>
-      <feMerge>
-        <feMergeNode in="saturated"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  
-  
-    
-    <!-- Soft Light Filter -->
-    <filter id="softLight">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-      <feColorMatrix in="blur" type="saturate" values="1.2" result="saturated"/>
-      <feMerge>
-        <feMergeNode in="saturated"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <!-- Smooth Transition Filter -->
-    <filter id="smoothTransition">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Radial Blur Filter -->
-    <filter id="radialBlur">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Energy Effect Filter -->
-    <filter id="energyEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Spiral Effect Filter -->
-    <filter id="spiralEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.6"/>
-      <feTurbulence baseFrequency="0.01" numOctaves="2" result="spiral"/>
-      <feDisplacementMap in="SourceGraphic" in2="spiral" scale="3"/>
-    </filter>
-
-    <!-- Wave Effect Filter -->
-    <filter id="waveEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
-      <feColorMatrix type="saturate" values="1.4"/>
-      <feTurbulence baseFrequency="0.03 0.01" numOctaves="2" result="wave"/>
-      <feDisplacementMap in="SourceGraphic" in2="wave" scale="1.5"/>
-    </filter>
-
-    <!-- Crystal Effect Filter -->
-    <filter id="crystalEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="1.7"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="1.5" specularExponent="20" lighting-color="white">
-        <fePointLight x="427" y="30" z="100"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Reflection Effect Filter -->
-    <filter id="reflectionEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feOffset in="SourceGraphic" dx="0" dy="2" result="offset"/>
-      <feFlood flood-color="rgba(255,255,255,0.3)" result="white"/>
-      <feComposite in="white" in2="offset" operator="in" result="reflection"/>
-      <feMerge>
-        <feMergeNode in="SourceGraphic"/>
-        <feMergeNode in="reflection"/>
-      </feMerge>
-    </filter>
-
-    <!-- Star Effect Filter -->
-    <filter id="starEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="2" specularExponent="30" lighting-color="#ffff00">
-        <fePointLight x="427" y="60" z="150"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Heart Effect Filter -->
-    <filter id="heartEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feColorMatrix type="hueRotate" values="15"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Zigzag Effect Filter -->
-    <filter id="zigzagEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="1.6"/>
-      <feTurbulence baseFrequency="0.05" numOctaves="1" result="zigzag"/>
-      <feDisplacementMap in="SourceGraphic" in2="zigzag" scale="2"/>
-    </filter>
-
-    <!-- Ripple Effect Filter -->
-    <filter id="rippleEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.4"/>
-      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Galaxy Effect Filter -->
-    <filter id="galaxyEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feTurbulence baseFrequency="0.02" numOctaves="4" result="galaxy"/>
-      <feDisplacementMap in="SourceGraphic" in2="galaxy" scale="1"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Lightning Effect Filter -->
-    <filter id="lightningEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="2.5"/>
-      <feColorMatrix type="brightness" values="1.3"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Luminance Effect Filter -->
-    <filter id="luminanceEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="3" specularExponent="25" lighting-color="white">
-        <fePointLight x="427" y="60" z="200"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Rainbow Effect Filter -->
-    <filter id="rainbowEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Text Box Effect Filter -->
-    <filter id="textBoxEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#19f6e8" flood-opacity="0.6"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Glitch Effect Filter -->
-    <filter id="glitchEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="2.2"/>
-      <feOffset in="SourceGraphic" dx="1" dy="1" result="offsetRed"/>
-      <feOffset in="SourceGraphic" dx="-1" dy="-1" result="offsetCyan"/>
-      <feFlood flood-color="#ff0000" result="floodRed"/>
-      <feFlood flood-color="#00ffff" result="floodCyan"/>
-      <feComposite in="floodRed" in2="offsetRed" operator="in" result="redGlow"/>
-      <feComposite in="floodCyan" in2="offsetCyan" operator="in" result="cyanGlow"/>
-      <feMerge>
-        <feMergeNode in="SourceGraphic"/>
-        <feMergeNode in="redGlow"/>
-        <feMergeNode in="cyanGlow"/>
-      </feMerge>
-    </filter>
-
-    <!-- Typewriter Effect Filter -->
-    <filter id="typewriterEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.3"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00ff00" flood-opacity="0.4"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Text Shadow Effect -->
-    <filter id="textShadow">
-      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
-      <feColorMatrix type="saturate" values="1.2"/>
-    </filter>
-  
-  </defs>
-
-  <!-- Additional elements for complex effects -->
-  
-    <g transform="translate(427, 60)">
-      <path fill="url(#gradient)" filter="url(#organicGlow)" d="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z">
-        <animate
-          attributeName="d"
-          dur="15s"
-          repeatCount="indefinite"
-          values="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z;M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z"
-          calcMode="spline"
-          keyTimes="0;0.2;0.4;0.6;0.8;1"
-          keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1"
-        />
-        <animate
-          attributeName="opacity"
-          values="0.85;1;0.85"
-          dur="9.0s"
-          repeatCount="indefinite"
-        />
-      </path>
-    </g>
-  
-
-  <rect
-    width="854"
-    height="120"
-    fill="url(#gradient)"
-    filter="url(#smoothTransition)"
-    
-  >
-    <animate
-      attributeName="opacity"
-      values="0.95;1;0.95"
-      dur="3s"
-      repeatCount="indefinite"
-      calcMode="spline"
-      keyTimes="0;0.5;1"
-      keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
-    />
-  </rect>
-
-  <text
-    x="427"
-    y="60"
-    font-size="40"
-    font-family="'Arial Black', Arial, sans-serif"
-    font-weight="bold"
-    text-anchor="middle"
-    alignment-baseline="middle"
-    fill="#ffffff"
-    filter="url(#textShadow)"
-  >
-    Hello World
-    <animate
-      attributeName="opacity"
-      values="0.9;1;0.9"
-      dur="4s"
-      repeatCount="indefinite"
-      calcMode="spline"
-      keyTimes="0;0.5;1"
-      keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
-    />
-  </text>
-</svg>"
-`;
-
-exports[`SVG contract parity > consciousness:dream-logic 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="mentalWaves" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" style="stop-color:#f5f0ff"/><stop offset="RANDOM%" style="stop-color:#ebe0ff"/><stop offset="RANDOM%" style="stop-color:#e0ccff"/><stop offset="100%" style="stop-color:#d6b3ff"/>
-      </radialGradient>
-      <filter id="mentalRipple">
-        <feTurbulence baseFrequency="0.01" numOctaves="2" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8"/>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#mentalWaves)" filter="url(#mentalRipple)">
-      <animateTransform attributeName="transform" type="rotate" values="0;360" dur="12s" repeatCount="indefinite"/>
-    </rect>
-    
-      <circle cx="50%" cy="50%" r="15%" fill="none" stroke="#f5f0ff" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="15%;25%;15%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="30%" fill="none" stroke="#ebe0ff" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="30%;50%;30%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="45%" fill="none" stroke="#e0ccff" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="45%;75%;45%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="60%" fill="none" stroke="#d6b3ff" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="60%;100%;60%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="75%" fill="none" stroke="#f5f0ff" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="75%;125%;75%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-    <foreignObject x="10%" y="35%" width="80%" height="30%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: white;
-        font-family: 'Playfair Display', serif;
-        font-size: 42px;
-        font-weight: 300;
-        text-align: center;
-        text-shadow: 0 0 20px #f5f0ff;
-        animation: mentalFloat 12s infinite ease-in-out;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes mentalFloat {
-          0%, 100% { transform: translateY(0); opacity: 1; }
-          50% { transform: translateY(-10px); opacity: 0.8; }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
-exports[`SVG contract parity > consciousness:memory-fragments 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="mentalWaves" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" style="stop-color:#f0e6ff"/><stop offset="RANDOM%" style="stop-color:#e6ccff"/><stop offset="RANDOM%" style="stop-color:#dab3ff"/><stop offset="100%" style="stop-color:#cc99ff"/>
-      </radialGradient>
-      <filter id="mentalRipple">
-        <feTurbulence baseFrequency="0.01" numOctaves="2" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8"/>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#mentalWaves)" filter="url(#mentalRipple)">
-      <animateTransform attributeName="transform" type="rotate" values="0;360" dur="8s" repeatCount="indefinite"/>
-    </rect>
-    
-      <circle cx="50%" cy="50%" r="15%" fill="none" stroke="#f0e6ff" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="15%;25%;15%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="30%" fill="none" stroke="#e6ccff" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="30%;50%;30%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="45%" fill="none" stroke="#dab3ff" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="45%;75%;45%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="60%" fill="none" stroke="#cc99ff" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="60%;100%;60%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="75%" fill="none" stroke="#f0e6ff" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="75%;125%;75%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-    <foreignObject x="10%" y="35%" width="80%" height="30%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: white;
-        font-family: 'Playfair Display', serif;
-        font-size: 42px;
-        font-weight: 300;
-        text-align: center;
-        text-shadow: 0 0 20px #f0e6ff;
-        animation: mentalFloat 8s infinite ease-in-out;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes mentalFloat {
-          0%, 100% { transform: translateY(0); opacity: 1; }
-          50% { transform: translateY(-10px); opacity: 0.8; }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
-exports[`SVG contract parity > consciousness:thought-waves 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="mentalWaves" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" style="stop-color:#e6e6fa"/><stop offset="RANDOM%" style="stop-color:#dda0dd"/><stop offset="RANDOM%" style="stop-color:#da70d6"/><stop offset="100%" style="stop-color:#ba55d3"/>
-      </radialGradient>
-      <filter id="mentalRipple">
-        <feTurbulence baseFrequency="0.01" numOctaves="2" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8"/>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#mentalWaves)" filter="url(#mentalRipple)">
-      <animateTransform attributeName="transform" type="rotate" values="0;360" dur="6s" repeatCount="indefinite"/>
-    </rect>
-    
-      <circle cx="50%" cy="50%" r="15%" fill="none" stroke="#e6e6fa" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="15%;25%;15%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="30%" fill="none" stroke="#dda0dd" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="30%;50%;30%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="45%" fill="none" stroke="#da70d6" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="45%;75%;45%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="60%" fill="none" stroke="#ba55d3" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="60%;100%;60%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-      <circle cx="50%" cy="50%" r="75%" fill="none" stroke="#e6e6fa" stroke-width="2" opacity="0.6">
-        <animate attributeName="r" values="75%;125%;75%" dur="RANDOMs" repeatCount="indefinite"/>
-      </circle>
-    
-    <foreignObject x="10%" y="35%" width="80%" height="30%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: white;
-        font-family: 'Playfair Display', serif;
-        font-size: 42px;
-        font-weight: 300;
-        text-align: center;
-        text-shadow: 0 0 20px #e6e6fa;
-        animation: mentalFloat 6s infinite ease-in-out;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes mentalFloat {
-          0%, 100% { transform: translateY(0); opacity: 1; }
-          50% { transform: translateY(-10px); opacity: 0.8; }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
 exports[`SVG contract parity > culinaryLiquid:coffee-cream 1`] = `
 "<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -11926,157 +10941,6 @@ exports[`SVG contract parity > metallic:silver-pulse 1`] = `
 </svg>"
 `;
 
-exports[`SVG contract parity > morphing:cosmic-entity 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="cosmicEntity" cx="50%" cy="50%" r="80%">
-        <stop offset="0%" style="stop-color:#000033;stop-opacity:0.9">
-          <animate attributeName="stop-color" values="#000033;#000066;#330066;#000033" dur="12s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="70%" style="stop-color:#000066;stop-opacity:0.6">
-          <animate attributeName="stop-color" values="#000066;#330066;#660099;#000066" dur="12s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="100%" style="stop-color:#330066;stop-opacity:0.3">
-          <animate attributeName="stop-color" values="#330066;#660099;#000033;#330066" dur="12s" repeatCount="indefinite"/>
-        </stop>
-        <animate attributeName="r" values="60%;100%;60%" dur="12s" repeatCount="indefinite"/>
-      </radialGradient>
-      <filter id="cosmicDistortion">
-        <feTurbulence baseFrequency="0.3" numOctaves="3" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="20">
-          <animate attributeName="scale" values="10;30;10" dur="12s" repeatCount="indefinite"/>
-        </feDisplacementMap>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#cosmicEntity)" filter="url(#cosmicDistortion)"/>
-    <foreignObject x="10%" y="40%" width="80%" height="20%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: #660099;
-        font-family: 'Orbitron', monospace;
-        font-size: 26px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0 0 20px #000033, 0 0 30px #000066;
-        animation: cosmicPulse 12s infinite;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes cosmicPulse {
-          0%, 100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
-          50% { transform: scale(1.02) rotate(1deg); filter: brightness(1.2); }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
-exports[`SVG contract parity > morphing:liquid-mercury 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="liquidMercury" cx="50%" cy="50%" r="60%">
-        <stop offset="0%" style="stop-color:#c0c0c0;stop-opacity:1">
-          <animate attributeName="stop-color" values="#c0c0c0;#e8e8e8;#a0a0a0;#c0c0c0" dur="8s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="70%" style="stop-color:#e8e8e8;stop-opacity:0.8">
-          <animate attributeName="stop-color" values="#e8e8e8;#a0a0a0;#f0f0f0;#e8e8e8" dur="8s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="100%" style="stop-color:#a0a0a0;stop-opacity:0.6">
-          <animate attributeName="stop-opacity" values="0.6;0.9;0.6" dur="4s" repeatCount="indefinite"/>
-        </stop>
-        <animate attributeName="r" values="40%;80%;40%" dur="8s" repeatCount="indefinite"/>
-      </radialGradient>
-      <filter id="metallicReflection">
-        <feGaussianBlur stdDeviation="3" result="blur"/>
-        <feSpecularLighting surfaceScale="8" specularConstant="2" specularExponent="15" lighting-color="white" in="blur" result="specOut">
-          <feDistantLight azimuth="45" elevation="60"/>
-        </feSpecularLighting>
-        <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
-        <feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#liquidMercury)" filter="url(#metallicReflection)"/>
-    <foreignObject x="10%" y="40%" width="80%" height="20%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: #f0f0f0;
-        font-family: 'Arial Black', sans-serif;
-        font-size: 28px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 10px #c0c0c0;
-        animation: mercuryFlow 8s infinite;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes mercuryFlow {
-          0%, 100% { transform: scaleX(1); filter: blur(0px); }
-          50% { transform: scaleX(1.1); filter: blur(0.5px); }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
-exports[`SVG contract parity > morphing:plasma-blob 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width="854" height="120" viewBox="0 0 854 120">
-      
-    <defs>
-      <radialGradient id="plasmaBlob" cx="50%" cy="50%" r="70%">
-        <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:1">
-          <animate attributeName="stop-color" values="#ff00ff;#ff0080;#8000ff;#ff00ff" dur="6s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="50%" style="stop-color:#ff0080;stop-opacity:0.8">
-          <animate attributeName="stop-color" values="#ff0080;#8000ff;#ff4080;#ff0080" dur="6s" repeatCount="indefinite"/>
-        </stop>
-        <stop offset="100%" style="stop-color:#8000ff;stop-opacity:0.4">
-          <animate attributeName="stop-color" values="#8000ff;#ff4080;#ff00ff;#8000ff" dur="6s" repeatCount="indefinite"/>
-        </stop>
-        <animate attributeName="cx" values="30%;70%;30%" dur="6s" repeatCount="indefinite"/>
-        <animate attributeName="cy" values="30%;70%;30%" dur="9s" repeatCount="indefinite"/>
-      </radialGradient>
-      <filter id="plasmaGlow">
-        <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
-        <feMerge>
-          <feMergeNode in="coloredBlur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#plasmaBlob)" filter="url(#plasmaGlow)"/>
-    <foreignObject x="10%" y="40%" width="80%" height="20%">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="
-        color: #ff4080;
-        font-family: 'Impact', sans-serif;
-        font-size: 30px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0 0 15px #ff00ff, 0 0 25px #ff0080, 0 0 35px #8000ff;
-        animation: plasmaEnergy 6s infinite;
-      ">
-        Hello World
-      </div>
-      <style>
-        @keyframes plasmaEnergy {
-          0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.05); opacity: 0.9; }
-        }
-      </style>
-    </foreignObject>
-  
-    </svg>"
-`;
-
 exports[`SVG contract parity > nature:forest-mist 1`] = `
 "<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14905,6 +13769,808 @@ exports[`SVG contract parity > shape:wave-flow 1`] = `
 </svg>"
 `;
 
+exports[`SVG contract parity > specialty:liquid-venom 1`] = `
+"<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="854" height="120" viewBox="0 0 854 120">
+  <defs>
+    
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8871e5" /><stop offset="RANDOM%" stop-color="#b678c4" /><stop offset="RANDOM%" stop-color="#8871e5" /><stop offset="100%" stop-color="#b678c4" />
+      dur="10s" repeatCount="indefinite"
+    </linearGradient>
+  
+    
+    <!-- Soft Light Filter -->
+    <filter id="softLight">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="saturate" values="1.2" result="saturated"/>
+      <feMerge>
+        <feMergeNode in="saturated"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Smooth Transition Filter -->
+    <filter id="smoothTransition">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.5"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Radial Blur Filter -->
+    <filter id="radialBlur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="1.3"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Energy Effect Filter -->
+    <filter id="energyEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+      <feColorMatrix type="saturate" values="1.8"/>
+      <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Spiral Effect Filter -->
+    <filter id="spiralEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.6"/>
+      <feTurbulence baseFrequency="0.01" numOctaves="2" result="spiral"/>
+      <feDisplacementMap in="SourceGraphic" in2="spiral" scale="3"/>
+    </filter>
+
+    <!-- Wave Effect Filter -->
+    <filter id="waveEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
+      <feColorMatrix type="saturate" values="1.4"/>
+      <feTurbulence baseFrequency="0.03 0.01" numOctaves="2" result="wave"/>
+      <feDisplacementMap in="SourceGraphic" in2="wave" scale="1.5"/>
+    </filter>
+
+    <!-- Crystal Effect Filter -->
+    <filter id="crystalEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="1.7"/>
+      <feSpecularLighting in="SourceGraphic" specularConstant="1.5" specularExponent="20" lighting-color="white">
+        <fePointLight x="427" y="30" z="100"/>
+      </feSpecularLighting>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Reflection Effect Filter -->
+    <filter id="reflectionEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.3"/>
+      <feOffset in="SourceGraphic" dx="0" dy="2" result="offset"/>
+      <feFlood flood-color="rgba(255,255,255,0.3)" result="white"/>
+      <feComposite in="white" in2="offset" operator="in" result="reflection"/>
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="reflection"/>
+      </feMerge>
+    </filter>
+
+    <!-- Star Effect Filter -->
+    <filter id="starEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="2"/>
+      <feSpecularLighting in="SourceGraphic" specularConstant="2" specularExponent="30" lighting-color="#ffff00">
+        <fePointLight x="427" y="60" z="150"/>
+      </feSpecularLighting>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Heart Effect Filter -->
+    <filter id="heartEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="1.8"/>
+      <feColorMatrix type="hueRotate" values="15"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Zigzag Effect Filter -->
+    <filter id="zigzagEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="1.6"/>
+      <feTurbulence baseFrequency="0.05" numOctaves="1" result="zigzag"/>
+      <feDisplacementMap in="SourceGraphic" in2="zigzag" scale="2"/>
+    </filter>
+
+    <!-- Ripple Effect Filter -->
+    <filter id="rippleEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.4"/>
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Galaxy Effect Filter -->
+    <filter id="galaxyEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="2"/>
+      <feTurbulence baseFrequency="0.02" numOctaves="4" result="galaxy"/>
+      <feDisplacementMap in="SourceGraphic" in2="galaxy" scale="1"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Lightning Effect Filter -->
+    <filter id="lightningEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="2.5"/>
+      <feColorMatrix type="brightness" values="1.3"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Luminance Effect Filter -->
+    <filter id="luminanceEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="1.5"/>
+      <feSpecularLighting in="SourceGraphic" specularConstant="3" specularExponent="25" lighting-color="white">
+        <fePointLight x="427" y="60" z="200"/>
+      </feSpecularLighting>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Rainbow Effect Filter -->
+    <filter id="rainbowEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="2"/>
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Text Box Effect Filter -->
+    <filter id="textBoxEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.8"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#19f6e8" flood-opacity="0.6"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Glitch Effect Filter -->
+    <filter id="glitchEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="2.2"/>
+      <feOffset in="SourceGraphic" dx="1" dy="1" result="offsetRed"/>
+      <feOffset in="SourceGraphic" dx="-1" dy="-1" result="offsetCyan"/>
+      <feFlood flood-color="#ff0000" result="floodRed"/>
+      <feFlood flood-color="#00ffff" result="floodCyan"/>
+      <feComposite in="floodRed" in2="offsetRed" operator="in" result="redGlow"/>
+      <feComposite in="floodCyan" in2="offsetCyan" operator="in" result="cyanGlow"/>
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="redGlow"/>
+        <feMergeNode in="cyanGlow"/>
+      </feMerge>
+    </filter>
+
+    <!-- Typewriter Effect Filter -->
+    <filter id="typewriterEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.3"/>
+      <feColorMatrix type="saturate" values="1.3"/>
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00ff00" flood-opacity="0.4"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Text Shadow Effect -->
+    <filter id="textShadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
+      <feColorMatrix type="saturate" values="1.2"/>
+    </filter>
+  
+  </defs>
+
+  <!-- Additional elements for complex effects -->
+  
+    <g transform="translate(427, 60)">
+      <path fill="url(#gradient)" opacity="0.9" d="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z">
+        <animate
+          attributeName="d"
+          dur="10s"
+          repeatCount="indefinite"
+          values="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z;M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z"
+          calcMode="spline"
+          keyTimes="0;RANDOM;RANDOM;1"
+          keySplines="0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1"
+        />
+      </path>
+    </g>
+  
+
+  <rect
+    width="854"
+    height="120"
+    fill="url(#gradient)"
+    filter="url(#smoothTransition)"
+    
+  >
+    <animate
+      attributeName="opacity"
+      values="0.95;1;0.95"
+      dur="3s"
+      repeatCount="indefinite"
+      calcMode="spline"
+      keyTimes="0;0.5;1"
+      keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
+    />
+  </rect>
+
+  <text
+    x="427"
+    y="60"
+    font-size="40"
+    font-family="'Arial Black', Arial, sans-serif"
+    font-weight="bold"
+    text-anchor="middle"
+    alignment-baseline="middle"
+    fill="#ffffff"
+    filter="url(#textShadow)"
+  >
+    Hello World
+    <animate
+      attributeName="opacity"
+      values="0.9;1;0.9"
+      dur="4s"
+      repeatCount="indefinite"
+      calcMode="spline"
+      keyTimes="0;0.5;1"
+      keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
+    />
+  </text>
+</svg>"
+`;
+
+exports[`SVG contract parity > specialty:mercury-flow 1`] = `
+"<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="854" height="120" viewBox="0 0 854 120">
+  <defs>
+    
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C0C0C0" /><stop offset="20%" stop-color="#A8A8A8" /><stop offset="40%" stop-color="#D3D3D3" /><stop offset="60%" stop-color="#C0C0C0" /><stop offset="80%" stop-color="#A8A8A8" /><stop offset="100%" stop-color="#D3D3D3" />
+      dur="12s" repeatCount="indefinite"
+    </linearGradient>
+    <linearGradient id="gradient2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#C0C0C0" /><stop offset="20%" stop-color="#A8A8A8" /><stop offset="40%" stop-color="#D3D3D3" /><stop offset="60%" stop-color="#C0C0C0" /><stop offset="80%" stop-color="#A8A8A8" /><stop offset="100%" stop-color="#D3D3D3" />
+      dur="12s" repeatCount="indefinite"
+    </linearGradient>
+    
+      <filter id="blobBlur">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+        <feColorMatrix in="blur" type="saturate" values="1.2"/>
+        <feComposite operator="over" in2="SourceGraphic"/>
+      </filter>
+  
+    
+    <!-- Soft Light Filter -->
+    <filter id="softLight">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="saturate" values="1.2" result="saturated"/>
+      <feMerge>
+        <feMergeNode in="saturated"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Smooth Transition Filter -->
+    <filter id="smoothTransition">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.5"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Radial Blur Filter -->
+    <filter id="radialBlur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="1.3"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Energy Effect Filter -->
+    <filter id="energyEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+      <feColorMatrix type="saturate" values="1.8"/>
+      <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Spiral Effect Filter -->
+    <filter id="spiralEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.6"/>
+      <feTurbulence baseFrequency="0.01" numOctaves="2" result="spiral"/>
+      <feDisplacementMap in="SourceGraphic" in2="spiral" scale="3"/>
+    </filter>
+
+    <!-- Wave Effect Filter -->
+    <filter id="waveEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
+      <feColorMatrix type="saturate" values="1.4"/>
+      <feTurbulence baseFrequency="0.03 0.01" numOctaves="2" result="wave"/>
+      <feDisplacementMap in="SourceGraphic" in2="wave" scale="1.5"/>
+    </filter>
+
+    <!-- Crystal Effect Filter -->
+    <filter id="crystalEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="1.7"/>
+      <feSpecularLighting in="SourceGraphic" specularConstant="1.5" specularExponent="20" lighting-color="white">
+        <fePointLight x="427" y="30" z="100"/>
+      </feSpecularLighting>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Reflection Effect Filter -->
+    <filter id="reflectionEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.3"/>
+      <feOffset in="SourceGraphic" dx="0" dy="2" result="offset"/>
+      <feFlood flood-color="rgba(255,255,255,0.3)" result="white"/>
+      <feComposite in="white" in2="offset" operator="in" result="reflection"/>
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="reflection"/>
+      </feMerge>
+    </filter>
+
+    <!-- Star Effect Filter -->
+    <filter id="starEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="2"/>
+      <feSpecularLighting in="SourceGraphic" specularConstant="2" specularExponent="30" lighting-color="#ffff00">
+        <fePointLight x="427" y="60" z="150"/>
+      </feSpecularLighting>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Heart Effect Filter -->
+    <filter id="heartEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="1.8"/>
+      <feColorMatrix type="hueRotate" values="15"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Zigzag Effect Filter -->
+    <filter id="zigzagEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="1.6"/>
+      <feTurbulence baseFrequency="0.05" numOctaves="1" result="zigzag"/>
+      <feDisplacementMap in="SourceGraphic" in2="zigzag" scale="2"/>
+    </filter>
+
+    <!-- Ripple Effect Filter -->
+    <filter id="rippleEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.4"/>
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Galaxy Effect Filter -->
+    <filter id="galaxyEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="2"/>
+      <feTurbulence baseFrequency="0.02" numOctaves="4" result="galaxy"/>
+      <feDisplacementMap in="SourceGraphic" in2="galaxy" scale="1"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Lightning Effect Filter -->
+    <filter id="lightningEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="2.5"/>
+      <feColorMatrix type="brightness" values="1.3"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Luminance Effect Filter -->
+    <filter id="luminanceEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="1.5"/>
+      <feSpecularLighting in="SourceGraphic" specularConstant="3" specularExponent="25" lighting-color="white">
+        <fePointLight x="427" y="60" z="200"/>
+      </feSpecularLighting>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Rainbow Effect Filter -->
+    <filter id="rainbowEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="2"/>
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Text Box Effect Filter -->
+    <filter id="textBoxEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.8"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#19f6e8" flood-opacity="0.6"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Glitch Effect Filter -->
+    <filter id="glitchEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="2.2"/>
+      <feOffset in="SourceGraphic" dx="1" dy="1" result="offsetRed"/>
+      <feOffset in="SourceGraphic" dx="-1" dy="-1" result="offsetCyan"/>
+      <feFlood flood-color="#ff0000" result="floodRed"/>
+      <feFlood flood-color="#00ffff" result="floodCyan"/>
+      <feComposite in="floodRed" in2="offsetRed" operator="in" result="redGlow"/>
+      <feComposite in="floodCyan" in2="offsetCyan" operator="in" result="cyanGlow"/>
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="redGlow"/>
+        <feMergeNode in="cyanGlow"/>
+      </feMerge>
+    </filter>
+
+    <!-- Typewriter Effect Filter -->
+    <filter id="typewriterEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.3"/>
+      <feColorMatrix type="saturate" values="1.3"/>
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00ff00" flood-opacity="0.4"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Text Shadow Effect -->
+    <filter id="textShadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
+      <feColorMatrix type="saturate" values="1.2"/>
+    </filter>
+  
+  </defs>
+
+  <!-- Additional elements for complex effects -->
+  
+    <g transform="translate(427, 60)">
+      <!-- Background blob -->
+      <path fill="url(#gradient)" opacity="0.5" filter="url(#blobBlur)" d="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z">
+        <animate
+          attributeName="d"
+          dur="12s"
+          repeatCount="indefinite"
+          values="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z;M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z"
+          calcMode="spline"
+          keyTimes="0;RANDOM;RANDOM;1"
+          keySplines="0.3 0 0.7 1; 0.3 0 0.7 1; 0.3 0 0.7 1"
+        />
+      </path>
+      <!-- Foreground blob -->
+      <path fill="url(#gradient2)" opacity="0.7" d="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z">
+        <animate
+          attributeName="d"
+          dur="9.6s"
+          begin="-3.6s"
+          repeatCount="indefinite"
+          values="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z;M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z"
+          calcMode="spline"
+          keyTimes="0;0.25;0.5;0.75;1"
+          keySplines="0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1"
+        />
+      </path>
+    </g>
+  
+
+  <rect
+    width="854"
+    height="120"
+    fill="url(#gradient)"
+    filter="url(#smoothTransition)"
+    
+  >
+    <animate
+      attributeName="opacity"
+      values="0.95;1;0.95"
+      dur="3s"
+      repeatCount="indefinite"
+      calcMode="spline"
+      keyTimes="0;0.5;1"
+      keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
+    />
+  </rect>
+
+  <text
+    x="427"
+    y="60"
+    font-size="40"
+    font-family="'Arial Black', Arial, sans-serif"
+    font-weight="bold"
+    text-anchor="middle"
+    alignment-baseline="middle"
+    fill="#ffffff"
+    filter="url(#textShadow)"
+  >
+    Hello World
+    <animate
+      attributeName="opacity"
+      values="0.9;1;0.9"
+      dur="4s"
+      repeatCount="indefinite"
+      calcMode="spline"
+      keyTimes="0;0.5;1"
+      keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
+    />
+  </text>
+</svg>"
+`;
+
+exports[`SVG contract parity > specialty:organic-plasma 1`] = `
+"<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="854" height="120" viewBox="0 0 854 120">
+  <defs>
+    
+    <radialGradient id="gradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF6B6B" /><stop offset="20%" stop-color="#FFA07A" /><stop offset="40%" stop-color="#FF69B4" /><stop offset="60%" stop-color="#FF6B6B" /><stop offset="80%" stop-color="#FFA07A" /><stop offset="100%" stop-color="#FF69B4" />
+      dur="15s" repeatCount="indefinite"
+    </radialGradient>
+    
+    <filter id="organicGlow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feColorMatrix in="blur" type="saturate" values="1.8" result="saturated"/>
+      <feMerge>
+        <feMergeNode in="saturated"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  
+  
+    
+    <!-- Soft Light Filter -->
+    <filter id="softLight">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="saturate" values="1.2" result="saturated"/>
+      <feMerge>
+        <feMergeNode in="saturated"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Smooth Transition Filter -->
+    <filter id="smoothTransition">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.5"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Radial Blur Filter -->
+    <filter id="radialBlur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="1.3"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Energy Effect Filter -->
+    <filter id="energyEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+      <feColorMatrix type="saturate" values="1.8"/>
+      <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Spiral Effect Filter -->
+    <filter id="spiralEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.6"/>
+      <feTurbulence baseFrequency="0.01" numOctaves="2" result="spiral"/>
+      <feDisplacementMap in="SourceGraphic" in2="spiral" scale="3"/>
+    </filter>
+
+    <!-- Wave Effect Filter -->
+    <filter id="waveEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
+      <feColorMatrix type="saturate" values="1.4"/>
+      <feTurbulence baseFrequency="0.03 0.01" numOctaves="2" result="wave"/>
+      <feDisplacementMap in="SourceGraphic" in2="wave" scale="1.5"/>
+    </filter>
+
+    <!-- Crystal Effect Filter -->
+    <filter id="crystalEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="1.7"/>
+      <feSpecularLighting in="SourceGraphic" specularConstant="1.5" specularExponent="20" lighting-color="white">
+        <fePointLight x="427" y="30" z="100"/>
+      </feSpecularLighting>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Reflection Effect Filter -->
+    <filter id="reflectionEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.3"/>
+      <feOffset in="SourceGraphic" dx="0" dy="2" result="offset"/>
+      <feFlood flood-color="rgba(255,255,255,0.3)" result="white"/>
+      <feComposite in="white" in2="offset" operator="in" result="reflection"/>
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="reflection"/>
+      </feMerge>
+    </filter>
+
+    <!-- Star Effect Filter -->
+    <filter id="starEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="2"/>
+      <feSpecularLighting in="SourceGraphic" specularConstant="2" specularExponent="30" lighting-color="#ffff00">
+        <fePointLight x="427" y="60" z="150"/>
+      </feSpecularLighting>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Heart Effect Filter -->
+    <filter id="heartEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="1.8"/>
+      <feColorMatrix type="hueRotate" values="15"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Zigzag Effect Filter -->
+    <filter id="zigzagEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="1.6"/>
+      <feTurbulence baseFrequency="0.05" numOctaves="1" result="zigzag"/>
+      <feDisplacementMap in="SourceGraphic" in2="zigzag" scale="2"/>
+    </filter>
+
+    <!-- Ripple Effect Filter -->
+    <filter id="rippleEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.4"/>
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Galaxy Effect Filter -->
+    <filter id="galaxyEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="2"/>
+      <feTurbulence baseFrequency="0.02" numOctaves="4" result="galaxy"/>
+      <feDisplacementMap in="SourceGraphic" in2="galaxy" scale="1"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Lightning Effect Filter -->
+    <filter id="lightningEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="2.5"/>
+      <feColorMatrix type="brightness" values="1.3"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Luminance Effect Filter -->
+    <filter id="luminanceEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+      <feColorMatrix type="saturate" values="1.5"/>
+      <feSpecularLighting in="SourceGraphic" specularConstant="3" specularExponent="25" lighting-color="white">
+        <fePointLight x="427" y="60" z="200"/>
+      </feSpecularLighting>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Rainbow Effect Filter -->
+    <filter id="rainbowEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="2"/>
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Text Box Effect Filter -->
+    <filter id="textBoxEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
+      <feColorMatrix type="saturate" values="1.8"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#19f6e8" flood-opacity="0.6"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Glitch Effect Filter -->
+    <filter id="glitchEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
+      <feColorMatrix type="saturate" values="2.2"/>
+      <feOffset in="SourceGraphic" dx="1" dy="1" result="offsetRed"/>
+      <feOffset in="SourceGraphic" dx="-1" dy="-1" result="offsetCyan"/>
+      <feFlood flood-color="#ff0000" result="floodRed"/>
+      <feFlood flood-color="#00ffff" result="floodCyan"/>
+      <feComposite in="floodRed" in2="offsetRed" operator="in" result="redGlow"/>
+      <feComposite in="floodCyan" in2="offsetCyan" operator="in" result="cyanGlow"/>
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="redGlow"/>
+        <feMergeNode in="cyanGlow"/>
+      </feMerge>
+    </filter>
+
+    <!-- Typewriter Effect Filter -->
+    <filter id="typewriterEffect">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.3"/>
+      <feColorMatrix type="saturate" values="1.3"/>
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00ff00" flood-opacity="0.4"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Text Shadow Effect -->
+    <filter id="textShadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
+      <feColorMatrix type="saturate" values="1.2"/>
+    </filter>
+  
+  </defs>
+
+  <!-- Additional elements for complex effects -->
+  
+    <g transform="translate(427, 60)">
+      <path fill="url(#gradient)" filter="url(#organicGlow)" d="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z">
+        <animate
+          attributeName="d"
+          dur="15s"
+          repeatCount="indefinite"
+          values="M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z; MRANDOM,60 QRANDOM,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z;M452.2,60 Q452.2,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,74.4 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q401.8,60 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Q427,24 RANDOM,RANDOM QRANDOM,RANDOM RANDOM,RANDOM Z"
+          calcMode="spline"
+          keyTimes="0;0.2;0.4;0.6;0.8;1"
+          keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.85;1;0.85"
+          dur="9.0s"
+          repeatCount="indefinite"
+        />
+      </path>
+    </g>
+  
+
+  <rect
+    width="854"
+    height="120"
+    fill="url(#gradient)"
+    filter="url(#smoothTransition)"
+    
+  >
+    <animate
+      attributeName="opacity"
+      values="0.95;1;0.95"
+      dur="3s"
+      repeatCount="indefinite"
+      calcMode="spline"
+      keyTimes="0;0.5;1"
+      keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
+    />
+  </rect>
+
+  <text
+    x="427"
+    y="60"
+    font-size="40"
+    font-family="'Arial Black', Arial, sans-serif"
+    font-weight="bold"
+    text-anchor="middle"
+    alignment-baseline="middle"
+    fill="#ffffff"
+    filter="url(#textShadow)"
+  >
+    Hello World
+    <animate
+      attributeName="opacity"
+      values="0.9;1;0.9"
+      dur="4s"
+      repeatCount="indefinite"
+      calcMode="spline"
+      keyTimes="0;0.5;1"
+      keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
+    />
+  </text>
+</svg>"
+`;
+
 exports[`SVG contract parity > tech:cyber-matrix 1`] = `
 "<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -15613,544 +15279,6 @@ exports[`SVG contract parity > tech:quantum-field 1`] = `
     height="120"
     fill="url(#gradient)"
     filter="url(#smoothTransition)"
-    
-  >
-    <animate
-      attributeName="opacity"
-      values="0.95;1;0.95"
-      dur="3s"
-      repeatCount="indefinite"
-      calcMode="spline"
-      keyTimes="0;0.5;1"
-      keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
-    />
-  </rect>
-
-  <text
-    x="427"
-    y="60"
-    font-size="40"
-    font-family="'Arial Black', Arial, sans-serif"
-    font-weight="bold"
-    text-anchor="middle"
-    alignment-baseline="middle"
-    fill="#ffffff"
-    filter="url(#textShadow)"
-  >
-    Hello World
-    <animate
-      attributeName="opacity"
-      values="0.9;1;0.9"
-      dur="4s"
-      repeatCount="indefinite"
-      calcMode="spline"
-      keyTimes="0;0.5;1"
-      keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
-    />
-  </text>
-</svg>"
-`;
-
-exports[`SVG contract parity > textEffects:luminance-glow 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="854" height="120" viewBox="0 0 854 120">
-  <defs>
-    
-      <radialGradient id="gradient" cx="50%" cy="100%" r="50%">
-        <stop offset="0%" stop-color="#ffffff" /><stop offset="20%" stop-color="#cccccc" /><stop offset="40%" stop-color="#999999" /><stop offset="60%" stop-color="#ffffff" /><stop offset="80%" stop-color="#cccccc" /><stop offset="100%" stop-color="#999999" />
-        <animate attributeName="r" values="30%;70%;30%" dur="3s" repeatCount="indefinite" />
-      </radialGradient>
-    
-    <!-- Soft Light Filter -->
-    <filter id="softLight">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-      <feColorMatrix in="blur" type="saturate" values="1.2" result="saturated"/>
-      <feMerge>
-        <feMergeNode in="saturated"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <!-- Smooth Transition Filter -->
-    <filter id="smoothTransition">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Radial Blur Filter -->
-    <filter id="radialBlur">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Energy Effect Filter -->
-    <filter id="energyEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Spiral Effect Filter -->
-    <filter id="spiralEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.6"/>
-      <feTurbulence baseFrequency="0.01" numOctaves="2" result="spiral"/>
-      <feDisplacementMap in="SourceGraphic" in2="spiral" scale="3"/>
-    </filter>
-
-    <!-- Wave Effect Filter -->
-    <filter id="waveEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
-      <feColorMatrix type="saturate" values="1.4"/>
-      <feTurbulence baseFrequency="0.03 0.01" numOctaves="2" result="wave"/>
-      <feDisplacementMap in="SourceGraphic" in2="wave" scale="1.5"/>
-    </filter>
-
-    <!-- Crystal Effect Filter -->
-    <filter id="crystalEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="1.7"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="1.5" specularExponent="20" lighting-color="white">
-        <fePointLight x="427" y="30" z="100"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Reflection Effect Filter -->
-    <filter id="reflectionEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feOffset in="SourceGraphic" dx="0" dy="2" result="offset"/>
-      <feFlood flood-color="rgba(255,255,255,0.3)" result="white"/>
-      <feComposite in="white" in2="offset" operator="in" result="reflection"/>
-      <feMerge>
-        <feMergeNode in="SourceGraphic"/>
-        <feMergeNode in="reflection"/>
-      </feMerge>
-    </filter>
-
-    <!-- Star Effect Filter -->
-    <filter id="starEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="2" specularExponent="30" lighting-color="#ffff00">
-        <fePointLight x="427" y="60" z="150"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Heart Effect Filter -->
-    <filter id="heartEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feColorMatrix type="hueRotate" values="15"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Zigzag Effect Filter -->
-    <filter id="zigzagEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="1.6"/>
-      <feTurbulence baseFrequency="0.05" numOctaves="1" result="zigzag"/>
-      <feDisplacementMap in="SourceGraphic" in2="zigzag" scale="2"/>
-    </filter>
-
-    <!-- Ripple Effect Filter -->
-    <filter id="rippleEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.4"/>
-      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Galaxy Effect Filter -->
-    <filter id="galaxyEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feTurbulence baseFrequency="0.02" numOctaves="4" result="galaxy"/>
-      <feDisplacementMap in="SourceGraphic" in2="galaxy" scale="1"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Lightning Effect Filter -->
-    <filter id="lightningEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="2.5"/>
-      <feColorMatrix type="brightness" values="1.3"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Luminance Effect Filter -->
-    <filter id="luminanceEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="3" specularExponent="25" lighting-color="white">
-        <fePointLight x="427" y="60" z="200"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Rainbow Effect Filter -->
-    <filter id="rainbowEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Text Box Effect Filter -->
-    <filter id="textBoxEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#19f6e8" flood-opacity="0.6"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Glitch Effect Filter -->
-    <filter id="glitchEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="2.2"/>
-      <feOffset in="SourceGraphic" dx="1" dy="1" result="offsetRed"/>
-      <feOffset in="SourceGraphic" dx="-1" dy="-1" result="offsetCyan"/>
-      <feFlood flood-color="#ff0000" result="floodRed"/>
-      <feFlood flood-color="#00ffff" result="floodCyan"/>
-      <feComposite in="floodRed" in2="offsetRed" operator="in" result="redGlow"/>
-      <feComposite in="floodCyan" in2="offsetCyan" operator="in" result="cyanGlow"/>
-      <feMerge>
-        <feMergeNode in="SourceGraphic"/>
-        <feMergeNode in="redGlow"/>
-        <feMergeNode in="cyanGlow"/>
-      </feMerge>
-    </filter>
-
-    <!-- Typewriter Effect Filter -->
-    <filter id="typewriterEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.3"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00ff00" flood-opacity="0.4"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Text Shadow Effect -->
-    <filter id="textShadow">
-      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
-      <feColorMatrix type="saturate" values="1.2"/>
-    </filter>
-  
-  </defs>
-
-  <!-- Additional elements for complex effects -->
-  
-    <defs>
-      <style>
-        .luminance-text {
-          background: 50% 100%/50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, rgba(255,255,255,0.8), transparent);
-          background-clip: text;
-          -webkit-background-clip: text;
-          color: transparent;
-          font-size: 40px;
-          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-          animation: luminanceReveal 3s ease-in-out forwards 200ms, luminanceGlow 2500ms linear infinite 3000.0sms;
-        }
-        @keyframes luminanceReveal {
-          80% { letter-spacing: 8px; }
-          100% { background-size: 300% 300%; }
-        }
-        @keyframes luminanceGlow {
-          40% { text-shadow: 0 0 8px #fff; }
-        }
-      </style>
-    </defs>
-
-  <rect
-    width="854"
-    height="120"
-    fill="url(#gradient)"
-    filter="url(#luminanceEffect)"
-    
-  >
-    <animate
-      attributeName="opacity"
-      values="0.95;1;0.95"
-      dur="3s"
-      repeatCount="indefinite"
-      calcMode="spline"
-      keyTimes="0;0.5;1"
-      keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
-    />
-  </rect>
-
-  <text
-    x="427"
-    y="60"
-    font-size="40"
-    font-family="'Arial Black', Arial, sans-serif"
-    font-weight="bold"
-    text-anchor="middle"
-    alignment-baseline="middle"
-    fill="#ffffff"
-    filter="url(#textShadow)"
-  >
-    Hello World
-    <animate
-      attributeName="opacity"
-      values="0.9;1;0.9"
-      dur="4s"
-      repeatCount="indefinite"
-      calcMode="spline"
-      keyTimes="0;0.5;1"
-      keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
-    />
-  </text>
-</svg>"
-`;
-
-exports[`SVG contract parity > textEffects:rainbow-layer 1`] = `
-"
-    <svg width="854" height="120" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="wave-gradient-NORMALIZED" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#DEBF40"/><stop offset="RANDOM%" stop-color="#5ACB3C"/><stop offset="RANDOM%" stop-color="#44A3F7"/><stop offset="50%" stop-color="#CF52EB"/><stop offset="RANDOM%" stop-color="#D14B3D"/><stop offset="RANDOM%" stop-color="#D49C3D"/><stop offset="100%" stop-color="#ffffff"/>
-        </linearGradient>
-        <style>
-          .wave-text {
-            font-family: Arial, sans-serif;
-            font-size: 3em;
-            font-weight: bold;
-            fill: white;
-            text-anchor: middle;
-            dominant-baseline: central;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-          }
-        </style>
-      </defs>
-      <path d="M0,84 Q213.5,36 427,72 T854,48 V120 H0 Z" fill="url(#wave-gradient-NORMALIZED)"/>
-      <text x="427" y="60" class="wave-text">Hello World</text>
-    </svg>
-  "
-`;
-
-exports[`SVG contract parity > textEffects:rainbow-wave 1`] = `
-"<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="854" height="120" viewBox="0 0 854 120">
-  <defs>
-    
-      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#ff0000" /><stop offset="RANDOM%" stop-color="#ff8000" /><stop offset="RANDOM%" stop-color="#ffff00" /><stop offset="RANDOM%" stop-color="#80ff00" /><stop offset="RANDOM%" stop-color="#00ff00" /><stop offset="RANDOM%" stop-color="#00ff80" /><stop offset="RANDOM%" stop-color="#00ffff" /><stop offset="RANDOM%" stop-color="#0080ff" /><stop offset="RANDOM%" stop-color="#0000ff" /><stop offset="RANDOM%" stop-color="#8000ff" /><stop offset="RANDOM%" stop-color="#ff00ff" /><stop offset="RANDOM%" stop-color="#ff0080" /><stop offset="RANDOM%" stop-color="#ff0000" /><stop offset="RANDOM%" stop-color="#ff8000" /><stop offset="RANDOM%" stop-color="#ffff00" /><stop offset="RANDOM%" stop-color="#80ff00" /><stop offset="RANDOM%" stop-color="#00ff00" /><stop offset="RANDOM%" stop-color="#00ff80" /><stop offset="RANDOM%" stop-color="#00ffff" /><stop offset="RANDOM%" stop-color="#0080ff" /><stop offset="RANDOM%" stop-color="#0000ff" /><stop offset="RANDOM%" stop-color="#8000ff" /><stop offset="RANDOM%" stop-color="#ff00ff" /><stop offset="100%" stop-color="#ff0080" />
-        <animate attributeName="x1" values="-20%;100%;-20%" dur="1.5s" repeatCount="indefinite" />
-        <animate attributeName="x2" values="20%;120%;20%" dur="1.5s" repeatCount="indefinite" />
-      </linearGradient>
-    
-    <!-- Soft Light Filter -->
-    <filter id="softLight">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-      <feColorMatrix in="blur" type="saturate" values="1.2" result="saturated"/>
-      <feMerge>
-        <feMergeNode in="saturated"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <!-- Smooth Transition Filter -->
-    <filter id="smoothTransition">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Radial Blur Filter -->
-    <filter id="radialBlur">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Energy Effect Filter -->
-    <filter id="energyEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Spiral Effect Filter -->
-    <filter id="spiralEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.6"/>
-      <feTurbulence baseFrequency="0.01" numOctaves="2" result="spiral"/>
-      <feDisplacementMap in="SourceGraphic" in2="spiral" scale="3"/>
-    </filter>
-
-    <!-- Wave Effect Filter -->
-    <filter id="waveEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
-      <feColorMatrix type="saturate" values="1.4"/>
-      <feTurbulence baseFrequency="0.03 0.01" numOctaves="2" result="wave"/>
-      <feDisplacementMap in="SourceGraphic" in2="wave" scale="1.5"/>
-    </filter>
-
-    <!-- Crystal Effect Filter -->
-    <filter id="crystalEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="1.7"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="1.5" specularExponent="20" lighting-color="white">
-        <fePointLight x="427" y="30" z="100"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Reflection Effect Filter -->
-    <filter id="reflectionEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feOffset in="SourceGraphic" dx="0" dy="2" result="offset"/>
-      <feFlood flood-color="rgba(255,255,255,0.3)" result="white"/>
-      <feComposite in="white" in2="offset" operator="in" result="reflection"/>
-      <feMerge>
-        <feMergeNode in="SourceGraphic"/>
-        <feMergeNode in="reflection"/>
-      </feMerge>
-    </filter>
-
-    <!-- Star Effect Filter -->
-    <filter id="starEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="2" specularExponent="30" lighting-color="#ffff00">
-        <fePointLight x="427" y="60" z="150"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Heart Effect Filter -->
-    <filter id="heartEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feColorMatrix type="hueRotate" values="15"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Zigzag Effect Filter -->
-    <filter id="zigzagEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="1.6"/>
-      <feTurbulence baseFrequency="0.05" numOctaves="1" result="zigzag"/>
-      <feDisplacementMap in="SourceGraphic" in2="zigzag" scale="2"/>
-    </filter>
-
-    <!-- Ripple Effect Filter -->
-    <filter id="rippleEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.4"/>
-      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Galaxy Effect Filter -->
-    <filter id="galaxyEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feTurbulence baseFrequency="0.02" numOctaves="4" result="galaxy"/>
-      <feDisplacementMap in="SourceGraphic" in2="galaxy" scale="1"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Lightning Effect Filter -->
-    <filter id="lightningEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="2.5"/>
-      <feColorMatrix type="brightness" values="1.3"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Luminance Effect Filter -->
-    <filter id="luminanceEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
-      <feColorMatrix type="saturate" values="1.5"/>
-      <feSpecularLighting in="SourceGraphic" specularConstant="3" specularExponent="25" lighting-color="white">
-        <fePointLight x="427" y="60" z="200"/>
-      </feSpecularLighting>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Rainbow Effect Filter -->
-    <filter id="rainbowEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="2"/>
-      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Text Box Effect Filter -->
-    <filter id="textBoxEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="1"/>
-      <feColorMatrix type="saturate" values="1.8"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#19f6e8" flood-opacity="0.6"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Glitch Effect Filter -->
-    <filter id="glitchEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.5"/>
-      <feColorMatrix type="saturate" values="2.2"/>
-      <feOffset in="SourceGraphic" dx="1" dy="1" result="offsetRed"/>
-      <feOffset in="SourceGraphic" dx="-1" dy="-1" result="offsetCyan"/>
-      <feFlood flood-color="#ff0000" result="floodRed"/>
-      <feFlood flood-color="#00ffff" result="floodCyan"/>
-      <feComposite in="floodRed" in2="offsetRed" operator="in" result="redGlow"/>
-      <feComposite in="floodCyan" in2="offsetCyan" operator="in" result="cyanGlow"/>
-      <feMerge>
-        <feMergeNode in="SourceGraphic"/>
-        <feMergeNode in="redGlow"/>
-        <feMergeNode in="cyanGlow"/>
-      </feMerge>
-    </filter>
-
-    <!-- Typewriter Effect Filter -->
-    <filter id="typewriterEffect">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="0.3"/>
-      <feColorMatrix type="saturate" values="1.3"/>
-      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#00ff00" flood-opacity="0.4"/>
-      <feComposite operator="over" in2="SourceGraphic"/>
-    </filter>
-
-    <!-- Text Shadow Effect -->
-    <filter id="textShadow">
-      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
-      <feColorMatrix type="saturate" values="1.2"/>
-    </filter>
-  
-  </defs>
-
-  <!-- Additional elements for complex effects -->
-  
-    <defs>
-      <style>
-        .rainbow-layer {
-          font-size: 40px;
-          font-weight: 600;
-          text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 4px 4px 0 rgba(0, 0, 0, 0.2);
-          animation: rainbowWave 1.5s ease-in-out infinite;
-        }
-        @keyframes rainbowWave {
-          0%, 100% { transform: translateY(2px); }
-          50% { transform: translateY(-2px); }
-        }
-      </style>
-    </defs>
-
-  <rect
-    width="854"
-    height="120"
-    fill="url(#gradient)"
-    filter="url(#rainbowEffect)"
     
   >
     <animate

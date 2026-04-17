@@ -18,15 +18,13 @@ const techTemplates = require('../features/tech/templates');
 const artTemplates = require('../features/art/templates');
 const emotionTemplates = require('../features/emotion/templates');
 const materialTemplates = require('../features/material/templates');
-const textEffectTemplates = require('../templates/textEffectTemplates');
+const specialtyTemplates = require('../features/specialty/templates');
 const luxuryTemplates = require('../features/luxury/templates');
 const gamingTemplates = require('../features/gaming/templates');
 // 新增模板类别 - 来自示例项目整合
 const shapeTemplates = require('../features/shape/templates');
 const animationTemplates = require('../features/animation/templates');
-const morphingTemplates = require('../templates/morphingTemplates');
 const fluidsTemplates = require('../features/fluids/templates');
-const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
 // 🌟 NEW: Pattern & Metallic Templates (inspired by example project)
 const patternTemplates = require('../features/pattern/templates');
 const metallicTemplates = require('../features/metallic/templates');
@@ -85,11 +83,12 @@ const templateCategories = [
     templates: Object.values(materialTemplates),
   },
   {
-    id: 'text-effects',
-    name: 'Text Effects',
-    icon: '✨',
-    description: 'Advanced text animations with special visual effects',
-    templates: Object.values(textEffectTemplates),
+    id: 'specialty',
+    name: 'Specialty',
+    icon: '🎯',
+    description:
+      'Grab-bag of misc effects: text, capsules, morphing blobs, and consciousness-stream visualizations',
+    templates: Object.values(specialtyTemplates),
   },
   {
     id: 'luxury',
@@ -121,26 +120,12 @@ const templateCategories = [
     templates: Object.values(animationTemplates),
   },
   {
-    id: 'morphing',
-    name: 'Morphing Effects',
-    icon: '🌊',
-    description: 'Advanced morphing animations with fluid transformations',
-    templates: Object.values(morphingTemplates),
-  },
-  {
     id: 'fluids',
     name: 'Fluids',
     icon: '💧',
     description:
       'Fluid dynamics, dimensional portals, and multiverse visualizations in one unified category',
     templates: Object.values(fluidsTemplates),
-  },
-  {
-    id: 'consciousness-stream',
-    name: 'Consciousness Stream',
-    icon: '🧠',
-    description: '意识流美学 - 心理学、哲学与精神维度的视觉化表达',
-    templates: Object.values(consciousnessStreamTemplates),
   },
   // 🌟 NEW: Pattern & Metallic Categories (inspired by example project)
   {

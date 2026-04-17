@@ -6,14 +6,12 @@ import techTemplates from '../features/tech/templates';
 import artTemplates from '../features/art/templates';
 import emotionTemplates from '../features/emotion/templates';
 import materialTemplates from '../features/material/templates';
-import textEffectTemplates from '../templates/textEffectTemplates';
+import specialtyTemplates from '../features/specialty/templates';
 import luxuryTemplates from '../features/luxury/templates';
 import gamingTemplates from '../features/gaming/templates';
 import shapeTemplates from '../features/shape/templates';
 import animationTemplates from '../features/animation/templates';
-import morphingTemplates from '../templates/morphingTemplates';
 import fluidsTemplates from '../features/fluids/templates';
-import consciousnessStreamTemplates from '../templates/consciousnessStreamTemplates';
 // 🌟 NEW: 2025 Creative Expansion Templates
 import lightShadowTemplates from '../features/lightShadow/templates';
 import culinaryLiquidTemplates from '../features/culinaryLiquid/templates';
@@ -22,8 +20,6 @@ import patternTemplates from '../features/pattern/templates';
 import metallicTemplates from '../features/metallic/templates';
 // 🌟 NEW: Path-Based Text Animation Templates (inspired by Readme Typing SVG)
 import pathTextTemplates from '../features/pathText/templates';
-// 🌟 NEW: Capsule-Render Inspired Shape Templates (blob, wave, blur, shape backgrounds)
-import capsuleShapeTemplates from '../templates/capsuleShapeTemplates';
 // 🏷️ NEW: GitHub Profile Templates (badges, banners, terminals, cards)
 import githubProfileTemplates from '../features/githubProfile/templates';
 
@@ -45,14 +41,12 @@ const allTemplateGroups = [
   artTemplates,
   emotionTemplates,
   materialTemplates,
-  textEffectTemplates,
+  specialtyTemplates,
   luxuryTemplates,
   gamingTemplates,
   shapeTemplates,
   animationTemplates,
-  morphingTemplates,
   fluidsTemplates,
-  consciousnessStreamTemplates,
   // 🌟 NEW: 2025 Creative Expansion
   lightShadowTemplates,
   culinaryLiquidTemplates,
@@ -61,8 +55,6 @@ const allTemplateGroups = [
   metallicTemplates,
   // 🌟 NEW: Path-Based Text Animation Templates
   pathTextTemplates,
-  // 🌟 NEW: Capsule-Render Inspired Shape Templates
-  capsuleShapeTemplates,
   // 🏷️ NEW: GitHub Profile Templates
   githubProfileTemplates,
 ];
@@ -101,20 +93,17 @@ export function getAllTemplates() {
             'art',
             'emotion',
             'material',
-            'textEffects',
+            'specialty',
             'luxury',
             'gaming',
             'shape',
             'animation',
-            'morphing',
             'fluids',
-            'consciousness',
             'lightShadow',
             'culinaryLiquid',
             'pattern',
             'metallic',
             'pathText',
-            'capsuleShape',
             'githubProfile',
           ];
 
@@ -173,14 +162,12 @@ export function getCategories() {
     art: { id: 'art', name: 'Art', icon: '🎭' },
     emotion: { id: 'emotion', name: 'Emotion', icon: '💫' },
     material: { id: 'material', name: 'Material', icon: '💎' },
-    textEffects: { id: 'textEffects', name: 'Text Effects', icon: '✨' },
+    specialty: { id: 'specialty', name: 'Specialty', icon: '🎯' },
     luxury: { id: 'luxury', name: 'Luxury', icon: '👑' },
     gaming: { id: 'gaming', name: 'Gaming', icon: '🎮' },
     shape: { id: 'shape', name: 'Shape', icon: '⚫' },
     animation: { id: 'animation', name: 'Animation', icon: '🎬' },
-    morphing: { id: 'morphing', name: 'Morphing', icon: '🌊' },
     fluids: { id: 'fluids', name: 'Fluids', icon: '💧' },
-    consciousness: { id: 'consciousness', name: 'Consciousness', icon: '🧠' },
     // 🌟 NEW: 2025 Creative Expansion Categories
     lightShadow: { id: 'lightShadow', name: 'Light & Shadow', icon: '💡' },
     culinaryLiquid: { id: 'culinaryLiquid', name: 'Culinary', icon: '☕' },
@@ -189,8 +176,6 @@ export function getCategories() {
     metallic: { id: 'metallic', name: 'Metallic', icon: '✨' },
     // 🌟 NEW: Path-Based Text Animation Category
     pathText: { id: 'pathText', name: 'Path Animation', icon: '✍️' },
-    // 🌟 NEW: Capsule-Render Inspired Shape Category
-    capsuleShape: { id: 'capsuleShape', name: 'Capsule Effects', icon: '💊' },
     // 🏷️ NEW: GitHub Profile Category
     githubProfile: { id: 'githubProfile', name: 'GitHub Profile', icon: '🏷️' },
   };
@@ -238,20 +223,17 @@ export function getTemplateByName(name) {
         'art',
         'emotion',
         'material',
-        'textEffects',
+        'specialty',
         'luxury',
         'gaming',
         'shape',
         'animation',
-        'morphing',
         'fluids',
-        'consciousness',
         'lightShadow',
         'culinaryLiquid',
         'pattern',
         'metallic',
         'pathText',
-        'capsuleShape',
         'githubProfile',
       ];
 

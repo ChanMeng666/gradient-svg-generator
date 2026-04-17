@@ -13,20 +13,17 @@ const techTemplates = require('../features/tech/templates');
 const artTemplates = require('../features/art/templates');
 const emotionTemplates = require('../features/emotion/templates');
 const materialTemplates = require('../features/material/templates');
-const textEffectTemplates = require('../templates/textEffectTemplates');
+const specialtyTemplates = require('../features/specialty/templates');
 const luxuryTemplates = require('../features/luxury/templates');
 const gamingTemplates = require('../features/gaming/templates');
 const shapeTemplates = require('../features/shape/templates');
 const animationTemplates = require('../features/animation/templates');
-const morphingTemplates = require('../templates/morphingTemplates');
 const fluidsTemplates = require('../features/fluids/templates');
-const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
 const lightShadowTemplates = require('../features/lightShadow/templates');
 const culinaryLiquidTemplates = require('../features/culinaryLiquid/templates');
 const patternTemplates = require('../features/pattern/templates');
 const metallicTemplates = require('../features/metallic/templates');
 const pathTextTemplates = require('../features/pathText/templates');
-const capsuleShapeTemplates = require('../templates/capsuleShapeTemplates');
 const githubProfileTemplates = require('../features/githubProfile/templates');
 
 // Category metadata with pre-loaded modules
@@ -38,20 +35,17 @@ const CATEGORY_REGISTRY = {
   art: { name: 'Art', icon: '🎭', templates: artTemplates },
   emotion: { name: 'Emotion', icon: '💫', templates: emotionTemplates },
   material: { name: 'Material', icon: '💎', templates: materialTemplates },
-  textEffects: { name: 'Text Effects', icon: '✨', templates: textEffectTemplates },
+  specialty: { name: 'Specialty', icon: '🎯', templates: specialtyTemplates },
   luxury: { name: 'Luxury', icon: '👑', templates: luxuryTemplates },
   gaming: { name: 'Gaming', icon: '🎮', templates: gamingTemplates },
   shape: { name: 'Shape', icon: '⚫', templates: shapeTemplates },
   animation: { name: 'Animation', icon: '🎬', templates: animationTemplates },
-  morphing: { name: 'Morphing', icon: '🌊', templates: morphingTemplates },
   fluids: { name: 'Fluids', icon: '💧', templates: fluidsTemplates },
-  consciousness: { name: 'Consciousness', icon: '🧠', templates: consciousnessStreamTemplates },
   lightShadow: { name: 'Light & Shadow', icon: '💡', templates: lightShadowTemplates },
   culinaryLiquid: { name: 'Culinary', icon: '☕', templates: culinaryLiquidTemplates },
   pattern: { name: 'Pattern', icon: '🔷', templates: patternTemplates },
   metallic: { name: 'Metallic', icon: '✨', templates: metallicTemplates },
   pathText: { name: 'Path Animation', icon: '✍️', templates: pathTextTemplates },
-  capsuleShape: { name: 'Capsule Effects', icon: '💊', templates: capsuleShapeTemplates },
   githubProfile: { name: 'GitHub Profile', icon: '🏷️', templates: githubProfileTemplates },
 };
 

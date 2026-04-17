@@ -171,12 +171,15 @@ cases.push(
 
 describe('SVG contract parity', () => {
   test('categories loaded from registry', () => {
-    expect(categories.length).toBeGreaterThan(20);
+    // Threshold relaxed post Phase 5.2 category consolidation
+    // (~31 categories collapsed to ~19). Guardrail still ensures the
+    // registry isn't empty or catastrophically misregistered.
+    expect(categories.length).toBeGreaterThan(15);
   });
 
-  test('sampled >60 template cases', () => {
+  test('sampled >40 template cases', () => {
     const sampled = cases.filter((c) => !c.name.startsWith('edge:'));
-    expect(sampled.length).toBeGreaterThan(60);
+    expect(sampled.length).toBeGreaterThan(40);
   });
 
   for (const c of cases) {
