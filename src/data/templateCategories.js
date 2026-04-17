@@ -15,12 +15,11 @@ const basicTemplates = require('../features/basic/templates');
 const prideTemplates = require('../templates/prideTemplates');
 const natureTemplates = require('../templates/natureTemplates');
 const techTemplates = require('../templates/techTemplates');
-const artTemplates = require('../templates/artTemplates');
+const artTemplates = require('../features/art/templates');
 const emotionTemplates = require('../templates/emotionTemplates');
 const materialTemplates = require('../templates/materialTemplates');
 const textEffectTemplates = require('../templates/textEffectTemplates');
 const futureTechTemplates = require('../features/futureTech/templates');
-const artisticTemplates = require('../features/artistic/templates');
 const luxuryTemplates = require('../features/luxury/templates');
 const organicTemplates = require('../features/organic/templates');
 const gamingTemplates = require('../features/gaming/templates');
@@ -105,13 +104,6 @@ const templateCategories = [
     icon: '🚀',
     description: 'Cutting-edge sci-fi and futuristic visual effects',
     templates: Object.values(futureTechTemplates),
-  },
-  {
-    id: 'artistic',
-    name: 'Artistic',
-    icon: '🎨',
-    description: 'Creative art styles from watercolor to graffiti',
-    templates: Object.values(artisticTemplates),
   },
   {
     id: 'luxury',

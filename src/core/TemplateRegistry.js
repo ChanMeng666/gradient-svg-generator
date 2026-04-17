@@ -10,12 +10,11 @@ const basicTemplates = require('../features/basic/templates');
 const prideTemplates = require('../templates/prideTemplates');
 const natureTemplates = require('../templates/natureTemplates');
 const techTemplates = require('../templates/techTemplates');
-const artTemplates = require('../templates/artTemplates');
+const artTemplates = require('../features/art/templates');
 const emotionTemplates = require('../templates/emotionTemplates');
 const materialTemplates = require('../templates/materialTemplates');
 const textEffectTemplates = require('../templates/textEffectTemplates');
 const futureTechTemplates = require('../features/futureTech/templates');
-const artisticTemplates = require('../features/artistic/templates');
 const luxuryTemplates = require('../features/luxury/templates');
 const organicTemplates = require('../features/organic/templates');
 const gamingTemplates = require('../features/gaming/templates');
@@ -30,7 +29,6 @@ const cyberAestheticsTemplates = require('../templates/cyberAestheticsTemplates'
 const consciousnessStreamTemplates = require('../templates/consciousnessStreamTemplates');
 const weatherTemplates = require('../features/weather/templates');
 const lightShadowTemplates = require('../features/lightShadow/templates');
-const artMovementTemplates = require('../features/artMovement/templates');
 const culinaryLiquidTemplates = require('../features/culinaryLiquid/templates');
 const patternTemplates = require('../features/pattern/templates');
 const metallicTemplates = require('../features/metallic/templates');
@@ -49,7 +47,6 @@ const CATEGORY_REGISTRY = {
   material: { name: 'Material', icon: '💎', templates: materialTemplates },
   textEffects: { name: 'Text Effects', icon: '✨', templates: textEffectTemplates },
   futureTech: { name: 'Future Tech', icon: '🚀', templates: futureTechTemplates },
-  artistic: { name: 'Artistic', icon: '🎨', templates: artisticTemplates },
   luxury: { name: 'Luxury', icon: '👑', templates: luxuryTemplates },
   organicNature: { name: 'Organic', icon: '🌊', templates: organicTemplates },
   gaming: { name: 'Gaming', icon: '🎮', templates: gamingTemplates },
@@ -64,7 +61,6 @@ const CATEGORY_REGISTRY = {
   consciousness: { name: 'Consciousness', icon: '🧠', templates: consciousnessStreamTemplates },
   weather: { name: 'Weather', icon: '🌦️', templates: weatherTemplates },
   lightShadow: { name: 'Light & Shadow', icon: '💡', templates: lightShadowTemplates },
-  artMovement: { name: 'Art Movement', icon: '🎭', templates: artMovementTemplates },
   culinaryLiquid: { name: 'Culinary', icon: '☕', templates: culinaryLiquidTemplates },
   pattern: { name: 'Pattern', icon: '🔷', templates: patternTemplates },
   metallic: { name: 'Metallic', icon: '✨', templates: metallicTemplates },

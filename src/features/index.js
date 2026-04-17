@@ -11,13 +11,12 @@ const { manifest: basicManifest } = require('./basic/effect');
 const { manifest: shapeManifest } = require('./shape/effect');
 const { manifest: effectsManifest } = require('./effects/effect');
 const { manifest: futureTechManifest } = require('./futureTech/effect');
-const { manifest: artisticManifest } = require('./artistic/effect');
+const { manifest: artManifest } = require('./art/effect');
 const { manifest: luxuryManifest } = require('./luxury/effect');
 const { manifest: gamingManifest } = require('./gaming/effect');
 const { manifest: organicManifest } = require('./organic/effect');
 const { manifest: weatherManifest } = require('./weather/effect');
 const { manifest: lightShadowManifest } = require('./lightShadow/effect');
-const { manifest: artMovementManifest } = require('./artMovement/effect');
 const { manifest: culinaryLiquidManifest } = require('./culinaryLiquid/effect');
 const { manifest: patternManifest } = require('./pattern/effect');
 const { manifest: metallicManifest } = require('./metallic/effect');
@@ -32,13 +31,12 @@ const manifests = [
   shapeManifest,
   effectsManifest,
   futureTechManifest,
-  artisticManifest,
+  artManifest,
   luxuryManifest,
   gamingManifest,
   organicManifest,
   weatherManifest,
   lightShadowManifest,
-  artMovementManifest,
   culinaryLiquidManifest,
   patternManifest,
   metallicManifest,
