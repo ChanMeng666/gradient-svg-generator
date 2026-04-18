@@ -32,8 +32,8 @@ export default function Home() {
   const features = [
     {
       icon: <Palette className="h-6 w-6" />,
-      title: '326+ Templates',
-      description: 'Professional templates across 30 categories',
+      title: '340+ Templates',
+      description: 'Professional templates across 19 categories',
     },
     {
       icon: <Sparkles className="h-6 w-6" />,
@@ -65,20 +65,20 @@ export default function Home() {
       <GEOHead pageType="home" />
       <Head>
         <title>
-          Chromaflow - Create Stunning Animated SVG Gradients | 326+ Professional Templates
+          Chromaflow - Create Stunning Animated SVG Gradients | 340+ Professional Templates
         </title>
         <meta
           name="description"
-          content="Generate beautiful animated SVG gradients with 326+ professional templates across 30 categories. Perfect for headers, banners, and creative projects. Free API, no registration required."
+          content="Generate beautiful animated SVG gradients with 340+ professional templates across 19 categories. Perfect for headers, banners, and creative projects. Free API, no registration required."
         />
         <meta
           name="keywords"
           content="chromaflow, gradient generator, SVG creator, animated banners, GitHub headers, design tools, API, templates, free"
         />
-        <meta property="og:title" content="Chromaflow - 326+ Professional Gradient Templates" />
+        <meta property="og:title" content="Chromaflow - 340+ Professional Gradient Templates" />
         <meta
           property="og:description"
-          content="Create stunning animated SVG gradients with 326+ professional templates across 30 categories. Free API access, no registration required."
+          content="Create stunning animated SVG gradients with 340+ professional templates across 19 categories. Free API access, no registration required."
         />
         <meta property="og:url" content="https://chromaflow.vercel.app" />
         <meta property="og:type" content="website" />
@@ -86,7 +86,7 @@ export default function Home() {
         <meta name="twitter:title" content="Chromaflow - Professional Gradient Templates" />
         <meta
           name="twitter:description"
-          content="326+ professional gradient templates across 30 categories with real-time API. Perfect for developers and designers."
+          content="340+ professional gradient templates across 19 categories with real-time API. Perfect for developers and designers."
         />
       </Head>
 
@@ -115,8 +115,8 @@ export default function Home() {
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8">
-                Professional gradient generator with 326+ templates and 140+ animation effects.
-                Perfect for headers, banners, and creative projects.
+                Professional gradient generator with 340+ templates and 180+ gradient types. Perfect
+                for headers, banners, and creative projects.
               </p>
 
               <div className="flex gap-4 justify-center mb-12">
@@ -405,8 +405,8 @@ export default function Home() {
                 <h3 className="text-xl font-bold">Chromaflow</h3>
               </div>
               <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
-                Professional gradient generator with 326+ templates and 140+ animation effects.
-                Create stunning animated SVG gradients for your projects.
+                Professional gradient generator with 340+ templates and 180+ gradient types. Create
+                stunning animated SVG gradients for your projects.
               </p>
               <div className="flex flex-wrap justify-center gap-6 text-sm">
                 <Link href="/create" className="hover:text-primary transition-colors font-medium">

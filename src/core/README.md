@@ -41,7 +41,7 @@ graph TB
         MORE[...]
     end
 
-    subgraph Templates["Templates (30 categories)"]
+    subgraph Templates["Templates (19 categories)"]
         BT[basicTemplates]
         PT[prideTemplates]
         NT[natureTemplates]
@@ -131,6 +131,7 @@ classDiagram
 ```
 
 **Key Features**:
+
 - Maps effect names to generators
 - Maps templates to effects
 - Stores effect metadata (category, filters, description)
@@ -138,6 +139,7 @@ classDiagram
 - Category-based organization
 
 **Usage Example**:
+
 ```javascript
 const { effectRegistry } = require('./EffectRegistry');
 
@@ -149,7 +151,7 @@ effectRegistry.register({
   outputType: 'gradient',
   filters: ['myFilter'],
   description: 'My custom effect',
-  templates: ['my-template']
+  templates: ['my-template'],
 });
 
 // Get effect metadata
@@ -164,6 +166,7 @@ const sameMetadata = effectRegistry.get('my-template');
 **Purpose**: Automatically loads all effect generators and registers them in the registry.
 
 **Key Features**:
+
 - Imports all gradient generator modules
 - Consolidated template-to-effect mappings (TEMPLATE_MAPPINGS)
 - Automatic registration on initialization
@@ -171,22 +174,22 @@ const sameMetadata = effectRegistry.get('my-template');
 
 **Effect Categories**:
 
-| Category | Count | Description |
-|----------|-------|-------------|
-| basic | 9 | Horizontal, vertical, radial, etc. |
-| shapes | 7 | Star, heart, wave, lightning |
-| futureTech | 6 | Hologram, quantum, neural net |
-| artistic | 7 | Watercolor, oil paint, graffiti |
-| luxury | 7 | Gold foil, diamond, marble |
-| organic | 8 | Aurora, flame, flowing water |
-| gaming | 8 | Pixel art, neon arcade, cyberpunk |
-| morphing | 6 | Liquid, plasma, cosmic morphing |
-| fluidDynamics | 6 | Turbulent waves, aurora waves |
-| dimensional | 6 | Portal, wormhole, fractal |
-| weather | 7 | Fog, rain, snowfall, tornado |
-| lightShadow | 7 | Caustic, lens flare, god rays |
-| artMovement | 7 | Art Nouveau, Art Deco, Bauhaus |
-| pattern | 8 | Candystripe, zigzag, checkered |
+| Category      | Count | Description                        |
+| ------------- | ----- | ---------------------------------- |
+| basic         | 9     | Horizontal, vertical, radial, etc. |
+| shapes        | 7     | Star, heart, wave, lightning       |
+| futureTech    | 6     | Hologram, quantum, neural net      |
+| artistic      | 7     | Watercolor, oil paint, graffiti    |
+| luxury        | 7     | Gold foil, diamond, marble         |
+| organic       | 8     | Aurora, flame, flowing water       |
+| gaming        | 8     | Pixel art, neon arcade, cyberpunk  |
+| morphing      | 6     | Liquid, plasma, cosmic morphing    |
+| fluidDynamics | 6     | Turbulent waves, aurora waves      |
+| dimensional   | 6     | Portal, wormhole, fractal          |
+| weather       | 7     | Fog, rain, snowfall, tornado       |
+| lightShadow   | 7     | Caustic, lens flare, god rays      |
+| artMovement   | 7     | Art Nouveau, Art Deco, Bauhaus     |
+| pattern       | 8     | Candystripe, zigzag, checkered     |
 
 ### 3. Template Registry (`TemplateRegistry.js`)
 
@@ -223,12 +226,14 @@ flowchart LR
 ```
 
 **Key Features**:
+
 - **Static imports** instead of dynamic require (Webpack compatible)
 - Lazy loading by category
 - Template caching for performance
-- 30 category files supported
+- 19 category files supported
 
 **Usage Example**:
+
 ```javascript
 const TemplateRegistry = require('./TemplateRegistry');
 
@@ -249,6 +254,7 @@ const categories = TemplateRegistry.getCategories();
 **Purpose**: Centralized repository of all SVG filter definitions.
 
 **Available Filters**:
+
 - `softLight` - Soft light effect
 - `smoothTransition` - Smooth transitions
 - `radialBlur` - Radial blur
@@ -263,11 +269,12 @@ const categories = TemplateRegistry.getCategories();
 - And many more...
 
 **Parameterized Filter Generators**:
+
 ```javascript
 const {
   createTurbulenceFilter,
   createBlurFilter,
-  createColorMatrixFilter
+  createColorMatrixFilter,
 } = require('./FilterLibrary');
 
 // Create custom turbulence filter
@@ -277,7 +284,7 @@ const filter = createTurbulenceFilter('myFilter', {
   scale: 15,
   animated: true,
   animationValues: '15;25;15',
-  duration: '6s'
+  duration: '6s',
 });
 ```
 
@@ -286,11 +293,13 @@ const filter = createTurbulenceFilter('myFilter', {
 **Purpose**: Centralized animation patterns and utilities.
 
 **Key Features**:
+
 - Reusable animation configurations
 - Duration multiplier utilities
 - Standard animation presets
 
 **Usage Example**:
+
 ```javascript
 const { buildAnimationConfig, multiplyDuration } = require('./AnimationLibrary');
 
@@ -335,6 +344,7 @@ flowchart TB
 ```
 
 **Usage Example**:
+
 ```javascript
 const { svgComposer } = require('./SVGComposer');
 
@@ -346,7 +356,7 @@ const svg = svgComposer.composeGradientSVG({
   clipPath: '',
   gradientType: 'horizontal',
   width: 854,
-  height: 120
+  height: 120,
 });
 ```
 
@@ -379,13 +389,14 @@ flowchart TB
 ```
 
 **Usage Example**:
+
 ```javascript
 const { generateGradientSVG, getSystemStats } = require('./UnifiedGradientGenerator');
 
 // Generate with template
 const svg = generateGradientSVG({
   text: 'Hello World',
-  template: 'aurora-borealis'
+  template: 'aurora-borealis',
 });
 
 // Generate with gradient type
@@ -394,7 +405,7 @@ const svg2 = generateGradientSVG({
   colors: ['ff0000', '00ff00', '0000ff'],
   height: 120,
   gradientType: 'radial',
-  duration: '4s'
+  duration: '4s',
 });
 
 // Get system stats
@@ -415,6 +426,7 @@ flowchart LR
 ```
 
 **1. Create the generator function**:
+
 ```javascript
 // In src/utils/gradientGenerators/myCategory.js
 const { createTurbulenceFilter } = require('../../core/FilterLibrary');
@@ -424,7 +436,7 @@ function createMyEffect(stops, animationConfig, animationDuration) {
   const filter = createTurbulenceFilter('myFilter', {
     baseFrequency: '0.5',
     numOctaves: 3,
-    scale: 15
+    scale: 15,
   });
 
   return {
@@ -433,7 +445,7 @@ function createMyEffect(stops, animationConfig, animationDuration) {
         ${stops}
         <animate attributeName="x1" values="0%;100%;0%" ${animationConfig} />
       </linearGradient>
-      ${filter}`
+      ${filter}`,
   };
 }
 
@@ -441,6 +453,7 @@ module.exports = { createMyEffect };
 ```
 
 **2. Register in EffectLoader.js**:
+
 ```javascript
 // In loadAllEffects() or create a new load function
 effectRegistry.register({
@@ -450,11 +463,12 @@ effectRegistry.register({
   outputType: 'gradient',
   filters: ['smoothTransition'],
   description: 'My custom effect',
-  templates: ['my-template-name']
+  templates: ['my-template-name'],
 });
 ```
 
 **3. Add to GRADIENT_TYPES** (in gradientConfig.js):
+
 ```javascript
 const GRADIENT_TYPES = [
   // ... existing types
@@ -463,6 +477,7 @@ const GRADIENT_TYPES = [
 ```
 
 **4. Create template** (in appropriate templates file):
+
 ```javascript
 module.exports = {
   'my-template-name': {
@@ -471,36 +486,37 @@ module.exports = {
     colors: ['ff0000', '00ff00', '0000ff'],
     gradientType: 'myEffect',
     animationDuration: '6s',
-    description: 'My custom template effect'
-  }
+    description: 'My custom template effect',
+  },
 };
 ```
 
 ## Benefits of New Architecture
 
-| Benefit | Description |
-|---------|-------------|
-| **Unified Logic** | Single generation pipeline for all effects |
-| **Extensibility** | Add new effects without modifying core files |
-| **Maintainability** | Clear separation of concerns |
-| **Performance** | Effect registry enables caching |
-| **Webpack Compatible** | Static imports in TemplateRegistry |
-| **Type Safety** | Consistent parameter validation |
+| Benefit                | Description                                  |
+| ---------------------- | -------------------------------------------- |
+| **Unified Logic**      | Single generation pipeline for all effects   |
+| **Extensibility**      | Add new effects without modifying core files |
+| **Maintainability**    | Clear separation of concerns                 |
+| **Performance**        | Effect registry enables caching              |
+| **Webpack Compatible** | Static imports in TemplateRegistry           |
+| **Type Safety**        | Consistent parameter validation              |
 
 ## Troubleshooting
 
 ### Common Issues
 
-| Issue | Solution |
-|-------|----------|
-| Effect not found | Ensure registered in EffectLoader.js |
-| Template not working | Verify static import in TemplateRegistry.js |
-| Filter not applied | Check FilterLibrary.js for filter ID |
-| Black gradient showing | Clear browser cache / Service Worker |
+| Issue                  | Solution                                    |
+| ---------------------- | ------------------------------------------- |
+| Effect not found       | Ensure registered in EffectLoader.js        |
+| Template not working   | Verify static import in TemplateRegistry.js |
+| Filter not applied     | Check FilterLibrary.js for filter ID        |
+| Black gradient showing | Clear browser cache / Service Worker        |
 
 ### Service Worker Cache
 
 If templates appear broken or show black:
+
 1. Open DevTools > Application > Service Workers
 2. Click "Unregister"
 3. Clear site data

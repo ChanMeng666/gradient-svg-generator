@@ -111,7 +111,7 @@ export default function Create() {
         <title>Create Custom Gradients - Chromaflow | Real-time Editor</title>
         <meta
           name="description"
-          content="Create beautiful animated SVG gradients with our powerful real-time editor. Choose from 326+ professional templates including Path Animation, Weather, Light & Shadow, Art Movement, and Culinary effects or design your own custom gradients. Free API generation."
+          content="Create beautiful animated SVG gradients with our powerful real-time editor. Choose from 340+ professional templates including Path Animation, Weather, Light & Shadow, Art Movement, and Culinary effects or design your own custom gradients. Free API generation."
         />
         <meta
           name="keywords"
@@ -120,7 +120,7 @@ export default function Create() {
         <meta property="og:title" content="Gradient Creator - Real-time SVG Editor" />
         <meta
           property="og:description"
-          content="Professional gradient creation tool with real-time preview and 326+ templates across 30 categories."
+          content="Professional gradient creation tool with real-time preview and 340+ templates across 19 categories."
         />
       </Head>
 

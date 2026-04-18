@@ -167,19 +167,19 @@ export default function Templates() {
         customInstructions={`Template gallery with ${filteredTemplates.length} templates. ${selectedCategory !== 'all' ? `Currently viewing ${selectedCategory} category.` : 'All categories available.'} Help users find appropriate templates based on their project needs and provide direct API usage examples.`}
       />
       <Head>
-        <title>Template Gallery - 326+ Professional Gradient Templates | Chromaflow</title>
+        <title>Template Gallery - 340+ Professional Gradient Templates | Chromaflow</title>
         <meta
           name="description"
-          content="Browse 326+ professional gradient templates across 30 categories including Path Animation, Weather, Light & Shadow, Art Movement, and Culinary effects. Perfect for GitHub headers, web projects, and design work. Free API access to all templates."
+          content="Browse 340+ professional gradient templates across 19 categories including Path Animation, Weather, Light & Shadow, Art Movement, and Culinary effects. Perfect for GitHub headers, web projects, and design work. Free API access to all templates."
         />
         <meta
           name="keywords"
           content="gradient templates, SVG templates, design gallery, GitHub headers, professional gradients, template library, path animation, typing animation, weather effects, light shadow, art movement, culinary"
         />
-        <meta property="og:title" content="326+ Professional Gradient Templates" />
+        <meta property="og:title" content="340+ Professional Gradient Templates" />
         <meta
           property="og:description"
-          content="Browse our comprehensive template gallery with 326+ gradients for every project type across 30 categories, including Path-Based Text Animation, Weather, Light & Shadow, Art Movement, and Culinary categories."
+          content="Browse our comprehensive template gallery with 340+ gradients for every project type across 19 categories, including Path-Based Text Animation, Weather, Light & Shadow, Art Movement, and Culinary categories."
         />
       </Head>
 
