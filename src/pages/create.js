@@ -6,17 +6,12 @@ import Header from '../components/layout/Header';
 import GEOHead from '../components/seo/GEOHead';
 import Sidebar from '../components/layout/Sidebar';
 import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
 import { cn } from '../lib/utils';
 import useStore from '../store/useStore';
 import styles from '../styles/create.module.css';
-import { ColorPicker } from '../components/ui/color-picker';
-import { GRADIENT_TYPES } from '../constants/gradientTypes';
 import { APP_URL } from '../core/constants';
 import { useMobileUI } from '../hooks/useMobileUI';
-import { useColorManagement } from '../hooks/useColorManagement';
 import { useShareActions } from '../hooks/useShareActions';
 import { useFullscreenToggle } from '../hooks/useFullscreenToggle';
 import { useResetConfig } from '../hooks/useResetConfig';
@@ -26,8 +21,6 @@ import {
   Maximize2,
   Settings,
   Palette,
-  Type,
-  Sliders,
   Code2,
   Share2,
   RotateCcw,
@@ -35,6 +28,13 @@ import {
 } from 'lucide-react';
 
 // Dynamic imports for heavy components
+const PropertiesPanel = dynamic(
+  () =>
+    import('../components/features/properties-panel').then((m) => ({
+      default: m.PropertiesPanel,
+    })),
+  { ssr: false },
+);
 const MobilePropertiesPanel = dynamic(
   () =>
     import('../components/features/properties-panel').then((m) => ({
@@ -52,17 +52,8 @@ import { getAllTemplates, getCategories } from '../utils/templateUtils';
 
 export default function Create() {
   const router = useRouter();
-  const {
-    currentConfig,
-    updateConfig,
-    setTemplate,
-    addToRecent,
-    favorites,
-    toggleFavorite,
-    baseTemplate,
-    isModified,
-    resetToTemplate,
-  } = useStore();
+  const { setTemplate, addToRecent, favorites, toggleFavorite, baseTemplate, isModified } =
+    useStore();
 
   const {
     isMobile,
@@ -74,7 +65,6 @@ export default function Create() {
     setQuickTemplatesOpen,
     closeMobileMenu,
   } = useMobileUI();
-  const { handleColorUpdate, handleAddColor, handleRemoveColor } = useColorManagement();
   const { previewUrl, copyCode, downloadSVG, share, isCopied, isShared } = useShareActions();
   const { isFullscreen, toggle: toggleFullscreen, close: closeFullscreen } = useFullscreenToggle();
   const resetConfig = useResetConfig();
@@ -274,144 +264,7 @@ export default function Create() {
             {/* Properties Panel - Desktop */}
             {!isMobile && (
               <div className={styles.propertiesPanel}>
-                <div className={styles.propertiesContent}>
-                  <h2 className="text-lg font-semibold mb-4">Properties</h2>
-
-                  <Tabs defaultValue="basic" className="w-full">
-                    <TabsList className="grid w-full grid-cols-3">
-                      <TabsTrigger value="basic" className="gap-1">
-                        <Type className="h-4 w-4" />
-                        Basic
-                      </TabsTrigger>
-                      <TabsTrigger value="colors" className="gap-1">
-                        <Palette className="h-4 w-4" />
-                        Colors
-                      </TabsTrigger>
-                      <TabsTrigger value="advanced" className="gap-1">
-                        <Sliders className="h-4 w-4" />
-                        Advanced
-                      </TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="basic" className="space-y-4 mt-4">
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">Text Content</label>
-                        <Input
-                          value={currentConfig.text}
-                          onChange={(e) => updateConfig({ text: e.target.value })}
-                          placeholder="Enter your text..."
-                          className="w-full"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">Height (px)</label>
-                        <div className="flex items-center gap-2">
-                          <input
-                            type="range"
-                            min="30"
-                            max="300"
-                            value={currentConfig.height}
-                            onChange={(e) => updateConfig({ height: parseInt(e.target.value) })}
-                            className="flex-1"
-                          />
-                          <span className="text-sm font-mono w-12 text-right">
-                            {currentConfig.height}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">Animation Duration</label>
-                        <select
-                          value={currentConfig.duration}
-                          onChange={(e) => updateConfig({ duration: e.target.value })}
-                          className="w-full rounded-md border border-input bg-background px-3 py-2"
-                        >
-                          <option value="3s">Fast (3s)</option>
-                          <option value="6s">Normal (6s)</option>
-                          <option value="10s">Slow (10s)</option>
-                          <option value="15s">Very Slow (15s)</option>
-                        </select>
-                      </div>
-                    </TabsContent>
-
-                    <TabsContent value="colors" className="mt-4">
-                      <div className="space-y-4">
-                        <div className="space-y-2">
-                          <p className="text-sm text-muted-foreground">
-                            Customize your gradient colors. Click + to add more colors.
-                          </p>
-                          {baseTemplate && (
-                            <p className="text-xs text-muted-foreground">
-                              {isModified
-                                ? `Modified from template: ${baseTemplate.label || baseTemplate.name}`
-                                : `Using template: ${baseTemplate.label || baseTemplate.name}`}
-                            </p>
-                          )}
-                        </div>
-                        {currentConfig.colors && currentConfig.colors.length > 0 ? (
-                          <div className="space-y-3">
-                            {currentConfig.colors.map((color, index) => (
-                              <ColorPicker
-                                key={index}
-                                color={color}
-                                index={index}
-                                total={currentConfig.colors.length}
-                                onUpdate={handleColorUpdate}
-                                onAdd={handleAddColor}
-                                onRemove={handleRemoveColor}
-                              />
-                            ))}
-                          </div>
-                        ) : (
-                          <Button onClick={handleAddColor} variant="outline" className="w-full">
-                            Add First Color
-                          </Button>
-                        )}
-                        {baseTemplate && isModified && (
-                          <Button
-                            onClick={resetToTemplate}
-                            variant="outline"
-                            size="sm"
-                            className="w-full"
-                          >
-                            Reset to Original Template Colors
-                          </Button>
-                        )}
-                      </div>
-                    </TabsContent>
-
-                    <TabsContent value="advanced" className="mt-4">
-                      <div className="space-y-4">
-                        <div>
-                          <label className="text-sm font-medium mb-2 block">
-                            Gradient Type ({GRADIENT_TYPES.length} types available)
-                          </label>
-                          <div className="max-h-96 overflow-y-auto border rounded-md p-2">
-                            <div className="grid grid-cols-2 gap-2">
-                              {GRADIENT_TYPES.map((type) => (
-                                <Button
-                                  key={type.value}
-                                  variant={
-                                    currentConfig.gradientType === type.value
-                                      ? 'default'
-                                      : 'outline'
-                                  }
-                                  size="sm"
-                                  onClick={() => updateConfig({ gradientType: type.value })}
-                                  className="justify-start text-xs"
-                                >
-                                  {type.label}
-                                </Button>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </TabsContent>
-                  </Tabs>
-                </div>
+                <PropertiesPanel />
               </div>
             )}
 
