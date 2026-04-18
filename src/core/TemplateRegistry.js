@@ -94,16 +94,30 @@ function loadCategoryTemplates(categoryId) {
  */
 function normalizeTemplateModule(module, categoryId) {
   const templates = [];
+  const sourceFile = `src/features/${categoryId}/templates.js`;
+
+  // Lazy-loaded dev guard -- imported once, called per template in dev only.
+  let validate = null;
+  if (process.env.NODE_ENV !== 'production') {
+    try {
+      validate = require('./schema/template.schema').validateTemplateInDev;
+    } catch {
+      // Schema file may not exist in very stripped-down builds; swallow.
+    }
+  }
+
+  const push = (template) => {
+    templates.push({
+      ...template,
+      displayName: template.label || template.displayName || template.name,
+      category: template.category || categoryId,
+    });
+    if (validate) validate(template, sourceFile);
+  };
 
   if (Array.isArray(module)) {
     module.forEach((template) => {
-      if (template && template.name) {
-        templates.push({
-          ...template,
-          displayName: template.label || template.displayName || template.name,
-          category: template.category || categoryId,
-        });
-      }
+      if (template && template.name) push(template);
     });
   } else if (typeof module === 'object' && module !== null) {
     // Handle default export
@@ -114,13 +128,7 @@ function normalizeTemplateModule(module, categoryId) {
     }
 
     Object.values(data).forEach((template) => {
-      if (template && typeof template === 'object' && template.name) {
-        templates.push({
-          ...template,
-          displayName: template.label || template.displayName || template.name,
-          category: template.category || categoryId,
-        });
-      }
+      if (template && typeof template === 'object' && template.name) push(template);
     });
   }
 
