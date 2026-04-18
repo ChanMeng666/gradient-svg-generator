@@ -1,14 +1,17 @@
-import React, { useEffect, useMemo, useCallback } from 'react';
+import { useEffect, useMemo, useCallback } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Header from '../components/layout/Header';
 import GEOHead from '../components/seo/GEOHead';
 import Sidebar from '../components/layout/Sidebar';
+import type { SidebarTemplate } from '../components/layout/Sidebar';
+import type { SidebarCategory } from '../components/layout/Sidebar/SidebarFilters';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { cn } from '../lib/utils';
 import useStore from '../store/useStore';
+import type { Template } from '../store/slices/template';
 import styles from '../styles/create.module.css';
 import { APP_URL } from '../core/constants';
 import { useMobileUI } from '../hooks/useMobileUI';
@@ -26,8 +29,8 @@ import {
   RotateCcw,
   X,
 } from 'lucide-react';
+import { getAllTemplates, getCategories } from '../utils/templateUtils';
 
-// Dynamic imports for heavy components
 const PropertiesPanel = dynamic(
   () =>
     import('../components/features/properties-panel').then((m) => ({
@@ -46,9 +49,6 @@ const SwipeableTemplateCarousel = dynamic(
   () => import('../components/features/SwipeableTemplateCarousel'),
   { ssr: false },
 );
-
-// Import all templates
-import { getAllTemplates, getCategories } from '../utils/templateUtils';
 
 export default function Create() {
   const router = useRouter();
@@ -69,22 +69,23 @@ export default function Create() {
   const { isFullscreen, toggle: toggleFullscreen, close: closeFullscreen } = useFullscreenToggle();
   const resetConfig = useResetConfig();
 
-  const templates = useMemo(() => getAllTemplates(), []);
-  const categories = useMemo(() => getCategories(), []);
+  const templates = useMemo(() => getAllTemplates() as Template[], []);
+  const categories = useMemo(() => getCategories() as SidebarCategory[], []);
 
-  // Load a template referenced by ?template= in the URL.
   useEffect(() => {
-    if (router.isReady && router.query.template) {
-      const template = templates.find((t) => t.name === router.query.template);
-      if (template) {
-        setTemplate(template);
-        addToRecent(template);
-      }
+    if (!router.isReady) return;
+    const queryTemplate = router.query.template;
+    const templateName = Array.isArray(queryTemplate) ? queryTemplate[0] : queryTemplate;
+    if (!templateName) return;
+    const template = templates.find((t) => t.name === templateName);
+    if (template) {
+      setTemplate(template);
+      addToRecent(template);
     }
   }, [router.isReady, router.query.template, templates, setTemplate, addToRecent]);
 
   const handleTemplateSelect = useCallback(
-    (template) => {
+    (template: Template) => {
       setTemplate(template);
       addToRecent(template);
       closeMobileMenu();
@@ -119,24 +120,22 @@ export default function Create() {
         <Header onMenuClick={() => setMobileMenuOpen(!mobileMenuOpen)} />
 
         <div className={styles.pageContainer}>
-          {/* Sidebar - Hidden on mobile, shown via menu */}
           <div
             className={cn(
               'transition-all duration-300 shrink-0',
               'fixed top-16 left-0 z-40 md:relative md:inset-y-0',
-              'md:h-full', // Full height on desktop
-              isMobile ? 'bottom-0 h-[calc(100vh-4rem)]' : 'h-full', // Full height minus header on mobile
+              'md:h-full',
+              isMobile ? 'bottom-0 h-[calc(100vh-4rem)]' : 'h-full',
               mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
             )}
           >
             <Sidebar
-              templates={templates}
+              templates={templates as unknown as SidebarTemplate[]}
               categories={categories}
-              onTemplateSelect={handleTemplateSelect}
+              onTemplateSelect={(template) => handleTemplateSelect(template as unknown as Template)}
             />
           </div>
 
-          {/* Mobile overlay */}
           {mobileMenuOpen && (
             <div
               className="fixed inset-0 bg-black/50 z-30 md:hidden"
@@ -144,11 +143,8 @@ export default function Create() {
             />
           )}
 
-          {/* Main Content */}
           <div className={styles.mainContent}>
-            {/* Canvas Area */}
             <div className={styles.canvasArea}>
-              {/* Canvas Header */}
               <div className={styles.canvasHeader}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 sm:gap-4">
@@ -183,14 +179,12 @@ export default function Create() {
                 </div>
               </div>
 
-              {/* Canvas */}
               <div
                 className={cn(
                   styles.canvasContent,
                   isFullscreen && 'fixed inset-0 z-50 bg-background',
                 )}
               >
-                {/* Close button for fullscreen mode */}
                 {isFullscreen && (
                   <Button
                     variant="outline"
@@ -210,7 +204,6 @@ export default function Create() {
                 </div>
               </div>
 
-              {/* Actions Bar */}
               <div className={styles.actionsBar}>
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between gap-4">
@@ -261,14 +254,12 @@ export default function Create() {
               </div>
             </div>
 
-            {/* Properties Panel - Desktop */}
             {!isMobile && (
               <div className={styles.propertiesPanel}>
                 <PropertiesPanel />
               </div>
             )}
 
-            {/* Mobile Properties Button */}
             {isMobile && !mobilePropertiesOpen && (
               <div className="fixed bottom-24 right-4 z-20">
                 <Button
@@ -284,7 +275,6 @@ export default function Create() {
         </div>
       </div>
 
-      {/* Mobile Properties Panel - now uses store directly, simplified props */}
       {isMobile && (
         <MobilePropertiesPanel
           isOpen={mobilePropertiesOpen}
@@ -292,7 +282,6 @@ export default function Create() {
         />
       )}
 
-      {/* Mobile Quick Templates Toggle Button */}
       {isMobile && !isFullscreen && !mobilePropertiesOpen && (
         <div className="fixed bottom-20 left-4 z-20">
           <Button
@@ -307,7 +296,6 @@ export default function Create() {
         </div>
       )}
 
-      {/* Mobile Template Carousel - Collapsible */}
       {isMobile && !isFullscreen && quickTemplatesOpen && !mobilePropertiesOpen && (
         <div className="fixed bottom-0 left-0 right-0 z-30 animate-in slide-in-from-bottom duration-300">
           <div className="bg-background/95 backdrop-blur-sm border-t rounded-t-lg shadow-lg">
@@ -336,8 +324,8 @@ export default function Create() {
               <SwipeableTemplateCarousel
                 templates={templates.slice(0, 12)}
                 onTemplateSelect={(template) => {
-                  handleTemplateSelect(template);
-                  setQuickTemplatesOpen(false); // Auto-close after selection
+                  handleTemplateSelect(template as Template);
+                  setQuickTemplatesOpen(false);
                 }}
                 favorites={favorites}
                 onFavorite={toggleFavorite}
