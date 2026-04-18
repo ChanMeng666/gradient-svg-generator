@@ -1,52 +1,41 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-export default function useKeyboardShortcuts() {
+export default function useKeyboardShortcuts(): void {
   const router = useRouter();
 
   useEffect(() => {
-    const handleKeyPress = (event) => {
-      // Ignore if user is typing in an input
-      if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) {
         return;
       }
 
-      // Cmd/Ctrl + K - Search
       if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
         event.preventDefault();
-        const searchInput = document.querySelector('input[type="search"], input[placeholder*="Search"]');
-        if (searchInput) {
-          searchInput.focus();
-        }
+        const searchInput = document.querySelector<HTMLInputElement>(
+          'input[type="search"], input[placeholder*="Search"]',
+        );
+        searchInput?.focus();
       }
 
-      // Cmd/Ctrl + N - New/Create
       if ((event.metaKey || event.ctrlKey) && event.key === 'n') {
         event.preventDefault();
         router.push('/create');
       }
 
-      // Cmd/Ctrl + H - Home
       if ((event.metaKey || event.ctrlKey) && event.key === 'h') {
         event.preventDefault();
         router.push('/');
       }
 
-      // Cmd/Ctrl + T - Templates
       if ((event.metaKey || event.ctrlKey) && event.key === 't') {
         event.preventDefault();
         router.push('/templates');
       }
 
-      // Escape - Close modals
-      if (event.key === 'Escape') {
-        // This will be handled by individual modal components
-      }
-
-      // ? - Show help (when shift is not pressed)
       if (event.key === '?' && !event.shiftKey) {
         event.preventDefault();
-        // Show keyboard shortcuts help modal
         showKeyboardShortcutsHelp();
       }
     };
@@ -56,8 +45,7 @@ export default function useKeyboardShortcuts() {
   }, [router]);
 }
 
-function showKeyboardShortcutsHelp() {
-  // Create a simple alert for now
+function showKeyboardShortcutsHelp(): void {
   const shortcuts = `
 Keyboard Shortcuts:
 
