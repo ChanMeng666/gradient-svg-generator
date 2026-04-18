@@ -1,5 +1,12 @@
-import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../ui/dialog';
+import { useState } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '../ui/dialog';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Input } from '../ui/input';
@@ -8,13 +15,32 @@ import Link from 'next/link';
 import { Star, Download, Code2, Copy, Check } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-export default function TemplatePreviewModal({ 
-  template, 
-  isOpen, 
-  onClose, 
+export interface PreviewTemplate {
+  name: string;
+  displayName?: string;
+  label?: string;
+  category?: string;
+  description?: string;
+  animationDuration?: string;
+  gradientType?: string;
+  colors?: string[];
+}
+
+interface TemplatePreviewModalProps {
+  template: PreviewTemplate | null;
+  isOpen: boolean;
+  onClose: () => void;
+  onFavorite: (templateName: string) => void;
+  isFavorite: boolean;
+}
+
+export default function TemplatePreviewModal({
+  template,
+  isOpen,
+  onClose,
   onFavorite,
-  isFavorite 
-}) {
+  isFavorite,
+}: TemplatePreviewModalProps) {
   const [previewText, setPreviewText] = useState('PREVIEW');
   const [previewHeight, setPreviewHeight] = useState(120);
   const [copied, setCopied] = useState(false);
@@ -24,7 +50,7 @@ export default function TemplatePreviewModal({
   const previewUrl = `/api/svg?text=${encodeURIComponent(previewText)}&template=${template.name}&height=${previewHeight}`;
   const apiUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}${previewUrl}`;
 
-  const copyToClipboard = async (text) => {
+  const copyToClipboard = async (text: string) => {
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -62,7 +88,7 @@ export default function TemplatePreviewModal({
               onClick={() => onFavorite(template.name)}
               className="mt-1"
             >
-              <Star className={cn("h-5 w-5", isFavorite && "fill-current text-yellow-500")} />
+              <Star className={cn('h-5 w-5', isFavorite && 'fill-current text-yellow-500')} />
             </Button>
           </div>
         </DialogHeader>
@@ -78,18 +104,13 @@ export default function TemplatePreviewModal({
             <TabsContent value="preview" className="mt-4">
               <div className="rounded-lg border bg-muted/30 p-8">
                 <div className="max-w-full overflow-hidden">
-                  <img 
-                    src={previewUrl}
-                    alt={template.displayName}
-                    className="w-full h-auto"
-                  />
+                  <img src={previewUrl} alt={template.displayName} className="w-full h-auto" />
                 </div>
               </div>
               <div className="mt-4 flex items-center gap-4">
                 <p className="text-sm text-muted-foreground">
-                  Animation: {template.animationDuration} • 
-                  Type: {template.gradientType} • 
-                  Colors: {template.colors?.length || 0}
+                  Animation: {template.animationDuration} • Type: {template.gradientType} • Colors:{' '}
+                  {template.colors?.length || 0}
                 </p>
               </div>
             </TabsContent>
@@ -104,9 +125,7 @@ export default function TemplatePreviewModal({
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-2 block">
-                  Height: {previewHeight}px
-                </label>
+                <label className="text-sm font-medium mb-2 block">Height: {previewHeight}px</label>
                 <input
                   type="range"
                   min="30"
@@ -117,11 +136,7 @@ export default function TemplatePreviewModal({
                 />
               </div>
               <div className="rounded-lg border bg-muted/30 p-4">
-                <img 
-                  src={previewUrl}
-                  alt="Custom preview"
-                  className="w-full h-auto"
-                />
+                <img src={previewUrl} alt="Custom preview" className="w-full h-auto" />
               </div>
             </TabsContent>
 

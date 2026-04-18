@@ -1,10 +1,16 @@
-import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Home, Grid3x3, PlusCircle, Clock, Star, Code } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-const navItems = [
+interface NavItem {
+  href: string;
+  icon: LucideIcon;
+  label: string;
+}
+
+const navItems: readonly NavItem[] = [
   { href: '/', icon: Home, label: 'Home' },
   { href: '/templates', icon: Grid3x3, label: 'Templates' },
   { href: '/create', icon: PlusCircle, label: 'Create' },
@@ -22,20 +28,17 @@ export default function MobileNav() {
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = router.pathname === item.href;
-          
+
           return (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                "flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors",
-                isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                'flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors',
+                isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground',
               )}
             >
-              <Icon className={cn(
-                "h-5 w-5 transition-transform",
-                isActive && "scale-110"
-              )} />
+              <Icon className={cn('h-5 w-5 transition-transform', isActive && 'scale-110')} />
               <span className="text-xs font-medium">{item.label}</span>
             </Link>
           );

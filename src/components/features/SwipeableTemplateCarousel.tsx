@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import type { TouchEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card } from '../ui/card';
 import { Badge } from '../ui/badge';
@@ -6,26 +7,41 @@ import { Button } from '../ui/button';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
+export interface CarouselTemplate {
+  name: string;
+  displayName?: string;
+  label?: string;
+  category?: string;
+}
+
+interface SwipeableTemplateCarouselProps {
+  templates: CarouselTemplate[];
+  onTemplateSelect: (template: CarouselTemplate) => void;
+  favorites?: string[];
+  onFavorite: (templateName: string) => void;
+  className?: string;
+}
+
 export default function SwipeableTemplateCarousel({
   templates,
   onTemplateSelect,
   favorites = [],
   onFavorite,
   className,
-}) {
+}: SwipeableTemplateCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
 
-  const onTouchStart = (e) => {
+  const onTouchStart = (e: TouchEvent) => {
     setTouchEnd(0);
     setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const onTouchMove = (e) => {
+  const onTouchMove = (e: TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX);
   };
 

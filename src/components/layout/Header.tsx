@@ -1,12 +1,15 @@
-import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Button } from '../ui/button';
-import { Badge } from '../ui/badge';
-import { Sparkles, Code2, Palette, Menu } from 'lucide-react';
+import { Code2, Palette, Menu } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-export default function Header({ onMenuClick, showMobileMenu = true }) {
+interface HeaderProps {
+  onMenuClick?: () => void;
+  showMobileMenu?: boolean;
+}
+
+export default function Header({ onMenuClick, showMobileMenu = true }: HeaderProps) {
   const router = useRouter();
   const isCreatePage = router.pathname === '/create';
   const isHomePage = router.pathname === '/';
