@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../components/layout/Header';
@@ -19,16 +19,37 @@ import {
   Check,
 } from 'lucide-react';
 
-export default function APIDocs() {
-  const [copiedCode, setCopiedCode] = useState(null);
+interface ParameterSpec {
+  name: string;
+  type: string;
+  required: boolean;
+  default?: string;
+  description: string;
+  example: string;
+}
 
-  const copyToClipboard = (text, id) => {
+interface PopularTemplate {
+  name: string;
+  category: string;
+  description: string;
+}
+
+interface CopyButtonProps {
+  text: string;
+  id: string;
+  label: string;
+}
+
+export default function APIDocs() {
+  const [copiedCode, setCopiedCode] = useState<string | null>(null);
+
+  const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
     setCopiedCode(id);
     setTimeout(() => setCopiedCode(null), 2000);
   };
 
-  const codeExamples = {
+  const codeExamples: Record<string, string> = {
     basic: `https://gradient-svg-generator.vercel.app/api/svg?text=Hello%20World&height=120`,
     template: `https://gradient-svg-generator.vercel.app/api/svg?text=AI%20Project&template=neural-network&height=150`,
     customColors: `https://gradient-svg-generator.vercel.app/api/svg?text=Custom&color0=ff0000&color1=00ff00&color2=0000ff&height=120`,
@@ -59,7 +80,7 @@ def generate_gradient_url(text, template='neural-network', height=150):
     return f"{base_url}?{query_string}"`,
   };
 
-  const parameters = [
+  const parameters: ParameterSpec[] = [
     {
       name: 'text',
       type: 'string',
@@ -107,7 +128,7 @@ def generate_gradient_url(text, template='neural-network', height=150):
     },
   ];
 
-  const popularTemplates = [
+  const popularTemplates: PopularTemplate[] = [
     { name: 'neural-network', category: 'Tech', description: 'AI/ML project headers' },
     { name: 'cyber-matrix', category: 'Tech', description: 'Cyberpunk aesthetic' },
     { name: 'aurora-borealis', category: 'Nature', description: 'Northern lights effect' },
@@ -116,7 +137,7 @@ def generate_gradient_url(text, template='neural-network', height=150):
     { name: 'progress-pride', category: 'Pride', description: 'LGBTQ+ pride flag' },
   ];
 
-  const CopyButton = ({ text, id, label }) => (
+  const CopyButton = ({ text, id, label }: CopyButtonProps) => (
     <Button variant="outline" size="sm" onClick={() => copyToClipboard(text, id)} className="gap-2">
       {copiedCode === id ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
       {copiedCode === id ? 'Copied!' : label}
@@ -149,7 +170,6 @@ def generate_gradient_url(text, template='neural-network', height=150):
       <div className="min-h-screen bg-background">
         <Header showMobileMenu={false} />
 
-        {/* Hero Section */}
         <section className="border-b">
           <div className="container mx-auto px-4 py-12">
             <div className="max-w-3xl">
@@ -180,7 +200,6 @@ def generate_gradient_url(text, template='neural-network', height=150):
                 </Link>
               </div>
 
-              {/* Quick Example */}
               <Card className="bg-muted/30">
                 <CardHeader>
                   <CardTitle className="text-lg">Quick Start Example</CardTitle>
@@ -203,7 +222,6 @@ def generate_gradient_url(text, template='neural-network', height=150):
           </div>
         </section>
 
-        {/* API Reference */}
         <section className="py-12">
           <div className="container mx-auto px-4">
             <Tabs defaultValue="overview" className="space-y-8">
@@ -478,7 +496,6 @@ def generate_gradient_url(text, template='neural-network', height=150):
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-12 border-t bg-muted/30">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl font-bold mb-4">Ready to Start Building?</h2>
@@ -502,7 +519,6 @@ def generate_gradient_url(text, template='neural-network', height=150):
           </div>
         </section>
 
-        {/* Footer spacer for mobile */}
         <div className="h-16 md:h-0" />
       </div>
     </>

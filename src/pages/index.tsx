@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import type { ReactNode } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -14,7 +15,6 @@ import {
   Palette,
   Zap,
   Eye,
-  Download,
   ChevronRight,
   Star,
   Code2,
@@ -22,14 +22,29 @@ import {
   Grid3x3,
 } from 'lucide-react';
 
+interface HomeFeature {
+  icon: ReactNode;
+  title: string;
+  description: string;
+}
+
+interface CategoryMeta {
+  id: string;
+  name: string;
+  icon: string;
+}
+
+interface TemplateSummary {
+  name: string;
+  displayName?: string;
+}
+
 export default function Home() {
   const [currentTemplateIndex, setCurrentTemplateIndex] = useState(0);
 
-  // Get all categories
-  const categories = useMemo(() => getCategories(), []);
+  const categories = useMemo<CategoryMeta[]>(() => getCategories() as CategoryMeta[], []);
 
-  // Features
-  const features = [
+  const features: HomeFeature[] = [
     {
       icon: <Palette className="h-6 w-6" />,
       title: '340+ Templates',
@@ -52,7 +67,6 @@ export default function Home() {
     },
   ];
 
-  // Rotate featured templates
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTemplateIndex((prev) => (prev + 1) % FEATURED_TEMPLATES.length);
@@ -93,7 +107,6 @@ export default function Home() {
       <div className="min-h-screen bg-background">
         <Header showMobileMenu={false} />
 
-        {/* Hero Section */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-background to-primary/5" />
           <div className="container mx-auto px-4 py-20 relative">
@@ -134,7 +147,6 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Live Preview */}
               <div className="relative max-w-2xl mx-auto">
                 <div className="absolute inset-0 bg-linear-to-r from-primary/20 to-purple-600/20 blur-3xl" />
                 <Card className="overflow-hidden relative">
@@ -169,7 +181,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Features Section */}
         <section className="py-20 border-t">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -204,7 +215,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Editor's Choice Section */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between mb-12">
@@ -255,7 +265,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Popular Templates Section */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between mb-12">
@@ -270,7 +279,7 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {POPULAR_TEMPLATES.map((template, index) => (
+              {POPULAR_TEMPLATES.map((template) => (
                 <Card key={template.name} className="hover:shadow-md transition-shadow">
                   <CardHeader className="pb-3">
                     <div className="flex justify-between items-center">
@@ -294,7 +303,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Explore Categories Section */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between mb-12">
@@ -314,7 +322,7 @@ export default function Home() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {categories.map((category) => {
-                const categoryTemplates = getTemplatesByCategory(category.id);
+                const categoryTemplates = getTemplatesByCategory(category.id) as TemplateSummary[];
                 const sampleTemplate = categoryTemplates[0];
 
                 return (
@@ -324,7 +332,6 @@ export default function Home() {
                     className="group"
                   >
                     <Card className="overflow-hidden cursor-pointer hover:shadow-lg transition-all h-full">
-                      {/* Template Preview */}
                       {sampleTemplate && (
                         <div className="aspect-video bg-muted overflow-hidden">
                           <img
@@ -336,7 +343,6 @@ export default function Home() {
                         </div>
                       )}
 
-                      {/* Category Info */}
                       <CardHeader className="p-3">
                         <div className="text-center">
                           <div className="text-2xl mb-1">{category.icon}</div>
@@ -365,7 +371,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-20 border-t">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Create?</h2>
@@ -395,10 +400,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="border-t bg-linear-to-br from-muted/20 to-background py-10 mb-16 md:mb-0">
           <div className="container mx-auto px-4">
-            {/* Main Project Brand Section */}
             <div className="text-center mb-8">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <img src="/gradient-svg-generator.svg" alt="Chromaflow" className="h-8 w-8" />
@@ -432,7 +435,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Bottom Section with Developer Info */}
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-border/50">
               <div className="flex items-center gap-4">
                 <div className="text-xs text-muted-foreground">
@@ -440,7 +442,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Developer Attribution - Minimized */}
               <div className="flex items-center gap-3 text-xs">
                 <span className="text-muted-foreground">Created by</span>
                 <div className="flex items-center gap-2">
