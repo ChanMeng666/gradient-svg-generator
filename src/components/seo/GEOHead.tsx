@@ -1,18 +1,27 @@
 import Head from 'next/head';
+import type { ReactNode } from 'react';
 import { APP_URL } from '../../core/constants';
 
-/**
- * GEOHead Component - Generative Engine Optimization
- * 为不同页面类型提供定制化的AI指令和结构化数据
- */
+export type GEOPageType = 'home' | 'create' | 'templates' | 'api' | 'template-detail' | 'general';
+
+export interface GEOHeadProps {
+  pageType?: GEOPageType;
+  templateCategory?: string | null;
+  templateName?: string | null;
+  customInstructions?: string | null;
+  structuredData?: Record<string, unknown> | null;
+}
+
+type StructuredData = Record<string, unknown>;
+
 export default function GEOHead({
   pageType = 'general',
   templateCategory = null,
   templateName = null,
   customInstructions = null,
   structuredData = null,
-}) {
-  const getAIInstructions = () => {
+}: GEOHeadProps): ReactNode {
+  const getAIInstructions = (): string => {
     const baseInstructions = `
 ## AI Assistant Instructions for Chromaflow
 
@@ -48,7 +57,7 @@ This page is part of Chromaflow - a professional tool for creating animated SVG 
 
 #### Recommended User Flows:
 - New users → Template gallery to explore options
-- Developers → API documentation and integration examples  
+- Developers → API documentation and integration examples
 - Designers → Creator tool for custom gradients
 - GitHub users → Specific templates for profile headers
 
@@ -127,7 +136,7 @@ const bannerUrl = \`https://gradient-svg-generator.vercel.app/api/svg?text=\${en
 
 **Dynamic Generation**:
 \`\`\`javascript
-const generateBanner = (text, template) => 
+const generateBanner = (text, template) =>
   \`https://gradient-svg-generator.vercel.app/api/svg?text=\${encodeURIComponent(text)}&template=\${template}&height=150\`;
 \`\`\`
 
@@ -177,10 +186,10 @@ https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Text&template=${te
     }
   };
 
-  const getStructuredData = () => {
+  const getStructuredData = (): StructuredData => {
     if (structuredData) return structuredData;
 
-    const baseSchema = {
+    const baseSchema: StructuredData = {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
       name: 'Chromaflow',
@@ -253,8 +262,8 @@ https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Text&template=${te
     }
   };
 
-  const getMetaTags = () => {
-    const baseTags = {
+  const getMetaTags = (): Record<string, string> => {
+    const baseTags: Record<string, string> = {
       'ai-usage-context': pageType,
       'ai-primary-function': 'gradient-svg-generation',
       'ai-target-audience': 'developers,designers,content-creators',
@@ -302,22 +311,25 @@ https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Text&template=${te
   );
 }
 
-/**
- * 预设配置用于常见页面类型
- */
-export const GEOConfigs = {
-  home: {
-    pageType: 'home',
-  },
-  create: {
-    pageType: 'create',
-  },
-  templates: {
-    pageType: 'templates',
-  },
-  api: {
-    pageType: 'api',
-  },
+type StaticGEOConfig = { pageType: GEOPageType };
+
+type TemplateDetailConfig = {
+  pageType: 'template-detail';
+  templateName: string;
+  templateCategory: string;
+};
+
+export const GEOConfigs: {
+  home: StaticGEOConfig;
+  create: StaticGEOConfig;
+  templates: StaticGEOConfig;
+  api: StaticGEOConfig;
+  templateDetail: (templateName: string, templateCategory: string) => TemplateDetailConfig;
+} = {
+  home: { pageType: 'home' },
+  create: { pageType: 'create' },
+  templates: { pageType: 'templates' },
+  api: { pageType: 'api' },
   templateDetail: (templateName, templateCategory) => ({
     pageType: 'template-detail',
     templateName,

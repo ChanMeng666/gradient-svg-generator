@@ -1,37 +1,55 @@
-import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
+import { useState, useMemo, useRef, useCallback, useEffect } from 'react';
+import type { MouseEvent } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../components/layout/Header';
 import GEOHead from '../components/seo/GEOHead';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { getAllTemplates, getCategories, getTemplatesByCategory } from '../utils/templateUtils';
 import { Search, Grid3x3, List, Filter, ChevronRight, Star } from 'lucide-react';
 import { cn } from '../lib/utils';
 import useStore from '../store/useStore';
 import TemplatePreviewModal from '../components/features/TemplatePreviewModal';
 
+interface TemplateRecord {
+  name: string;
+  displayName: string;
+  label?: string;
+  category: string;
+  gradientType?: string;
+  animationDuration?: string;
+  description?: string;
+  colors?: string[];
+}
+
+interface CategoryMeta {
+  id: string;
+  name: string;
+  icon: string;
+}
+
+type ViewMode = 'grid' | 'list';
+
 export default function Templates() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [viewMode, setViewMode] = useState('grid');
-  const [selectedFilters, setSelectedFilters] = useState([]);
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [selectedTemplate, setSelectedTemplate] = useState<TemplateRecord | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
   const { favorites, addFavorite, removeFavorite } = useStore();
 
-  // Refs for virtualization
-  const gridContainerRef = useRef(null);
-  const listContainerRef = useRef(null);
+  const gridContainerRef = useRef<HTMLDivElement>(null);
+  const listContainerRef = useRef<HTMLDivElement>(null);
   const [columnCount, setColumnCount] = useState(4);
 
-  // Calculate column count based on container width
   useEffect(() => {
     const calculateColumns = () => {
       if (!gridContainerRef.current) return;
@@ -47,12 +65,11 @@ export default function Templates() {
     return () => window.removeEventListener('resize', calculateColumns);
   }, []);
 
-  const templates = useMemo(() => getAllTemplates(), []);
-  const categories = useMemo(() => getCategories(), []);
+  const templates = useMemo<TemplateRecord[]>(() => getAllTemplates() as TemplateRecord[], []);
+  const categories = useMemo<CategoryMeta[]>(() => getCategories() as CategoryMeta[], []);
 
-  // Get available gradient types and animation speeds from actual templates
   const availableGradientTypes = useMemo(() => {
-    const types = new Set();
+    const types = new Set<string>();
     templates.forEach((t) => {
       if (t.gradientType) {
         types.add(t.gradientType);
@@ -62,7 +79,7 @@ export default function Templates() {
   }, [templates]);
 
   const availableAnimationSpeeds = useMemo(() => {
-    const speeds = new Map();
+    const speeds = new Map<string, boolean>();
     templates.forEach((t) => {
       const duration = t.animationDuration || '6s';
       const seconds = parseInt(duration);
@@ -77,16 +94,13 @@ export default function Templates() {
     return Array.from(speeds.keys());
   }, [templates]);
 
-  // Filter templates
   const filteredTemplates = useMemo(() => {
     let result = templates;
 
-    // Category filter
     if (selectedCategory !== 'all') {
       result = result.filter((t) => t.category === selectedCategory);
     }
 
-    // Search filter
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       result = result.filter(
@@ -97,13 +111,14 @@ export default function Templates() {
       );
     }
 
-    // Advanced filters
     if (selectedFilters.length > 0) {
       const gradientTypeFilters = selectedFilters.filter((f) => availableGradientTypes.includes(f));
       const speedFilters = selectedFilters.filter((f) => ['fast', 'normal', 'slow'].includes(f));
 
       if (gradientTypeFilters.length > 0) {
-        result = result.filter((t) => gradientTypeFilters.includes(t.gradientType));
+        result = result.filter(
+          (t) => t.gradientType && gradientTypeFilters.includes(t.gradientType),
+        );
       }
 
       if (speedFilters.length > 0) {
@@ -121,34 +136,30 @@ export default function Templates() {
     return result;
   }, [templates, selectedCategory, searchQuery, selectedFilters, availableGradientTypes]);
 
-  // Group templates into rows for grid virtualization
   const gridRows = useMemo(() => {
-    const rows = [];
+    const rows: TemplateRecord[][] = [];
     for (let i = 0; i < filteredTemplates.length; i += columnCount) {
       rows.push(filteredTemplates.slice(i, i + columnCount));
     }
     return rows;
   }, [filteredTemplates, columnCount]);
 
-  // Grid virtualizer (row-based)
   const gridVirtualizer = useVirtualizer({
     count: gridRows.length,
     getScrollElement: () => gridContainerRef.current,
-    estimateSize: () => 280, // Approximate height of each row
+    estimateSize: () => 280,
     overscan: 2,
   });
 
-  // List virtualizer
   const listVirtualizer = useVirtualizer({
     count: filteredTemplates.length,
     getScrollElement: () => listContainerRef.current,
-    estimateSize: () => 100, // Height of list item
+    estimateSize: () => 100,
     overscan: 3,
   });
 
-  // Memoized toggle favorite handler
   const handleToggleFavorite = useCallback(
-    (e, templateName) => {
+    (e: MouseEvent<HTMLButtonElement>, templateName: string) => {
       e.preventDefault();
       if (favorites.includes(templateName)) {
         removeFavorite(templateName);
@@ -186,7 +197,6 @@ export default function Templates() {
       <div className="min-h-screen bg-background">
         <Header showMobileMenu={false} />
 
-        {/* Hero Section */}
         <section className="border-b bg-muted/30">
           <div className="container mx-auto px-4 py-12">
             <div className="max-w-3xl">
@@ -196,7 +206,6 @@ export default function Templates() {
                 template is carefully crafted with unique animations and effects.
               </p>
 
-              {/* Search Bar */}
               <div className="relative max-w-xl">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
@@ -211,11 +220,9 @@ export default function Templates() {
           </div>
         </section>
 
-        {/* Filters and View Options */}
         <section className="sticky top-16 z-30 bg-background border-b">
           <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between gap-4">
-              {/* Category Tabs */}
               <div className="flex-1 overflow-x-auto">
                 <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
                   <TabsList className="w-full justify-start">
@@ -242,17 +249,16 @@ export default function Templates() {
                 </Tabs>
               </div>
 
-              {/* View Mode Toggle */}
               <div className="flex items-center gap-2">
                 <Button
-                  variant={viewMode === 'grid' ? 'default' : 'outline-solid'}
+                  variant={viewMode === 'grid' ? 'default' : 'outline'}
                   size="icon"
                   onClick={() => setViewMode('grid')}
                 >
                   <Grid3x3 className="h-4 w-4" />
                 </Button>
                 <Button
-                  variant={viewMode === 'list' ? 'default' : 'outline-solid'}
+                  variant={viewMode === 'list' ? 'default' : 'outline'}
                   size="icon"
                   onClick={() => setViewMode('list')}
                 >
@@ -263,7 +269,6 @@ export default function Templates() {
           </div>
         </section>
 
-        {/* Results Summary */}
         <section className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <p className="text-sm text-muted-foreground">
@@ -284,7 +289,6 @@ export default function Templates() {
           </div>
         </section>
 
-        {/* Advanced Filters Panel */}
         {showAdvancedFilters && (
           <section className="border-b bg-muted/10">
             <div className="container mx-auto px-4 py-6">
@@ -361,7 +365,6 @@ export default function Templates() {
           </section>
         )}
 
-        {/* Template Grid/List with Virtualization */}
         <section className="container mx-auto px-4 pb-20">
           {filteredTemplates.length === 0 ? (
             <div className="text-center py-20">
@@ -550,7 +553,7 @@ export default function Templates() {
               addFavorite(templateName);
             }
           }}
-          isFavorite={selectedTemplate && favorites.includes(selectedTemplate.name)}
+          isFavorite={!!selectedTemplate && favorites.includes(selectedTemplate.name)}
         />
       </div>
     </>
