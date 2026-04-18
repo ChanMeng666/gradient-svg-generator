@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { APP_URL } from '../core/constants';
 
 export const useGradientConfig = (initialConfig = {}) => {
   const [config, setConfig] = useState({
@@ -9,7 +10,7 @@ export const useGradientConfig = (initialConfig = {}) => {
     gradientType: 'horizontal',
     animationDuration: 6,
     colors: ['000000'],
-    ...initialConfig
+    ...initialConfig,
   });
 
   const [preview, setPreview] = useState('');
@@ -23,11 +24,11 @@ export const useGradientConfig = (initialConfig = {}) => {
       animationDuration: config.animationDuration,
       colors: config.colors,
       template: config.template,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
 
     const previewUrl = `/api/svg?text=${encodeURIComponent(config.text)}&height=${config.height}&gradientType=${config.gradientType}&duration=${config.animationDuration}s${config.colors.map((c, i) => `&color${i}=${c}`).join('')}${config.template ? `&template=${config.template}` : ''}`;
-    
+
     console.log('📡 useGradientConfig: Generated preview URL', {
       previewUrl,
       parsedParams: {
@@ -36,12 +37,12 @@ export const useGradientConfig = (initialConfig = {}) => {
         gradientType: config.gradientType,
         duration: `${config.animationDuration}s`,
         colors: config.colors,
-        template: config.template || 'none'
-      }
+        template: config.template || 'none',
+      },
     });
 
     setPreview(previewUrl);
-    const fullUrl = `https://gradient-svg-generator.vercel.app${previewUrl}`;
+    const fullUrl = `${APP_URL}${previewUrl}`;
     setMarkdownCode(`![${config.text}](${fullUrl})`);
   }, [config]);
 
@@ -49,6 +50,6 @@ export const useGradientConfig = (initialConfig = {}) => {
     config,
     setConfig,
     preview,
-    markdownCode
+    markdownCode,
   };
-}; 
+};

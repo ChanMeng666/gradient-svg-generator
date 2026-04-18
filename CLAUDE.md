@@ -324,7 +324,6 @@ When testing changes:
 
 - **340+ Templates** across 19 categories
 - **180+ Gradient Types** with unique effects
-- **50+ Animation Effects**
 
 ### Gradient Categories
 

@@ -14,6 +14,7 @@ import useStore from '../store/useStore';
 import styles from '../styles/create.module.css';
 import { ColorPicker } from '../components/ui/color-picker';
 import { GRADIENT_TYPES } from '../constants/gradientTypes';
+import { APP_URL } from '../core/constants';
 import { useMobileUI } from '../hooks/useMobileUI';
 import { useColorManagement } from '../hooks/useColorManagement';
 import { useShareActions } from '../hooks/useShareActions';
@@ -260,7 +261,8 @@ export default function Create() {
                       <Code2 className="h-4 w-4 shrink-0 mt-1" />
                       <div className="flex-1">
                         <code className="font-mono text-xs bg-muted px-3 py-2 rounded block break-all whitespace-pre-wrap">
-                          https://gradient-svg-generator.vercel.app{previewUrl}
+                          {APP_URL}
+                          {previewUrl}
                         </code>
                       </div>
                     </div>

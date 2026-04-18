@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import useStore from '../store/useStore';
 
-const BASE_URL = 'https://gradient-svg-generator.vercel.app';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { APP_URL: BASE_URL } = require('../core/constants') as { APP_URL: string };
 
 /**
  * Derives the /api/svg URL + embed snippets from the current store

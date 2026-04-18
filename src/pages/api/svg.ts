@@ -9,9 +9,12 @@ const { generateGradientSVG } = require('../../core/UnifiedGradientGenerator') a
   generateGradientSVG: (params: Record<string, unknown>) => string;
 };
 
-const DOCS_URL = 'https://gradient-svg-generator.vercel.app/api-docs';
-const GALLERY_URL = 'https://gradient-svg-generator.vercel.app/templates';
-const CREATOR_URL = 'https://gradient-svg-generator.vercel.app/create';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { APP_URL } = require('../../core/constants') as { APP_URL: string };
+
+const DOCS_URL = `${APP_URL}/api-docs`;
+const GALLERY_URL = `${APP_URL}/templates`;
+const CREATOR_URL = `${APP_URL}/create`;
 
 /** Coerce a query value that may be `undefined | string | string[]` to a single string (or undefined). */
 function first(v: string | string[] | undefined): string | undefined {

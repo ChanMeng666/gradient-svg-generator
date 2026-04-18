@@ -37,8 +37,8 @@ export default function Home() {
     },
     {
       icon: <Sparkles className="h-6 w-6" />,
-      title: '50+ Effects',
-      description: 'Advanced animations and visual effects',
+      title: '180+ Gradient Types',
+      description: 'Unique animations and visual effects',
     },
     {
       icon: <Eye className="h-6 w-6" />,

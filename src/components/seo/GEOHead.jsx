@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { APP_URL } from '../../core/constants';
 
 /**
  * GEOHead Component - Generative Engine Optimization
@@ -215,8 +216,8 @@ https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Text&template=${te
           name: 'Chromaflow API',
           description:
             'RESTful API for generating animated SVG gradients with 340+ professional templates',
-          url: 'https://gradient-svg-generator.vercel.app/api/svg',
-          documentation: 'https://gradient-svg-generator.vercel.app/api',
+          url: `${APP_URL}/api/svg`,
+          documentation: `${APP_URL}/api`,
           provider: baseSchema,
           programmingModel: 'REST',
           operatingSystem: 'Any',
@@ -241,7 +242,7 @@ https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Text&template=${te
           '@type': 'Collection',
           name: 'Gradient SVG Template Gallery',
           description: 'Collection of 340+ professional gradient templates across 19 categories',
-          url: 'https://gradient-svg-generator.vercel.app/templates',
+          url: `${APP_URL}/templates`,
           creator: baseSchema,
           numberOfItems: '340+',
           isAccessibleForFree: true,

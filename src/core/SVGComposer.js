@@ -23,6 +23,7 @@
  */
 
 const { getAllFilters, getFilterUrl, getFilterForGradientType } = require('./FilterLibrary');
+const { SVG_WIDTH } = require('./constants');
 
 /**
  * SVG Composer - Responsible for composing complete SVG documents
@@ -55,9 +56,9 @@ class SVGComposer {
       clipPath = '',
       filterId,
       gradientType = 'horizontal',
-      width = 854,
+      width = SVG_WIDTH,
       height = 120,
-      replaceMainRect = false
+      replaceMainRect = false,
     } = params;
 
     // Determine filter to use
@@ -65,7 +66,9 @@ class SVGComposer {
     const filterEffect = getFilterUrl(filterToUse);
 
     // Conditionally render main rect based on replaceMainRect flag
-    const mainRect = replaceMainRect ? '' : `
+    const mainRect = replaceMainRect
+      ? ''
+      : `
   <rect
     width="${width}"
     height="${height}"
@@ -97,8 +100,8 @@ class SVGComposer {
 ${mainRect}
 
   <text
-    x="${width/2}"
-    y="${height/2}"
+    x="${width / 2}"
+    y="${height / 2}"
     font-size="40"
     font-family="'Arial Black', Arial, sans-serif"
     font-weight="bold"
@@ -136,9 +139,9 @@ ${mainRect}
     const {
       content,
       contentType = 'complete',
-      width = 854,
+      width = SVG_WIDTH,
       height = 120,
-      includeFilters = false
+      includeFilters = false,
     } = params;
 
     // If content is already a complete SVG document, return as-is
@@ -177,18 +180,19 @@ ${mainRect}
       text,
       x,
       y,
-      width = 854,
+      width = SVG_WIDTH,
       height = 120,
       fontSize = 40,
       fill = '#ffffff',
       filter = 'url(#textShadow)',
-      animated = true
+      animated = true,
     } = params;
 
     const xPos = x !== undefined ? x : width / 2;
     const yPos = y !== undefined ? y : height / 2;
 
-    const animation = animated ? `
+    const animation = animated
+      ? `
     <animate
       attributeName="opacity"
       values="0.9;1;0.9"
@@ -197,7 +201,8 @@ ${mainRect}
       calcMode="spline"
       keyTimes="0;0.5;1"
       keySplines="0.3 0.0 0.2 1; 0.3 0.0 0.2 1"
-    />` : '';
+    />`
+      : '';
 
     return `
   <text
@@ -229,15 +234,16 @@ ${mainRect}
    */
   createRectElement(params) {
     const {
-      width = 854,
+      width = SVG_WIDTH,
       height = 120,
       fill = 'url(#gradient)',
       filter,
       clipPath = '',
-      animated = true
+      animated = true,
     } = params;
 
-    const animation = animated ? `
+    const animation = animated
+      ? `
     <animate
       attributeName="opacity"
       values="0.95;1;0.95"
@@ -246,7 +252,8 @@ ${mainRect}
       calcMode="spline"
       keyTimes="0;0.5;1"
       keySplines="0.4 0.0 0.2 1; 0.4 0.0 0.2 1"
-    />` : '';
+    />`
+      : '';
 
     const filterAttr = filter ? `filter="${filter}"` : '';
 
@@ -290,11 +297,7 @@ ${mainRect}
     }
 
     // Check for basic SVG structure
-    return (
-      svg.includes('<svg') &&
-      svg.includes('</svg>') &&
-      svg.includes('xmlns')
-    );
+    return svg.includes('<svg') && svg.includes('</svg>') && svg.includes('xmlns');
   }
 
   /**
@@ -306,8 +309,8 @@ ${mainRect}
    */
   minify(svg) {
     return svg
-      .replace(/>\s+</g, '><')  // Remove whitespace between tags
-      .replace(/\s+/g, ' ')      // Collapse multiple spaces
+      .replace(/>\s+</g, '><') // Remove whitespace between tags
+      .replace(/\s+/g, ' ') // Collapse multiple spaces
       .trim();
   }
 }
@@ -317,5 +320,5 @@ const svgComposer = new SVGComposer();
 
 module.exports = {
   SVGComposer,
-  svgComposer
+  svgComposer,
 };
