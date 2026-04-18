@@ -4,7 +4,16 @@ import { Input } from './input';
 import { Plus, Minus } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-export function ColorPicker({ color, index, total, onUpdate, onAdd, onRemove }) {
+export interface ColorPickerProps {
+  color: string;
+  index: number;
+  total: number;
+  onUpdate: (index: number, hex: string) => void;
+  onAdd: () => void;
+  onRemove: (index: number) => void;
+}
+
+export function ColorPicker({ color, index, total, onUpdate, onAdd, onRemove }: ColorPickerProps) {
   return (
     <div className="flex items-center gap-2">
       <div className="flex items-center gap-2 flex-1">
@@ -19,8 +28,8 @@ export function ColorPicker({ color, index, total, onUpdate, onAdd, onRemove }) 
           <label
             htmlFor={`color-picker-${index}`}
             className={cn(
-              "block w-10 h-10 rounded-md border-2 border-border cursor-pointer",
-              "hover:border-primary transition-colors"
+              'block w-10 h-10 rounded-md border-2 border-border cursor-pointer',
+              'hover:border-primary transition-colors',
             )}
             style={{ backgroundColor: color.startsWith('#') ? color : `#${color}` }}
           />
@@ -35,22 +44,12 @@ export function ColorPicker({ color, index, total, onUpdate, onAdd, onRemove }) 
       </div>
       <div className="flex items-center gap-1">
         {total > 1 && (
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => onRemove(index)}
-            className="h-8 w-8"
-          >
+          <Button variant="outline" size="icon" onClick={() => onRemove(index)} className="h-8 w-8">
             <Minus className="h-3 w-3" />
           </Button>
         )}
         {index === total - 1 && (
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={onAdd}
-            className="h-8 w-8"
-          >
+          <Button variant="outline" size="icon" onClick={onAdd} className="h-8 w-8">
             <Plus className="h-3 w-3" />
           </Button>
         )}

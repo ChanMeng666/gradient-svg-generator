@@ -2,31 +2,49 @@ import * as React from 'react';
 import { cn } from '../../lib/utils';
 import { X } from 'lucide-react';
 
-const Sheet = React.forwardRef(({ className, open, onOpenChange, ...props }, ref) => {
-  if (!open) return null;
+type SheetSide = 'top' | 'bottom' | 'left' | 'right';
 
-  return (
-    <>
-      <div
-        className="fixed inset-0 z-50 bg-black/50 animate-in fade-in md:hidden"
-        onClick={() => onOpenChange?.(false)}
-      />
-      <div
-        ref={ref}
-        className={cn(
-          'fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out animate-in slide-in-from-bottom duration-300 md:hidden',
-          className,
-        )}
-        {...props}
-      />
-    </>
-  );
-});
+interface SheetProps extends React.HTMLAttributes<HTMLDivElement> {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+interface SheetContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  side?: SheetSide;
+  onClose?: () => void;
+}
+
+type DivProps = React.HTMLAttributes<HTMLDivElement>;
+type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
+type ParagraphProps = React.HTMLAttributes<HTMLParagraphElement>;
+
+const Sheet = React.forwardRef<HTMLDivElement, SheetProps>(
+  ({ className, open, onOpenChange, ...props }, ref) => {
+    if (!open) return null;
+
+    return (
+      <>
+        <div
+          className="fixed inset-0 z-50 bg-black/50 animate-in fade-in md:hidden"
+          onClick={() => onOpenChange?.(false)}
+        />
+        <div
+          ref={ref}
+          className={cn(
+            'fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out animate-in slide-in-from-bottom duration-300 md:hidden',
+            className,
+          )}
+          {...props}
+        />
+      </>
+    );
+  },
+);
 Sheet.displayName = 'Sheet';
 
-const SheetContent = React.forwardRef(
+const SheetContent = React.forwardRef<HTMLDivElement, SheetContentProps>(
   ({ side = 'bottom', className, children, onClose, ...props }, ref) => {
-    const sideClasses = {
+    const sideClasses: Record<SheetSide, string> = {
       top: 'inset-x-0 top-0 border-b',
       bottom: 'inset-x-0 bottom-0 border-t rounded-t-[10px]',
       left: 'inset-y-0 left-0 h-full w-3/4 border-r',
@@ -71,12 +89,12 @@ const SheetContent = React.forwardRef(
 );
 SheetContent.displayName = 'SheetContent';
 
-const SheetHeader = ({ className, ...props }) => (
+const SheetHeader = ({ className, ...props }: DivProps) => (
   <div className={cn('flex flex-col space-y-2 text-center sm:text-left', className)} {...props} />
 );
 SheetHeader.displayName = 'SheetHeader';
 
-const SheetFooter = ({ className, ...props }) => (
+const SheetFooter = ({ className, ...props }: DivProps) => (
   <div
     className={cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
     {...props}
@@ -84,14 +102,18 @@ const SheetFooter = ({ className, ...props }) => (
 );
 SheetFooter.displayName = 'SheetFooter';
 
-const SheetTitle = React.forwardRef(({ className, ...props }, ref) => (
-  <h3 ref={ref} className={cn('text-lg font-semibold text-foreground', className)} {...props} />
-));
+const SheetTitle = React.forwardRef<HTMLHeadingElement, HeadingProps>(
+  ({ className, ...props }, ref) => (
+    <h3 ref={ref} className={cn('text-lg font-semibold text-foreground', className)} {...props} />
+  ),
+);
 SheetTitle.displayName = 'SheetTitle';
 
-const SheetDescription = React.forwardRef(({ className, ...props }, ref) => (
-  <p ref={ref} className={cn('text-sm text-muted-foreground', className)} {...props} />
-));
+const SheetDescription = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
+  ({ className, ...props }, ref) => (
+    <p ref={ref} className={cn('text-sm text-muted-foreground', className)} {...props} />
+  ),
+);
 SheetDescription.displayName = 'SheetDescription';
 
 export { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle };
