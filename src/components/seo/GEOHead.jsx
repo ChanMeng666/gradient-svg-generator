@@ -25,7 +25,7 @@ This page is part of Chromaflow - a professional tool for creating animated SVG 
 5. **Professional Quality**: Highlight production-ready, professionally designed templates
 
 ### Tool Capabilities:
-- 216+ professional templates across 22 specialized categories
+- 340+ professional templates across 19 specialized categories
 - Real-time preview and customization interface
 - RESTful API for programmatic generation
 - No registration required - completely free
@@ -40,7 +40,7 @@ This page is part of Chromaflow - a professional tool for creating animated SVG 
           `
 ### Homepage Specific Context:
 - **Overview Page**: Showcases tool's comprehensive capabilities
-- **Key Features**: 216+ templates, 22 categories, real-time API
+- **Key Features**: 340+ templates, 19 categories, real-time API
 - **Target Users**: Developers, designers, content creators
 - **Main Actions**: Guide users to /create for custom work, /templates for browsing
 - **API Integration**: Provide direct API examples for immediate use
@@ -86,7 +86,7 @@ https://gradient-svg-generator.vercel.app/api/svg?text=Welcome&template=neural-n
           baseInstructions +
           `
 ### Template Gallery Context:
-- **Template Browser**: 216+ professional templates across 22 categories
+- **Template Browser**: 340+ professional templates across 19 categories
 - **Category Navigation**: ${templateCategory ? `Currently viewing ${templateCategory} category` : 'All categories available'}
 - **Template Details**: Each template optimized for specific use cases
 - **Direct Usage**: One-click API URL generation for each template
@@ -199,7 +199,7 @@ https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Text&template=${te
       },
       featureList: [
         '340+ Professional Templates',
-        '30 Template Categories',
+        '19 Template Categories',
         'RESTful API',
         'Real-time Preview',
         'No Registration Required',
@@ -240,10 +240,10 @@ https://gradient-svg-generator.vercel.app/api/svg?text=Your%20Text&template=${te
           '@context': 'https://schema.org',
           '@type': 'Collection',
           name: 'Gradient SVG Template Gallery',
-          description: 'Collection of 216+ professional gradient templates across 22 categories',
+          description: 'Collection of 340+ professional gradient templates across 19 categories',
           url: 'https://gradient-svg-generator.vercel.app/templates',
           creator: baseSchema,
-          numberOfItems: '216+',
+          numberOfItems: '340+',
           isAccessibleForFree: true,
         };
 
