@@ -17,6 +17,12 @@ interface TemplateCardProps {
   onPreview: (templateName: string) => void;
 }
 
+// The /api/svg endpoint returns SVGs sized 854 × height (default height=180 for
+// these previews), so the native aspect ratio is 854/180 ≈ 4.74:1. Driving the
+// preview container with this exact ratio lets the animation fill the card
+// horizontally edge-to-edge without any horizontal cropping.
+const PREVIEW_ASPECT_RATIO = '854 / 180';
+
 function TemplateCardImpl({
   template,
   isFavorite,
@@ -51,44 +57,47 @@ function TemplateCardImpl({
         }
       }}
       className={cn(
-        'group relative block h-56 overflow-hidden rounded-xl border bg-card text-left',
+        'group relative flex flex-col overflow-hidden rounded-xl border bg-card text-left',
         'transition-all duration-300 ease-out cursor-pointer',
         'hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-xl',
         'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
       )}
     >
-      <img
-        src={`/api/svg?text=${encodeURIComponent(template.displayName)}&template=${template.name}&height=180&v=2`}
-        alt={template.displayName}
-        loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      <div
+        className="relative w-full overflow-hidden bg-muted"
+        style={{ aspectRatio: PREVIEW_ASPECT_RATIO }}
+      >
+        <img
+          src={`/api/svg?text=${encodeURIComponent(template.displayName)}&template=${template.name}&height=180&v=2`}
+          alt={template.displayName}
+          loading="lazy"
+          className="block h-full w-full"
+        />
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <button
+          type="button"
+          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          onClick={handleFavorite}
+          className={cn(
+            'absolute top-2 right-2 inline-flex h-7 w-7 items-center justify-center rounded-full',
+            'bg-black/35 text-white backdrop-blur-md transition-all',
+            'hover:bg-black/55 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring',
+            isFavorite && 'bg-yellow-500/90 text-white hover:bg-yellow-500',
+          )}
+        >
+          <Star className={cn('h-3.5 w-3.5', isFavorite && 'fill-current')} />
+        </button>
+      </div>
 
-      <div className="absolute inset-x-0 bottom-0 p-4">
-        <div className="flex items-center gap-1.5 mb-1 text-[11px] font-medium text-white/80">
+      <div className="flex flex-col gap-0.5 border-t px-3.5 py-3">
+        <div className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
           {template.categoryIcon ? <span>{template.categoryIcon}</span> : null}
           <span className="capitalize">{template.category}</span>
         </div>
-        <h3 className="text-base font-semibold text-white line-clamp-1 drop-shadow-sm">
+        <h3 className="text-sm font-semibold text-foreground line-clamp-1">
           {template.displayName}
         </h3>
       </div>
-
-      <button
-        type="button"
-        aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        onClick={handleFavorite}
-        className={cn(
-          'absolute top-2.5 right-2.5 inline-flex h-8 w-8 items-center justify-center rounded-full',
-          'bg-black/35 text-white backdrop-blur-md transition-all',
-          'hover:bg-black/55 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring',
-          isFavorite && 'bg-yellow-500/90 text-white hover:bg-yellow-500',
-        )}
-      >
-        <Star className={cn('h-4 w-4', isFavorite && 'fill-current')} />
-      </button>
 
       <div
         className={cn(

@@ -48,8 +48,17 @@ type ViewMode = 'grid' | 'list';
 
 const CARD_MIN_WIDTH = 300;
 const ROW_GAP = 24;
-const GRID_ROW_HEIGHT = 224 + ROW_GAP;
-const LIST_ROW_HEIGHT = 104;
+// Preview images use height=180 from /api/svg which outputs an 854×180 canvas.
+// Matching this aspect on the preview region lets the SVG fill the card
+// horizontally edge-to-edge without any cropping.
+const PREVIEW_ASPECT = 854 / 180;
+// Info strip below the preview: 24px vertical padding + category line (16px) +
+// 2px gap + title line (20px) ≈ 62px, plus 1px top border.
+const GRID_CARD_INFO_HEIGHT = 63;
+// Used only as an initial estimate — the virtualizer re-measures real heights
+// via `measureElement`, so slight inaccuracies self-correct after first render.
+const GRID_ROW_HEIGHT_FALLBACK = 170 + ROW_GAP;
+const LIST_ROW_HEIGHT = 96;
 
 export default function Templates() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -66,6 +75,7 @@ export default function Templates() {
   const gridContainerRef = useRef<HTMLDivElement>(null);
   const listContainerRef = useRef<HTMLDivElement>(null);
   const [columnCount, setColumnCount] = useState(3);
+  const [gridContainerWidth, setGridContainerWidth] = useState(0);
   const [gridScrollMargin, setGridScrollMargin] = useState(0);
   const [listScrollMargin, setListScrollMargin] = useState(0);
 
@@ -84,6 +94,7 @@ export default function Templates() {
       if (viewMode !== 'grid' || width <= 0) return;
       const cols = Math.max(1, Math.floor((width + ROW_GAP) / (CARD_MIN_WIDTH + ROW_GAP)));
       setColumnCount(cols);
+      setGridContainerWidth(width);
     };
 
     updateColumns(el.clientWidth);
@@ -201,9 +212,17 @@ export default function Templates() {
     return rows;
   }, [filteredTemplates, columnCount]);
 
+  const gridRowEstimate = useMemo(() => {
+    if (!gridContainerWidth || columnCount < 1) return GRID_ROW_HEIGHT_FALLBACK;
+    const totalGap = (columnCount - 1) * ROW_GAP;
+    const cardWidth = Math.max(0, (gridContainerWidth - totalGap) / columnCount);
+    const previewHeight = cardWidth / PREVIEW_ASPECT;
+    return Math.ceil(previewHeight + GRID_CARD_INFO_HEIGHT) + ROW_GAP;
+  }, [gridContainerWidth, columnCount]);
+
   const gridVirtualizer = useWindowVirtualizer({
     count: gridRows.length,
-    estimateSize: () => GRID_ROW_HEIGHT,
+    estimateSize: () => gridRowEstimate,
     overscan: 3,
     scrollMargin: gridScrollMargin,
   });
@@ -214,6 +233,13 @@ export default function Templates() {
     overscan: 4,
     scrollMargin: listScrollMargin,
   });
+
+  // Invalidate virtualizer measurements when the per-row estimate changes
+  // (viewport resize, column-count change, etc.) so the total layout height
+  // stays correct while measureElement picks up the real sizes.
+  useEffect(() => {
+    gridVirtualizer.measure();
+  }, [gridVirtualizer, gridRowEstimate]);
 
   const handleToggleFavorite = useCallback(
     (templateName: string) => {
@@ -606,12 +632,13 @@ export default function Templates() {
                 return (
                   <div
                     key={virtualRow.index}
+                    data-index={virtualRow.index}
+                    ref={gridVirtualizer.measureElement}
                     style={{
                       position: 'absolute',
                       top: 0,
                       left: 0,
                       width: '100%',
-                      height: `${virtualRow.size}px`,
                       transform: `translateY(${virtualRow.start - gridScrollMargin}px)`,
                     }}
                   >
@@ -657,12 +684,13 @@ export default function Templates() {
                 return (
                   <div
                     key={template.name}
+                    data-index={virtualRow.index}
+                    ref={listVirtualizer.measureElement}
                     style={{
                       position: 'absolute',
                       top: 0,
                       left: 0,
                       width: '100%',
-                      height: `${virtualRow.size}px`,
                       transform: `translateY(${virtualRow.start - listScrollMargin}px)`,
                     }}
                   >
@@ -678,11 +706,14 @@ export default function Templates() {
                       }}
                       className="group mb-3 flex items-center gap-4 rounded-xl border bg-card p-3 pr-4 transition-all cursor-pointer hover:border-primary/40 hover:shadow-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                     >
-                      <div className="h-20 w-32 shrink-0 overflow-hidden rounded-md bg-muted">
+                      <div
+                        className="w-56 shrink-0 overflow-hidden rounded-md bg-muted"
+                        style={{ aspectRatio: `${PREVIEW_ASPECT}` }}
+                      >
                         <img
                           src={`/api/svg?text=${encodeURIComponent(template.displayName)}&template=${template.name}&height=80&v=2`}
                           alt={template.displayName}
-                          className="h-full w-full object-cover"
+                          className="block h-full w-full"
                           loading="lazy"
                         />
                       </div>
