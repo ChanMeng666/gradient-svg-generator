@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import type { MouseEvent } from 'react';
-import { useVirtualizer } from '@tanstack/react-virtual';
+import { useWindowVirtualizer } from '@tanstack/react-virtual';
 import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../components/layout/Header';
@@ -66,27 +66,43 @@ export default function Templates() {
   const gridContainerRef = useRef<HTMLDivElement>(null);
   const listContainerRef = useRef<HTMLDivElement>(null);
   const [columnCount, setColumnCount] = useState(3);
+  const [gridScrollMargin, setGridScrollMargin] = useState(0);
+  const [listScrollMargin, setListScrollMargin] = useState(0);
 
   useEffect(() => {
-    const el = gridContainerRef.current;
+    const el = viewMode === 'grid' ? gridContainerRef.current : listContainerRef.current;
     if (!el) return;
 
-    const compute = (width: number) => {
-      if (width <= 0) return;
+    const updateScrollMargin = () => {
+      const rect = el.getBoundingClientRect();
+      const offset = rect.top + window.scrollY;
+      if (viewMode === 'grid') setGridScrollMargin(offset);
+      else setListScrollMargin(offset);
+    };
+
+    const updateColumns = (width: number) => {
+      if (viewMode !== 'grid' || width <= 0) return;
       const cols = Math.max(1, Math.floor((width + ROW_GAP) / (CARD_MIN_WIDTH + ROW_GAP)));
       setColumnCount(cols);
     };
 
-    compute(el.clientWidth);
+    updateColumns(el.clientWidth);
+    updateScrollMargin();
 
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
-        compute(entry.contentRect.width);
+        updateColumns(entry.contentRect.width);
       }
+      updateScrollMargin();
     });
     observer.observe(el);
-    return () => observer.disconnect();
-  }, [viewMode]);
+
+    window.addEventListener('resize', updateScrollMargin);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', updateScrollMargin);
+    };
+  }, [viewMode, showFilters, selectedCategory, selectedFilters, favoritesOnly, searchQuery]);
 
   const templates = useMemo<TemplateRecord[]>(() => getAllTemplates() as TemplateRecord[], []);
   const categories = useMemo<CategoryMeta[]>(() => getCategories() as CategoryMeta[], []);
@@ -185,18 +201,18 @@ export default function Templates() {
     return rows;
   }, [filteredTemplates, columnCount]);
 
-  const gridVirtualizer = useVirtualizer({
+  const gridVirtualizer = useWindowVirtualizer({
     count: gridRows.length,
-    getScrollElement: () => gridContainerRef.current,
     estimateSize: () => GRID_ROW_HEIGHT,
     overscan: 3,
+    scrollMargin: gridScrollMargin,
   });
 
-  const listVirtualizer = useVirtualizer({
+  const listVirtualizer = useWindowVirtualizer({
     count: filteredTemplates.length,
-    getScrollElement: () => listContainerRef.current,
     estimateSize: () => LIST_ROW_HEIGHT,
     overscan: 4,
+    scrollMargin: listScrollMargin,
   });
 
   const handleToggleFavorite = useCallback(
@@ -570,7 +586,7 @@ export default function Templates() {
         </div>
 
         {/* Results */}
-        <section className="container mx-auto px-4 pt-6 pb-20">
+        <section className="container mx-auto px-4 pt-6 pb-12">
           {filteredTemplates.length === 0 ? (
             <EmptyState
               hasActiveFilters={activeFilterCount > 0 || !!searchQuery}
@@ -579,154 +595,142 @@ export default function Templates() {
           ) : viewMode === 'grid' ? (
             <div
               ref={gridContainerRef}
-              className="h-[calc(100vh-360px)] min-h-[480px] overflow-y-auto -mx-1 px-1"
+              style={{
+                height: `${gridVirtualizer.getTotalSize()}px`,
+                width: '100%',
+                position: 'relative',
+              }}
             >
-              <div
-                style={{
-                  height: `${gridVirtualizer.getTotalSize()}px`,
-                  width: '100%',
-                  position: 'relative',
-                }}
-              >
-                {gridVirtualizer.getVirtualItems().map((virtualRow) => {
-                  const rowTemplates = gridRows[virtualRow.index];
-                  return (
+              {gridVirtualizer.getVirtualItems().map((virtualRow) => {
+                const rowTemplates = gridRows[virtualRow.index];
+                return (
+                  <div
+                    key={virtualRow.index}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: `${virtualRow.size}px`,
+                      transform: `translateY(${virtualRow.start - gridScrollMargin}px)`,
+                    }}
+                  >
                     <div
-                      key={virtualRow.index}
+                      className="grid pb-6"
                       style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: `${virtualRow.size}px`,
-                        transform: `translateY(${virtualRow.start}px)`,
+                        gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`,
+                        gap: `${ROW_GAP}px`,
                       }}
                     >
-                      <div
-                        className="grid pb-6"
-                        style={{
-                          gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`,
-                          gap: `${ROW_GAP}px`,
-                        }}
-                      >
-                        {rowTemplates.map((template) => (
-                          <TemplateCard
-                            key={template.name}
-                            template={{
-                              name: template.name,
-                              displayName: template.displayName,
-                              category: template.category,
-                              categoryIcon: categoryMap.get(template.category)?.icon,
-                            }}
-                            isFavorite={favorites.includes(template.name)}
-                            onToggleFavorite={handleToggleFavorite}
-                            onPreview={openPreview}
-                          />
-                        ))}
-                      </div>
+                      {rowTemplates.map((template) => (
+                        <TemplateCard
+                          key={template.name}
+                          template={{
+                            name: template.name,
+                            displayName: template.displayName,
+                            category: template.category,
+                            categoryIcon: categoryMap.get(template.category)?.icon,
+                          }}
+                          isFavorite={favorites.includes(template.name)}
+                          onToggleFavorite={handleToggleFavorite}
+                          onPreview={openPreview}
+                        />
+                      ))}
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
           ) : (
             <div
               ref={listContainerRef}
-              className="h-[calc(100vh-360px)] min-h-[480px] overflow-y-auto"
+              style={{
+                height: `${listVirtualizer.getTotalSize()}px`,
+                width: '100%',
+                position: 'relative',
+              }}
             >
-              <div
-                style={{
-                  height: `${listVirtualizer.getTotalSize()}px`,
-                  width: '100%',
-                  position: 'relative',
-                }}
-              >
-                {listVirtualizer.getVirtualItems().map((virtualRow) => {
-                  const template = filteredTemplates[virtualRow.index];
-                  const cat = categoryMap.get(template.category);
-                  const isFav = favorites.includes(template.name);
-                  return (
+              {listVirtualizer.getVirtualItems().map((virtualRow) => {
+                const template = filteredTemplates[virtualRow.index];
+                const cat = categoryMap.get(template.category);
+                const isFav = favorites.includes(template.name);
+                return (
+                  <div
+                    key={template.name}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: `${virtualRow.size}px`,
+                      transform: `translateY(${virtualRow.start - listScrollMargin}px)`,
+                    }}
+                  >
                     <div
-                      key={template.name}
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: `${virtualRow.size}px`,
-                        transform: `translateY(${virtualRow.start}px)`,
+                      onClick={() => openPreview(template.name)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          openPreview(template.name);
+                        }
                       }}
+                      className="group mb-3 flex items-center gap-4 rounded-xl border bg-card p-3 pr-4 transition-all cursor-pointer hover:border-primary/40 hover:shadow-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                     >
-                      <div
-                        onClick={() => openPreview(template.name)}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            openPreview(template.name);
-                          }
-                        }}
-                        className="group mb-3 flex items-center gap-4 rounded-xl border bg-card p-3 pr-4 transition-all cursor-pointer hover:border-primary/40 hover:shadow-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
-                      >
-                        <div className="h-20 w-32 shrink-0 overflow-hidden rounded-md bg-muted">
-                          <img
-                            src={`/api/svg?text=${encodeURIComponent(template.displayName)}&template=${template.name}&height=80&v=2`}
-                            alt={template.displayName}
-                            className="h-full w-full object-cover"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="truncate font-semibold text-base">
-                            {template.displayName}
-                          </h3>
-                          <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
-                            <Badge variant="outline" className="font-normal">
-                              {cat?.icon ? <span className="mr-1">{cat.icon}</span> : null}
-                              <span className="capitalize">{template.category}</span>
-                            </Badge>
-                            {template.gradientType && (
-                              <span className="capitalize truncate">
-                                {template.gradientType.replace(/([A-Z])/g, ' $1').trim()}
-                              </span>
-                            )}
-                            {template.animationDuration && (
-                              <span className="hidden md:inline">
-                                · {template.animationDuration}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-1.5 shrink-0">
-                          <button
-                            type="button"
-                            aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
-                            onClick={(e) => handleListFavorite(e, template.name)}
-                            className={cn(
-                              'inline-flex h-9 w-9 items-center justify-center rounded-md border transition-colors',
-                              isFav
-                                ? 'border-yellow-500/40 bg-yellow-500/10 text-yellow-500'
-                                : 'border-input bg-background text-muted-foreground hover:text-foreground hover:bg-accent',
-                            )}
-                          >
-                            <Star className={cn('h-4 w-4', isFav && 'fill-current')} />
-                          </button>
-                          <Link
-                            href={`/create?template=${template.name}`}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <Button size="sm" className="gap-1.5">
-                              Use
-                              <ChevronRight className="h-4 w-4" />
-                            </Button>
-                          </Link>
+                      <div className="h-20 w-32 shrink-0 overflow-hidden rounded-md bg-muted">
+                        <img
+                          src={`/api/svg?text=${encodeURIComponent(template.displayName)}&template=${template.name}&height=80&v=2`}
+                          alt={template.displayName}
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="truncate font-semibold text-base">{template.displayName}</h3>
+                        <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
+                          <Badge variant="outline" className="font-normal">
+                            {cat?.icon ? <span className="mr-1">{cat.icon}</span> : null}
+                            <span className="capitalize">{template.category}</span>
+                          </Badge>
+                          {template.gradientType && (
+                            <span className="capitalize truncate">
+                              {template.gradientType.replace(/([A-Z])/g, ' $1').trim()}
+                            </span>
+                          )}
+                          {template.animationDuration && (
+                            <span className="hidden md:inline">· {template.animationDuration}</span>
+                          )}
                         </div>
                       </div>
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <button
+                          type="button"
+                          aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
+                          onClick={(e) => handleListFavorite(e, template.name)}
+                          className={cn(
+                            'inline-flex h-9 w-9 items-center justify-center rounded-md border transition-colors',
+                            isFav
+                              ? 'border-yellow-500/40 bg-yellow-500/10 text-yellow-500'
+                              : 'border-input bg-background text-muted-foreground hover:text-foreground hover:bg-accent',
+                          )}
+                        >
+                          <Star className={cn('h-4 w-4', isFav && 'fill-current')} />
+                        </button>
+                        <Link
+                          href={`/create?template=${template.name}`}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Button size="sm" className="gap-1.5">
+                            Use
+                            <ChevronRight className="h-4 w-4" />
+                          </Button>
+                        </Link>
+                      </div>
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </section>
