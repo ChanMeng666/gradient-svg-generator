@@ -5,16 +5,27 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../components/layout/Header';
 import GEOHead from '../components/seo/GEOHead';
-import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
-import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { getAllTemplates, getCategories, getTemplatesByCategory } from '../utils/templateUtils';
-import { Search, Grid3x3, List, Filter, ChevronRight, Star } from 'lucide-react';
+import {
+  Search,
+  Grid3x3,
+  List,
+  SlidersHorizontal,
+  Star,
+  X,
+  ChevronRight,
+  Sparkles,
+  Layers,
+  LayoutGrid,
+  SearchX,
+} from 'lucide-react';
 import { cn } from '../lib/utils';
 import useStore from '../store/useStore';
 import TemplatePreviewModal from '../components/features/TemplatePreviewModal';
+import TemplateCard from '../components/features/TemplateCard';
+import { getAllTemplates, getCategories, getTemplatesByCategory } from '../utils/templateUtils';
 
 interface TemplateRecord {
   name: string;
@@ -35,6 +46,11 @@ interface CategoryMeta {
 
 type ViewMode = 'grid' | 'list';
 
+const CARD_MIN_WIDTH = 300;
+const ROW_GAP = 24;
+const GRID_ROW_HEIGHT = 224 + ROW_GAP;
+const LIST_ROW_HEIGHT = 104;
+
 export default function Templates() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -42,56 +58,70 @@ export default function Templates() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [selectedTemplate, setSelectedTemplate] = useState<TemplateRecord | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const [favoritesOnly, setFavoritesOnly] = useState(false);
 
   const { favorites, addFavorite, removeFavorite } = useStore();
 
   const gridContainerRef = useRef<HTMLDivElement>(null);
   const listContainerRef = useRef<HTMLDivElement>(null);
-  const [columnCount, setColumnCount] = useState(4);
+  const [columnCount, setColumnCount] = useState(3);
 
   useEffect(() => {
-    const calculateColumns = () => {
-      if (!gridContainerRef.current) return;
-      const width = gridContainerRef.current.offsetWidth;
-      if (width < 768) setColumnCount(1);
-      else if (width < 1024) setColumnCount(2);
-      else if (width < 1280) setColumnCount(3);
-      else setColumnCount(4);
+    const el = gridContainerRef.current;
+    if (!el) return;
+
+    const compute = (width: number) => {
+      if (width <= 0) return;
+      const cols = Math.max(1, Math.floor((width + ROW_GAP) / (CARD_MIN_WIDTH + ROW_GAP)));
+      setColumnCount(cols);
     };
 
-    calculateColumns();
-    window.addEventListener('resize', calculateColumns);
-    return () => window.removeEventListener('resize', calculateColumns);
-  }, []);
+    compute(el.clientWidth);
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        compute(entry.contentRect.width);
+      }
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [viewMode]);
 
   const templates = useMemo<TemplateRecord[]>(() => getAllTemplates() as TemplateRecord[], []);
   const categories = useMemo<CategoryMeta[]>(() => getCategories() as CategoryMeta[], []);
 
+  const categoryMap = useMemo(() => {
+    const map = new Map<string, CategoryMeta>();
+    categories.forEach((c) => map.set(c.id, c));
+    return map;
+  }, [categories]);
+
+  const categoryCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    categories.forEach((c) => {
+      counts.set(c.id, getTemplatesByCategory(c.id).length);
+    });
+    return counts;
+  }, [categories]);
+
   const availableGradientTypes = useMemo(() => {
     const types = new Set<string>();
     templates.forEach((t) => {
-      if (t.gradientType) {
-        types.add(t.gradientType);
-      }
+      if (t.gradientType) types.add(t.gradientType);
     });
     return Array.from(types).sort();
   }, [templates]);
 
   const availableAnimationSpeeds = useMemo(() => {
-    const speeds = new Map<string, boolean>();
+    const speeds = new Set<string>();
     templates.forEach((t) => {
-      const duration = t.animationDuration || '6s';
-      const seconds = parseInt(duration);
-      if (seconds <= 4) {
-        speeds.set('fast', true);
-      } else if (seconds >= 5 && seconds <= 8) {
-        speeds.set('normal', true);
-      } else if (seconds >= 9) {
-        speeds.set('slow', true);
-      }
+      const seconds = parseInt(t.animationDuration || '6s');
+      if (seconds <= 4) speeds.add('fast');
+      else if (seconds <= 8) speeds.add('normal');
+      else speeds.add('slow');
     });
-    return Array.from(speeds.keys());
+    return Array.from(speeds);
   }, [templates]);
 
   const filteredTemplates = useMemo(() => {
@@ -101,13 +131,17 @@ export default function Templates() {
       result = result.filter((t) => t.category === selectedCategory);
     }
 
+    if (favoritesOnly) {
+      result = result.filter((t) => favorites.includes(t.name));
+    }
+
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
+      const q = searchQuery.toLowerCase();
       result = result.filter(
         (t) =>
-          t.name.toLowerCase().includes(query) ||
-          t.displayName.toLowerCase().includes(query) ||
-          t.category.toLowerCase().includes(query),
+          t.name.toLowerCase().includes(q) ||
+          t.displayName.toLowerCase().includes(q) ||
+          t.category.toLowerCase().includes(q),
       );
     }
 
@@ -123,8 +157,7 @@ export default function Templates() {
 
       if (speedFilters.length > 0) {
         result = result.filter((t) => {
-          const duration = t.animationDuration || '6s';
-          const seconds = parseInt(duration);
+          const seconds = parseInt(t.animationDuration || '6s');
           if (speedFilters.includes('fast') && seconds <= 4) return true;
           if (speedFilters.includes('normal') && seconds >= 5 && seconds <= 8) return true;
           if (speedFilters.includes('slow') && seconds >= 9) return true;
@@ -134,7 +167,15 @@ export default function Templates() {
     }
 
     return result;
-  }, [templates, selectedCategory, searchQuery, selectedFilters, availableGradientTypes]);
+  }, [
+    templates,
+    selectedCategory,
+    favoritesOnly,
+    favorites,
+    searchQuery,
+    selectedFilters,
+    availableGradientTypes,
+  ]);
 
   const gridRows = useMemo(() => {
     const rows: TemplateRecord[][] = [];
@@ -147,20 +188,19 @@ export default function Templates() {
   const gridVirtualizer = useVirtualizer({
     count: gridRows.length,
     getScrollElement: () => gridContainerRef.current,
-    estimateSize: () => 280,
-    overscan: 2,
+    estimateSize: () => GRID_ROW_HEIGHT,
+    overscan: 3,
   });
 
   const listVirtualizer = useVirtualizer({
     count: filteredTemplates.length,
     getScrollElement: () => listContainerRef.current,
-    estimateSize: () => 100,
-    overscan: 3,
+    estimateSize: () => LIST_ROW_HEIGHT,
+    overscan: 4,
   });
 
   const handleToggleFavorite = useCallback(
-    (e: MouseEvent<HTMLButtonElement>, templateName: string) => {
-      e.preventDefault();
+    (templateName: string) => {
       if (favorites.includes(templateName)) {
         removeFavorite(templateName);
       } else {
@@ -169,6 +209,36 @@ export default function Templates() {
     },
     [favorites, addFavorite, removeFavorite],
   );
+
+  const handleListFavorite = useCallback(
+    (e: MouseEvent<HTMLButtonElement>, templateName: string) => {
+      e.preventDefault();
+      e.stopPropagation();
+      handleToggleFavorite(templateName);
+    },
+    [handleToggleFavorite],
+  );
+
+  const openPreview = useCallback(
+    (templateName: string) => {
+      const t = filteredTemplates.find((x) => x.name === templateName);
+      if (t) {
+        setSelectedTemplate(t);
+        setIsModalOpen(true);
+      }
+    },
+    [filteredTemplates],
+  );
+
+  const clearAll = useCallback(() => {
+    setSearchQuery('');
+    setSelectedCategory('all');
+    setSelectedFilters([]);
+    setFavoritesOnly(false);
+  }, []);
+
+  const activeFilterCount =
+    selectedFilters.length + (favoritesOnly ? 1 : 0) + (selectedCategory !== 'all' ? 1 : 0);
 
   return (
     <>
@@ -197,113 +267,202 @@ export default function Templates() {
       <div className="min-h-screen bg-background">
         <Header showMobileMenu={false} />
 
-        <section className="border-b bg-muted/30">
-          <div className="container mx-auto px-4 py-12">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl font-bold mb-4">Template Gallery</h1>
-              <p className="text-lg text-muted-foreground mb-6">
-                Browse our collection of {templates.length}+ professional gradient templates. Each
-                template is carefully crafted with unique animations and effects.
+        {/* Hero */}
+        <section className="border-b bg-gradient-to-b from-muted/40 via-background to-background">
+          <div className="container mx-auto px-4 py-10">
+            <div className="mx-auto max-w-3xl text-center">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
+                <Sparkles className="h-3.5 w-3.5 text-primary" />
+                Template Gallery
+              </div>
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+                Find the perfect gradient for your project
+              </h1>
+              <p className="text-sm md:text-base text-muted-foreground mb-6">
+                {templates.length} professionally crafted templates across {categories.length}{' '}
+                categories, with unique animations and live preview.
               </p>
 
-              <div className="relative max-w-xl">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <div className="relative mx-auto max-w-xl">
+                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder="Search templates..."
+                  placeholder="Search by name, category, or effect…"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-4 py-3 text-lg"
+                  className="h-11 pl-10 pr-10 rounded-full"
                 />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    aria-label="Clear search"
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-muted-foreground hover:text-foreground"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5">
+                  <LayoutGrid className="h-3.5 w-3.5" />
+                  {templates.length}+ Templates
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Layers className="h-3.5 w-3.5" />
+                  {categories.length} Categories
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  {availableGradientTypes.length}+ Gradient Types
+                </span>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="sticky top-16 z-30 bg-background border-b">
-          <div className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex-1 overflow-x-auto">
-                <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <TabsList className="w-full justify-start">
-                    <TabsTrigger value="all">
-                      All Templates
-                      <Badge variant="secondary" className="ml-2">
-                        {templates.length}
-                      </Badge>
-                    </TabsTrigger>
-                    {categories.map((category) => (
-                      <TabsTrigger
-                        key={category.id}
-                        value={category.id}
-                        className="whitespace-nowrap"
-                      >
-                        <span className="mr-1">{category.icon}</span>
-                        {category.name}
-                        <Badge variant="secondary" className="ml-2">
-                          {getTemplatesByCategory(category.id).length}
-                        </Badge>
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
-                </Tabs>
+        {/* Sticky: categories + toolbar + filter panel */}
+        <div className="sticky top-16 z-30 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+          {/* Category pills */}
+          <div className="container mx-auto px-4">
+            <div className="-mx-4 overflow-x-auto px-4 scroll-smooth">
+              <div className="flex items-center gap-2 py-3 min-w-max">
+                <CategoryPill
+                  active={selectedCategory === 'all'}
+                  label="All"
+                  count={templates.length}
+                  onClick={() => setSelectedCategory('all')}
+                />
+                {categories.map((c) => (
+                  <CategoryPill
+                    key={c.id}
+                    active={selectedCategory === c.id}
+                    label={c.name}
+                    icon={c.icon}
+                    count={categoryCounts.get(c.id) ?? 0}
+                    onClick={() => setSelectedCategory(c.id)}
+                  />
+                ))}
               </div>
+            </div>
+          </div>
+
+          {/* Toolbar */}
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-between gap-3 border-t py-3">
+              <p className="text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">{filteredTemplates.length}</span>
+                <span className="hidden sm:inline"> of {templates.length}</span> templates
+                {searchQuery && (
+                  <span className="ml-1">
+                    for <span className="text-foreground">&ldquo;{searchQuery}&rdquo;</span>
+                  </span>
+                )}
+              </p>
 
               <div className="flex items-center gap-2">
-                <Button
-                  variant={viewMode === 'grid' ? 'default' : 'outline'}
-                  size="icon"
-                  onClick={() => setViewMode('grid')}
+                <button
+                  type="button"
+                  onClick={() => setFavoritesOnly((v) => !v)}
+                  className={cn(
+                    'inline-flex items-center gap-1.5 rounded-md border h-9 px-3 text-sm font-medium transition-colors',
+                    favoritesOnly
+                      ? 'bg-yellow-500/10 border-yellow-500/40 text-yellow-700 dark:text-yellow-400'
+                      : 'bg-background border-input text-muted-foreground hover:text-foreground hover:bg-accent',
+                  )}
+                  aria-pressed={favoritesOnly}
                 >
-                  <Grid3x3 className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === 'list' ? 'default' : 'outline'}
-                  size="icon"
-                  onClick={() => setViewMode('list')}
+                  <Star
+                    className={cn('h-4 w-4', favoritesOnly && 'fill-current text-yellow-500')}
+                  />
+                  <span className="hidden sm:inline">Favorites</span>
+                  {favorites.length > 0 && (
+                    <span
+                      className={cn(
+                        'ml-0.5 rounded px-1.5 text-[11px] leading-5',
+                        favoritesOnly
+                          ? 'bg-yellow-500/20 text-yellow-700 dark:text-yellow-300'
+                          : 'bg-muted text-muted-foreground',
+                      )}
+                    >
+                      {favorites.length}
+                    </span>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setShowFilters((v) => !v)}
+                  aria-expanded={showFilters}
+                  className={cn(
+                    'inline-flex items-center gap-1.5 rounded-md border h-9 px-3 text-sm font-medium transition-colors',
+                    showFilters || selectedFilters.length > 0
+                      ? 'bg-primary/10 border-primary/40 text-primary'
+                      : 'bg-background border-input text-muted-foreground hover:text-foreground hover:bg-accent',
+                  )}
                 >
-                  <List className="h-4 w-4" />
-                </Button>
+                  <SlidersHorizontal className="h-4 w-4" />
+                  <span className="hidden sm:inline">Filters</span>
+                  {selectedFilters.length > 0 && (
+                    <span className="ml-0.5 rounded bg-primary px-1.5 text-[11px] leading-5 text-primary-foreground">
+                      {selectedFilters.length}
+                    </span>
+                  )}
+                </button>
+
+                <div className="flex items-center rounded-md border bg-background p-0.5">
+                  <button
+                    type="button"
+                    aria-label="Grid view"
+                    onClick={() => setViewMode('grid')}
+                    className={cn(
+                      'inline-flex h-8 w-8 items-center justify-center rounded transition-colors',
+                      viewMode === 'grid'
+                        ? 'bg-accent text-accent-foreground'
+                        : 'text-muted-foreground hover:text-foreground',
+                    )}
+                  >
+                    <Grid3x3 className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="List view"
+                    onClick={() => setViewMode('list')}
+                    className={cn(
+                      'inline-flex h-8 w-8 items-center justify-center rounded transition-colors',
+                      viewMode === 'list'
+                        ? 'bg-accent text-accent-foreground'
+                        : 'text-muted-foreground hover:text-foreground',
+                    )}
+                  >
+                    <List className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </section>
 
-        <section className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-muted-foreground">
-              Showing {filteredTemplates.length} of {templates.length} templates
-              {searchQuery && ` for "${searchQuery}"`}
-              {selectedCategory !== 'all' &&
-                ` in ${categories.find((c) => c.id === selectedCategory)?.name}`}
-            </p>
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-2"
-              onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-            >
-              <Filter className="h-4 w-4" />
-              Advanced Filters
-            </Button>
-          </div>
-        </section>
-
-        {showAdvancedFilters && (
-          <section className="border-b bg-muted/10">
-            <div className="container mx-auto px-4 py-6">
-              <div className="space-y-4">
+          {/* Filter panel */}
+          {showFilters && (
+            <div className="border-t bg-muted/20">
+              <div className="container mx-auto px-4 py-5 space-y-5">
                 <div>
-                  <h3 className="text-sm font-medium mb-3">
-                    Filter by Gradient Type ({availableGradientTypes.length} types)
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {availableGradientTypes.length > 0 ? (
-                      availableGradientTypes.map((type) => (
-                        <Badge
+                  <div className="mb-2.5 flex items-center justify-between">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      Gradient Type
+                    </h3>
+                    <span className="text-xs text-muted-foreground">
+                      {availableGradientTypes.length} types
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {availableGradientTypes.map((type) => {
+                      const active = selectedFilters.includes(type);
+                      return (
+                        <button
                           key={type}
-                          variant={selectedFilters.includes(type) ? 'default' : 'outline'}
-                          className="cursor-pointer capitalize"
+                          type="button"
                           onClick={() => {
                             setSelectedFilters((prev) =>
                               prev.includes(type)
@@ -311,25 +470,31 @@ export default function Templates() {
                                 : [...prev, type],
                             );
                           }}
+                          className={cn(
+                            'rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors',
+                            active
+                              ? 'border-primary bg-primary text-primary-foreground'
+                              : 'border-input bg-background text-muted-foreground hover:text-foreground hover:border-foreground/30',
+                          )}
                         >
                           {type.replace(/([A-Z])/g, ' $1').trim()}
-                        </Badge>
-                      ))
-                    ) : (
-                      <p className="text-sm text-muted-foreground">No gradient types available</p>
-                    )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium mb-3">Filter by Animation Speed</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {availableAnimationSpeeds.length > 0 ? (
-                      availableAnimationSpeeds.map((speed) => (
-                        <Badge
+                  <h3 className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Animation Speed
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {availableAnimationSpeeds.map((speed) => {
+                      const active = selectedFilters.includes(speed);
+                      return (
+                        <button
                           key={speed}
-                          variant={selectedFilters.includes(speed) ? 'default' : 'outline'}
-                          className="cursor-pointer capitalize"
+                          type="button"
                           onClick={() => {
                             setSelectedFilters((prev) =>
                               prev.includes(speed)
@@ -337,54 +502,84 @@ export default function Templates() {
                                 : [...prev, speed],
                             );
                           }}
+                          className={cn(
+                            'rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors',
+                            active
+                              ? 'border-primary bg-primary text-primary-foreground'
+                              : 'border-input bg-background text-muted-foreground hover:text-foreground hover:border-foreground/30',
+                          )}
                         >
                           {speed}
-                        </Badge>
-                      ))
-                    ) : (
-                      <p className="text-sm text-muted-foreground">No animation speeds available</p>
-                    )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center pt-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setSelectedFilters([])}
-                    disabled={selectedFilters.length === 0}
-                  >
-                    Clear Filters
-                  </Button>
-                  <p className="text-sm text-muted-foreground">
-                    {selectedFilters.length} filter{selectedFilters.length !== 1 ? 's' : ''} active
-                  </p>
-                </div>
+                {selectedFilters.length > 0 && (
+                  <div className="flex items-center justify-between pt-1">
+                    <p className="text-xs text-muted-foreground">
+                      {selectedFilters.length} filter{selectedFilters.length !== 1 ? 's' : ''}{' '}
+                      active
+                    </p>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setSelectedFilters([])}
+                      className="h-7 text-xs"
+                    >
+                      Clear filters
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
-          </section>
-        )}
+          )}
 
-        <section className="container mx-auto px-4 pb-20">
-          {filteredTemplates.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-muted-foreground mb-4">
-                No templates found matching your criteria.
-              </p>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('all');
-                }}
-              >
-                Clear Filters
-              </Button>
+          {/* Active filter summary */}
+          {activeFilterCount > 0 && !showFilters && (
+            <div className="border-t bg-muted/10">
+              <div className="container mx-auto px-4 py-2.5 flex items-center gap-2 overflow-x-auto">
+                <span className="text-xs text-muted-foreground shrink-0">Active:</span>
+                {selectedCategory !== 'all' && (
+                  <FilterChip
+                    label={categoryMap.get(selectedCategory)?.name ?? selectedCategory}
+                    onRemove={() => setSelectedCategory('all')}
+                  />
+                )}
+                {favoritesOnly && (
+                  <FilterChip label="Favorites" onRemove={() => setFavoritesOnly(false)} />
+                )}
+                {selectedFilters.map((f) => (
+                  <FilterChip
+                    key={f}
+                    label={f.replace(/([A-Z])/g, ' $1').trim()}
+                    onRemove={() => setSelectedFilters((prev) => prev.filter((x) => x !== f))}
+                  />
+                ))}
+                <button
+                  type="button"
+                  onClick={clearAll}
+                  className="ml-auto shrink-0 text-xs text-muted-foreground hover:text-foreground underline-offset-2 hover:underline"
+                >
+                  Clear all
+                </button>
+              </div>
             </div>
+          )}
+        </div>
+
+        {/* Results */}
+        <section className="container mx-auto px-4 pt-6 pb-20">
+          {filteredTemplates.length === 0 ? (
+            <EmptyState
+              hasActiveFilters={activeFilterCount > 0 || !!searchQuery}
+              onClear={clearAll}
+            />
           ) : viewMode === 'grid' ? (
             <div
               ref={gridContainerRef}
-              className="h-[calc(100vh-400px)] min-h-[400px] overflow-y-auto"
+              className="h-[calc(100vh-360px)] min-h-[480px] overflow-y-auto -mx-1 px-1"
             >
               <div
                 style={{
@@ -407,57 +602,26 @@ export default function Templates() {
                         transform: `translateY(${virtualRow.start}px)`,
                       }}
                     >
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-6">
+                      <div
+                        className="grid pb-6"
+                        style={{
+                          gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`,
+                          gap: `${ROW_GAP}px`,
+                        }}
+                      >
                         {rowTemplates.map((template) => (
-                          <div key={template.name} className="group">
-                            <div className="aspect-video bg-muted relative overflow-hidden rounded-lg border hover:shadow-lg transition-all">
-                              <img
-                                src={`/api/svg?text=PREVIEW&template=${template.name}&height=150&v=2`}
-                                alt={template.displayName}
-                                className="w-full h-full object-contain"
-                                loading="lazy"
-                              />
-                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                              <Button
-                                size="icon"
-                                variant="secondary"
-                                className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                                onClick={(e) => handleToggleFavorite(e, template.name)}
-                              >
-                                <Star
-                                  className={cn(
-                                    'h-4 w-4',
-                                    favorites.includes(template.name) &&
-                                      'fill-current text-yellow-500',
-                                  )}
-                                />
-                              </Button>
-                            </div>
-                            <div className="p-4">
-                              <h3 className="text-lg font-semibold mb-1">{template.displayName}</h3>
-                              <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1">
-                                {categories.find((c) => c.id === template.category)?.icon}{' '}
-                                {template.category}
-                              </p>
-                              <div className="flex gap-2">
-                                <Link href={`/create?template=${template.name}`} className="flex-1">
-                                  <Button className="w-full" size="sm">
-                                    Use Template
-                                  </Button>
-                                </Link>
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  onClick={() => {
-                                    setSelectedTemplate(template);
-                                    setIsModalOpen(true);
-                                  }}
-                                >
-                                  Preview
-                                </Button>
-                              </div>
-                            </div>
-                          </div>
+                          <TemplateCard
+                            key={template.name}
+                            template={{
+                              name: template.name,
+                              displayName: template.displayName,
+                              category: template.category,
+                              categoryIcon: categoryMap.get(template.category)?.icon,
+                            }}
+                            isFavorite={favorites.includes(template.name)}
+                            onToggleFavorite={handleToggleFavorite}
+                            onPreview={openPreview}
+                          />
                         ))}
                       </div>
                     </div>
@@ -468,7 +632,7 @@ export default function Templates() {
           ) : (
             <div
               ref={listContainerRef}
-              className="h-[calc(100vh-400px)] min-h-[400px] overflow-y-auto"
+              className="h-[calc(100vh-360px)] min-h-[480px] overflow-y-auto"
             >
               <div
                 style={{
@@ -479,6 +643,8 @@ export default function Templates() {
               >
                 {listVirtualizer.getVirtualItems().map((virtualRow) => {
                   const template = filteredTemplates[virtualRow.index];
+                  const cat = categoryMap.get(template.category);
+                  const isFav = favorites.includes(template.name);
                   return (
                     <div
                       key={template.name}
@@ -491,46 +657,72 @@ export default function Templates() {
                         transform: `translateY(${virtualRow.start}px)`,
                       }}
                     >
-                      <Card className="overflow-hidden hover:shadow-md transition-all mb-4">
-                        <div className="flex items-center gap-4 p-4">
-                          <div className="w-32 h-20 bg-muted rounded-md overflow-hidden shrink-0">
-                            <img
-                              src={`/api/svg?text=PREVIEW&template=${template.name}&height=80&v=2`}
-                              alt={template.displayName}
-                              className="w-full h-full object-contain"
-                              loading="lazy"
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-lg">{template.displayName}</h3>
-                            <p className="text-sm text-muted-foreground">
-                              {categories.find((c) => c.id === template.category)?.icon}{' '}
-                              {template.category}
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              onClick={(e) => handleToggleFavorite(e, template.name)}
-                            >
-                              <Star
-                                className={cn(
-                                  'h-4 w-4',
-                                  favorites.includes(template.name) &&
-                                    'fill-current text-yellow-500',
-                                )}
-                              />
-                            </Button>
-                            <Link href={`/create?template=${template.name}`}>
-                              <Button className="gap-2">
-                                Use Template
-                                <ChevronRight className="h-4 w-4" />
-                              </Button>
-                            </Link>
+                      <div
+                        onClick={() => openPreview(template.name)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            openPreview(template.name);
+                          }
+                        }}
+                        className="group mb-3 flex items-center gap-4 rounded-xl border bg-card p-3 pr-4 transition-all cursor-pointer hover:border-primary/40 hover:shadow-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        <div className="h-20 w-32 shrink-0 overflow-hidden rounded-md bg-muted">
+                          <img
+                            src={`/api/svg?text=${encodeURIComponent(template.displayName)}&template=${template.name}&height=80&v=2`}
+                            alt={template.displayName}
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="truncate font-semibold text-base">
+                            {template.displayName}
+                          </h3>
+                          <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
+                            <Badge variant="outline" className="font-normal">
+                              {cat?.icon ? <span className="mr-1">{cat.icon}</span> : null}
+                              <span className="capitalize">{template.category}</span>
+                            </Badge>
+                            {template.gradientType && (
+                              <span className="capitalize truncate">
+                                {template.gradientType.replace(/([A-Z])/g, ' $1').trim()}
+                              </span>
+                            )}
+                            {template.animationDuration && (
+                              <span className="hidden md:inline">
+                                · {template.animationDuration}
+                              </span>
+                            )}
                           </div>
                         </div>
-                      </Card>
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <button
+                            type="button"
+                            aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
+                            onClick={(e) => handleListFavorite(e, template.name)}
+                            className={cn(
+                              'inline-flex h-9 w-9 items-center justify-center rounded-md border transition-colors',
+                              isFav
+                                ? 'border-yellow-500/40 bg-yellow-500/10 text-yellow-500'
+                                : 'border-input bg-background text-muted-foreground hover:text-foreground hover:bg-accent',
+                            )}
+                          >
+                            <Star className={cn('h-4 w-4', isFav && 'fill-current')} />
+                          </button>
+                          <Link
+                            href={`/create?template=${template.name}`}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <Button size="sm" className="gap-1.5">
+                              Use
+                              <ChevronRight className="h-4 w-4" />
+                            </Button>
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
@@ -546,16 +738,94 @@ export default function Templates() {
             setIsModalOpen(false);
             setSelectedTemplate(null);
           }}
-          onFavorite={(templateName) => {
-            if (favorites.includes(templateName)) {
-              removeFavorite(templateName);
-            } else {
-              addFavorite(templateName);
-            }
-          }}
+          onFavorite={handleToggleFavorite}
           isFavorite={!!selectedTemplate && favorites.includes(selectedTemplate.name)}
         />
       </div>
     </>
+  );
+}
+
+interface CategoryPillProps {
+  active: boolean;
+  label: string;
+  icon?: string;
+  count: number;
+  onClick: () => void;
+}
+
+function CategoryPill({ active, label, icon, count, onClick }: CategoryPillProps) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        'inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 h-8 text-sm font-medium transition-colors',
+        active
+          ? 'border-primary bg-primary text-primary-foreground shadow-sm'
+          : 'border-input bg-background text-muted-foreground hover:text-foreground hover:border-foreground/30',
+      )}
+      aria-pressed={active}
+    >
+      {icon ? <span className="text-[15px] leading-none">{icon}</span> : null}
+      <span>{label}</span>
+      <span
+        className={cn(
+          'ml-0.5 rounded px-1.5 text-[11px] leading-5 font-medium',
+          active
+            ? 'bg-primary-foreground/15 text-primary-foreground'
+            : 'bg-muted text-muted-foreground',
+        )}
+      >
+        {count}
+      </span>
+    </button>
+  );
+}
+
+interface FilterChipProps {
+  label: string;
+  onRemove: () => void;
+}
+
+function FilterChip({ label, onRemove }: FilterChipProps) {
+  return (
+    <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-input bg-background px-2.5 py-0.5 text-xs capitalize text-foreground">
+      {label}
+      <button
+        type="button"
+        aria-label={`Remove ${label} filter`}
+        onClick={onRemove}
+        className="inline-flex h-4 w-4 items-center justify-center rounded-full text-muted-foreground hover:text-foreground hover:bg-accent"
+      >
+        <X className="h-3 w-3" />
+      </button>
+    </span>
+  );
+}
+
+interface EmptyStateProps {
+  hasActiveFilters: boolean;
+  onClear: () => void;
+}
+
+function EmptyState({ hasActiveFilters, onClear }: EmptyStateProps) {
+  return (
+    <div className="flex flex-col items-center justify-center py-24 text-center">
+      <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-muted text-muted-foreground">
+        <SearchX className="h-7 w-7" />
+      </div>
+      <h3 className="text-lg font-semibold mb-1">No templates found</h3>
+      <p className="text-sm text-muted-foreground mb-5 max-w-sm">
+        {hasActiveFilters
+          ? 'Try broadening your filters or clearing your search to see more templates.'
+          : 'Your favorites list is empty. Browse the gallery and add some favorites.'}
+      </p>
+      {hasActiveFilters && (
+        <Button variant="outline" onClick={onClear}>
+          Clear filters
+        </Button>
+      )}
+    </div>
   );
 }
