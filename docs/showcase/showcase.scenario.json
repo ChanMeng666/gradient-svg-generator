@@ -1,0 +1,39 @@
+{
+  "project": "gradient-svg-generator",
+  "baseUrl": "https://gradient-svg-generator.vercel.app",
+  "outDir": "docs/showcase",
+  "loginWall": false,
+  "reducedMotion": "no-preference",
+  "pages": [
+    { "label": "hero", "url": "/", "viewport": "desktop", "fullPage": false },
+    {
+      "label": "templates-full",
+      "url": "/templates",
+      "viewport": "desktop",
+      "fullPage": true,
+      "maxHeight": 5000
+    },
+    { "label": "mobile-home", "url": "/", "viewport": "mobile", "fullPage": false }
+  ],
+  "demo": {
+    "size": { "width": 1280, "height": 720 },
+    "stepPauseMs": 600,
+    "steps": [
+      { "action": "goto", "url": "/create" },
+      { "action": "wait", "ms": 1200 },
+      {
+        "action": "fill",
+        "selector": "input[placeholder=\"Enter your text...\"]",
+        "value": "Hello World",
+        "delayMs": 90
+      },
+      { "action": "wait", "ms": 1000 },
+      { "action": "click", "selector": "text=Sunset Gold" },
+      { "action": "wait", "ms": 1500 },
+      { "action": "click", "selector": "button:has-text(\"Fast (3s)\")" },
+      { "action": "wait", "ms": 2500 },
+      { "action": "hover", "selector": "button:has-text(\"Copy Code\")", "optional": true },
+      { "action": "wait", "ms": 1000 }
+    ]
+  }
+}
