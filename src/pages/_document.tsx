@@ -15,6 +15,38 @@ export default function Document() {
         />
         <meta name="author" content="Chan Meng" />
 
+        {/* Open Graph / social share */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Gradient SVG Generator" />
+        <meta property="og:title" content="Gradient SVG Generator" />
+        <meta
+          property="og:description"
+          content="340+ animated gradient SVG banners for your GitHub README — embed a single URL, no install required."
+        />
+        <meta property="og:url" content="https://gradient-svg-generator.vercel.app/" />
+        <meta
+          property="og:image"
+          content="https://gradient-svg-generator.vercel.app/og-cover.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+          property="og:image:alt"
+          content="Gradient SVG Generator — 340+ animated gradient SVG banners"
+        />
+
+        {/* Twitter card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Gradient SVG Generator" />
+        <meta
+          name="twitter:description"
+          content="340+ animated gradient SVG banners for your GitHub README — embed a single URL, no install required."
+        />
+        <meta
+          name="twitter:image"
+          content="https://gradient-svg-generator.vercel.app/og-cover.png"
+        />
+
         {/* Favicon */}
         <link rel="icon" type="image/svg+xml" href="/gradient-svg-generator.svg" />
         <link rel="alternate icon" href="/gradient-svg-generator.svg" />
