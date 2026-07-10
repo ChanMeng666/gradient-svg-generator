@@ -5,6 +5,9 @@ import { cn } from '../../lib/utils';
 export interface HeroHeadlineProps {
   /** Display lines, each rendered on its own row (e.g. ["LIVING", "COLOR."]). */
   lines: readonly string[];
+  /** Optional per-line classes (aligned by index) — e.g. ['', 'text-right']
+      for a staggered poster composition. */
+  lineClassNames?: readonly (string | undefined)[];
   /** Template slugs the headline rotates through. First is the SSR default. */
   templates: readonly string[];
   /** Height of the source SVG banner used as the gradient fill. Default 300. */
@@ -46,6 +49,7 @@ function fillStyle(template: string, height: number): React.CSSProperties {
  */
 export function HeroHeadline({
   lines,
+  lineClassNames,
   templates,
   height = 300,
   intervalMs = 5000,
@@ -84,7 +88,7 @@ export function HeroHeadline({
 
   const renderLines = (extra?: string) =>
     lines.map((line, i) => (
-      <span key={i} className={cn('block', extra)}>
+      <span key={i} className={cn('block', lineClassNames?.[i], extra)}>
         {line}
       </span>
     ));

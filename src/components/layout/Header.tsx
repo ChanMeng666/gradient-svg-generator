@@ -10,7 +10,6 @@ interface HeaderProps {
 }
 
 const NAV_ITEMS: readonly { href: string; label: string }[] = [
-  { href: '/', label: 'Index' },
   { href: '/create', label: 'Create' },
   { href: '/templates', label: 'Templates' },
   { href: '/api-docs', label: 'API' },
@@ -31,9 +30,9 @@ export default function Header({ onMenuClick, showMobileMenu = true }: HeaderPro
         )}
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="group flex items-center gap-2.5">
           <img src="/gradient-svg-generator.svg" alt="Chromaflow" className="h-7 w-7" />
-          <span className="hidden font-mono text-[13px] uppercase tracking-[0.2em] text-foreground sm:inline-block">
+          <span className="hidden font-mono text-[13px] uppercase tracking-[0.2em] text-foreground transition-opacity group-hover:opacity-80 sm:inline-block">
             Chromaflow
           </span>
         </Link>

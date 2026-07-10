@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { GradientInkText } from '../home/GradientInkText';
 
 const REPO_URL = 'https://github.com/ChanMeng666/gradient-svg-generator';
 const LICENSE_URL = `${REPO_URL}/blob/main/LICENSE`;
@@ -37,18 +38,15 @@ const COLUMNS: readonly { heading: string; links: readonly FooterLink[] }[] = [
 export default function Footer() {
   return (
     <footer className="mb-16 border-t border-[#27272c] bg-black text-[#f2f1ee] md:mb-0">
-      {/* The only color on the page: a live gradient strip */}
-      <img
-        src="/api/svg?text=%20&template=aurora-borealis&height=60"
-        alt=""
-        className="block h-10 w-full object-cover"
-        loading="lazy"
-      />
-
       <div className="mx-auto max-w-7xl px-4 pb-10 pt-12">
-        <span className="pointer-events-none block select-none text-[clamp(3rem,10vw,8rem)] font-normal leading-none tracking-tight text-white/10">
-          Chromaflow
-        </span>
+        {/* The brand, rendered by the product itself: live gradient wordmark */}
+        <GradientInkText
+          text="Chromaflow"
+          template="aurora-borealis"
+          height={300}
+          as="span"
+          className="pointer-events-none block select-none text-[clamp(3rem,10vw,8rem)] font-normal leading-none tracking-tight"
+        />
 
         <div className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-3">
           {COLUMNS.map((column) => (
