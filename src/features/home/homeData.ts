@@ -25,6 +25,20 @@ export interface PopularTemplate {
   readonly users: string;
 }
 
+/**
+ * Full-bleed gradient templates the hero headline rotates through. Curated and
+ * visually verified to read well as a `text=%20` (textless) banner behind
+ * background-clip: text. Order is intentional — keep as-is.
+ */
+export const HERO_TEMPLATES: readonly string[] = [
+  'aurora-borealis',
+  'hologram-matrix',
+  'sunset-gold',
+  'stained-glass',
+  'neon-arcade',
+  'dreamy-sunset',
+] as const;
+
 /** Rotated through the hero carousel. */
 export const FEATURED_TEMPLATES: readonly FeaturedTemplate[] = [
   { name: 'hologram-matrix', displayName: 'Hologram Matrix', text: 'FUTURISTIC' },

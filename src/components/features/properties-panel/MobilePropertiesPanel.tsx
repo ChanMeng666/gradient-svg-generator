@@ -35,7 +35,7 @@ export default function MobilePropertiesPanel({ isOpen, onClose }: MobilePropert
   return (
     <div
       className={cn(
-        'fixed inset-x-0 bottom-0 z-50 bg-background border-t rounded-t-[10px] shadow-lg',
+        'fixed inset-x-0 bottom-0 z-50 bg-background border-t border-border rounded-t-[10px]',
         'mobile-properties-sheet',
         heightClass,
         'transition-all duration-300 overflow-hidden flex flex-col',
@@ -45,7 +45,9 @@ export default function MobilePropertiesPanel({ isOpen, onClose }: MobilePropert
 
       <div className="flex items-start justify-between p-4 pb-2 pt-0">
         <div className="flex-1">
-          <h3 className="text-lg font-semibold">Properties</h3>
+          <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+            Properties
+          </h3>
           <Badge
             variant={baseTemplate && !isModified ? 'default' : 'outline'}
             className="w-fit mt-1"

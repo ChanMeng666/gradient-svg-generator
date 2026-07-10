@@ -24,7 +24,15 @@ interface SidebarProps {
 
 type Tab = 'all' | 'favorites' | 'recent';
 
-const ROW_HEIGHT = 170;
+// Row height budget for the virtualizer (no measureElement, so this must
+// stay >= the tallest rendered row to avoid overlap). Breakdown at the
+// 288px sidebar content width:
+//   framed thumb  ~42px  (854x120 SVG scaled to width + 1px border x2)
+//   + mt-2         8px
+//   + name/category row (14px text)  ~20px
+//   + pb-4        16px  + 1px hairline separator
+//   ≈ 87px content; 112 leaves ~25px breathing gap between rows.
+const ROW_HEIGHT = 112;
 const OVERSCAN = 3;
 
 export default function Sidebar({ templates, categories, onTemplateSelect }: SidebarProps) {
@@ -117,7 +125,11 @@ export default function Sidebar({ templates, categories, onTemplateSelect }: Sid
       <div className="flex flex-col h-full overflow-hidden pb-16 md:pb-0">
         <div className="p-4 border-b shrink-0">
           <div className="flex items-center justify-between">
-            {!sidebarCollapsed && <h2 className="text-lg font-semibold">Templates</h2>}
+            {!sidebarCollapsed && (
+              <h2 className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                Templates
+              </h2>
+            )}
             <Button
               variant="ghost"
               size="icon"
@@ -214,42 +226,38 @@ export default function Sidebar({ templates, categories, onTemplateSelect }: Sid
                             }}
                           >
                             <div
-                              className="relative group cursor-pointer pb-4"
+                              className="group cursor-pointer"
                               onClick={() => onTemplateSelect(template)}
                             >
-                              <div className="relative">
+                              <div className="relative overflow-hidden rounded-lg border border-border">
                                 <img
                                   src={`/api/svg?text=PREVIEW&template=${template.name}&height=120`}
                                   alt={template.displayName}
-                                  className="w-full"
+                                  className="block w-full"
                                   loading="lazy"
                                 />
 
                                 <Button
                                   variant="ghost"
                                   size="icon"
-                                  className="absolute top-2 right-2 h-8 w-8 bg-background/80 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                                  className="absolute top-2 right-2 h-8 w-8 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity"
                                   onClick={(e) => toggleFavorite(e, template.name)}
                                 >
                                   <Star
                                     className={cn(
                                       'h-4 w-4',
                                       favorites.includes(template.name) &&
-                                        'fill-current text-yellow-500',
+                                        'fill-current text-foreground',
                                     )}
                                   />
                                 </Button>
                               </div>
 
-                              <div className="mt-2">
-                                <div className="text-sm font-medium text-center">
-                                  {template.displayName}
-                                </div>
-                                {activeTab === 'recent' && (
-                                  <div className="text-xs text-muted-foreground text-center mt-1">
-                                    Recently used
-                                  </div>
-                                )}
+                              <div className="mt-2 flex items-baseline justify-between gap-2 border-b border-border pb-4">
+                                <span className="truncate text-sm">{template.displayName}</span>
+                                <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
+                                  {activeTab === 'recent' ? 'Recent' : template.category || ''}
+                                </span>
                               </div>
                             </div>
                           </div>

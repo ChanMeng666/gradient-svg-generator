@@ -117,7 +117,7 @@ export default function SwipeableTemplateCarousel({
 
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-white font-semibold text-lg">
+                    <h3 className="text-white text-sm font-mono uppercase tracking-[0.08em]">
                       {currentTemplate.displayName}
                     </h3>
                     <Button
@@ -129,9 +129,7 @@ export default function SwipeableTemplateCarousel({
                         onFavorite(currentTemplate.name);
                       }}
                     >
-                      <Star
-                        className={cn('h-5 w-5', isFavorite && 'fill-current text-yellow-400')}
-                      />
+                      <Star className={cn('h-5 w-5', isFavorite && 'fill-current')} />
                     </Button>
                   </div>
                   <Badge className="bg-white/20 text-white border-white/30">

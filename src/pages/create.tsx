@@ -147,20 +147,20 @@ export default function Create() {
             <div className={styles.canvasArea}>
               <div className={styles.canvasHeader}>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 sm:gap-4">
-                    <h2 className={cn('font-semibold', isMobile ? 'text-base' : 'text-lg')}>
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
                       Preview
-                    </h2>
+                    </span>
                     <Badge
                       variant={baseTemplate && !isModified ? 'default' : 'outline'}
-                      className={cn(isMobile && 'text-xs px-2 py-0.5')}
+                      className={cn(isMobile && 'px-2 py-0.5')}
                     >
                       {baseTemplate ? (isModified ? 'Modified' : 'Template') : 'Custom'}
                     </Badge>
                   </div>
                   <div className="flex items-center gap-1 sm:gap-2">
                     <Button
-                      variant="outline"
+                      variant="ghost"
                       size={isMobile ? 'default' : 'icon'}
                       onClick={toggleFullscreen}
                       className={cn('transition-all', isMobile ? 'h-12 w-12' : 'h-10 w-10')}
@@ -168,7 +168,7 @@ export default function Create() {
                       <Maximize2 className={cn(isMobile ? 'h-6 w-6' : 'h-4 w-4')} />
                     </Button>
                     <Button
-                      variant="outline"
+                      variant="ghost"
                       size={isMobile ? 'default' : 'icon'}
                       onClick={resetConfig}
                       className={cn('transition-all', isMobile ? 'h-12 w-12' : 'h-10 w-10')}
@@ -187,7 +187,7 @@ export default function Create() {
               >
                 {isFullscreen && (
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="icon"
                     onClick={closeFullscreen}
                     className="absolute top-4 right-4 z-10"
@@ -196,9 +196,9 @@ export default function Create() {
                   </Button>
                 )}
                 <div className={styles.canvasWrapper}>
-                  <div className="bg-white">
+                  <div className="rounded-2xl border border-border bg-white p-3">
                     {previewUrl && (
-                      <img src={previewUrl} alt="Gradient Preview" className="block" />
+                      <img src={previewUrl} alt="Gradient Preview" className="block rounded-lg" />
                     )}
                   </div>
                 </div>
@@ -208,47 +208,40 @@ export default function Create() {
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-2">
-                      <Button
-                        onClick={downloadSVG}
-                        className={cn('gap-2', isMobile && 'text-xs px-3')}
-                      >
+                      <Button onClick={downloadSVG} className={cn('gap-2', isMobile && 'px-3')}>
                         <Download className="h-4 w-4" />
-                        <span className={cn(isMobile && 'hidden sm:inline')}>Download</span>
+                        <span className={cn(isMobile && 'hidden sm:inline')}>Download SVG</span>
                         {isMobile && 'SVG'}
                       </Button>
                       <Button
                         variant="outline"
                         onClick={copyCode}
-                        className={cn('gap-2', isMobile && 'text-xs px-3')}
+                        className={cn('gap-2', isMobile && 'px-3')}
                       >
                         <Copy className="h-4 w-4" />
                         <span className={cn(isMobile && 'hidden sm:inline')}>
-                          {isCopied ? 'Copied!' : 'Copy Code'}
+                          {isCopied ? 'Copied' : 'Copy URL'}
                         </span>
-                        {isMobile && (isCopied ? '✓' : 'Copy')}
+                        {isMobile && (isCopied ? 'Copied' : 'Copy')}
                       </Button>
                       <Button
                         variant="outline"
-                        className={cn('gap-2', isMobile && 'text-xs px-3')}
+                        className={cn('gap-2', isMobile && 'px-3')}
                         onClick={share}
                       >
                         <Share2 className="h-4 w-4" />
                         <span className={cn(isMobile && 'hidden sm:inline')}>
-                          {isShared ? 'Link Copied!' : 'Share'}
+                          {isShared ? 'Link Copied' : 'Share'}
                         </span>
                       </Button>
                     </div>
                   </div>
-                  <div className="hidden lg:block mt-3">
-                    <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <Code2 className="h-4 w-4 shrink-0 mt-1" />
-                      <div className="flex-1">
-                        <code className="font-mono text-xs bg-muted px-3 py-2 rounded block break-all whitespace-pre-wrap">
-                          {APP_URL}
-                          {previewUrl}
-                        </code>
-                      </div>
-                    </div>
+                  <div className="hidden lg:flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2">
+                    <Code2 className="h-4 w-4 shrink-0 text-muted-foreground" />
+                    <code className="flex-1 font-mono text-[12px] text-muted-foreground break-all">
+                      {APP_URL}
+                      {previewUrl}
+                    </code>
                   </div>
                 </div>
               </div>
@@ -264,7 +257,7 @@ export default function Create() {
               <div className="fixed bottom-24 right-4 z-20">
                 <Button
                   size="icon"
-                  className="h-14 w-14 rounded-full shadow-lg"
+                  className="h-14 w-14 rounded-full border border-border"
                   onClick={() => setMobilePropertiesOpen(true)}
                 >
                   <Settings className="h-6 w-6" />
@@ -287,7 +280,7 @@ export default function Create() {
           <Button
             size="sm"
             variant={quickTemplatesOpen ? 'default' : 'outline'}
-            className="shadow-lg"
+            className="border border-border"
             onClick={() => setQuickTemplatesOpen(!quickTemplatesOpen)}
           >
             <Palette className="h-4 w-4 mr-1" />
@@ -298,10 +291,12 @@ export default function Create() {
 
       {isMobile && !isFullscreen && quickTemplatesOpen && !mobilePropertiesOpen && (
         <div className="fixed bottom-0 left-0 right-0 z-30 animate-in slide-in-from-bottom duration-300">
-          <div className="bg-background/95 backdrop-blur-sm border-t rounded-t-lg shadow-lg">
+          <div className="bg-background border-t border-border rounded-t-lg">
             <div className="p-4 pb-20">
               <div className="mb-3 flex items-center justify-between">
-                <h3 className="text-sm font-medium">Quick Templates</h3>
+                <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  Quick Templates
+                </h3>
                 <div className="flex items-center gap-2">
                   <Button
                     variant="ghost"

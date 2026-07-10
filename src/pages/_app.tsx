@@ -4,7 +4,25 @@ import type { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import localFont from 'next/font/local';
 import useKeyboardShortcuts from '../hooks/useKeyboardShortcuts';
+import { cn } from '../lib/utils';
+
+const aspekta = localFont({
+  src: '../fonts/Aspekta-400.woff2',
+  weight: '400',
+  display: 'swap',
+  variable: '--font-aspekta',
+  fallback: ['ui-sans-serif', 'system-ui', 'Segoe UI', 'Arial', 'sans-serif'],
+});
+
+const jetbrainsMono = localFont({
+  src: '../fonts/JetBrainsMono-Regular.woff2',
+  weight: '400',
+  display: 'swap',
+  variable: '--font-mono-jb',
+  fallback: ['ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
+});
 
 const MobileNav = dynamic(() => import('../components/layout/MobileNav'), { ssr: false });
 
@@ -49,9 +67,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AppWithShortcuts>
-        <Component {...pageProps} />
-      </AppWithShortcuts>
+      <div className={cn(aspekta.variable, jetbrainsMono.variable, 'font-sans')}>
+        <AppWithShortcuts>
+          <Component {...pageProps} />
+        </AppWithShortcuts>
+      </div>
     </QueryClientProvider>
   );
 }

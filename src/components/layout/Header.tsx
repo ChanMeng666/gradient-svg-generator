@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Button } from '../ui/button';
-import { Code2, Palette, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 interface HeaderProps {
@@ -9,13 +9,19 @@ interface HeaderProps {
   showMobileMenu?: boolean;
 }
 
+const NAV_ITEMS: readonly { href: string; label: string }[] = [
+  { href: '/', label: 'Index' },
+  { href: '/create', label: 'Create' },
+  { href: '/templates', label: 'Templates' },
+  { href: '/api-docs', label: 'API' },
+];
+
 export default function Header({ onMenuClick, showMobileMenu = true }: HeaderProps) {
   const router = useRouter();
   const isCreatePage = router.pathname === '/create';
-  const isHomePage = router.pathname === '/';
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur">
       <div className="container flex h-16 items-center px-4">
         {/* Mobile menu button */}
         {showMobileMenu && onMenuClick && (
@@ -25,53 +31,34 @@ export default function Header({ onMenuClick, showMobileMenu = true }: HeaderPro
         )}
 
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <img src="/gradient-svg-generator.svg" alt="Chromaflow" className="h-8 w-8" />
-          <span className="font-bold text-xl hidden sm:inline-block">Chromaflow</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <img src="/gradient-svg-generator.svg" alt="Chromaflow" className="h-7 w-7" />
+          <span className="hidden font-mono text-[13px] uppercase tracking-[0.2em] text-foreground sm:inline-block">
+            Chromaflow
+          </span>
         </Link>
 
         {/* Navigation */}
-        <nav className="flex items-center space-x-6 ml-6 hidden md:flex">
-          <Link
-            href="/"
-            className={cn(
-              'text-sm font-medium transition-colors hover:text-primary',
-              isHomePage ? 'text-foreground' : 'text-muted-foreground',
-            )}
-          >
-            Home
-          </Link>
-          <Link
-            href="/create"
-            className={cn(
-              'text-sm font-medium transition-colors hover:text-primary',
-              isCreatePage ? 'text-foreground' : 'text-muted-foreground',
-            )}
-          >
-            Create
-          </Link>
-          <Link
-            href="/templates"
-            className={cn(
-              'text-sm font-medium transition-colors hover:text-primary',
-              router.pathname === '/templates' ? 'text-foreground' : 'text-muted-foreground',
-            )}
-          >
-            Templates
-          </Link>
-          <Link
-            href="/api-docs"
-            className={cn(
-              'text-sm font-medium transition-colors hover:text-primary',
-              router.pathname === '/api-docs' ? 'text-foreground' : 'text-muted-foreground',
-            )}
-          >
-            API
-          </Link>
+        <nav className="ml-8 hidden items-center gap-7 md:flex">
+          {NAV_ITEMS.map((item) => {
+            const isActive = router.pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'font-mono text-[13px] uppercase tracking-[0.08em] transition-colors',
+                  isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground',
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Actions */}
-        <div className="ml-auto flex items-center space-x-4">
+        <div className="ml-auto flex items-center gap-3">
           <Button
             variant="ghost"
             size="sm"
@@ -80,13 +67,11 @@ export default function Header({ onMenuClick, showMobileMenu = true }: HeaderPro
               window.open('https://github.com/ChanMeng666/gradient-svg-generator', '_blank')
             }
           >
-            <Code2 className="mr-2 h-4 w-4" />
-            GitHub
+            GitHub ↗
           </Button>
 
           {!isCreatePage && (
-            <Button onClick={() => router.push('/create')}>
-              <Palette className="mr-2 h-4 w-4" />
+            <Button size="sm" onClick={() => router.push('/create')}>
               Start Creating
             </Button>
           )}

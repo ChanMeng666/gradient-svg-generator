@@ -28,8 +28,8 @@ export function ColorPicker({ color, index, total, onUpdate, onAdd, onRemove }: 
           <label
             htmlFor={`color-picker-${index}`}
             className={cn(
-              'block w-10 h-10 rounded-md border-2 border-border cursor-pointer',
-              'hover:border-primary transition-colors',
+              'block w-10 h-10 rounded-lg border border-border cursor-pointer',
+              'hover:border-foreground transition-colors',
             )}
             style={{ backgroundColor: color.startsWith('#') ? color : `#${color}` }}
           />

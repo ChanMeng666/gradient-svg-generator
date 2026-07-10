@@ -27,7 +27,9 @@ export default function PropertiesPanel({ className }: PropertiesPanelProps) {
     <div className={cn('h-full flex flex-col bg-background', className)}>
       <div className="p-4 border-b">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Properties</h2>
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+            Properties
+          </h2>
           <Badge variant={baseTemplate && !isModified ? 'default' : 'outline'}>
             {baseTemplate ? (isModified ? 'Modified' : 'Template') : 'Custom'}
           </Badge>
