@@ -76,10 +76,12 @@ export default function TemplatePreviewModal({
         <DialogHeader>
           <div className="flex items-start justify-between pr-8">
             <div>
-              <DialogTitle className="text-2xl">{template.displayName}</DialogTitle>
-              <DialogDescription className="mt-2 flex items-center gap-2">
-                <Badge>{template.category}</Badge>
-                <span className="text-sm">{template.description}</span>
+              <DialogTitle className="text-2xl tracking-display font-normal">
+                {template.displayName}
+              </DialogTitle>
+              <DialogDescription className="mt-3 flex flex-wrap items-center gap-3">
+                <Badge variant="outline">{template.category}</Badge>
+                <span className="text-sm text-muted-foreground">{template.description}</span>
               </DialogDescription>
             </div>
             <Button
@@ -87,8 +89,9 @@ export default function TemplatePreviewModal({
               size="icon"
               onClick={() => onFavorite(template.name)}
               className="mt-1"
+              aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
             >
-              <Star className={cn('h-5 w-5', isFavorite && 'fill-current text-yellow-500')} />
+              <Star className={cn('h-5 w-5', isFavorite && 'fill-current text-foreground')} />
             </Button>
           </div>
         </DialogHeader>
@@ -102,14 +105,14 @@ export default function TemplatePreviewModal({
             </TabsList>
 
             <TabsContent value="preview" className="mt-4">
-              <div className="rounded-lg border bg-muted/30 p-8">
+              <div className="rounded-2xl border border-border bg-muted/20 p-8">
                 <div className="max-w-full overflow-hidden">
                   <img src={previewUrl} alt={template.displayName} className="w-full h-auto" />
                 </div>
               </div>
               <div className="mt-4 flex items-center gap-4">
-                <p className="text-sm text-muted-foreground">
-                  Animation: {template.animationDuration} • Type: {template.gradientType} • Colors:{' '}
+                <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                  Animation {template.animationDuration} · Type {template.gradientType} · Colors{' '}
                   {template.colors?.length || 0}
                 </p>
               </div>
@@ -117,7 +120,9 @@ export default function TemplatePreviewModal({
 
             <TabsContent value="customize" className="mt-4 space-y-4">
               <div>
-                <label className="text-sm font-medium mb-2 block">Preview Text</label>
+                <label className="mb-2 block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                  Preview Text
+                </label>
                 <Input
                   value={previewText}
                   onChange={(e) => setPreviewText(e.target.value)}
@@ -125,26 +130,30 @@ export default function TemplatePreviewModal({
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-2 block">Height: {previewHeight}px</label>
+                <label className="mb-2 block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                  Height {previewHeight}px
+                </label>
                 <input
                   type="range"
                   min="30"
                   max="300"
                   value={previewHeight}
                   onChange={(e) => setPreviewHeight(parseInt(e.target.value))}
-                  className="w-full"
+                  className="w-full accent-foreground"
                 />
               </div>
-              <div className="rounded-lg border bg-muted/30 p-4">
+              <div className="rounded-2xl border border-border bg-muted/20 p-4">
                 <img src={previewUrl} alt="Custom preview" className="w-full h-auto" />
               </div>
             </TabsContent>
 
             <TabsContent value="code" className="mt-4 space-y-4">
               <div>
-                <label className="text-sm font-medium mb-2 block">Markdown</label>
+                <label className="mb-2 block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                  Markdown
+                </label>
                 <div className="relative">
-                  <pre className="rounded-lg bg-muted p-4 text-sm overflow-x-auto">
+                  <pre className="rounded-xl border border-border bg-muted p-4 text-sm overflow-x-auto">
                     <code>{`![${previewText}](${apiUrl})`}</code>
                   </pre>
                   <Button
@@ -158,9 +167,11 @@ export default function TemplatePreviewModal({
                 </div>
               </div>
               <div>
-                <label className="text-sm font-medium mb-2 block">HTML</label>
+                <label className="mb-2 block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                  HTML
+                </label>
                 <div className="relative">
-                  <pre className="rounded-lg bg-muted p-4 text-sm overflow-x-auto">
+                  <pre className="rounded-xl border border-border bg-muted p-4 text-sm overflow-x-auto">
                     <code>{`<img src="${apiUrl}" alt="${previewText}" />`}</code>
                   </pre>
                   <Button
@@ -174,9 +185,11 @@ export default function TemplatePreviewModal({
                 </div>
               </div>
               <div>
-                <label className="text-sm font-medium mb-2 block">API URL</label>
+                <label className="mb-2 block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                  API URL
+                </label>
                 <div className="relative">
-                  <pre className="rounded-lg bg-muted p-4 text-sm overflow-x-auto">
+                  <pre className="rounded-xl border border-border bg-muted p-4 text-sm overflow-x-auto">
                     <code>{apiUrl}</code>
                   </pre>
                   <Button

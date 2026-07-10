@@ -22,13 +22,13 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     return (
       <>
         <div
-          className="fixed inset-0 z-50 bg-black/50 animate-in fade-in"
+          className="fixed inset-0 z-50 bg-black/70 animate-in fade-in"
           onClick={() => onOpenChange?.(false)}
         />
         <div
           ref={ref}
           className={cn(
-            'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 animate-in fade-in zoom-in-95 sm:rounded-lg',
+            'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-border bg-background p-6 duration-200 animate-in fade-in zoom-in-95 sm:rounded-2xl',
             className,
           )}
           {...props}
@@ -72,7 +72,7 @@ const DialogTitle = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ className, ...props }, ref) => (
     <h2
       ref={ref}
-      className={cn('text-lg font-semibold leading-none tracking-tight', className)}
+      className={cn('text-lg font-normal leading-none tracking-tight', className)}
       {...props}
     />
   ),

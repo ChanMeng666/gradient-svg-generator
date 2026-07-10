@@ -13,6 +13,9 @@ import { GRADIENT_TYPES } from '../../../constants/gradientTypes';
 
 export type PanelVariant = 'desktop' | 'mobile';
 
+// Instrument-panel field heading: mono, uppercase, muted.
+const LABEL = 'font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground';
+
 interface Config {
   text: string;
   height: number;
@@ -56,17 +59,13 @@ export function BasicTab({ variant, currentConfig, updateConfig }: BasicTabProps
       : undefined;
   const sliderClass =
     variant === 'mobile'
-      ? 'w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer'
+      ? 'w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer'
       : 'w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary';
 
   return (
     <>
       <div className={variant === 'desktop' ? 'space-y-2' : undefined}>
-        <label
-          className={
-            variant === 'desktop' ? 'text-sm font-medium' : 'text-sm font-medium mb-2 block'
-          }
-        >
+        <label className={variant === 'desktop' ? LABEL : `${LABEL} mb-2 block`}>
           Text Content
         </label>
         <Input
@@ -80,11 +79,13 @@ export function BasicTab({ variant, currentConfig, updateConfig }: BasicTabProps
       <div className={variant === 'desktop' ? 'space-y-2' : undefined}>
         {variant === 'desktop' ? (
           <div className="flex justify-between">
-            <label className="text-sm font-medium">Height</label>
-            <span className="text-sm text-muted-foreground">{currentConfig.height}px</span>
+            <label className={LABEL}>Height</label>
+            <span className="font-mono text-xs text-muted-foreground">
+              {currentConfig.height}px
+            </span>
           </div>
         ) : (
-          <label className="text-sm font-medium mb-2 block">Height: {currentConfig.height}px</label>
+          <label className={`${LABEL} mb-2 block`}>Height: {currentConfig.height}px</label>
         )}
         <input
           type="range"
@@ -108,11 +109,7 @@ export function BasicTab({ variant, currentConfig, updateConfig }: BasicTabProps
       </div>
 
       <div className={variant === 'desktop' ? 'space-y-2' : undefined}>
-        <label
-          className={
-            variant === 'desktop' ? 'text-sm font-medium' : 'text-sm font-medium mb-2 block'
-          }
-        >
+        <label className={variant === 'desktop' ? LABEL : `${LABEL} mb-2 block`}>
           Animation Duration
         </label>
         <div className="grid grid-cols-2 gap-2">
@@ -293,7 +290,7 @@ export function AdvancedTab({ variant, currentConfig, updateConfig }: AdvancedTa
     <div className="space-y-4">
       {isDesktop ? (
         <div className="space-y-2">
-          <label className="text-sm font-medium">Gradient Type</label>
+          <label className={LABEL}>Gradient Type</label>
           <p className="text-xs text-muted-foreground">{GRADIENT_TYPES.length} types available</p>
           <Input
             value={searchQuery}
@@ -303,7 +300,7 @@ export function AdvancedTab({ variant, currentConfig, updateConfig }: AdvancedTa
           />
         </div>
       ) : (
-        <label className="text-sm font-medium mb-2 block">
+        <label className={`${LABEL} mb-2 block`}>
           Gradient Type ({GRADIENT_TYPES.length} types available)
         </label>
       )}

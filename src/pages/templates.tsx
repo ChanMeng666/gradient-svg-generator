@@ -4,23 +4,11 @@ import { useWindowVirtualizer } from '@tanstack/react-virtual';
 import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import GEOHead from '../components/seo/GEOHead';
-import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
-import {
-  Search,
-  Grid3x3,
-  List,
-  SlidersHorizontal,
-  Star,
-  X,
-  ChevronRight,
-  Sparkles,
-  Layers,
-  LayoutGrid,
-  SearchX,
-} from 'lucide-react';
+import { Search, Grid3x3, List, Star, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 import useStore from '../store/useStore';
 import TemplatePreviewModal from '../components/features/TemplatePreviewModal';
@@ -52,13 +40,25 @@ const ROW_GAP = 24;
 // Matching this aspect on the preview region lets the SVG fill the card
 // horizontally edge-to-edge without any cropping.
 const PREVIEW_ASPECT = 854 / 180;
-// Info strip below the preview: 24px vertical padding + category line (16px) +
-// 2px gap + title line (20px) ≈ 62px, plus 1px top border.
-const GRID_CARD_INFO_HEIGHT = 63;
+// Info strip below the preview (TemplateCard). Arithmetic from its CSS:
+//   1px top border
+// + 14px top padding (py-3.5)
+// + 16px category line (font-mono text-[11px] leading-4)
+// + 6px gap (mt-1.5)
+// + 20px title line (text-[15px] leading-5)
+// + 14px bottom padding (py-3.5)
+// = 71px total.
+const GRID_CARD_INFO_HEIGHT = 71;
 // Used only as an initial estimate — the virtualizer re-measures real heights
 // via `measureElement`, so slight inaccuracies self-correct after first render.
 const GRID_ROW_HEIGHT_FALLBACK = 170 + ROW_GAP;
-const LIST_ROW_HEIGHT = 96;
+// List row height. Arithmetic from the row CSS:
+//   ~47px tallest child (w-56 = 224px preview at 854/180 aspect → 224 × 180/854)
+// + 24px vertical padding (p-3, 12px each side)
+// + 2px top+bottom border
+// + 12px bottom margin (mb-3)
+// = 85px total.
+const LIST_ROW_HEIGHT = 85;
 
 export default function Templates() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -309,30 +309,25 @@ export default function Templates() {
       <div className="min-h-screen bg-background">
         <Header showMobileMenu={false} />
 
-        {/* Hero */}
-        <section className="border-b bg-gradient-to-b from-muted/40 via-background to-background">
-          <div className="container mx-auto px-4 py-10">
-            <div className="mx-auto max-w-3xl text-center">
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
-                <Sparkles className="h-3.5 w-3.5 text-primary" />
-                Template Gallery
-              </div>
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
-                Find the perfect gradient for your project
-              </h1>
-              <p className="text-sm md:text-base text-muted-foreground mb-6">
-                {templates.length} professionally crafted templates across {categories.length}{' '}
-                categories, with unique animations and live preview.
-              </p>
+        {/* Page header */}
+        <section className="border-b border-border">
+          <div className="container mx-auto px-4 py-16 md:py-20">
+            <span className="font-mono text-[13px] uppercase tracking-[0.15em] text-muted-foreground">
+              The Catalog — {templates.length} Templates / {categories.length} Categories
+            </span>
+            <h1 className="mt-6 text-[clamp(2.75rem,7vw,6.5rem)] font-normal leading-[0.95] tracking-display text-foreground">
+              The Gallery
+            </h1>
 
-              <div className="relative mx-auto max-w-xl">
-                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <div className="mt-10 max-w-xl">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
                   type="text"
                   placeholder="Search by name, category, or effect…"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="h-11 pl-10 pr-10 rounded-full"
+                  className="h-11 rounded-full pl-11 pr-10"
                 />
                 {searchQuery && (
                   <button
@@ -345,30 +340,19 @@ export default function Templates() {
                   </button>
                 )}
               </div>
-
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
-                <span className="inline-flex items-center gap-1.5">
-                  <LayoutGrid className="h-3.5 w-3.5" />
-                  {templates.length}+ Templates
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Layers className="h-3.5 w-3.5" />
-                  {categories.length} Categories
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Sparkles className="h-3.5 w-3.5" />
-                  {availableGradientTypes.length}+ Gradient Types
-                </span>
-              </div>
+              <p className="mt-3 font-mono text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                {filteredTemplates.length} Shown
+                {searchQuery && <span> — &ldquo;{searchQuery}&rdquo;</span>}
+              </p>
             </div>
           </div>
         </section>
 
         {/* Sticky: categories + toolbar + filter panel */}
-        <div className="sticky top-16 z-30 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+        <div className="sticky top-16 z-30 border-b border-border bg-background/90 backdrop-blur">
           {/* Category pills */}
           <div className="container mx-auto px-4">
-            <div className="-mx-4 overflow-x-auto px-4 scroll-smooth">
+            <div className="-mx-4 overflow-x-auto px-4 scroll-smooth no-scrollbar">
               <div className="flex items-center gap-2 py-3 min-w-max">
                 <CategoryPill
                   active={selectedCategory === 'all'}
@@ -381,7 +365,6 @@ export default function Templates() {
                     key={c.id}
                     active={selectedCategory === c.id}
                     label={c.name}
-                    icon={c.icon}
                     count={categoryCounts.get(c.id) ?? 0}
                     onClick={() => setSelectedCategory(c.id)}
                   />
@@ -392,15 +375,10 @@ export default function Templates() {
 
           {/* Toolbar */}
           <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between gap-3 border-t py-3">
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">{filteredTemplates.length}</span>
-                <span className="hidden sm:inline"> of {templates.length}</span> templates
-                {searchQuery && (
-                  <span className="ml-1">
-                    for <span className="text-foreground">&ldquo;{searchQuery}&rdquo;</span>
-                  </span>
-                )}
+            <div className="flex items-center justify-between gap-3 border-t border-border py-3">
+              <p className="font-mono text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                <span className="text-foreground">{filteredTemplates.length}</span>
+                <span className="hidden sm:inline"> / {templates.length}</span> Shown
               </p>
 
               <div className="flex items-center gap-2">
@@ -408,29 +386,16 @@ export default function Templates() {
                   type="button"
                   onClick={() => setFavoritesOnly((v) => !v)}
                   className={cn(
-                    'inline-flex items-center gap-1.5 rounded-md border h-9 px-3 text-sm font-medium transition-colors',
+                    'inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 font-mono text-[12px] uppercase tracking-[0.08em] transition-colors',
                     favoritesOnly
-                      ? 'bg-yellow-500/10 border-yellow-500/40 text-yellow-700 dark:text-yellow-400'
-                      : 'bg-background border-input text-muted-foreground hover:text-foreground hover:bg-accent',
+                      ? 'border-foreground bg-foreground text-background'
+                      : 'border-border text-muted-foreground hover:text-foreground',
                   )}
                   aria-pressed={favoritesOnly}
                 >
-                  <Star
-                    className={cn('h-4 w-4', favoritesOnly && 'fill-current text-yellow-500')}
-                  />
+                  <span aria-hidden>★</span>
                   <span className="hidden sm:inline">Favorites</span>
-                  {favorites.length > 0 && (
-                    <span
-                      className={cn(
-                        'ml-0.5 rounded px-1.5 text-[11px] leading-5',
-                        favoritesOnly
-                          ? 'bg-yellow-500/20 text-yellow-700 dark:text-yellow-300'
-                          : 'bg-muted text-muted-foreground',
-                      )}
-                    >
-                      {favorites.length}
-                    </span>
-                  )}
+                  {favorites.length > 0 && <span className="opacity-60">{favorites.length}</span>}
                 </button>
 
                 <button
@@ -438,30 +403,27 @@ export default function Templates() {
                   onClick={() => setShowFilters((v) => !v)}
                   aria-expanded={showFilters}
                   className={cn(
-                    'inline-flex items-center gap-1.5 rounded-md border h-9 px-3 text-sm font-medium transition-colors',
+                    'inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 font-mono text-[12px] uppercase tracking-[0.08em] transition-colors',
                     showFilters || selectedFilters.length > 0
-                      ? 'bg-primary/10 border-primary/40 text-primary'
-                      : 'bg-background border-input text-muted-foreground hover:text-foreground hover:bg-accent',
+                      ? 'border-foreground bg-foreground text-background'
+                      : 'border-border text-muted-foreground hover:text-foreground',
                   )}
                 >
-                  <SlidersHorizontal className="h-4 w-4" />
-                  <span className="hidden sm:inline">Filters</span>
+                  <span>Filters</span>
                   {selectedFilters.length > 0 && (
-                    <span className="ml-0.5 rounded bg-primary px-1.5 text-[11px] leading-5 text-primary-foreground">
-                      {selectedFilters.length}
-                    </span>
+                    <span className="opacity-60">{selectedFilters.length}</span>
                   )}
                 </button>
 
-                <div className="flex items-center rounded-md border bg-background p-0.5">
+                <div className="inline-flex items-center overflow-hidden rounded-full border border-border">
                   <button
                     type="button"
                     aria-label="Grid view"
                     onClick={() => setViewMode('grid')}
                     className={cn(
-                      'inline-flex h-8 w-8 items-center justify-center rounded transition-colors',
+                      'inline-flex h-8 w-8 items-center justify-center transition-colors',
                       viewMode === 'grid'
-                        ? 'bg-accent text-accent-foreground'
+                        ? 'bg-foreground text-background'
                         : 'text-muted-foreground hover:text-foreground',
                     )}
                   >
@@ -472,9 +434,9 @@ export default function Templates() {
                     aria-label="List view"
                     onClick={() => setViewMode('list')}
                     className={cn(
-                      'inline-flex h-8 w-8 items-center justify-center rounded transition-colors',
+                      'inline-flex h-8 w-8 items-center justify-center border-l border-border transition-colors',
                       viewMode === 'list'
-                        ? 'bg-accent text-accent-foreground'
+                        ? 'bg-foreground text-background'
                         : 'text-muted-foreground hover:text-foreground',
                     )}
                   >
@@ -487,15 +449,15 @@ export default function Templates() {
 
           {/* Filter panel */}
           {showFilters && (
-            <div className="border-t bg-muted/20">
+            <div className="border-t border-border bg-card">
               <div className="container mx-auto px-4 py-5 space-y-5">
                 <div>
                   <div className="mb-2.5 flex items-center justify-between">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    <h3 className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                       Gradient Type
                     </h3>
-                    <span className="text-xs text-muted-foreground">
-                      {availableGradientTypes.length} types
+                    <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground/60">
+                      {availableGradientTypes.length} Types
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
@@ -513,10 +475,10 @@ export default function Templates() {
                             );
                           }}
                           className={cn(
-                            'rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors',
+                            'rounded-full border px-3.5 py-1.5 font-mono text-[12px] uppercase tracking-[0.08em] transition-colors',
                             active
-                              ? 'border-primary bg-primary text-primary-foreground'
-                              : 'border-input bg-background text-muted-foreground hover:text-foreground hover:border-foreground/30',
+                              ? 'border-foreground bg-foreground text-background'
+                              : 'border-border text-muted-foreground hover:text-foreground',
                           )}
                         >
                           {type.replace(/([A-Z])/g, ' $1').trim()}
@@ -527,7 +489,7 @@ export default function Templates() {
                 </div>
 
                 <div>
-                  <h3 className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  <h3 className="mb-2.5 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                     Animation Speed
                   </h3>
                   <div className="flex flex-wrap gap-1.5">
@@ -545,10 +507,10 @@ export default function Templates() {
                             );
                           }}
                           className={cn(
-                            'rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors',
+                            'rounded-full border px-3.5 py-1.5 font-mono text-[12px] uppercase tracking-[0.08em] transition-colors',
                             active
-                              ? 'border-primary bg-primary text-primary-foreground'
-                              : 'border-input bg-background text-muted-foreground hover:text-foreground hover:border-foreground/30',
+                              ? 'border-foreground bg-foreground text-background'
+                              : 'border-border text-muted-foreground hover:text-foreground',
                           )}
                         >
                           {speed}
@@ -560,16 +522,11 @@ export default function Templates() {
 
                 {selectedFilters.length > 0 && (
                   <div className="flex items-center justify-between pt-1">
-                    <p className="text-xs text-muted-foreground">
-                      {selectedFilters.length} filter{selectedFilters.length !== 1 ? 's' : ''}{' '}
-                      active
+                    <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                      {selectedFilters.length} Filter{selectedFilters.length !== 1 ? 's' : ''}{' '}
+                      Active
                     </p>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setSelectedFilters([])}
-                      className="h-7 text-xs"
-                    >
+                    <Button variant="ghost" size="sm" onClick={() => setSelectedFilters([])}>
                       Clear filters
                     </Button>
                   </div>
@@ -580,9 +537,11 @@ export default function Templates() {
 
           {/* Active filter summary */}
           {activeFilterCount > 0 && !showFilters && (
-            <div className="border-t bg-muted/10">
-              <div className="container mx-auto px-4 py-2.5 flex items-center gap-2 overflow-x-auto">
-                <span className="text-xs text-muted-foreground shrink-0">Active:</span>
+            <div className="border-t border-border">
+              <div className="container mx-auto px-4 py-2.5 flex items-center gap-2 overflow-x-auto no-scrollbar">
+                <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground/60">
+                  Active
+                </span>
                 {selectedCategory !== 'all' && (
                   <FilterChip
                     label={categoryMap.get(selectedCategory)?.name ?? selectedCategory}
@@ -602,7 +561,7 @@ export default function Templates() {
                 <button
                   type="button"
                   onClick={clearAll}
-                  className="ml-auto shrink-0 text-xs text-muted-foreground hover:text-foreground underline-offset-2 hover:underline"
+                  className="ml-auto shrink-0 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground hover:text-foreground"
                 >
                   Clear all
                 </button>
@@ -679,7 +638,6 @@ export default function Templates() {
             >
               {listVirtualizer.getVirtualItems().map((virtualRow) => {
                 const template = filteredTemplates[virtualRow.index];
-                const cat = categoryMap.get(template.category);
                 const isFav = favorites.includes(template.name);
                 return (
                   <div
@@ -704,10 +662,10 @@ export default function Templates() {
                           openPreview(template.name);
                         }
                       }}
-                      className="group mb-3 flex items-center gap-4 rounded-xl border bg-card p-3 pr-4 transition-all cursor-pointer hover:border-primary/40 hover:shadow-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
+                      className="group mb-3 flex items-center gap-4 rounded-2xl border border-border bg-card p-3 pr-4 transition-colors cursor-pointer hover:border-foreground/40 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                     >
                       <div
-                        className="w-56 shrink-0 overflow-hidden rounded-md bg-muted"
+                        className="w-56 shrink-0 overflow-hidden rounded-lg bg-muted"
                         style={{ aspectRatio: `${PREVIEW_ASPECT}` }}
                       >
                         <img
@@ -718,15 +676,14 @@ export default function Templates() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="truncate font-semibold text-base">{template.displayName}</h3>
-                        <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
-                          <Badge variant="outline" className="font-normal">
-                            {cat?.icon ? <span className="mr-1">{cat.icon}</span> : null}
-                            <span className="capitalize">{template.category}</span>
-                          </Badge>
+                        <h3 className="truncate text-[15px] font-normal text-foreground">
+                          {template.displayName}
+                        </h3>
+                        <div className="mt-1.5 flex items-center gap-2 truncate font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                          <span>{template.category}</span>
                           {template.gradientType && (
-                            <span className="capitalize truncate">
-                              {template.gradientType.replace(/([A-Z])/g, ' $1').trim()}
+                            <span className="truncate">
+                              · {template.gradientType.replace(/([A-Z])/g, ' $1').trim()}
                             </span>
                           )}
                           {template.animationDuration && (
@@ -740,10 +697,10 @@ export default function Templates() {
                           aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
                           onClick={(e) => handleListFavorite(e, template.name)}
                           className={cn(
-                            'inline-flex h-9 w-9 items-center justify-center rounded-md border transition-colors',
+                            'inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors',
                             isFav
-                              ? 'border-yellow-500/40 bg-yellow-500/10 text-yellow-500'
-                              : 'border-input bg-background text-muted-foreground hover:text-foreground hover:bg-accent',
+                              ? 'border-foreground bg-foreground text-background'
+                              : 'border-border text-muted-foreground hover:text-foreground',
                           )}
                         >
                           <Star className={cn('h-4 w-4', isFav && 'fill-current')} />
@@ -752,10 +709,7 @@ export default function Templates() {
                           href={`/create?template=${template.name}`}
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <Button size="sm" className="gap-1.5">
-                            Use
-                            <ChevronRight className="h-4 w-4" />
-                          </Button>
+                          <Button size="sm">Use →</Button>
                         </Link>
                       </div>
                     </div>
@@ -776,6 +730,8 @@ export default function Templates() {
           onFavorite={handleToggleFavorite}
           isFavorite={!!selectedTemplate && favorites.includes(selectedTemplate.name)}
         />
+
+        <Footer />
       </div>
     </>
   );
@@ -784,36 +740,25 @@ export default function Templates() {
 interface CategoryPillProps {
   active: boolean;
   label: string;
-  icon?: string;
   count: number;
   onClick: () => void;
 }
 
-function CategoryPill({ active, label, icon, count, onClick }: CategoryPillProps) {
+function CategoryPill({ active, label, count, onClick }: CategoryPillProps) {
   return (
     <button
       type="button"
       onClick={onClick}
       className={cn(
-        'inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 h-8 text-sm font-medium transition-colors',
+        'inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 font-mono text-[12px] uppercase tracking-[0.08em] transition-colors',
         active
-          ? 'border-primary bg-primary text-primary-foreground shadow-sm'
-          : 'border-input bg-background text-muted-foreground hover:text-foreground hover:border-foreground/30',
+          ? 'border-foreground bg-foreground text-background'
+          : 'border-border text-muted-foreground hover:text-foreground',
       )}
       aria-pressed={active}
     >
-      {icon ? <span className="text-[15px] leading-none">{icon}</span> : null}
       <span>{label}</span>
-      <span
-        className={cn(
-          'ml-0.5 rounded px-1.5 text-[11px] leading-5 font-medium',
-          active
-            ? 'bg-primary-foreground/15 text-primary-foreground'
-            : 'bg-muted text-muted-foreground',
-        )}
-      >
-        {count}
-      </span>
+      <span className="opacity-60">{count}</span>
     </button>
   );
 }
@@ -825,13 +770,13 @@ interface FilterChipProps {
 
 function FilterChip({ label, onRemove }: FilterChipProps) {
   return (
-    <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-input bg-background px-2.5 py-0.5 text-xs capitalize text-foreground">
+    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border px-3 py-1 font-mono text-[11px] uppercase tracking-[0.08em] text-foreground">
       {label}
       <button
         type="button"
         aria-label={`Remove ${label} filter`}
         onClick={onRemove}
-        className="inline-flex h-4 w-4 items-center justify-center rounded-full text-muted-foreground hover:text-foreground hover:bg-accent"
+        className="inline-flex h-4 w-4 items-center justify-center rounded-full text-muted-foreground hover:text-foreground"
       >
         <X className="h-3 w-3" />
       </button>
@@ -846,18 +791,14 @@ interface EmptyStateProps {
 
 function EmptyState({ hasActiveFilters, onClear }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center py-24 text-center">
-      <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-muted text-muted-foreground">
-        <SearchX className="h-7 w-7" />
-      </div>
-      <h3 className="text-lg font-semibold mb-1">No templates found</h3>
-      <p className="text-sm text-muted-foreground mb-5 max-w-sm">
+    <div className="flex flex-col items-center justify-center gap-6 py-24 text-center">
+      <p className="font-mono text-[13px] uppercase tracking-[0.15em] text-muted-foreground">
         {hasActiveFilters
-          ? 'Try broadening your filters or clearing your search to see more templates.'
-          : 'Your favorites list is empty. Browse the gallery and add some favorites.'}
+          ? 'No templates match — try a different query'
+          : 'No favorites yet — browse the gallery and star a few'}
       </p>
       {hasActiveFilters && (
-        <Button variant="outline" onClick={onClear}>
+        <Button variant="ghost" onClick={onClear}>
           Clear filters
         </Button>
       )}

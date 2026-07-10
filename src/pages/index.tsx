@@ -1,477 +1,213 @@
-import { useState, useEffect, useMemo } from 'react';
-import type { ReactNode } from 'react';
+import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import GEOHead from '../components/seo/GEOHead';
 import { Button } from '../components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
-import { getCategories, getTemplatesByCategory } from '../utils/templateUtils';
-import { FEATURED_TEMPLATES, EDITORS_CHOICE, POPULAR_TEMPLATES } from '../features/home/homeData';
-import {
-  Sparkles,
-  Palette,
-  Zap,
-  Eye,
-  ChevronRight,
-  Star,
-  Code2,
-  Layers,
-  Grid3x3,
-} from 'lucide-react';
+import SectionHeading from '../components/common/SectionHeading';
+import { GradientInkText } from '../components/home/GradientInkText';
+import { HeroHeadline } from '../components/home/HeroHeadline';
+import { LiveEndpointCard } from '../components/home/LiveEndpointCard';
+import { HERO_TEMPLATES } from '../features/home/homeData';
 
-interface HomeFeature {
-  icon: ReactNode;
-  title: string;
-  description: string;
+const REPO_URL = 'https://github.com/ChanMeng666/gradient-svg-generator';
+
+/** "aurora-borealis" -> "AURORA BOREALIS" */
+function slugToCaps(slug: string): string {
+  return slug.replace(/-/g, ' ').toUpperCase();
 }
 
-interface CategoryMeta {
-  id: string;
-  name: string;
-  icon: string;
-}
+const containerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
 
-interface TemplateSummary {
-  name: string;
-  displayName?: string;
-}
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+const revealVariants: Variants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
 
 export default function Home() {
-  const [currentTemplateIndex, setCurrentTemplateIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+  const [activeTemplate, setActiveTemplate] = useState<string>(HERO_TEMPLATES[0]);
 
-  const categories = useMemo<CategoryMeta[]>(() => getCategories() as CategoryMeta[], []);
-
-  const features: HomeFeature[] = [
-    {
-      icon: <Palette className="h-6 w-6" />,
-      title: '340+ Templates',
-      description: 'Professional templates across 19 categories',
-    },
-    {
-      icon: <Sparkles className="h-6 w-6" />,
-      title: '180+ Gradient Types',
-      description: 'Unique animations and visual effects',
-    },
-    {
-      icon: <Eye className="h-6 w-6" />,
-      title: 'Live Preview',
-      description: 'Real-time updates as you customize',
-    },
-    {
-      icon: <Zap className="h-6 w-6" />,
-      title: 'API Access',
-      description: 'Generate SVGs programmatically',
-    },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTemplateIndex((prev) => (prev + 1) % FEATURED_TEMPLATES.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  // whileInView props for section reveals, disabled under reduced motion.
+  const revealProps = reduceMotion
+    ? {}
+    : ({
+        initial: 'hidden',
+        whileInView: 'visible',
+        viewport: { once: true, margin: '-80px' },
+      } as const);
 
   return (
     <>
       <GEOHead pageType="home" />
       <Head>
-        <title>
-          Chromaflow - Create Stunning Animated SVG Gradients | 340+ Professional Templates
-        </title>
+        <title>Chromaflow — Animated SVG Gradients | Free API, 340+ Templates</title>
         <meta
           name="description"
-          content="Generate beautiful animated SVG gradients with 340+ professional templates across 19 categories. Perfect for headers, banners, and creative projects. Free API, no registration required."
+          content="Animated SVG gradient banners for READMEs and headers. 340+ templates, 180+ gradient types, a free /api/svg endpoint — no keys, no sign-up. Point an image tag at it and go."
         />
         <meta
           name="keywords"
           content="chromaflow, gradient generator, SVG creator, animated banners, GitHub headers, design tools, API, templates, free"
         />
-        <meta property="og:title" content="Chromaflow - 340+ Professional Gradient Templates" />
+        <meta property="og:title" content="Chromaflow — Animated SVG Gradients, Free API" />
         <meta
           property="og:description"
-          content="Create stunning animated SVG gradients with 340+ professional templates across 19 categories. Free API access, no registration required."
+          content="340+ animated gradient templates and a free /api/svg endpoint. Living color for READMEs, headers, and banners — no keys, no sign-up."
         />
         <meta property="og:url" content="https://chromaflow.vercel.app" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Chromaflow - Professional Gradient Templates" />
+        <meta name="twitter:title" content="Chromaflow — Animated SVG Gradients, Free API" />
         <meta
           name="twitter:description"
-          content="340+ professional gradient templates across 19 categories with real-time API. Perfect for developers and designers."
+          content="340+ animated gradient templates and a free /api/svg endpoint. No keys, no sign-up."
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/api/svg?text=%20&template=aurora-borealis&height=300"
         />
       </Head>
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background text-foreground">
         <Header showMobileMenu={false} />
 
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-background to-primary/5" />
-          <div className="container mx-auto px-4 py-20 relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center max-w-3xl mx-auto"
+        {/* ----------------------------------------------- Beat 1 · Poster hero */}
+        <section className="mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-7xl flex-col justify-between px-4 py-10 md:py-14">
+          <motion.div
+            className="flex flex-1 flex-col justify-between"
+            variants={reduceMotion ? undefined : containerVariants}
+            initial={reduceMotion ? undefined : 'hidden'}
+            animate={reduceMotion ? undefined : 'visible'}
+          >
+            {/* Top — mono overline */}
+            <motion.p
+              variants={reduceMotion ? undefined : itemVariants}
+              className="font-mono text-[13px] uppercase tracking-[0.15em] text-muted-foreground"
             >
-              <Badge variant="secondary" className="mb-4">
-                <Sparkles className="h-3 w-3 mr-1" />
-                New: AI-powered gradients coming soon
-              </Badge>
+              Animated Gradient SVG — Free API — 340+ Templates
+            </motion.p>
 
-              <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                Create Stunning
-                <span className="gradient-text"> Animated SVG </span>
-                Gradients
-              </h1>
-
-              <p className="text-xl text-muted-foreground mb-8">
-                Professional gradient generator with 340+ templates and 180+ gradient types. Perfect
-                for headers, banners, and creative projects.
-              </p>
-
-              <div className="flex gap-4 justify-center mb-12">
-                <Link href="/create">
-                  <Button size="lg" className="gap-2">
-                    <Palette className="h-5 w-5" />
-                    Start Creating
-                  </Button>
-                </Link>
-                <Link href="/templates">
-                  <Button size="lg" variant="outline" className="gap-2">
-                    Browse Templates
-                    <ChevronRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-
-              <div className="relative max-w-2xl mx-auto">
-                <div className="absolute inset-0 bg-linear-to-r from-primary/20 to-purple-600/20 blur-3xl" />
-                <Card className="overflow-hidden relative">
-                  <div className="aspect-2/1 bg-muted flex items-center justify-center">
-                    <img
-                      src={`/api/svg?text=${FEATURED_TEMPLATES[currentTemplateIndex].text}&template=${FEATURED_TEMPLATES[currentTemplateIndex].name}&height=200&v=2`}
-                      alt={FEATURED_TEMPLATES[currentTemplateIndex].displayName}
-                      className="w-full h-full object-contain"
-                      key={`hero-${FEATURED_TEMPLATES[currentTemplateIndex].name}`}
-                    />
-                  </div>
-                  <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">
-                    <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm">
-                      {FEATURED_TEMPLATES[currentTemplateIndex].displayName}
-                    </Badge>
-                    <div className="flex gap-1">
-                      {FEATURED_TEMPLATES.map((_, index) => (
-                        <div
-                          key={index}
-                          className={`h-1.5 w-1.5 rounded-full transition-all ${
-                            index === currentTemplateIndex
-                              ? 'bg-primary w-4'
-                              : 'bg-muted-foreground/30'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </Card>
-              </div>
+            {/* Middle — the type IS the layout: full-width rotating gradient headline */}
+            <motion.div
+              variants={reduceMotion ? undefined : itemVariants}
+              className="flex-1 flex flex-col justify-center py-8"
+            >
+              <HeroHeadline
+                lines={['LIVING', 'COLOR.']}
+                lineClassNames={[undefined, 'text-right']}
+                templates={HERO_TEMPLATES}
+                onTemplateChange={setActiveTemplate}
+                className="text-[clamp(4rem,15vw,14.5rem)] font-normal uppercase leading-[0.92] tracking-display"
+              />
             </motion.div>
-          </div>
-        </section>
 
-        <section className="py-20 border-t">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Everything You Need</h2>
-              <p className="text-muted-foreground">
-                Powerful features for creating professional gradients
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card className="h-full">
-                    <CardHeader>
-                      <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary">
-                        {feature.icon}
-                      </div>
-                      <CardTitle className="text-xl">{feature.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{feature.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between mb-12">
-              <div>
-                <h2 className="text-3xl font-bold mb-2">Editor's Choice</h2>
-                <p className="text-muted-foreground">Hand-picked premium templates</p>
-              </div>
-              <Link href="/templates">
-                <Button variant="outline" className="gap-2">
-                  View All
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {EDITORS_CHOICE.map((template, index) => (
-                <motion.div
-                  key={template.name}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.05 }}
-                >
-                  <Card className="overflow-hidden cursor-pointer hover:shadow-lg transition-all">
-                    <div className="aspect-video bg-muted">
-                      <img
-                        src={`/api/svg?text=${template.text}&template=${template.name}&height=120&v=2`}
-                        alt={template.displayName}
-                        className="w-full h-full object-contain"
-                        key={`editor-${template.name}`}
-                      />
-                    </div>
-                    <CardHeader className="p-4">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-base">{template.displayName}</CardTitle>
-                          <CardDescription className="text-xs capitalize">
-                            {template.category}
-                          </CardDescription>
-                        </div>
-                        <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                      </div>
-                    </CardHeader>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between mb-12">
-              <div>
-                <h2 className="text-3xl font-bold mb-2">Popular This Week</h2>
-                <p className="text-muted-foreground">Most used templates by the community</p>
-              </div>
-              <Badge variant="outline" className="gap-1">
-                <Layers className="h-3 w-3" />
-                Updated weekly
-              </Badge>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {POPULAR_TEMPLATES.map((template) => (
-                <Card key={template.name} className="hover:shadow-md transition-shadow">
-                  <CardHeader className="pb-3">
-                    <div className="flex justify-between items-center">
-                      <CardTitle className="text-lg">{template.displayName}</CardTitle>
-                      <Badge variant="secondary">{template.users} uses</Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="aspect-3/1 bg-muted rounded-md overflow-hidden">
-                      <img
-                        src={`/api/svg?text=PREVIEW&template=${template.name}&height=80&v=2`}
-                        alt={template.displayName}
-                        className="w-full h-full object-contain"
-                        key={`popular-${template.name}`}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between mb-12">
-              <div>
-                <h2 className="text-3xl font-bold mb-2">Explore Categories</h2>
-                <p className="text-muted-foreground">
-                  Discover all {categories.length} template categories
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Badge variant="outline" className="gap-1">
-                  <Grid3x3 className="h-3 w-3" />
-                  {categories.length} Categories
-                </Badge>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {categories.map((category) => {
-                const categoryTemplates = getTemplatesByCategory(category.id) as TemplateSummary[];
-                const sampleTemplate = categoryTemplates[0];
-
-                return (
-                  <Link
-                    key={category.id}
-                    href={`/templates?category=${category.id}`}
-                    className="group"
-                  >
-                    <Card className="overflow-hidden cursor-pointer hover:shadow-lg transition-all h-full">
-                      {sampleTemplate && (
-                        <div className="aspect-video bg-muted overflow-hidden">
-                          <img
-                            src={`/api/svg?text=${category.icon}&template=${sampleTemplate.name}&height=100&v=2`}
-                            alt={category.name}
-                            className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
-                            loading="lazy"
-                          />
-                        </div>
-                      )}
-
-                      <CardHeader className="p-3">
-                        <div className="text-center">
-                          <div className="text-2xl mb-1">{category.icon}</div>
-                          <CardTitle className="text-sm font-semibold">{category.name}</CardTitle>
-                          <CardDescription className="text-xs mt-1">
-                            {categoryTemplates.length} template
-                            {categoryTemplates.length !== 1 ? 's' : ''}
-                          </CardDescription>
-                        </div>
-                      </CardHeader>
-                    </Card>
-                  </Link>
-                );
-              })}
-            </div>
-
-            <div className="text-center mt-12">
-              <Link href="/templates">
-                <Button size="lg" variant="outline" className="gap-2">
-                  <Palette className="h-5 w-5" />
-                  View All Templates
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20 border-t">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to Create?</h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join thousands of developers and designers creating beautiful gradients. Free to use,
-              no sign-up required.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <Link href="/create">
-                <Button size="lg" className="gap-2">
-                  <Sparkles className="h-5 w-5" />
-                  Create Your Gradient
-                </Button>
-              </Link>
-              <Button
-                size="lg"
-                variant="outline"
-                className="gap-2"
-                onClick={() =>
-                  window.open('https://github.com/ChanMeng666/gradient-svg-generator', '_blank')
-                }
+            {/* Bottom — hairline baseline row: positioning left, CTAs right */}
+            <div>
+              <motion.div
+                variants={reduceMotion ? undefined : itemVariants}
+                className="flex flex-col gap-8 border-t border-border py-8 md:flex-row md:items-end md:justify-between md:gap-12"
               >
-                <Code2 className="h-5 w-5" />
-                View on GitHub
-              </Button>
+                <p className="max-w-md text-lg text-muted-foreground md:text-xl">
+                  Animated SVG banners for READMEs, headers and docs. One URL — no keys, no build
+                  step.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Link href="/create">
+                    <Button size="lg">Start Creating</Button>
+                  </Link>
+                  <Link href="/templates">
+                    <Button size="lg" variant="outline">
+                      Browse Templates
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+
+              {/* Very bottom — live status line synced to the rotation */}
+              <motion.p
+                variants={reduceMotion ? undefined : itemVariants}
+                className="mt-6 font-mono text-[12px] text-muted-foreground md:text-[13px]"
+              >
+                <span className="text-foreground">◉</span> NOW RENDERING:{' '}
+                {slugToCaps(activeTemplate)} — /api/svg?template={activeTemplate}
+              </motion.p>
             </div>
+          </motion.div>
+        </section>
+
+        {/* ------------------------------------------------ Beat 2 · The endpoint */}
+        <section className="border-t border-border py-24 md:py-32">
+          <div className="mx-auto max-w-7xl px-4">
+            <SectionHeading
+              counter="01"
+              overline="Live Endpoint"
+              title={<span className="text-4xl md:text-6xl">One URL, one gradient</span>}
+            />
+
+            <motion.div className="mt-12" variants={revealVariants} {...revealProps}>
+              <LiveEndpointCard text="Hello" template="sunset-gold" height={120} />
+            </motion.div>
+
+            <motion.p
+              className="mt-8 font-mono text-[13px] uppercase tracking-[0.1em] text-muted-foreground"
+              variants={revealVariants}
+              {...revealProps}
+            >
+              340+ Templates
+              <span className="mx-3 text-foreground/40">·</span>
+              180+ Gradient Types
+              <span className="mx-3 text-foreground/40">·</span>
+              No Auth
+              <span className="mx-3 text-foreground/40">·</span>
+              MIT License
+            </motion.p>
           </div>
         </section>
 
-        <footer className="border-t bg-linear-to-br from-muted/20 to-background py-10 mb-16 md:mb-0">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-8">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <img src="/gradient-svg-generator.svg" alt="Chromaflow" className="h-8 w-8" />
-                <h3 className="text-xl font-bold">Chromaflow</h3>
-              </div>
-              <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
-                Professional gradient generator with 340+ templates and 180+ gradient types. Create
-                stunning animated SVG gradients for your projects.
-              </p>
-              <div className="flex flex-wrap justify-center gap-6 text-sm">
-                <Link href="/create" className="hover:text-primary transition-colors font-medium">
-                  Create Gradient
-                </Link>
-                <Link
-                  href="/templates"
-                  className="hover:text-primary transition-colors font-medium"
-                >
-                  Browse Templates
-                </Link>
-                <Link href="/api/svg" className="hover:text-primary transition-colors font-medium">
-                  API Documentation
-                </Link>
-                <a
-                  href="https://github.com/ChanMeng666/gradient-svg-generator"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-primary transition-colors font-medium"
-                >
-                  GitHub Repository
-                </a>
-              </div>
+        {/* -------------------------------------------------------- Beat 3 · CTA */}
+        <section className="border-t border-border py-32 md:py-40">
+          <div className="mx-auto max-w-7xl px-4">
+            <GradientInkText
+              text="READY?"
+              template="sunset-gold"
+              className="text-[clamp(3.5rem,10vw,9rem)] font-normal leading-[0.95] tracking-display"
+            />
+            <p className="mt-6 max-w-xl text-xl text-muted-foreground">
+              Free to use, open source, no sign-up. Start with a template or build your own.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link href="/create">
+                <Button size="lg">Start Creating</Button>
+              </Link>
+              <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline">
+                  Star on GitHub
+                </Button>
+              </a>
             </div>
-
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-border/50">
-              <div className="flex items-center gap-4">
-                <div className="text-xs text-muted-foreground">
-                  © 2025 Open source under MIT License
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 text-xs">
-                <span className="text-muted-foreground">Created by</span>
-                <div className="flex items-center gap-2">
-                  <img
-                    src="/chan_logo.svg"
-                    alt="Chan Meng"
-                    className="h-5 w-5 bg-white/80 p-0.5 shadow-xs"
-                  />
-                  <div className="flex items-center gap-3">
-                    <a
-                      href="https://github.com/ChanMeng666"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      Chan Meng
-                    </a>
-                    <span className="text-muted-foreground/60">•</span>
-                    <a
-                      href="mailto:chanmeng.dev@gmail.com"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      Contact for custom development
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Link
+              href="/templates"
+              className="mt-10 inline-block font-mono text-[13px] uppercase tracking-[0.1em] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Browse the full catalog →
+            </Link>
           </div>
-        </footer>
+        </section>
+
+        <Footer />
       </div>
     </>
   );

@@ -1,23 +1,17 @@
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { motion, useReducedMotion } from 'framer-motion';
 import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
 import GEOHead from '../components/seo/GEOHead';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import SectionHeading from '../components/common/SectionHeading';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
-import {
-  Code,
-  Copy,
-  ExternalLink,
-  BookOpen,
-  Zap,
-  Eye,
-  Globe,
-  ArrowRight,
-  Check,
-} from 'lucide-react';
+import { Copy, Check } from 'lucide-react';
+import { cn } from '../lib/utils';
 
 interface ParameterSpec {
   name: string;
@@ -40,6 +34,44 @@ interface CopyButtonProps {
   label: string;
 }
 
+const REPO_URL = 'https://github.com/ChanMeng666/gradient-svg-generator';
+const PROD_ORIGIN = 'https://gradient-svg-generator.vercel.app';
+const API_WIDTH = 854;
+
+/** Strip the production origin so the example renders live against this host. */
+const toLiveSrc = (url: string) => url.replace(PROD_ORIGIN, '');
+
+/** Pull the height query param so <img> gets explicit dimensions (no CLS). */
+const heightOf = (url: string) => {
+  const match = url.match(/height=(\d+)/);
+  return match ? Number(match[1]) : 120;
+};
+
+/** One-time whileInView fade; collapses to a static render under reduced motion. */
+function Reveal({ children, className }: { children: ReactNode; className?: string }) {
+  const reduce = useReducedMotion();
+  return (
+    <motion.div
+      className={className}
+      initial={reduce ? false : { opacity: 0, y: 16 }}
+      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/** Static hairline code surface — horizontal scroll on overflow, no wrapping. */
+function CodeCard({ code, className }: { code: string; className?: string }) {
+  return (
+    <div className={cn('overflow-x-auto rounded-2xl border border-border bg-card p-5', className)}>
+      <pre className="font-mono text-[13px] leading-relaxed text-foreground/90">{code}</pre>
+    </div>
+  );
+}
+
 export default function APIDocs() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
@@ -50,16 +82,16 @@ export default function APIDocs() {
   };
 
   const codeExamples: Record<string, string> = {
-    basic: `https://gradient-svg-generator.vercel.app/api/svg?text=Hello%20World&height=120`,
-    template: `https://gradient-svg-generator.vercel.app/api/svg?text=AI%20Project&template=neural-network&height=150`,
-    customColors: `https://gradient-svg-generator.vercel.app/api/svg?text=Custom&color0=ff0000&color1=00ff00&color2=0000ff&height=120`,
-    advanced: `https://gradient-svg-generator.vercel.app/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s&height=180`,
-    githubMarkdown: `![Project Header](https://gradient-svg-generator.vercel.app/api/svg?text=My%20Awesome%20Project&template=cyber-matrix&height=200)`,
-    reactComponent: `const bannerUrl = \`https://gradient-svg-generator.vercel.app/api/svg?text=\${encodeURIComponent(title)}&template=neural-network&height=150\`;
+    basic: `${PROD_ORIGIN}/api/svg?text=Hello%20World&height=120`,
+    template: `${PROD_ORIGIN}/api/svg?text=AI%20Project&template=neural-network&height=150`,
+    customColors: `${PROD_ORIGIN}/api/svg?text=Custom&color0=ff0000&color1=00ff00&color2=0000ff&height=120`,
+    advanced: `${PROD_ORIGIN}/api/svg?text=Rainbow&gradientType=spiral&color0=ff0000&color1=ff8000&color2=ffff00&color3=00ff00&color4=0000ff&duration=10s&height=180`,
+    githubMarkdown: `![Project Header](${PROD_ORIGIN}/api/svg?text=My%20Awesome%20Project&template=cyber-matrix&height=200)`,
+    reactComponent: `const bannerUrl = \`${PROD_ORIGIN}/api/svg?text=\${encodeURIComponent(title)}&template=neural-network&height=150\`;
 
 <img src={bannerUrl} alt="Dynamic Header" />`,
     javascriptFunction: `function generateGradientBanner(text, template = 'neural-network', height = 150) {
-  const baseUrl = 'https://gradient-svg-generator.vercel.app/api/svg';
+  const baseUrl = '${PROD_ORIGIN}/api/svg';
   const params = new URLSearchParams({
     text: text,
     template: template,
@@ -70,7 +102,7 @@ export default function APIDocs() {
     pythonExample: `import urllib.parse
 
 def generate_gradient_url(text, template='neural-network', height=150):
-    base_url = 'https://gradient-svg-generator.vercel.app/api/svg'
+    base_url = '${PROD_ORIGIN}/api/svg'
     params = {
         'text': text,
         'template': template,
@@ -85,7 +117,7 @@ def generate_gradient_url(text, template='neural-network', height=150):
       name: 'text',
       type: 'string',
       required: true,
-      description: 'The text to display in the gradient',
+      description: 'The text to display in the gradient.',
       example: 'Hello%20World',
     },
     {
@@ -93,14 +125,14 @@ def generate_gradient_url(text, template='neural-network', height=150):
       type: 'number',
       required: false,
       default: '120',
-      description: 'Height of the SVG in pixels (30-300)',
+      description: 'Height of the SVG in pixels (30–300).',
       example: '150',
     },
     {
       name: 'template',
       type: 'string',
       required: false,
-      description: 'Template name from the gallery',
+      description: 'Template name from the gallery.',
       example: 'neural-network',
     },
     {
@@ -108,7 +140,7 @@ def generate_gradient_url(text, template='neural-network', height=150):
       type: 'string',
       required: false,
       default: 'horizontal',
-      description: 'Type of gradient effect',
+      description: 'Type of gradient effect.',
       example: 'spiral',
     },
     {
@@ -116,14 +148,14 @@ def generate_gradient_url(text, template='neural-network', height=150):
       type: 'string',
       required: false,
       default: '6s',
-      description: 'Animation duration',
+      description: 'Animation duration.',
       example: '8s',
     },
     {
       name: 'color0, color1, ...',
       type: 'string',
       required: false,
-      description: 'Gradient colors in hex (without #)',
+      description: 'Gradient colors in hex, without the leading hash.',
       example: 'ff0000',
     },
   ];
@@ -137,10 +169,56 @@ def generate_gradient_url(text, template='neural-network', height=150):
     { name: 'progress-pride', category: 'Pride', description: 'LGBTQ+ pride flag' },
   ];
 
+  const quickStart: { id: string; label: string; url: string; caption: string }[] = [
+    {
+      id: 'basic',
+      label: 'BASIC REQUEST',
+      url: codeExamples.basic,
+      caption: 'Text only. Every other parameter falls back to its default.',
+    },
+    {
+      id: 'template',
+      label: 'WITH A TEMPLATE',
+      url: codeExamples.template,
+      caption: 'Pass a template name to apply a curated color and motion set.',
+    },
+    {
+      id: 'customColors',
+      label: 'CUSTOM COLORS',
+      url: codeExamples.customColors,
+      caption: 'Supply your own hex stops with color0, color1, color2.',
+    },
+    {
+      id: 'advanced',
+      label: 'ADVANCED — MULTI-STOP',
+      url: codeExamples.advanced,
+      caption: 'Combine gradientType, five color stops, and a custom duration.',
+    },
+  ];
+
+  const integrations: { value: string; label: string; id: string; code: string }[] = [
+    { value: 'markdown', label: 'MARKDOWN', id: 'github', code: codeExamples.githubMarkdown },
+    { value: 'react', label: 'REACT', id: 'react', code: codeExamples.reactComponent },
+    { value: 'javascript', label: 'JAVASCRIPT', id: 'js', code: codeExamples.javascriptFunction },
+    { value: 'python', label: 'PYTHON', id: 'python', code: codeExamples.pythonExample },
+  ];
+
+  const templateLinks = [
+    { label: 'BROWSE 340+ TEMPLATES', href: '/templates' },
+    { label: 'OPEN THE EDITOR', href: '/create' },
+  ];
+
+  const heroPath = '/api/svg?text=Chromaflow&template=aurora-borealis&height=120';
+
   const CopyButton = ({ text, id, label }: CopyButtonProps) => (
-    <Button variant="outline" size="sm" onClick={() => copyToClipboard(text, id)} className="gap-2">
-      {copiedCode === id ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-      {copiedCode === id ? 'Copied!' : label}
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={() => copyToClipboard(text, id)}
+      className="shrink-0 gap-2"
+    >
+      {copiedCode === id ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+      {copiedCode === id ? 'COPIED' : label}
     </Button>
   );
 
@@ -154,7 +232,7 @@ def generate_gradient_url(text, template='neural-network', height=150):
         <title>API Documentation - Chromaflow | RESTful API for Developers</title>
         <meta
           name="description"
-          content="Complete API documentation for Chromaflow. Generate beautiful animated SVG gradients programmatically with our free RESTful API. No authentication required."
+          content="Send a GET request, get an animated SVG gradient. Chromaflow's free REST API needs no authentication. Full parameter reference and copy-ready integration snippets."
         />
         <meta
           name="keywords"
@@ -163,363 +241,226 @@ def generate_gradient_url(text, template='neural-network', height=150):
         <meta property="og:title" content="Chromaflow API Documentation" />
         <meta
           property="og:description"
-          content="Free RESTful API for generating professional animated SVG gradients. Complete documentation with examples."
+          content="A free REST API for animated SVG gradients. Send a GET request, get an SVG. No keys, no auth."
         />
       </Head>
 
       <div className="min-h-screen bg-background">
         <Header showMobileMenu={false} />
 
-        <section className="border-b">
-          <div className="container mx-auto px-4 py-12">
-            <div className="max-w-3xl">
-              <Badge variant="secondary" className="mb-4">
-                <Code className="h-3 w-3 mr-1" />
-                RESTful API Documentation
-              </Badge>
-
-              <h1 className="text-4xl font-bold mb-4">Chromaflow API</h1>
-
-              <p className="text-xl text-muted-foreground mb-6">
-                Generate beautiful animated SVG gradients programmatically with our free RESTful
-                API. No authentication required, unlimited usage.
+        {/* 1 — Header band */}
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-5xl px-4 py-20 md:py-28">
+            <Reveal className="max-w-3xl">
+              <span className="font-mono text-[13px] uppercase tracking-[0.15em] text-muted-foreground">
+                REST — NO AUTH — SVG RESPONSE
+              </span>
+              <h1 className="mt-6 font-normal leading-[0.95] tracking-display text-[clamp(2.75rem,7vw,6.5rem)]">
+                THE API
+              </h1>
+              <p className="mt-6 text-lg text-muted-foreground">
+                Send a GET request. Get an animated SVG. One endpoint, plain query parameters, no
+                keys to manage.
               </p>
+            </Reveal>
 
-              <div className="flex gap-4 mb-8">
-                <Link href="/create">
-                  <Button className="gap-2">
-                    <Eye className="h-4 w-4" />
-                    Try Interactive Editor
-                  </Button>
-                </Link>
-                <Link href="/templates">
-                  <Button variant="outline" className="gap-2">
-                    Browse Templates
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-
-              <Card className="bg-muted/30">
-                <CardHeader>
-                  <CardTitle className="text-lg">Quick Start Example</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="bg-background rounded-lg p-4 border">
-                      <code className="text-sm">{codeExamples.basic}</code>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">
-                        Generates a basic "Hello World" gradient banner
-                      </span>
-                      <CopyButton text={codeExamples.basic} id="quick-start" label="Copy URL" />
-                    </div>
+            <Reveal className="mt-12">
+              <div className="overflow-hidden rounded-2xl border border-border bg-card">
+                <div className="flex items-center justify-between gap-4 px-5 py-4">
+                  <div className="min-w-0 flex-1 overflow-x-auto">
+                    <code className="whitespace-pre font-mono text-[13px] text-foreground/90">
+                      GET {heroPath}
+                    </code>
                   </div>
-                </CardContent>
-              </Card>
+                  <CopyButton text={heroPath} id="hero" label="COPY" />
+                </div>
+                <div className="h-px w-full bg-border" />
+                <div className="p-5">
+                  <img
+                    src={heroPath}
+                    width={API_WIDTH}
+                    height={120}
+                    className="h-auto w-full rounded-lg"
+                    alt="Live API response"
+                  />
+                  <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    RESPONSE — RENDERED LIVE BY THIS PAGE
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 2 — Quick start */}
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-5xl px-4 py-20 md:py-28">
+            <SectionHeading
+              counter="01"
+              overline="QUICK START"
+              title={
+                <span className="text-[clamp(1.75rem,4vw,3rem)]">Four requests, four results</span>
+              }
+            />
+            <div className="mt-14 flex flex-col gap-16">
+              {quickStart.map((ex) => (
+                <Reveal key={ex.id}>
+                  <div className="mb-3 flex items-center justify-between gap-4">
+                    <span className="font-mono text-[12px] uppercase tracking-[0.15em] text-muted-foreground">
+                      {ex.label}
+                    </span>
+                    <CopyButton text={ex.url} id={ex.id} label="COPY URL" />
+                  </div>
+                  <CodeCard code={ex.url} />
+                  <img
+                    src={toLiveSrc(ex.url)}
+                    width={API_WIDTH}
+                    height={heightOf(ex.url)}
+                    loading="lazy"
+                    className="mt-4 h-auto w-full rounded-lg"
+                    alt={`Rendered output for ${ex.label.toLowerCase()}`}
+                  />
+                  <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {ex.caption}
+                  </p>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <Tabs defaultValue="overview" className="space-y-8">
-              <TabsList className="grid w-full grid-cols-5">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="parameters">Parameters</TabsTrigger>
-                <TabsTrigger value="examples">Examples</TabsTrigger>
-                <TabsTrigger value="templates">Templates</TabsTrigger>
-                <TabsTrigger value="integration">Integration</TabsTrigger>
+        {/* 3 — Parameters */}
+        <section className="light-section border-b border-border">
+          <div className="mx-auto max-w-5xl px-4 py-20 md:py-28">
+            <SectionHeading
+              counter="02"
+              overline="PARAMETERS"
+              title={
+                <span className="text-[clamp(1.75rem,4vw,3rem)]">Everything you can pass</span>
+              }
+            />
+            <Reveal className="mt-14 overflow-x-auto rounded-2xl border border-border">
+              <table className="w-full border-collapse text-left">
+                <thead>
+                  <tr className="border-b border-border">
+                    {['NAME', 'TYPE', 'DEFAULT', 'RANGE / VALUES', 'DESCRIPTION'].map((head) => (
+                      <th
+                        key={head}
+                        className="whitespace-nowrap px-4 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground"
+                      >
+                        {head}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {parameters.map((param) => (
+                    <tr key={param.name} className="border-b border-border last:border-0">
+                      <td className="whitespace-nowrap px-4 py-4 align-top">
+                        <span className="font-mono text-[13px] text-foreground">{param.name}</span>
+                        {param.required && (
+                          <Badge variant="outline" className="ml-2 align-middle">
+                            REQ
+                          </Badge>
+                        )}
+                      </td>
+                      <td className="px-4 py-4 align-top font-mono text-[13px] text-muted-foreground">
+                        {param.type}
+                      </td>
+                      <td className="px-4 py-4 align-top font-mono text-[13px] text-muted-foreground">
+                        {param.default ?? '—'}
+                      </td>
+                      <td className="px-4 py-4 align-top font-mono text-[13px] text-muted-foreground">
+                        {param.example}
+                      </td>
+                      <td className="px-4 py-4 align-top text-sm text-foreground/80">
+                        {param.description}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 4 — Integrations */}
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-5xl px-4 py-20 md:py-28">
+            <SectionHeading
+              counter="03"
+              overline="INTEGRATIONS"
+              title={
+                <span className="text-[clamp(1.75rem,4vw,3rem)]">Drop it into your stack</span>
+              }
+            />
+            <Tabs defaultValue="markdown" className="mt-14">
+              <TabsList className="flex-wrap">
+                {integrations.map((item) => (
+                  <TabsTrigger key={item.value} value={item.value}>
+                    {item.label}
+                  </TabsTrigger>
+                ))}
               </TabsList>
-
-              <TabsContent value="overview" className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Base URL & Authentication</CardTitle>
-                    <CardDescription>
-                      Simple HTTP GET requests to generate SVG gradients
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <h4 className="font-semibold mb-2">Base URL</h4>
-                          <div className="bg-muted rounded-lg p-3">
-                            <code>https://gradient-svg-generator.vercel.app/api/svg</code>
-                          </div>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold mb-2">Authentication</h4>
-                          <Badge variant="outline">None Required</Badge>
-                        </div>
-                      </div>
-
-                      <div className="grid md:grid-cols-3 gap-4 pt-4">
-                        <div className="flex items-center gap-2">
-                          <Zap className="h-5 w-5 text-green-500" />
-                          <span>Unlimited Usage</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Globe className="h-5 w-5 text-blue-500" />
-                          <span>Global CDN</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <BookOpen className="h-5 w-5 text-purple-500" />
-                          <span>Open Source</span>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="parameters" className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>API Parameters</CardTitle>
-                    <CardDescription>
-                      All parameters are passed as URL query parameters
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="overflow-x-auto">
-                      <table className="w-full">
-                        <thead>
-                          <tr className="border-b">
-                            <th className="text-left py-2">Parameter</th>
-                            <th className="text-left py-2">Type</th>
-                            <th className="text-left py-2">Required</th>
-                            <th className="text-left py-2">Default</th>
-                            <th className="text-left py-2">Description</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {parameters.map((param, index) => (
-                            <tr key={index} className="border-b">
-                              <td className="py-3 font-mono text-sm">{param.name}</td>
-                              <td className="py-3">
-                                <Badge variant="outline">{param.type}</Badge>
-                              </td>
-                              <td className="py-3">
-                                {param.required ? (
-                                  <Badge variant="destructive">Required</Badge>
-                                ) : (
-                                  <Badge variant="secondary">Optional</Badge>
-                                )}
-                              </td>
-                              <td className="py-3 font-mono text-sm">{param.default || '-'}</td>
-                              <td className="py-3 text-sm">{param.description}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="examples" className="space-y-6">
-                <div className="grid gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Basic Usage</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="bg-muted rounded-lg p-4">
-                          <code className="text-sm break-all">{codeExamples.basic}</code>
-                        </div>
-                        <CopyButton text={codeExamples.basic} id="basic" label="Copy URL" />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>With Template</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="bg-muted rounded-lg p-4">
-                          <code className="text-sm break-all">{codeExamples.template}</code>
-                        </div>
-                        <CopyButton text={codeExamples.template} id="template" label="Copy URL" />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Custom Colors</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="bg-muted rounded-lg p-4">
-                          <code className="text-sm break-all">{codeExamples.customColors}</code>
-                        </div>
-                        <CopyButton text={codeExamples.customColors} id="colors" label="Copy URL" />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Advanced Multi-Color</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="bg-muted rounded-lg p-4">
-                          <code className="text-sm break-all">{codeExamples.advanced}</code>
-                        </div>
-                        <CopyButton text={codeExamples.advanced} id="advanced" label="Copy URL" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="templates" className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Popular Templates</CardTitle>
-                    <CardDescription>
-                      Most commonly used templates with their categories and use cases
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {popularTemplates.map((template, index) => (
-                        <div key={index} className="border rounded-lg p-4">
-                          <div className="flex justify-between items-start mb-2">
-                            <h4 className="font-semibold">{template.name}</h4>
-                            <Badge variant="outline">{template.category}</Badge>
-                          </div>
-                          <p className="text-sm text-muted-foreground mb-3">
-                            {template.description}
-                          </p>
-                          <div className="bg-muted rounded p-2">
-                            <code className="text-xs break-all">template={template.name}</code>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-6">
-                      <Link href="/templates">
-                        <Button variant="outline" className="gap-2">
-                          <ExternalLink className="h-4 w-4" />
-                          View All 340+ Templates
-                        </Button>
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="integration" className="space-y-6">
-                <div className="grid gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>GitHub Markdown</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="bg-muted rounded-lg p-4">
-                          <pre className="text-sm">{codeExamples.githubMarkdown}</pre>
-                        </div>
-                        <CopyButton
-                          text={codeExamples.githubMarkdown}
-                          id="github"
-                          label="Copy Markdown"
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>React Component</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="bg-muted rounded-lg p-4">
-                          <pre className="text-sm">{codeExamples.reactComponent}</pre>
-                        </div>
-                        <CopyButton
-                          text={codeExamples.reactComponent}
-                          id="react"
-                          label="Copy Code"
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>JavaScript Function</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="bg-muted rounded-lg p-4">
-                          <pre className="text-sm">{codeExamples.javascriptFunction}</pre>
-                        </div>
-                        <CopyButton
-                          text={codeExamples.javascriptFunction}
-                          id="js"
-                          label="Copy Code"
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Python Example</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="bg-muted rounded-lg p-4">
-                          <pre className="text-sm">{codeExamples.pythonExample}</pre>
-                        </div>
-                        <CopyButton
-                          text={codeExamples.pythonExample}
-                          id="python"
-                          label="Copy Code"
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
+              {integrations.map((item) => (
+                <TabsContent key={item.value} value={item.value} className="mt-8">
+                  <div className="mb-3 flex justify-end">
+                    <CopyButton text={item.code} id={item.id} label="COPY CODE" />
+                  </div>
+                  <CodeCard code={item.code} />
+                </TabsContent>
+              ))}
             </Tabs>
           </div>
         </section>
 
-        <section className="py-12 border-t bg-muted/30">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl font-bold mb-4">Ready to Start Building?</h2>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Start using our API right away. No registration, no API keys, unlimited usage.
-            </p>
-            <div className="flex gap-4 justify-center">
-              <Link href="/create">
-                <Button className="gap-2">
-                  <Eye className="h-4 w-4" />
-                  Try Interactive Editor
-                </Button>
-              </Link>
-              <Link href="/templates">
-                <Button variant="outline" className="gap-2">
-                  Browse Templates
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
+        {/* 5 — Templates teaser */}
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-5xl px-4 py-20 md:py-28">
+            <SectionHeading
+              counter="04"
+              overline="KEEP GOING"
+              title={
+                <span className="text-[clamp(1.75rem,4vw,3rem)]">Pick a look, or build one</span>
+              }
+            />
+            <div className="mt-10">
+              {templateLinks.map((row) => (
+                <Link
+                  key={row.href}
+                  href={row.href}
+                  className="group flex items-center justify-between border-t border-border py-5 font-mono text-[13px] uppercase tracking-[0.1em] text-muted-foreground transition-colors last:border-b hover:text-foreground"
+                >
+                  <span>{row.label}</span>
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
 
-        <div className="h-16 md:h-0" />
+        {/* 6 — CTA */}
+        <section>
+          <div className="mx-auto max-w-5xl px-4 py-24 text-center md:py-32">
+            <Reveal>
+              <h2 className="font-normal leading-[0.95] tracking-display text-[clamp(2rem,5vw,4rem)]">
+                BUILD WITH COLOR.
+              </h2>
+              <div className="mt-10 flex flex-wrap justify-center gap-4">
+                <Link href="/create">
+                  <Button size="lg">START CREATING</Button>
+                </Link>
+                <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="lg">
+                    VIEW ON GITHUB
+                  </Button>
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <Footer />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 // Service Worker for PWA functionality
-// v3: Fixed cache.addAll failure due to missing favicon.ico
-const CACHE_NAME = 'gradient-svg-v3';
+// v4: Ink Room redesign — bump cache to invalidate stale pre-redesign shell
+const CACHE_NAME = 'gradient-svg-v4';
 const urlsToCache = [
   '/',
   '/create',

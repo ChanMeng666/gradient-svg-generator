@@ -1,6 +1,6 @@
 import { memo, type MouseEvent } from 'react';
 import Link from 'next/link';
-import { Star, Eye, ArrowRight } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export interface TemplateCardData {
@@ -57,9 +57,9 @@ function TemplateCardImpl({
         }
       }}
       className={cn(
-        'group relative flex flex-col overflow-hidden rounded-xl border bg-card text-left',
-        'transition-all duration-300 ease-out cursor-pointer',
-        'hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-xl',
+        'group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card text-left',
+        'transition-colors duration-200 cursor-pointer',
+        'hover:border-foreground/40',
         'focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
       )}
     >
@@ -80,29 +80,39 @@ function TemplateCardImpl({
           onClick={handleFavorite}
           className={cn(
             'absolute top-2 right-2 inline-flex h-7 w-7 items-center justify-center rounded-full',
-            'bg-black/35 text-white backdrop-blur-md transition-all',
-            'hover:bg-black/55 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring',
-            isFavorite && 'bg-yellow-500/90 text-white hover:bg-yellow-500',
+            'bg-black/50 transition-colors',
+            'hover:bg-black/70 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring',
           )}
         >
-          <Star className={cn('h-3.5 w-3.5', isFavorite && 'fill-current')} />
+          <Star
+            className={cn('h-3.5 w-3.5', isFavorite ? 'fill-white text-white' : 'text-white/70')}
+          />
         </button>
       </div>
 
-      <div className="flex flex-col gap-0.5 border-t px-3.5 py-3">
-        <div className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-          {template.categoryIcon ? <span>{template.categoryIcon}</span> : null}
-          <span className="capitalize">{template.category}</span>
+      {/* Info strip — height must stay visually constant so the virtualizer's
+          GRID_CARD_INFO_HEIGHT estimate holds. Fixed leading enforces that. */}
+      <div className="border-t border-border px-4 py-3.5">
+        <div className="font-mono text-[11px] uppercase tracking-[0.08em] leading-4 text-muted-foreground line-clamp-1">
+          {template.category}
         </div>
-        <h3 className="text-sm font-semibold text-foreground line-clamp-1">
-          {template.displayName}
-        </h3>
+        <div className="mt-1.5 flex items-center justify-between gap-2">
+          <span className="text-[15px] font-normal leading-5 text-foreground line-clamp-1">
+            {template.displayName}
+          </span>
+          <span
+            aria-hidden
+            className="shrink-0 text-foreground/40 transition-transform duration-200 group-hover:translate-x-0.5"
+          >
+            →
+          </span>
+        </div>
       </div>
 
       <div
         className={cn(
           'absolute inset-0 flex items-center justify-center gap-2 p-4',
-          'bg-black/50 backdrop-blur-[2px] opacity-0',
+          'bg-black/60 opacity-0',
           'transition-opacity duration-200',
           'group-hover:opacity-100 group-focus-within:opacity-100',
         )}
@@ -111,25 +121,23 @@ function TemplateCardImpl({
           type="button"
           onClick={handlePreview}
           className={cn(
-            'inline-flex items-center gap-1.5 rounded-md border border-white/40 bg-white/10 px-3 h-9',
-            'text-sm font-medium text-white backdrop-blur-sm transition-colors',
-            'hover:bg-white/20 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white',
+            'inline-flex items-center rounded-full border border-white/40 px-4 h-9',
+            'font-mono text-[12px] uppercase tracking-[0.08em] text-white transition-colors',
+            'hover:bg-white/10 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white',
           )}
         >
-          <Eye className="h-4 w-4" />
           Preview
         </button>
         <Link
           href={`/create?template=${template.name}`}
           onClick={(e) => e.stopPropagation()}
           className={cn(
-            'inline-flex items-center gap-1.5 rounded-md bg-primary px-3 h-9',
-            'text-sm font-medium text-primary-foreground transition-colors',
-            'hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white',
+            'inline-flex items-center gap-1.5 rounded-full bg-white px-4 h-9',
+            'font-mono text-[12px] uppercase tracking-[0.08em] text-black transition-colors',
+            'hover:bg-white/90 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white',
           )}
         >
-          Use Template
-          <ArrowRight className="h-4 w-4" />
+          Use <span aria-hidden>→</span>
         </Link>
       </div>
     </div>

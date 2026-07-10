@@ -18,7 +18,9 @@ export default function SidebarFilters({ categories, selected, onToggle }: Sideb
     <div className="p-4 border-b shrink-0">
       <div className="flex items-center mb-2">
         <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
-        <span className="text-sm font-medium">Categories</span>
+        <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+          Categories
+        </span>
       </div>
       <div className="flex flex-wrap gap-2">
         {categories.map((category) => (

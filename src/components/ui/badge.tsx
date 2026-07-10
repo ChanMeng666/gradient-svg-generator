@@ -5,11 +5,10 @@ type BadgeVariant = 'default' | 'secondary' | 'destructive' | 'outline';
 
 const badgeVariants: { variant: Record<BadgeVariant, string> } = {
   variant: {
-    default: 'border-transparent bg-primary text-primary-foreground hover:bg-primary/80',
-    secondary: 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
-    destructive:
-      'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80',
-    outline: 'text-foreground',
+    default: 'border-border text-foreground',
+    secondary: 'border-transparent bg-secondary text-secondary-foreground',
+    destructive: 'border-transparent bg-destructive text-destructive-foreground',
+    outline: 'border-border text-foreground',
   },
 };
 
@@ -21,7 +20,7 @@ function Badge({ className, variant = 'default', ...props }: BadgeProps) {
   return (
     <div
       className={cn(
-        'inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2',
+        'inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-[11px] font-normal uppercase tracking-[0.1em] focus:outline-hidden focus:ring-1 focus:ring-ring focus:ring-offset-2',
         badgeVariants.variant[variant],
         className,
       )}

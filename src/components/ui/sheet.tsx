@@ -25,13 +25,13 @@ const Sheet = React.forwardRef<HTMLDivElement, SheetProps>(
     return (
       <>
         <div
-          className="fixed inset-0 z-50 bg-black/50 animate-in fade-in md:hidden"
+          className="fixed inset-0 z-50 bg-black/70 animate-in fade-in md:hidden"
           onClick={() => onOpenChange?.(false)}
         />
         <div
           ref={ref}
           className={cn(
-            'fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out animate-in slide-in-from-bottom duration-300 md:hidden',
+            'fixed z-50 gap-4 border-border bg-background p-6 transition ease-in-out animate-in slide-in-from-bottom duration-300 md:hidden',
             className,
           )}
           {...props}
@@ -46,7 +46,7 @@ const SheetContent = React.forwardRef<HTMLDivElement, SheetContentProps>(
   ({ side = 'bottom', className, children, onClose, ...props }, ref) => {
     const sideClasses: Record<SheetSide, string> = {
       top: 'inset-x-0 top-0 border-b',
-      bottom: 'inset-x-0 bottom-0 border-t rounded-t-[10px]',
+      bottom: 'inset-x-0 bottom-0 border-t rounded-t-2xl',
       left: 'inset-y-0 left-0 h-full w-3/4 border-r',
       right: 'inset-y-0 right-0 h-full w-3/4 border-l',
     };
@@ -56,14 +56,14 @@ const SheetContent = React.forwardRef<HTMLDivElement, SheetContentProps>(
         {/* Only show overlay for non-bottom sheets */}
         {side !== 'bottom' && (
           <div
-            className="fixed inset-0 z-50 bg-black/50 animate-in fade-in md:hidden"
+            className="fixed inset-0 z-50 bg-black/70 animate-in fade-in md:hidden"
             onClick={onClose}
           />
         )}
         <div
           ref={ref}
           className={cn(
-            'fixed z-50 bg-background shadow-lg transition ease-in-out',
+            'fixed z-50 border-border bg-background transition ease-in-out',
             sideClasses[side],
             className,
           )}
@@ -104,7 +104,7 @@ SheetFooter.displayName = 'SheetFooter';
 
 const SheetTitle = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ className, ...props }, ref) => (
-    <h3 ref={ref} className={cn('text-lg font-semibold text-foreground', className)} {...props} />
+    <h3 ref={ref} className={cn('text-lg font-normal text-foreground', className)} {...props} />
   ),
 );
 SheetTitle.displayName = 'SheetTitle';

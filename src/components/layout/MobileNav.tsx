@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Home, Grid3x3, PlusCircle, Clock, Star, Code } from 'lucide-react';
+import { Home, Grid3x3, PlusCircle, Code } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
@@ -15,16 +15,14 @@ const navItems: readonly NavItem[] = [
   { href: '/templates', icon: Grid3x3, label: 'Templates' },
   { href: '/create', icon: PlusCircle, label: 'Create' },
   { href: '/api-docs', icon: Code, label: 'API' },
-  { href: '/recent', icon: Clock, label: 'Recent' },
-  { href: '/favorites', icon: Star, label: 'Favorites' },
 ];
 
 export default function MobileNav() {
   const router = useRouter();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-background border-t md:hidden z-50">
-      <div className="flex items-center justify-around h-16 px-2">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/95 backdrop-blur md:hidden">
+      <div className="flex h-16 items-center justify-around px-2">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = router.pathname === item.href;
@@ -34,12 +32,17 @@ export default function MobileNav() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors',
-                isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground',
+                'relative flex h-full flex-1 flex-col items-center justify-center gap-1 transition-colors',
+                isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground',
               )}
             >
-              <Icon className={cn('h-5 w-5 transition-transform', isActive && 'scale-110')} />
-              <span className="text-xs font-medium">{item.label}</span>
+              {isActive && (
+                <span className="absolute inset-x-4 top-0 h-0.5 bg-foreground" aria-hidden />
+              )}
+              <Icon className="h-5 w-5" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.08em]">
+                {item.label}
+              </span>
             </Link>
           );
         })}

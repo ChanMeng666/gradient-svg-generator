@@ -12,10 +12,10 @@ export default function SidebarSearch({ value, onChange }: SidebarSearchProps) {
       <div className="relative">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
         <Input
-          placeholder="Search templates..."
+          placeholder="SEARCH 340+ TEMPLATES"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="pl-10"
+          className="pl-10 font-mono text-xs uppercase tracking-[0.1em] placeholder:tracking-[0.1em]"
         />
       </div>
     </div>

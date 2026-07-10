@@ -2,8 +2,8 @@
   "name": "Chromaflow",
   "short_name": "Chromaflow",
   "description": "Create beautiful animated SVG gradients with 326+ templates",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
+  "theme_color": "#0f1012",
+  "background_color": "#0f1012",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
@@ -16,7 +16,7 @@
       "purpose": "maskable"
     },
     {
-      "src": "/icon-512.png", 
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
@@ -31,7 +31,7 @@
     },
     {
       "src": "/screenshot-2.png",
-      "sizes": "412x915", 
+      "sizes": "412x915",
       "type": "image/png"
     }
   ],

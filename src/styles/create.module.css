@@ -27,14 +27,13 @@
   flex-direction: column;
   min-width: 0;
   height: 100%;
-  background-color: hsl(var(--muted) / 0.3);
+  background-color: hsl(var(--background));
 }
 
 .canvasHeader {
   flex-shrink: 0;
   border-bottom: 1px solid hsl(var(--border));
-  background-color: hsl(var(--background) / 0.95);
-  backdrop-filter: blur(8px);
+  background-color: hsl(var(--background));
   padding: 1rem;
 }
 
@@ -61,20 +60,10 @@
   }
 }
 
-/* Remove old preview styles */
-.previewCard {
-  /* deprecated */
-}
-
-.previewImage {
-  /* deprecated */
-}
-
 .actionsBar {
   flex-shrink: 0;
   border-top: 1px solid hsl(var(--border));
-  background-color: hsl(var(--background) / 0.95);
-  backdrop-filter: blur(8px);
+  background-color: hsl(var(--background));
   padding: 1rem;
 }
 
@@ -137,7 +126,7 @@
   width: 40px;
   height: 40px;
   border: 1px solid hsl(var(--border));
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   cursor: pointer;
 }
 
@@ -145,7 +134,7 @@
   flex: 1;
   padding: 0.5rem;
   border: 1px solid hsl(var(--border));
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   background-color: hsl(var(--background));
   font-family: monospace;
   font-size: 0.875rem;
@@ -159,7 +148,7 @@
 .colorActionButton {
   padding: 0.5rem;
   border: 1px solid hsl(var(--border));
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   background-color: hsl(var(--background));
   cursor: pointer;
   transition: all 0.2s;
